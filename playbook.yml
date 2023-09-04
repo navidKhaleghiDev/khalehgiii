@@ -1,0 +1,78 @@
+- hosts: ics-sec
+  become: yes
+  become_user: root
+  gather_facts: yes
+
+  # Variables
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    containers:
+      front:
+        ip_address: '10.27.95.201'
+    urls:
+      clientapi: 'http://192.168.1.50:8000'
+      front: '192.168.1.50:4173'
+      kibana: 'http://192.168.1.50:5601'
+      server: 'https://ips.npd-co.com'
+
+  # List of tasks
+  tasks:
+    - name: Copy application
+      ansible.builtin.copy:
+        src: '/home/ansible/{{ item }}'
+        dest: '/tmp/{{ item }}'
+        owner: root
+        group: root
+        mode: '0644'
+      with_items:
+        - app.tar.gz
+        - front.service
+        - '00-front.conf'
+        - frontapp
+
+    - name: Copy env template to temp
+      ansible.builtin.template:
+        src: '/home/ansible/env.production.j2'
+        dest: /tmp/.env.production
+        mode: '0644'
+
+    - name: Ensure front container IP address is present in dnsmasq configuration
+      ansible.builtin.lineinfile:
+        path: /etc/lxc/dnsmasq.conf
+        regexp: '^dhcp-host=front'
+        line: 'dhcp-host=front,{{ containers.front.ip_address }}'
+      notify:
+        - Restart lxd network
+
+    - name: Flush Handlers
+      meta: flush_handlers
+
+    - name: Create front container
+      ansible.builtin.command:
+        cmd: /snap/bin/lxc launch ubuntu:20.04 front
+        creates: /var/snap/lxd/common/lxd/containers/front
+
+    - name: Make sure container is started
+      community.general.lxd_container:
+        name: front
+        state: started
+
+    - name: Install nodejs and deploy application into the container
+      ansible.builtin.shell: |
+        /snap/bin/lxc exec front -- /bin/bash -c "echo 192.168.1.50 nexus >/etc/hosts && echo deb http://nexus:8081/repository/apt-proxy/ubuntu jammy-updates main restricted universe > /etc/apt/sources.list && echo deb http://nexus:8081/repository/apt-proxy/ubuntu jammy main restricted universe >> /etc/apt/sources.list"
+        /snap/bin/lxc exec front -- /bin/bash -c "apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y -q && curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && apt-get update && apt-get install nodejs -y -q"
+        /snap/bin/lxc file push /tmp/app.tar.gz front/tmp/app.tar.gz
+        /snap/bin/lxc file push /tmp/front.service front/usr/lib/systemd/system/front.service
+        /snap/bin/lxc file push /tmp/00-front.conf front/etc/rsyslog.d/00-front.conf
+        /snap/bin/lxc file push /tmp/frontapp front/etc/logrotate.d/frontapp
+        /snap/bin/lxc exec front -- /bin/bash -c "grep front /etc/passwd >/dev/null || useradd -d /home/front -m -s /usr/sbin/nologin front && tar -C /home/front -xzf /tmp/app.tar.gz && systemctl enable front.service && mkdir /var/log/frontapp && chown syslog:adm /var/log/frontapp && systemctl restart rsyslog"
+        /snap/bin/lxc file push /tmp/.env.production front/home/front/.env.production
+        /snap/bin/lxc exec front -- /bin/bash -c "cd /home/front/ && npm install && npm run build"
+        /snap/bin/lxc exec front -- /bin/bash -c "chown -R front:front /home/front/"
+        /snap/bin/lxc exec front -- /bin/bash -c "systemctl daemon-reload && systemctl restart front.service"
+
+  handlers:
+    - name: Restart lxd network
+      ansible.builtin.systemd:
+        state: restarted
+        name: lxc-net

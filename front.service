@@ -1,0 +1,16 @@
+[Unit]
+Description=Netpardaz Front
+After=network.target
+
+[Service]
+Type=simple
+User=front
+WorkingDirectory=/home/front
+ExecStart=/usr/bin/npm run preview
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=frontapp
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

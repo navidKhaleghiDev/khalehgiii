@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'on';
+  src: url('/src/assets/fonts/OnLight.woff2'),
+    url('/src/assets/fonts/OnLight.woff');
+}
+
+@font-face {
+  font-family: 'on';
+  src: url('/src/assets/fonts/OnNormal.woff2'),
+    url('/src/assets/fonts/OnNormal.woff');
+}
+
+@font-face {
+  font-family: 'on';
+  src: url('/src/assets/fonts/OnMedium.woff2'),
+    url('/src/assets/fonts/OnMedium.woff');
+}
+
+@font-face {
+  font-family: 'on';
+  src: url('/src/assets/fonts/OnBold.woff2'),
+    url('/src/assets/fonts/OnBold.woff');
+}
+
+@layer base {
+  select {
+    @apply p-8;
+  }
+  h2 {
+    @apply bg-red-600;
+  }
+}
+
+@layer utilities {
+  .custom-class-name {
+    color: #f0f;
+    @apply bg-red-600;
+  }
+}
+
+:root {
+  --toastify-font-family: on;
+}
+
+select {
+  padding: 10px;
+  margin: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+select option {
+  padding: 10px;
+  background: red;
+  height: 50px;
+  margin-top: 10;
+}
