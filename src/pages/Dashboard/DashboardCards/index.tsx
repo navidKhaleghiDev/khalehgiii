@@ -45,7 +45,7 @@ export function DashboardCards() {
       <div className="col-span-10 md:col-span-6 xl:col-span-3">
         <Card
           icon={shieldCheckIcon}
-          title="رفتار شناسی کاربر"
+          title="گزارش اسکن فایل ها"
           description=""
           onClick={() => navigate(ROUTES_PATH.monitoring)}
         />
