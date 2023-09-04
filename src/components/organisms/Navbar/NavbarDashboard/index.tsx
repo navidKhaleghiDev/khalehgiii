@@ -2,9 +2,9 @@ import { Avatar } from "@ui/atoms/Avatar";
 import { Typography } from "@ui/atoms/Typography/Typography";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { STORAGE_KEY_USER } from "@src/services/client/users";
+import { STORAGE_KEY_USER } from "@src/services/users";
 import { IconButton } from "@ui/atoms/BaseButton";
-import { IUser } from "@src/services/client/users/types";
+import { IUser } from "@src/services/users/types";
 import ToolTip from "@ui/atoms/Tooltip";
 
 export function NavbarDashboard() {
@@ -14,7 +14,7 @@ export function NavbarDashboard() {
   ) as IUser;
 
   return (
-    <nav className="px-8 2xl:container">
+    <nav className="w-full px-8 2xl:container">
       <div className="flex items-center justify-between p-3 ">
         <div className="flex items-center">
           <ToolTip tooltip="خروج" position="bottom">
@@ -41,7 +41,7 @@ export function NavbarDashboard() {
             </Typography>
           </div>
         </div>
-        <Link to={ROUTES_PATH.home}>
+        <Link to={ROUTES_PATH.dashboard}>
           <img src="/logo.jpg" alt="logo" className="h-8" />
         </Link>
       </div>

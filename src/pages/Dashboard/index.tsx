@@ -1,5 +1,5 @@
-import { STORAGE_KEY_USER } from "@src/services/client/users";
-import { IUser } from "@src/services/client/users/types";
+import { STORAGE_KEY_USER } from "@src/services/users";
+import { IUser } from "@src/services/users/types";
 import { ConfigForm } from "./ConfigForm";
 
 export function DashboardPage() {

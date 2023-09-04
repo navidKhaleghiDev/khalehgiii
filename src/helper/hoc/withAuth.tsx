@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { Navigate } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { STORAGE_KEY_USER } from "@src/services/client/users";
+import { STORAGE_KEY_USER } from "@src/services/users";
 
 export function withAuth<T extends Partial<T>>(
   WrappedComponent: React.ComponentType<T>

@@ -6,7 +6,7 @@ import { Typography } from "@ui/atoms/Typography";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { API_USERS_LOGIN, STORAGE_KEY_USER } from "@src/services/client/users";
+import { API_USERS_LOGIN, STORAGE_KEY_USER } from "@src/services/users";
 import { PasswordInput } from "@ui/atoms/Inputs/PasswordInput";
 import { toast } from "react-toastify";
 

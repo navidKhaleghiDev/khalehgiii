@@ -4,9 +4,9 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { LoadingPage } from "@ui/molecules/Loading";
 
 import { withAuth } from "@src/helper/hoc/withAuth";
-import { API_USERS_LOGIN, STORAGE_KEY_USER } from "@src/services/client/users";
+import { API_USERS_LOGIN, STORAGE_KEY_USER } from "@src/services/users";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { IUser } from "@src/services/client/users/types";
+import { IUser } from "@src/services/users/types";
 
 function LayoutCp() {
   const [loading, setLoading] = React.useState(false);

@@ -1,3 +1,10 @@
+export interface IDaAs {
+  id?: number;
+  email: string;
+  http_port: number | string;
+  https_port: number | string;
+}
+
 export interface IBodyUsersLogin {
   email: string;
   password: string;

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Controller } from 'react-hook-form';
+import { Controller } from "react-hook-form";
 
-import { BaseInputProps } from '../types';
-import { baseSelectStyles } from './styles';
-import { Typography } from '../../Typography';
-import { IOptionSelect, OptionSelect } from './OptionSelect';
-import { IconInput } from '../IconInput';
+import { BaseInputProps } from "../types";
+import { baseSelectStyles } from "./styles";
+import { Typography } from "../../Typography";
+import { IOptionSelect, OptionSelect } from "./OptionSelect";
+import { IconInput } from "../IconInput";
 
 export function BaseSelect(props: BaseInputProps<any>) {
   const {
@@ -20,7 +20,6 @@ export function BaseSelect(props: BaseInputProps<any>) {
     startIcon,
     endIcon,
     intent,
-    size,
     hiddenError,
   } = props;
   return (
@@ -30,7 +29,7 @@ export function BaseSelect(props: BaseInputProps<any>) {
       rules={rules}
       defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => (
-        <div className={`${className} ${fullWidth && 'w-full'}`}>
+        <div className={`${className} ${fullWidth && "w-full"}`}>
           {/* {label && (
             <label
               htmlFor={id}
@@ -47,17 +46,16 @@ export function BaseSelect(props: BaseInputProps<any>) {
               value={field.value}
               onChange={field.onChange}
               className={baseSelectStyles({
-                intent: error?.message ? 'error' : intent,
-                className: `${endIcon && 'pr-8'} ${startIcon && 'pl-8'}`,
+                intent: error?.message ? "error" : intent,
+                className: `${endIcon && "pr-8"} ${startIcon && "pl-8"}`,
                 fullWidth,
-                size,
               })}
               placeholder={placeholder}
             >
-              <OptionSelect option={{ label: 'انتخاب کنید', value: '' }} />
+              <OptionSelect option={{ label: "انتخاب کنید", value: "" }} />
               {[
-                { id: '1', label: 'گزینه', value: 'tow' },
-                { id: '2', label: 'گزینه', value: 'tow' },
+                { id: "1", label: "گزینه", value: "tow" },
+                { id: "2", label: "گزینه", value: "tow" },
               ].map((option: IOptionSelect) => (
                 <OptionSelect key={option.id} option={option} />
               ))}
@@ -68,7 +66,7 @@ export function BaseSelect(props: BaseInputProps<any>) {
           </div>
           {!hiddenError && (
             <Typography color="red" size="caption" className="h-6">
-              {error?.message ?? ''}
+              {error?.message ?? ""}
             </Typography>
           )}
         </div>
