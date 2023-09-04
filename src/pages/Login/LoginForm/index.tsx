@@ -86,11 +86,11 @@ export function LoginForm() {
           <ToggleSwitch
             control={control}
             leftButton={{
-              icon: "iconamoon:arrow-left-2-light",
+              icon: "clarity:administrator-solid",
               label: "ادمین",
             }}
             rightButton={{
-              icon: "ph:shield-warning",
+              icon: "fe:user",
               label: "کاربر",
             }}
             name="is_admin"

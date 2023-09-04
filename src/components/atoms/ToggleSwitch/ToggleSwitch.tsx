@@ -26,7 +26,7 @@ export function ToggleSwitch({
               {...field}
             />
             <span
-              className={`flex items-center space-x-[6px] rounded py-2 px-[18px] text-sm font-medium ${
+              className={`flex items-center space-x-[6px] rounded py-1 px-[18px] text-sm font-medium ${
                 !value ? "text-white bg-teal-600" : "text-body-color"
               }`}
             >
@@ -37,7 +37,7 @@ export function ToggleSwitch({
               {rightButton.label}
             </span>
             <span
-              className={`flex items-center space-x-[6px] rounded py-2 px-[18px] text-sm font-medium ${
+              className={`flex items-center space-x-[6px] rounded py-1 px-[18px] text-sm font-medium ${
                 value ? "text-white bg-teal-600" : "text-body-color"
               }`}
             >
