@@ -1,12 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import { BaseButton, IconButton } from '../BaseButton';
+import { useNavigate } from "react-router-dom";
+import { BaseButton, IconButton } from "../BaseButton";
 
 export type BackButtonProps = {
   withLabel?: boolean;
   onClick?: () => void;
+  className?: string;
 };
 
-export function BackButton({ withLabel, onClick }: BackButtonProps) {
+export function BackButton({ withLabel, onClick, className }: BackButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -24,12 +25,14 @@ export function BackButton({ withLabel, onClick }: BackButtonProps) {
       size="xl"
       type="button"
       color="teal"
+      className={className}
     />
   ) : (
     <BaseButton
       label="صفحه قبل"
       onClick={handleClick}
       endIcon="ph:arrow-line-left"
+      className={className}
     />
   );
 }

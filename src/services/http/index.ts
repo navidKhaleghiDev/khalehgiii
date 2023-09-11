@@ -8,9 +8,9 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   InternalAxiosRequestConfig,
-} from 'axios';
-import cookie from 'js-cookie';
-import { toast } from 'react-toastify';
+} from "axios";
+import cookie from "js-cookie";
+import { toast } from "react-toastify";
 
 enum StatusCode {
   Unauthorized = 401,
@@ -23,22 +23,22 @@ enum StatusCode {
   NotAcceptable = 406,
 }
 
-export const STORAGE_KEY_TOKEN = 't';
-export const STORAGE_KEY_REFRESH_TOKEN = 'r';
+export const STORAGE_KEY_TOKEN = "t";
+export const STORAGE_KEY_REFRESH_TOKEN = "r";
 
 const headers: Readonly<Record<string, string | boolean>> = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-  'Accept-Language': 'fa',
+  Accept: "application/json",
+  "Content-Type": "application/json",
+  "Accept-Language": "fa",
   // 'Content-Type': 'application/json; charset=utf-8',
   // 'Access-Control-Allow-Credentials': true,
   // 'X-Requested-With': 'XMLHttpRequest',
 };
 
 function handleResponseError(data: any): string {
-  let errorMessage = '';
+  let errorMessage = "";
   Object.entries(data).forEach(([key, value]) => {
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       errorMessage += `🔸${value}`;
     } else if (Array.isArray(value)) {
       value.forEach((err) => {
@@ -49,7 +49,7 @@ function handleResponseError(data: any): string {
         errorMessage += `🔸${k}: ${v}`;
       });
     } else {
-      errorMessage = 'با پشتیبانی تماس بگیرید.';
+      errorMessage = "با پشتیبانی تماس بگیرید.";
     }
   });
 
@@ -109,6 +109,9 @@ export class Http {
     return http;
   }
 
+  fetcherSWR = <Data>(url: string, config?: AxiosRequestConfig) =>
+    this.get<Data, AxiosResponse<Data>>(url, config);
+
   fetcher(url: string, config?: AxiosRequestConfig): FetcherResponse<Response> {
     return this.get(url, config);
   }
@@ -154,7 +157,7 @@ export class Http {
   }
 
   removeAuthHeader() {
-    this.http.defaults.headers.common.Authorization = '';
+    this.http.defaults.headers.common.Authorization = "";
     cookie.remove(STORAGE_KEY_TOKEN);
     localStorage.removeItem(STORAGE_KEY_REFRESH_TOKEN);
   }
@@ -182,7 +185,7 @@ export class Http {
           }
           case StatusCode.Forbidden: {
             // 403 - Handle Forbidden
-            toast.error('شما به این بخش دسترسی ندارید');
+            toast.error("شما به این بخش دسترسی ندارید");
             break;
           }
           case StatusCode.NotFound: {
@@ -191,7 +194,7 @@ export class Http {
           }
           case StatusCode.NotAcceptable: {
             // 406 - Handle proxy unauthorized
-            toast.error('شما نیاز به احراز هویت دارید');
+            toast.error("شما نیاز به احراز هویت دارید");
             throw handleResponseError(data);
           }
           case StatusCode.TooManyRequests: {
@@ -203,11 +206,11 @@ export class Http {
             break;
           }
           default:
-            throw 'با پشتیبانی تماس بگیرید.';
+            throw "با پشتیبانی تماس بگیرید.";
         }
       }
     }
-    throw 'با پشتیبانی تماس بگیرید.';
+    throw "با پشتیبانی تماس بگیرید.";
   }
 }
 const http = new Http();

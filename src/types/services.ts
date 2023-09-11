@@ -7,10 +7,19 @@ export interface IServerResponse<T> {
   };
 }
 
+export interface IServerResponseList<T> {
+  data: {
+    count: number;
+    next: string;
+    previous: string;
+    results: T;
+  };
+}
+
 export interface IPagination {
   pageSize: number;
   page: number;
-  filter: string;
+  filter?: string;
 }
 
 export type IAxiosResponse<T> = T;

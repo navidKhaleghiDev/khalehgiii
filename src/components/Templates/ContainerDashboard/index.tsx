@@ -1,5 +1,11 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from "react";
 
 export function ContainerDashboard({ children }: PropsWithChildren) {
-  return <div className="w-full flex flex-col h-full p-16">{children}</div>;
+  return (
+    <div className="w-full h-full flex justify-center items-center">
+      <div className="w-full h-full flex flex-col items-center p-16 2xl:container">
+        {children}
+      </div>
+    </div>
+  );
 }

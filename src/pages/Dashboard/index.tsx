@@ -1,6 +1,8 @@
 import { STORAGE_KEY_USER } from "@src/services/users";
 import { IUser } from "@src/services/users/types";
 import { ConfigForm } from "./ConfigForm";
+import { DashboardCards } from "./DashboardCards";
+import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
 
 export function DashboardPage() {
   const user = JSON.parse(
@@ -15,6 +17,9 @@ export function DashboardPage() {
       title="Desktop As Service"
     />
   ) : (
-    <ConfigForm user={user} />
+    <ContainerDashboard>
+      <DashboardCards />
+      <ConfigForm user={user} />
+    </ContainerDashboard>
   );
 }

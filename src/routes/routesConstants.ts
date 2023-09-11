@@ -1,9 +1,15 @@
-import { RoutePathType } from "./types";
+export type RoutePathType =
+  | "unauthorized"
+  | "login"
+  | "dashboard"
+  | "home"
+  | "dashboardDesktopList";
 
 export const RoutesName = {
   HOME: "home",
   DASHBOARD: "dashboard",
   UNAUTHORIZED: "unauthorized",
+  DESKTOP_LIST: "desktop-list",
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -11,4 +17,5 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   unauthorized: `/${RoutesName.UNAUTHORIZED}`,
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
+  dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
 };

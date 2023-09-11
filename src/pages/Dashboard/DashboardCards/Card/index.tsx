@@ -7,7 +7,7 @@ type PropsType = {
   onClick?: () => void;
 };
 
-export function BoxDashboard({ icon, title, description, onClick }: PropsType) {
+export function Card({ icon, title, description, onClick }: PropsType) {
   return (
     <button
       className="w-full flex items-center bg-white hover:bg-gray-200 rounded-md shadow-xl disabled:hover:bg-white"

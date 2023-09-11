@@ -28,7 +28,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     pureValue,
     onClickIcon,
     pureError,
-    ltrLabel,
+    ltrLabel = false,
     iconButtonIcon = "fa-home",
   } = props;
   return control ? (
@@ -96,6 +96,16 @@ export function BaseInput(props: BaseInputProps<any>) {
     />
   ) : (
     <div className="w-full flex flex-col">
+      {label && (
+        <label
+          htmlFor={id}
+          className={`block mb-1 ${ltrLabel && "text-left uppercase"}`}
+        >
+          <Typography color="teal" size="h5">
+            {label}
+          </Typography>
+        </label>
+      )}
       <input
         id={id}
         type={type}
@@ -108,6 +118,7 @@ export function BaseInput(props: BaseInputProps<any>) {
           className: `${(endIcon || onClickIcon) && "pl-8"} ${
             startIcon && "pr-8"
           } `,
+          ltrPlaceHolder: ltrLabel,
           fullWidth,
           size,
         })}

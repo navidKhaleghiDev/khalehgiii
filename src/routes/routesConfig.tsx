@@ -5,6 +5,7 @@ import NotFoundPage from "@src/pages/NotFound";
 import UnauthorizedPage from "@src/pages/Unauthorized";
 
 import { ROUTES_PATH } from "./routesConstants";
+import { DashboardDesktopListPage } from "@src/pages/DashboardDesktopList";
 
 const routesConfig = [
   {
@@ -25,6 +26,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboard,
         element: <DashboardPage />,
+      },
+      {
+        path: ROUTES_PATH.dashboardDesktopList,
+        element: <DashboardDesktopListPage />,
       },
     ],
   },
