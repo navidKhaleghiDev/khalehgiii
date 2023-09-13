@@ -1,0 +1,17 @@
+version: "3.4"
+services:
+  vite_docker:
+    image: node:alpine
+    container_name: vite_docker
+    environment:
+      - VITE_CLIENT_BASE_URL=http://localhost:8000
+      - VITE_KEY_CLOAK_ADMIN_PANEL=http://localhost:8080
+    command: sh -c "npm run build && npm run preview"
+    ports:
+      - "4176:4176"
+    working_dir: /srv/app
+    volumes:
+      - type: bind
+        source: ./
+        target: /srv/app
+    tty: true
