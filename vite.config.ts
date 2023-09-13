@@ -7,6 +7,6 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   server: {
     host: "0.0.0.0",
-    port: 4176,
+    port: 4173,
   },
 });

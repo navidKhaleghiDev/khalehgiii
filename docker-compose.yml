@@ -8,7 +8,7 @@ services:
       - VITE_KEY_CLOAK_ADMIN_PANEL=http://localhost:8080
     command: sh -c "npm run build && npm run preview"
     ports:
-      - "4176:4176"
+      - "4173:4173"
     working_dir: /srv/app
     volumes:
       - type: bind
