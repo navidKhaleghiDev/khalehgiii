@@ -1,14 +1,11 @@
-import { STORAGE_KEY_USER } from "@src/services/users";
-import { IUser } from "@src/services/users/types";
 import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
 
 import { DaAsList } from "./DaAsList";
 import { BackButton } from "@ui/atoms/BackButton";
+import { useUserContext } from "@context/user/userContext";
 
 export function DashboardDesktopListPage() {
-  const user = JSON.parse(
-    localStorage.getItem(STORAGE_KEY_USER) ?? ""
-  ) as IUser;
+  const { user } = useUserContext();
 
   return (
     <ContainerDashboard>

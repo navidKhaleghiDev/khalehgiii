@@ -1,11 +1,16 @@
-import { useRef, useState } from 'react';
-import { Controller, FieldValues } from 'react-hook-form';
-import { useClickOutside } from '@src/helper/hooks/useClickOutside';
+import { useRef, useState } from "react";
+import { Controller, FieldValues } from "react-hook-form";
+import { useClickOutside } from "@src/helper/hooks/useClickOutside";
 
-import { DropdownProps, IOptionSelect, StateType } from './type';
-import { optionSelectStyles, baseDropDownStyles } from './styles';
-import { BaseIcon } from '../BaseIcon';
-import { Typography } from '../Typography';
+import { DropdownProps, IOptionSelect, StateType } from "./type";
+import { optionSelectStyles, baseDropDownStyles } from "./styles";
+import { BaseIcon } from "../BaseIcon";
+import { Typography } from "../Typography";
+
+const initState = {
+  activeOption: null,
+  openOptions: false,
+};
 
 export function Dropdown<T extends FieldValues>({
   options,
@@ -16,12 +21,13 @@ export function Dropdown<T extends FieldValues>({
   name,
   defaultValue,
   className,
+  label,
+  size,
+  hiddenError,
+  containerClassName,
 }: DropdownProps<T>) {
   const ref = useRef(null);
-  const [state, setState] = useState<StateType>({
-    activeOption: null,
-    openOptions: false,
-  });
+  const [state, setState] = useState<StateType>(initState);
 
   const toggleOpen = () =>
     setState((prev) => ({ ...prev, openOptions: !prev.openOptions }));
@@ -44,18 +50,29 @@ export function Dropdown<T extends FieldValues>({
       control={control}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field: { onChange }, fieldState: { error } }) => (
-        <div className="relative" ref={ref}>
+      render={({ field: { onChange, value }, fieldState: { error } }) => (
+        <div className={`relative ${containerClassName}`} ref={ref}>
+          {label && (
+            <label htmlFor={name} className="block mb-1">
+              <Typography color="teal" size="h5">
+                {label}
+              </Typography>
+            </label>
+          )}
           <button
             type="button"
             onClick={toggleOpen}
             className={baseDropDownStyles({
+              size,
               fullWidth,
-              intent: error ? 'error' : 'default',
+              selected: !!value,
+              intent: error ? "error" : "default",
               className,
             })}
           >
-            {state.activeOption?.label ?? placeHolder}
+            {options.find((option) => option.id === value)?.label ??
+              placeHolder}
+            {/* <BaseIcon icon="ic:round-close" /> */}
             <BaseIcon
               icon={
                 state.openOptions
@@ -71,6 +88,18 @@ export function Dropdown<T extends FieldValues>({
               fullWidth,
             })}
           >
+            {value && (
+              <button
+                type="button"
+                className="w-full p-3 text-right text-gray-600 hover:bg-gray-200"
+                onClick={() => {
+                  setState(initState);
+                  onChange(undefined);
+                }}
+              >
+                حذف انتخاب
+              </button>
+            )}
             {options.map((option: IOptionSelect) => (
               <button
                 type="button"
@@ -85,9 +114,11 @@ export function Dropdown<T extends FieldValues>({
               </button>
             ))}
           </div>
-          <Typography color="red" size="caption" className="h-6">
-            {error?.message ?? ''}
-          </Typography>
+          {!hiddenError && (
+            <Typography color="red" size="caption" className="h-6">
+              {error?.message ?? ""}
+            </Typography>
+          )}
         </div>
       )}
     />

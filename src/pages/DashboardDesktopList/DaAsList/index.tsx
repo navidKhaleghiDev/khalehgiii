@@ -22,7 +22,7 @@ const headerItem: IDaAs = {
   https_port: "پورت https",
 };
 
-type PropsType = { user: IUser };
+type PropsType = { user: IUser | null };
 export function DaAsList({ user }: PropsType) {
   const [desktopId, setDesktopId] = useState<number>();
   const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -38,13 +38,7 @@ export function DaAsList({ user }: PropsType) {
           filter: `search=${search}`,
         })
       : null,
-    (url) =>
-      http.fetcherSWR(url, {
-        auth: {
-          username: user.email,
-          password: user.password,
-        },
-      }),
+    http.fetcherSWR,
     {
       revalidateOnFocus: false,
       errorRetryCount: 0,
@@ -68,11 +62,7 @@ export function DaAsList({ user }: PropsType) {
 
   const handleRequestDelete = async () => {
     setLoadingButtonDelete(true);
-    await API_DAAS_DELETE({
-      id: desktopId,
-      username: user.email,
-      password: user.password,
-    })
+    await API_DAAS_DELETE(`${desktopId}`)
       .then(() => {
         mutate();
         toast.success("با موفقیت حذف شد");

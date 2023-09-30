@@ -2,42 +2,70 @@ import React, { useEffect } from "react";
 import { NavbarDashboard } from "@ui/organisms/Navbar/NavbarDashboard";
 import { Outlet, useNavigate } from "react-router-dom";
 import { LoadingPage } from "@ui/molecules/Loading";
+import cookie from "js-cookie";
 
 import { withAuth } from "@src/helper/hoc/withAuth";
-import { API_USERS_LOGIN, STORAGE_KEY_USER } from "@src/services/users";
+import { API_USERS_PROFILE } from "@src/services/users";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { IUser } from "@src/services/users/types";
+import { useUserContext } from "@context/user/userContext";
+import { STORAGE_KEY_TOKEN, http } from "@src/services/http";
 
 function LayoutCp() {
   const [loading, setLoading] = React.useState(false);
-  const user = localStorage.getItem(STORAGE_KEY_USER);
+  const { user, setUser } = useUserContext();
+
+  // const user = localStorage.getItem(STORAGE_KEY_USER);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getProfile = async ({ email, password, is_admin }: IUser) => {
+    const getProfile = async () => {
       setLoading(true);
-      await API_USERS_LOGIN({ email, password, is_admin })
+      await API_USERS_PROFILE()
         .then(({ data }) => {
-          localStorage.setItem(
-            STORAGE_KEY_USER,
-            JSON.stringify({ ...data, email, password, is_admin })
-          );
+          setUser(data);
         })
         .catch(() => {
-          localStorage.clear();
+          http.removeAuthHeader();
           navigate(ROUTES_PATH.login);
         })
         .finally(() => {
           setLoading(false);
         });
     };
-    if (user) {
-      const userLocal = JSON.parse(user) as IUser;
-      getProfile(userLocal);
-    } else {
-      navigate(ROUTES_PATH.login);
+    const token = cookie.get(STORAGE_KEY_TOKEN);
+    if (!user && token) {
+      getProfile();
     }
-  }, [user]);
+  }, [navigate, setUser, user]);
+
+  // useEffect(() => {
+  //   const getProfile = async () => {
+  //     setLoading(true);
+  //     await API_USERS_LOGIN({ email, password, is_admin })
+  //       .then(({ data }) => {
+  //         localStorage.setItem(
+  //           STORAGE_KEY_USER,
+  //           JSON.stringify({ ...data, email, password, is_admin })
+  //         );
+  //       })
+  //       .catch(() => {
+  //         localStorage.clear();
+  //         navigate(ROUTES_PATH.login);
+  //       })
+  //       .finally(() => {
+  //         setLoading(false);
+  //       });
+  //   };
+  //   if (!user && token) {
+
+  //     getProfile();
+  //   } else {
+  //     navigate(ROUTES_PATH.login);
+  //   }
+  //   if (!user) {
+  //     navigate(ROUTES_PATH.login);
+  //   }
+  // }, [user]);
 
   if (!loading) {
     return (

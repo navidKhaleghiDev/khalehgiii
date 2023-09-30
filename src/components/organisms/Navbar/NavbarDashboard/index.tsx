@@ -2,16 +2,15 @@ import { Avatar } from "@ui/atoms/Avatar";
 import { Typography } from "@ui/atoms/Typography/Typography";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { STORAGE_KEY_USER } from "@src/services/users";
 import { IconButton } from "@ui/atoms/BaseButton";
-import { IUser } from "@src/services/users/types";
 import ToolTip from "@ui/atoms/Tooltip";
+import { AccessTime } from "./AccessTime";
+import { useUserContext } from "@context/user/userContext";
+import { http } from "@src/services/http";
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
-  const user = JSON.parse(
-    localStorage.getItem(STORAGE_KEY_USER) ?? ""
-  ) as IUser;
+  const { user } = useUserContext();
 
   return (
     <nav className="w-full px-8 2xl:container">
@@ -24,7 +23,7 @@ export function NavbarDashboard() {
               className="ml-4 rounded-3xl"
               color="red"
               onClick={() => {
-                localStorage.clear();
+                http.removeAuthHeader();
                 navigate(ROUTES_PATH.login);
               }}
             />
@@ -40,6 +39,12 @@ export function NavbarDashboard() {
               {user?.is_admin ? "ادمین" : "کاربر"}
             </Typography>
           </div>
+
+          {user?.is_admin && (
+            <div className="mr-16">
+              <AccessTime />
+            </div>
+          )}
         </div>
         <Link to={ROUTES_PATH.dashboard}>
           <img src="/logo.jpg" alt="logo" className="h-8" />

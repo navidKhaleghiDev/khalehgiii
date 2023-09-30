@@ -13,10 +13,14 @@ import { toast } from "react-toastify";
 import { ILoginFieldValues } from "../types";
 import { loginString as strings } from "./string";
 import { ToggleSwitch } from "@ui/atoms/ToggleSwitch";
+import { STORAGE_KEY_REFRESH_TOKEN, http } from "@src/services/http";
+import { useUserContext } from "@context/user/userContext";
+import { SetAccessTime } from "@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime";
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
+  const { setUser, user } = useUserContext();
 
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<ILoginFieldValues>({
@@ -34,10 +38,9 @@ export function LoginForm() {
     setLoadingButton(true);
     await API_USERS_LOGIN({ email, password, is_admin })
       .then(({ data }) => {
-        localStorage.setItem(
-          STORAGE_KEY_USER,
-          JSON.stringify({ ...data, email, password, is_admin })
-        );
+        localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
+        http.setAuthHeader(data.access_token, data.refresh_token);
+        setUser(data);
         toast.success(strings.loginSuccess);
         navigate(ROUTES_PATH.dashboard);
       })
@@ -54,6 +57,7 @@ export function LoginForm() {
       onSubmit={handleSubmit(handelSubmitForm)}
       className="flex flex-col items-center w-full mt-auto"
     >
+      {/* <SetAccessTime /> */}
       <div className="absolute top-[-6rem]">
         <Avatar icon="ph:user" intent="grey" size="lg" />
       </div>

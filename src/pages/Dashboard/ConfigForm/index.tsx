@@ -13,7 +13,7 @@ import { IUser } from "@src/services/users/types";
 import { BaseSwitch } from "@ui/atoms/BaseSwitch";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 
-export function ConfigForm({ user }: { user: IUser }) {
+export function ConfigForm({ user }: { user: IUser | null }) {
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +33,7 @@ export function ConfigForm({ user }: { user: IUser }) {
 
   useEffect(() => {
     const getConfig = async () => {
-      await API_CONFIG_LIST({ username: user.email, password: user.password })
+      await API_CONFIG_LIST()
         .then(({ data }) => {
           if (data[0]) {
             reset(data[0]);
@@ -56,10 +56,7 @@ export function ConfigForm({ user }: { user: IUser }) {
 
     if (data?.id) {
       // update
-      await API_ADD_UPDATE(
-        { username: user.email, password: user.password },
-        data
-      )
+      await API_ADD_UPDATE(data)
         .then(() => {
           toast.success("با موفقیت بروزرسانی شد");
         })
@@ -70,10 +67,7 @@ export function ConfigForm({ user }: { user: IUser }) {
       return;
     }
     // add new product
-    await API_ADD_CONFIG(
-      { username: user.email, password: user.password },
-      data
-    )
+    await API_ADD_CONFIG(data)
       .then(() => {
         toast.success("با موفقیت ذخیره شد");
       })

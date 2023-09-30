@@ -14,6 +14,8 @@ export interface IResponseLogin {
   info?: string;
   http?: string;
   https?: string;
+  access_token: string;
+  refresh_token: string;
 }
 
 export interface IUser extends IBodyUsersLogin, IResponseLogin {}
