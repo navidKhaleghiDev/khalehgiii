@@ -1,17 +1,22 @@
 import { Typography } from "@ui/atoms/Typography/Typography";
 import { BaseInput, Card } from "@ui/atoms";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BaseButton, IconButton } from "@ui/atoms/BaseButton";
 import { Divider } from "@ui/atoms/Divider";
 import { FieldValues, useForm } from "react-hook-form";
 import { Dropdown } from "@ui/atoms/DropDown";
+import { API_DAAS_UPDATE } from "@src/services/users";
+import { toast } from "react-toastify";
+import { regexPattern } from "@ui/atoms/Inputs";
+import { ETimeLimitDuration } from "@src/services/users/types";
+import { OnClickActionsType } from "..";
 
-enum ETimeLimitDuration {
-  DAILY = "DAILY",
-  MONTHLY = "MONTHLY",
-  WEEKLY = "WEEKLY",
-  PERMANENTLY = "PERMANENTLY",
-}
+const TimeLimitDurationLabel = {
+  [ETimeLimitDuration.DAILY]: "روزانه",
+  [ETimeLimitDuration.WEEKLY]: "هفتگی",
+  [ETimeLimitDuration.MONTHLY]: "ماهانه",
+  [ETimeLimitDuration.PERMANENTLY]: "دايمی",
+};
 
 interface IUpdateDaasValues extends FieldValues {
   time_limit_duration: ETimeLimitDuration;
@@ -21,75 +26,77 @@ interface IUpdateDaasValues extends FieldValues {
 const options = [
   {
     id: ETimeLimitDuration.DAILY,
-    label: "روزانه",
+    label: TimeLimitDurationLabel[ETimeLimitDuration.DAILY],
     value: ETimeLimitDuration.DAILY,
   },
   {
     id: ETimeLimitDuration.WEEKLY,
-    label: "هفتگی",
+    label: TimeLimitDurationLabel[ETimeLimitDuration.WEEKLY],
     value: ETimeLimitDuration.WEEKLY,
   },
   {
     id: ETimeLimitDuration.MONTHLY,
-    label: "ماهانه",
+    label: TimeLimitDurationLabel[ETimeLimitDuration.MONTHLY],
     value: ETimeLimitDuration.MONTHLY,
   },
   {
     id: ETimeLimitDuration.PERMANENTLY,
-    label: "دايمی",
+    label: TimeLimitDurationLabel[ETimeLimitDuration.PERMANENTLY],
     value: ETimeLimitDuration.PERMANENTLY,
   },
 ];
 
-export function SetAccessTime({ id }: any) {
+type PropsType = {
+  id: string;
+  onClickActions?: OnClickActionsType;
+  timeLimitDuration: ETimeLimitDuration;
+  timeLimitValue: number;
+};
+export function SetAccessTime({
+  id,
+  onClickActions,
+  timeLimitDuration,
+  timeLimitValue,
+}: PropsType) {
   const [isEditable, setIsEditable] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
 
   const { control, handleSubmit, reset, getValues } =
     useForm<IUpdateDaasValues>({
       mode: "onChange",
-      // defaultValues: {
-      //   id: null,
-      //   keycloak_base_url: "",
-      //   keycloak_port: "",
-      //   keycloak_ssl: false,
-      //   keycloak_client_id: "",
-      //   keycloak_secret: "",
-      //   keycloak_realm: "",
-      //   daas_provider_baseurl: "",
-      // },
     });
 
-  function onClickActions(): void {
-    console.log(id);
-  }
+  useEffect(() => {
+    if (timeLimitDuration && timeLimitValue) {
+      reset({
+        time_limit_duration: timeLimitDuration,
+        time_limit_value: timeLimitValue,
+      });
+    }
+  }, []);
+
+  const handleOnCancel = () => {
+    reset();
+    setIsEditable(false);
+  };
 
   const handleOnSubmit = async (data: any) => {
-    console.log({ data });
-    setIsEditable(false);
-    // setLoadingButton(true);
+    console.log({ data, id });
 
-    // if (data?.id) {
-    //   // update
-    //   await API_ADD_UPDATE(data)
-    //     .then(() => {
-    //       toast.success("با موفقیت بروزرسانی شد");
-    //     })
-    //     .catch((err) => {
-    //       toast.error(err);
-    //     })
-    //     .finally(() => setLoadingButton(false));
-    //   return;
-    // }
-    // // add new product
-    // await API_ADD_CONFIG(data)
-    //   .then(() => {
-    //     toast.success("با موفقیت ذخیره شد");
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err);
-    //   })
-    //   .finally(() => setLoadingButton(false));
+    setLoadingButton(true);
+
+    await API_DAAS_UPDATE(id, data)
+      .then(() => {
+        setIsEditable(false);
+        toast.success("با موفقیت بروزرسانی شد");
+        onClickActions && onClickActions("mutate");
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoadingButton(false);
+      });
   };
 
   return (
@@ -99,13 +106,13 @@ export function SetAccessTime({ id }: any) {
           <div className="flex items-center justify-between  h-full">
             <div className="flex items-center justify-between text-teal-600">
               <Typography size="body3" color="teal">
-                سالانه
+                {TimeLimitDurationLabel[timeLimitDuration]}
               </Typography>
               <div className="h-4 px-10">
                 <Divider vr />
               </div>
               <Typography size="body3" color="teal">
-                10 ساعت
+                {timeLimitValue} ساعت
               </Typography>
             </div>
             <IconButton
@@ -127,7 +134,10 @@ export function SetAccessTime({ id }: any) {
             name="time_limit_duration"
             options={options}
             placeHolder="زمان مورد نظر را انتخاب کنید"
-            containerClassName="col-span-5 xl:col-span-5"
+            containerClassName="col-span-6 xl:col-span-4"
+            rules={{
+              required: regexPattern.required,
+            }}
             fullWidth
             hiddenError
           />
@@ -137,7 +147,12 @@ export function SetAccessTime({ id }: any) {
             id="time_limit_value"
             name="time_limit_value"
             placeholder="ساعت مورد نظر را وارد کنید"
-            className="col-span-5 lg:col-span-5"
+            className="col-span-6 lg:col-span-4"
+            rules={{
+              required: regexPattern.required,
+              pattern: regexPattern.numbers,
+            }}
+            fullWidth
             hiddenError
           />
 
@@ -146,7 +161,14 @@ export function SetAccessTime({ id }: any) {
             submit
             size="sm"
             loading={loadingButton}
-            className="col-span-2 lg:col-span-2"
+            className="col-span-6 lg:col-span-2"
+          />
+          <BaseButton
+            label="لغو"
+            onClick={handleOnCancel}
+            size="sm"
+            type="red"
+            className="col-span-6 lg:col-span-2"
           />
         </form>
       )}

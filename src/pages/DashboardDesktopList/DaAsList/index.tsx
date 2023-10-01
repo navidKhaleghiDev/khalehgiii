@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
-import { DaAsCard } from "./DaAsCard";
+import { DaAsCard, OnClickActionsType } from "./DaAsCard";
 import { API_DAAS_DELETE } from "@src/services/users";
-import { IUser } from "@src/services/users/types";
+import { ETimeLimitDuration, IUser } from "@src/services/users/types";
 import { IDaAs } from "@src/services/users/types";
 import { Modal } from "@ui/molecules/Modal";
 import { toast } from "react-toastify";
@@ -20,6 +20,11 @@ const headerItem: IDaAs = {
   email: "ایمیل",
   http_port: "پورت http",
   https_port: "پورت https",
+  created_at: "string",
+  last_uptime: "string",
+  time_limit_duration: ETimeLimitDuration.DAILY,
+  time_limit_value: 1,
+  usage: 0,
 };
 
 type PropsType = { user: IUser | null };
@@ -48,11 +53,12 @@ export function DaAsList({ user }: PropsType) {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  function handleOnClickActions(
-    action: "details" | "delete" | "edit",
-    value?: number | undefined
-  ): void {
+  function handleOnClickActions(action: any, value: any): any {
     console.log(value);
+
+    if (action === "mutate") {
+      mutate();
+    }
 
     if (value !== undefined && action === "delete") {
       setDesktopId(value);

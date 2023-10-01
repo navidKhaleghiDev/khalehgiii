@@ -3,16 +3,20 @@ import { IDaAs } from "@src/services/users/types";
 import { IconButton } from "@ui/atoms/BaseButton";
 import { SetAccessTime } from "./SetAccessTime";
 
+export type OnClickActionsType = (
+  action: "delete" | "edit" | "details" | "mutate",
+  value?: number | string
+) => void;
+
 type ProductCardProps = {
   daas: IDaAs;
   isHeader?: boolean;
-  onClickActions?: (
-    action: "delete" | "edit" | "details",
-    value?: number
-  ) => void;
+  onClickActions?: OnClickActionsType;
 };
 
 export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
+  console.log({ daas });
+
   return (
     <>
       <Card
@@ -33,7 +37,12 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 
         <div className="px-3 w-6/12 text-center break-words">
           {!isHeader ? (
-            <SetAccessTime />
+            <SetAccessTime
+              id={daas.id as string}
+              onClickActions={onClickActions}
+              timeLimitValue={daas.time_limit_value}
+              timeLimitDuration={daas.time_limit_duration}
+            />
           ) : (
             <Typography size="body3">{daas.email}</Typography>
           )}
