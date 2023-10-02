@@ -1,9 +1,9 @@
-import { useRef } from 'react';
-import { useClickOutside } from '@src/helper/hooks/useClickOutside';
-import { BaseIcon, Typography } from '@ui/atoms';
-import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
-import { contentStyles, headerStyles } from './styles';
-import { IModal } from './types';
+import { useRef } from "react";
+import { useClickOutside } from "@src/helper/hooks/useClickOutside";
+import { BaseIcon, Typography } from "@ui/atoms";
+import { BaseButton, IconButton } from "@ui/atoms/BaseButton";
+import { containerStyles, contentStyles, headerStyles } from "./styles";
+import { IModal } from "./types";
 
 export function Modal({
   open,
@@ -15,6 +15,7 @@ export function Modal({
   content,
   description,
   classContainer,
+  freeSize,
 }: IModal) {
   const ref = useRef(null);
   useClickOutside({ ref, setValue: setOpen, value: open });
@@ -23,14 +24,17 @@ export function Modal({
   return open ? (
     <div
       className={`main-modal fixed w-full h-100 inset-0 z-50 animated fadeIn faster main-modal  h-100  overflow-hidden flex justify-center items-center `}
-      style={{ background: 'rgba(0, 0, 0, 0.2)' }}
+      style={{ background: "rgba(0, 0, 0, 0.2)" }}
     >
       <div
         ref={ref}
-        className={`rounded-lg shadow-lg modal-container bg-white w-[36rem] mx-auto z-50 overflow-y-auto ${classContainer}`}
+        className={containerStyles({
+          className: classContainer,
+          freeSize,
+        })}
       >
         <div className={contentStyles({ type })}>
-          {type !== 'none' && (
+          {type !== "none" && (
             <div className={headerStyles({ type })}>
               <div className="modal-close cursor-pointer z-50">
                 <IconButton
@@ -41,9 +45,9 @@ export function Modal({
               </div>
               <BaseIcon
                 icon={
-                  type === 'error'
-                    ? 'ph:shield-warning'
-                    : 'material-symbols:check'
+                  type === "error"
+                    ? "ph:shield-warning"
+                    : "material-symbols:check"
                 }
                 className="h-8 w-8 text-neutral-100"
               />

@@ -10,8 +10,8 @@ import { http } from "@src/services/http";
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
-  const { user } = useUserContext();
 
+  const { user, setUser } = useUserContext();
   return (
     <nav className="w-full px-8 2xl:container">
       <div className="flex items-center justify-between p-3 ">
@@ -23,6 +23,7 @@ export function NavbarDashboard() {
               className="ml-4 rounded-3xl"
               color="red"
               onClick={() => {
+                setUser(null);
                 http.removeAuthHeader();
                 navigate(ROUTES_PATH.login);
               }}
@@ -36,15 +37,17 @@ export function NavbarDashboard() {
               {user?.email}
             </Typography>
             <Typography color="teal" size="caption">
-              {user?.is_admin ? "ادمین" : "کاربر"}
+              {user?.is_superuser ? "ادمین" : "کاربر"}
             </Typography>
           </div>
 
-          {user?.is_admin && (
-            <div className="mr-16">
-              <AccessTime />
-            </div>
-          )}
+          {user ? (
+            user?.is_superuser ? null : (
+              <div className="mr-16">
+                <AccessTime />
+              </div>
+            )
+          ) : null}
         </div>
         <Link to={ROUTES_PATH.dashboard}>
           <img src="/logo.jpg" alt="logo" className="h-8" />

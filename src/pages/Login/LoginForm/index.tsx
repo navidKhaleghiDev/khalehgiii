@@ -6,21 +6,20 @@ import { Typography } from "@ui/atoms/Typography";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { API_USERS_LOGIN, STORAGE_KEY_USER } from "@src/services/users";
+import { API_USERS_LOGIN, API_USERS_PROFILE } from "@src/services/users";
 import { PasswordInput } from "@ui/atoms/Inputs/PasswordInput";
 import { toast } from "react-toastify";
-
-import { ILoginFieldValues } from "../types";
-import { loginString as strings } from "./string";
 import { ToggleSwitch } from "@ui/atoms/ToggleSwitch";
 import { STORAGE_KEY_REFRESH_TOKEN, http } from "@src/services/http";
 import { useUserContext } from "@context/user/userContext";
-import { SetAccessTime } from "@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime";
+
+import { ILoginFieldValues } from "../types";
+import { loginString as strings } from "./string";
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
-  const { setUser, user } = useUserContext();
+  const { setUser } = useUserContext();
 
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<ILoginFieldValues>({
@@ -30,16 +29,9 @@ export function LoginForm() {
     },
   });
 
-  const handelSubmitForm = async ({
-    email,
-    password,
-    is_admin,
-  }: ILoginFieldValues) => {
-    setLoadingButton(true);
-    await API_USERS_LOGIN({ email, password, is_admin })
+  const handelGetProfile = async () => {
+    await API_USERS_PROFILE()
       .then(({ data }) => {
-        localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
-        http.setAuthHeader(data.access_token, data.refresh_token);
         setUser(data);
         toast.success(strings.loginSuccess);
         navigate(ROUTES_PATH.dashboard);
@@ -52,12 +44,29 @@ export function LoginForm() {
       });
   };
 
+  const handelSubmitForm = async ({
+    email,
+    password,
+    is_admin,
+  }: ILoginFieldValues) => {
+    setLoadingButton(true);
+    await API_USERS_LOGIN({ email, password, is_admin })
+      .then(({ data }) => {
+        localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
+        http.setAuthHeader(data.access_token, data.refresh_token);
+        handelGetProfile();
+      })
+      .catch((err) => {
+        setError(err);
+        setLoadingButton(false);
+      });
+  };
+
   return (
     <form
       onSubmit={handleSubmit(handelSubmitForm)}
       className="flex flex-col items-center w-full mt-auto"
     >
-      {/* <SetAccessTime /> */}
       <div className="absolute top-[-6rem]">
         <Avatar icon="ph:user" intent="grey" size="lg" />
       </div>
@@ -73,7 +82,7 @@ export function LoginForm() {
         <BaseInput
           fullWidth
           control={control}
-          placeholder="email"
+          placeholder="نام کاربری"
           rules={{
             required: regexPattern.required,
           }}
@@ -84,7 +93,7 @@ export function LoginForm() {
         <PasswordInput
           name="password"
           control={control}
-          placeholder="password"
+          placeholder="گذرواژه"
         />
         <div className="w-full flex justify-between items-center">
           <ToggleSwitch

@@ -12,8 +12,8 @@ export interface IDaAs {
   created_at: string;
   last_uptime: string;
   time_limit_duration: ETimeLimitDuration;
-  time_limit_value: number;
-  usage: number;
+  time_limit_value_in_hour: number;
+  usage_in_minute: number;
 }
 
 export interface IBodyUsersLogin {
@@ -29,4 +29,25 @@ export interface IResponseLogin {
   refresh_token: string;
 }
 
-export interface IUser extends IBodyUsersLogin, IResponseLogin {}
+export interface IUser {
+  id: 1;
+  email: string;
+  last_login?: string;
+  is_superuser?: boolean;
+  base_url?: string;
+  username?: string;
+  first_name?: string;
+  last_name?: string;
+  is_staff?: boolean;
+  is_active?: boolean;
+  date_joined?: string;
+  http_port?: number;
+  https_port?: number;
+  time_limit_duration?: ETimeLimitDuration;
+  time_limit_value_in_hour?: number;
+  last_uptime?: string;
+  is_running?: boolean;
+  exceeded_time_limit?: boolean;
+  usage_in_minute?: number;
+  created_at?: string;
+}

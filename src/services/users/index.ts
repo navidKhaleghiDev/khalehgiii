@@ -24,7 +24,10 @@ export const API_DAAS_UPDATE = (id: string, body: any) =>
   http.patch<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_UPDATE(id), body);
 
 export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
-  http.post<IBodyUsersLogin, IServerResponse<IUser>>(E_USERS_LOGIN, body);
+  http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(
+    E_USERS_LOGIN,
+    body
+  );
 
 export const API_USERS_PROFILE = () => http.get<IUser>(E_USERS_PROFILE);
 

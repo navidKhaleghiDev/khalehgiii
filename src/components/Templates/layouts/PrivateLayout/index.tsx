@@ -14,7 +14,6 @@ function LayoutCp() {
   const [loading, setLoading] = React.useState(false);
   const { user, setUser } = useUserContext();
 
-  // const user = localStorage.getItem(STORAGE_KEY_USER);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,40 +31,12 @@ function LayoutCp() {
           setLoading(false);
         });
     };
+
     const token = cookie.get(STORAGE_KEY_TOKEN);
     if (!user && token) {
       getProfile();
     }
   }, [navigate, setUser, user]);
-
-  // useEffect(() => {
-  //   const getProfile = async () => {
-  //     setLoading(true);
-  //     await API_USERS_LOGIN({ email, password, is_admin })
-  //       .then(({ data }) => {
-  //         localStorage.setItem(
-  //           STORAGE_KEY_USER,
-  //           JSON.stringify({ ...data, email, password, is_admin })
-  //         );
-  //       })
-  //       .catch(() => {
-  //         localStorage.clear();
-  //         navigate(ROUTES_PATH.login);
-  //       })
-  //       .finally(() => {
-  //         setLoading(false);
-  //       });
-  //   };
-  //   if (!user && token) {
-
-  //     getProfile();
-  //   } else {
-  //     navigate(ROUTES_PATH.login);
-  //   }
-  //   if (!user) {
-  //     navigate(ROUTES_PATH.login);
-  //   }
-  // }, [user]);
 
   if (!loading) {
     return (

@@ -1,7 +1,7 @@
 export enum EPasswordStrengthColor {
-  TEAL = 'teal',
-  RED = 'red',
-  YELLOW = 'yellow',
+  TEAL = "teal",
+  RED = "red",
+  YELLOW = "yellow",
 }
 
 /*
@@ -13,19 +13,18 @@ export function getPasswordStrength(
   password?: string
 ): EPasswordStrengthColor | null {
   let score: null | EPasswordStrengthColor = null;
-  if (password === '' || !password) {
+  if (password === "" || !password) {
     return score;
   }
-  console.log({ password });
 
-  console.log('teal', /^[a-zA-Z0-9@#$%^&*()].*$/.test(password));
+  console.log("teal", /^[a-zA-Z0-9@#$%^&*()].*$/.test(password));
   console.log(
-    'yellow',
+    "yellow",
     /^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[A-Z])).{6,64}$/.test(
       password
     )
   );
-  console.log('red', /^(?=.*[a-zA-Z0-9]).{6,64}$/.test(password));
+  console.log("red", /^(?=.*[a-zA-Z0-9]).{6,64}$/.test(password));
 
   switch (true) {
     case /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$&_*\s]).{6,64}$/.test(
@@ -53,15 +52,15 @@ export function getLabelPasswordStrength(
 ) {
   switch (passwordStrength) {
     case EPasswordStrengthColor.RED:
-      return 'ضعیف';
+      return "ضعیف";
 
     case EPasswordStrengthColor.YELLOW:
-      return 'متوسط';
+      return "متوسط";
 
     case EPasswordStrengthColor.TEAL:
-      return 'قوی';
+      return "قوی";
 
     default:
-      return 'ضعیف';
+      return "ضعیف";
   }
 }

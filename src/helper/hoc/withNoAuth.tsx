@@ -1,7 +1,7 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { Navigate } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
-import { STORAGE_KEY_USER } from "@src/services/users";
+import cookie from "js-cookie";
+import { STORAGE_KEY_TOKEN } from "@src/services/http";
 
 export function withNoAuth<T extends Partial<T>>(
   WrappedComponent: React.ComponentType<T>
@@ -11,9 +11,9 @@ export function withNoAuth<T extends Partial<T>>(
     WrappedComponent.displayName || WrappedComponent.name || "Component";
 
   function ComponentWithoutAuth(props: T) {
-    const user = localStorage.getItem(STORAGE_KEY_USER);
+    const token = cookie.get(STORAGE_KEY_TOKEN);
 
-    return !user ? (
+    return !token ? (
       <WrappedComponent {...props} />
     ) : (
       <Navigate replace to={ROUTES_PATH.dashboard} />

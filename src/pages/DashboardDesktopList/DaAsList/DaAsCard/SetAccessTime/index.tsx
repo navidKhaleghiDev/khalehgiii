@@ -10,17 +10,11 @@ import { toast } from "react-toastify";
 import { regexPattern } from "@ui/atoms/Inputs";
 import { ETimeLimitDuration } from "@src/services/users/types";
 import { OnClickActionsType } from "..";
-
-const TimeLimitDurationLabel = {
-  [ETimeLimitDuration.DAILY]: "روزانه",
-  [ETimeLimitDuration.WEEKLY]: "هفتگی",
-  [ETimeLimitDuration.MONTHLY]: "ماهانه",
-  [ETimeLimitDuration.PERMANENTLY]: "دايمی",
-};
+import { TimeLimitDurationLabel } from "@src/constants/accessTime";
 
 interface IUpdateDaasValues extends FieldValues {
   time_limit_duration: ETimeLimitDuration;
-  time_limit_value?: number;
+  time_limit_value_in_hour?: number;
 }
 
 const options = [
@@ -61,16 +55,15 @@ export function SetAccessTime({
   const [isEditable, setIsEditable] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
 
-  const { control, handleSubmit, reset, getValues } =
-    useForm<IUpdateDaasValues>({
-      mode: "onChange",
-    });
+  const { control, handleSubmit, reset } = useForm<IUpdateDaasValues>({
+    mode: "onChange",
+  });
 
   useEffect(() => {
     if (timeLimitDuration && timeLimitValue) {
       reset({
         time_limit_duration: timeLimitDuration,
-        time_limit_value: timeLimitValue,
+        time_limit_value_in_hour: timeLimitValue,
       });
     }
   }, []);
@@ -80,12 +73,13 @@ export function SetAccessTime({
     setIsEditable(false);
   };
 
-  const handleOnSubmit = async (data: any) => {
-    console.log({ data, id });
-
+  const handleOnSubmit = async (data: IUpdateDaasValues) => {
     setLoadingButton(true);
 
-    await API_DAAS_UPDATE(id, data)
+    await API_DAAS_UPDATE(id, {
+      ...data,
+      time_limit_value_in_hour: Number(data.time_limit_value_in_hour),
+    })
       .then(() => {
         setIsEditable(false);
         toast.success("با موفقیت بروزرسانی شد");
@@ -112,7 +106,9 @@ export function SetAccessTime({
                 <Divider vr />
               </div>
               <Typography size="body3" color="teal">
-                {timeLimitValue} ساعت
+                {timeLimitDuration !== ETimeLimitDuration.PERMANENTLY
+                  ? `${timeLimitValue} ساعت`
+                  : "---"}
               </Typography>
             </div>
             <IconButton
@@ -144,8 +140,8 @@ export function SetAccessTime({
           <BaseInput
             control={control}
             size="xs"
-            id="time_limit_value"
-            name="time_limit_value"
+            id="time_limit_value_in_hour"
+            name="time_limit_value_in_hour"
             placeholder="ساعت مورد نظر را وارد کنید"
             className="col-span-6 lg:col-span-4"
             rules={{
@@ -155,21 +151,16 @@ export function SetAccessTime({
             fullWidth
             hiddenError
           />
-
-          <BaseButton
-            label="ثبت"
-            submit
-            size="sm"
-            loading={loadingButton}
-            className="col-span-6 lg:col-span-2"
-          />
-          <BaseButton
-            label="لغو"
-            onClick={handleOnCancel}
-            size="sm"
-            type="red"
-            className="col-span-6 lg:col-span-2"
-          />
+          <div className="col-span-6 lg:col-span-4 flex justify-start items-center">
+            <BaseButton
+              label="ثبت"
+              submit
+              size="sm"
+              loading={loadingButton}
+              className="ml-2"
+            />
+            <IconButton icon="ph:x" color="red" onClick={handleOnCancel} />
+          </div>
         </form>
       )}
     </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
-import { DaAsCard, OnClickActionsType } from "./DaAsCard";
+import { DaAsCard } from "./DaAsCard";
 import { API_DAAS_DELETE } from "@src/services/users";
 import { ETimeLimitDuration, IUser } from "@src/services/users/types";
 import { IDaAs } from "@src/services/users/types";
@@ -23,8 +23,8 @@ const headerItem: IDaAs = {
   created_at: "string",
   last_uptime: "string",
   time_limit_duration: ETimeLimitDuration.DAILY,
-  time_limit_value: 1,
-  usage: 0,
+  time_limit_value_in_hour: 1,
+  usage_in_minute: 0,
 };
 
 type PropsType = { user: IUser | null };
@@ -54,8 +54,6 @@ export function DaAsList({ user }: PropsType) {
   const countPage = data?.data?.count || 0;
 
   function handleOnClickActions(action: any, value: any): any {
-    console.log(value);
-
     if (action === "mutate") {
       mutate();
     }

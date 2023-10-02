@@ -2,6 +2,10 @@ export interface IServerResponse<T> {
   data: T;
 }
 
+export interface ISwrResponse<T> {
+  data: T;
+}
+
 export interface IServerResponsePagination<T> {
   data: {
     count: number;

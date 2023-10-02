@@ -15,8 +15,6 @@ type ProductCardProps = {
 };
 
 export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
-  console.log({ daas });
-
   return (
     <>
       <Card
@@ -40,11 +38,11 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
             <SetAccessTime
               id={daas.id as string}
               onClickActions={onClickActions}
-              timeLimitValue={daas.time_limit_value}
+              timeLimitValue={daas.time_limit_value_in_hour}
               timeLimitDuration={daas.time_limit_duration}
             />
           ) : (
-            <Typography size="body3">{daas.email}</Typography>
+            <Typography size="body3">زمان دسترسی</Typography>
           )}
         </div>
 
