@@ -46,6 +46,8 @@ export function AccessTimeModal({
   timeLimitValueInHour,
   usageInMinute,
 }: PropsType) {
+  const timeLimitValueInMinute = Math.floor(timeLimitValueInHour) * 60;
+  const remainingTime = timeLimitValueInMinute - Math.floor(usageInMinute);
   return (
     <div className="w-full">
       <div className="flex w-full justify-end p-2">
@@ -80,9 +82,11 @@ export function AccessTimeModal({
         <AccessTimeModalCard
           label="زمان باقی مانده"
           name={TimeLimitDurationLabelDetails[timeLimitDuration]}
-          value={formatDuration(
-            Math.floor(timeLimitValueInHour) * 60 - Math.floor(usageInMinute)
-          )}
+          value={
+            remainingTime < 0
+              ? "به اتمام رسیده است"
+              : formatDuration(remainingTime)
+          }
         />
         <AccessTimeModalCard
           label="زمان تمدید"

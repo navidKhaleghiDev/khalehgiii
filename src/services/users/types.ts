@@ -13,7 +13,8 @@ export interface IDaAs {
   last_uptime: string;
   time_limit_duration: ETimeLimitDuration;
   time_limit_value_in_hour: number;
-  usage_in_minute: number;
+  is_running?: boolean | string;
+  usage_in_minute: number | string;
 }
 
 export interface IBodyUsersLogin {
@@ -34,6 +35,7 @@ export interface IUser {
   email: string;
   last_login?: string;
   is_superuser?: boolean;
+  exceeded_usage: boolean;
   base_url?: string;
   username?: string;
   first_name?: string;

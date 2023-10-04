@@ -186,6 +186,7 @@ export class Http {
           case StatusCode.Forbidden: {
             // 403 - Handle Forbidden
             toast.error("شما به این بخش دسترسی ندارید");
+            throw handleResponseError(data);
             break;
           }
           case StatusCode.NotFound: {

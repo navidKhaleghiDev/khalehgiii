@@ -13,6 +13,7 @@ import { IServerResponseList } from "@src/types/services";
 import { E_USERS_DAAS } from "@src/services/users/endpoint";
 import Pagination from "@ui/molecules/Pagination";
 import { BaseInput } from "@ui/atoms";
+import { ResetAllAccessTime } from "./ResetAllAccessTime";
 
 const LIMIT_DESKTOP_LIST = 8;
 
@@ -24,7 +25,8 @@ const headerItem: IDaAs = {
   last_uptime: "string",
   time_limit_duration: ETimeLimitDuration.DAILY,
   time_limit_value_in_hour: 1,
-  usage_in_minute: 0,
+  is_running: "وضعیت",
+  usage_in_minute: "زمان استفاده شده",
 };
 
 type PropsType = { user: IUser | null };
@@ -92,14 +94,17 @@ export function DaAsList({ user }: PropsType) {
 
   return (
     <div className="w-full p-4">
-      <BaseInput
-        name="search"
-        className="w-1/3"
-        id="search"
-        pureValue={search}
-        pureOnChange={handleOnChangeSearch}
-        placeholder="جستجو کنید"
-      />
+      <div className="flex items-center">
+        <BaseInput
+          name="search"
+          className="w-1/3"
+          id="search"
+          pureValue={search}
+          pureOnChange={handleOnChangeSearch}
+          placeholder="جستجو کنید"
+        />
+        <ResetAllAccessTime />
+      </div>
       <DaAsCard daas={headerItem} isHeader />
       {isLoading ? (
         <LoadingSpinner />

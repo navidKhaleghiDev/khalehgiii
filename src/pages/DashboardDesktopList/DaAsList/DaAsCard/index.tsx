@@ -2,6 +2,7 @@ import { Card, Typography } from "@ui/atoms";
 import { IDaAs } from "@src/services/users/types";
 import { IconButton } from "@ui/atoms/BaseButton";
 import { SetAccessTime } from "./SetAccessTime";
+import { CircleBg } from "@ui/atoms/CircleBg";
 
 export type OnClickActionsType = (
   action: "delete" | "edit" | "details" | "mutate",
@@ -33,7 +34,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
           )}
         </div>
 
-        <div className="px-3 w-6/12 text-center break-words">
+        <div className="px-3 w-5/12 text-center break-words">
           {!isHeader ? (
             <SetAccessTime
               id={daas.id as string}
@@ -42,17 +43,16 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
               timeLimitDuration={daas.time_limit_duration}
             />
           ) : (
-            <Typography size="body3">زمان دسترسی</Typography>
+            <Typography size="body3">تنظیمات زمان دسترسی</Typography>
           )}
         </div>
-
-        <Typography
-          size="body3"
-          type="div"
-          className="px-3 w-3/12 text-center break-words"
-        >
-          {daas.email}
-        </Typography>
+        <div className="w-2/12 text-center break-words">
+          <Typography size="body3">
+            {typeof daas.usage_in_minute === "string"
+              ? daas.usage_in_minute
+              : `${Math.floor(daas.usage_in_minute)} دقیقه`}
+          </Typography>
+        </div>
         <Typography
           size="body3"
           type="div"
@@ -63,9 +63,22 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
         <Typography
           size="body3"
           type="div"
-          className="px-3 w-2/12 text-center break-words uppercase"
+          className="px-3 w-3/12 text-center break-words uppercase"
         >
-          {daas.https_port}
+          {daas.email}
+        </Typography>
+        <Typography
+          size="body3"
+          type="div"
+          className="w-1/12 text-center break-words"
+        >
+          {isHeader ? (
+            daas.is_running
+          ) : (
+            <CircleBg
+              bgColor={daas.is_running ? "bg-green-600" : "bg-gray-400"}
+            />
+          )}
         </Typography>
       </Card>
     </>

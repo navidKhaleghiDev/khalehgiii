@@ -21,6 +21,10 @@ function LayoutCp() {
       setLoading(true);
       await API_USERS_PROFILE()
         .then(({ data }) => {
+          if (data.exceeded_usage) {
+            navigate(ROUTES_PATH.unauthorized);
+            return;
+          }
           setUser(data);
         })
         .catch(() => {

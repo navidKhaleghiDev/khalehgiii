@@ -5,12 +5,17 @@ import { BaseButton, IconButton } from "@ui/atoms/BaseButton";
 import { Divider } from "@ui/atoms/Divider";
 import { FieldValues, useForm } from "react-hook-form";
 import { Dropdown } from "@ui/atoms/DropDown";
-import { API_DAAS_UPDATE } from "@src/services/users";
+import {
+  API_DAAS_RESET_USAGE_DAAS,
+  API_DAAS_UPDATE,
+} from "@src/services/users";
 import { toast } from "react-toastify";
 import { regexPattern } from "@ui/atoms/Inputs";
 import { ETimeLimitDuration } from "@src/services/users/types";
 import { OnClickActionsType } from "..";
 import { TimeLimitDurationLabel } from "@src/constants/accessTime";
+import ToolTip from "@ui/atoms/Tooltip";
+import { Modal } from "@ui/molecules/Modal";
 
 interface IUpdateDaasValues extends FieldValues {
   time_limit_duration: ETimeLimitDuration;
@@ -46,6 +51,7 @@ type PropsType = {
   timeLimitDuration: ETimeLimitDuration;
   timeLimitValue: number;
 };
+
 export function SetAccessTime({
   id,
   onClickActions,
@@ -54,7 +60,9 @@ export function SetAccessTime({
 }: PropsType) {
   const [isEditable, setIsEditable] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
+  const [loadingResetButton, setLoadingResetButton] = useState(false);
 
+  const [openModalDelete, setOpenModalDelete] = useState(false);
   const { control, handleSubmit, reset } = useForm<IUpdateDaasValues>({
     mode: "onChange",
   });
@@ -93,6 +101,21 @@ export function SetAccessTime({
       });
   };
 
+  const handleOnResetAccess = async () => {
+    setLoadingResetButton(true);
+    await API_DAAS_RESET_USAGE_DAAS(id)
+      .then(() => {
+        toast.success("با موفقیت تنظیم شد");
+        setOpenModalDelete(false);
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoadingResetButton(false);
+      });
+  };
+
   return (
     <div className="w-full flex justify-center">
       {!isEditable ? (
@@ -115,6 +138,29 @@ export function SetAccessTime({
               icon="ph:note-pencil"
               color="tealNoBg"
               onClick={() => setIsEditable(true)}
+            />
+            <ToolTip tooltip="شروع مجدد">
+              <IconButton
+                icon="ph:clock-counter-clockwise"
+                color="redNoBg"
+                onClick={() => setOpenModalDelete(true)}
+              />
+            </ToolTip>
+            <Modal
+              open={openModalDelete}
+              setOpen={setOpenModalDelete}
+              type="error"
+              title="زمان دسترسی این کاربر به حالت اول بر می گردد. از انجام این کار مطمئن هستید؟"
+              buttonOne={{
+                label: "بله",
+                onClick: handleOnResetAccess,
+                loading: loadingResetButton,
+              }}
+              buttonTow={{
+                label: "خیر",
+                onClick: () => setOpenModalDelete(false),
+                color: "red",
+              }}
             />
           </div>
         </Card>

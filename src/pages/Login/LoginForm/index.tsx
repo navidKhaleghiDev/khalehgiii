@@ -32,6 +32,10 @@ export function LoginForm() {
   const handelGetProfile = async () => {
     await API_USERS_PROFILE()
       .then(({ data }) => {
+        if (data.exceeded_usage) {
+          navigate(ROUTES_PATH.unauthorized);
+          return;
+        }
         setUser(data);
         toast.success(strings.loginSuccess);
         navigate(ROUTES_PATH.dashboard);
