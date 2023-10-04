@@ -106,6 +106,7 @@ export function SetAccessTime({
     await API_DAAS_RESET_USAGE_DAAS(id)
       .then(() => {
         toast.success("با موفقیت تنظیم شد");
+        onClickActions && onClickActions("mutate");
         setOpenModalDelete(false);
       })
       .catch((err) => {
