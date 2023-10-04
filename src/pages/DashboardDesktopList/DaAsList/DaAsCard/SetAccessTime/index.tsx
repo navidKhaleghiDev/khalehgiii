@@ -175,7 +175,7 @@ export function SetAccessTime({
             id="time_limit_duration"
             name="time_limit_duration"
             options={options}
-            placeHolder="زمان مورد نظر را انتخاب کنید"
+            placeHolder="انتخاب کنید"
             containerClassName="col-span-6 xl:col-span-4"
             rules={{
               required: regexPattern.required,
@@ -188,7 +188,7 @@ export function SetAccessTime({
             size="xs"
             id="time_limit_value_in_hour"
             name="time_limit_value_in_hour"
-            placeholder="ساعت مورد نظر را وارد کنید"
+            placeholder="ساعت را وارد کنید"
             className="col-span-6 lg:col-span-4"
             rules={{
               required: regexPattern.required,
