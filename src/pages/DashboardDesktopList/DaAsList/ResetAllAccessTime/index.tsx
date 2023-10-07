@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IconButton } from "@ui/atoms/BaseButton";
+import clockCounterClockwiseIcon from "@iconify-icons/ph/clock-counter-clockwise";
 
 import { API_DAAS_RESET_ALL_USAGE_DAAS } from "@src/services/users";
 import { toast } from "react-toastify";
@@ -30,7 +31,7 @@ export function ResetAllAccessTime() {
     <>
       <ToolTip tooltip="شروع مجدد تمام دسترسی ها">
         <IconButton
-          icon="ph:clock-counter-clockwise"
+          icon={clockCounterClockwiseIcon}
           color="redNoBg"
           size="xxl"
           onClick={() => setOpenModalDelete(true)}

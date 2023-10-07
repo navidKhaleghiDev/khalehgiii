@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-icons/ph": "^1.2.5",
     "@iconify/react": "^4.1.0",
     "axios": "^1.4.0",
     "class-variance-authority": "^0.6.0",

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller } from "react-hook-form";
+import caretCircleLeftIcon from "@iconify-icons/ph/caret-circle-left";
 
 import { BaseInputProps } from "../types";
 import { baseSelectStyles } from "./styles";
@@ -61,7 +62,7 @@ export function BaseSelect(props: BaseInputProps<any>) {
               ))}
             </select>
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2 text-gray-700">
-              <IconInput icon="ph:caret-circle-left" intent="default" />
+              <IconInput icon={caretCircleLeftIcon} intent="default" />
             </div>
           </div>
           {!hiddenError && (

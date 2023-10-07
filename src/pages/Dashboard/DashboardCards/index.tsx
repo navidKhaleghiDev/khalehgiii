@@ -4,6 +4,9 @@ import {
 } from "@src/helper/utils/dateUtils";
 import { Card } from "./Card";
 import { useNavigate } from "react-router-dom";
+import calendarCheckIcon from "@iconify-icons/ph/calendar-check";
+import keyIcon from "@iconify-icons/ph/key";
+
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 
 export function DashboardCards() {
@@ -13,14 +16,14 @@ export function DashboardCards() {
     <div className="grid w-full grid-cols-12 gap-16 mb-16">
       <div className="col-span-4">
         <Card
-          icon="ph:calendar-check"
+          icon={calendarCheckIcon}
           title={persianDayLabel()}
           description={persianDateAndNumber()}
         />
       </div>
       <div className="col-span-4">
         <Card
-          icon="arcticons:otp-authenticator"
+          icon={keyIcon}
           title="ادمین پنل keycloak"
           description=""
           onClick={() => {
@@ -30,7 +33,7 @@ export function DashboardCards() {
       </div>
       <div className="col-span-4">
         <Card
-          icon="arcticons:otp-authenticator"
+          icon={keyIcon}
           title="لیست دسکتاپ ها"
           description=""
           onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}

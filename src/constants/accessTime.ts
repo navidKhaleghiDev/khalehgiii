@@ -4,12 +4,12 @@ export const TimeLimitDurationLabel = {
   [ETimeLimitDuration.DAILY]: "روزانه",
   [ETimeLimitDuration.WEEKLY]: "هفتگی",
   [ETimeLimitDuration.MONTHLY]: "ماهانه",
-  [ETimeLimitDuration.PERMANENTLY]: "دايمی",
+  [ETimeLimitDuration.PERMANENTLY]: "دائمی",
 };
 
 export const TimeLimitDurationLabelDetails = {
   [ETimeLimitDuration.DAILY]: "امروز",
   [ETimeLimitDuration.WEEKLY]: "این هفته",
   [ETimeLimitDuration.MONTHLY]: "این ماه",
-  [ETimeLimitDuration.PERMANENTLY]: "دايمی",
+  [ETimeLimitDuration.PERMANENTLY]: "دائمی",
 };

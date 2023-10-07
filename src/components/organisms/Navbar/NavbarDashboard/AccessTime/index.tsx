@@ -4,6 +4,8 @@ import { Modal } from "@ui/molecules/Modal";
 import { useState } from "react";
 import { IconButton } from "@ui/atoms/BaseButton";
 import { ETimeLimitDuration, IDaAs } from "@src/services/users/types";
+import handTapIcon from "@iconify-icons/ph/hand-tap";
+
 import useSWR from "swr";
 import {
   E_USERS_DAAS_UPDATE_USAGE,
@@ -58,7 +60,7 @@ export function AccessTime() {
           </Typography>
         </div>
         <IconButton
-          icon="ph:hand-tap"
+          icon={handTapIcon}
           onClick={() => {
             mutate();
             setOpenModal(true);

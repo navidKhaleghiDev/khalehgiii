@@ -2,6 +2,7 @@ import { Typography } from "@ui/atoms/Typography/Typography";
 import { Card } from "@ui/atoms";
 import { IconButton } from "@ui/atoms/BaseButton";
 import { ETimeLimitDuration } from "@src/services/users/types";
+import xIcon from "@iconify-icons/ph/x";
 
 import {
   tomorrow,
@@ -52,7 +53,7 @@ export function AccessTimeModal({
     <div className="w-full">
       <div className="flex w-full justify-end p-2">
         <IconButton
-          icon="ph:x"
+          icon={xIcon}
           color="tealNoBg"
           onClick={() => onClick(false)}
         />
@@ -83,7 +84,9 @@ export function AccessTimeModal({
           label="زمان باقی مانده"
           name={TimeLimitDurationLabelDetails[timeLimitDuration]}
           value={
-            remainingTime < 0
+            timeLimitDuration === ETimeLimitDuration.PERMANENTLY
+              ? ""
+              : remainingTime < 0
               ? "به اتمام رسیده است"
               : formatDuration(remainingTime)
           }
@@ -91,7 +94,9 @@ export function AccessTimeModal({
         <AccessTimeModalCard
           label="زمان تمدید"
           name={getExtensionTime(timeLimitDuration)}
-          value="00:01"
+          value={
+            timeLimitDuration !== ETimeLimitDuration.PERMANENTLY ? "00:01" : ""
+          }
         />
       </div>
     </div>

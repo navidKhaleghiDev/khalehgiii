@@ -1,7 +1,8 @@
-import { BaseIcon, Card } from '@ui/atoms';
+import { BaseIcon, Card } from "@ui/atoms";
+import imageIcon from "@iconify-icons/ph/image";
 
-import { IBaseImage } from './types';
-import { ResponsiveImage } from './ResponsiveImage';
+import { IBaseImage } from "./types";
+import { ResponsiveImage } from "./ResponsiveImage";
 
 export function CardImage({ src, alt, className }: Partial<IBaseImage>) {
   return (
@@ -10,9 +11,9 @@ export function CardImage({ src, alt, className }: Partial<IBaseImage>) {
       className={`bg-neutral-200 flex justify-center items-center ${className}`}
     >
       {src ? (
-        <ResponsiveImage src={src} alt={alt ?? ''} />
+        <ResponsiveImage src={src} alt={alt ?? ""} />
       ) : (
-        <BaseIcon icon="ph:image" color="neutral" size="xxl" />
+        <BaseIcon icon={imageIcon} color="neutral" size="xxl" />
       )}
     </Card>
   );

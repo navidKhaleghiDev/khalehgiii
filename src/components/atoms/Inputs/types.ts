@@ -8,6 +8,7 @@ import {
   UseFormSetError,
 } from "react-hook-form";
 import { baseInputStyles } from "./styles";
+import { IconType } from "@src/types/global";
 
 export interface BaseInputProps<T extends FieldValues>
   extends VariantProps<typeof baseInputStyles> {
@@ -32,11 +33,11 @@ export interface BaseInputProps<T extends FieldValues>
   label?: string;
   placeholder?: string;
   className?: string;
-  startIcon?: string;
-  endIcon?: string;
+  startIcon?: IconType;
+  endIcon?: IconType;
   hiddenError?: boolean;
   onClickIcon?: () => void;
-  iconButtonIcon?: string;
+  iconButtonIcon?: IconType;
   pureOnChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   pureValue?: string;
   pureError?: string;

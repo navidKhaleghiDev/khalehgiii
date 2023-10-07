@@ -1,10 +1,11 @@
-import { BaseIcon } from '@ui/atoms/BaseIcon';
-import { ColorIndent } from '../types';
-import { iconBaseInputStyles } from '../styles';
+import { BaseIcon } from "@ui/atoms/BaseIcon";
+import { ColorIndent } from "../types";
+import { iconBaseInputStyles } from "../styles";
+import { IconType } from "@src/types/global";
 
 type PropsType = {
   intent: ColorIndent;
-  icon: string;
+  icon: IconType;
   onClick: () => void;
 };
 

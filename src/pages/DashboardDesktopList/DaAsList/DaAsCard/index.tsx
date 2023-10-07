@@ -1,6 +1,8 @@
 import { Card, Typography } from "@ui/atoms";
 import { IDaAs } from "@src/services/users/types";
 import { IconButton } from "@ui/atoms/BaseButton";
+import trashIcon from "@iconify-icons/ph/trash";
+
 import { SetAccessTime } from "./SetAccessTime";
 import { CircleBg } from "@ui/atoms/CircleBg";
 
@@ -27,7 +29,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
         <div className="px-3 w-1/12 text-center break-words">
           {!isHeader && onClickActions && (
             <IconButton
-              icon="ic:baseline-delete"
+              icon={trashIcon}
               color="redNoBg"
               onClick={() => onClickActions("delete", daas.id)}
             />

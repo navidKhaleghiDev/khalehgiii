@@ -1,5 +1,9 @@
 import { useRef } from "react";
 import { useClickOutside } from "@src/helper/hooks/useClickOutside";
+import shieldWarningIcon from "@iconify-icons/ph/shield-warning";
+import shieldCheckIcon from "@iconify-icons/ph/shield-check";
+import xIcon from "@iconify-icons/ph/x";
+
 import { BaseIcon, Typography } from "@ui/atoms";
 import { BaseButton, IconButton } from "@ui/atoms/BaseButton";
 import { containerStyles, contentStyles, headerStyles } from "./styles";
@@ -38,17 +42,13 @@ export function Modal({
             <div className={headerStyles({ type })}>
               <div className="modal-close cursor-pointer z-50">
                 <IconButton
-                  icon="iconamoon:close-bold"
+                  icon={xIcon}
                   onClick={handleToggle}
                   classNameIcon="h-8 w-8 text-neutral-100"
                 />
               </div>
               <BaseIcon
-                icon={
-                  type === "error"
-                    ? "ph:shield-warning"
-                    : "material-symbols:check"
-                }
+                icon={type === "error" ? shieldWarningIcon : shieldCheckIcon}
                 className="h-8 w-8 text-neutral-100"
               />
             </div>

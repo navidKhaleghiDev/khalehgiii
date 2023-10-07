@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { Controller, FieldValues } from "react-hook-form";
 import { useClickOutside } from "@src/helper/hooks/useClickOutside";
+import caretCircleDownIcon from "@iconify-icons/ph/caret-circle-down";
+import caretCircleLeftIcon from "@iconify-icons/ph/caret-circle-left";
 
 import { DropdownProps, IOptionSelect, StateType } from "./type";
 import { optionSelectStyles, baseDropDownStyles } from "./styles";
@@ -72,12 +74,9 @@ export function Dropdown<T extends FieldValues>({
           >
             {options.find((option) => option.id === value)?.label ??
               placeHolder}
-            {/* <BaseIcon icon="ic:round-close" /> */}
             <BaseIcon
               icon={
-                state.openOptions
-                  ? `ph:caret-circle-down`
-                  : `ph:caret-circle-left`
+                state.openOptions ? caretCircleDownIcon : caretCircleLeftIcon
               }
             />
           </button>

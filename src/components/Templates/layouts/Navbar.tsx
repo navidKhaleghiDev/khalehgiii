@@ -1,4 +1,5 @@
 import { BaseIcon } from "@ui/atoms";
+import houseIcon from "@iconify-icons/ph/house";
 
 type Props = {
   /**
@@ -14,7 +15,7 @@ function Navbar({ onMenuButtonClick }: Props) {
       <div className="font-bold text-lg">Admin Panel</div>
       <div className="flex-grow" />
       <button className="md:hidden" onClick={onMenuButtonClick} type="button">
-        <BaseIcon icon="fa:home" className="h-6 w-6" />
+        <BaseIcon icon={houseIcon} className="h-6 w-6" />
       </button>
     </nav>
   );

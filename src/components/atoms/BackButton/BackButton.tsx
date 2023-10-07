@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import arrowLineLeft from "@iconify-icons/ph/arrow-line-left";
+
 import { BaseButton, IconButton } from "../BaseButton";
 
 export type BackButtonProps = {
@@ -21,7 +23,7 @@ export function BackButton({ withLabel, onClick, className }: BackButtonProps) {
   return !withLabel ? (
     <IconButton
       onClick={handleClick}
-      icon="ep:back"
+      icon={arrowLineLeft}
       size="xl"
       type="button"
       color="teal"
@@ -31,7 +33,7 @@ export function BackButton({ withLabel, onClick, className }: BackButtonProps) {
     <BaseButton
       label="صفحه قبل"
       onClick={handleClick}
-      endIcon="ph:arrow-line-left"
+      endIcon={arrowLineLeft}
       className={className}
     />
   );

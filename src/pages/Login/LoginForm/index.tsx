@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import { ToggleSwitch } from "@ui/atoms/ToggleSwitch";
 import { STORAGE_KEY_REFRESH_TOKEN, http } from "@src/services/http";
 import { useUserContext } from "@context/user/userContext";
+import userIcon from "@iconify-icons/ph/user";
+import arrowFatLineRight from "@iconify-icons/ph/arrow-fat-line-right";
 
 import { ILoginFieldValues } from "../types";
 import { loginString as strings } from "./string";
@@ -72,7 +74,7 @@ export function LoginForm() {
       className="flex flex-col items-center w-full mt-auto"
     >
       <div className="absolute top-[-6rem]">
-        <Avatar icon="ph:user" intent="grey" size="lg" />
+        <Avatar icon={userIcon} intent="grey" size="lg" />
       </div>
       <Typography color="neutral" size="h5" className="mb-5">
         {strings.enterEmailAndPass}
@@ -92,7 +94,7 @@ export function LoginForm() {
           }}
           id="email"
           name="email"
-          endIcon="ph:user"
+          endIcon={userIcon}
         />
         <PasswordInput
           name="password"
@@ -116,7 +118,7 @@ export function LoginForm() {
 
         <BaseButton
           label="ورود به حساب کاربری"
-          endIcon="ic:round-login"
+          endIcon={arrowFatLineRight}
           className="mt-8"
           loading={loadingButton}
           size="md"

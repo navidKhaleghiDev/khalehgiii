@@ -1,7 +1,8 @@
+import { IconType } from "@src/types/global";
 import { Typography, BaseIcon } from "@ui/atoms";
 
 type PropsType = {
-  icon: string;
+  icon: IconType;
   title: string;
   description: string;
   onClick?: () => void;

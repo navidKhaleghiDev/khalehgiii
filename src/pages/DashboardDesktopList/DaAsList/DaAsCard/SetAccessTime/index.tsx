@@ -5,6 +5,10 @@ import { BaseButton, IconButton } from "@ui/atoms/BaseButton";
 import { Divider } from "@ui/atoms/Divider";
 import { FieldValues, useForm } from "react-hook-form";
 import { Dropdown } from "@ui/atoms/DropDown";
+import notePencilIcon from "@iconify-icons/ph/note-pencil";
+import clockCounterClockwiseIcon from "@iconify-icons/ph/clock-counter-clockwise";
+import xIcon from "@iconify-icons/ph/x";
+
 import {
   API_DAAS_RESET_USAGE_DAAS,
   API_DAAS_UPDATE,
@@ -136,13 +140,13 @@ export function SetAccessTime({
               </Typography>
             </div>
             <IconButton
-              icon="ph:note-pencil"
+              icon={notePencilIcon}
               color="tealNoBg"
               onClick={() => setIsEditable(true)}
             />
             <ToolTip tooltip="شروع مجدد">
               <IconButton
-                icon="ph:clock-counter-clockwise"
+                icon={clockCounterClockwiseIcon}
                 color="redNoBg"
                 onClick={() => setOpenModalDelete(true)}
               />
@@ -206,7 +210,7 @@ export function SetAccessTime({
               loading={loadingButton}
               className="ml-2"
             />
-            <IconButton icon="ph:x" color="red" onClick={handleOnCancel} />
+            <IconButton icon={xIcon} color="red" onClick={handleOnCancel} />
           </div>
         </form>
       )}
