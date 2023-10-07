@@ -1,6 +1,6 @@
 import { Avatar } from "@ui/atoms/Avatar";
 import { Typography } from "@ui/atoms/Typography/Typography";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { IconButton } from "@ui/atoms/BaseButton";
 import ToolTip from "@ui/atoms/Tooltip";
