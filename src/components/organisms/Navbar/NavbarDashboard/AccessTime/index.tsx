@@ -74,7 +74,7 @@ export function AccessTime() {
             onClick={setOpenModal}
             timeLimitDuration={timeLimitDuration}
             timeLimitValueInHour={timeLimitValueInHour}
-            usageInMinute={usageInMinute}
+            usageInMinute={Number(usageInMinute)}
           />
         }
         classContainer="border border-teal-600 w-[30rem]"
