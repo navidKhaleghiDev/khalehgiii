@@ -1,4 +1,4 @@
-import { BaseIcon } from '@ui/atoms';
+import { BaseIcon } from "@ui/atoms";
 
 type Props = {
   /**
@@ -10,7 +10,7 @@ type Props = {
 
 function Navbar({ onMenuButtonClick }: Props) {
   return (
-    <nav className="bg-white text-zinc-500 flex items-center w-screen md:w-full sticky z-10 px-4 shadow-sm h-[73px] top-0">
+    <nav className="bg-black text-zinc-500 flex items-center w-screen md:w-full sticky z-10 px-4 shadow-sm h-[73px] top-0">
       <div className="font-bold text-lg">Admin Panel</div>
       <div className="flex-grow" />
       <button className="md:hidden" onClick={onMenuButtonClick} type="button">

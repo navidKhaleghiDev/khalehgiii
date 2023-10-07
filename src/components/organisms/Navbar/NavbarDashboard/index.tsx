@@ -13,7 +13,7 @@ export function NavbarDashboard() {
 
   const { user, setUser } = useUserContext();
   return (
-    <nav className="w-full px-8 2xl:container">
+    <nav className="w-full bg-black px-8 2xl:container">
       <div className="flex items-center justify-between p-3 ">
         <div className="flex items-center">
           <ToolTip tooltip="خروج" position="bottom">
@@ -33,10 +33,10 @@ export function NavbarDashboard() {
           <Avatar icon="ph:user" intent="primary" size="sm" className="ml-4" />
 
           <div>
-            <Typography type="h3" weight="bold" color="teal">
+            <Typography type="h3" weight="bold" color="white">
               {user?.email}
             </Typography>
-            <Typography color="teal" size="caption">
+            <Typography color="white" size="caption">
               {user?.is_superuser ? "ادمین" : "کاربر"}
             </Typography>
           </div>
@@ -49,9 +49,9 @@ export function NavbarDashboard() {
             )
           ) : null}
         </div>
-        <Link to={ROUTES_PATH.dashboard}>
+        {/* <Link to={ROUTES_PATH.dashboard}>
           <img src="/logo.jpg" alt="logo" className="h-8" />
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

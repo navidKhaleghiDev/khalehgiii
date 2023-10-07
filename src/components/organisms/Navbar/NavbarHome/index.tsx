@@ -1,14 +1,14 @@
-import { useForm } from 'react-hook-form';
-import { BaseButton } from '@ui/atoms/BaseButton';
-import { BaseInput } from '@ui/atoms/Inputs';
-import { Typography } from '@ui/atoms';
-import { IHomeRoutes, homeRoutes } from './routes';
+import { useForm } from "react-hook-form";
+import { BaseButton } from "@ui/atoms/BaseButton";
+import { BaseInput } from "@ui/atoms/Inputs";
+import { Typography } from "@ui/atoms";
+import { IHomeRoutes, homeRoutes } from "./routes";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export function NavbarHome() {
   const { control } = useForm();
   return (
-    <nav className="bg-white w-full border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <nav className="bg-black w-full border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="flex items-center justify-between p-4">
         <div className="flex">
           <a href="#" className="flex items-center ml-6">
@@ -60,7 +60,7 @@ export function NavbarHome() {
                           data-dropdown-toggle="dropdownNavbar"
                           className="flex items-center justify-between w-full dark:hover:bg-gray-700 "
                         >
-                          Dropdown{' '}
+                          Dropdown{" "}
                           <svg
                             className="w-5 h-5 ml-1"
                             aria-hidden="true"
