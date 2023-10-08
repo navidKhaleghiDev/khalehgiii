@@ -13,7 +13,7 @@ import { ToggleSwitch } from "@ui/atoms/ToggleSwitch";
 import { STORAGE_KEY_REFRESH_TOKEN, http } from "@src/services/http";
 import { useUserContext } from "@context/user/userContext";
 import userIcon from "@iconify-icons/ph/user";
-import arrowFatLineRight from "@iconify-icons/ph/arrow-fat-line-right";
+import signInBoldIcon from "@iconify-icons/ph/sign-in-bold";
 
 import { ILoginFieldValues } from "../types";
 import { loginString as strings } from "./string";
@@ -118,7 +118,7 @@ export function LoginForm() {
 
         <BaseButton
           label="ورود به حساب کاربری"
-          endIcon={arrowFatLineRight}
+          endIcon={signInBoldIcon}
           className="mt-8"
           loading={loadingButton}
           size="md"

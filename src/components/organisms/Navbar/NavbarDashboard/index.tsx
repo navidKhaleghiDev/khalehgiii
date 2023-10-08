@@ -5,6 +5,8 @@ import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { IconButton } from "@ui/atoms/BaseButton";
 import ToolTip from "@ui/atoms/Tooltip";
 import userIcon from "@iconify-icons/ph/user";
+import signOutBoldIcon from "@iconify-icons/ph/sign-out-bold";
+
 
 import { AccessTime } from "./AccessTime";
 import { useUserContext } from "@context/user/userContext";
@@ -20,7 +22,7 @@ export function NavbarDashboard() {
         <div className="flex items-center">
           <ToolTip tooltip="خروج" position="bottom">
             <IconButton
-              icon={"ant-design:logout-outlined"}
+              icon={signOutBoldIcon}
               size="xl"
               className="ml-4 rounded-3xl"
               color="red"
