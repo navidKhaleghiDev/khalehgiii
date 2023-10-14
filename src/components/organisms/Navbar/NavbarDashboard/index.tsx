@@ -1,16 +1,16 @@
 import { Avatar } from "@ui/atoms/Avatar";
 import { Typography } from "@ui/atoms/Typography/Typography";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { IconButton } from "@ui/atoms/BaseButton";
 import ToolTip from "@ui/atoms/Tooltip";
 import userIcon from "@iconify-icons/ph/user";
 import signOutBoldIcon from "@iconify-icons/ph/sign-out-bold";
 
-
 import { AccessTime } from "./AccessTime";
 import { useUserContext } from "@context/user/userContext";
 import { http } from "@src/services/http";
+import { NavigationButtons } from "./NavigationButtons";
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
@@ -53,9 +53,13 @@ export function NavbarDashboard() {
             )
           ) : null}
         </div>
-        {/* <Link to={ROUTES_PATH.dashboard}>
-          <img src="/logo.jpg" alt="logo" className="h-8" />
-        </Link> */}
+
+        <div className="flex">
+          {/* <NavigationButtons /> */}
+          <Link to={ROUTES_PATH.dashboard}>
+            <img src="/Bank_maskan.png" alt="logo" className="h-8" />
+          </Link>
+        </div>
       </div>
     </nav>
   );

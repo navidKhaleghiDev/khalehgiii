@@ -89,7 +89,7 @@ export function ConfigForm({ user }: { user: IUser | null }) {
         size="h5"
         className="w-full my-8 col-span-12 text-right"
       >
-        تنظیمات مربوط به keycloak خود را وارد نماپید
+        تنظیمات مربوط به keycloak خود را وارد نمایید
       </Typography>
       <div className="grid w-full grid-cols-12 gap-16" dir="ltr">
         <div className="col-span-4">

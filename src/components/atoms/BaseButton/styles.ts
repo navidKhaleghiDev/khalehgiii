@@ -1,8 +1,8 @@
-import { PALLET, SIZE } from '@src/constants/theme';
-import { cva } from 'class-variance-authority';
+import { PALLET, SIZE } from "@src/constants/theme";
+import { cva } from "class-variance-authority";
 
 const disabledClass =
-  'disabled:opacity-100 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:border-2 disabled:shadow-none';
+  "disabled:opacity-100 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:border-2 disabled:shadow-none";
 
 export const baseButtonStyles = cva(
   `flex items-center justify-center transition duration-150 ease-in-out rounded-md focus:outline-none p-px ${SIZE.TYPOGRAPHY.BODY2} ${disabledClass}`,
@@ -25,17 +25,17 @@ export const baseButtonStyles = cva(
         xl: SIZE.BUTTON.X_LARGE,
       },
       fullWidth: {
-        true: 'w-full',
+        true: "w-full",
       },
     },
     defaultVariants: {
-      type: 'default',
-      size: 'normal',
+      type: "default",
+      size: "normal",
     },
   }
 );
 
-export const iconInButtonStyles = cva('fill-current ', {
+export const iconInButtonStyles = cva("fill-current ", {
   variants: {
     type: {
       default: `${PALLET.BUTTON_COLOR.TEAL}`,
@@ -47,46 +47,48 @@ export const iconInButtonStyles = cva('fill-current ', {
       textLink: ``,
     },
     size: {
-      normal: 'h-5 w-5',
-      sm: 'h-4 w-4',
-      md: 'h-5 w-5',
-      lg: 'h-6 w-6',
-      xl: 'h-7 w-7',
+      normal: "h-5 w-5",
+      sm: "h-4 w-4",
+      md: "h-5 w-5",
+      lg: "h-6 w-6",
+      xl: "h-7 w-7",
     },
   },
   defaultVariants: {
-    type: 'default',
-    size: 'sm',
+    type: "default",
+    size: "sm",
   },
 });
 
 export const iconButtonStyles = cva(
-  'fill-current rounded p-1 flex items-center justify-center',
+  "fill-current rounded p-1 flex items-center justify-center",
   {
     variants: {
       color: {
-        teal: 'bg-teal-600 text-neutral-100',
-        tealNoBg: 'text-teal-600',
-        neutral: 'bg-neutral-200 text-teal-600',
-        yellow: 'bg-yellow-600 text-neutral-100',
-        red: 'bg-red-100 text-red-600',
-        redNoBg: 'text-red-600',
-        white: 'bg-white text-teal-600',
-        default: '',
+        teal: "bg-teal-600 text-neutral-100",
+        tealNoBg: "text-teal-600",
+        neutral: "bg-neutral-200 text-teal-600",
+        neutralNoBg: "text-neutral-600",
+
+        yellow: "bg-yellow-600 text-neutral-100",
+        red: "bg-red-100 text-red-600",
+        redNoBg: "text-red-600",
+        white: "bg-white text-teal-600",
+        default: "",
       },
       size: {
-        sm: 'h-4 w-4',
-        md: 'h-5 w-5',
-        lg: 'h-6 w-6',
-        xl: 'h-8 w-8',
-        xxl: 'h-10 w-10',
-        xxxl: 'h-16 w-16',
-        default: 'h-fit w-fit',
+        sm: "h-4 w-4",
+        md: "h-5 w-5",
+        lg: "h-6 w-6",
+        xl: "h-8 w-8",
+        xxl: "h-10 w-10",
+        xxxl: "h-16 w-16",
+        default: "h-fit w-fit",
       },
     },
     defaultVariants: {
-      color: 'default',
-      size: 'default',
+      color: "default",
+      size: "default",
     },
   }
 );

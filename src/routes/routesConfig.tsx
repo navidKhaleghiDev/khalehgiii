@@ -6,6 +6,7 @@ import UnauthorizedPage from "@src/pages/Unauthorized";
 
 import { ROUTES_PATH } from "./routesConstants";
 import { DashboardDesktopListPage } from "@src/pages/DashboardDesktopList";
+// import { AdminKeycloakPage } from "@src/pages/AdminKeycloakPage";
 
 const routesConfig = [
   {
@@ -31,6 +32,10 @@ const routesConfig = [
         path: ROUTES_PATH.dashboardDesktopList,
         element: <DashboardDesktopListPage />,
       },
+      // {
+      //   path: ROUTES_PATH.adminKeycloakPage,
+      //   element: <AdminKeycloakPage />,
+      // },
     ],
   },
 ];
