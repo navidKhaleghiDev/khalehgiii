@@ -10,7 +10,6 @@ import signOutBoldIcon from "@iconify-icons/ph/sign-out-bold";
 import { AccessTime } from "./AccessTime";
 import { useUserContext } from "@context/user/userContext";
 import { http } from "@src/services/http";
-import { NavigationButtons } from "./NavigationButtons";
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
