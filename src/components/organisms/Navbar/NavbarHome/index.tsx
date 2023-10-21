@@ -15,7 +15,7 @@ export function NavbarHome() {
       <div className="flex items-center justify-between p-4">
         <div className="flex">
           <a href="#" className="flex items-center ml-6">
-            <img src="/logo.jpg" className="h-8 mr-3" alt="Logo" />
+            <img src="/logo.png" className="h-8 mr-3" alt="Logo" />
           </a>
           <button
             data-collapse-toggle="navbar-dropdown"

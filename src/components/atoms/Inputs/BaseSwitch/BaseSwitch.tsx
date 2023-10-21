@@ -73,7 +73,7 @@ export function BaseSwitch({
         <input
           type="checkbox"
           className="sr-only"
-          value={pureValue}
+          checked={pureValue}
           onChange={pureOnChange}
           defaultValue={defaultValue}
           defaultChecked={defaultChecked}
