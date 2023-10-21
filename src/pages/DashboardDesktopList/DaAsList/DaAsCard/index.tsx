@@ -36,7 +36,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
           {!isHeader && onClickActions ? (
             <SetAccess daas={daas} onClickActions={onClickActions} />
           ) : (
-            <Typography size="body3">دسترسی کامل</Typography>
+            <Typography size="body3">{daas.access_mode}</Typography>
           )}
         </div>
 

@@ -28,7 +28,7 @@ const headerItem: IDaAs = {
   time_limit_value_in_hour: 1,
   is_running: "وضعیت",
   usage_in_minute: "زمان استفاده شده",
-  access_mode: "دسترسی کامل",
+  access_mode: "مجوز بارگذاری",
 };
 
 type PropsType = { user: IUser | null };
