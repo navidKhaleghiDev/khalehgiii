@@ -16,10 +16,10 @@ import {
 import { toast } from "react-toastify";
 import { regexPattern } from "@ui/atoms/Inputs";
 import { ETimeLimitDuration } from "@src/services/users/types";
-import { OnClickActionsType } from "..";
 import { TimeLimitDurationLabel } from "@src/constants/accessTime";
 import ToolTip from "@ui/atoms/Tooltip";
 import { Modal } from "@ui/molecules/Modal";
+import { OnClickActionsType } from "../types";
 
 interface IUpdateDaasValues extends FieldValues {
   time_limit_duration: ETimeLimitDuration;

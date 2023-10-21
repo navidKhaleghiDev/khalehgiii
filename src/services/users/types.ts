@@ -4,6 +4,11 @@ export enum ETimeLimitDuration {
   WEEKLY = "WEEKLY",
   PERMANENTLY = "PERMANENTLY",
 }
+
+export enum EAccessMode {
+  HAS_ACCESS = "HAS_ACCESS",
+  NO_ACCESS = "NO_ACCESS",
+}
 export interface IDaAs {
   id?: string;
   email: string;
@@ -15,6 +20,7 @@ export interface IDaAs {
   time_limit_value_in_hour: number;
   is_running?: boolean | string;
   usage_in_minute: number | string;
+  access_mode: EAccessMode | string;
 }
 
 export interface IBodyUsersLogin {

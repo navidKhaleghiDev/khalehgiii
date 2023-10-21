@@ -5,11 +5,8 @@ import trashIcon from "@iconify-icons/ph/trash";
 
 import { SetAccessTime } from "./SetAccessTime";
 import { CircleBg } from "@ui/atoms/CircleBg";
-
-export type OnClickActionsType = (
-  action: "delete" | "edit" | "details" | "mutate",
-  value?: number | string
-) => void;
+import { SetAccess } from "./SetAccess";
+import { OnClickActionsType } from "./types";
 
 type ProductCardProps = {
   daas: IDaAs;
@@ -31,8 +28,15 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
             <IconButton
               icon={trashIcon}
               color="redNoBg"
-              onClick={() => onClickActions("delete", daas.id)}
+              onClick={() => onClickActions("delete", daas)}
             />
+          )}
+        </div>
+        <div className="px-3 w-2/12 text-center break-words">
+          {!isHeader && onClickActions ? (
+            <SetAccess daas={daas} onClickActions={onClickActions} />
+          ) : (
+            <Typography size="body3">دسترسی کامل</Typography>
           )}
         </div>
 

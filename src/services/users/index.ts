@@ -22,8 +22,11 @@ export const API_DAAS_LIST = ({ username, password }: any) =>
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
 
-export const API_DAAS_UPDATE = (id: string, body: any) =>
-  http.patch<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_UPDATE(id), body);
+export const API_DAAS_UPDATE = (id: string, body: Partial<IDaAs>) =>
+  http.patch<Partial<IDaAs>, IAxiosResponse<IDaAs[]>>(
+    E_USERS_DAAS_UPDATE(id),
+    body
+  );
 
 export const API_DAAS_RESET_USAGE_DAAS = (id: string) =>
   http.get(E_USERS_DAAS_RESET_USAGE(id));

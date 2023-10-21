@@ -10,8 +10,8 @@ import {
   API_CONFIG_LIST,
 } from "@src/services/config";
 import { IUser } from "@src/services/users/types";
-import { BaseSwitch } from "@ui/atoms/BaseSwitch";
 import { LoadingSpinner } from "@ui/molecules/Loading";
+import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
 
 export function ConfigForm({ user }: { user: IUser | null }) {
   const [loadingButton, setLoadingButton] = useState(false);
@@ -155,7 +155,7 @@ export function ConfigForm({ user }: { user: IUser | null }) {
             name="daas_provider_baseurl"
             rules={{
               required: regexPattern.required,
-              pattern: regexPattern.ip,
+              // pattern: regexPattern.ip,
             }}
             control={control}
             label="daas provider baseurl"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
 import { DaAsCard } from "./DaAsCard";
-import { API_DAAS_DELETE } from "@src/services/users";
+import { API_DAAS_DELETE, API_DAAS_UPDATE } from "@src/services/users";
 import { ETimeLimitDuration, IUser } from "@src/services/users/types";
 import { IDaAs } from "@src/services/users/types";
 import { Modal } from "@ui/molecules/Modal";
@@ -14,6 +14,7 @@ import { E_USERS_DAAS } from "@src/services/users/endpoint";
 import Pagination from "@ui/molecules/Pagination";
 import { BaseInput } from "@ui/atoms";
 import { ResetAllAccessTime } from "./ResetAllAccessTime";
+import { ActionOnClickActionsType } from "./DaAsCard/types";
 
 const LIMIT_DESKTOP_LIST = 8;
 
@@ -27,13 +28,17 @@ const headerItem: IDaAs = {
   time_limit_value_in_hour: 1,
   is_running: "وضعیت",
   usage_in_minute: "زمان استفاده شده",
+  access_mode: "دسترسی کامل",
 };
 
 type PropsType = { user: IUser | null };
 export function DaAsList({ user }: PropsType) {
-  const [desktopId, setDesktopId] = useState<number>();
-  const [openModalDelete, setOpenModalDelete] = useState(false);
-  const [loadingButtonDelete, setLoadingButtonDelete] = useState(false);
+  const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
+  const [actionOnClick, setActionOnClick] =
+    useState<ActionOnClickActionsType>();
+
+  const [openModal, setOpenModal] = useState(false);
+  const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
 
@@ -55,31 +60,53 @@ export function DaAsList({ user }: PropsType) {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  function handleOnClickActions(action: any, value: any): any {
+  function handleOnClickActions(
+    action: ActionOnClickActionsType,
+    daas?: Partial<IDaAs> | string
+  ): any {
     if (action === "mutate") {
       mutate();
+      return;
     }
 
-    if (value !== undefined && action === "delete") {
-      setDesktopId(value);
-      setOpenModalDelete(true);
+    if (daas !== undefined && typeof daas !== "string") {
+      setActionOnClick(action);
+      setActiveDaas(daas);
+      setOpenModal(true);
     }
   }
 
-  const handleRequestDelete = async () => {
-    setLoadingButtonDelete(true);
-    await API_DAAS_DELETE(`${desktopId}`)
-      .then(() => {
-        mutate();
-        toast.success("با موفقیت حذف شد");
-        setOpenModalDelete(false);
-      })
-      .catch((err) => {
-        toast.error(err);
-      })
-      .finally(() => {
-        setLoadingButtonDelete(false);
-      });
+  const handleOnRequests = async () => {
+    if (!activeDaas) return;
+
+    setLoadingButtonModal(true);
+    if (actionOnClick === "delete") {
+      await API_DAAS_DELETE(activeDaas.id as string)
+        .then(() => {
+          mutate();
+          toast.success("با موفقیت حذف شد");
+          setOpenModal(false);
+        })
+        .catch((err) => {
+          toast.error(err);
+        })
+        .finally(() => {
+          setLoadingButtonModal(false);
+        });
+    } else {
+      await API_DAAS_UPDATE(activeDaas.id as string, activeDaas)
+        .then(() => {
+          mutate();
+          toast.success("با موفقیت بروزرسانی شد");
+          setOpenModal(false);
+        })
+        .catch((err) => {
+          toast.error(err);
+        })
+        .finally(() => {
+          setLoadingButtonModal(false);
+        });
+    }
   };
 
   const handlePageChange = (page: number) => {
@@ -127,18 +154,18 @@ export function DaAsList({ user }: PropsType) {
         />
       )}
       <Modal
-        open={openModalDelete}
-        setOpen={setOpenModalDelete}
+        open={openModal}
+        setOpen={setOpenModal}
         type="error"
-        title="از حذف این Desktop مطمئن هستید؟"
+        title="از انجام این کار مطمئن هستید؟"
         buttonOne={{
           label: "بله",
-          onClick: handleRequestDelete,
-          loading: loadingButtonDelete,
+          onClick: handleOnRequests,
+          loading: loadingButtonModal,
         }}
         buttonTow={{
           label: "خیر",
-          onClick: () => setOpenModalDelete(false),
+          onClick: () => setOpenModal(false),
           color: "red",
         }}
       />
