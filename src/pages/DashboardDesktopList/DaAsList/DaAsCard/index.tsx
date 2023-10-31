@@ -5,7 +5,7 @@ import trashIcon from "@iconify-icons/ph/trash";
 
 import { SetAccessTime } from "./SetAccessTime";
 import { CircleBg } from "@ui/atoms/CircleBg";
-import { SetAccess } from "./SetAccess";
+import { SetAccessUpload } from "./SetAccessUpload";
 import { OnClickActionsType } from "./types";
 
 type ProductCardProps = {
@@ -34,7 +34,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
         </div>
         <div className="px-3 w-2/12 text-center break-words">
           {!isHeader && onClickActions ? (
-            <SetAccess daas={daas} onClickActions={onClickActions} />
+            <SetAccessUpload daas={daas} onClickActions={onClickActions} />
           ) : (
             <Typography size="body3">{daas.access_mode}</Typography>
           )}

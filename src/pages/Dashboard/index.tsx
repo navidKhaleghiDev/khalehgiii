@@ -6,6 +6,7 @@ import { Daas } from "./Daas";
 
 export function DashboardPage() {
   const { user } = useUserContext();
+
   return !user?.is_superuser ? (
     <Daas src={`http://${user?.base_url}:${user?.http_port}`} />
   ) : (
