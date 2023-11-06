@@ -36,7 +36,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
           {!isHeader && onClickActions ? (
             <SetAccessUpload daas={daas} onClickActions={onClickActions} />
           ) : (
-            <Typography size="body3">{daas.access_mode}</Typography>
+            <Typography size="body3">{daas.can_upload_file}</Typography>
           )}
         </div>
 

@@ -15,6 +15,7 @@ import Pagination from "@ui/molecules/Pagination";
 import { BaseInput } from "@ui/atoms";
 import { ResetAllAccessTime } from "./ResetAllAccessTime";
 import { ActionOnClickActionsType } from "./DaAsCard/types";
+import { SettingContentModal } from "./SettingContentModal";
 
 const LIMIT_DESKTOP_LIST = 8;
 
@@ -28,7 +29,10 @@ const headerItem: IDaAs = {
   time_limit_value_in_hour: 1,
   is_running: "وضعیت",
   usage_in_minute: "زمان استفاده شده",
-  access_mode: "مجوز بارگذاری",
+  can_upload_file: "تنظیمات دسترسی",
+  can_download_file: false,
+  clipboard_down: false,
+  clipboard_up: false,
 };
 
 type PropsType = { user: IUser | null };
@@ -38,6 +42,8 @@ export function DaAsList({ user }: PropsType) {
     useState<ActionOnClickActionsType>();
 
   const [openModal, setOpenModal] = useState(false);
+  const [openSettingModal, setOpenSettingModal] = useState(false);
+
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -69,6 +75,12 @@ export function DaAsList({ user }: PropsType) {
       return;
     }
 
+    if (action === "edit") {
+      setActiveDaas(daas as IDaAs);
+      setOpenSettingModal(true);
+      return;
+    }
+
     if (daas !== undefined && typeof daas !== "string") {
       setActionOnClick(action);
       setActiveDaas(daas);
@@ -94,18 +106,7 @@ export function DaAsList({ user }: PropsType) {
           setLoadingButtonModal(false);
         });
     } else {
-      await API_DAAS_UPDATE(activeDaas.id as string, activeDaas)
-        .then(() => {
-          mutate();
-          toast.success("با موفقیت بروزرسانی شد");
-          setOpenModal(false);
-        })
-        .catch((err) => {
-          toast.error(err);
-        })
-        .finally(() => {
-          setLoadingButtonModal(false);
-        });
+      updateDaas(activeDaas);
     }
   };
 
@@ -117,6 +118,23 @@ export function DaAsList({ user }: PropsType) {
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(value);
+  };
+
+  const updateDaas = async (daas?: Partial<IDaAs>) => {
+    if (!daas) return;
+    await API_DAAS_UPDATE(daas.id as string, daas)
+      .then(() => {
+        mutate();
+        toast.success("با موفقیت بروزرسانی شد");
+        openModal && setOpenModal(false);
+        openSettingModal && setOpenSettingModal(false);
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoadingButtonModal(false);
+      });
   };
 
   return (
@@ -168,6 +186,17 @@ export function DaAsList({ user }: PropsType) {
           onClick: () => setOpenModal(false),
           color: "red",
         }}
+      />
+      <Modal
+        open={openSettingModal}
+        setOpen={setOpenSettingModal}
+        type="success"
+        content={
+          <SettingContentModal
+            handleOnChange={updateDaas}
+            daas={activeDaas as IDaAs}
+          />
+        }
       />
     </div>
   );
