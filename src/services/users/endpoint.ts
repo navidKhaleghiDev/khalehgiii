@@ -10,6 +10,8 @@ export const E_USERS_DAAS_UPDATE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
   `/users/reset_usage/${id}/`;
 
+export const E_UPDATE_USER = (id: string) => `/users/${id}/`;
+
 export const E_USERS_DAAS_RESET_ALL_USAGE = "/users/reset_usage/";
 
 export const E_USERS_DAAS_UPDATE_USAGE = "users/daas/update_usage/";

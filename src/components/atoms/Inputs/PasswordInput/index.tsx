@@ -11,7 +11,11 @@ export function PasswordInput({
   control,
   label,
   placeholder,
-}: Pick<BaseInputProps<any>, "name" | "control" | "placeholder" | "label">) {
+  rules,
+}: Pick<
+  BaseInputProps<any>,
+  "name" | "control" | "placeholder" | "label" | "rules"
+>) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -27,6 +31,7 @@ export function PasswordInput({
       iconButtonIcon={showPassword ? eyeIcon : eyeSlashIcon}
       rules={{
         required: regexPattern.required,
+        ...rules,
         // pattern: regexPattern.password,
       }}
       fullWidth

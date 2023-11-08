@@ -9,6 +9,7 @@ import {
   E_USERS_DAAS_UPDATE,
   E_USERS_LOGIN,
   E_USERS_PROFILE,
+  E_UPDATE_USER,
 } from "./endpoint";
 
 export const API_DAAS_LIST = ({ username, password }: any) =>
@@ -18,6 +19,9 @@ export const API_DAAS_LIST = ({ username, password }: any) =>
       password,
     },
   });
+
+export const API_UPDATE_USER = (body: any, userId: string) =>
+  http.patch<IAxiosResponse<IDaAs[]>>(E_UPDATE_USER(userId), body);
 
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
