@@ -40,7 +40,7 @@ const headerItem: StringifyProperties<IScannedFile> = {
 
 export function ScannedFileList() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   const { id } = useParams();
 
@@ -56,23 +56,23 @@ export function ScannedFileList() {
     setCurrentPage(page);
   };
 
-  const handleOnChangeSearch = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(value);
-  };
+  // const handleOnChangeSearch = ({
+  //   target: { value },
+  // }: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearch(value);
+  // };
 
   return (
     <div className="w-full p-4">
       <div className="flex items-center">
-        <BaseInput
+        {/* <BaseInput
           name="search"
           className="w-1/3"
           id="search"
           pureValue={search}
           pureOnChange={handleOnChangeSearch}
           placeholder="جستجو کنید"
-        />
+        /> */}
         <Typography size="h4" color="teal">
           {id}
         </Typography>
