@@ -215,4 +215,6 @@ export class Http {
   }
 }
 const http = new Http();
-export { type AxiosRequestConfig, http };
+const http_analyses = new Http(import.meta.env.VITE_ANALYSES_BASE_URL);
+
+export { type AxiosRequestConfig, http, http_analyses };
