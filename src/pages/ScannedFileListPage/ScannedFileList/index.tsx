@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { http_analyses } from "@src/services/http";
 import { ISwrResponse } from "@src/types/services";
 import Pagination from "@ui/molecules/Pagination";
-import { BaseInput, Typography } from "@ui/atoms";
+import { Typography } from "@ui/atoms";
 import { IScannedFile } from "@src/services/analyze/types";
 import { StringifyProperties } from "@src/types/global";
 import { useParams } from "react-router-dom";
