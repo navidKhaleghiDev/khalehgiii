@@ -15,6 +15,7 @@ import { Typography } from "@ui/atoms";
 const LIMIT_DESKTOP_LIST = 8;
 
 const headerItem: IDaAs = {
+  id: "مشاهده رفتار کاربر",
   email: "نام کاربر",
   http_port: "پورت http",
   https_port: "پورت https",

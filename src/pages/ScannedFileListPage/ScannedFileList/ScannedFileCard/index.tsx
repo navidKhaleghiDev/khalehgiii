@@ -1,16 +1,22 @@
 import { Card, Typography } from "@ui/atoms";
 import { CircleBg } from "@ui/atoms/CircleBg";
-import { OnClickActionsType } from "./types";
 import { IScannedFile } from "@src/services/analyze/types";
 import { StringifyProperties } from "@src/types/global";
+
+import { IconButton } from "@ui/atoms/BaseButton";
+import moreIcon from "@iconify-icons/ph/dots-three-outline-fill";
 
 type ProductCardProps = {
   scannedFile: StringifyProperties<IScannedFile> | IScannedFile;
   isHeader?: boolean;
-  onClickActions?: OnClickActionsType;
+  onOpenDetailModal?: () => void;
 };
 
-export function ScannedFileCard({ scannedFile, isHeader }: ProductCardProps) {
+export function ScannedFileCard({
+  scannedFile,
+  isHeader,
+  onOpenDetailModal,
+}: ProductCardProps) {
   return (
     <>
       <Card
@@ -19,36 +25,6 @@ export function ScannedFileCard({ scannedFile, isHeader }: ProductCardProps) {
           isHeader ? "h-10" : "h-14"
         } items-center px-2 my-2 w-full text-neutral-600`}
       >
-        {/* <div className="px-3 w-1/12 text-center break-words">
-          {!isHeader && onClickActions && (
-            <IconButton
-              icon={trashIcon}
-              color="redNoBg"
-              onClick={() => onClickActions("delete", daas)}
-            />
-          )}
-        </div> */}
-        {/* <div className="px-3 w-2/12 text-center break-words">
-          {!isHeader && onClickActions ? (
-            <SetAccessUpload daas={daas} onClickActions={onClickActions} />
-          ) : (
-            <Typography size="body3">{daas.can_upload_file}</Typography>
-          )}
-        </div> */}
-
-        {/* <div className="px-3 w-5/12 text-center break-words">
-          {!isHeader ? (
-            <SetAccessTime
-              id={daas.id as string}
-              onClickActions={onClickActions}
-              timeLimitValue={daas.time_limit_value_in_hour}
-              timeLimitDuration={daas.time_limit_duration}
-            />
-          ) : (
-            <Typography size="body3">تنظیمات زمان دسترسی</Typography>
-          )}
-        </div> */}
-
         <div className="w-3/12 text-center break-words">
           <Typography size="body3">{scannedFile.file_name}</Typography>
         </div>
@@ -67,7 +43,7 @@ export function ScannedFileCard({ scannedFile, isHeader }: ProductCardProps) {
           {isHeader ? (
             scannedFile.yara_scanner_status
           ) : (
-            <span className="flex justify-around items-center">
+            <span className="flex justify-around items-center border rounded-md">
               <CircleBg
                 bgColor={
                   scannedFile.yara_scan_result ? "bg-red-600" : "bg-green-400"
@@ -85,7 +61,7 @@ export function ScannedFileCard({ scannedFile, isHeader }: ProductCardProps) {
           {isHeader ? (
             scannedFile.clamav_scanner_status
           ) : (
-            <span className="flex justify-around items-center">
+            <span className="flex justify-around items-center border rounded-md">
               <CircleBg
                 bgColor={
                   scannedFile.clamav_scan_result ? "bg-red-600" : "bg-green-400"
@@ -103,7 +79,7 @@ export function ScannedFileCard({ scannedFile, isHeader }: ProductCardProps) {
           {isHeader ? (
             scannedFile.antiviruses_scanner_status
           ) : (
-            <span className="flex justify-around items-center">
+            <span className="flex justify-around items-center border rounded-md">
               <CircleBg
                 bgColor={
                   scannedFile.antiviruses_scan_result
@@ -116,13 +92,17 @@ export function ScannedFileCard({ scannedFile, isHeader }: ProductCardProps) {
           )}
         </Typography>
 
-        {/* <div className="px-3 w-1/12 flex justify-center text-center break-words">
-          {!isHeader ? (
-            <IconButton icon={moreIcon} color="neutral" onClick={() => true} />
+        <div className="px-3 w-1/12 flex justify-center text-center break-words">
+          {!isHeader && onOpenDetailModal ? (
+            <IconButton
+              icon={moreIcon}
+              color="neutralNoBg"
+              onClick={onOpenDetailModal}
+            />
           ) : (
             <Typography size="body3">{scannedFile.id}</Typography>
           )}
-        </div> */}
+        </div>
       </Card>
     </>
   );

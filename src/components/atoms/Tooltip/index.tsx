@@ -1,9 +1,17 @@
-import { useState } from 'react';
-import { containerTooltipStyles, tooltipStyles } from './styles';
-import { IToolTip } from './types';
+import { useState } from "react";
+import { containerTooltipStyles, tooltipStyles } from "./styles";
+import { IToolTip } from "./types";
 
-function ToolTip({ children, tooltip, position }: IToolTip): JSX.Element {
+function ToolTip({
+  children,
+  tooltip,
+  position,
+  skip,
+}: IToolTip): JSX.Element | React.ReactNode {
   const [show, setShow] = useState(false);
+  if (skip) {
+    return children;
+  }
   return (
     <div className="group relative inline-block">
       <div className={containerTooltipStyles({ position, show })}>

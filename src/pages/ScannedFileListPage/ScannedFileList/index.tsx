@@ -11,6 +11,8 @@ import { IScannedFile } from "@src/services/analyze/types";
 import { StringifyProperties } from "@src/types/global";
 import { useParams } from "react-router-dom";
 import { E_ANALYZE_SCAN } from "@src/services/analyze/endpoint";
+import { Modal } from "@ui/molecules/Modal";
+import { DetailsContentModal } from "./DetailsContentModal";
 
 const LIMIT_DESKTOP_LIST = 8;
 
@@ -41,6 +43,8 @@ const headerItem: StringifyProperties<IScannedFile> = {
 export function ScannedFileList() {
   const [currentPage, setCurrentPage] = useState(1);
   // const [search, setSearch] = useState("");
+  const [openDetailsModal, setOpenDetailsModal] = useState(false);
+  const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
 
   const { id } = useParams();
 
@@ -54,6 +58,11 @@ export function ScannedFileList() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleOpenModal = (item: IScannedFile) => {
+    setActiveScannedFile(item);
+    setOpenDetailsModal(true);
   };
 
   // const handleOnChangeSearch = ({
@@ -82,7 +91,11 @@ export function ScannedFileList() {
         <LoadingSpinner />
       ) : listDaas.length > 0 ? (
         listDaas.map((item) => (
-          <ScannedFileCard key={item.id} scannedFile={item} />
+          <ScannedFileCard
+            key={item.id}
+            scannedFile={item}
+            onOpenDetailModal={() => handleOpenModal(item)}
+          />
         ))
       ) : (
         <NoResult />
@@ -94,33 +107,12 @@ export function ScannedFileList() {
           onPageChange={handlePageChange}
         />
       )}
-      {/* <Modal
-        open={openModal}
-        setOpen={setOpenModal}
-        type="error"
-        title="از انجام این کار مطمئن هستید؟"
-        buttonOne={{
-          label: "بله",
-          onClick: handleOnRequests,
-          loading: loadingButtonModal,
-        }}
-        buttonTow={{
-          label: "خیر",
-          onClick: () => setOpenModal(false),
-          color: "red",
-        }}
-      />
       <Modal
-        open={openSettingModal}
-        setOpen={setOpenSettingModal}
+        open={openDetailsModal}
+        setOpen={setOpenDetailsModal}
         type="success"
-        content={
-          <SettingContentModal
-            handleOnChange={updateDaas}
-            daas={activeDaas as IDaAs}
-          />
-        }
-      /> */}
+        content={<DetailsContentModal scannedFile={activeScannedFile} />}
+      />
     </div>
   );
 }

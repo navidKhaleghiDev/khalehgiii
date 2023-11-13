@@ -21,13 +21,6 @@ export function UserDaAsCard({ daas, isHeader }: ProductCardProps) {
           isHeader ? "h-10" : "h-14"
         } items-center px-2 my-2 w-full text-neutral-600`}
       >
-        <div className="px-3 w-1/12 text-center break-words">
-          {!isHeader && (
-            <Link to={`${ROUTES_PATH.monitoring}/${daas.email}`}>
-              <IconButton icon={moreIcon} color="neutralNoBg" />
-            </Link>
-          )}
-        </div>
         <Typography
           size="body3"
           type="div"
@@ -57,6 +50,16 @@ export function UserDaAsCard({ daas, isHeader }: ProductCardProps) {
             />
           )}
         </Typography>
+
+        <div className="px-3 w-2/12 flex justify-center text-center break-words">
+          {!isHeader ? (
+            <Link to={`${ROUTES_PATH.monitoring}/${daas.email}`}>
+              <IconButton icon={moreIcon} color="neutralNoBg" />
+            </Link>
+          ) : (
+            <Typography size="body3">{daas.id}</Typography>
+          )}
+        </div>
       </Card>
     </>
   );
