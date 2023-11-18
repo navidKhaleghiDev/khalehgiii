@@ -42,6 +42,7 @@ export interface BaseInputProps<T extends FieldValues>
   pureValue?: string;
   pureError?: string;
   ltrLabel?: boolean;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {

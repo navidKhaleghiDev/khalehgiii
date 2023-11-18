@@ -2,7 +2,7 @@ import { SIZE } from "@src/constants/theme";
 import { cva } from "class-variance-authority";
 
 export const baseInputStyles = cva(
-  "px-2.5 py-2.5 flex block rounded-lg outline-none ",
+  "px-2.5 py-2.5 flex block rounded-lg outline-none placeholder-opacity-50 focus:placeholder-opacity-0",
   {
     variants: {
       intent: {

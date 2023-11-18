@@ -30,6 +30,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     pureError,
     ltrLabel = false,
     iconButtonIcon = "fa-home",
+    onKeyDown,
   } = props;
   return control ? (
     <Controller
@@ -58,6 +59,7 @@ export function BaseInput(props: BaseInputProps<any>) {
               dir="auto"
               name={field.name}
               value={type !== "file" ? field.value ?? "" : undefined}
+              onKeyDown={onKeyDown}
               onChange={(e) => {
                 if (type !== "file") {
                   field.onChange(e);
@@ -113,6 +115,7 @@ export function BaseInput(props: BaseInputProps<any>) {
         name={name}
         value={pureValue}
         onChange={pureOnChange}
+        onKeyDown={onKeyDown}
         className={baseInputStyles({
           intent: pureError ? "error" : intent,
           className: `${(endIcon || onClickIcon) && "pl-8"} ${
