@@ -5,7 +5,7 @@ import { Typography } from "@ui/atoms";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-import { DlpList } from "./DlpList";
+// import { DlpList } from "./DlpList";
 
 type PropsType = {
   handleOnChange: (daas: IDaAs) => void;
@@ -14,7 +14,12 @@ type PropsType = {
 
 export function SettingContentModal({ handleOnChange, daas }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
-  const { control, handleSubmit, setValue, watch } = useForm<IDaAs>({
+  const {
+    control,
+    handleSubmit,
+    //  setValue,
+    //   watch
+  } = useForm<IDaAs>({
     mode: "onChange",
     defaultValues: {
       can_upload_file: daas.can_upload_file,
@@ -32,12 +37,12 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
     handleOnChange({ ...daas, ...data });
   };
 
-  const handleSetDlpValues = (name: keyof IDaAs, values: string[]) => {
-    setValue(name, values);
-  };
+  // const handleSetDlpValues = (name: keyof IDaAs, values: string[]) => {
+  //   setValue(name, values);
+  // };
 
-  const dlpDownloadList = watch("forbidden_download_files") || [];
-  const dlpUploadList = watch("forbidden_upload_files") || [];
+  // const dlpDownloadList = watch("forbidden_download_files") || [];
+  // const dlpUploadList = watch("forbidden_upload_files") || [];
 
   return (
     <form
@@ -64,7 +69,7 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
         <Typography className="mb-1">:Clipboard from Client</Typography>
       </div>
 
-      <div className="flex justify-between items-center px-2 col-span-3">
+      {/* <div className="flex justify-between items-center px-2 col-span-3">
         <BaseSwitch control={control} name="webcam_privilege" />
         <Typography className="mb-1">:Webcam Privilege</Typography>
       </div>
@@ -89,7 +94,7 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
           onChange={handleSetDlpValues}
           label=":DLP Upload"
         />
-      </div>
+      </div> */}
 
       <div className="flex justify-center col-span-6">
         {showConfirm && (
