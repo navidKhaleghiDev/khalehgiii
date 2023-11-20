@@ -33,6 +33,12 @@ const headerItem: IDaAs = {
   forbidden_download_files: null,
   webcam_privilege: false,
   microphone_privilege: false,
+  max_transmission_download_size: null,
+  max_transmission_upload_size: null,
+  extra_allowed_download_files: null,
+  extra_allowed_upload_files: null,
+  allowed_files_type_for_download: null,
+  allowed_files_type_for_upload: null,
 };
 
 type PropsType = { user: IUser | null };

@@ -9,8 +9,11 @@ export enum EAccessMode {
   HAS_ACCESS = "HAS_ACCESS",
   NO_ACCESS = "NO_ACCESS",
 }
+
 export interface IDaAs {
   id?: string;
+  allowed_files_type_for_download: string[] | null;
+  allowed_files_type_for_upload: string[] | null;
   email: string;
   http_port: number | string;
   https_port: number | string;
@@ -28,6 +31,10 @@ export interface IDaAs {
   forbidden_download_files: string[] | null;
   webcam_privilege: boolean;
   microphone_privilege: boolean;
+  max_transmission_download_size: number | null;
+  max_transmission_upload_size: number | null;
+  extra_allowed_download_files: string[] | null;
+  extra_allowed_upload_files: string[] | null;
 }
 
 export interface IBodyUsersLogin {

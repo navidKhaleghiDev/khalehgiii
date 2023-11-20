@@ -1,7 +1,7 @@
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
 import { IDaAs } from "@src/services/users/types";
 import { BaseButton } from "@ui/atoms/BaseButton";
-import { Typography } from "@ui/atoms";
+import { BaseInput, Typography } from "@ui/atoms";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
@@ -25,6 +25,10 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
       microphone_privilege: daas.microphone_privilege,
       forbidden_upload_files: daas.forbidden_upload_files,
       forbidden_download_files: daas.forbidden_download_files,
+      allowed_files_type_for_download: daas.allowed_files_type_for_download,
+      allowed_files_type_for_upload: daas.allowed_files_type_for_upload,
+      max_transmission_download_size: daas.max_transmission_download_size,
+      max_transmission_upload_size: daas.max_transmission_upload_size,
     },
   });
 
@@ -36,8 +40,8 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
     setValue(name, values);
   };
 
-  const dlpDownloadList = watch("forbidden_download_files") || [];
-  const dlpUploadList = watch("forbidden_upload_files") || [];
+  const dlpDownloadList = watch("allowed_files_type_for_download") || [];
+  const dlpUploadList = watch("allowed_files_type_for_upload") || [];
 
   return (
     <form
@@ -45,13 +49,13 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
       onSubmit={handleSubmit(handleOnSubmit)}
     >
       <div className="flex justify-between items-center px-2 col-span-3">
-        <BaseSwitch control={control} name="can_upload_file" />
-        <Typography className="mb-1">:Upload</Typography>
+        <BaseSwitch control={control} name="can_download_file" />
+        <Typography className="mb-1">:Download</Typography>
       </div>
 
       <div className="flex justify-between items-center px-2 col-span-3">
-        <BaseSwitch control={control} name="can_download_file" />
-        <Typography className="mb-1">:Download</Typography>
+        <BaseSwitch control={control} name="can_upload_file" />
+        <Typography className="mb-1">:Upload</Typography>
       </div>
 
       <div className="flex justify-between items-center px-2 col-span-3">
@@ -73,21 +77,43 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
         <BaseSwitch control={control} name="microphone_privilege" />
         <Typography className="mb-1">:Microphone Privilege</Typography>
       </div>
+      <div className="px-2 col-span-3 text-left">
+        <Typography className="mb-1">:Max Download Size (MB)</Typography>
+        <BaseInput
+          control={control}
+          name="max_transmission_download_size"
+          id="max_transmission_download_size"
+          type="number"
+          hiddenError
+          fullWidth
+        />
+      </div>
+      <div className="px-2 col-span-3 text-left">
+        <Typography className="mb-1">:Max Upload Size (MB)</Typography>
+        <BaseInput
+          control={control}
+          name="max_transmission_upload_size"
+          id="max_transmission_upload_size"
+          type="number"
+          hiddenError
+          fullWidth
+        />
+      </div>
 
       <div className="px-2 col-span-3">
         <DlpList
-          name="forbidden_download_files"
+          name="allowed_files_type_for_download"
           valueList={dlpDownloadList}
           onChange={handleSetDlpValues}
-          label=":DLP Download"
+          label=":Trusted DLP Download"
         />
       </div>
       <div className="px-2 col-span-3">
         <DlpList
-          name="forbidden_upload_files"
+          name="allowed_files_type_for_upload"
           valueList={dlpUploadList}
           onChange={handleSetDlpValues}
-          label=":DLP Upload"
+          label=":Trusted DLP Upload"
         />
       </div>
 

@@ -17,6 +17,11 @@ import { ResetAllAccessTime } from "./ResetAllAccessTime";
 import { ActionOnClickActionsType } from "./DaAsCard/types";
 import { SettingContentModal } from "./SettingContentModal";
 
+function mergeUniqueLists(oldList: string[], newList: string[]): string[] {
+  const set = new Set([...oldList, ...newList]);
+  return Array.from(set);
+}
+
 const LIMIT_DESKTOP_LIST = 8;
 
 const headerItem: IDaAs = {
@@ -37,7 +42,41 @@ const headerItem: IDaAs = {
   forbidden_download_files: null,
   webcam_privilege: false,
   microphone_privilege: false,
+  max_transmission_download_size: null,
+  max_transmission_upload_size: null,
+  extra_allowed_download_files: null,
+  extra_allowed_upload_files: null,
+  allowed_files_type_for_download: null,
+  allowed_files_type_for_upload: null,
 };
+
+function compareExtensionLists(oldList?: string[], newList?: string[]) {
+  const removedList: string[] = [];
+  const addedList: string[] = [];
+  if (!oldList || !newList) return { addedList, removedList };
+
+  const setOne = new Set(oldList);
+  const setTwo = new Set(newList);
+
+  // Find strings added
+  newList.forEach((item) => {
+    if (!setOne.has(item)) {
+      addedList.push(item);
+    }
+  });
+
+  // Find strings missing
+  oldList.forEach((item) => {
+    if (!setTwo.has(item)) {
+      removedList.push(item);
+    }
+  });
+
+  return {
+    addedList,
+    removedList,
+  };
+}
 
 type PropsType = { user: IUser | null };
 export function DaAsList({ user }: PropsType) {
@@ -124,9 +163,58 @@ export function DaAsList({ user }: PropsType) {
     setSearch(value);
   };
 
-  const updateDaas = async (daas?: Partial<IDaAs>) => {
+  const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
     if (!daas) return;
-    await API_DAAS_UPDATE(daas.id as string, daas)
+    let daasUpdated = daas;
+    if (isLdp) {
+      const resultDownload = compareExtensionLists(
+        activeDaas?.allowed_files_type_for_download ?? [],
+        daas?.allowed_files_type_for_download ?? []
+      );
+
+      const resultUpload = compareExtensionLists(
+        activeDaas?.allowed_files_type_for_upload ?? [],
+        daas?.allowed_files_type_for_upload ?? []
+      );
+
+      const newExtraAllowedDownloadFiles = mergeUniqueLists(
+        daas.extra_allowed_download_files ?? [],
+        resultDownload.addedList
+      );
+      const newForbiddenDownloadFiles = mergeUniqueLists(
+        daas.forbidden_download_files ?? [],
+        resultDownload.removedList
+      );
+
+      const newExtraAllowedUploadFiles = mergeUniqueLists(
+        daas.extra_allowed_upload_files ?? [],
+        resultUpload.addedList
+      );
+      const newForbiddenUploadFiles = mergeUniqueLists(
+        daas.forbidden_upload_files ?? [],
+        resultUpload.removedList
+      );
+
+      console.log({
+        newExtraAllowedDownloadFiles,
+        newForbiddenDownloadFiles,
+        newExtraAllowedUploadFiles,
+        newForbiddenUploadFiles,
+      });
+
+      daasUpdated = {
+        ...daas,
+        extra_allowed_download_files: newExtraAllowedDownloadFiles,
+        extra_allowed_upload_files: newExtraAllowedUploadFiles,
+        forbidden_download_files: newForbiddenDownloadFiles,
+        forbidden_upload_files: newForbiddenUploadFiles,
+      };
+    }
+
+    console.log({ daasUpdated });
+
+    // get
+    await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
         mutate();
         toast.success("با موفقیت بروزرسانی شد");
@@ -197,7 +285,7 @@ export function DaAsList({ user }: PropsType) {
         type="success"
         content={
           <SettingContentModal
-            handleOnChange={updateDaas}
+            handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
           />
         }
