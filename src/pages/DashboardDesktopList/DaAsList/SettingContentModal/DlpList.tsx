@@ -45,13 +45,6 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
         <Typography className="mb-1">{label}</Typography>
       </div>
 
-      {Array.isArray(valueList) && (
-        <div className="flex justify-start gap-1 flex-wrap mb-2" dir="ltr">
-          {valueList.map((label, i) => (
-            <BaseChip key={i} label={label} onClick={() => remove(label)} />
-          ))}
-        </div>
-      )}
       {displayInput && (
         <BaseInput
           pureValue={value}
@@ -63,6 +56,16 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           ltrLabel
           fullWidth
         />
+      )}
+      {Array.isArray(valueList) && (
+        <div
+          className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto h-20"
+          dir="ltr"
+        >
+          {valueList.map((label, i) => (
+            <BaseChip key={i} label={label} onClick={() => remove(label)} />
+          ))}
+        </div>
       )}
     </>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BaseButton, BaseInput, Typography } from "@ui/atoms";
+import { BaseButton, BaseInput } from "@ui/atoms";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { regexPattern } from "@ui/atoms/Inputs";
@@ -13,7 +13,7 @@ import { IUser } from "@src/services/users/types";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
 
-export function ConfigForm({ user }: { user: IUser | null }) {
+export function ConfigKeycloakForm({ user }: { user: IUser | null }) {
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -84,13 +84,13 @@ export function ConfigForm({ user }: { user: IUser | null }) {
       className=" w-full flex flex-col items-center justify-between"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <Typography
+      {/* <Typography
         color="neutral"
         size="h5"
         className="w-full my-8 col-span-12 text-right"
       >
         تنظیمات مربوط به keycloak خود را وارد نمایید
-      </Typography>
+      </Typography> */}
       <div className="grid w-full grid-cols-12 gap-16" dir="ltr">
         <div className="col-span-4">
           <BaseInput

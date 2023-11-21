@@ -17,9 +17,37 @@ import { ResetAllAccessTime } from "./ResetAllAccessTime";
 import { ActionOnClickActionsType } from "./DaAsCard/types";
 import { SettingContentModal } from "./SettingContentModal";
 
-function mergeUniqueLists(oldList: string[], newList: string[]): string[] {
-  const set = new Set([...oldList, ...newList]);
-  return Array.from(set);
+// function mergeUniqueLists(oldList: string[], newList: string[]): string[] {
+//   const set = new Set([...oldList, ...newList]);
+//   return Array.from(set);
+// }
+
+function compareExtensionLists(oldList?: string[], newList?: string[]) {
+  const removedList: string[] = [];
+  const addedList: string[] = [];
+  if (!oldList || !newList) return { addedList, removedList };
+
+  const setOne = new Set(oldList);
+  const setTwo = new Set(newList);
+
+  // Find strings added
+  newList.forEach((item) => {
+    if (!setOne.has(item)) {
+      addedList.push(item);
+    }
+  });
+
+  // Find strings missing
+  oldList.forEach((item) => {
+    if (!setTwo.has(item)) {
+      removedList.push(item);
+    }
+  });
+
+  return {
+    addedList,
+    removedList,
+  };
 }
 
 const LIMIT_DESKTOP_LIST = 8;
@@ -49,34 +77,6 @@ const headerItem: IDaAs = {
   allowed_files_type_for_download: null,
   allowed_files_type_for_upload: null,
 };
-
-function compareExtensionLists(oldList?: string[], newList?: string[]) {
-  const removedList: string[] = [];
-  const addedList: string[] = [];
-  if (!oldList || !newList) return { addedList, removedList };
-
-  const setOne = new Set(oldList);
-  const setTwo = new Set(newList);
-
-  // Find strings added
-  newList.forEach((item) => {
-    if (!setOne.has(item)) {
-      addedList.push(item);
-    }
-  });
-
-  // Find strings missing
-  oldList.forEach((item) => {
-    if (!setTwo.has(item)) {
-      removedList.push(item);
-    }
-  });
-
-  return {
-    addedList,
-    removedList,
-  };
-}
 
 type PropsType = { user: IUser | null };
 export function DaAsList({ user }: PropsType) {
@@ -177,23 +177,41 @@ export function DaAsList({ user }: PropsType) {
         daas?.allowed_files_type_for_upload ?? []
       );
 
-      const newExtraAllowedDownloadFiles = mergeUniqueLists(
-        daas.extra_allowed_download_files ?? [],
-        resultDownload.addedList
-      );
-      const newForbiddenDownloadFiles = mergeUniqueLists(
-        daas.forbidden_download_files ?? [],
-        resultDownload.removedList
-      );
+      const newExtraAllowedDownloadFiles = [
+        ...(daas.extra_allowed_download_files || []),
+        ...resultDownload.addedList,
+      ];
+      const newForbiddenDownloadFiles = [
+        ...(daas.forbidden_download_files || []),
+        ...resultDownload.removedList,
+      ];
 
-      const newExtraAllowedUploadFiles = mergeUniqueLists(
-        daas.extra_allowed_upload_files ?? [],
-        resultUpload.addedList
-      );
-      const newForbiddenUploadFiles = mergeUniqueLists(
-        daas.forbidden_upload_files ?? [],
-        resultUpload.removedList
-      );
+      const newExtraAllowedUploadFiles = [
+        ...(daas.extra_allowed_upload_files || []),
+        ...resultUpload.addedList,
+      ];
+      const newForbiddenUploadFiles = [
+        ...(daas.forbidden_upload_files || []),
+        ...resultUpload.removedList,
+      ];
+
+      // const newExtraAllowedDownloadFiles = mergeUniqueLists(
+      //   daas.extra_allowed_download_files ?? [],
+      //   resultDownload.addedList
+      // );
+      // const newForbiddenDownloadFiles = mergeUniqueLists(
+      //   daas.forbidden_download_files ?? [],
+      //   resultDownload.removedList
+      // );
+
+      // const newExtraAllowedUploadFiles = mergeUniqueLists(
+      //   daas.extra_allowed_upload_files ?? [],
+      //   resultUpload.addedList
+      // );
+      // const newForbiddenUploadFiles = mergeUniqueLists(
+      //   daas.forbidden_upload_files ?? [],
+      //   resultUpload.removedList
+      // );
 
       console.log({
         newExtraAllowedDownloadFiles,
@@ -204,10 +222,16 @@ export function DaAsList({ user }: PropsType) {
 
       daasUpdated = {
         ...daas,
-        extra_allowed_download_files: newExtraAllowedDownloadFiles,
-        extra_allowed_upload_files: newExtraAllowedUploadFiles,
-        forbidden_download_files: newForbiddenDownloadFiles,
-        forbidden_upload_files: newForbiddenUploadFiles,
+        extra_allowed_download_files: [
+          ...new Set(newExtraAllowedDownloadFiles),
+        ],
+        extra_allowed_upload_files: [...new Set(newExtraAllowedUploadFiles)],
+        forbidden_download_files: [
+          ...new Set(newForbiddenDownloadFiles),
+        ].filter((value) => !resultDownload.addedList.includes(value)),
+        forbidden_upload_files: [...new Set(newForbiddenUploadFiles)].filter(
+          (value) => !resultUpload.addedList.includes(value)
+        ),
       };
     }
 
