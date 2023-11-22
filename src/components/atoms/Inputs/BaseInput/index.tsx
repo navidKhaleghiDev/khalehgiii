@@ -15,6 +15,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     placeholder,
     rules,
     className,
+    classNameInput,
     fullWidth,
     defaultValue,
     startIcon,
@@ -23,11 +24,15 @@ export function BaseInput(props: BaseInputProps<any>) {
     size,
     type,
     label,
+    onFocus,
     hiddenError,
     pureOnChange,
     pureValue,
     onClickIcon,
     pureError,
+    maxLength,
+    minLength,
+    ref,
     ltrLabel = false,
     iconButtonIcon = "fa-home",
     onKeyDown,
@@ -69,14 +74,18 @@ export function BaseInput(props: BaseInputProps<any>) {
               }}
               className={baseInputStyles({
                 intent: error?.message ? "error" : intent,
-                className: `${(endIcon || onClickIcon) && "pl-8"} ${
-                  startIcon && "pr-8"
-                } `,
+                className: `${classNameInput} ${
+                  (endIcon || onClickIcon) && "pl-8"
+                } ${startIcon && "pr-8"} `,
                 ltrPlaceHolder: ltrLabel,
                 fullWidth,
                 size,
               })}
               placeholder={placeholder}
+              maxLength={maxLength}
+              minLength={minLength}
+              onFocus={onFocus}
+              ref={ref}
             />
 
             {onClickIcon && (

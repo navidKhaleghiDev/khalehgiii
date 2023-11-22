@@ -1,3 +1,5 @@
+import { ETimeLimitDuration } from "../users/types";
+
 export interface IAddConfig {
   id?: number | null;
   keycloak_base_url: string;
@@ -7,4 +9,30 @@ export interface IAddConfig {
   keycloak_secret: string;
   keycloak_realm: string;
   daas_provider_baseurl: string;
+}
+
+export interface IDaasConfig {
+  id: number;
+  can_upload_file: boolean;
+  can_download_file: boolean;
+  clipboard_up: boolean;
+  clipboard_down: boolean;
+  webcam_privilege: boolean;
+  microphone_privilege: boolean;
+  time_limit_duration: ETimeLimitDuration;
+  time_limit_value_in_hour: null | number;
+  is_permanently: boolean;
+  max_transmission_upload_size: number;
+  max_transmission_download_size: number;
+  used_as_default: boolean;
+}
+
+export interface IFileType {
+  id: number;
+  file_type: string;
+  allowed_for_upload: boolean;
+  allowed_for_download: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }

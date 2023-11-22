@@ -1,10 +1,11 @@
-import { ConfigKeycloakForm } from "./ConfigKeycloakForm";
+import { SettingsKeycloak } from "./SettingsKeycloak";
 import { DashboardCards } from "./DashboardCards";
 import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
 import { useUserContext } from "@context/user/userContext";
 import { Daas } from "./Daas";
 import { BaseTab, BaseTabs } from "@ui/atoms/BaseTabs";
-import { ConfigDaasForm } from "./ConfigDaasForm";
+import { DlpConfig } from "./DlpConfig";
+import { DaasConfig } from "./DaasConfig";
 
 export function DashboardPage() {
   const { user } = useUserContext();
@@ -17,13 +18,13 @@ export function DashboardPage() {
 
       <BaseTabs label="تنظیمات">
         <BaseTab label="Keycloak">
-          <ConfigKeycloakForm user={user} />
+          <SettingsKeycloak user={user} />
         </BaseTab>
         <BaseTab label="Daas">
-          <ConfigDaasForm user={user} />
+          <DaasConfig />
         </BaseTab>
-        <BaseTab label="White List">
-          <div>Content for BaseTab 3</div>
+        <BaseTab label="DLP">
+          <DlpConfig />
         </BaseTab>
       </BaseTabs>
     </ContainerDashboard>

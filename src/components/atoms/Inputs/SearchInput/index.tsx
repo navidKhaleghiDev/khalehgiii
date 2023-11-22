@@ -1,21 +1,31 @@
-import { useDebounce } from '@src/helper/hooks/useDebounce';
-import { useEffect, useState } from 'react';
+import { useDebounce } from "@src/helper/hooks/useDebounce";
+import { useEffect, useState } from "react";
 
-import { BaseInput } from '../BaseInput';
+import { BaseInput } from "../BaseInput";
 
 interface SearchInputProps {
   value: string;
   name: string;
-
+  className?: string;
   onChange: (value: string) => void;
 }
 
-export function SearchInput({ value, onChange, name }: SearchInputProps) {
+export function SearchInput({
+  value,
+  onChange,
+  name,
+  className,
+}: SearchInputProps) {
   const [searchValue, setSearchValue] = useState(value);
+  // const inputRef = useRef<HTMLInputElement | null>(null);
+
   const debouncedSearchValue = useDebounce(searchValue, 500);
 
   useEffect(() => {
     onChange(debouncedSearchValue);
+    // if (inputRef.current) {
+    //   inputRef.current.focus();
+    // }
   }, [debouncedSearchValue, onChange]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +33,7 @@ export function SearchInput({ value, onChange, name }: SearchInputProps) {
   };
 
   return (
-    <div>
+    <div className={className}>
       <BaseInput
         size="sm"
         name={name}
@@ -31,6 +41,7 @@ export function SearchInput({ value, onChange, name }: SearchInputProps) {
         id={name}
         pureOnChange={handleSearchChange}
         pureValue={searchValue}
+        // ref={inputRef}
         fullWidth
       />
     </div>

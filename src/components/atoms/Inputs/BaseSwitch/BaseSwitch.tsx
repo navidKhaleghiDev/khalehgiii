@@ -21,7 +21,7 @@ export function BaseSwitch({
       control={control}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field: { value, ...field } }) => {
+      render={({ field }) => {
         return (
           <div dir="ltr">
             {label && (
@@ -38,17 +38,17 @@ export function BaseSwitch({
               <input
                 type="checkbox"
                 className="sr-only"
-                value={value}
-                {...field}
+                checked={field.value}
+                onChange={(e) => field.onChange(e.target.checked)}
               />
               <span
                 className={`slider mr-3 flex h-[26px] w-[50px] items-center rounded-full p-1 duration-200 ${
-                  value ? "bg-teal-600" : "bg-[#CCCCCE]"
+                  field.value ? "bg-teal-600" : "bg-[#CCCCCE]"
                 }`}
               >
                 <span
                   className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
-                    value ? "translate-x-6" : ""
+                    field.value ? "translate-x-6" : ""
                   }`}
                 ></span>
               </span>

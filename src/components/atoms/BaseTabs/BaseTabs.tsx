@@ -27,7 +27,9 @@ export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
             const { label } = child.props;
             return (
               <button
-                className={`px-4 py-2 ${index === 0 && "rounded-tr-md"} ${
+                className={`uppercase px-4 py-2 ${
+                  index === 0 && "rounded-tr-md"
+                } ${
                   index === React.Children.toArray(children).length - 1 &&
                   "rounded-tl-md"
                 } ${

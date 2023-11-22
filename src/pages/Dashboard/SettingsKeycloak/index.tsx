@@ -13,7 +13,7 @@ import { IUser } from "@src/services/users/types";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
 
-export function ConfigKeycloakForm({ user }: { user: IUser | null }) {
+export function SettingsKeycloak({ user }: { user: IUser | null }) {
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(true);
 

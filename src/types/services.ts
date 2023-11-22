@@ -15,6 +15,15 @@ export interface IServerResponsePagination<T> {
   };
 }
 
+export interface IResponsePagination<T> {
+  data: {
+    count: number;
+    next: string;
+    previous: string;
+    results: T[];
+  };
+}
+
 export interface IServerResponseList<T> {
   data: {
     count: number;

@@ -3,6 +3,10 @@ export const regexPattern = {
     value: /^(?!.*[\u0600-\u06E9\u200C])/,
     message: "لطفا فقط از حروف انگلیسی استفاده کنید",
   },
+  wordStartedWithPointAndEn: {
+    value: /^\.[A-Za-z]+$/,
+    message: "تایپ با نقطه (.) شروع می شود",
+  },
   url: {
     value:
       /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/gi,

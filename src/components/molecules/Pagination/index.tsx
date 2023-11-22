@@ -5,12 +5,12 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 const mClass =
-  'flex w-8 h-8 mx-0.5 p-0 justify-center items-center rounded-md leading-tight text-xl border border-teal-500 ';
+  "flex w-8 h-8 mx-0.5 p-0 justify-center items-center rounded-md leading-tight text-xl border border-teal-500 ";
 
 const disableClass =
-  'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400';
-const activeClass = 'bg-teal-500 text-white cursor-not-allowed';
-const arrowButtonClass = 'bg-teal-500 text-white';
+  "bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400";
+const activeClass = "bg-teal-500 text-white cursor-not-allowed";
+const arrowButtonClass = "bg-teal-500 text-white";
 
 export function Pagination({
   currentPage,
@@ -51,32 +51,32 @@ export function Pagination({
       for (let i = 1; i <= 5; i++) {
         pageNumbers.push(i);
       }
-      pageNumbers.push('...');
+      pageNumbers.push("...");
       pageNumbers.push(totalPages);
     } else if (currentPage >= totalPages - 2) {
       pageNumbers.push(1);
-      pageNumbers.push('...');
+      pageNumbers.push("...");
       for (let i = totalPages - 4; i <= totalPages; i++) {
         pageNumbers.push(i);
       }
     } else {
       pageNumbers.push(1);
-      pageNumbers.push('...');
+      pageNumbers.push("...");
       for (let i = currentPage - 1; i <= currentPage + 1; i++) {
         pageNumbers.push(i);
       }
-      pageNumbers.push('...');
+      pageNumbers.push("...");
       pageNumbers.push(totalPages);
     }
 
     return pageNumbers.map((number) => {
-      const isEllipsis = number === '...';
+      const isEllipsis = number === "...";
 
       return (
         <button
           type="button"
           className={`${mClass} ${
-            currentPage === number ? activeClass : 'bg-white text-teal-500'
+            currentPage === number ? activeClass : "bg-white text-teal-500"
           }`}
           disabled={isEllipsis}
           key={number}

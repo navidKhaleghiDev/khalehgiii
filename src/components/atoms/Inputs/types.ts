@@ -33,6 +33,10 @@ export interface BaseInputProps<T extends FieldValues>
   label?: string;
   placeholder?: string;
   className?: string;
+  classNameInput?: string;
+  maxLength?: number;
+  minLength?: number;
+  ref?: React.LegacyRef<HTMLInputElement>;
   startIcon?: IconType;
   endIcon?: IconType;
   hiddenError?: boolean;
@@ -43,6 +47,7 @@ export interface BaseInputProps<T extends FieldValues>
   pureError?: string;
   ltrLabel?: boolean;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
