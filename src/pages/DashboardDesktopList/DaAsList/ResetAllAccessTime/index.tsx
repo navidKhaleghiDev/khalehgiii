@@ -29,7 +29,7 @@ export function ResetAllAccessTime() {
 
   return (
     <>
-      <ToolTip tooltip="شروع مجدد تمام دسترسی ها">
+      <ToolTip tooltip="شروع مجدد زمان استفاده شده">
         <IconButton
           icon={clockCounterClockwiseIcon}
           color="redNoBg"

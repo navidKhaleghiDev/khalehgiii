@@ -53,7 +53,10 @@ export function Dropdown<T extends FieldValues>({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <div className={`relative ${containerClassName}`} ref={ref}>
+        <div
+          className={`relative ${containerClassName} ${fullWidth && "w-full"}`}
+          ref={ref}
+        >
           {label && (
             <label htmlFor={name} className="block mb-1">
               <Typography color="teal" size="h5">

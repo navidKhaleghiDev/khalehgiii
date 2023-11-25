@@ -4,7 +4,7 @@ export const regexPattern = {
     message: "لطفا فقط از حروف انگلیسی استفاده کنید",
   },
   wordStartedWithPointAndEn: {
-    value: /^\.[A-Za-z]+$/,
+    value: /^\.[A-Za-z0-9]+$/,
     message: "تایپ با نقطه (.) شروع می شود",
   },
   url: {

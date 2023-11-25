@@ -7,7 +7,6 @@ import { StringifyProperties } from "@src/types/global";
 
 import { OnClickActionsType } from "./types";
 import { booleanIcon } from "../utils";
-import { CircleBg } from "@ui/atoms/CircleBg";
 import { persianDateAndNumber } from "@src/helper/utils/dateUtils";
 
 type FileTypeCardProps = {

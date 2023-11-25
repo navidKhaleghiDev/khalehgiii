@@ -6,9 +6,10 @@ import { CircleBg } from "@ui/atoms/CircleBg";
 import { Link } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { persianDateAndNumber } from "@src/helper/utils/dateUtils";
+import { IHeaderDaasCard } from "@src/pages/DashboardDesktopList/DaAsList/types";
 
 type ProductCardProps = {
-  daas: IDaAs;
+  daas: IHeaderDaasCard | IDaAs;
   isHeader?: boolean;
 };
 

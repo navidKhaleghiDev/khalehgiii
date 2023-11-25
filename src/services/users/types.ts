@@ -1,8 +1,11 @@
+import { IDaasConfig } from "../config/types";
+
 export enum ETimeLimitDuration {
   DAILY = "DAILY",
   MONTHLY = "MONTHLY",
   WEEKLY = "WEEKLY",
   PERMANENTLY = "PERMANENTLY",
+  TEMPORARY = "TEMPORARY",
 }
 
 export enum EAccessMode {
@@ -12,6 +15,8 @@ export enum EAccessMode {
 
 export interface IDaAs {
   id?: string;
+  is_lock: boolean;
+  daas_configs: IDaasConfig;
   allowed_files_type_for_download: string[] | null;
   allowed_files_type_for_upload: string[] | null;
   email: string;
@@ -19,28 +24,19 @@ export interface IDaAs {
   https_port: number | string;
   created_at: string;
   last_uptime: string;
-  time_limit_duration: ETimeLimitDuration;
-  time_limit_value_in_hour: number;
   is_running?: boolean | string;
   usage_in_minute: number | string;
-  can_upload_file: boolean | string;
-  can_download_file: boolean;
-  clipboard_down: boolean;
-  clipboard_up: boolean;
   forbidden_upload_files: string[] | null;
   forbidden_download_files: string[] | null;
-  webcam_privilege: boolean;
-  microphone_privilege: boolean;
-  max_transmission_download_size: number | null;
-  max_transmission_upload_size: number | null;
   extra_allowed_download_files: string[] | null;
   extra_allowed_upload_files: string[] | null;
+  daas_version: string;
 }
 
 export interface IBodyUsersLogin {
   email: string;
   password: string;
-  is_admin: boolean;
+  // is_admin: boolean;
 }
 export interface IResponseLogin {
   info?: string;

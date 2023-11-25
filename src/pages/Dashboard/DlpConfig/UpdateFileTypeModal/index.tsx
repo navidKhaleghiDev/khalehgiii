@@ -2,14 +2,11 @@ import { BaseButton } from "@ui/atoms/BaseButton";
 import { BaseInput, Typography } from "@ui/atoms";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-
-import { DaasConfigForm } from "@ui/utils/DaasConfigForm";
 import { IFileType } from "@src/services/config/types";
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
 import { regexPattern } from "@ui/atoms/Inputs";
 import {
   API_CREATE_FILE_TYPE,
-  API_DELETE_FILE_TYPE,
   API_UPDATE_FILE_TYPE,
 } from "@src/services/config";
 import { toast } from "react-toastify";

@@ -35,9 +35,10 @@ export function AccessTime() {
     return <LoadingSpinner />;
   }
   const timeLimitDuration: ETimeLimitDuration =
-    data?.data.time_limit_duration ?? ETimeLimitDuration.DAILY;
+    data?.data?.daas_configs?.time_limit_duration ?? ETimeLimitDuration.DAILY;
 
-  const timeLimitValueInHour = data?.data.time_limit_value_in_hour ?? 0;
+  const timeLimitValueInHour =
+    data?.data?.daas_configs?.time_limit_value_in_hour ?? 0;
 
   const usageInMinute = data?.data.usage_in_minute ?? 0;
 

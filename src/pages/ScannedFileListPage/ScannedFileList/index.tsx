@@ -4,17 +4,17 @@ import { NoResult } from "@ui/molecules/NoResult";
 import { ScannedFileCard } from "./ScannedFileCard";
 import useSWR from "swr";
 import { http_analyses } from "@src/services/http";
-import { ISwrResponse } from "@src/types/services";
+import { IResponsePagination } from "@src/types/services";
 import Pagination from "@ui/molecules/Pagination";
 import { Typography } from "@ui/atoms";
 import { IScannedFile } from "@src/services/analyze/types";
 import { StringifyProperties } from "@src/types/global";
 import { useParams } from "react-router-dom";
-import { E_ANALYZE_SCAN } from "@src/services/analyze/endpoint";
+import { E_ANALYZE_SCAN_PAGINATION } from "@src/services/analyze/endpoint";
 import { Modal } from "@ui/molecules/Modal";
 import { DetailsContentModal } from "./DetailsContentModal";
 
-const LIMIT_DESKTOP_LIST = 8;
+const LIMIT_PAGE_SIZE = 8;
 
 const headerItem: StringifyProperties<IScannedFile> = {
   id: "جزییات بیشتر",
@@ -48,13 +48,19 @@ export function ScannedFileList() {
 
   const { id } = useParams();
 
-  const { data, isLoading } = useSWR<ISwrResponse<IScannedFile[]>>(
-    id ? E_ANALYZE_SCAN(id) : null,
+  const { data, isLoading } = useSWR<IResponsePagination<IScannedFile>>(
+    id
+      ? E_ANALYZE_SCAN_PAGINATION(id, {
+          page: currentPage,
+          pageSize: LIMIT_PAGE_SIZE,
+          // filter: `search=${search}`,
+        })
+      : null,
     http_analyses.fetcherSWR
   );
 
-  const listDaas = data?.data ?? [];
-  const countPage = 0;
+  const listDaas = data?.data?.results ?? [];
+  const countPage = data?.data?.count ?? 0;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -103,7 +109,7 @@ export function ScannedFileList() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.round(countPage / LIMIT_DESKTOP_LIST)}
+          totalPages={Math.round(countPage / LIMIT_PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}

@@ -2,8 +2,6 @@ import { Typography } from "@ui/atoms/Typography/Typography";
 import { Card } from "@ui/atoms";
 
 export function AccessTimeModalCard({ label, name, value }: any) {
-  console.log({ value });
-
   return (
     <div className="w-full flex flex-col items-start mt-4">
       <Typography size="body3" color="teal">

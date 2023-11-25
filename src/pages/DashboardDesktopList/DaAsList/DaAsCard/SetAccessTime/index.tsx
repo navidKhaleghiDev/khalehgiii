@@ -26,7 +26,7 @@ interface IUpdateDaasValues extends FieldValues {
   time_limit_value_in_hour?: number;
 }
 
-const options = [
+export const timeLimitDurationOptions = [
   {
     id: ETimeLimitDuration.DAILY,
     label: TimeLimitDurationLabel[ETimeLimitDuration.DAILY],
@@ -46,6 +46,11 @@ const options = [
     id: ETimeLimitDuration.PERMANENTLY,
     label: TimeLimitDurationLabel[ETimeLimitDuration.PERMANENTLY],
     value: ETimeLimitDuration.PERMANENTLY,
+  },
+  {
+    id: ETimeLimitDuration.TEMPORARY,
+    label: TimeLimitDurationLabel[ETimeLimitDuration.TEMPORARY],
+    value: ETimeLimitDuration.TEMPORARY,
   },
 ];
 
@@ -89,8 +94,10 @@ export function SetAccessTime({
     setLoadingButton(true);
 
     await API_DAAS_UPDATE(id, {
-      ...data,
-      time_limit_value_in_hour: Number(data.time_limit_value_in_hour),
+      daas_configs: {
+        ...data,
+        time_limit_value_in_hour: Number(data.time_limit_value_in_hour),
+      },
     })
       .then(() => {
         setIsEditable(false);
@@ -179,7 +186,7 @@ export function SetAccessTime({
             size="xs"
             id="time_limit_duration"
             name="time_limit_duration"
-            options={options}
+            options={timeLimitDurationOptions}
             placeHolder="انتخاب کنید"
             containerClassName="col-span-6 xl:col-span-4"
             rules={{

@@ -110,6 +110,10 @@ export function DlpConfig() {
     // }
   }
 
+  const handleCreateNewType = () => {
+    activeFileType && setActiveFileType(undefined);
+    setOpenUpdateModal(true);
+  };
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
@@ -124,7 +128,7 @@ export function DlpConfig() {
             icon={plusIcon}
             color="teal"
             size="lg"
-            onClick={() => setOpenUpdateModal(true)}
+            onClick={handleCreateNewType}
           />
         </ToolTip>
       </div>

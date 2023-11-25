@@ -6,6 +6,8 @@ import { useState } from "react";
 
 import { DaasConfigForm } from "@ui/utils/DaasConfigForm";
 import { DlpSettingsForm } from "@ui/utils/DlpSettingsForm";
+import { IDaasConfig } from "@src/services/config/types";
+import { ExtendTwoType } from "@src/types/global";
 
 type PropsType = {
   handleOnChange: (daas: IDaAs) => void;
@@ -14,26 +16,65 @@ type PropsType = {
 
 export function SettingContentModal({ handleOnChange, daas }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
-  const { control, handleSubmit, setValue, watch } = useForm<IDaAs>({
+
+  const { control, handleSubmit, setValue, watch } = useForm<
+    ExtendTwoType<IDaAs, IDaasConfig>
+  >({
     mode: "onChange",
     defaultValues: {
-      can_upload_file: daas.can_upload_file,
-      can_download_file: daas.can_download_file,
-      clipboard_down: daas.clipboard_down,
-      clipboard_up: daas.clipboard_up,
-      webcam_privilege: daas.webcam_privilege,
-      microphone_privilege: daas.microphone_privilege,
+      id: daas?.id,
+      time_limit_duration: daas.daas_configs.time_limit_duration,
+      time_limit_value_in_hour: daas.daas_configs.time_limit_value_in_hour,
+      can_upload_file: daas.daas_configs.can_upload_file,
+      can_download_file: daas.daas_configs.can_download_file,
+      clipboard_down: daas.daas_configs.clipboard_down,
+      clipboard_up: daas.daas_configs.clipboard_up,
+      webcam_privilege: daas.daas_configs.webcam_privilege,
+      microphone_privilege: daas.daas_configs.microphone_privilege,
+      max_transmission_download_size:
+        daas.daas_configs.max_transmission_download_size,
+      max_transmission_upload_size:
+        daas.daas_configs.max_transmission_upload_size,
       forbidden_upload_files: daas.forbidden_upload_files,
       forbidden_download_files: daas.forbidden_download_files,
       allowed_files_type_for_download: daas.allowed_files_type_for_download,
       allowed_files_type_for_upload: daas.allowed_files_type_for_upload,
-      max_transmission_download_size: daas.max_transmission_download_size,
-      max_transmission_upload_size: daas.max_transmission_upload_size,
     },
   });
 
-  const handleOnSubmit = (data: IDaAs) => {
-    handleOnChange({ ...daas, ...data });
+  const handleOnSubmit = ({
+    can_upload_file,
+    can_download_file,
+    clipboard_up,
+    clipboard_down,
+    webcam_privilege,
+    microphone_privilege,
+    time_limit_duration,
+    time_limit_value_in_hour,
+    max_transmission_upload_size,
+    max_transmission_download_size,
+    is_globally_config,
+    daas_configs,
+    ...data
+  }: ExtendTwoType<IDaAs, IDaasConfig>) => {
+    const updatedDaasData = {
+      id: data.id,
+      daas_configs: {
+        can_upload_file,
+        can_download_file,
+        clipboard_up,
+        clipboard_down,
+        webcam_privilege,
+        microphone_privilege,
+        time_limit_duration,
+        time_limit_value_in_hour,
+        max_transmission_upload_size,
+        max_transmission_download_size,
+        is_globally_config,
+      },
+      ...data,
+    };
+    handleOnChange(updatedDaasData);
   };
 
   const handleSetDlpValues = (name: keyof IDaAs, values: string[]) => {

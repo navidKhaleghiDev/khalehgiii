@@ -9,7 +9,6 @@ import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { API_USERS_LOGIN, API_USERS_PROFILE } from "@src/services/users";
 import { PasswordInput } from "@ui/atoms/Inputs/PasswordInput";
 import { toast } from "react-toastify";
-import { ToggleSwitch } from "@ui/atoms/ToggleSwitch";
 import { STORAGE_KEY_REFRESH_TOKEN, http } from "@src/services/http";
 import { useUserContext } from "@context/user/userContext";
 import userIcon from "@iconify-icons/ph/user";
@@ -26,9 +25,6 @@ export function LoginForm() {
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<ILoginFieldValues>({
     mode: "onChange",
-    defaultValues: {
-      is_admin: false,
-    },
   });
 
   const handelGetProfile = async () => {
@@ -50,19 +46,17 @@ export function LoginForm() {
       });
   };
 
-  const handelSubmitForm = async ({
-    email,
-    password,
-    is_admin,
-  }: ILoginFieldValues) => {
+  const handelSubmitForm = async ({ email, password }: ILoginFieldValues) => {
     setLoadingButton(true);
-    await API_USERS_LOGIN({ email, password, is_admin })
+    await API_USERS_LOGIN({ email, password })
       .then(({ data }) => {
         localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
         http.setAuthHeader(data.access_token, data.refresh_token);
         handelGetProfile();
       })
       .catch((err) => {
+        console.log({ err });
+
         setError(err);
         setLoadingButton(false);
       });
@@ -101,21 +95,6 @@ export function LoginForm() {
           control={control}
           placeholder="گذرواژه"
         />
-        <div className="w-full flex justify-between items-center">
-          <ToggleSwitch
-            control={control}
-            leftButton={{
-              icon: "clarity:administrator-solid",
-              label: "ادمین",
-            }}
-            rightButton={{
-              icon: "fe:user",
-              label: "کاربر",
-            }}
-            name="is_admin"
-          />
-        </div>
-
         <BaseButton
           label="ورود به حساب کاربری"
           endIcon={signInBoldIcon}

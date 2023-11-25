@@ -17,6 +17,8 @@ import { ResetAllAccessTime } from "./ResetAllAccessTime";
 import { ActionOnClickActionsType } from "./DaAsCard/types";
 import { SettingContentModal } from "./SettingContentModal";
 
+import { IHeaderDaasCard } from "./types";
+
 // function mergeUniqueLists(oldList: string[], newList: string[]): string[] {
 //   const set = new Set([...oldList, ...newList]);
 //   return Array.from(set);
@@ -52,30 +54,35 @@ function compareExtensionLists(oldList?: string[], newList?: string[]) {
 
 const LIMIT_DESKTOP_LIST = 8;
 
-const headerItem: IDaAs = {
+const headerItem: IHeaderDaasCard = {
   email: "ایمیل",
   http_port: "پورت http",
   https_port: "پورت https",
   created_at: "string",
   last_uptime: "string",
-  time_limit_duration: ETimeLimitDuration.DAILY,
-  time_limit_value_in_hour: 1,
+  is_lock: "دسکتاپ",
+  daas_configs: {
+    is_globally_config: "تنظیمات پیشفرض",
+    can_upload_file: "تنظیمات دسترسی",
+    can_download_file: "",
+    clipboard_down: "",
+    clipboard_up: "",
+    time_limit_duration: ETimeLimitDuration.DAILY,
+    time_limit_value_in_hour: "",
+    max_transmission_download_size: "0",
+    max_transmission_upload_size: "0",
+    webcam_privilege: "false",
+    microphone_privilege: "false",
+  },
   is_running: "وضعیت",
   usage_in_minute: "زمان استفاده شده",
-  can_upload_file: "تنظیمات دسترسی",
-  can_download_file: false,
-  clipboard_down: false,
-  clipboard_up: false,
-  forbidden_upload_files: null,
-  forbidden_download_files: null,
-  webcam_privilege: false,
-  microphone_privilege: false,
-  max_transmission_download_size: null,
-  max_transmission_upload_size: null,
-  extra_allowed_download_files: null,
-  extra_allowed_upload_files: null,
-  allowed_files_type_for_download: null,
-  allowed_files_type_for_upload: null,
+  extra_allowed_download_files: "",
+  extra_allowed_upload_files: "",
+  forbidden_upload_files: "",
+  forbidden_download_files: "",
+  allowed_files_type_for_download: "",
+  allowed_files_type_for_upload: "",
+  daas_version: "نسخه دسکتاپ",
 };
 
 type PropsType = { user: IUser | null };
@@ -121,6 +128,12 @@ export function DaAsList({ user }: PropsType) {
     if (action === "edit") {
       setActiveDaas(daas as IDaAs);
       setOpenSettingModal(true);
+      return;
+    }
+
+    if (action === "editLock") {
+      setActiveDaas(daas as IDaAs);
+      setOpenModal(true);
       return;
     }
 

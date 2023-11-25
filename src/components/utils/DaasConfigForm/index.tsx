@@ -1,11 +1,12 @@
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
-import { IDaAs } from "@src/services/users/types";
 import { BaseInput, Typography } from "@ui/atoms";
 import { Control } from "react-hook-form";
-import { IDaasConfig } from "@src/services/config/types";
+import { Dropdown } from "@ui/atoms/DropDown";
+import { regexPattern } from "@ui/atoms/Inputs";
+import { timeLimitDurationOptions } from "@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime";
 
 type PropsType = {
-  control: Control<IDaAs> | Control<IDaasConfig>;
+  control: Control<any>;
 };
 
 export function DaasConfigForm({ control }: PropsType) {
@@ -39,6 +40,41 @@ export function DaasConfigForm({ control }: PropsType) {
       <div className="flex justify-between items-center px-2 col-span-3">
         <BaseSwitch control={control} name="microphone_privilege" />
         <Typography className="mb-1">:Microphone Privilege</Typography>
+      </div>
+
+      <div className="px-2 col-span-3 text-left">
+        <Typography className="mb-1">:Time Limit Duration</Typography>
+        <Dropdown
+          control={control}
+          id="time_limit_duration"
+          name="time_limit_duration"
+          options={timeLimitDurationOptions}
+          placeHolder="انتخاب کنید"
+          containerClassName="col-span-6 xl:col-span-3"
+          rules={{
+            required: regexPattern.required,
+          }}
+          fullWidth
+          hiddenError
+        />
+      </div>
+
+      <div className="px-2 col-span-3 text-left">
+        <Typography className="mb-1">:Time Limit Value In Hour</Typography>
+        <BaseInput
+          control={control}
+          // size="xs"
+          id="time_limit_value_in_hour"
+          name="time_limit_value_in_hour"
+          placeholder="ساعت را وارد کنید"
+          className="col-span-6 lg:col-span-4"
+          rules={{
+            pattern: regexPattern.numbers,
+          }}
+          type="number"
+          fullWidth
+          hiddenError
+        />
       </div>
       <div className="px-2 col-span-3 text-left">
         <Typography className="mb-1">:Max Download Size (MB)</Typography>

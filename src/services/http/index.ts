@@ -187,7 +187,6 @@ export class Http {
             // 403 - Handle Forbidden
             toast.error("شما به این بخش دسترسی ندارید");
             throw handleResponseError(data);
-            break;
           }
           case StatusCode.NotFound: {
             // 404 - Handle Not found
@@ -200,7 +199,7 @@ export class Http {
           }
           case StatusCode.TooManyRequests: {
             // 429 - Handle TooManyRequests
-            break;
+            throw "تعداد درخواست‌های شما محدود شده است. یک دقیقه بعد مجددا تلاش کنید.";
           }
           case StatusCode.InternalServerError: {
             // 500 - Handle InternalServerError

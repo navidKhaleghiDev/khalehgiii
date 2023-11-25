@@ -7,46 +7,51 @@ import { IDaAs } from "@src/services/users/types";
 
 import useSWR from "swr";
 import { http } from "@src/services/http";
-import { IServerResponseList } from "@src/types/services";
+import { IResponsePagination } from "@src/types/services";
 import { E_USERS_DAAS } from "@src/services/users/endpoint";
 import Pagination from "@ui/molecules/Pagination";
 import { Typography } from "@ui/atoms";
+import { IHeaderDaasCard } from "@src/pages/DashboardDesktopList/DaAsList/types";
 
 const LIMIT_DESKTOP_LIST = 8;
 
-const headerItem: IDaAs = {
+const headerItem: IHeaderDaasCard = {
   id: "مشاهده رفتار کاربر",
   email: "نام کاربر",
   http_port: "پورت http",
   https_port: "پورت https",
   created_at: "تاریخ ایجاد",
+  daas_configs: {
+    time_limit_duration: ETimeLimitDuration.DAILY,
+    time_limit_value_in_hour: "",
+    can_download_file: "",
+    clipboard_down: "",
+    clipboard_up: "",
+    webcam_privilege: "",
+    microphone_privilege: "",
+    max_transmission_download_size: "",
+    max_transmission_upload_size: "",
+    can_upload_file: "تنظیمات دسترسی",
+    is_globally_config: "",
+  },
+  forbidden_upload_files: "",
+  forbidden_download_files: "",
   last_uptime: "string",
-  time_limit_duration: ETimeLimitDuration.DAILY,
-  time_limit_value_in_hour: 1,
   is_running: "وضعیت کاربر",
   usage_in_minute: "زمان استفاده شده",
-  can_upload_file: "تنظیمات دسترسی",
-  can_download_file: false,
-  clipboard_down: false,
-  clipboard_up: false,
-  forbidden_upload_files: null,
-  forbidden_download_files: null,
-  webcam_privilege: false,
-  microphone_privilege: false,
-  max_transmission_download_size: null,
-  max_transmission_upload_size: null,
-  extra_allowed_download_files: null,
-  extra_allowed_upload_files: null,
-  allowed_files_type_for_download: null,
-  allowed_files_type_for_upload: null,
+  extra_allowed_download_files: "",
+  extra_allowed_upload_files: "",
+  allowed_files_type_for_download: "",
+  allowed_files_type_for_upload: "",
+  daas_version: "نسخه دسکتاپ",
+  is_lock: "دسکتاپ",
 };
 
 type PropsType = { user: IUser | null };
 export function UsersDaAsList({ user }: PropsType) {
   const [currentPage, setCurrentPage] = useState(1);
-  // const [search, setSearch] = useState("");
 
-  const { data, isLoading } = useSWR<IServerResponseList<IDaAs[]>>(
+  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     user
       ? E_USERS_DAAS({
           page: currentPage,

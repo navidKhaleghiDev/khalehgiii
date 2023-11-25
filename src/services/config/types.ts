@@ -12,7 +12,7 @@ export interface IAddConfig {
 }
 
 export interface IDaasConfig {
-  id: number;
+  id?: string;
   can_upload_file: boolean;
   can_download_file: boolean;
   clipboard_up: boolean;
@@ -21,10 +21,9 @@ export interface IDaasConfig {
   microphone_privilege: boolean;
   time_limit_duration: ETimeLimitDuration;
   time_limit_value_in_hour: null | number;
-  is_permanently: boolean;
   max_transmission_upload_size: number;
   max_transmission_download_size: number;
-  used_as_default: boolean;
+  is_globally_config: boolean;
 }
 
 export interface IFileType {

@@ -11,6 +11,7 @@ import {
   E_USERS_PROFILE,
   E_UPDATE_USER,
 } from "./endpoint";
+import { IDaasConfig } from "../config/types";
 
 export const API_DAAS_LIST = ({ username, password }: any) =>
   http.get<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS({ pageSize: 1000, page: 1 }), {
@@ -26,8 +27,12 @@ export const API_UPDATE_USER = (body: any, userId: string) =>
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
 
-export const API_DAAS_UPDATE = (id: string, body: Partial<IDaAs>) =>
-  http.patch<Partial<IDaAs>, IAxiosResponse<IDaAs[]>>(
+interface IDaAsUpdated extends Omit<IDaAs, "daas_configs"> {
+  daas_configs: Partial<IDaasConfig>;
+}
+
+export const API_DAAS_UPDATE = (id: string, body: Partial<IDaAsUpdated>) =>
+  http.patch<Partial<IDaAsUpdated>, IAxiosResponse<IDaAs[]>>(
     E_USERS_DAAS_UPDATE(id),
     body
   );
