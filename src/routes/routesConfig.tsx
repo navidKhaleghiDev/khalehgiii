@@ -8,6 +8,7 @@ import { DashboardMonitoring } from "@src/pages/DashboardMonitoring";
 import { ScannedFileListPage } from "@src/pages/ScannedFileListPage";
 
 import { ROUTES_PATH } from "./routesConstants";
+import { UbaPage } from "@src/pages/Uba";
 
 const routesConfig = [
   {
@@ -41,10 +42,10 @@ const routesConfig = [
         path: ROUTES_PATH.monitoring,
         element: <DashboardMonitoring />,
       },
-      // {
-      //   path: ROUTES_PATH.adminKeycloakPage,
-      //   element: <AdminKeycloakPage />,
-      // },
+      {
+        path: ROUTES_PATH.uba,
+        element: <UbaPage />,
+      },
     ],
   },
 ];

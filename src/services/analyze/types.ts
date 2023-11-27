@@ -27,3 +27,16 @@ export interface IScannedFile {
   clamav_error_message: string | null;
   created_at: string;
 }
+
+export interface IUba {
+  id: number;
+  created_at: string;
+  updated_at: string; // تاریخ بروز رسانی
+  username: string; // نام کاربرب
+  file_names: string[]; // تایپ های غیر مجاز
+  original_file_name: null | string; // نام اصلی
+  file_hash: string;
+  transmission_type: null | string; // اکشن
+  is_ban: boolean; // مسدود شده
+  malbehave_count: number; // تعداد رفتار غیر مجاز
+}

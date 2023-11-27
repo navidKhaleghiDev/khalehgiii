@@ -6,6 +6,7 @@ export type RoutePathType =
   | "monitoring"
   | "adminKeycloakPage"
   | "monitoringDetails"
+  | "uba"
   | "dashboardDesktopList";
 
 export const RoutesName = {
@@ -15,6 +16,7 @@ export const RoutesName = {
   DESKTOP_LIST: "desktop-list",
   MONITORING: "monitoring",
   ADMIN_KEYKLOAK: "keycloak-panel",
+  UBA: "uba",
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -22,6 +24,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   unauthorized: `/${RoutesName.UNAUTHORIZED}`,
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
+  uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
   dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,

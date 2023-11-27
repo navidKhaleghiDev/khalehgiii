@@ -6,6 +6,8 @@ import { Card } from "./Card";
 import { useNavigate } from "react-router-dom";
 import calendarCheckIcon from "@iconify-icons/ph/calendar-check";
 import keyIcon from "@iconify-icons/ph/key";
+import desktopIcon from "@iconify-icons/ph/desktop";
+import shieldCheckIcon from "@iconify-icons/ph/shield-check";
 
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 
@@ -33,7 +35,7 @@ export function DashboardCards() {
       </div>
       <div className="col-span-10 md:col-span-6 xl:col-span-3">
         <Card
-          icon={keyIcon}
+          icon={desktopIcon}
           title="لیست دسکتاپ ها"
           description=""
           onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}
@@ -41,10 +43,18 @@ export function DashboardCards() {
       </div>
       <div className="col-span-10 md:col-span-6 xl:col-span-3">
         <Card
-          icon={keyIcon}
+          icon={shieldCheckIcon}
           title="رفتار شناسی کاربر"
           description=""
           onClick={() => navigate(ROUTES_PATH.monitoring)}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
+          title="UBA"
+          description=""
+          onClick={() => navigate(ROUTES_PATH.uba)}
         />
       </div>
     </div>

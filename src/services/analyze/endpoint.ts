@@ -8,5 +8,14 @@ export const E_ANALYZE_SCAN_PAGINATION = (
   { pageSize, page, filter }: IPagination
 ) =>
   `analyze/scan/?username=${userEmail}&${
-    filter ? `?${filter}&` : "?"
+    filter ? `?${filter}&` : ""
   }page_size=${pageSize}&page=${page}`;
+
+export const E_UBA = `analyze/mal_uba/`;
+
+export const E_UBA_LIST_PAGINATION = ({
+  pageSize,
+  page,
+  filter,
+}: IPagination) =>
+  `${E_UBA}${filter ? `?${filter}&` : "?"}page_size=${pageSize}&page=${page}`;
