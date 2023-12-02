@@ -136,11 +136,9 @@ export function BaseInput(props: BaseInputProps<any>) {
         })}
         placeholder={placeholder}
       />
-      {pureError && (
-        <Typography color="red" size="caption" className="h-6">
-          {pureError}
-        </Typography>
-      )}
+      <Typography color="red" size="caption" className="h-6">
+        {pureError ?? ""}
+      </Typography>
     </div>
   );
 }

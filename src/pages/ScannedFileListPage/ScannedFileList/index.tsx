@@ -93,14 +93,12 @@ export function ScannedFileList() {
           {id}
         </Typography>
 
-        {listDaas.length > 0 && (
-          <SearchInput
-            name="search"
-            value={search}
-            onChange={setSearch}
-            className="w-1/4"
-          />
-        )}
+        <SearchInput
+          name="search"
+          value={search}
+          onChange={setSearch}
+          className="w-1/4"
+        />
       </div>
       <ScannedFileCard scannedFile={headerItem} isHeader />
       {isLoading ? (

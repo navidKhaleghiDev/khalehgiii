@@ -5,6 +5,7 @@ import { BaseInput, Typography } from "@ui/atoms";
 import { useState } from "react";
 import { BaseChip } from "@ui/atoms/BaseChip";
 import { IDaAs } from "@src/services/users/types";
+import { regexPattern } from "@ui/atoms/Inputs";
 
 type PropsType = {
   name: keyof IDaAs;
@@ -15,12 +16,21 @@ type PropsType = {
 
 export function DlpList({ name, valueList, onChange, label }: PropsType) {
   const [displayInput, setDisplayInput] = useState(false);
+  const [error, setError] = useState<string>();
 
   const [value, setValue] = useState<string>();
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       const mValue = (event.target as HTMLInputElement)?.value;
+
+      const regex = regexPattern.wordStartedWithPointAndEn;
+      if (!regex.value.test(mValue)) {
+        setError(regex.message);
+        return;
+      } else {
+        error && setError(undefined);
+      }
 
       if (!valueList.includes(mValue) && mValue !== "") {
         onChange(name, [...valueList, mValue]);
@@ -32,6 +42,17 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
   const remove = (value: string) => {
     let newArray = valueList.filter((item) => item !== value);
     onChange(name, newArray);
+  };
+
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const regex = regexPattern.wordStartedWithPointAndEn;
+    if (!regex.value.test(value)) {
+      setError(regex.message);
+    } else {
+      error && setError(undefined);
+    }
+    setValue(value);
   };
 
   return (
@@ -48,9 +69,13 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
       {displayInput && (
         <BaseInput
           pureValue={value}
-          pureOnChange={(event) => setValue(event.target.value)}
+          pureOnChange={handleOnChange}
           name={name}
           id={name}
+          pureError={error}
+          // rules={{
+          //   pattern: regexPattern.wordStartedWithPointAndEn,
+          // }}
           onKeyDown={handleKeyPress}
           placeholder=".text"
           ltrLabel

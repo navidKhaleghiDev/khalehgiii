@@ -5,7 +5,7 @@ export const regexPattern = {
   },
   wordStartedWithPointAndEn: {
     value: /^\.[A-Za-z0-9]+$/,
-    message: "تایپ با نقطه (.) شروع می شود",
+    message: "بیشتر از 2 حرف انگلیسی و با نقطه (.) شروع شود.",
   },
   url: {
     value:
