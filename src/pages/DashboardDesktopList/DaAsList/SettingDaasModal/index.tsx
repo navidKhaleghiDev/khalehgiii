@@ -14,7 +14,7 @@ type PropsType = {
   daas: IDaAs;
 };
 
-export function SettingContentModal({ handleOnChange, daas }: PropsType) {
+export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const { control, handleSubmit, setValue, watch } = useForm<
@@ -39,6 +39,8 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
       forbidden_download_files: daas.forbidden_download_files,
       allowed_files_type_for_download: daas.allowed_files_type_for_download,
       allowed_files_type_for_upload: daas.allowed_files_type_for_upload,
+      extra_allowed_download_files: daas.extra_allowed_download_files,
+      extra_allowed_upload_files: daas.extra_allowed_upload_files,
     },
   });
 
@@ -55,8 +57,35 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
     max_transmission_download_size,
     is_globally_config,
     daas_configs,
+    is_lock,
+    allowed_files_type_for_download,
+    allowed_files_type_for_upload,
+    forbidden_upload_files,
+    forbidden_download_files,
+    extra_allowed_download_files,
+    extra_allowed_upload_files,
     ...data
   }: ExtendTwoType<IDaAs, IDaasConfig>) => {
+    // console.log("--------", { data });
+
+    // id?: string;
+    // is_lock: boolean;
+    // daas_configs: IDaasConfig;
+    // allowed_files_type_for_download: string[] | null;
+    // allowed_files_type_for_upload: string[] | null;
+    // email: string;
+    // http_port: number | string;
+    // https_port: number | string;
+    // created_at: string;
+    // last_uptime: string;
+    // is_running?: boolean | string;
+    // usage_in_minute: number | string;
+    // forbidden_upload_files: string[] | null;
+    // forbidden_download_files: string[] | null;
+    // extra_allowed_download_files: string[] | null;
+    // extra_allowed_upload_files: string[] | null;
+    // daas_version: string;
+
     const updatedDaasData = {
       id: data.id,
       daas_configs: {
@@ -72,6 +101,13 @@ export function SettingContentModal({ handleOnChange, daas }: PropsType) {
         max_transmission_download_size,
         is_globally_config,
       },
+      is_lock,
+      allowed_files_type_for_download,
+      allowed_files_type_for_upload,
+      forbidden_upload_files,
+      forbidden_download_files,
+      extra_allowed_download_files,
+      extra_allowed_upload_files,
       ...data,
     };
     handleOnChange(updatedDaasData);

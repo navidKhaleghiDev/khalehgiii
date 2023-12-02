@@ -25,7 +25,7 @@ export function ScannedFileCard({
           isHeader ? "h-10" : "h-14"
         } items-center px-2 my-2 w-full text-neutral-600`}
       >
-        <div className="w-3/12 text-center break-words">
+        <div className="w-3/12 text-center break-words" dir="ltr">
           <Typography size="body3">{scannedFile.file_name}</Typography>
         </div>
         <Typography

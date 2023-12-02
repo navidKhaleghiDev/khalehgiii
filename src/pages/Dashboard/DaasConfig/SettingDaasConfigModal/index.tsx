@@ -11,7 +11,7 @@ type PropsType = {
   daasConfig: IDaasConfig;
 };
 
-export function SettingContentModal({ handleClose, daasConfig }: PropsType) {
+export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { control, handleSubmit } = useForm<IDaasConfig>({
     mode: "onChange",

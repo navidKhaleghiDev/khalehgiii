@@ -15,7 +15,7 @@ import Pagination from "@ui/molecules/Pagination";
 import { BaseInput } from "@ui/atoms";
 import { ResetAllAccessTime } from "./ResetAllAccessTime";
 import { ActionOnClickActionsType } from "./DaAsCard/types";
-import { SettingContentModal } from "./SettingContentModal";
+import { SettingDaasModal } from "./SettingDaasModal";
 
 import { IHeaderDaasCard } from "./types";
 
@@ -226,13 +226,6 @@ export function DaAsList({ user }: PropsType) {
       //   resultUpload.removedList
       // );
 
-      console.log({
-        newExtraAllowedDownloadFiles,
-        newForbiddenDownloadFiles,
-        newExtraAllowedUploadFiles,
-        newForbiddenUploadFiles,
-      });
-
       daasUpdated = {
         ...daas,
         extra_allowed_download_files: [
@@ -247,8 +240,6 @@ export function DaAsList({ user }: PropsType) {
         ),
       };
     }
-
-    console.log({ daasUpdated });
 
     // get
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
@@ -321,7 +312,7 @@ export function DaAsList({ user }: PropsType) {
         setOpen={setOpenSettingModal}
         type="success"
         content={
-          <SettingContentModal
+          <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
           />

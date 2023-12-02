@@ -12,7 +12,7 @@ import { ActionOnClickActionsType } from "./DlpConfigCard/types";
 import { NoResult } from "@ui/molecules/NoResult";
 import Pagination from "@ui/molecules/Pagination";
 import { Modal } from "@ui/molecules/Modal";
-import { SettingContentModal } from "./SettingContentModal";
+import { SettingDaasConfigModal } from "./SettingDaasConfigModal";
 
 const LIMIT_DAAS_CONFIG_LIST = 8;
 
@@ -117,7 +117,7 @@ export function DaasConfigList() {
         setOpen={setOpenSettingModal}
         type="success"
         content={
-          <SettingContentModal
+          <SettingDaasConfigModal
             handleClose={handleCloseModal}
             daasConfig={activeDaasConfig as IDaasConfig}
           />

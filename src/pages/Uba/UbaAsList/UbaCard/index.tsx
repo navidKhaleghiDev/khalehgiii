@@ -35,21 +35,31 @@ export function UbaCard({ uba, isHeader }: ProductCardProps) {
           {!isHeader ? persianDateAndNumber(uba.updated_at) : uba.updated_at}
         </Typography>
 
-        <Typography
-          size="body3"
-          type="div"
-          className="px-3 w-3/12 text-center break-words uppercase"
-        >
-          {uba.original_file_name}
-        </Typography>
+        <div className="px-3 w-3/12 text-center break-words " dir="ltr">
+          <Typography size="body3" type="div" className="uppercase">
+            {uba.original_file_name}
+          </Typography>
+        </div>
 
-        <Typography
-          size="body3"
-          type="div"
-          className="px-3 w-2/12 text-center break-words truncate"
-        >
-          {uba.file_names}
-        </Typography>
+        <div className="px-3 w-2/12 text-center" dir="ltr">
+          {Array.isArray(uba.file_names) ? (
+            <Typography
+              size="body3"
+              type="div"
+              className="break-words truncate"
+            >
+              {uba.file_names.map((item) => ` ${item} ,`)}
+            </Typography>
+          ) : (
+            <Typography
+              size="body3"
+              type="div"
+              className="break-words truncate"
+            >
+              {uba.file_names}
+            </Typography>
+          )}
+        </div>
 
         <Typography size="body3" type="div" className="px-3 w-1/12 text-center">
           {uba.malbehave_count}

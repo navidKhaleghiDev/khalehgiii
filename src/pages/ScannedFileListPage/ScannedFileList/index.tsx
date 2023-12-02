@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import { E_ANALYZE_SCAN_PAGINATION } from "@src/services/analyze/endpoint";
 import { Modal } from "@ui/molecules/Modal";
 import { DetailsContentModal } from "./DetailsContentModal";
+import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
 
 const LIMIT_PAGE_SIZE = 8;
 
@@ -42,7 +43,7 @@ const headerItem: StringifyProperties<IScannedFile> = {
 
 export function ScannedFileList() {
   const [currentPage, setCurrentPage] = useState(1);
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
   const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
 
@@ -53,7 +54,7 @@ export function ScannedFileList() {
       ? E_ANALYZE_SCAN_PAGINATION(id, {
           page: currentPage,
           pageSize: LIMIT_PAGE_SIZE,
-          // filter: `search=${search}`,
+          filter: `search=${search}`,
         })
       : null,
     http_analyses.fetcherSWR
@@ -79,7 +80,7 @@ export function ScannedFileList() {
 
   return (
     <div className="w-full p-4">
-      <div className="flex items-center">
+      <div className="flex items-center justify-between">
         {/* <BaseInput
           name="search"
           className="w-1/3"
@@ -91,6 +92,15 @@ export function ScannedFileList() {
         <Typography size="h4" color="teal">
           {id}
         </Typography>
+
+        {listDaas.length > 0 && (
+          <SearchInput
+            name="search"
+            value={search}
+            onChange={setSearch}
+            className="w-1/4"
+          />
+        )}
       </div>
       <ScannedFileCard scannedFile={headerItem} isHeader />
       {isLoading ? (
