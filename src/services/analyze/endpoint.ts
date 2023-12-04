@@ -13,6 +13,9 @@ export const E_ANALYZE_SCAN_PAGINATION = (
     filter ? `${filter}&` : ""
   }page_size=${pageSize}&page=${page}`;
 
+export const E_ANALYZE_SCAN_USER_PAGINATION = (userEmail: string) =>
+  `analyze/scan/?username=${userEmail}`;
+
 export const E_UBA = `analyze/mal_uba/`;
 
 export const E_UBA_LIST_PAGINATION = ({

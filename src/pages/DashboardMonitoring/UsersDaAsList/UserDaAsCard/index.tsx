@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { persianDateAndNumber } from "@src/helper/utils/dateUtils";
 import { IHeaderDaasCard } from "@src/pages/DashboardDesktopList/DaAsList/types";
+import { UserScanCount } from "./UserScanCount";
 
 type ProductCardProps = {
   daas: IHeaderDaasCard | IDaAs;
@@ -47,6 +48,14 @@ export function UserDaAsCard({ daas, isHeader }: ProductCardProps) {
         >
           {!isHeader ? persianDateAndNumber(daas.created_at) : daas.created_at}
         </Typography>
+
+        <div className="px-3 w-2/12 flex justify-center text-center break-words">
+          {!isHeader ? (
+            <UserScanCount email={daas.email} />
+          ) : (
+            <Typography size="body3">{daas.last_uptime}</Typography>
+          )}
+        </div>
 
         <Typography
           size="body3"

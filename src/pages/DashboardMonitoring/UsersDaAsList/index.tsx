@@ -36,7 +36,7 @@ const headerItem: IHeaderDaasCard = {
   },
   forbidden_upload_files: "",
   forbidden_download_files: "",
-  last_uptime: "string",
+  last_uptime: "تعداد اسکن",
   is_running: "وضعیت کاربر",
   usage_in_minute: "زمان استفاده شده",
   extra_allowed_download_files: "",
