@@ -76,7 +76,7 @@ export function DaasConfig() {
     >
       <DaasConfigForm control={control} />
       <div className="flex justify-center col-span-6">
-        <BaseButton label={"بروز رسانی"} size="md" type="secondary" submit />
+        <BaseButton label={"بروز رسانی"} size="md" type="default" submit />
       </div>
       <Modal
         open={openConfirmModal}

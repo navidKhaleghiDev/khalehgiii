@@ -27,7 +27,7 @@ export function NavbarDashboard() {
   };
 
   return (
-    <nav className="w-full bg-black px-8 2xl:container">
+    <nav className="w-full bg-black px-8 2xl:container h-12">
       <div className="flex items-center justify-between ">
         <div className="flex items-center">
           <ToolTip tooltip="خروج" position="bottom">

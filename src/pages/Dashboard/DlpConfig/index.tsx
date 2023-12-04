@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 import ToolTip from "@ui/atoms/Tooltip";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
 
-const LIMIT_DAAS_CONFIG_LIST = 5;
+const LIMIT_DAAS_CONFIG_LIST = 3;
 
 const headerItem: StringifyProperties<IFileType> = {
   id: "",
@@ -149,7 +149,7 @@ export function DlpConfig() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.round(countPage / LIMIT_DAAS_CONFIG_LIST)}
+          totalPages={Math.ceil(countPage / LIMIT_DAAS_CONFIG_LIST)}
           onPageChange={handlePageChange}
         />
       )}

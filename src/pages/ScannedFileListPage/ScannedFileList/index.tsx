@@ -117,7 +117,7 @@ export function ScannedFileList() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.round(countPage / LIMIT_PAGE_SIZE)}
+          totalPages={Math.ceil(countPage / LIMIT_PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}

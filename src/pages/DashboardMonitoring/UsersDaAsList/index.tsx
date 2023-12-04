@@ -105,7 +105,7 @@ export function UsersDaAsList({ user }: PropsType) {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.round(countPage / LIMIT_DESKTOP_LIST)}
+          totalPages={Math.ceil(countPage / LIMIT_DESKTOP_LIST)}
           onPageChange={handlePageChange}
         />
       )}

@@ -81,7 +81,7 @@ export function UbaAsList() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.round(countPage / PAGE_SIZE)}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}

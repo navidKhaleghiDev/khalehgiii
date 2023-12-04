@@ -108,7 +108,7 @@ export function DaasConfigList() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.round(countPage / LIMIT_DAAS_CONFIG_LIST)}
+          totalPages={Math.ceil(countPage / LIMIT_DAAS_CONFIG_LIST)}
           onPageChange={handlePageChange}
         />
       )}
