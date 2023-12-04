@@ -40,3 +40,7 @@ export interface IUba {
   is_ban: boolean; // مسدود شده
   malbehave_count: number; // تعداد رفتار غیر مجاز
 }
+
+export interface IScanStats {
+  info: { today_scans: number; remaining_days: number };
+}

@@ -10,6 +10,7 @@ import desktopIcon from "@iconify-icons/ph/desktop";
 import shieldCheckIcon from "@iconify-icons/ph/shield-check";
 
 import { ROUTES_PATH } from "@src/routes/routesConstants";
+import { CardScanStats } from "./CardScanStats";
 
 export function DashboardCards() {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ export function DashboardCards() {
           onClick={() => navigate(ROUTES_PATH.uba)}
         />
       </div>
+      <CardScanStats />
     </div>
   );
 }
