@@ -72,7 +72,7 @@ export function SetAccessTime({
   const [loadingResetButton, setLoadingResetButton] = useState(false);
 
   const [openModalDelete, setOpenModalDelete] = useState(false);
-  const { control, handleSubmit, reset } = useForm<IUpdateDaasValues>({
+  const { control, handleSubmit, reset, watch } = useForm<IUpdateDaasValues>({
     mode: "onChange",
   });
 
@@ -127,6 +127,9 @@ export function SetAccessTime({
         setLoadingResetButton(false);
       });
   };
+
+  const isPermanently =
+    watch("time_limit_duration") === ETimeLimitDuration.PERMANENTLY;
 
   return (
     <div className="w-full flex justify-center">
@@ -195,20 +198,24 @@ export function SetAccessTime({
             fullWidth
             hiddenError
           />
-          <BaseInput
-            control={control}
-            size="xs"
-            id="time_limit_value_in_hour"
-            name="time_limit_value_in_hour"
-            placeholder="ساعت را وارد کنید"
-            className="col-span-6 lg:col-span-4"
-            rules={{
-              required: regexPattern.required,
-              pattern: regexPattern.numbers,
-            }}
-            fullWidth
-            hiddenError
-          />
+          <div className="col-span-6 lg:col-span-4">
+            {!isPermanently && (
+              <BaseInput
+                control={control}
+                size="xs"
+                id="time_limit_value_in_hour"
+                name="time_limit_value_in_hour"
+                placeholder="ساعت را وارد کنید"
+                rules={{
+                  required: regexPattern.required,
+                  pattern: regexPattern.numbers,
+                }}
+                fullWidth
+                hiddenError
+              />
+            )}
+          </div>
+
           <div className="col-span-6 lg:col-span-4 flex justify-start items-center">
             <BaseButton
               label="ثبت"

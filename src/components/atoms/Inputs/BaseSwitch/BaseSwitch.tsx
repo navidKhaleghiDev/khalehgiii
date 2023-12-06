@@ -20,7 +20,7 @@ export function BaseSwitch({
       name={name}
       control={control}
       rules={rules}
-      defaultValue={defaultValue}
+      defaultValue={defaultValue || false}
       render={({ field }) => {
         return (
           <div dir="ltr">
