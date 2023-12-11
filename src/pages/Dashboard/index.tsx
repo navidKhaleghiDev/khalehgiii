@@ -15,7 +15,6 @@ export function DashboardPage() {
   ) : (
     <ContainerDashboard>
       <DashboardCards />
-
       <BaseTabs label="تنظیمات">
         <BaseTab label="Keycloak">
           <SettingsKeycloak user={user} />

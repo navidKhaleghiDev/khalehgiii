@@ -52,7 +52,8 @@ function compareExtensionLists(oldList?: string[], newList?: string[]) {
   };
 }
 
-const LIMIT_DESKTOP_LIST = 8;
+const PAGE_SIZE = 8;
+const PAGE = 1;
 
 const headerItem: IHeaderDaasCard = {
   email: "ایمیل",
@@ -95,15 +96,15 @@ export function DaAsList({ user }: PropsType) {
   const [openSettingModal, setOpenSettingModal] = useState(false);
 
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(PAGE);
   const [search, setSearch] = useState("");
 
   const { data, isLoading, mutate } = useSWR<IServerResponseList<IDaAs[]>>(
     user
       ? E_USERS_DAAS({
           page: currentPage,
-          pageSize: LIMIT_DESKTOP_LIST,
-          filter: `search=${search}`,
+          pageSize: PAGE_SIZE,
+          filter: `search=${encodeURIComponent(search)}`,
         })
       : null,
     http.fetcherSWR,
@@ -173,6 +174,7 @@ export function DaAsList({ user }: PropsType) {
   const handleOnChangeSearch = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentPage(PAGE);
     setSearch(value);
   };
 
@@ -287,7 +289,7 @@ export function DaAsList({ user }: PropsType) {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(countPage / LIMIT_DESKTOP_LIST)}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}

@@ -54,7 +54,7 @@ export function ScannedFileList() {
       ? E_ANALYZE_SCAN_PAGINATION(id, {
           page: currentPage,
           pageSize: LIMIT_PAGE_SIZE,
-          filter: `search=${search}`,
+          filter: `search=${encodeURIComponent(search)}`,
         })
       : null,
     http_analyses.fetcherSWR
@@ -71,12 +71,6 @@ export function ScannedFileList() {
     setActiveScannedFile(item);
     setOpenDetailsModal(true);
   };
-
-  // const handleOnChangeSearch = ({
-  //   target: { value },
-  // }: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearch(value);
-  // };
 
   return (
     <div className="w-full p-4">

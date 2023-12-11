@@ -14,7 +14,8 @@ import Pagination from "@ui/molecules/Pagination";
 import { Modal } from "@ui/molecules/Modal";
 import { SettingDaasConfigModal } from "./SettingDaasConfigModal";
 
-const LIMIT_DAAS_CONFIG_LIST = 8;
+const PAGE_SIZE = 8;
+const PAGE = 1;
 
 const headerItem: StringifyProperties<IDaasConfig> = {
   id: "",
@@ -42,8 +43,8 @@ export function DaasConfigList() {
   const { data, mutate, isLoading } = useSWR<IResponsePagination<IDaasConfig>>(
     E_DAAS_CONFIG_LIST({
       page: currentPage,
-      pageSize: LIMIT_DAAS_CONFIG_LIST,
-      filter: `search=${search}`,
+      pageSize: PAGE_SIZE,
+      filter: `search=${encodeURIComponent(search)}`,
     }),
     http.fetcherSWR
   );
@@ -59,6 +60,7 @@ export function DaasConfigList() {
   const handleOnChangeSearch = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentPage(PAGE);
     setSearch(value);
   };
 
@@ -108,7 +110,7 @@ export function DaasConfigList() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(countPage / LIMIT_DAAS_CONFIG_LIST)}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}

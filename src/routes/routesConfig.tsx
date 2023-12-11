@@ -9,6 +9,7 @@ import { ScannedFileListPage } from "@src/pages/ScannedFileListPage";
 
 import { ROUTES_PATH } from "./routesConstants";
 import { UbaPage } from "@src/pages/Uba";
+import { DashboardAdminsListPage } from "@src/pages/DashboardAdminsList";
 
 const routesConfig = [
   {
@@ -33,6 +34,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboardDesktopList,
         element: <DashboardDesktopListPage />,
+      },
+      {
+        path: ROUTES_PATH.dashboardAdminsList,
+        element: <DashboardAdminsListPage />,
       },
       {
         path: ROUTES_PATH.monitoringDetails,

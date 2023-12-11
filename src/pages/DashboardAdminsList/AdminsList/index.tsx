@@ -3,13 +3,11 @@ import plusIcon from "@iconify-icons/ph/plus";
 import { useState } from "react";
 import useSWR from "swr";
 import { IResponsePagination } from "@src/types/services";
-import { IFileType } from "@src/services/config/types";
 import { http } from "@src/services/http";
-import { E_DAAS_CONFIG_LIST_PAGINATION } from "@src/services/config/endpoint";
 import { LoadingSpinner } from "@ui/molecules/Loading";
-import { FileTypeCard } from "./FileTypeCard";
+import { UserAdminCard } from "./UserAdminCard";
 import { StringifyProperties } from "@src/types/global";
-import { ActionOnClickActionsType } from "./FileTypeCard/types";
+import { ActionOnClickActionsType } from "./UserAdminCard/types";
 import { NoResult } from "@ui/molecules/NoResult";
 import Pagination from "@ui/molecules/Pagination";
 import { Modal } from "@ui/molecules/Modal";
@@ -18,32 +16,50 @@ import { API_DELETE_FILE_TYPE } from "@src/services/config";
 import { toast } from "react-toastify";
 import ToolTip from "@ui/atoms/Tooltip";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
+import { E_USERS_PAGINATION } from "@src/services/users/endpoint";
+import { IUser } from "@src/services/users/types";
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 const PAGE = 1;
 
-const headerItem: StringifyProperties<IFileType> = {
+const headerItem: StringifyProperties<IUser> = {
   id: "",
-  file_type: "تایپ فایل",
-  allowed_for_upload: "مجاز برای آپلود",
-  allowed_for_download: "مجاز برای دانلود",
+  email: "ایمیل",
+  last_login: "آخرین ورود",
+  username: "نام کاربری",
+  first_name: "نام و نام خانوادگی",
   is_active: "فعال",
   created_at: "تاریخ ایجاد",
-  updated_at: "تاریخ بروزرسانی",
+  is_meta_admin: "سوپر ادمین",
+  last_name: "",
+
+  is_superuser: "boolean",
+  exceeded_usage: "boolean",
+  base_url: "string",
+  is_staff: "boolean",
+  date_joined: "string",
+  http_port: "number",
+  https_port: "number",
+  time_limit_duration: "ETimeLimitDuration",
+  time_limit_value_in_hour: "number",
+  last_uptime: "string",
+  is_running: "boolean",
+  exceeded_time_limit: "boolean",
+  usage_in_minute: "number",
 };
 
-export function DlpConfig() {
-  const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
+export function AdminsList() {
+  const [activeFileType, setActiveFileType] = useState<Partial<IUser>>();
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
 
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(PAGE);
   const [search, setSearch] = useState("");
 
-  const { data, mutate, isLoading } = useSWR<IResponsePagination<IFileType>>(
-    E_DAAS_CONFIG_LIST_PAGINATION({
+  const { data, mutate, isLoading } = useSWR<IResponsePagination<any>>(
+    E_USERS_PAGINATION({
       page: currentPage,
       pageSize: PAGE_SIZE,
       filter: `search=${encodeURIComponent(search)}`,
@@ -90,9 +106,9 @@ export function DlpConfig() {
 
   function handleOnClickActions(
     action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IFileType> | IFileType
+    fileType?: StringifyProperties<IUser> | IUser
   ): any {
-    setActiveFileType(fileType as IFileType);
+    setActiveFileType(fileType as IUser);
 
     if (action === "delete") {
       setDeleteModal(true);
@@ -111,16 +127,14 @@ export function DlpConfig() {
     // }
   }
 
-  const handleCreateNewType = () => {
-    activeFileType && setActiveFileType(undefined);
-    setOpenUpdateModal(true);
-  };
-
   const handleOnChangeSearch = (value: string) => {
     setCurrentPage(PAGE);
     setSearch(value);
   };
-
+  const handleCreateNewType = () => {
+    activeFileType && setActiveFileType(undefined);
+    setOpenUpdateModal(true);
+  };
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
@@ -130,23 +144,23 @@ export function DlpConfig() {
           onChange={handleOnChangeSearch}
           className="w-1/4"
         />
-        <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">
+        {/* <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">
           <IconButton
             icon={plusIcon}
             color="teal"
             size="lg"
             onClick={handleCreateNewType}
           />
-        </ToolTip>
+        </ToolTip> */}
       </div>
-      <FileTypeCard fileType={headerItem} isHeader />
+      <UserAdminCard user={headerItem} isHeader />
       {isLoading ? (
         <LoadingSpinner />
       ) : listWhiteList.length > 0 ? (
         listWhiteList.map((item) => (
-          <FileTypeCard
+          <UserAdminCard
             key={item.id}
-            fileType={item}
+            user={item}
             onClickActions={handleOnClickActions}
           />
         ))

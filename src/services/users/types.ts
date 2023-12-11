@@ -51,6 +51,7 @@ export interface IUser {
   email: string;
   last_login?: string;
   is_superuser?: boolean;
+  is_meta_admin: boolean;
   exceeded_usage: boolean;
   base_url?: string;
   username?: string;

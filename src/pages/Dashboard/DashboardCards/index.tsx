@@ -7,13 +7,15 @@ import { useNavigate } from "react-router-dom";
 import calendarCheckIcon from "@iconify-icons/ph/calendar-check";
 import keyIcon from "@iconify-icons/ph/key";
 import desktopIcon from "@iconify-icons/ph/desktop";
+import usersThreeIcon from "@iconify-icons/ph/users-three";
+import { useUserContext } from "@context/user/userContext";
 import shieldCheckIcon from "@iconify-icons/ph/shield-check";
-
 import { ROUTES_PATH } from "@src/routes/routesConstants";
 import { CardScanStats } from "./CardScanStats";
 
 export function DashboardCards() {
   const navigate = useNavigate();
+  const { user } = useUserContext();
 
   return (
     <div className="grid w-full grid-cols-12 gap-16 mb-16">
@@ -24,6 +26,25 @@ export function DashboardCards() {
           description={persianDateAndNumber()}
         />
       </div>
+
+      {user?.is_meta_admin && (
+        <div className="col-span-10 md:col-span-6 xl:col-span-3">
+          <Card
+            icon={usersThreeIcon}
+            title="لیست ادمین ها"
+            description=""
+            onClick={() => navigate(ROUTES_PATH.dashboardAdminsList)}
+          />
+        </div>
+      )}
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={desktopIcon}
+          title="لیست دسکتاپ ها"
+          description=""
+          onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}
+        />
+      </div>
       <div className="col-span-10 md:col-span-6 xl:col-span-3">
         <Card
           icon={keyIcon}
@@ -32,14 +53,6 @@ export function DashboardCards() {
           onClick={() => {
             window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, "_blank");
           }}
-        />
-      </div>
-      <div className="col-span-10 md:col-span-6 xl:col-span-3">
-        <Card
-          icon={desktopIcon}
-          title="لیست دسکتاپ ها"
-          description=""
-          onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}
         />
       </div>
       <div className="col-span-10 md:col-span-6 xl:col-span-3">

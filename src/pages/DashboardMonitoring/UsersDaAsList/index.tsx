@@ -56,7 +56,7 @@ export function UsersDaAsList({ user }: PropsType) {
       ? E_USERS_DAAS({
           page: currentPage,
           pageSize: LIMIT_DESKTOP_LIST,
-          // filter: `search=${search}`,
+          // filter: `search=${encodeURIComponent(search)}`,
         })
       : null,
     http.fetcherSWR,

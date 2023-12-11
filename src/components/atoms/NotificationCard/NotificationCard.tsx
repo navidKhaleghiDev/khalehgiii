@@ -7,7 +7,7 @@ import { Typography } from "../Typography";
 import { notificationStyles } from "./styles";
 import { INotification } from "./types";
 
-export function Notification({
+export function NotificationCard({
   className,
   outline,
   size,

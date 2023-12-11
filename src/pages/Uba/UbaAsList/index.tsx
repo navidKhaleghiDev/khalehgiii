@@ -13,6 +13,7 @@ import { StringifyProperties } from "@src/types/global";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
 
 const PAGE_SIZE = 8;
+const PAGE = 1;
 
 const headerItem: StringifyProperties<IUba> = {
   id: "",
@@ -28,14 +29,14 @@ const headerItem: StringifyProperties<IUba> = {
 };
 
 export function UbaAsList() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(PAGE);
   const [search, setSearch] = useState("");
 
   const { data, isLoading } = useSWR<IResponsePagination<IUba>>(
     E_UBA_LIST_PAGINATION({
       page: currentPage,
       pageSize: PAGE_SIZE,
-      filter: `search=${search}`,
+      filter: `search=${encodeURIComponent(search)}`,
     }),
     http_analyses.fetcherSWR,
     {
@@ -51,11 +52,10 @@ export function UbaAsList() {
     setCurrentPage(page);
   };
 
-  // const handleOnChangeSearch = ({
-  //   target: { value },
-  // }: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearch(value);
-  // };
+  const handleOnChangeSearch = (value: string) => {
+    setCurrentPage(PAGE);
+    setSearch(value);
+  };
 
   return (
     <div className="w-full p-4">
@@ -63,7 +63,7 @@ export function UbaAsList() {
         <SearchInput
           name="search"
           value={search}
-          onChange={setSearch}
+          onChange={handleOnChangeSearch}
           className="w-1/4"
         />
         <Typography size="h4" color="teal" className="text-left w-full">
