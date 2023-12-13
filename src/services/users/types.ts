@@ -48,6 +48,7 @@ export interface IResponseLogin {
 
 export interface IUser {
   id: 1;
+  password?: string;
   email: string;
   last_login?: string;
   is_superuser?: boolean;

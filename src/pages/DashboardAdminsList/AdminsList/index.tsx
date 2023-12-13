@@ -11,8 +11,7 @@ import { ActionOnClickActionsType } from "./UserAdminCard/types";
 import { NoResult } from "@ui/molecules/NoResult";
 import Pagination from "@ui/molecules/Pagination";
 import { Modal } from "@ui/molecules/Modal";
-import { UpdateFileTypeModal } from "./UpdateFileTypeModal";
-import { API_DELETE_FILE_TYPE } from "@src/services/config";
+import { UpdateAdminModal } from "./UpdateAdminModal";
 import { toast } from "react-toastify";
 import ToolTip from "@ui/atoms/Tooltip";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
@@ -20,6 +19,7 @@ import { E_USERS } from "@src/services/users/endpoint";
 import { IUser } from "@src/services/users/types";
 import { createAPIEndpoint } from "@src/helper/utils";
 import { debounce } from "lodash";
+import { API_USERS_DELETE } from "@src/services/users";
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -53,14 +53,10 @@ const headerItem: StringifyProperties<IUser> = {
 export function AdminsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>("");
-
-  const [activeFileType, setActiveFileType] = useState<Partial<IUser>>();
-
+  const [activeAdmin, setActiveAdmin] = useState<Partial<IUser>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
-
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [search, setSearch] = useState("");
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS,
@@ -91,14 +87,13 @@ export function AdminsList() {
   }
 
   const listWhiteList = data?.data?.results ?? [];
-
   const countPage = data?.data?.count || 0;
 
   const handleOnDeleteFileType = async () => {
-    if (!activeFileType) return;
+    if (!activeAdmin) return;
     setLoadingButtonModal(true);
 
-    await API_DELETE_FILE_TYPE(activeFileType.id as number)
+    await API_USERS_DELETE(activeAdmin?.id as number)
       .then(() => {
         mutate();
         toast.success("با موفقیت حذف شد");
@@ -127,7 +122,7 @@ export function AdminsList() {
     action: ActionOnClickActionsType,
     fileType?: StringifyProperties<IUser> | IUser
   ): any {
-    setActiveFileType(fileType as IUser);
+    setActiveAdmin(fileType as IUser);
 
     if (action === "delete") {
       setDeleteModal(true);
@@ -146,12 +141,8 @@ export function AdminsList() {
     // }
   }
 
-  const handleOnChangeSearch = (value: string) => {
-    setCurrentPage(PAGE);
-    setSearch(value);
-  };
-  const handleCreateNewType = () => {
-    activeFileType && setActiveFileType(undefined);
+  const handleCreateAdmin = () => {
+    activeAdmin && setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
   return (
@@ -163,14 +154,14 @@ export function AdminsList() {
           onChange={handleFilterChange}
           className="w-1/4"
         />
-        {/* <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">
+        <ToolTip tooltip="اضافه کردن ادمین جدید" position="right">
           <IconButton
             icon={plusIcon}
             color="teal"
             size="lg"
-            onClick={handleCreateNewType}
+            onClick={handleCreateAdmin}
           />
-        </ToolTip> */}
+        </ToolTip>
       </div>
       <UserAdminCard user={headerItem} isHeader />
       {isLoading ? (
@@ -214,9 +205,9 @@ export function AdminsList() {
         setOpen={setOpenUpdateModal}
         type="success"
         content={
-          <UpdateFileTypeModal
+          <UpdateAdminModal
             handleClose={handleCloseUpdateModal}
-            fileType={activeFileType}
+            admin={activeAdmin}
           />
         }
       />

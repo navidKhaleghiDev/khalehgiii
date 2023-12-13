@@ -2,6 +2,7 @@ import { Card, Typography } from "@ui/atoms";
 import { IconButton } from "@ui/atoms/BaseButton";
 import trashIcon from "@iconify-icons/ph/trash";
 import { StringifyProperties } from "@src/types/global";
+import notePencilIcon from "@iconify-icons/ph/note-pencil";
 
 import { OnClickActionsType } from "./types";
 import { booleanIcon } from "../utils";
@@ -31,16 +32,16 @@ export function UserAdminCard({
         <div className="px-3 w-1/12 text-center break-words">
           {!isHeader && onClickActions && (
             <div className="flex">
-              {/* <IconButton
+              <IconButton
                 icon={trashIcon}
                 color="redNoBg"
                 onClick={() => onClickActions("delete", user)}
-              /> */}
-              {/* <IconButton
+              />
+              <IconButton
                 icon={notePencilIcon}
                 color="neutralNoBg"
                 onClick={() => onClickActions("edit", user)}
-              /> */}
+              />
             </div>
           )}
         </div>

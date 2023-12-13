@@ -27,7 +27,9 @@ export function BaseSwitch({
             {label && (
               <label
                 htmlFor={name}
-                className={`block mb-1 ${ltrLabel && "text-left uppercase"}`}
+                className={`block mb-1 ${
+                  ltrLabel ? "text-left uppercase" : "text-right"
+                }`}
               >
                 <Typography color="teal" size="h5">
                   {label}

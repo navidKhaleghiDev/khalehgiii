@@ -2,7 +2,6 @@ import { http } from "@src/services/http";
 import { IAxiosResponse, IServerResponse } from "@src/types/services";
 import { IBodyUsersLogin, IResponseLogin, IDaAs, IUser } from "./types";
 import {
-  E_USERS_DAAS,
   E_USERS_DAAS_DELETE,
   E_USERS_DAAS_RESET_ALL_USAGE,
   E_USERS_DAAS_RESET_USAGE,
@@ -10,22 +9,24 @@ import {
   E_USERS_LOGIN,
   E_USERS_PROFILE,
   E_UPDATE_USER,
+  E_USERS_DELETE,
+  E_USERS,
 } from "./endpoint";
 import { IDaasConfig } from "../config/types";
 
-export const API_DAAS_LIST = ({ username, password }: any) =>
-  http.get<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS({ pageSize: 1000, page: 1 }), {
-    auth: {
-      username,
-      password,
-    },
-  });
+export const API_UPDATE_USER = (
+  body: Partial<IUser>,
+  userId: string | number
+) => http.patch<IAxiosResponse<Partial<IUser>>>(E_UPDATE_USER(userId), body);
 
-export const API_UPDATE_USER = (body: any, userId: string) =>
-  http.patch<IAxiosResponse<IDaAs[]>>(E_UPDATE_USER(userId), body);
+export const API_CREATE_USER = (body: IUser) =>
+  http.post<IAxiosResponse<IUser>>(E_USERS, body);
 
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
+
+export const API_USERS_DELETE = (id: number) =>
+  http.delete<IAxiosResponse<any>>(E_USERS_DELETE(id));
 
 interface IDaAsUpdated extends Omit<IDaAs, "daas_configs"> {
   daas_configs: Partial<IDaasConfig>;

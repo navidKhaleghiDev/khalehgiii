@@ -48,7 +48,9 @@ export function BaseInput(props: BaseInputProps<any>) {
           {label && (
             <label
               htmlFor={id}
-              className={`block mb-1 ${ltrLabel && "text-left uppercase"}`}
+              className={`block mb-1 ${
+                ltrLabel ? "text-left uppercase" : "text-right"
+              }`}
             >
               <Typography color="teal" size="h5">
                 {label}
@@ -56,7 +58,7 @@ export function BaseInput(props: BaseInputProps<any>) {
             </label>
           )}
 
-          <div className="relative">
+          <div className="relative ">
             {startIcon && <IconInput icon={startIcon} intent={intent} />}
             <input
               id={id}
@@ -98,7 +100,11 @@ export function BaseInput(props: BaseInputProps<any>) {
             {endIcon && <IconInput icon={endIcon} intent={intent} />}
           </div>
           {!hiddenError && (
-            <Typography color="red" size="caption" className="h-6">
+            <Typography
+              color="red"
+              size="caption"
+              className={`h-6 ${ltrLabel ? "text-left" : "text-right"}`}
+            >
               {error?.message ?? ""}
             </Typography>
           )}
