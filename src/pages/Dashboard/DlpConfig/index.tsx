@@ -1,11 +1,11 @@
 import { IconButton } from "@ui/atoms/BaseButton";
 import plusIcon from "@iconify-icons/ph/plus";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import useSWR from "swr";
 import { IResponsePagination } from "@src/types/services";
 import { IFileType } from "@src/services/config/types";
 import { http } from "@src/services/http";
-import { E_DAAS_CONFIG_LIST_PAGINATION } from "@src/services/config/endpoint";
+import { E_WHITE_LIST_FILES } from "@src/services/config/endpoint";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { FileTypeCard } from "./FileTypeCard";
 import { StringifyProperties } from "@src/types/global";
@@ -16,8 +16,11 @@ import { Modal } from "@ui/molecules/Modal";
 import { UpdateFileTypeModal } from "./UpdateFileTypeModal";
 import { API_DELETE_FILE_TYPE } from "@src/services/config";
 import { toast } from "react-toastify";
+import debounce from "lodash/debounce";
 import ToolTip from "@ui/atoms/Tooltip";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
+import React from "react";
+import { createAPIEndpoint } from "@src/helper/utils";
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
@@ -33,30 +36,46 @@ const headerItem: StringifyProperties<IFileType> = {
 };
 
 export function DlpConfig() {
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
   const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
-
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
-
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
 
-  const { data, mutate, isLoading } = useSWR<IResponsePagination<IFileType>>(
-    E_DAAS_CONFIG_LIST_PAGINATION({
-      page: currentPage,
-      pageSize: PAGE_SIZE,
-      filter: `search=${encodeURIComponent(search)}`,
-    }),
-    http.fetcherSWR
+  const endpoint = createAPIEndpoint({
+    endPoint: E_WHITE_LIST_FILES,
+    pageSize: PAGE_SIZE,
+    currentPage,
+    filterQuery,
+  });
+  const { data, error, isLoading, mutate } = useSWR<
+    IResponsePagination<IFileType>
+  >(endpoint, http.fetcherSWR);
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
   );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
+
+  if (error) return <div>Failed to load data.</div>;
 
   if (isLoading) {
     return <LoadingSpinner />;
   }
 
   const listWhiteList = data?.data?.results ?? [];
-
   const countPage = data?.data?.count || 0;
 
   const handleOnDeleteFileType = async () => {
@@ -77,10 +96,6 @@ export function DlpConfig() {
       });
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
   const handleCloseUpdateModal = (isMutate?: boolean) => {
     if (isMutate) {
       mutate();
@@ -93,22 +108,14 @@ export function DlpConfig() {
     fileType?: StringifyProperties<IFileType> | IFileType
   ): any {
     setActiveFileType(fileType as IFileType);
-
     if (action === "delete") {
       setDeleteModal(true);
       return;
     }
-
     if (action === "edit") {
       setOpenUpdateModal(true);
       return;
     }
-
-    // if (daas !== undefined && typeof daas !== "string") {
-    //   setActionOnClick(action);
-    //   setActiveDaas(daas);
-    //   setDeleteModal(true);
-    // }
   }
 
   const handleCreateNewType = () => {
@@ -116,18 +123,13 @@ export function DlpConfig() {
     setOpenUpdateModal(true);
   };
 
-  const handleOnChangeSearch = (value: string) => {
-    setCurrentPage(PAGE);
-    setSearch(value);
-  };
-
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
         <SearchInput
           name="search"
-          value={search}
-          onChange={handleOnChangeSearch}
+          value={filterQuery}
+          onChange={handleFilterChange}
           className="w-1/4"
         />
         <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">

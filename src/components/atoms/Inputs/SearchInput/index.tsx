@@ -1,5 +1,4 @@
-import { useDebounce } from "@src/helper/hooks/useDebounce";
-import { useEffect, useState } from "react";
+import { useState, memo } from "react";
 
 import { BaseInput } from "../BaseInput";
 
@@ -7,29 +6,20 @@ interface SearchInputProps {
   value: string;
   name: string;
   className?: string;
-  onChange: (value: string) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function SearchInput({
-  value,
+const SearchInputComponent = ({
   onChange,
+  value,
   name,
   className,
-}: SearchInputProps) {
+}: SearchInputProps) => {
   const [searchValue, setSearchValue] = useState(value);
-  // const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const debouncedSearchValue = useDebounce(searchValue, 500);
-
-  useEffect(() => {
-    onChange(debouncedSearchValue);
-    // if (inputRef.current) {
-    //   inputRef.current.focus();
-    // }
-  }, [debouncedSearchValue, onChange]);
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
+    onChange(event);
   };
 
   return (
@@ -39,11 +29,11 @@ export function SearchInput({
         name={name}
         placeholder="جستجو کنید"
         id={name}
-        pureOnChange={handleSearchChange}
+        pureOnChange={handleFilterChange}
         pureValue={searchValue}
-        // ref={inputRef}
         fullWidth
       />
     </div>
   );
-}
+};
+export const SearchInput = memo(SearchInputComponent);

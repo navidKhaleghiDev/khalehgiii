@@ -1,28 +1,25 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
 import { DaAsCard } from "./DaAsCard";
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from "@src/services/users";
-import { ETimeLimitDuration, IUser } from "@src/services/users/types";
+import { ETimeLimitDuration } from "@src/services/users/types";
 import { IDaAs } from "@src/services/users/types";
 import { Modal } from "@ui/molecules/Modal";
 import { toast } from "react-toastify";
 import useSWR from "swr";
 import { http } from "@src/services/http";
-import { IServerResponseList } from "@src/types/services";
+import { IResponsePagination } from "@src/types/services";
 import { E_USERS_DAAS } from "@src/services/users/endpoint";
 import Pagination from "@ui/molecules/Pagination";
-import { BaseInput } from "@ui/atoms";
 import { ResetAllAccessTime } from "./ResetAllAccessTime";
 import { ActionOnClickActionsType } from "./DaAsCard/types";
 import { SettingDaasModal } from "./SettingDaasModal";
 
 import { IHeaderDaasCard } from "./types";
-
-// function mergeUniqueLists(oldList: string[], newList: string[]): string[] {
-//   const set = new Set([...oldList, ...newList]);
-//   return Array.from(set);
-// }
+import { createAPIEndpoint } from "@src/helper/utils";
+import { debounce } from "lodash";
+import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -86,8 +83,10 @@ const headerItem: IHeaderDaasCard = {
   daas_version: "نسخه دسکتاپ",
 };
 
-type PropsType = { user: IUser | null };
-export function DaAsList({ user }: PropsType) {
+export function DaAsList() {
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
+
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
   const [actionOnClick, setActionOnClick] =
     useState<ActionOnClickActionsType>();
@@ -96,23 +95,29 @@ export function DaAsList({ user }: PropsType) {
   const [openSettingModal, setOpenSettingModal] = useState(false);
 
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(PAGE);
-  const [search, setSearch] = useState("");
 
-  const { data, isLoading, mutate } = useSWR<IServerResponseList<IDaAs[]>>(
-    user
-      ? E_USERS_DAAS({
-          page: currentPage,
-          pageSize: PAGE_SIZE,
-          filter: `search=${encodeURIComponent(search)}`,
-        })
-      : null,
-    http.fetcherSWR,
-    {
-      revalidateOnFocus: false,
-      errorRetryCount: 0,
-    }
+  const endpoint = createAPIEndpoint({
+    endPoint: E_USERS_DAAS,
+    pageSize: PAGE_SIZE,
+    currentPage,
+    filterQuery,
+  });
+  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
+    endpoint,
+    http.fetcherSWR
   );
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
+  );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -171,13 +176,6 @@ export function DaAsList({ user }: PropsType) {
     setCurrentPage(page);
   };
 
-  const handleOnChangeSearch = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentPage(PAGE);
-    setSearch(value);
-  };
-
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
     if (!daas) return;
     let daasUpdated = daas;
@@ -209,24 +207,6 @@ export function DaAsList({ user }: PropsType) {
         ...(daas.forbidden_upload_files || []),
         ...resultUpload.removedList,
       ];
-
-      // const newExtraAllowedDownloadFiles = mergeUniqueLists(
-      //   daas.extra_allowed_download_files ?? [],
-      //   resultDownload.addedList
-      // );
-      // const newForbiddenDownloadFiles = mergeUniqueLists(
-      //   daas.forbidden_download_files ?? [],
-      //   resultDownload.removedList
-      // );
-
-      // const newExtraAllowedUploadFiles = mergeUniqueLists(
-      //   daas.extra_allowed_upload_files ?? [],
-      //   resultUpload.addedList
-      // );
-      // const newForbiddenUploadFiles = mergeUniqueLists(
-      //   daas.forbidden_upload_files ?? [],
-      //   resultUpload.removedList
-      // );
 
       daasUpdated = {
         ...daas,
@@ -261,14 +241,12 @@ export function DaAsList({ user }: PropsType) {
 
   return (
     <div className="w-full p-4">
-      <div className="flex items-center">
-        <BaseInput
+      <div className="flex items-center justify-between">
+        <SearchInput
           name="search"
-          className="w-1/3"
-          id="search"
-          pureValue={search}
-          pureOnChange={handleOnChangeSearch}
-          placeholder="جستجو کنید"
+          value={filterQuery}
+          onChange={handleFilterChange}
+          className="w-1/4"
         />
         <ResetAllAccessTime />
       </div>

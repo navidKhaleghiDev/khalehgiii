@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
 import { UbaCard } from "./UbaCard";
@@ -11,6 +11,7 @@ import { E_UBA_LIST_PAGINATION } from "@src/services/analyze/endpoint";
 import { IUba } from "@src/services/analyze/types";
 import { StringifyProperties } from "@src/types/global";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
+import { debounce } from "lodash";
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -29,14 +30,26 @@ const headerItem: StringifyProperties<IUba> = {
 };
 
 export function UbaAsList() {
-  const [currentPage, setCurrentPage] = useState(PAGE);
-  const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
+  );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
 
   const { data, isLoading } = useSWR<IResponsePagination<IUba>>(
     E_UBA_LIST_PAGINATION({
       page: currentPage,
       pageSize: PAGE_SIZE,
-      filter: `search=${encodeURIComponent(search)}`,
+      filter: `search=${encodeURIComponent(filterQuery)}`,
     }),
     http_analyses.fetcherSWR,
     {
@@ -52,18 +65,13 @@ export function UbaAsList() {
     setCurrentPage(page);
   };
 
-  const handleOnChangeSearch = (value: string) => {
-    setCurrentPage(PAGE);
-    setSearch(value);
-  };
-
   return (
     <div className="w-full p-4">
       <div className="flex items-center">
         <SearchInput
           name="search"
-          value={search}
-          onChange={handleOnChangeSearch}
+          value={filterQuery}
+          onChange={handleFilterChange}
           className="w-1/4"
         />
         <Typography size="h4" color="teal" className="text-left w-full">

@@ -2,6 +2,8 @@ import { IPagination } from "@src/types/services";
 
 // users endpoints
 export const E_USERS = "/users/";
+export const E_USERS_DAAS = "/users/daas/";
+
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
 export const E_USERS_DELETE = (id: string) => `${E_USERS}${id}/`;
 export const E_UPDATE_USER = (id: string) => `/users/${id}/`;
@@ -9,7 +11,11 @@ export const E_USERS_PAGINATION = ({ pageSize, page, filter }: IPagination) =>
   `${E_USERS}?page_size=${pageSize}&page=${page}${filter ? `&${filter}` : ""}`;
 
 // users daas endpoints
-export const E_USERS_DAAS = ({ pageSize, page, filter }: IPagination) =>
+export const E_USERS_DAAS_PAGINATION = ({
+  pageSize,
+  page,
+  filter,
+}: IPagination) =>
   `/users/daas/${
     filter ? `?${filter}&` : "?"
   }page_size=${pageSize}&page=${page}`;

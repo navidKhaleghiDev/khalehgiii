@@ -1,6 +1,6 @@
 import { IconButton } from "@ui/atoms/BaseButton";
 import plusIcon from "@iconify-icons/ph/plus";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import useSWR from "swr";
 import { IResponsePagination } from "@src/types/services";
 import { http } from "@src/services/http";
@@ -16,8 +16,10 @@ import { API_DELETE_FILE_TYPE } from "@src/services/config";
 import { toast } from "react-toastify";
 import ToolTip from "@ui/atoms/Tooltip";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
-import { E_USERS_PAGINATION } from "@src/services/users/endpoint";
+import { E_USERS } from "@src/services/users/endpoint";
 import { IUser } from "@src/services/users/types";
+import { createAPIEndpoint } from "@src/helper/utils";
+import { debounce } from "lodash";
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -49,23 +51,40 @@ const headerItem: StringifyProperties<IUser> = {
 };
 
 export function AdminsList() {
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
+
   const [activeFileType, setActiveFileType] = useState<Partial<IUser>>();
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
 
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(PAGE);
   const [search, setSearch] = useState("");
 
-  const { data, mutate, isLoading } = useSWR<IResponsePagination<any>>(
-    E_USERS_PAGINATION({
-      page: currentPage,
-      pageSize: PAGE_SIZE,
-      filter: `search=${encodeURIComponent(search)}`,
-    }),
+  const endpoint = createAPIEndpoint({
+    endPoint: E_USERS,
+    pageSize: PAGE_SIZE,
+    currentPage,
+    filterQuery,
+  });
+
+  const { data, isLoading, mutate } = useSWR<IResponsePagination<IUser>>(
+    endpoint,
     http.fetcherSWR
   );
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
+  );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -140,8 +159,8 @@ export function AdminsList() {
       <div className="flex justify-between items-center">
         <SearchInput
           name="search"
-          value={search}
-          onChange={handleOnChangeSearch}
+          value={filterQuery}
+          onChange={handleFilterChange}
           className="w-1/4"
         />
         {/* <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">

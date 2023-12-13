@@ -1,10 +1,9 @@
-import { BaseInput } from "@ui/atoms";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import useSWR from "swr";
 import { IResponsePagination } from "@src/types/services";
 import { IDaasConfig } from "@src/services/config/types";
 import { http } from "@src/services/http";
-import { E_DAAS_CONFIG_LIST } from "@src/services/config/endpoint";
+import { E_DAAS_CONFIGS } from "@src/services/config/endpoint";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { DlpConfigCard } from "./DlpConfigCard";
 import { StringifyProperties } from "@src/types/global";
@@ -13,6 +12,9 @@ import { NoResult } from "@ui/molecules/NoResult";
 import Pagination from "@ui/molecules/Pagination";
 import { Modal } from "@ui/molecules/Modal";
 import { SettingDaasConfigModal } from "./SettingDaasConfigModal";
+import { createAPIEndpoint } from "@src/helper/utils";
+import { debounce } from "lodash";
+import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -33,21 +35,33 @@ const headerItem: StringifyProperties<IDaasConfig> = {
 };
 
 export function DaasConfigList() {
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
   const [activeDaasConfig] = useState<Partial<IDaasConfig>>();
-
   const [openSettingModal, setOpenSettingModal] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
-
-  const { data, mutate, isLoading } = useSWR<IResponsePagination<IDaasConfig>>(
-    E_DAAS_CONFIG_LIST({
-      page: currentPage,
-      pageSize: PAGE_SIZE,
-      filter: `search=${encodeURIComponent(search)}`,
-    }),
+  const endpoint = createAPIEndpoint({
+    endPoint: E_DAAS_CONFIGS,
+    pageSize: PAGE_SIZE,
+    currentPage,
+    filterQuery,
+  });
+  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaasConfig>>(
+    endpoint,
     http.fetcherSWR
   );
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
+  );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -56,13 +70,6 @@ export function DaasConfigList() {
   const listDaasConfig = data?.data?.results ?? [];
 
   const countPage = data?.data?.count || 0;
-
-  const handleOnChangeSearch = ({
-    target: { value },
-  }: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentPage(PAGE);
-    setSearch(value);
-  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -84,13 +91,11 @@ export function DaasConfigList() {
   return (
     <div className="w-full p-4">
       <div className="flex items-center">
-        <BaseInput
+        <SearchInput
           name="search"
-          className="w-1/3"
-          id="search"
-          pureValue={search}
-          pureOnChange={handleOnChangeSearch}
-          placeholder="جستجو کنید"
+          value={filterQuery}
+          onChange={handleFilterChange}
+          className="w-1/4"
         />
       </div>
       <DlpConfigCard daasConfig={headerItem} isHeader />

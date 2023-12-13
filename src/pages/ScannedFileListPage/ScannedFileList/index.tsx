@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
 import { ScannedFileCard } from "./ScannedFileCard";
@@ -14,8 +14,10 @@ import { E_ANALYZE_SCAN_PAGINATION } from "@src/services/analyze/endpoint";
 import { Modal } from "@ui/molecules/Modal";
 import { DetailsContentModal } from "./DetailsContentModal";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
+import { debounce } from "lodash";
 
-const LIMIT_PAGE_SIZE = 8;
+const PAGE_SIZE = 8;
+const PAGE = 1;
 
 const headerItem: StringifyProperties<IScannedFile> = {
   id: "جزییات بیشتر",
@@ -42,23 +44,34 @@ const headerItem: StringifyProperties<IScannedFile> = {
 };
 
 export function ScannedFileList() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
   const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
-
   const { id } = useParams();
 
   const { data, isLoading } = useSWR<IResponsePagination<IScannedFile>>(
     id
       ? E_ANALYZE_SCAN_PAGINATION(id, {
           page: currentPage,
-          pageSize: LIMIT_PAGE_SIZE,
-          filter: `search=${encodeURIComponent(search)}`,
+          pageSize: PAGE_SIZE,
+          filter: `search=${encodeURIComponent(filterQuery)}`,
         })
       : null,
     http_analyses.fetcherSWR
   );
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
+  );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count ?? 0;
@@ -75,24 +88,15 @@ export function ScannedFileList() {
   return (
     <div className="w-full p-4">
       <div className="flex items-center justify-between">
-        {/* <BaseInput
+        <SearchInput
           name="search"
-          className="w-1/3"
-          id="search"
-          pureValue={search}
-          pureOnChange={handleOnChangeSearch}
-          placeholder="جستجو کنید"
-        /> */}
+          value={filterQuery}
+          onChange={handleFilterChange}
+          className="w-1/4"
+        />
         <Typography size="h4" color="teal">
           {id}
         </Typography>
-
-        <SearchInput
-          name="search"
-          value={search}
-          onChange={setSearch}
-          className="w-1/4"
-        />
       </div>
       <ScannedFileCard scannedFile={headerItem} isHeader />
       {isLoading ? (
@@ -111,7 +115,7 @@ export function ScannedFileList() {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(countPage / LIMIT_PAGE_SIZE)}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}

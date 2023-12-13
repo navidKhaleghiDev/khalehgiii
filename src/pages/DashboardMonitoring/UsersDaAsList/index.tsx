@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { NoResult } from "@ui/molecules/NoResult";
 import { UserDaAsCard } from "./UserDaAsCard";
-import { ETimeLimitDuration, IUser } from "@src/services/users/types";
+import { ETimeLimitDuration } from "@src/services/users/types";
 import { IDaAs } from "@src/services/users/types";
-
 import useSWR from "swr";
 import { http } from "@src/services/http";
 import { IResponsePagination } from "@src/types/services";
 import { E_USERS_DAAS } from "@src/services/users/endpoint";
 import Pagination from "@ui/molecules/Pagination";
-import { Typography } from "@ui/atoms";
 import { IHeaderDaasCard } from "@src/pages/DashboardDesktopList/DaAsList/types";
+import { createAPIEndpoint } from "@src/helper/utils";
+import { debounce } from "lodash";
+import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
 
-const LIMIT_DESKTOP_LIST = 8;
+const PAGE_SIZE = 8;
+const PAGE = 1;
 
 const headerItem: IHeaderDaasCard = {
   id: "مشاهده رفتار کاربر",
@@ -47,24 +49,32 @@ const headerItem: IHeaderDaasCard = {
   is_lock: "دسکتاپ",
 };
 
-type PropsType = { user: IUser | null };
-export function UsersDaAsList({ user }: PropsType) {
-  const [currentPage, setCurrentPage] = useState(1);
+export function UsersDaAsList() {
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>("");
 
+  const endpoint = createAPIEndpoint({
+    endPoint: E_USERS_DAAS,
+    pageSize: PAGE_SIZE,
+    currentPage,
+    filterQuery,
+  });
   const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
-    user
-      ? E_USERS_DAAS({
-          page: currentPage,
-          pageSize: LIMIT_DESKTOP_LIST,
-          // filter: `search=${encodeURIComponent(search)}`,
-        })
-      : null,
-    http.fetcherSWR,
-    {
-      revalidateOnFocus: false,
-      errorRetryCount: 0,
-    }
+    endpoint,
+    http.fetcherSWR
   );
+
+  const debouncedSetFilterQuery = useCallback(
+    debounce((query: string) => {
+      setCurrentPage(PAGE);
+      setFilterQuery(query);
+    }, 1000),
+    []
+  );
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    debouncedSetFilterQuery(event.target.value);
+  };
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -73,26 +83,15 @@ export function UsersDaAsList({ user }: PropsType) {
     setCurrentPage(page);
   };
 
-  // const handleOnChangeSearch = ({
-  //   target: { value },
-  // }: React.ChangeEvent<HTMLInputElement>) => {
-  //   setSearch(value);
-  // };
-
   return (
     <div className="w-full p-4">
-      <div className="flex items-center">
-        {/* <BaseInput
+      <div className="flex items-center justify-between">
+        <SearchInput
           name="search"
-          className="w-1/3"
-          id="search"
-          pureValue={search}
-          pureOnChange={handleOnChangeSearch}
-          placeholder="جستجو کنید"
-        /> */}
-        <Typography size="h4" color="teal">
-          لیست کاربران:
-        </Typography>
+          value={filterQuery}
+          onChange={handleFilterChange}
+          className="w-1/4"
+        />
       </div>
       <UserDaAsCard daas={headerItem} isHeader />
       {isLoading ? (
@@ -105,7 +104,7 @@ export function UsersDaAsList({ user }: PropsType) {
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
-          totalPages={Math.ceil(countPage / LIMIT_DESKTOP_LIST)}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
           onPageChange={handlePageChange}
         />
       )}
