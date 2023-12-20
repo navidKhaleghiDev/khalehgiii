@@ -149,7 +149,7 @@ export function AdminsList() {
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
         <SearchInput
-          name="search"
+          name="search-admins"
           value={filterQuery}
           onChange={handleFilterChange}
           className="w-1/4"

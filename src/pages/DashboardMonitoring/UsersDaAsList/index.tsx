@@ -87,7 +87,7 @@ export function UsersDaAsList() {
     <div className="w-full p-4">
       <div className="flex items-center justify-between">
         <SearchInput
-          name="search"
+          name="search-users-daas-list"
           value={filterQuery}
           onChange={handleFilterChange}
           className="w-1/4"

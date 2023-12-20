@@ -1,6 +1,6 @@
 export const delay = (time: number) => {
   return new Promise((resolve) => {
-    setTimeout((_error, data) => resolve(data), time);
+    setTimeout((_error: any, data: unknown) => resolve(data), time);
   });
 };
 

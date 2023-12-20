@@ -66,6 +66,14 @@ export function DashboardCards() {
       <div className="col-span-10 md:col-span-6 xl:col-span-3">
         <Card
           icon={shieldCheckIcon}
+          title="لیست extension ها"
+          description=""
+          onClick={() => navigate(ROUTES_PATH.extensionList)}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
           title="UBA"
           description=""
           onClick={() => navigate(ROUTES_PATH.uba)}

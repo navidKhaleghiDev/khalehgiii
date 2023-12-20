@@ -92,7 +92,7 @@ export function DaasConfigList() {
     <div className="w-full p-4">
       <div className="flex items-center">
         <SearchInput
-          name="search"
+          name="search-dass-config"
           value={filterQuery}
           onChange={handleFilterChange}
           className="w-1/4"

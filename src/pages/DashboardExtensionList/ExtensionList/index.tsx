@@ -3,55 +3,55 @@ import plusIcon from "@iconify-icons/ph/plus";
 import { useCallback, useState } from "react";
 import useSWR from "swr";
 import { IResponsePagination } from "@src/types/services";
-import { IFileType } from "@src/services/config/types";
-import { http } from "@src/services/http";
-import { E_WHITE_LIST_FILES } from "@src/services/config/endpoint";
+import { http_analyses } from "@src/services/http";
 import { LoadingSpinner } from "@ui/molecules/Loading";
-import { FileTypeCard } from "./FileTypeCard";
+import { MimeTypeCard } from "./MimeTypeCard";
 import { StringifyProperties } from "@src/types/global";
-import { ActionOnClickActionsType } from "./FileTypeCard/types";
+import { ActionOnClickActionsType } from "./MimeTypeCard/types";
 import { NoResult } from "@ui/molecules/NoResult";
 import Pagination from "@ui/molecules/Pagination";
 import { Modal } from "@ui/molecules/Modal";
-import { UpdateFileTypeModal } from "./UpdateFileTypeModal";
-import { API_DELETE_FILE_TYPE } from "@src/services/config";
+import { CreateMimeTypeModal } from "./CreateMimeTypeModal";
 import { toast } from "react-toastify";
-import debounce from "lodash/debounce";
 import ToolTip from "@ui/atoms/Tooltip";
 import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
-import React from "react";
 import { createAPIEndpoint } from "@src/helper/utils";
+import { debounce } from "lodash";
+import { E_ANALYZE_MIME_TYPE } from "@src/services/analyze/endpoint";
+import { API_ANALYZE_MIME_TYPE_DELETE } from "@src/services/analyze";
+import { IMimeType } from "@src/services/analyze/types";
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 const PAGE = 1;
 
-const headerItem: StringifyProperties<IFileType> = {
+const headerItem: StringifyProperties<IMimeType> = {
   id: "",
-  file_type: "تایپ فایل",
-  allowed_for_upload: "مجاز برای آپلود",
-  allowed_for_download: "مجاز برای دانلود",
-  is_active: "فعال",
+  extension_list: "پسوند فایل",
+  mimetype_list: "رشته فایل",
   created_at: "تاریخ ایجاد",
-  updated_at: "تاریخ بروزرسانی",
+  updated_at: "",
+  file: "",
 };
 
-export function DlpConfig() {
+export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>("");
-  const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
+  const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
   const endpoint = createAPIEndpoint({
-    endPoint: E_WHITE_LIST_FILES,
+    endPoint: E_ANALYZE_MIME_TYPE,
     pageSize: PAGE_SIZE,
     currentPage,
     filterQuery,
   });
-  const { data, error, isLoading, mutate } = useSWR<
-    IResponsePagination<IFileType>
-  >(endpoint, http.fetcherSWR);
+
+  const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
+    endpoint,
+    http_analyses.fetcherSWR
+  );
 
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
@@ -65,12 +65,6 @@ export function DlpConfig() {
     debouncedSetFilterQuery(event.target.value);
   };
 
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
-
-  if (error) return <div>Failed to load data.</div>;
-
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -79,10 +73,10 @@ export function DlpConfig() {
   const countPage = data?.data?.count || 0;
 
   const handleOnDeleteFileType = async () => {
-    if (!activeFileType) return;
+    if (!activeAdmin) return;
     setLoadingButtonModal(true);
 
-    await API_DELETE_FILE_TYPE(activeFileType.id as number)
+    await API_ANALYZE_MIME_TYPE_DELETE(activeAdmin?.id as number)
       .then(() => {
         mutate();
         toast.success("با موفقیت حذف شد");
@@ -96,6 +90,10 @@ export function DlpConfig() {
       });
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   const handleCloseUpdateModal = (isMutate?: boolean) => {
     if (isMutate) {
       mutate();
@@ -105,50 +103,57 @@ export function DlpConfig() {
 
   function handleOnClickActions(
     action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IFileType> | IFileType
+    fileType?: StringifyProperties<IMimeType> | IMimeType
   ): any {
-    setActiveFileType(fileType as IFileType);
+    setActiveAdmin(fileType as IMimeType);
+
     if (action === "delete") {
       setDeleteModal(true);
       return;
     }
+
     if (action === "edit") {
       setOpenUpdateModal(true);
       return;
     }
+
+    // if (daas !== undefined && typeof daas !== "string") {
+    //   setActionOnClick(action);
+    //   setActiveDaas(daas);
+    //   setDeleteModal(true);
+    // }
   }
 
-  const handleCreateNewType = () => {
-    activeFileType && setActiveFileType(undefined);
+  const handleCreateAdmin = () => {
+    activeAdmin && setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
-
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
         <SearchInput
-          name="search-dlp-config"
+          name="search-extension"
           value={filterQuery}
           onChange={handleFilterChange}
           className="w-1/4"
         />
-        <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">
+        <ToolTip tooltip="اضافه کردن رشته فایل جدید" position="right">
           <IconButton
             icon={plusIcon}
             color="teal"
             size="lg"
-            onClick={handleCreateNewType}
+            onClick={handleCreateAdmin}
           />
         </ToolTip>
       </div>
-      <FileTypeCard fileType={headerItem} isHeader />
+      <MimeTypeCard mimeType={headerItem} isHeader />
       {isLoading ? (
         <LoadingSpinner />
       ) : listWhiteList.length > 0 ? (
         listWhiteList.map((item) => (
-          <FileTypeCard
+          <MimeTypeCard
             key={item.id}
-            fileType={item}
+            mimeType={item}
             onClickActions={handleOnClickActions}
           />
         ))
@@ -182,12 +187,7 @@ export function DlpConfig() {
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         type="success"
-        content={
-          <UpdateFileTypeModal
-            handleClose={handleCloseUpdateModal}
-            fileType={activeFileType}
-          />
-        }
+        content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
       />
     </div>
   );

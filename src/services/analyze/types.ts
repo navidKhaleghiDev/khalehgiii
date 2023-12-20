@@ -44,3 +44,12 @@ export interface IUba {
 export interface IScanStats {
   info: { today_scans: number; remaining_days: number };
 }
+
+export interface IMimeType {
+  created_at: string;
+  extension_list: string;
+  file: string | null;
+  id: number;
+  mimetype_list: string;
+  updated_at: string;
+}
