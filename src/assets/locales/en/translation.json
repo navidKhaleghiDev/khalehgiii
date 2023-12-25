@@ -1,0 +1,71 @@
+{
+	"login": {
+		"loginTitle": "Please enter your email and password",
+		"login": "Login"
+	},
+	"header": {
+		"user": "User"
+	},
+	"table": {
+		"accessTime": "Access Time",
+		"hours": "Hours",
+		"today": "Today",
+		"usedTime": "Used Time",
+		"leftTime": "Remaining Time",
+		"extendTime": "Extend Time",
+		"userName": "Username",
+		"email": "Email",
+		"firstNameLastName": "First and Last Name",
+		"active": "Active",
+		"metaAdmin": "Super Admin",
+		"dateOfCreated": "Creation Date",
+		"lastLogin": "Last Login",
+		"accessSettingsTime": "Time Access Settings",
+		"desktop": "Desktop",
+		"desktopV": "Desktop Version",
+		"status": "Status",
+		"defaultSetting": "Default Settings",
+		"search": "Search",
+		"addNewAdmin": "Add New Admin",
+		"nameOfTheUser": "User Name",
+		"dateOfUpdated": "Update Date",
+		"realName": "Real Name",
+		"updatedNames": "Updated Names",
+		"unauthorizedBehavior": "Unauthorized Behavior",
+		"blocked": "Blocked",
+		"action": "Action",
+		"nothingFound": "Nothing Found",
+		"observeUserBehavior": "Observe User Behavior",
+		"numberOfScans": "Number of Scans",
+		"userStatus": "User Status",
+		"fileName": "File Name",
+		"type": "Type",
+		"resultScannerStatus": "Result / Scanner Status",
+		"moreDetail": "More Details",
+		"removeSelected": "Remove Selected",
+		"daily": "Daily",
+		"monthly": "Monthly",
+		"temporary": "Temporary",
+		"permanently": "Permanently"
+	},
+	"dashboard": {
+		"adminLists": "Admin Lists",
+		"desktopLists": "Desktop Lists",
+		"adminPanel": "Admin Panel",
+		"fileScanReports": "File Scan Reports",
+		"numberOfTodayScans": "Number of Scans Done Today",
+		"dayLeft": "Days Left",
+		"setting": "Settings",
+		"updateSetting": "Update Settings",
+		"updating": "Updating"
+	},
+	"global": {
+		"userName": "Username",
+		"password": "Password",
+		"requiredField": "This field is required.",
+		"successfullyLoggedIn": "You have successfully logged in",
+		"exit": "Exit",
+		"setting": "Settings",
+		"pageBack": "Previous Page"
+	}
+}
