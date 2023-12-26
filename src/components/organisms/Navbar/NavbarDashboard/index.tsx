@@ -14,11 +14,15 @@ import { http } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@context/settings/languageContext';
 
 export function NavbarDashboard() {
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 	const [openModal, setOpenModal] = useState(false);
 	const { user, setUser } = useUserContext();
+	const { changeLanguage } = useLanguage();
 
 	const logout = () => {
 		setUser(null);
@@ -59,7 +63,7 @@ export function NavbarDashboard() {
 							size="xl"
 							className="ml-4 rounded-3xl"
 							color="teal"
-							onClick={() => setOpenModal(true)}
+							onClick={() => changeLanguage()}
 						/>
 					</ToolTip>
 					<div>
@@ -67,7 +71,7 @@ export function NavbarDashboard() {
 							{user?.email}
 						</Typography>
 						<Typography color="white" size="caption">
-							{user?.is_superuser ? 'ادمین' : 'کاربر'}
+							{user?.is_superuser ? t('header.admin') : t('header.user')}
 						</Typography>
 					</div>
 
@@ -90,7 +94,7 @@ export function NavbarDashboard() {
 			<Modal
 				open={openModal}
 				setOpen={setOpenModal}
-				title="تغیر نام کاربری و گذرواژه"
+				title={t('global.changeNameAndPassword')}
 				content={<ChangePasswordForm user={user} logout={logout} />}
 				type="success"
 			/>

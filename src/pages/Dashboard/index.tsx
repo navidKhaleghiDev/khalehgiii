@@ -6,16 +6,18 @@ import { Daas } from './Daas';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { DlpConfig } from './DlpConfig';
 import { DaasConfig } from './DaasConfig';
+import { useTranslation } from 'react-i18next';
 
 export function DashboardPage() {
 	const { user } = useUserContext();
+	const { t } = useTranslation();
 
 	return !user?.is_superuser ? (
 		<Daas src={`http://${user?.base_url}:${user?.http_port}`} />
 	) : (
 		<ContainerDashboard>
 			<DashboardCards />
-			<BaseTabs label="تنظیمات">
+			<BaseTabs label={t('global.setting')}>
 				<BaseTab label="Keycloak">
 					<SettingsKeycloak user={user} />
 				</BaseTab>

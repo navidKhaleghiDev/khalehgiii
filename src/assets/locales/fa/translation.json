@@ -4,7 +4,8 @@
 		"login": "وررود به حساب کاربری"
 	},
 	"header": {
-		"user": "کاربر"
+		"user": "کاربر",
+		"admin": "ادمین"
 	},
 	"tabel": {
 		"accessTime": "زمان دسترسی",
@@ -46,7 +47,10 @@
 		"daily": "روزانه",
 		"monthly": "ماهانه",
 		"temporary": "موقت",
-		"permanently": "دائمی"
+		"permanently": "دائمی",
+		"fileType": "تایپ فایل",
+		"allowedForUpload": "مجاز برای آپلود",
+		"allowedForDownload": "مجاز برای دانلود"
 	},
 	"dashboard": {
 		"adminLists": "لیست ادمین ها",
@@ -57,7 +61,9 @@
 		"dayLeft": "روز های باقیمانده",
 		"setting": "تنظیمات",
 		"updateSetting": "بروزرسانی تنظیمات",
-		"updating": "بروزرسانی"
+		"update": "بروزرسانی",
+		"saveSettings": "ذخیره تنظیمات",
+		"preparationTheDesktop": "در حال آماده‌سازی دسکتاپ"
 	},
 	"global": {
 		"userName": "نام کاربری",
@@ -66,6 +72,12 @@
 		"successfulyLogedIn": "شما با موفقیت وارد شدید",
 		"exit": "خروج",
 		"setting": "تنظیمات",
-		"pageBack": "صفحه قبل"
+		"pageBack": "صفحه قبل",
+		"changeNameAndPassword": "تغیر نام کاربری و گذرواژه",
+		"sucessfulyUpdated": "باموفقیت بروزرسانی شد.",
+		"sureAboutThis": "از انجام این کار مطمئن هستید؟",
+		"yes": "بله",
+		"no": "No",
+		"sucessfylySaved": "باموفقیت ذخیره شد"
 	}
 }

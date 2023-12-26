@@ -2,8 +2,8 @@ import i18n, { t } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './assets/locales/en/translation.json';
 import fa from './assets/locales/fa/translation.json';
+const lang = localStorage.getItem('lang');
 
-// const lang = localStorage.getItem('lang');
 i18n
 	.use(initReactI18next) // passes i18n down to react-i18next
 	.init({
@@ -18,7 +18,7 @@ i18n
 				translation: fa,
 			},
 		},
-		lng: 'fa', // if you're using a language detector, do not define the lng option
+		lng: lang || 'fa', // if you're using a language detector, do not define the lng option
 		// fallbackLng: 'en',
 
 		interpolation: {

@@ -1,10 +1,11 @@
 {
 	"login": {
 		"loginTitle": "Please enter your email and password",
-		"login": "Login"
+		"login": "Login to Your User Account"
 	},
 	"header": {
-		"user": "User"
+		"user": "User",
+		"admin": "admin"
 	},
 	"table": {
 		"accessTime": "Access Time",
@@ -46,7 +47,10 @@
 		"daily": "Daily",
 		"monthly": "Monthly",
 		"temporary": "Temporary",
-		"permanently": "Permanently"
+		"permanently": "Permanently",
+		"fileType": "File Type",
+		"allowedForUpload": "Allowed For Upload",
+		"allowedForDownload": "Allowed For Download"
 	},
 	"dashboard": {
 		"adminLists": "Admin Lists",
@@ -57,7 +61,9 @@
 		"dayLeft": "Days Left",
 		"setting": "Settings",
 		"updateSetting": "Update Settings",
-		"updating": "Updating"
+		"update": "Update",
+		"saveSettings": "Save Settings",
+		"preparationTheDesktop": "Preparation the Desktop"
 	},
 	"global": {
 		"userName": "Username",
@@ -66,6 +72,12 @@
 		"successfullyLoggedIn": "You have successfully logged in",
 		"exit": "Exit",
 		"setting": "Settings",
-		"pageBack": "Previous Page"
+		"pageBack": "Previous Page",
+		"changeNameAndPassword": "Change Name And  Password",
+		"sucessfulyUpdated": "Sucessfuly Updated",
+		"sureAboutThis": "Are You Sure About This",
+		"yes": "Yes",
+		"no": "خیر",
+		"sucessfylySaved": "Sucessfyly Saved"
 	}
 }

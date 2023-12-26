@@ -18,23 +18,20 @@ import { ILoginFieldValues } from '../types';
 import { loginString as strings } from './string';
 
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@context/settings/languageContext';
 
 export function LoginForm() {
 	const [error, setError] = useState<string | null>(null);
 	const [loadingButton, setLoadingButton] = useState(false);
-	const [lang, setLang] = useState('fa');
+	const { changeLanguage } = useLanguage();
+
 	const { setUser } = useUserContext();
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	const navigate = useNavigate();
 	const { control, handleSubmit } = useForm<ILoginFieldValues>({
 		mode: 'onChange',
 	});
-
-	const changeLanguage = () => {
-		lang === 'fa' ? setLang('en') : setLang('fa');
-		i18n.changeLanguage(lang);
-	};
 
 	const handelGetProfile = async () => {
 		await API_USERS_PROFILE()
@@ -79,7 +76,7 @@ export function LoginForm() {
 				<Avatar icon={userIcon} intent="grey" size="lg" />
 			</div>
 			<Typography color="neutral" size="h5" className="mb-5">
-				{strings.enterEmailAndPass}
+				{t('login.loginTitle')}
 			</Typography>
 			<BaseButton label="change language " onClick={changeLanguage} />
 			{/* <div>
@@ -111,7 +108,7 @@ export function LoginForm() {
 					name="email"
 					endIcon={userIcon}
 				/>
-				<PasswordInput name="password" control={control} placeholder="گذرواژه" />
+				<PasswordInput name="password" control={control} placeholder={t('global.password')} />
 				<BaseButton
 					label={t('login.login')}
 					endIcon={signInBoldIcon}
