@@ -21,20 +21,20 @@ import ToolTip from '@ui/atoms/Tooltip';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import React from 'react';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
 
-const headerItem: StringifyProperties<IFileType> = {
-	id: '',
-	file_type: t('tabel.fileType'),
-	allowed_for_upload: t('tabel.allowedForUpload'),
-	allowed_for_download: t('tabel.allowedForDownload'),
-	is_active: t('tabel.active'),
-	created_at: t('tabel.dateOfCreated'),
-	updated_at: t('tabel.dateOfUpdated'),
-};
+// const headerItem: StringifyProperties<IFileType> = {
+// 	id: '',
+// 	file_type: t('tabel.fileType'),
+// 	allowed_for_upload: t('tabel.allowedForUpload'),
+// 	allowed_for_download: t('tabel.allowedForDownload'),
+// 	is_active: t('tabel.active'),
+// 	created_at: t('tabel.dateOfCreated'),
+// 	updated_at: t('tabel.dateOfUpdated'),
+// };
 
 export function DlpConfig() {
 	const [currentPage, setCurrentPage] = useState<number>(PAGE);
@@ -43,6 +43,17 @@ export function DlpConfig() {
 	const [deleteModal, setDeleteModal] = useState(false);
 	const [openUpdateModal, setOpenUpdateModal] = useState(false);
 	const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+	const { t } = useTranslation();
+
+	const headerItem = {
+		id: '',
+		file_type: t('tabel.fileType'),
+		allowed_for_upload: t('tabel.allowedForUpload'),
+		allowed_for_download: t('tabel.allowedForDownload'),
+		is_active: t('tabel.active'),
+		created_at: t('tabel.dateOfCreated'),
+		updated_at: t('tabel.dateOfUpdated'),
+	};
 
 	const endpoint = createAPIEndpoint({
 		endPoint: E_WHITE_LIST_FILES,
