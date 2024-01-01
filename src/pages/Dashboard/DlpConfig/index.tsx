@@ -98,7 +98,7 @@ export function DlpConfig() {
 		await API_DELETE_FILE_TYPE(activeFileType.id as number)
 			.then(() => {
 				mutate();
-				toast.success('با موفقیت حذف شد');
+				toast.success(t('global.successfullyRemoved'));
 				setDeleteModal(false);
 			})
 			.catch((err) => {
@@ -172,12 +172,12 @@ export function DlpConfig() {
 				type="error"
 				title="از انجام این کار مطمئن هستید؟"
 				buttonOne={{
-					label: 'بله',
+					label: t('global.yes'),
 					onClick: handleOnDeleteFileType,
 					loading: loadingButtonModal,
 				}}
 				buttonTow={{
-					label: 'خیر',
+					label: t('global.no'),
 					onClick: () => setDeleteModal(false),
 					color: 'red',
 				}}

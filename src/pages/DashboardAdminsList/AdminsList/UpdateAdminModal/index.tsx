@@ -36,7 +36,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     if (data.id) {
       await API_UPDATE_USER(data as IUser, data?.id as number)
         .then(() => {
-          toast.success("با موفقیت بروزرسانی شد.");
+          toast.success("بt("global.sucessfulyUpdated").");
           handleClose(true);
         })
         .catch((err) => {

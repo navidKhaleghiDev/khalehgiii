@@ -7,7 +7,7 @@
 		"user": "کاربر",
 		"admin": "ادمین"
 	},
-	"tabel": {
+	"table": {
 		"accessTime": "زمان دسترسی",
 		"hours": "ساعت",
 		"today": "امروز",
@@ -45,12 +45,16 @@
 		"moreDetail": "جزییات بیشتر",
 		"removeSelected": "حذف انتخاب",
 		"daily": "روزانه",
+		"weekly": "هفتگی",
 		"monthly": "ماهانه",
 		"temporary": "موقت",
 		"permanently": "دائمی",
 		"fileType": "تایپ فایل",
 		"allowedForUpload": "مجاز برای آپلود",
-		"allowedForDownload": "مجاز برای دانلود"
+		"allowedForDownload": "مجاز برای دانلود",
+		"thisWeek": "این هفته",
+		"thisMonth": "این ماه",
+		"accessSetting": "تنظیمات دسترسی"
 	},
 	"dashboard": {
 		"adminLists": "لیست ادمین ها",
@@ -69,7 +73,7 @@
 		"userName": "نام کاربری",
 		"password": "گذرواژه",
 		"requiredField": "درج این فیلد ضروریست.",
-		"successfulyLogedIn": "شما با موفقیت وارد شدید",
+		"successfullyLogedIn": "شما با موفقیت وارد شدید",
 		"exit": "خروج",
 		"setting": "تنظیمات",
 		"pageBack": "صفحه قبل",
@@ -77,7 +81,30 @@
 		"sucessfulyUpdated": "باموفقیت بروزرسانی شد.",
 		"sureAboutThis": "از انجام این کار مطمئن هستید؟",
 		"yes": "بله",
-		"no": "No",
-		"sucessfylySaved": "باموفقیت ذخیره شد"
+		"no": "خیر",
+		"sucessfylySaved": "باموفقیت ذخیره شد",
+		"lastName": "نام خانوادگی",
+		"name": "نام",
+		"repeatNewPassword": "تکرار گذرواژه جدید",
+		"email": "ایمیل",
+		"metaAdmin": "سوپر ادمین",
+		"confirm": "ثبت",
+		"cancell": "لغو",
+		"successfullySet": "با موفقیت تنظیم شد",
+		"hour": "ساعت",
+		"restart": "شروع مجدد",
+		"select": "انتخاب کنید",
+		"selectHour": "ساعت را وارد کنید",
+		"logedInSuccessfully": ".ورود باموفقیت انجام شد",
+		"successfullyRemoved": "با موفقیت حذف شد",
+		"minute": "دقیقه",
+		"successfullyAdded": "با موفقیت اضافه شد",
+		"areYouSure": "آیا مطمین هستید؟",
+		"restartTimeUsed": "شروع مجدد زمان استفاده شده"
+	},
+	"title": {
+		"systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
+		"systemAdminDescription2": "2- توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
+		"acessTimeModalDescription1": "زمان دسترسی این کاربر به حالت اول بر می گردد. از انجام این کار مطمئن هستید؟"
 	}
 }

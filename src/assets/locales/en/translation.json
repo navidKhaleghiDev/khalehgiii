@@ -45,12 +45,16 @@
 		"moreDetail": "More Details",
 		"removeSelected": "Remove Selected",
 		"daily": "Daily",
+		"weekly": "Weekly",
 		"monthly": "Monthly",
 		"temporary": "Temporary",
 		"permanently": "Permanently",
 		"fileType": "File Type",
 		"allowedForUpload": "Allowed For Upload",
-		"allowedForDownload": "Allowed For Download"
+		"allowedForDownload": "Allowed For Download",
+		"thisWeek": " This Week",
+		"thisMonth": "This Month",
+		"accessSetting": "Access Setting"
 	},
 	"dashboard": {
 		"adminLists": "Admin Lists",
@@ -75,9 +79,32 @@
 		"pageBack": "Previous Page",
 		"changeNameAndPassword": "Change Name And  Password",
 		"sucessfulyUpdated": "Sucessfuly Updated",
-		"sureAboutThis": "Are You Sure About This",
+		"sureAboutThis": "Are You Sure About This ?",
 		"yes": "Yes",
-		"no": "خیر",
-		"sucessfylySaved": "Sucessfyly Saved"
+		"no": "No",
+		"sucessfylySaved": "Sucessfyly Saved",
+		"lastName": "Last Name",
+		"name": "Name",
+		"repeatNewPassword": "Repeat New Password",
+		"email": "Email",
+		"metaAdmin": "Super Admin",
+		"confirm": "Confirm",
+		"cancell": "Cancell",
+		"successfullySet": "Successfully Set",
+		"hour": "Hour",
+		"restart": "Restart",
+		"acessTimeModalDescription1": "This user's access time will be reset. Are you sure you want to do this?",
+		"select": "Select",
+		"selectHour": "Select The Hour",
+		"logedInSuccessfully": "You Loged in Successfully.",
+		"successfullyRemoved": "Successfully Removed",
+		"minute": "Minute",
+		"successfullyAdded": "Successfully Added",
+		"areYouSure": "Are You Sure",
+		"restartTimeUsed": "Restart Time used"
+	},
+	"title": {
+		"systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
+		"systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins."
 	}
 }

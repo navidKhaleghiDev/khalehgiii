@@ -49,7 +49,7 @@ export function DaasConfigForm({ control }: PropsType) {
           id="time_limit_duration"
           name="time_limit_duration"
           options={timeLimitDurationOptions}
-          placeHolder="انتخاب کنید"
+          placeHolder=t("global.select")
           containerClassName="col-span-6 xl:col-span-3"
           rules={{
             required: regexPattern.required,

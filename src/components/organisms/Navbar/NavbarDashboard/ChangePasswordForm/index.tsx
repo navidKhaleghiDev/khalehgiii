@@ -43,7 +43,7 @@ export function ChangePasswordForm({ user, logout }: any) {
 
     await API_UPDATE_USER({ email, password }, `${user.id}`)
       .then(() => {
-        toast.success("با موفقیت بروزرسانی شد. لطفا مجدد وارد شوید");
+        toast.success("بt("global.sucessfulyUpdated"). لطفا مجدد وارد شوید");
         logout();
       })
       .catch((err) => {
