@@ -101,7 +101,10 @@
 		"minute": "Minute",
 		"successfullyAdded": "Successfully Added",
 		"areYouSure": "Are You Sure",
-		"restartTimeUsed": "Restart Time used"
+		"restartTimeUsed": "Restart Time used",
+		"pleaseEnterAgain": "Please Enter Again",
+		"newPassword": "New Password",
+		"repeatNewPasswordNotSame": "Repeat New Password Is Not The Same."
 	},
 	"title": {
 		"systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

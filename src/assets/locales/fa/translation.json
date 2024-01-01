@@ -100,7 +100,10 @@
 		"minute": "دقیقه",
 		"successfullyAdded": "با موفقیت اضافه شد",
 		"areYouSure": "آیا مطمین هستید؟",
-		"restartTimeUsed": "شروع مجدد زمان استفاده شده"
+		"restartTimeUsed": "شروع مجدد زمان استفاده شده",
+		"pleaseEnterAgain": "لطفا مجدد وارد شوید",
+		"newPassword": "گذرواژه جدید",
+		"repeatNewPasswordNotSame": "تکرار گذرواژه جدید یکسان نیست"
 	},
 	"title": {
 		"systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
