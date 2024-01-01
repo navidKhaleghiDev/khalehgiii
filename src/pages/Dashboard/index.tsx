@@ -6,6 +6,7 @@ import { Daas } from "./Daas";
 import { BaseTab, BaseTabs } from "@ui/atoms/BaseTabs";
 import { DlpConfig } from "./DlpConfig";
 import { DaasConfig } from "./DaasConfig";
+import { SettingsMalware } from "./SettingsMalware";
 
 export function DashboardPage() {
   const { user } = useUserContext();
@@ -16,7 +17,7 @@ export function DashboardPage() {
     <ContainerDashboard>
       <DashboardCards />
       <BaseTabs label="تنظیمات">
-        <BaseTab label="Keycloak">
+        <BaseTab label="application">
           <SettingsKeycloak user={user} />
         </BaseTab>
         <BaseTab label="Daas">
@@ -24,6 +25,9 @@ export function DashboardPage() {
         </BaseTab>
         <BaseTab label="DLP">
           <DlpConfig />
+        </BaseTab>
+        <BaseTab label="malware">
+          <SettingsMalware user={user} />
         </BaseTab>
       </BaseTabs>
     </ContainerDashboard>

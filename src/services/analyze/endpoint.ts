@@ -9,6 +9,9 @@ export const E_ANALYZE_MIME_TYPE_DELETE = (id: number) =>
 
 export const E_ANALYZE_SCAN_STATS = "analyze/scan_stats/";
 
+export const E_ANALYZE_LOG = "analyze/log/";
+export const E_ANALYZE_LOG_UPDATE = (id: number) => `${E_ANALYZE_LOG}${id}/`;
+
 export const E_ANALYZE_SCAN_PAGINATION = (
   userEmail: string,
   { pageSize, page, filter }: IPagination

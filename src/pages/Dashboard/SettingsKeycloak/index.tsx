@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BaseButton, BaseInput } from "@ui/atoms";
+import { BaseButton, BaseInput, Typography } from "@ui/atoms";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { regexPattern } from "@ui/atoms/Inputs";
@@ -12,7 +12,17 @@ import {
 import { IUser } from "@src/services/users/types";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
+import { Divider } from "@ui/atoms/Divider";
 
+const TitleSection = ({ label }: { label: string }) => (
+  <Typography
+    color="neutral"
+    size="h5"
+    className="w-full my-4 col-span-12 text-left uppercase"
+  >
+    {label}
+  </Typography>
+);
 export function SettingsKeycloak({ user }: { user: IUser | null }) {
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -84,14 +94,10 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
       className=" w-full flex flex-col items-center justify-between"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      {/* <Typography
-        color="neutral"
-        size="h5"
-        className="w-full my-8 col-span-12 text-right"
-      >
-        تنظیمات مربوط به keycloak خود را وارد نمایید
-      </Typography> */}
-      <div className="grid w-full grid-cols-12 gap-16" dir="ltr">
+      <TitleSection label="keycloak" />
+
+      <Divider />
+      <div className="grid w-full grid-cols-12 gap-16 mt-4" dir="ltr">
         <div className="col-span-4">
           <BaseInput
             id="keycloak_base_url"
@@ -149,7 +155,7 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
             fullWidth
           />
         </div>
-        <div className="col-span-4">
+        {/* <div className="col-span-4">
           <BaseInput
             id="daas_provider_baseurl"
             name="daas_provider_baseurl"
@@ -163,7 +169,7 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
             ltrLabel
             fullWidth
           />
-        </div>
+        </div> */}
         <div className="col-span-4">
           <BaseInput
             id="keycloak_port"
@@ -184,6 +190,62 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
             name="keycloak_ssl"
             control={control}
             label="keycloak ssl"
+          />
+        </div>
+      </div>
+      <TitleSection label="log server" />
+
+      <Divider />
+      <div className="grid w-full grid-cols-12 gap-16 mt-4" dir="ltr">
+        <div className="col-span-4">
+          <BaseInput
+            id="log_server_ip"
+            name="log_server_ip"
+            rules={{
+              required: regexPattern.required,
+              pattern: regexPattern.ip,
+            }}
+            control={control}
+            label="log server ip"
+            placeholder="192.168.1.1"
+            ltrLabel
+            fullWidth
+          />
+        </div>
+        <div className="col-span-4">
+          <BaseInput
+            id="log_server_port"
+            name="log_server_port"
+            rules={{
+              required: regexPattern.required,
+              // pattern: regexPattern.ip,
+            }}
+            control={control}
+            label="log server port"
+            placeholder="8000"
+            ltrLabel
+            fullWidth
+          />
+        </div>
+      </div>
+
+      <TitleSection label="manager" />
+
+      <Divider />
+      <div className="grid w-full grid-cols-12 gap-16 mt-4" dir="ltr">
+        <div className="col-span-4">
+          <BaseInput
+            id="daas_provider_baseurl"
+            name="daas_provider_baseurl"
+            rules={{
+              required: regexPattern.required,
+              // pattern: regexPattern.ip,
+            }}
+            control={control}
+            label="daas provider baseurl"
+            placeholder="192.168.2.21"
+            ltrLabel
+            fullWidth
           />
         </div>
       </div>

@@ -53,3 +53,9 @@ export interface IMimeType {
   mimetype_list: string;
   updated_at: string;
 }
+
+export interface IAddConfigAnalyze {
+  id?: number | null;
+  log_server_host: string;
+  log_server_port: number;
+}
