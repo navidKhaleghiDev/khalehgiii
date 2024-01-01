@@ -28,12 +28,12 @@ const PAGE = 1;
 
 // const headerItem: StringifyProperties<IFileType> = {
 // 	id: '',
-// 	file_type: t('tabel.fileType'),
-// 	allowed_for_upload: t('tabel.allowedForUpload'),
-// 	allowed_for_download: t('tabel.allowedForDownload'),
-// 	is_active: t('tabel.active'),
-// 	created_at: t('tabel.dateOfCreated'),
-// 	updated_at: t('tabel.dateOfUpdated'),
+// 	file_type: t('table.fileType'),
+// 	allowed_for_upload: t('table.allowedForUpload'),
+// 	allowed_for_download: t('table.allowedForDownload'),
+// 	is_active: t('table.active'),
+// 	created_at: t('table.dateOfCreated'),
+// 	updated_at: t('table.dateOfUpdated'),
 // };
 
 export function DlpConfig() {
@@ -47,12 +47,12 @@ export function DlpConfig() {
 
 	const headerItem = {
 		id: '',
-		file_type: t('tabel.fileType'),
-		allowed_for_upload: t('tabel.allowedForUpload'),
-		allowed_for_download: t('tabel.allowedForDownload'),
-		is_active: t('tabel.active'),
-		created_at: t('tabel.dateOfCreated'),
-		updated_at: t('tabel.dateOfUpdated'),
+		file_type: t('table.fileType'),
+		allowed_for_upload: t('table.allowedForUpload'),
+		allowed_for_download: t('table.allowedForDownload'),
+		is_active: t('table.active'),
+		created_at: t('table.dateOfCreated'),
+		updated_at: t('table.dateOfUpdated'),
 	};
 
 	const endpoint = createAPIEndpoint({
