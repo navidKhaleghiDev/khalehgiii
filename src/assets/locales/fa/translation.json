@@ -104,7 +104,11 @@
 		"pleaseEnterAgain": "لطفا مجدد وارد شوید",
 		"newPassword": "گذرواژه جدید",
 		"repeatNewPasswordNotSame": "تکرار گذرواژه جدید یکسان نیست",
-		"language": "زبان"
+		"language": "زبان",
+		"callServicess": "با پشتیبانی تماس بگیرید.",
+		"dontHaveAccess": "شما به این بخش دسترسی ندارید",
+		"needAuthentication": "شما نیاز به احراز هویت دارید",
+		"limitedNumberRequest": "تعداد درخواست‌های شما محدود شده است. یک دقیقه بعد مجددا تلاش کنید."
 	},
 	"title": {
 		"systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
