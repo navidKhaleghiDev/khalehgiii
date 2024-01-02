@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-throw-literal */
 /* eslint-disable class-methods-use-this */
-
 import axios, {
 	AxiosError,
 	AxiosInstance,
@@ -12,6 +11,8 @@ import axios, {
 import cookie from 'js-cookie';
 import { toast } from 'react-toastify';
 import { t } from 'i18next';
+
+const lang = localStorage.getItem('lang');
 
 enum StatusCode {
 	Unauthorized = 401,
@@ -30,7 +31,7 @@ export const STORAGE_KEY_REFRESH_TOKEN = 'r';
 const headers: Readonly<Record<string, string | boolean>> = {
 	Accept: 'application/json',
 	'Content-Type': 'application/json',
-	'Accept-Language': 'fa',
+	'Accept-Language': lang || 'fa',
 	// 'Content-Type': 'application/json; charset=utf-8',
 	// 'Access-Control-Allow-Credentials': true,
 	// 'X-Requested-With': 'XMLHttpRequest',
