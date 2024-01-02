@@ -5,7 +5,7 @@ const storedLang = localStorage.getItem('lang');
 
 interface LanguageContextProps {
 	lang: string;
-	changeLanguage: () => void;
+	changeLanguage: (lang: string) => void;
 	dir: 'ltr' | 'rtl' | undefined;
 }
 
@@ -20,12 +20,11 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 		return storedLang || 'fa';
 	});
 	const newLang = lang === 'fa' ? 'en' : 'fa';
-	console.log(lang);
 
-	const changeLanguage = () => {
-		setLang(newLang);
-		i18next.changeLanguage(newLang);
-		localStorage.setItem('lang', newLang);
+	const changeLanguage = (l: string) => {
+		setLang(l || newLang);
+		i18next.changeLanguage(l || newLang);
+		localStorage.setItem('lang', l || newLang);
 	};
 	const dir = lang === 'fa' ? 'rtl' : 'ltr';
 	return (

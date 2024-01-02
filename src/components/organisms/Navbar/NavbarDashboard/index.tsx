@@ -5,6 +5,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { IconButton } from '@ui/atoms/BaseButton';
 import ToolTip from '@ui/atoms/Tooltip';
 import userIcon from '@iconify-icons/ph/user';
+import languageIcon from '@iconify-icons/ph/globe-hemisphere-west-fill';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
 
@@ -16,13 +17,27 @@ import { ChangePasswordForm } from './ChangePasswordForm';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
+import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
+
+export const languageOptions = [
+	{
+		id: 'fa',
+		label: 'farsi',
+		value: 'farsi',
+	},
+	{
+		id: 'en',
+		label: 'english',
+		value: 'english',
+	},
+];
 
 export function NavbarDashboard() {
 	const navigate = useNavigate();
 	const { t } = useTranslation();
 	const [openModal, setOpenModal] = useState(false);
 	const { user, setUser } = useUserContext();
-	const { changeLanguage } = useLanguage();
+	const { changeLanguage, lang } = useLanguage();
 
 	const logout = () => {
 		setUser(null);
@@ -34,7 +49,7 @@ export function NavbarDashboard() {
 		<nav className="w-full bg-black px-8 2xl:container h-12">
 			<div className="flex items-center justify-between ">
 				<div className="flex items-center">
-					<ToolTip tooltip="خروج" position="bottom">
+					<ToolTip tooltip={t('global.exit')} position="bottom">
 						<IconButton
 							icon={signOutBoldIcon}
 							size="xl"
@@ -45,7 +60,7 @@ export function NavbarDashboard() {
 					</ToolTip>
 
 					{user?.is_superuser && (
-						<ToolTip tooltip="تنظیمات" position="bottom">
+						<ToolTip tooltip={t('global.setting')} position="bottom">
 							<IconButton
 								icon={gearIcon}
 								size="xl"
@@ -55,17 +70,14 @@ export function NavbarDashboard() {
 							/>
 						</ToolTip>
 					)}
-
 					<Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
-					<ToolTip tooltip="زبان" position="bottom">
-						<IconButton
-							icon={gearIcon}
-							size="xl"
-							className="ml-4 rounded-3xl"
-							color="teal"
-							onClick={() => changeLanguage()}
-						/>
-					</ToolTip>
+					<DropDownWithIcon
+						icon={languageIcon}
+						name={'language'}
+						size="ls"
+						onSelect={(l) => changeLanguage(l)}
+						options={languageOptions}
+					/>
 					<div>
 						<Typography weight="bold" color="white" size="caption">
 							{user?.email}

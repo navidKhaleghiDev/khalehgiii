@@ -1,4 +1,4 @@
-import { persianDateAndNumber, persianDayLabel } from '@src/helper/utils/dateUtils';
+import { dateAndNumber, dayLabel } from '@src/helper/utils/dateUtils';
 import { Card } from './Card';
 import { useNavigate } from 'react-router-dom';
 import calendarCheckIcon from '@iconify-icons/ph/calendar-check';
@@ -19,11 +19,7 @@ export function DashboardCards() {
 	return (
 		<div className="grid w-full grid-cols-12 gap-16 mb-16">
 			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={calendarCheckIcon}
-					title={persianDayLabel()}
-					description={persianDateAndNumber()}
-				/>
+				<Card icon={calendarCheckIcon} title={dayLabel()} description={dateAndNumber()} />
 			</div>
 
 			{user?.is_meta_admin && (
