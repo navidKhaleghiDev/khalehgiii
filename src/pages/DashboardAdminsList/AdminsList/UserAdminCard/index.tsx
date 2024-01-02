@@ -70,7 +70,7 @@ export function UserAdminCard({ user, isHeader, onClickActions }: UserAdminCardP
 				<Typography
 					size="body3"
 					type="div"
-					className="px-3 w-1/12 flex justify-center items-center uppercase">
+					className="px-3 w-2/12 flex justify-center items-center uppercase">
 					{booleanIcon(user.is_meta_admin)}
 				</Typography>
 

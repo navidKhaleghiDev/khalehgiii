@@ -107,7 +107,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				<Typography
 					size="body3"
 					type="div"
-					className="px-3 w-1/12 text-center break-words uppercase">
+					className="px-3 w-2/12 text-center break-words uppercase">
 					{daas.daas_version}
 				</Typography>
 
