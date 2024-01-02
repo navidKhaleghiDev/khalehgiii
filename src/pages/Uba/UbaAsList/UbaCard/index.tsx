@@ -50,7 +50,7 @@ export function UbaCard({ uba, isHeader }: ProductCardProps) {
 					)}
 				</div>
 
-				<Typography size="body3" type="div" className="px-3 w-1/12 text-center">
+				<Typography size="body3" type="div" className="px-3 w-2/12 text-center">
 					{uba.malbehave_count}
 				</Typography>
 
