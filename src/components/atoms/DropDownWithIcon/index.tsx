@@ -55,7 +55,7 @@ export function DropDownWithIcon<T extends FieldValues>({
 				onClick={toggleOpen}
 				size="xl"
 				className="ml-4 rounded-3xl"
-				color="white"
+				color="teal"
 			/>
 			<div className={optionSelectStyles({ isShow: state.openOptions, fullWidth, size })}>
 				{options.map((option: IOptionSelect) => (

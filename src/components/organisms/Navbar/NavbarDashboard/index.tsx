@@ -71,7 +71,6 @@ export function NavbarDashboard() {
 							/>
 						</ToolTip>
 					)}
-					<Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
 					<ToolTip tooltip={t('global.language')} position="right">
 						<DropDownWithIcon
 							icon={languageIcon}
@@ -81,6 +80,7 @@ export function NavbarDashboard() {
 							options={languageOptions}
 						/>
 					</ToolTip>
+					<Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
 					<div className={lang === 'en' ? 'ml-2' : 'none'}>
 						<Typography weight="bold" color="white" size="caption">
 							{user?.email}
