@@ -53,7 +53,7 @@ export function LoginForm() {
 					return;
 				}
 				setUser(data);
-				toast.success(t('global.logedInSuccessfuly'));
+				toast.success(t('global.successfullyLogedIn'));
 				navigate(ROUTES_PATH.dashboard);
 			})
 			.catch((err) => {

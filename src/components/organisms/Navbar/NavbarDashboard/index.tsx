@@ -38,6 +38,7 @@ export function NavbarDashboard() {
 	const [openModal, setOpenModal] = useState(false);
 	const { user, setUser } = useUserContext();
 	const { changeLanguage, lang } = useLanguage();
+	const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
 	const logout = () => {
 		setUser(null);
@@ -71,14 +72,16 @@ export function NavbarDashboard() {
 						</ToolTip>
 					)}
 					<Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
-					<DropDownWithIcon
-						icon={languageIcon}
-						name={'language'}
-						size="ls"
-						onSelect={(l) => changeLanguage(l)}
-						options={languageOptions}
-					/>
-					<div>
+					<ToolTip tooltip={t('global.language')} position="right">
+						<DropDownWithIcon
+							icon={languageIcon}
+							name={'language'}
+							size="ls"
+							onSelect={(l) => changeLanguage(l)}
+							options={languageOptions}
+						/>
+					</ToolTip>
+					<div className={lang === 'en' ? 'ml-2' : 'none'}>
 						<Typography weight="bold" color="white" size="caption">
 							{user?.email}
 						</Typography>
@@ -89,7 +92,7 @@ export function NavbarDashboard() {
 
 					{user ? (
 						user?.is_superuser ? null : (
-							<div className="mr-16">
+							<div className={timeStyle}>
 								<AccessTime />
 							</div>
 						)

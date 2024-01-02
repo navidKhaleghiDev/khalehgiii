@@ -73,7 +73,7 @@
 		"userName": "Username",
 		"password": "Password",
 		"requiredField": "This field is required.",
-		"successfullyLoggedIn": "You have successfully logged in",
+		"successfullyLogedIn": "You have successfully logged in",
 		"exit": "Exit",
 		"setting": "Settings",
 		"pageBack": "Previous Page",
@@ -104,7 +104,8 @@
 		"restartTimeUsed": "Restart Time used",
 		"pleaseEnterAgain": "Please Enter Again",
 		"newPassword": "New Password",
-		"repeatNewPasswordNotSame": "Repeat New Password Is Not The Same."
+		"repeatNewPasswordNotSame": "Repeat New Password Is Not The Same.",
+		"language": "Language"
 	},
 	"title": {
 		"systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
