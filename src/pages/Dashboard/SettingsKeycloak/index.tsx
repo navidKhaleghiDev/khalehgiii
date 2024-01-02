@@ -1,3 +1,5 @@
+
+
 import { useEffect, useState } from "react";
 import { BaseButton, BaseInput, Typography } from "@ui/atoms";
 import { useForm } from "react-hook-form";
@@ -13,6 +15,8 @@ import { IUser } from "@src/services/users/types";
 import { LoadingSpinner } from "@ui/molecules/Loading";
 import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
 import { Divider } from "@ui/atoms/Divider";
+import { useTranslation } from 'react-i18next';
+
 
 const TitleSection = ({ label }: { label: string }) => (
   <Typography
@@ -24,69 +28,72 @@ const TitleSection = ({ label }: { label: string }) => (
   </Typography>
 );
 export function SettingsKeycloak({ user }: { user: IUser | null }) {
-  const [loadingButton, setLoadingButton] = useState(false);
-  const [loading, setLoading] = useState(true);
+	const { t } = useTranslation();
+	const [loadingButton, setLoadingButton] = useState(false);
+	const [loading, setLoading] = useState(true);
 
-  const { control, handleSubmit, reset, getValues } = useForm<IAddConfig>({
-    mode: "onChange",
-    defaultValues: {
-      id: null,
-      keycloak_base_url: "",
-      keycloak_port: "",
-      keycloak_ssl: false,
-      keycloak_client_id: "",
-      keycloak_secret: "",
-      keycloak_realm: "",
-      daas_provider_baseurl: "",
-    },
-  });
+	const { control, handleSubmit, reset, getValues } = useForm<IAddConfig>({
+		mode: 'onChange',
+		defaultValues: {
+			id: null,
+			keycloak_base_url: '',
+			keycloak_port: '',
+			keycloak_ssl: false,
+			keycloak_client_id: '',
+			keycloak_secret: '',
+			keycloak_realm: '',
+			daas_provider_baseurl: '',
+		},
+	});
 
-  useEffect(() => {
-    const getConfig = async () => {
-      await API_CONFIG_LIST()
-        .then(({ data }) => {
-          if (data[0]) {
-            reset(data[0]);
-          }
-        })
-        .catch(() => {
-          // ...
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    };
-    if (user) {
-      getConfig();
-    }
-  }, []);
+	useEffect(() => {
+		const getConfig = async () => {
+			await API_CONFIG_LIST()
+				.then(({ data }) => {
+					if (data[0]) {
+						reset(data[0]);
+					}
+				})
+				.catch(() => {
+					// ...
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		};
+		if (user) {
+			getConfig();
+		}
+	}, []);
 
-  const handleOnSubmit = async (data: IAddConfig) => {
-    setLoadingButton(true);
+	const handleOnSubmit = async (data: IAddConfig) => {
+		setLoadingButton(true);
 
-    if (data?.id) {
-      // update
-      await API_ADD_UPDATE(data)
-        .then(() => {
-          toast.success("با موفقیت بروزرسانی شد");
-        })
-        .catch((err) => {
-          toast.error(err);
-        })
-        .finally(() => setLoadingButton(false));
-      return;
-    }
-    // add new product
-    await API_ADD_CONFIG(data)
-      .then(() => {
-        toast.success("با موفقیت ذخیره شد");
-      })
-      .catch((err) => {
-        toast.error(err);
-      })
-      .finally(() => setLoadingButton(false));
-  };
+		if (data?.id) {
+			// update
+			await API_ADD_UPDATE(data)
+				.then(() => {
+					toast.success(t('global.sucessfulyUpdated'));
+				})
+				.catch((err) => {
+					toast.error(err);
+				})
+				.finally(() => setLoadingButton(false));
+			return;
+		}
+		// add new product
+		await API_ADD_CONFIG(data)
+			.then(() => {
+				toast.success(t('global.sucessfylySaved'));
+			})
+			.catch((err) => {
+				toast.error(err);
+			})
+			.finally(() => setLoadingButton(false));
+	};
 
+
+	
   return loading ? (
     <LoadingSpinner />
   ) : (
@@ -249,13 +256,14 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
           />
         </div>
       </div>
+>>>>>>> src/pages/Dashboard/SettingsKeycloak/index.tsx
 
-      <BaseButton
-        label={getValues("id") ? "بروزرسانی تنظیمات" : "ذخیره تنظیمات"}
-        size="xl"
-        submit
-        loading={loadingButton}
-      />
-    </form>
-  );
+			<BaseButton
+				label={getValues('id') ? t('dashboard.updateSetting') : t('dashboard.saveSettings')}
+				size="xl"
+				submit
+				loading={loadingButton}
+			/>
+		</form>
+	);
 }
