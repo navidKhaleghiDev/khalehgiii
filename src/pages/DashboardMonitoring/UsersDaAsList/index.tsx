@@ -82,31 +82,31 @@ export function UsersDaAsList() {
 		setCurrentPage(page);
 	};
 
-	return (
-		<div className="w-full p-4">
-			<div className="flex items-center justify-between">
-				<SearchInput
-					name="search"
-					value={filterQuery}
-					onChange={handleFilterChange}
-					className="w-1/4"
-				/>
-			</div>
-			<UserDaAsCard daas={headerItem} isHeader />
-			{isLoading ? (
-				<LoadingSpinner />
-			) : listDaas.length > 0 ? (
-				listDaas.map((item) => <UserDaAsCard key={item.id} daas={item} />)
-			) : (
-				<NoResult />
-			)}
-			{!!countPage && (
-				<Pagination
-					currentPage={currentPage}
-					totalPages={Math.ceil(countPage / PAGE_SIZE)}
-					onPageChange={handlePageChange}
-				/>
-			)}
-		</div>
-	);
+  return (
+    <div className="w-full p-4">
+      <div className="flex items-center justify-between">
+        <SearchInput
+          name="search-users-daas-list"
+          value={filterQuery}
+          onChange={handleFilterChange}
+          className="w-1/4"
+        />
+      </div>
+      <UserDaAsCard daas={headerItem} isHeader />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : listDaas.length > 0 ? (
+        listDaas.map((item) => <UserDaAsCard key={item.id} daas={item} />)
+      ) : (
+        <NoResult />
+      )}
+      {!!countPage && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
+          onPageChange={handlePageChange}
+        />
+      )}
+    </div>
+  );
 }

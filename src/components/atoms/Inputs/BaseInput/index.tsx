@@ -141,6 +141,7 @@ export function BaseInput(props: BaseInputProps<any>) {
           size,
         })}
         placeholder={placeholder}
+        autoComplete="off"
       />
       <Typography color="red" size="caption" className="h-6">
         {pureError ?? ""}

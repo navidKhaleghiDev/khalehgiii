@@ -3,7 +3,14 @@ import { IPagination } from "@src/types/services";
 export const E_ANALYZE_SCAN = (userEmail: string) =>
   `analyze/scan/?username=${userEmail}`;
 
+export const E_ANALYZE_MIME_TYPE = "analyze/mime_types/";
+export const E_ANALYZE_MIME_TYPE_DELETE = (id: number) =>
+  `analyze/mime_types/${id}/`;
+
 export const E_ANALYZE_SCAN_STATS = "analyze/scan_stats/";
+
+export const E_ANALYZE_LOG = "analyze/log/";
+export const E_ANALYZE_LOG_UPDATE = (id: number) => `${E_ANALYZE_LOG}${id}/`;
 
 export const E_ANALYZE_SCAN_PAGINATION = (
   userEmail: string,

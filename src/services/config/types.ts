@@ -9,6 +9,8 @@ export interface IAddConfig {
   keycloak_secret: string;
   keycloak_realm: string;
   daas_provider_baseurl: string;
+  log_server_ip: string;
+  log_server_port: number;
 }
 
 export interface IDaasConfig {

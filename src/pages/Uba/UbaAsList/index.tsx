@@ -71,11 +71,12 @@ export function UbaAsList() {
 		setCurrentPage(page);
 	};
 
+
 	return (
 		<div className="w-full p-4">
 			<div className="flex items-center">
 				<SearchInput
-					name="search"
+					name="search-uba-list"
 					value={filterQuery}
 					onChange={handleFilterChange}
 					className="w-1/4"
@@ -101,4 +102,4 @@ export function UbaAsList() {
 			)}
 		</div>
 	);
-}
+

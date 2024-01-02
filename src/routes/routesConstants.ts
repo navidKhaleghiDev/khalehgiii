@@ -8,6 +8,7 @@ export type RoutePathType =
   | "monitoringDetails"
   | "dashboardAdminsList"
   | "uba"
+  | "extensionList"
   | "dashboardDesktopList";
 
 export const RoutesName = {
@@ -18,6 +19,7 @@ export const RoutesName = {
   ADMINS_LIST: "admins-list",
   MONITORING: "monitoring",
   ADMIN_KEYKLOAK: "keycloak-panel",
+  EXTENSION_LIST: "extension-list",
   UBA: "uba",
 };
 
@@ -31,5 +33,6 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   dashboardAdminsList: `/${RoutesName.DASHBOARD}/${RoutesName.ADMINS_LIST}`,
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
+  extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
 };
