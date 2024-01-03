@@ -11,6 +11,15 @@ type ProductCardProps = {
 };
 
 export function UbaCard({ uba, isHeader }: ProductCardProps) {
+	const overflowUiStyle = {
+		typo: !isHeader
+			? 'group-hover:text-gray-800 group-hover:overflow-visible rounded-md group-hover:whitespace-normal group-hover:overflow-auto group-hover:border group-hover-border-gray-300  p-2 group-hover:bg-white transition duration-300 z-auto'
+			: '',
+		div: 'group w-3/12 text-center break-words text-ellipsis whitespace-nowrap overflow-hidden overflow-ellipsis px-6',
+	};
+
+	const repetedStyle = `${overflowUiStyle.typo} ${isHeader ? 'uppercase' : ''} `;
+
 	return (
 		<>
 			<Card
@@ -32,33 +41,36 @@ export function UbaCard({ uba, isHeader }: ProductCardProps) {
 					{!isHeader ? dateAndNumber(uba.updated_at) : uba.updated_at}
 				</Typography>
 
-				<div className="px-3 w-3/12 text-center break-words " dir="ltr">
-					<Typography size="body4" type="div" className="uppercase">
+				<div className={overflowUiStyle.div} dir="ltr">
+					<Typography size="body4" type="div" className={repetedStyle}>
 						{uba.original_file_name}
 					</Typography>
 				</div>
 
-				<div className="px-3 w-2/12 text-center" dir="ltr">
+				<div className={overflowUiStyle.div} dir="ltr">
 					{Array.isArray(uba.file_names) ? (
-						<Typography size="body4" type="div" className="break-words truncate ">
+						<Typography size="body4" type="div" className={repetedStyle}>
 							{uba.file_names.map((item) => ` ${item} ,`)}
 						</Typography>
 					) : (
-						<Typography size="body4" type="div" className="break-words truncate">
+						<Typography size="body4" type="div" className={repetedStyle}>
 							{uba.file_names}
 						</Typography>
 					)}
 				</div>
 
-				<Typography size="body4" type="div" className="px-3 w-2/12 text-center">
+				<Typography size="body4" type="div" className="px-3 w-2/12 text-center uppercase">
 					{uba.malbehave_count}
 				</Typography>
 
-				<Typography size="body4" type="div" className="w-1/12 text-center break-words">
+				<Typography
+					size="body4"
+					type="div"
+					className="w-1/12 text-center break-words text-ellipsis uppercase">
 					{isHeader ? (
 						uba.is_ban
 					) : (
-						<div className="w-full flex justify-center">
+						<div className="w-full flex justify-center ">
 							<BaseIcon
 								icon={uba.is_ban ? lockKeyFillIcon : lockKeyOpenFillIcon}
 								color={uba.is_ban ? 'red' : 'teal'}
@@ -66,7 +78,7 @@ export function UbaCard({ uba, isHeader }: ProductCardProps) {
 						</div>
 					)}
 				</Typography>
-				<Typography size="body4" type="div" className="px-3 w-1/12 text-center">
+				<Typography size="body4" type="div" className="px-3 w-1/12 text-center uppercase">
 					{uba.transmission_type}
 				</Typography>
 			</Card>

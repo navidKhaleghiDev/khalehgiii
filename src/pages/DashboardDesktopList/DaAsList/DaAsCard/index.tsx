@@ -35,7 +35,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				className={`${isHeader && 'bg-teal-500 text-white'} flex ${
 					isHeader ? 'h-10' : 'h-14'
 				} items-center px-2 my-2 w-full text-neutral-600`}>
-				<div className="w-1/12 flex justify-center items-center gap-3 ">
+				<div className="w-1/12 flex justify-center items-center gap-3  uppercase">
 					{!isHeader && onClickActions && (
 						<IconButton
 							icon={trashIcon}
@@ -57,7 +57,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 					)}
 				</div> */}
 
-				<div className="w-3/12 text-center break-words">
+				<div className="w-3/12 text-center break-words uppercase">
 					{!isHeader ? (
 						<SetAccessTime
 							id={daas.id as string}
@@ -69,7 +69,9 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 						<Typography size="body4">{t('table.accessSettingsTime')}</Typography>
 					)}
 				</div>
-				<div className="w-1/12 text-center break-words" dir={lang === 'en' ? 'ltr' : 'rtl'}>
+				<div
+					className="w-1/12 text-center break-words uppercase"
+					dir={lang === 'en' ? 'ltr' : 'rtl'}>
 					<Typography size="body4">
 						{typeof daas.usage_in_minute === 'string'
 							? daas.usage_in_minute
@@ -87,7 +89,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				<Typography
 					size="body4"
 					type="div"
-					className="w-1/12 text-center break-words flex justify-center items-center">
+					className="w-1/12 text-center break-words flex justify-center items-center uppercase">
 					{isHeader
 						? daas.is_lock
 						: onClickActions && (
@@ -120,7 +122,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				<Typography
 					size="body4"
 					type="div"
-					className="w-1/12 text-center flex justify-center items-center">
+					className="w-1/12 text-center flex justify-center items-center uppercase">
 					{isHeader ? (
 						daas.is_running
 					) : (
@@ -131,7 +133,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				<Typography
 					size="body4"
 					type="div"
-					className="w-1/12 text-center break-words flex justify-center items-center">
+					className="w-1/12 text-center break-words flex justify-center items-center uppercase">
 					{isHeader ? (
 						daas.daas_configs.is_globally_config
 					) : (
