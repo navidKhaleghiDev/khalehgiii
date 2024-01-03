@@ -13,7 +13,7 @@ type ProductCardProps = {
 export function UbaCard({ uba, isHeader }: ProductCardProps) {
 	const overflowUiStyle = {
 		typo: !isHeader
-			? 'group-hover:text-gray-800 group-hover:overflow-visible rounded-md group-hover:whitespace-normal group-hover:overflow-auto group-hover:border group-hover-border-gray-300  p-2 group-hover:bg-white transition duration-300 z-auto'
+			? 'group-hover:text-gray-800 group-hover:overflow-visible rounded-md group-hover:whitespace-normal group-hover:overflow-auto group-hover:border group-hover:shadow-lg  group-hover-border-gray-300  p-2 group-hover:bg-white transition duration-300 z-auto'
 			: '',
 		div: 'group w-3/12 text-center break-words text-ellipsis whitespace-nowrap overflow-hidden overflow-ellipsis px-6',
 	};
