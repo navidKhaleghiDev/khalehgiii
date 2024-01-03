@@ -44,11 +44,11 @@ function LayoutCp() {
 
 	if (!loading) {
 		return (
-			<div className="font-on w-full h-screen bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden">
-				<div className="w-full bg-black flex flex-col justify-center items-center">
+			<div className="font-on w-full  bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden">
+				<div className="w-full bg-black flex flex-col justify-center items-center fixed top-0 z-10">
 					<NavbarDashboard />
 				</div>
-				<div className="w-full h-full grid grid-cols-12 gap-1 flex-1">
+				<div className="w-full h-full grid grid-cols-12 gap-1 flex-1 mt-10">
 					<div className="bg-white w-full col-span-12 overflow-y-auto">
 						<Outlet />
 					</div>
