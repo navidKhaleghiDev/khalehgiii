@@ -71,7 +71,6 @@ export function UbaAsList() {
 		setCurrentPage(page);
 	};
 
-
 	return (
 		<div className="w-full p-4">
 			<div className="flex items-center">
@@ -102,4 +101,4 @@ export function UbaAsList() {
 			)}
 		</div>
 	);
-
+}
