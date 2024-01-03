@@ -19,42 +19,42 @@ export function UbaCard({ uba, isHeader }: ProductCardProps) {
 					isHeader ? 'h-10' : 'h-14'
 				} items-center px-2 my-2 w-full text-neutral-600`}>
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="px-3 w-2/12 text-center break-words uppercase">
 					{uba.username}
 				</Typography>
 
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="px-3 w-2/12 text-center break-words uppercase">
 					{!isHeader ? dateAndNumber(uba.updated_at) : uba.updated_at}
 				</Typography>
 
 				<div className="px-3 w-3/12 text-center break-words " dir="ltr">
-					<Typography size="body3" type="div" className="uppercase">
+					<Typography size="body4" type="div" className="uppercase">
 						{uba.original_file_name}
 					</Typography>
 				</div>
 
 				<div className="px-3 w-2/12 text-center" dir="ltr">
 					{Array.isArray(uba.file_names) ? (
-						<Typography size="body3" type="div" className="break-words truncate">
+						<Typography size="body4" type="div" className="break-words truncate ">
 							{uba.file_names.map((item) => ` ${item} ,`)}
 						</Typography>
 					) : (
-						<Typography size="body3" type="div" className="break-words truncate">
+						<Typography size="body4" type="div" className="break-words truncate">
 							{uba.file_names}
 						</Typography>
 					)}
 				</div>
 
-				<Typography size="body3" type="div" className="px-3 w-2/12 text-center">
+				<Typography size="body4" type="div" className="px-3 w-2/12 text-center">
 					{uba.malbehave_count}
 				</Typography>
 
-				<Typography size="body3" type="div" className="w-1/12 text-center break-words">
+				<Typography size="body4" type="div" className="w-1/12 text-center break-words">
 					{isHeader ? (
 						uba.is_ban
 					) : (
@@ -66,7 +66,7 @@ export function UbaCard({ uba, isHeader }: ProductCardProps) {
 						</div>
 					)}
 				</Typography>
-				<Typography size="body3" type="div" className="px-3 w-1/12 text-center">
+				<Typography size="body4" type="div" className="px-3 w-1/12 text-center">
 					{uba.transmission_type}
 				</Typography>
 			</Card>

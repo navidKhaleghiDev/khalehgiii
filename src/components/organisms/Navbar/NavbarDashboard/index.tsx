@@ -5,7 +5,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { IconButton } from '@ui/atoms/BaseButton';
 import ToolTip from '@ui/atoms/Tooltip';
 import userIcon from '@iconify-icons/ph/user';
-import languageIcon from '@iconify-icons/ph/globe-hemisphere-west-fill';
+import languageIcon from '@iconify-icons/ph/globe-thin';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
 
@@ -18,19 +18,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
-
-export const languageOptions = [
-	{
-		id: 'fa',
-		label: 'farsi',
-		value: 'farsi',
-	},
-	{
-		id: 'en',
-		label: 'english',
-		value: 'english',
-	},
-];
+import { languageOptions } from '@src/constants/optios';
 
 export function NavbarDashboard() {
 	const navigate = useNavigate();

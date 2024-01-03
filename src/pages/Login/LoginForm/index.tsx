@@ -18,20 +18,9 @@ import { ILoginFieldValues } from '../types';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
-import languageIcon from '@iconify-icons/ph/globe-hemisphere-west-fill';
+import languageIcon from '@iconify-icons/ph/globe-thin';
+import { languageOptions } from '@src/constants/optios';
 
-export const languageOptions = [
-	{
-		id: 'fa',
-		label: 'farsi',
-		value: 'farsi',
-	},
-	{
-		id: 'en',
-		label: 'english',
-		value: 'english',
-	},
-];
 export function LoginForm() {
 	const [error, setError] = useState<string | null>(null);
 	const [loadingButton, setLoadingButton] = useState(false);

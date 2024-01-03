@@ -14,6 +14,7 @@ import { OnClickActionsType } from './types';
 import { IHeaderDaasCard } from '../types';
 import { IDaasConfig } from '@src/services/config/types';
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@context/settings/languageContext';
 
 type ProductCardProps = {
 	daas: IHeaderDaasCard | IDaAs;
@@ -25,15 +26,16 @@ type ProductCardProps = {
 
 export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 	const { t } = useTranslation();
+	const { lang } = useLanguage();
 	const daasConfig = daas.daas_configs as IDaasConfig;
 	return (
-		<>
+		<div dir={lang === 'fa' ? 'ltr' : 'rtl'}>
 			<Card
 				color="neutral"
 				className={`${isHeader && 'bg-teal-500 text-white'} flex ${
 					isHeader ? 'h-10' : 'h-14'
 				} items-center px-2 my-2 w-full text-neutral-600`}>
-				<div className="w-1/12 flex justify-center items-center">
+				<div className="w-1/12 flex justify-center items-center gap-3 ">
 					{!isHeader && onClickActions && (
 						<IconButton
 							icon={trashIcon}
@@ -41,15 +43,19 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 							onClick={() => onClickActions('delete', daas as IDaAs)}
 						/>
 					)}
-				</div>
-
-				<div className="w-1/12 text-center break-words">
 					{!isHeader && onClickActions ? (
 						<SetAccessUpload daas={daas as IDaAs} onClickActions={onClickActions} />
 					) : (
-						<Typography size="body3">{daasConfig.can_upload_file}</Typography>
+						<Typography size="body4">{daasConfig.can_upload_file}</Typography>
 					)}
 				</div>
+				{/* <div className="w-1/12 text-center break-words">
+					{!isHeader && onClickActions ? (
+						<SetAccessUpload daas={daas as IDaAs} onClickActions={onClickActions} />
+					) : (
+						<Typography size="body4">{daasConfig.can_upload_file}</Typography>
+					)}
+				</div> */}
 
 				<div className="w-3/12 text-center break-words">
 					{!isHeader ? (
@@ -60,11 +66,11 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 							timeLimitDuration={daasConfig.time_limit_duration}
 						/>
 					) : (
-						<Typography size="body3">{t('table.accessSettingsTime')}</Typography>
+						<Typography size="body4">{t('table.accessSettingsTime')}</Typography>
 					)}
 				</div>
-				<div className="w-1/12 text-center break-words">
-					<Typography size="body3">
+				<div className="w-1/12 text-center break-words" dir={lang === 'en' ? 'ltr' : 'rtl'}>
+					<Typography size="body4">
 						{typeof daas.usage_in_minute === 'string'
 							? daas.usage_in_minute
 							: `${Math.floor(daas.usage_in_minute)} ${t('global.minute')}`}
@@ -79,7 +85,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
         </Typography> */}
 
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="w-1/12 text-center break-words flex justify-center items-center">
 					{isHeader
@@ -105,14 +111,14 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				</Typography>
 
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="px-3 w-2/12 text-center break-words uppercase">
 					{daas.daas_version}
 				</Typography>
 
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="w-1/12 text-center flex justify-center items-center">
 					{isHeader ? (
@@ -123,7 +129,7 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 				</Typography>
 
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="w-1/12 text-center break-words flex justify-center items-center">
 					{isHeader ? (
@@ -136,12 +142,12 @@ export function DaAsCard({ daas, isHeader, onClickActions }: ProductCardProps) {
 					)}
 				</Typography>
 				<Typography
-					size="body3"
+					size="body4"
 					type="div"
 					className="px-3 w-2/12 text-center break-words uppercase">
 					{daas.email}
 				</Typography>
 			</Card>
-		</>
+		</div>
 	);
 }

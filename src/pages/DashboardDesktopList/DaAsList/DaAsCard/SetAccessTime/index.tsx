@@ -135,13 +135,13 @@ export function SetAccessTime({
 				<Card color="white" className="px-2 h-6 w-64 ">
 					<div className="flex items-center justify-between  h-full">
 						<div className="flex items-center justify-between text-teal-600">
-							<Typography size="body3" color="teal">
+							<Typography size="body4" color="teal">
 								{TimeLimitDurationLabel[timeLimitDuration]}
 							</Typography>
-							<div className="h-4 px-10">
+							<div className="h-4 px-7">
 								<Divider vr />
 							</div>
-							<Typography size="body3" color="teal">
+							<Typography size="body4" color="teal">
 								{timeLimitDuration !== ETimeLimitDuration.PERMANENTLY
 									? `${timeLimitValue} ${t('global.hour')}`
 									: '---'}
