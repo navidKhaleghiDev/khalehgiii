@@ -108,7 +108,8 @@
 		"language": "Language",
 		"callServicess": "Call Servicess",
 		"dontHaveAccess": "You dont Have Access",
-		"limitedNumberRequest": "The number of your requests has been limited. Please try again in one minute."
+		"limitedNumberRequest": "The number of your requests has been limited. Please try again in one minute.",
+		"pleaseBePatient": "Please be patient"
 	},
 	"title": {
 		"systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
