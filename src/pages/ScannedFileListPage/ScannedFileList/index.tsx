@@ -16,6 +16,8 @@ import { DetailsContentModal } from './DetailsContentModal';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { scannedFileHeaderItem } from '@src/constants/tableHeaders/scannedFileHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -27,31 +29,6 @@ export function ScannedFileList() {
 	const [openDetailsModal, setOpenDetailsModal] = useState(false);
 	const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
 	const { id } = useParams();
-
-	const headerItem: StringifyProperties<IScannedFile> = {
-		id: t('table.moreDetail'),
-		file_name: t('table.fileName'),
-		file_size_in_bytes: '',
-		file_content_type: t('table.type'),
-		username: 'Radmehr.h@test1.local',
-		yara_scanner_status: t('table.resultScanerStatus') + 'YARA',
-		clamav_scanner_status: t('table.resultScanerStatus') + 'CLAMAV',
-		yara_scan_summary: '',
-		yara_scan_result: 'نتیجه اسکن YARA',
-		yara_error_message: '',
-		clamav_scan_summary: '',
-		clamav_scan_result: 'نتیجه اسکن CLAMAV',
-		antiviruses_scan_result: 'نتیجه اسکن SANDBOX',
-		antiviruses_scanner_status: t('table.resultScanerStatus') + 'SANDBOX',
-		antiviruses_scan_sandbox_summary: '',
-		antiviruses_scan_vendors_summary: '',
-		antiviruses_last_analysis_stats: '',
-		antiviruses_crowdsourced_ids_results: '',
-		antiviruses_error_message: '',
-		clamav_error_message: '',
-		created_at: '',
-	};
-
 	const { data, isLoading } = useSWR<IResponsePagination<IScannedFile>>(
 		id
 			? E_ANALYZE_SCAN_PAGINATION(id, {
@@ -82,7 +59,7 @@ export function ScannedFileList() {
 		setCurrentPage(page);
 	};
 
-	const handleOpenModal = (item: IScannedFile) => {
+	const handleOpenModal = (_, item: IScannedFile) => {
 		setActiveScannedFile(item);
 		setOpenDetailsModal(true);
 	};
@@ -100,8 +77,9 @@ export function ScannedFileList() {
 					{id}
 				</Typography>
 			</div>
-			<ScannedFileCard scannedFile={headerItem} isHeader />
-			{isLoading ? (
+			<BaseTable header={scannedFileHeaderItem()} body={listDaas} onClick={handleOpenModal} />
+			{/* <ScannedFileCard scannedFile={headerItem} isHeader /> */}
+			{/* {isLoading ? (
 				<LoadingSpinner />
 			) : listDaas.length > 0 ? (
 				listDaas.map((item) => (
@@ -113,7 +91,7 @@ export function ScannedFileList() {
 				))
 			) : (
 				<NoResult />
-			)}
+			)} */}
 			{!!countPage && (
 				<Pagination
 					currentPage={currentPage}

@@ -1,7 +1,4 @@
 import { useCallback, useState } from 'react';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { NoResult } from '@ui/molecules/NoResult';
-import { UbaCard } from './UbaCard';
 import useSWR from 'swr';
 import { http_analyses } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
@@ -9,13 +6,13 @@ import Pagination from '@ui/molecules/Pagination';
 import { Typography } from '@ui/atoms';
 import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
 import { IUba } from '@src/services/analyze/types';
-import { StringifyProperties } from '@src/types/global';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { dateAndNumber } from '@src/helper/utils/dateUtils';
+
+import { ubaHeaderItem } from '@src/constants/tableHeaders/ubaHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -27,65 +24,6 @@ export function UbaAsList() {
 	const { lang } = useLanguage();
 
 	const direction = lang === 'en' ? 'right' : 'left';
-
-	// const headerItem: StringifyProperties<IUba> = {
-	// 	id: '',
-	// 	created_at: '',
-	// 	updated_at: t('table.dateOfUpdated'),
-	// 	username: t('table.nameOfTheUser'),
-	// 	file_names: t('table.fileName'),
-	// 	original_file_name: t('table.realName'),
-	// 	file_hash: 'هش فایل',
-	// 	transmission_type: t('table.action'),
-	// 	is_ban: t('table.blocked'),
-	// 	malbehave_count: t('table.unauthorizedBehavior'),
-	// };
-
-	const headerItem = [
-		{
-			label: 'table.nameOfTheUser',
-			id: 'username',
-			type: 'none',
-			dir: '',
-			style: 'px-3 w-2/12   ',
-		},
-		{
-			label: 'table.dateOfUpdated',
-			id: 'updated_at',
-			type: 'function',
-			function: dateAndNumber,
-			dir: '',
-			style: 'px-3 w-2/12   ',
-		},
-		{
-			label: 'table.realName',
-			id: 'file_names',
-			type: 'none',
-			dir: '',
-			style: 'px-3 w-2/12   ',
-		},
-		{
-			label: 'table.unauthorizedBehavior',
-			id: 'malbehave_count',
-			type: 'none',
-			dir: '',
-			style: 'px-3 w-2/12   ',
-		},
-		{
-			label: 'table.blocked',
-			id: 'is_ban',
-			type: 'none',
-			dir: '',
-			style: 'px-3 w-2/12   ',
-		},
-		{
-			label: 'table.action',
-			id: 'transmission_type',
-			type: 'none',
-			dir: '',
-			style: 'px-3 w-2/12   ',
-		},
-	];
 
 	const debouncedSetFilterQuery = useCallback(
 		debounce((query: string) => {
@@ -132,15 +70,7 @@ export function UbaAsList() {
 					:UBA List
 				</Typography>
 			</div>
-			<BaseTable loading={isLoading} body={listUba} header={headerItem} />
-			{/* <UbaCard uba={headerItem} isHeader /> */}
-			{/* {isLoading ? (
-				<LoadingSpinner />
-			) : listUba.length > 0 ? (
-				listUba.map((item) => <UbaCard key={item.id} uba={item} />)
-			) : (
-				<NoResult />
-			)} */}
+			<BaseTable loading={isLoading} body={listUba} header={ubaHeaderItem} />
 			{!!countPage && (
 				<Pagination
 					currentPage={currentPage}

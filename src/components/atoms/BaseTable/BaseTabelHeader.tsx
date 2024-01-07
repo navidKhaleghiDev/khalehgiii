@@ -21,9 +21,9 @@ export function BaseTabelHeader({ header }: BaseTableHeaderProps) {
 			{header.map((head: HeaderItem, i: number) => (
 				<div
 					key={i}
-					className={`${head.style} flex justify-center items-center `}
+					className={`${head.style} flex justify-center items-center font-normal`}
 					dir={!head.dir ? 'ltr' : head.dir}>
-					<Typography size="body3" type="div" className="uppercase ellipsis">
+					<Typography size="body4" type="div" className="uppercase ellipsis">
 						{t(head.label)}
 					</Typography>
 				</div>
