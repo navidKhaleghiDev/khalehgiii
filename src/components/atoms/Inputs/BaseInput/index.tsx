@@ -33,6 +33,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     maxLength,
     minLength,
     ref,
+    autoComplete,
     ltrLabel = false,
     iconButtonIcon = "fa-home",
     onKeyDown,
@@ -88,6 +89,7 @@ export function BaseInput(props: BaseInputProps<any>) {
               minLength={minLength}
               onFocus={onFocus}
               ref={ref}
+              autoComplete={autoComplete}
             />
 
             {onClickIcon && (
