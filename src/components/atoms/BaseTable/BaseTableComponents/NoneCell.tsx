@@ -7,7 +7,7 @@ export const NoneCell = ({ row, id, head }: any) => {
 			<Typography
 				size={head?.size ? head?.size : 'body3'}
 				type="div"
-				className="whitespace-pre overflow-hidden max-h-14">
+				className="max-h-14">
 				{row[id]}
 			</Typography>
 		</ToolTip>

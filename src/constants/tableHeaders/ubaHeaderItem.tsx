@@ -9,6 +9,7 @@ export const ubaHeaderItem = [
 		type: 'none',
 		dir: '',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 	{
 		label: 'table.dateOfUpdated',
@@ -17,6 +18,7 @@ export const ubaHeaderItem = [
 		function: (props) => dateAndNumber(props.updated_at),
 		dir: 'rtl',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 	{
 		label: 'table.realName',
@@ -24,6 +26,7 @@ export const ubaHeaderItem = [
 		type: 'none',
 		dir: '',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 	{
 		label: 'table.updatedNames',
@@ -31,6 +34,7 @@ export const ubaHeaderItem = [
 		type: 'none',
 		dir: '',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 	{
 		label: 'table.unauthorizedBehavior',
@@ -38,6 +42,7 @@ export const ubaHeaderItem = [
 		type: 'none',
 		dir: '',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 	{
 		label: 'table.blocked',
@@ -46,6 +51,7 @@ export const ubaHeaderItem = [
 		icon: [lockKeyFillIcon, lockKeyOpenFillIcon],
 		dir: '',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 	{
 		label: 'table.action',
@@ -53,5 +59,6 @@ export const ubaHeaderItem = [
 		type: 'none',
 		dir: '',
 		style: 'px-3 w-2/12',
+    size:"body4"
 	},
 ];

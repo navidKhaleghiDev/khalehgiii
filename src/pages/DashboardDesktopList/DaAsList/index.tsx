@@ -21,6 +21,8 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
 	const removedList: string[] = [];
@@ -246,7 +248,8 @@ export function DaAsList() {
 				/>
 				<ResetAllAccessTime />
 			</div>
-			<DaAsCard daas={headerItem} isHeader />
+      <BaseTable header={desktopListHeaderItem} body={listDaas}  onClick={handleOnClickActions}  />
+			{/* <DaAsCard daas={headerItem} isHeader />
 			{isLoading ? (
 				<LoadingSpinner />
 			) : listDaas.length > 0 ? (
@@ -262,7 +265,7 @@ export function DaAsList() {
 					totalPages={Math.ceil(countPage / PAGE_SIZE)}
 					onPageChange={handlePageChange}
 				/>
-			)}
+			)} */}
 			<Modal
 				open={openModal}
 				setOpen={setOpenModal}
