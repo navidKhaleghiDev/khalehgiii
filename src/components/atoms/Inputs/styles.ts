@@ -21,10 +21,10 @@ export const baseInputStyles = cva(
       size: {
         none: ``,
         xs: `w-52 h-6 py-1 ${SIZE.TYPOGRAPHY.BODY4}`,
-        sm: `w-[18.75rem] h-10 text-md${SIZE.TYPOGRAPHY.BODY3}`,
-        md: `w-[27.5rem] h-10 text-lg ${SIZE.TYPOGRAPHY.BODY3}`,
-        lg: `w-[60rem] h-10 text-xl ${SIZE.TYPOGRAPHY.BODY2}`,
-        xl: `w-[60rem] h-16 text-xl ${SIZE.TYPOGRAPHY.BODY2}`,
+        sm: `w-[18.75rem] h-10 ${SIZE.TYPOGRAPHY.BODY3}`,
+        md: `w-[27.5rem] h-10 ${SIZE.TYPOGRAPHY.BODY3}`,
+        lg: `w-[60rem] h-10 ${SIZE.TYPOGRAPHY.BODY2}`,
+        xl: `w-[60rem] h-16 ${SIZE.TYPOGRAPHY.BODY2}`,
       },
     },
     defaultVariants: {

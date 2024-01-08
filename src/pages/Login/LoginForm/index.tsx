@@ -15,12 +15,19 @@ import userIcon from "@iconify-icons/ph/user";
 import signInBoldIcon from "@iconify-icons/ph/sign-in-bold";
 
 import { ILoginFieldValues } from "../types";
-import { loginString as strings } from "./string";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@context/settings/languageContext";
+import { DropDownWithIcon } from "@ui/atoms/DropDownWithIcon";
+import languageIcon from "@iconify-icons/ph/globe-thin";
+import { languageOptions } from "@src/constants/optios";
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
+  const { changeLanguage } = useLanguage();
+
   const { setUser } = useUserContext();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<ILoginFieldValues>({
@@ -35,7 +42,7 @@ export function LoginForm() {
           return;
         }
         setUser(data);
-        toast.success(strings.loginSuccess);
+        toast.success(t("global.successfullyLogedIn"));
         navigate(ROUTES_PATH.dashboard);
       })
       .catch((err) => {
@@ -65,14 +72,36 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(handelSubmitForm)}
-      className="flex flex-col items-center w-full mt-auto"
+      className="flex flex-col items-center w-full mt-auto "
     >
       <div className="absolute top-[-6rem]">
         <Avatar icon={userIcon} intent="grey" size="lg" />
       </div>
+      <div className="absolute top-[1rem] right-[1rem] ">
+        <DropDownWithIcon
+          icon={languageIcon}
+          name={"language"}
+          size="ls"
+          onSelect={(v) => changeLanguage(v)}
+          options={languageOptions}
+        />
+      </div>
       <Typography color="neutral" size="h5" className="mb-5">
-        {strings.enterEmailAndPass}
+        {t("login.loginTitle")}
       </Typography>
+
+      {/* <div>
+				<ul>
+					{Object.keys(locales).map((locale) => (
+						<li key={locale}>
+							<button style={{ backgroundColor: 'green', fontSize: '2rem' }}>
+								{locales[locale].title}
+							</button>
+						</li>
+					))}
+				</ul>
+			</div> */}
+
       {error && (
         <Typography color="red" size="body3" className="mb-2">
           {error}
@@ -82,21 +111,22 @@ export function LoginForm() {
         <BaseInput
           fullWidth
           control={control}
-          placeholder="نام کاربری"
+          placeholder={t("global.userName")}
           rules={{
             required: regexPattern.required,
           }}
           id="email"
           name="email"
+          size="lg"
           endIcon={userIcon}
         />
         <PasswordInput
           name="password"
           control={control}
-          placeholder="گذرواژه"
+          placeholder={t("global.password")}
         />
         <BaseButton
-          label="ورود به حساب کاربری"
+          label={t("login.login")}
           endIcon={signInBoldIcon}
           className="mt-8"
           loading={loadingButton}
