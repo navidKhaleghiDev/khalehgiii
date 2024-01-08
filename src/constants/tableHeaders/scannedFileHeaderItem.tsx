@@ -17,38 +17,38 @@ export function scannedFileHeaderItem() {
 			id: 'file_content_type',
 			type: 'none',
 			dir: '',
-			style: 'px-3 w-3/12',
-			size: 'body4',
-		},
-		{
-			label: 'table.resultScanerStatus',
-			id: 'yara_scanner_status',
-			type: 'component',
-			component: (props: any) => <CircleBGBorder results={props.row.yara_scan_result} {...props} />,
-			dir: '',
 			style: 'px-3 w-2/12',
 			size: 'body4',
 		},
 		{
-			label: 'table.resultScanerStatus',
+			label: 'table.resultScanerStatusYara',
+			id: 'yara_scanner_status',
+			type: 'component',
+			component: (props: any) => <CircleBGBorder results={props.row.yara_scan_result} {...props} />,
+			dir: '',
+			style: 'px-3 w-3/12',
+			size: 'body4',
+		},
+		{
+			label: 'table.resultScanerStatusClamav',
 			id: 'clamav_scanner_status',
 			type: 'component',
 			component: (props: any) => (
 				<CircleBGBorder results={props.row.clamav_scan_result} {...props} />
 			),
 			dir: '',
-			style: 'px-3 w-2/12',
+			style: 'px-3 w-3/12',
 			size: 'body4',
 		},
 		{
-			label: 'table.resultScanerStatus',
+			label: 'table.resultScanerStatusSandbox',
 			id: 'antiviruses_scanner_status',
 			type: 'component',
 			component: (props: any) => (
 				<CircleBGBorder results={props.row.antiviruses_scan_result} {...props} />
 			),
 			dir: '',
-			style: 'px-3 w-2/12',
+			style: 'px-3 w-3/12',
 			size: 'body4',
 		},
 		{

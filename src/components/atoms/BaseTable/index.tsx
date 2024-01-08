@@ -56,7 +56,7 @@ function cellsComponent(row: any, head: keyof ComponentsProps, onClick: any) {
 
 const RowCard = ({ item, header, onClick }: any) => {
 	return (
-		<Card color="neutral" className={`flex items-center px-2 my-2 w-full text-neutral-600 h-14   `}>
+		<Card color="neutral" className={`flex items-center px-2 my-2 w-full text-neutral-600 h-14`}>
 			{header.map((head: any, i: string) => (
 				<div
 					key={i}

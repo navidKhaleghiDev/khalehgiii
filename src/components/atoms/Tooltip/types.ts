@@ -6,5 +6,4 @@ export interface IToolTip extends VariantProps<typeof tooltipStyles> {
 	children: ReactNode;
 	tooltip?: string;
 	skip?: boolean;
-	color?: 'white' | 'black' | undefined;
 }

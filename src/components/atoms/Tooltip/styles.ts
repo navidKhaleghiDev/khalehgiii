@@ -10,10 +10,6 @@ export const tooltipStyles = cva('absolute -z-10 h-2 w-2 rotate-45 rounded-sm bg
 			right: 'left-[-3px] top-1/2 -translate-y-1/2',
 			bottom: 'top-[-3px] left-1/2 -translate-x-1/2',
 		},
-		background: {
-			white: 'bg-white',
-			black: 'bg-black',
-		},
 	},
 	defaultVariants: {
 		position: 'bottom',
@@ -34,14 +30,6 @@ export const containerTooltipStyles = cva(
 			show: {
 				true: '',
 				false: 'hidden',
-			},
-			background: {
-				white: 'bg-white',
-				black: 'bg-black',
-			},
-			color: {
-				white: 'text-white',
-				black: 'text-black',
 			},
 		},
 		defaultVariants: {
