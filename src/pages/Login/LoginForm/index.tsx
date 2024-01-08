@@ -69,26 +69,24 @@ export function LoginForm() {
       });
   };
 
-  return (
-    <form
-      onSubmit={handleSubmit(handelSubmitForm)}
-      className="flex flex-col items-center w-full mt-auto "
-    >
-      <div className="absolute top-[-6rem]">
-        <Avatar icon={userIcon} intent="grey" size="lg" />
-      </div>
-      <div className="absolute top-[1rem] right-[1rem] ">
-        <DropDownWithIcon
+	return (
+		<form
+			onSubmit={handleSubmit(handelSubmitForm)}
+			className="flex flex-col items-center w-full mt-auto ">
+			<div className="absolute top-[-6rem]">
+				<Avatar icon={userIcon} intent="grey" size="lg" />
+			</div>
+			<div className="absolute top-[1rem] right-[1rem] ">
+				<DropDownWithIcon
           icon={languageIcon}
-          name={"language"}
-          size="ls"
-          onSelect={(v) => changeLanguage(v)}
-          options={languageOptions}
-        />
-      </div>
-      <Typography color="neutral" size="h5" className="mb-5">
-        {t("login.loginTitle")}
-      </Typography>
+          name={'language'}
+          size="sm"
+          onSelect={(v:string) => changeLanguage(v)}
+          options={languageOptions} id={''} placeHolder={''}				/>
+			</div>
+			<Typography color="neutral" size="h5" className="mb-5">
+				{t('login.loginTitle')}
+			</Typography>
 
       {/* <div>
 				<ul>

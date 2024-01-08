@@ -17,7 +17,6 @@ export function DropDownWithIcon<T extends FieldValues>({
 	name,
 	options,
 	fullWidth,
-	className,
 	label,
 	size,
 	containerClassName,
