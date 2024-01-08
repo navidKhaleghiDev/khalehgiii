@@ -7,13 +7,14 @@ import { baseSelectStyles } from './styles';
 import { Typography } from '../../Typography';
 import { IOptionSelect, OptionSelect } from './OptionSelect';
 import { IconInput } from '../IconInput';
+import {t} from 'i18next';
 
 export function BaseSelect(props: BaseInputProps<any>) {
 	const {
 		control,
 		name,
 		id,
-		placeholder,
+		// placeholder,
 		rules,
 		className,
 		fullWidth,
@@ -51,7 +52,8 @@ export function BaseSelect(props: BaseInputProps<any>) {
 								className: `${endIcon && 'pr-8'} ${startIcon && 'pl-8'}`,
 								fullWidth,
 							})}
-							placeholder={placeholder}>
+							// {placeholder}
+              >
 							<OptionSelect option={{ label: t('global.select'), value: '' }} />
 							{[
 								{ id: '1', label: 'گزینه', value: 'tow' },

@@ -61,12 +61,11 @@ export function NavbarDashboard() {
 					)}
 					<ToolTip tooltip={t('global.language')} position="right">
 						<DropDownWithIcon
-							icon={languageIcon}
-							name={'language'}
-							size="ls"
-							onSelect={(l) => changeLanguage(l)}
-							options={languageOptions}
-						/>
+              icon={languageIcon}
+              name={'language'}
+              size="sm"
+              onSelect={(l: string) => changeLanguage(l)}
+              options={languageOptions} id={''} placeHolder={''}						/>
 					</ToolTip>
 					<Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
 					<div className={lang === 'en' ? 'ml-2' : 'none'}>

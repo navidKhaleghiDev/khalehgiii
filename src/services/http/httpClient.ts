@@ -7,7 +7,6 @@ import { http, AxiosRequestConfig } from '.';
 export type MutationPostOptions<T> = SWRMutationConfiguration<
   T,
   unknown,
-  unknown,
   string
 >;
 

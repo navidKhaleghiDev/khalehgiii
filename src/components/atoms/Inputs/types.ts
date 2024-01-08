@@ -31,7 +31,7 @@ export interface BaseInputProps<T extends FieldValues>
     | "datetime-local"
     | "time";
   label?: string;
-  placeholder?: string;
+  placeholder?: string | undefined;
   className?: string;
   classNameInput?: string;
   maxLength?: number;

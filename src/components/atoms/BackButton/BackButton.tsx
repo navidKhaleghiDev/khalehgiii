@@ -4,7 +4,6 @@ import arrowLineLeft from '@iconify-icons/ph/arrow-line-left';
 import { BaseButton, IconButton } from '../BaseButton';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
-import { Icons } from 'react-toastify';
 
 export type BackButtonProps = {
 	withLabel?: boolean;
