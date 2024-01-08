@@ -21,7 +21,7 @@ export function PasswordInput({
   return (
     <BaseInput
       name={name}
-      size="md"
+      size="lg"
       id={name}
       label={label}
       control={control}

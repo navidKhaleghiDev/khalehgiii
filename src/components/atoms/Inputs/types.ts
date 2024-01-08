@@ -46,6 +46,7 @@ export interface BaseInputProps<T extends FieldValues>
   pureValue?: string;
   pureError?: string;
   ltrLabel?: boolean;
+  autoComplete?: string;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
