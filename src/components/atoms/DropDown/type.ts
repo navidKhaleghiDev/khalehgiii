@@ -1,11 +1,11 @@
-import { VariantProps } from "class-variance-authority";
+import { VariantProps } from 'class-variance-authority';
 import {
   Control,
   FieldPath,
   FieldValues,
   RegisterOptions,
-} from "react-hook-form";
-import { baseDropDownStyles } from "./styles";
+} from 'react-hook-form';
+import { baseDropDownStyles } from './styles';
 
 export interface IOptionSelect {
   id?: string;

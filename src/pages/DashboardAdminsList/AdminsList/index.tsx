@@ -1,26 +1,26 @@
-import { IconButton } from "@ui/atoms/BaseButton";
-import plusIcon from "@iconify-icons/ph/plus";
-import { useCallback, useState } from "react";
-import useSWR from "swr";
-import { IResponsePagination } from "@src/types/services";
-import { http } from "@src/services/http";
-import { LoadingSpinner } from "@ui/molecules/Loading";
-import { UserAdminCard } from "./UserAdminCard";
-import { StringifyProperties } from "@src/types/global";
-import { ActionOnClickActionsType } from "./UserAdminCard/types";
-import { NoResult } from "@ui/molecules/NoResult";
-import Pagination from "@ui/molecules/Pagination";
-import { Modal } from "@ui/molecules/Modal";
-import { UpdateAdminModal } from "./UpdateAdminModal";
-import { toast } from "react-toastify";
-import ToolTip from "@ui/atoms/Tooltip";
-import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
-import { E_USERS } from "@src/services/users/endpoint";
-import { IUser } from "@src/services/users/types";
-import { createAPIEndpoint } from "@src/helper/utils";
-import { debounce } from "lodash";
-import { API_USERS_DELETE } from "@src/services/users";
-import { useTranslation } from "react-i18next";
+import { IconButton } from '@ui/atoms/BaseButton';
+import plusIcon from '@iconify-icons/ph/plus';
+import { useCallback, useState } from 'react';
+import useSWR from 'swr';
+import { IResponsePagination } from '@src/types/services';
+import { http } from '@src/services/http';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { UserAdminCard } from './UserAdminCard';
+import { StringifyProperties } from '@src/types/global';
+import { ActionOnClickActionsType } from './UserAdminCard/types';
+import { NoResult } from '@ui/molecules/NoResult';
+import Pagination from '@ui/molecules/Pagination';
+import { Modal } from '@ui/molecules/Modal';
+import { UpdateAdminModal } from './UpdateAdminModal';
+import { toast } from 'react-toastify';
+import ToolTip from '@ui/atoms/Tooltip';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { E_USERS } from '@src/services/users/endpoint';
+import { IUser } from '@src/services/users/types';
+import { createAPIEndpoint } from '@src/helper/utils';
+import { debounce } from 'lodash';
+import { API_USERS_DELETE } from '@src/services/users';
+import { useTranslation } from 'react-i18next';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -28,36 +28,36 @@ const PAGE = 1;
 export function AdminsList() {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>("");
+  const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IUser>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
   const headerItem: StringifyProperties<IUser> = {
-    id: "",
-    email: t("table.email"),
-    last_login: t("table.lastLogin"),
-    username: t("table.userName"),
-    first_name: t("table.firstNameLastName"),
-    is_active: t("table.active"),
-    created_at: t("table.dateOfCreated"),
-    is_meta_admin: t("table.metaAdmin"),
-    last_name: "",
+    id: '',
+    email: t('table.email'),
+    last_login: t('table.lastLogin'),
+    username: t('table.userName'),
+    first_name: t('table.firstNameLastName'),
+    is_active: t('table.active'),
+    created_at: t('table.dateOfCreated'),
+    is_meta_admin: t('table.metaAdmin'),
+    last_name: '',
 
-    is_superuser: "boolean",
-    exceeded_usage: "boolean",
-    base_url: "string",
-    is_staff: "boolean",
-    date_joined: "string",
-    http_port: "number",
-    https_port: "number",
-    time_limit_duration: "ETimeLimitDuration",
-    time_limit_value_in_hour: "number",
-    last_uptime: "string",
-    is_running: "boolean",
-    exceeded_time_limit: "boolean",
-    usage_in_minute: "number",
+    is_superuser: 'boolean',
+    exceeded_usage: 'boolean',
+    base_url: 'string',
+    is_staff: 'boolean',
+    date_joined: 'string',
+    http_port: 'number',
+    https_port: 'number',
+    time_limit_duration: 'ETimeLimitDuration',
+    time_limit_value_in_hour: 'number',
+    last_uptime: 'string',
+    is_running: 'boolean',
+    exceeded_time_limit: 'boolean',
+    usage_in_minute: 'number',
   };
 
   const endpoint = createAPIEndpoint({
@@ -98,7 +98,7 @@ export function AdminsList() {
     await API_USERS_DELETE(activeAdmin?.id as number)
       .then(() => {
         mutate();
-        toast.success(t("global.successfullyRemoved"));
+        toast.success(t('global.successfullyRemoved'));
         setDeleteModal(false);
       })
       .catch((err) => {
@@ -126,12 +126,12 @@ export function AdminsList() {
   ): any {
     setActiveAdmin(fileType as IUser);
 
-    if (action === "delete") {
+    if (action === 'delete') {
       setDeleteModal(true);
       return;
     }
 
-    if (action === "edit") {
+    if (action === 'edit') {
       setOpenUpdateModal(true);
       return;
     }
@@ -156,7 +156,7 @@ export function AdminsList() {
           onChange={handleFilterChange}
           className="w-1/4"
         />
-        <ToolTip tooltip={t("table.addNewAdmin")} position="right">
+        <ToolTip tooltip={t('table.addNewAdmin')} position="right">
           <IconButton
             icon={plusIcon}
             color="teal"
@@ -190,16 +190,16 @@ export function AdminsList() {
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title={t("global.sureAboutThis")}
+        title={t('global.sureAboutThis')}
         buttonOne={{
-          label: t("global.yes"),
+          label: t('global.yes'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
         }}
         buttonTow={{
-          label: t("global.no"),
+          label: t('global.no'),
           onClick: () => setDeleteModal(false),
-          color: "red",
+          color: 'red',
         }}
       />
       <Modal

@@ -1,11 +1,11 @@
 export const formatDuration = (duration?: number): string => {
   if (!duration) {
-    return "";
+    return '';
   }
   const hours = Math.floor(duration / 60);
   const minutes = duration % 60;
-  const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
+  const formattedDuration = `${hours.toString().padStart(2, '0')}:${minutes
     .toString()
-    .padStart(2, "0")}`;
+    .padStart(2, '0')}`;
   return formattedDuration;
 };

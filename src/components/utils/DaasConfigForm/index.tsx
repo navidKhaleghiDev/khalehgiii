@@ -1,10 +1,10 @@
-import { BaseSwitch } from "@ui/atoms/Inputs/BaseSwitch";
-import { BaseInput, Typography } from "@ui/atoms";
-import { Control } from "react-hook-form";
-import { Dropdown } from "@ui/atoms/DropDown";
-import { regexPattern } from "@ui/atoms/Inputs";
-import { timeLimitDurationOptions } from "@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime";
-import { useTranslation } from "react-i18next";
+import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
+import { BaseInput, Typography } from '@ui/atoms';
+import { Control } from 'react-hook-form';
+import { Dropdown } from '@ui/atoms/DropDown';
+import { regexPattern } from '@ui/atoms/Inputs';
+import { timeLimitDurationOptions } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime';
+import { useTranslation } from 'react-i18next';
 
 type PropsType = {
   control: Control<any>;
@@ -51,7 +51,7 @@ export function DaasConfigForm({ control }: PropsType) {
           id="time_limit_duration"
           name="time_limit_duration"
           options={timeLimitDurationOptions}
-          placeHolder={t("global.select")}
+          placeHolder={t('global.select')}
           containerClassName="col-span-6 xl:col-span-3"
           rules={{
             required: regexPattern.required,
@@ -68,7 +68,7 @@ export function DaasConfigForm({ control }: PropsType) {
           // size="xs"
           id="time_limit_value_in_hour"
           name="time_limit_value_in_hour"
-          placeholder={t("global.selectHour")}
+          placeholder={t('global.selectHour')}
           className="col-span-6 lg:col-span-4"
           rules={{
             pattern: regexPattern.numbers,

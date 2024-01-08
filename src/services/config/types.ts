@@ -1,4 +1,4 @@
-import { ETimeLimitDuration } from "../users/types";
+import { ETimeLimitDuration } from '../users/types';
 
 export interface IAddConfig {
   id?: number | null;

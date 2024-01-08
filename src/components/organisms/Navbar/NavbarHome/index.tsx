@@ -1,11 +1,11 @@
-import { useForm } from "react-hook-form";
-import { BaseButton } from "@ui/atoms/BaseButton";
-import { BaseInput } from "@ui/atoms/Inputs";
-import { Typography } from "@ui/atoms";
-import phoneIcon from "@iconify-icons/ph/phone";
-import magnifyingGlassIcon from "@iconify-icons/ph/magnifying-glass";
+import { useForm } from 'react-hook-form';
+import { BaseButton } from '@ui/atoms/BaseButton';
+import { BaseInput } from '@ui/atoms/Inputs';
+import { Typography } from '@ui/atoms';
+import phoneIcon from '@iconify-icons/ph/phone';
+import magnifyingGlassIcon from '@iconify-icons/ph/magnifying-glass';
 
-import { IHomeRoutes, homeRoutes } from "./routes";
+import { IHomeRoutes, homeRoutes } from './routes';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export function NavbarHome() {
@@ -63,7 +63,7 @@ export function NavbarHome() {
                           data-dropdown-toggle="dropdownNavbar"
                           className="flex items-center justify-between w-full dark:hover:bg-gray-700 "
                         >
-                          Dropdown{" "}
+                          Dropdown{' '}
                           <svg
                             className="w-5 h-5 ml-1"
                             aria-hidden="true"

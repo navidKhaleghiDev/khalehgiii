@@ -1,7 +1,7 @@
-import { useState, memo } from "react";
+import { useState, memo } from 'react';
 
-import { BaseInput } from "../BaseInput";
-import { useTranslation } from "react-i18next";
+import { BaseInput } from '../BaseInput';
+import { useTranslation } from 'react-i18next';
 
 interface SearchInputProps {
   value: string;
@@ -29,7 +29,7 @@ const SearchInputComponent = ({
       <BaseInput
         size="sm"
         name={name}
-        placeholder={t("table.search")}
+        placeholder={t('table.search')}
         id={name}
         pureOnChange={handleFilterChange}
         pureValue={searchValue}

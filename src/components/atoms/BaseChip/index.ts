@@ -1,1 +1,1 @@
-export { BaseChip } from "./BaseChip";
+export { BaseChip } from './BaseChip';

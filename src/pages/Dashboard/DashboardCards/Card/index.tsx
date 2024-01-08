@@ -1,5 +1,5 @@
-import { IconType } from "@src/types/global";
-import { Typography, BaseIcon } from "@ui/atoms";
+import { IconType } from '@src/types/global';
+import { Typography, BaseIcon } from '@ui/atoms';
 
 type PropsType = {
   icon: IconType;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FieldValues } from "react-hook-form";
+import { FieldValues } from 'react-hook-form';
 
 export interface ILoginFieldValues extends FieldValues {
   email: string;

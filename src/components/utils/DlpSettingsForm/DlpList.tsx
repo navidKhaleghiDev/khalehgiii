@@ -1,17 +1,17 @@
-import { IconButton } from "@ui/atoms/BaseButton";
-import plusIcon from "@iconify-icons/ph/plus";
-import minusIcon from "@iconify-icons/ph/minus";
-import { BaseInput, Typography } from "@ui/atoms";
-import { useState } from "react";
-import { BaseChip } from "@ui/atoms/BaseChip";
-import { IDaAs } from "@src/services/users/types";
-import { regexPattern } from "@ui/atoms/Inputs";
+import { IconButton } from '@ui/atoms/BaseButton';
+import plusIcon from '@iconify-icons/ph/plus';
+import minusIcon from '@iconify-icons/ph/minus';
+import { BaseInput, Typography } from '@ui/atoms';
+import { useState } from 'react';
+import { BaseChip } from '@ui/atoms/BaseChip';
+import { IDaAs } from '@src/services/users/types';
+import { regexPattern } from '@ui/atoms/Inputs';
 
 type PropsType = {
   name: keyof IDaAs;
   valueList: string[];
   label: string;
-  onChange: (name: PropsType["name"], values: string[]) => void;
+  onChange: (name: PropsType['name'], values: string[]) => void;
 };
 
 export function DlpList({ name, valueList, onChange, label }: PropsType) {
@@ -20,7 +20,7 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
 
   const [value, setValue] = useState<string>();
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       event.preventDefault();
       const mValue = (event.target as HTMLInputElement)?.value;
 
@@ -32,9 +32,9 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
         error && setError(undefined);
       }
 
-      if (!valueList.includes(mValue) && mValue !== "") {
+      if (!valueList.includes(mValue) && mValue !== '') {
         onChange(name, [...valueList, mValue]);
-        setValue("");
+        setValue('');
       }
     }
   };

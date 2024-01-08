@@ -1,16 +1,16 @@
-import PrivateLayout from "@src/components/Templates/layouts/PrivateLayout";
-import { LoginPage } from "@src/pages/Login";
-import { DashboardPage } from "@src/pages/Dashboard";
-import NotFoundPage from "@src/pages/NotFound";
-import UnauthorizedPage from "@src/pages/Unauthorized";
-import { DashboardDesktopListPage } from "@src/pages/DashboardDesktopList";
-import { DashboardMonitoring } from "@src/pages/DashboardMonitoring";
-import { ScannedFileListPage } from "@src/pages/ScannedFileListPage";
+import PrivateLayout from '@src/components/Templates/layouts/PrivateLayout';
+import { LoginPage } from '@src/pages/Login';
+import { DashboardPage } from '@src/pages/Dashboard';
+import NotFoundPage from '@src/pages/NotFound';
+import UnauthorizedPage from '@src/pages/Unauthorized';
+import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
+import { DashboardMonitoring } from '@src/pages/DashboardMonitoring';
+import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 
-import { ROUTES_PATH } from "./routesConstants";
-import { UbaPage } from "@src/pages/Uba";
-import { DashboardAdminsListPage } from "@src/pages/DashboardAdminsList";
-import { DashboardExtensionListPage } from "@src/pages/DashboardExtensionList";
+import { ROUTES_PATH } from './routesConstants';
+import { UbaPage } from '@src/pages/Uba';
+import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
+import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 
 const routesConfig = [
   {
@@ -22,7 +22,7 @@ const routesConfig = [
     element: <LoginPage />,
   },
   {
-    path: "*",
+    path: '*',
     element: <NotFoundPage />,
   },
   {

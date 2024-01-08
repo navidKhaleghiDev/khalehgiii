@@ -1,41 +1,41 @@
-import { IconButton } from "@ui/atoms/BaseButton";
-import plusIcon from "@iconify-icons/ph/plus";
-import { useCallback, useState } from "react";
-import useSWR from "swr";
-import { IResponsePagination } from "@src/types/services";
-import { http_analyses } from "@src/services/http";
-import { LoadingSpinner } from "@ui/molecules/Loading";
-import { MimeTypeCard } from "./MimeTypeCard";
-import { StringifyProperties } from "@src/types/global";
-import { ActionOnClickActionsType } from "./MimeTypeCard/types";
-import { NoResult } from "@ui/molecules/NoResult";
-import Pagination from "@ui/molecules/Pagination";
-import { Modal } from "@ui/molecules/Modal";
-import { CreateMimeTypeModal } from "./CreateMimeTypeModal";
-import { toast } from "react-toastify";
-import ToolTip from "@ui/atoms/Tooltip";
-import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
-import { createAPIEndpoint } from "@src/helper/utils";
-import { debounce } from "lodash";
-import { E_ANALYZE_MIME_TYPE } from "@src/services/analyze/endpoint";
-import { API_ANALYZE_MIME_TYPE_DELETE } from "@src/services/analyze";
-import { IMimeType } from "@src/services/analyze/types";
+import { IconButton } from '@ui/atoms/BaseButton';
+import plusIcon from '@iconify-icons/ph/plus';
+import { useCallback, useState } from 'react';
+import useSWR from 'swr';
+import { IResponsePagination } from '@src/types/services';
+import { http_analyses } from '@src/services/http';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { MimeTypeCard } from './MimeTypeCard';
+import { StringifyProperties } from '@src/types/global';
+import { ActionOnClickActionsType } from './MimeTypeCard/types';
+import { NoResult } from '@ui/molecules/NoResult';
+import Pagination from '@ui/molecules/Pagination';
+import { Modal } from '@ui/molecules/Modal';
+import { CreateMimeTypeModal } from './CreateMimeTypeModal';
+import { toast } from 'react-toastify';
+import ToolTip from '@ui/atoms/Tooltip';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { createAPIEndpoint } from '@src/helper/utils';
+import { debounce } from 'lodash';
+import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
+import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
+import { IMimeType } from '@src/services/analyze/types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
 
 const headerItem: StringifyProperties<IMimeType> = {
-  id: "",
-  extension_list: "پسوند فایل",
-  mimetype_list: "رشته فایل",
-  created_at: "تاریخ ایجاد",
-  updated_at: "",
-  file: "",
+  id: '',
+  extension_list: 'پسوند فایل',
+  mimetype_list: 'رشته فایل',
+  created_at: 'تاریخ ایجاد',
+  updated_at: '',
+  file: '',
 };
 
 export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>("");
+  const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
@@ -79,7 +79,7 @@ export function ExtensionList() {
     await API_ANALYZE_MIME_TYPE_DELETE(activeAdmin?.id as number)
       .then(() => {
         mutate();
-        toast.success("با موفقیت حذف شد");
+        toast.success('با موفقیت حذف شد');
         setDeleteModal(false);
       })
       .catch((err) => {
@@ -107,12 +107,12 @@ export function ExtensionList() {
   ): any {
     setActiveAdmin(fileType as IMimeType);
 
-    if (action === "delete") {
+    if (action === 'delete') {
       setDeleteModal(true);
       return;
     }
 
-    if (action === "edit") {
+    if (action === 'edit') {
       setOpenUpdateModal(true);
       return;
     }
@@ -173,14 +173,14 @@ export function ExtensionList() {
         type="error"
         title="از انجام این کار مطمئن هستید؟"
         buttonOne={{
-          label: "بله",
+          label: 'بله',
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
         }}
         buttonTow={{
-          label: "خیر",
+          label: 'خیر',
           onClick: () => setDeleteModal(false),
-          color: "red",
+          color: 'red',
         }}
       />
       <Modal

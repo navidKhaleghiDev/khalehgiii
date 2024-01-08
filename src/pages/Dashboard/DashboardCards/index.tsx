@@ -12,61 +12,65 @@ import { CardScanStats } from './CardScanStats';
 import { useTranslation } from 'react-i18next';
 
 export function DashboardCards() {
-	const navigate = useNavigate();
-	const { user } = useUserContext();
-	const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { user } = useUserContext();
+  const { t } = useTranslation();
 
-	return (
-		<div className="grid w-full grid-cols-12 gap-16 mb-16">
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card icon={calendarCheckIcon} title={dayLabel()} description={dateAndNumber()} />
-			</div>
+  return (
+    <div className="grid w-full grid-cols-12 gap-16 mb-16">
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={calendarCheckIcon}
+          title={dayLabel()}
+          description={dateAndNumber()}
+        />
+      </div>
 
-			{user?.is_meta_admin && (
-				<div className="col-span-10 md:col-span-6 xl:col-span-3">
-					<Card
-						icon={usersThreeIcon}
-						title={t('dashboard.adminLists')}
-						description=""
-						onClick={() => navigate(ROUTES_PATH.dashboardAdminsList)}
-					/>
-				</div>
-			)}
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={desktopIcon}
-					title={t('dashboard.desktopLists')}
-					description=""
-					onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}
-				/>
-			</div>
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={keyIcon}
-					title={t('dashboard.adminPanel') + ' keycloak'}
-					description=""
-					onClick={() => {
-						window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, '_blank');
-					}}
-				/>
-			</div>
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={shieldCheckIcon}
-					title={t('dashboard.fileScanReports')}
-					description=""
-					onClick={() => navigate(ROUTES_PATH.monitoring)}
-				/>
-			</div>
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={shieldCheckIcon}
-					title="UBA"
-					description=""
-					onClick={() => navigate(ROUTES_PATH.uba)}
-				/>
-			</div>
-			<CardScanStats />
-		</div>
-	);
+      {user?.is_meta_admin && (
+        <div className="col-span-10 md:col-span-6 xl:col-span-3">
+          <Card
+            icon={usersThreeIcon}
+            title={t('dashboard.adminLists')}
+            description=""
+            onClick={() => navigate(ROUTES_PATH.dashboardAdminsList)}
+          />
+        </div>
+      )}
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={desktopIcon}
+          title={t('dashboard.desktopLists')}
+          description=""
+          onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={keyIcon}
+          title={t('dashboard.adminPanel') + ' keycloak'}
+          description=""
+          onClick={() => {
+            window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, '_blank');
+          }}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
+          title={t('dashboard.fileScanReports')}
+          description=""
+          onClick={() => navigate(ROUTES_PATH.monitoring)}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
+          title="UBA"
+          description=""
+          onClick={() => navigate(ROUTES_PATH.uba)}
+        />
+      </div>
+      <CardScanStats />
+    </div>
+  );
 }

@@ -1,10 +1,6 @@
-import { VariantProps } from "class-variance-authority";
-import {
-  FieldPath,
-  FieldValues,
-  RegisterOptions,
-} from "react-hook-form";
-import { baseDropDownStyles } from "./styles";
+import { VariantProps } from 'class-variance-authority';
+import { FieldPath, FieldValues, RegisterOptions } from 'react-hook-form';
+import { baseDropDownStyles } from './styles';
 
 export interface IOptionSelect {
   id?: string;
@@ -24,8 +20,8 @@ export interface DropdownProps<T extends FieldValues>
   defaultValue?: any;
   label?: string;
   hiddenError?: boolean;
-  icon?:any;
-  onSelect?:any;
+  icon?: any;
+  onSelect?: any;
 }
 
 export type StateType = {

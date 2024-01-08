@@ -1,21 +1,21 @@
-import { SIZE } from "@src/constants/theme";
-import { cva } from "class-variance-authority";
+import { SIZE } from '@src/constants/theme';
+import { cva } from 'class-variance-authority';
 
 export const baseDropDownStyles = cva(
-  "flex justify-between items-center rounded-lg px-2",
+  'flex justify-between items-center rounded-lg px-2',
   {
     variants: {
       intent: {
         default:
-          "bg-neutral-100 text-neutral-500 border border-2 border-neutral-500 focus:border-teal-600 focus:text-teal-500 focus:placeholder-teal-500 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:shadow-none",
+          'bg-neutral-100 text-neutral-500 border border-2 border-neutral-500 focus:border-teal-600 focus:text-teal-500 focus:placeholder-teal-500 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:shadow-none',
         error:
-          "text-red-600 border border-2 border-red-600 placeholder-red-400",
+          'text-red-600 border border-2 border-red-600 placeholder-red-400',
       },
       fullWidth: {
-        true: "w-full",
+        true: 'w-full',
       },
       selected: {
-        true: "text-teal-600",
+        true: 'text-teal-600',
       },
       size: {
         xs: `w-52 h-6 py-1 ${SIZE.TYPOGRAPHY.BODY4}`,
@@ -26,21 +26,21 @@ export const baseDropDownStyles = cva(
       },
     },
     defaultVariants: {
-      intent: "default",
-      size: "sm",
+      intent: 'default',
+      size: 'sm',
     },
   }
 );
 
 export const optionSelectStyles = cva(
-  "absolute block bg-neutral-100 rounded text-right mt-2 border-2 border-teal-500 max-h-28 overflow-y-auto z-10",
+  'absolute block bg-neutral-100 rounded text-right mt-2 border-2 border-teal-500 max-h-28 overflow-y-auto z-10',
   {
     variants: {
       isShow: {
-        false: "hidden",
+        false: 'hidden',
       },
       fullWidth: {
-        true: "w-full",
+        true: 'w-full',
       },
       size: {
         xs: `w-52 ${SIZE.TYPOGRAPHY.BODY4}`,
@@ -52,7 +52,7 @@ export const optionSelectStyles = cva(
     },
     defaultVariants: {
       isShow: false,
-      size: "sm",
+      size: 'sm',
     },
   }
 );

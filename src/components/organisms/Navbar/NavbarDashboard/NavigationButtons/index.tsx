@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import arrowLeftBoldIcon from "@iconify-icons/ph/arrow-left-bold";
-import arrowRightBoldIcon from "@iconify-icons/ph/arrow-right-bold";
-import arrowClockwiseBoldIcon from "@iconify-icons/ph/arrow-clockwise-bold";
+import arrowLeftBoldIcon from '@iconify-icons/ph/arrow-left-bold';
+import arrowRightBoldIcon from '@iconify-icons/ph/arrow-right-bold';
+import arrowClockwiseBoldIcon from '@iconify-icons/ph/arrow-clockwise-bold';
 
-import { IconButton } from "@ui/atoms/BaseButton";
+import { IconButton } from '@ui/atoms/BaseButton';
 
 export const NavigationButtons: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export const NavigationButtons: React.FC = () => {
         icon={arrowRightBoldIcon}
         size="xl"
         className="ml-4 rounded-3xl"
-        color={canGoForward ? "tealNoBg" : "neutralNoBg"}
+        color={canGoForward ? 'tealNoBg' : 'neutralNoBg'}
         onClick={() => {
           navigate(1);
           setCurrentIndex((prev) => prev + 1);
@@ -56,7 +56,7 @@ export const NavigationButtons: React.FC = () => {
         icon={arrowLeftBoldIcon}
         size="xl"
         className="ml-4 rounded-3xl"
-        color={canGoBack ? "tealNoBg" : "neutralNoBg"}
+        color={canGoBack ? 'tealNoBg' : 'neutralNoBg'}
         onClick={() => {
           navigate(-1);
           setCurrentIndex((prev) => prev - 1);

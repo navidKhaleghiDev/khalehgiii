@@ -1,2 +1,2 @@
-export { BaseTabs, BaseTab } from "./BaseTabs";
-export * from "./types";
+export { BaseTabs, BaseTab } from './BaseTabs';
+export * from './types';

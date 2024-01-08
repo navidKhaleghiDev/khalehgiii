@@ -1,6 +1,6 @@
-import { Card } from "@ui/atoms/Card";
-import { withNoAuth } from "@src/helper/hoc/withNoAuth";
-import { LoginForm } from "./LoginForm";
+import { Card } from '@ui/atoms/Card';
+import { withNoAuth } from '@src/helper/hoc/withNoAuth';
+import { LoginForm } from './LoginForm';
 
 function LoginPageCp() {
   return (

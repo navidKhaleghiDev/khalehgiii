@@ -1,13 +1,13 @@
-import { IDaAs } from "@src/services/users/types";
-import { BaseButton } from "@ui/atoms/BaseButton";
-import { Typography } from "@ui/atoms";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { IDaAs } from '@src/services/users/types';
+import { BaseButton } from '@ui/atoms/BaseButton';
+import { Typography } from '@ui/atoms';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
-import { DaasConfigForm } from "@ui/utils/DaasConfigForm";
-import { DlpSettingsForm } from "@ui/utils/DlpSettingsForm";
-import { IDaasConfig } from "@src/services/config/types";
-import { ExtendTwoType } from "@src/types/global";
+import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
+import { DlpSettingsForm } from '@ui/utils/DlpSettingsForm';
+import { IDaasConfig } from '@src/services/config/types';
+import { ExtendTwoType } from '@src/types/global';
 
 type PropsType = {
   handleOnChange: (daas: IDaAs) => void;
@@ -20,7 +20,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
   const { control, handleSubmit, setValue, watch } = useForm<
     ExtendTwoType<IDaAs, IDaasConfig>
   >({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
       id: daas?.id,
       time_limit_duration: daas.daas_configs.time_limit_duration,
@@ -117,8 +117,8 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     setValue(name, values);
   };
 
-  const dlpDownloadList = watch("allowed_files_type_for_download") || [];
-  const dlpUploadList = watch("allowed_files_type_for_upload") || [];
+  const dlpDownloadList = watch('allowed_files_type_for_download') || [];
+  const dlpUploadList = watch('allowed_files_type_for_upload') || [];
 
   return (
     <form
@@ -136,7 +136,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
         {showConfirm && (
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">آیا مطمین هستید؟</Typography>
-            <BaseButton label={"بله"} size="sm" submit className="mx-2" />
+            <BaseButton label={'بله'} size="sm" submit className="mx-2" />
             <BaseButton
               label="خیر"
               size="sm"
@@ -149,7 +149,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
 
         {!showConfirm && (
           <BaseButton
-            label={"ثبت"}
+            label={'ثبت'}
             size="md"
             onClick={() => setShowConfirm(true)}
           />

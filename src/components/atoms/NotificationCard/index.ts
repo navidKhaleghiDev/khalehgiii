@@ -1,2 +1,2 @@
-export { NotificationCard } from "./NotificationCard";
-export * from "./types";
+export { NotificationCard } from './NotificationCard';
+export * from './types';

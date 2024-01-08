@@ -1,10 +1,10 @@
-import { BaseButton } from "@ui/atoms/BaseButton";
-import { Typography } from "@ui/atoms";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { BaseButton } from '@ui/atoms/BaseButton';
+import { Typography } from '@ui/atoms';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 
-import { DaasConfigForm } from "@ui/utils/DaasConfigForm";
-import { IDaasConfig } from "@src/services/config/types";
+import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
+import { IDaasConfig } from '@src/services/config/types';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -14,7 +14,7 @@ type PropsType = {
 export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { control, handleSubmit } = useForm<IDaasConfig>({
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
       can_upload_file: daasConfig.can_upload_file,
       can_download_file: daasConfig.can_download_file,
@@ -44,7 +44,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
         {showConfirm && (
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">آیا مطمین هستید؟</Typography>
-            <BaseButton label={"بله"} size="sm" submit className="mx-2" />
+            <BaseButton label={'بله'} size="sm" submit className="mx-2" />
             <BaseButton
               label="خیر"
               size="sm"
@@ -57,7 +57,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
 
         {!showConfirm && (
           <BaseButton
-            label={"ثبت"}
+            label={'ثبت'}
             size="md"
             onClick={() => setShowConfirm(true)}
           />

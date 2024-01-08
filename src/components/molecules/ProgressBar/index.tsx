@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function ProgressBar({ durationInSeconds = 30 }: any) {
   const [progress, setProgress] = useState(0);

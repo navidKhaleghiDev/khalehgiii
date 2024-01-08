@@ -1,27 +1,27 @@
-import { IconButton } from "@ui/atoms/BaseButton";
-import plusIcon from "@iconify-icons/ph/plus";
-import { useCallback, useState } from "react";
-import useSWR from "swr";
-import { IResponsePagination } from "@src/types/services";
-import { IFileType } from "@src/services/config/types";
-import { http } from "@src/services/http";
-import { E_WHITE_LIST_FILES } from "@src/services/config/endpoint";
-import { LoadingSpinner } from "@ui/molecules/Loading";
-import { FileTypeCard } from "./FileTypeCard";
-import { StringifyProperties } from "@src/types/global";
-import { ActionOnClickActionsType } from "./FileTypeCard/types";
-import { NoResult } from "@ui/molecules/NoResult";
-import Pagination from "@ui/molecules/Pagination";
-import { Modal } from "@ui/molecules/Modal";
-import { UpdateFileTypeModal } from "./UpdateFileTypeModal";
-import { API_DELETE_FILE_TYPE } from "@src/services/config";
-import { toast } from "react-toastify";
-import debounce from "lodash/debounce";
-import ToolTip from "@ui/atoms/Tooltip";
-import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
-import React from "react";
-import { createAPIEndpoint } from "@src/helper/utils";
-import { useTranslation } from "react-i18next";
+import { IconButton } from '@ui/atoms/BaseButton';
+import plusIcon from '@iconify-icons/ph/plus';
+import { useCallback, useState } from 'react';
+import useSWR from 'swr';
+import { IResponsePagination } from '@src/types/services';
+import { IFileType } from '@src/services/config/types';
+import { http } from '@src/services/http';
+import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { FileTypeCard } from './FileTypeCard';
+import { StringifyProperties } from '@src/types/global';
+import { ActionOnClickActionsType } from './FileTypeCard/types';
+import { NoResult } from '@ui/molecules/NoResult';
+import Pagination from '@ui/molecules/Pagination';
+import { Modal } from '@ui/molecules/Modal';
+import { UpdateFileTypeModal } from './UpdateFileTypeModal';
+import { API_DELETE_FILE_TYPE } from '@src/services/config';
+import { toast } from 'react-toastify';
+import debounce from 'lodash/debounce';
+import ToolTip from '@ui/atoms/Tooltip';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import React from 'react';
+import { createAPIEndpoint } from '@src/helper/utils';
+import { useTranslation } from 'react-i18next';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
@@ -38,7 +38,7 @@ const PAGE = 1;
 
 export function DlpConfig() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>("");
+  const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
@@ -46,13 +46,13 @@ export function DlpConfig() {
   const { t } = useTranslation();
 
   const headerItem = {
-    id: "",
-    file_type: t("table.fileType"),
-    allowed_for_upload: t("table.allowedForUpload"),
-    allowed_for_download: t("table.allowedForDownload"),
-    is_active: t("table.active"),
-    created_at: t("table.dateOfCreated"),
-    updated_at: t("table.dateOfUpdated"),
+    id: '',
+    file_type: t('table.fileType'),
+    allowed_for_upload: t('table.allowedForUpload'),
+    allowed_for_download: t('table.allowedForDownload'),
+    is_active: t('table.active'),
+    created_at: t('table.dateOfCreated'),
+    updated_at: t('table.dateOfUpdated'),
   };
 
   const endpoint = createAPIEndpoint({
@@ -97,7 +97,7 @@ export function DlpConfig() {
     await API_DELETE_FILE_TYPE(activeFileType.id as number)
       .then(() => {
         mutate();
-        toast.success(t("global.successfullyRemoved"));
+        toast.success(t('global.successfullyRemoved'));
         setDeleteModal(false);
       })
       .catch((err) => {
@@ -120,11 +120,11 @@ export function DlpConfig() {
     fileType?: StringifyProperties<IFileType> | IFileType
   ): any {
     setActiveFileType(fileType as IFileType);
-    if (action === "delete") {
+    if (action === 'delete') {
       setDeleteModal(true);
       return;
     }
-    if (action === "edit") {
+    if (action === 'edit') {
       setOpenUpdateModal(true);
       return;
     }
@@ -180,14 +180,14 @@ export function DlpConfig() {
         type="error"
         title="از انجام این کار مطمئن هستید؟"
         buttonOne={{
-          label: t("global.yes"),
+          label: t('global.yes'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
         }}
         buttonTow={{
-          label: t("global.no"),
+          label: t('global.no'),
           onClick: () => setDeleteModal(false),
-          color: "red",
+          color: 'red',
         }}
       />
       <Modal

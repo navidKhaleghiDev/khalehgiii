@@ -1,4 +1,4 @@
-import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
+import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 
 export function AdminKeycloakPage() {
   //   onClick={() => {

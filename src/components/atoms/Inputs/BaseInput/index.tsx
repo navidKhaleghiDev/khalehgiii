@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Controller } from "react-hook-form";
+import { Controller } from 'react-hook-form';
 
-import { BaseInputProps } from "../types";
-import { baseInputStyles } from "../styles";
-import { Typography } from "../../Typography";
-import { IconInput } from "../IconInput";
-import { IconButtonInput } from "../IconButtonInput";
+import { BaseInputProps } from '../types';
+import { baseInputStyles } from '../styles';
+import { Typography } from '../../Typography';
+import { IconInput } from '../IconInput';
+import { IconButtonInput } from '../IconButtonInput';
 
 export function BaseInput(props: BaseInputProps<any>) {
   const {
@@ -35,7 +35,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     ref,
     autoComplete,
     ltrLabel = false,
-    iconButtonIcon = "fa-home",
+    iconButtonIcon = 'fa-home',
     onKeyDown,
   } = props;
   return control ? (
@@ -45,12 +45,12 @@ export function BaseInput(props: BaseInputProps<any>) {
       rules={rules}
       defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => (
-        <div className={`${className} ${fullWidth && "w-full"}`}>
+        <div className={`${className} ${fullWidth && 'w-full'}`}>
           {label && (
             <label
               htmlFor={id}
               className={`block mb-1 ${
-                ltrLabel ? "text-left uppercase" : "text-right"
+                ltrLabel ? 'text-left uppercase' : 'text-right'
               }`}
             >
               <Typography color="teal" size="h5">
@@ -66,20 +66,20 @@ export function BaseInput(props: BaseInputProps<any>) {
               type={type}
               dir="auto"
               name={field.name}
-              value={type !== "file" ? field.value ?? "" : undefined}
+              value={type !== 'file' ? field.value ?? '' : undefined}
               onKeyDown={onKeyDown}
               onChange={(e) => {
-                if (type !== "file") {
+                if (type !== 'file') {
                   field.onChange(e);
                 } else {
                   field.onChange(e.target.files);
                 }
               }}
               className={baseInputStyles({
-                intent: error?.message ? "error" : intent,
+                intent: error?.message ? 'error' : intent,
                 className: `${classNameInput} ${
-                  (endIcon || onClickIcon) && "pl-8"
-                } ${startIcon && "pr-8"} `,
+                  (endIcon || onClickIcon) && 'pl-8'
+                } ${startIcon && 'pr-8'} `,
                 ltrPlaceHolder: ltrLabel,
                 fullWidth,
                 size,
@@ -105,9 +105,9 @@ export function BaseInput(props: BaseInputProps<any>) {
             <Typography
               color="red"
               size="caption"
-              className={`h-6 ${ltrLabel ? "text-left" : "text-right"}`}
+              className={`h-6 ${ltrLabel ? 'text-left' : 'text-right'}`}
             >
-              {error?.message ?? ""}
+              {error?.message ?? ''}
             </Typography>
           )}
         </div>
@@ -118,7 +118,7 @@ export function BaseInput(props: BaseInputProps<any>) {
       {label && (
         <label
           htmlFor={id}
-          className={`block mb-1 ${ltrLabel && "text-left uppercase"}`}
+          className={`block mb-1 ${ltrLabel && 'text-left uppercase'}`}
         >
           <Typography color="teal" size="h5">
             {label}
@@ -134,9 +134,9 @@ export function BaseInput(props: BaseInputProps<any>) {
         onChange={pureOnChange}
         onKeyDown={onKeyDown}
         className={baseInputStyles({
-          intent: pureError ? "error" : intent,
-          className: `${(endIcon || onClickIcon) && "pl-8"} ${
-            startIcon && "pr-8"
+          intent: pureError ? 'error' : intent,
+          className: `${(endIcon || onClickIcon) && 'pl-8'} ${
+            startIcon && 'pr-8'
           } `,
           ltrPlaceHolder: ltrLabel,
           fullWidth,
@@ -146,7 +146,7 @@ export function BaseInput(props: BaseInputProps<any>) {
         autoComplete="off"
       />
       <Typography color="red" size="caption" className="h-6">
-        {pureError ?? ""}
+        {pureError ?? ''}
       </Typography>
     </div>
   );

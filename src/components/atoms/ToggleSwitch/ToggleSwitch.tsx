@@ -1,6 +1,6 @@
-import { IToggleSwitch } from "./types";
-import { BaseIcon } from "../BaseIcon";
-import { Controller } from "react-hook-form";
+import { IToggleSwitch } from './types';
+import { BaseIcon } from '../BaseIcon';
+import { Controller } from 'react-hook-form';
 
 export function ToggleSwitch({
   leftButton,
@@ -27,7 +27,7 @@ export function ToggleSwitch({
             />
             <span
               className={`flex items-center space-x-[6px] rounded py-1 px-[18px] text-sm font-medium ${
-                !value ? "text-white bg-teal-600" : "text-body-color"
+                !value ? 'text-white bg-teal-600' : 'text-body-color'
               }`}
             >
               <BaseIcon
@@ -38,7 +38,7 @@ export function ToggleSwitch({
             </span>
             <span
               className={`flex items-center space-x-[6px] rounded py-1 px-[18px] text-sm font-medium ${
-                value ? "text-white bg-teal-600" : "text-body-color"
+                value ? 'text-white bg-teal-600' : 'text-body-color'
               }`}
             >
               <BaseIcon

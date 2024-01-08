@@ -1,10 +1,10 @@
-import { BaseButton } from "@ui/atoms/BaseButton";
-import { BaseInput, Typography } from "@ui/atoms";
-import { FieldValues, useForm } from "react-hook-form";
-import { useState } from "react";
-import { regexPattern } from "@ui/atoms/Inputs";
-import { toast } from "react-toastify";
-import { API_ANALYZE_MIME_TYPE_CREATE } from "@src/services/analyze";
+import { BaseButton } from '@ui/atoms/BaseButton';
+import { BaseInput, Typography } from '@ui/atoms';
+import { FieldValues, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { regexPattern } from '@ui/atoms/Inputs';
+import { toast } from 'react-toastify';
+import { API_ANALYZE_MIME_TYPE_CREATE } from '@src/services/analyze';
 
 type PropsType = {
   handleClose: () => void;
@@ -19,7 +19,7 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
   const { control, handleSubmit } = useForm<IFieldValues>({
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const handleOnSubmit = async (data: IFieldValues) => {
@@ -27,10 +27,10 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
     const body = new FormData();
 
     if (data.file.length > 0) {
-      body.append("file", data?.file[0]);
+      body.append('file', data?.file[0]);
       await API_ANALYZE_MIME_TYPE_CREATE(body)
         .then(() => {
-          toast.success("با موفقیت اضافه شد.");
+          toast.success('با موفقیت اضافه شد.');
           handleClose();
         })
         .catch((err) => {
@@ -41,7 +41,7 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
           setLoadingButtonModal(false);
         });
     } else {
-      toast.error("choose correct file.");
+      toast.error('choose correct file.');
     }
   };
 
@@ -75,7 +75,7 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">آیا مطمین هستید؟</Typography>
             <BaseButton
-              label={"بله"}
+              label={'بله'}
               size="sm"
               submit
               className="mx-2"
@@ -94,12 +94,12 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
         {!showConfirm && (
           <div className="flex gap-2">
             <BaseButton
-              label={"ثبت"}
+              label={'ثبت'}
               size="md"
               onClick={() => setShowConfirm(true)}
             />
             <BaseButton
-              label={"لغو"}
+              label={'لغو'}
               type="red"
               size="md"
               onClick={handleClose}

@@ -1,7 +1,7 @@
-import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
+import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 
-import { UsersDaAsList } from "./UsersDaAsList";
-import { BackButton } from "@ui/atoms/BackButton";
+import { UsersDaAsList } from './UsersDaAsList';
+import { BackButton } from '@ui/atoms/BackButton';
 
 export function DashboardMonitoring() {
   return (

@@ -1,2 +1,2 @@
-export { ToggleSwitch } from "./ToggleSwitch";
-export * from "./types";
+export { ToggleSwitch } from './ToggleSwitch';
+export * from './types';

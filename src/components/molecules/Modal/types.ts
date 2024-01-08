@@ -3,16 +3,16 @@ import {
   PropsWithChildren,
   ReactElement,
   SetStateAction,
-} from "react";
-import { VariantProps } from "class-variance-authority";
-import { BaseButtonStyleProps } from "@ui/atoms/BaseButton";
+} from 'react';
+import { VariantProps } from 'class-variance-authority';
+import { BaseButtonStyleProps } from '@ui/atoms/BaseButton';
 
-import { headerStyles } from "./styles";
+import { headerStyles } from './styles';
 
 type ModalButtonType = {
   label: string;
   onClick: () => void;
-  color?: BaseButtonStyleProps["type"];
+  color?: BaseButtonStyleProps['type'];
   loading?: boolean;
 };
 export interface IModal

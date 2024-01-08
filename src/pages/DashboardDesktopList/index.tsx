@@ -1,7 +1,7 @@
-import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
-import { BackButton } from "@ui/atoms/BackButton";
+import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
+import { BackButton } from '@ui/atoms/BackButton';
 
-import { DaAsList } from "./DaAsList";
+import { DaAsList } from './DaAsList';
 
 export function DashboardDesktopListPage() {
   return (

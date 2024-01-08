@@ -1,26 +1,26 @@
-import { useCallback, useState } from "react";
-import { LoadingSpinner } from "@ui/molecules/Loading";
-import { NoResult } from "@ui/molecules/NoResult";
-import { DaAsCard } from "./DaAsCard";
-import { API_DAAS_DELETE, API_DAAS_UPDATE } from "@src/services/users";
-import { ETimeLimitDuration } from "@src/services/users/types";
-import { IDaAs } from "@src/services/users/types";
-import { Modal } from "@ui/molecules/Modal";
-import { toast } from "react-toastify";
-import useSWR from "swr";
-import { http } from "@src/services/http";
-import { IResponsePagination } from "@src/types/services";
-import { E_USERS_DAAS } from "@src/services/users/endpoint";
-import Pagination from "@ui/molecules/Pagination";
-import { ResetAllAccessTime } from "./ResetAllAccessTime";
-import { ActionOnClickActionsType } from "./DaAsCard/types";
-import { SettingDaasModal } from "./SettingDaasModal";
+import { useCallback, useState } from 'react';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { NoResult } from '@ui/molecules/NoResult';
+import { DaAsCard } from './DaAsCard';
+import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
+import { ETimeLimitDuration } from '@src/services/users/types';
+import { IDaAs } from '@src/services/users/types';
+import { Modal } from '@ui/molecules/Modal';
+import { toast } from 'react-toastify';
+import useSWR from 'swr';
+import { http } from '@src/services/http';
+import { IResponsePagination } from '@src/types/services';
+import { E_USERS_DAAS } from '@src/services/users/endpoint';
+import Pagination from '@ui/molecules/Pagination';
+import { ResetAllAccessTime } from './ResetAllAccessTime';
+import { ActionOnClickActionsType } from './DaAsCard/types';
+import { SettingDaasModal } from './SettingDaasModal';
 
-import { IHeaderDaasCard } from "./types";
-import { createAPIEndpoint } from "@src/helper/utils";
-import { debounce } from "lodash";
-import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
-import { useTranslation } from "react-i18next";
+import { IHeaderDaasCard } from './types';
+import { createAPIEndpoint } from '@src/helper/utils';
+import { debounce } from 'lodash';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { useTranslation } from 'react-i18next';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -56,7 +56,7 @@ const PAGE = 1;
 export function DaAsList() {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>("");
+  const [filterQuery, setFilterQuery] = useState<string>('');
 
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
   const [actionOnClick, setActionOnClick] =
@@ -87,34 +87,34 @@ export function DaAsList() {
   );
 
   const headerItem: IHeaderDaasCard = {
-    email: t("table.email"),
-    http_port: "پورت http",
-    https_port: "پورت https",
-    created_at: "string",
-    last_uptime: "string",
-    is_lock: t("table.desktop"),
+    email: t('table.email'),
+    http_port: 'پورت http',
+    https_port: 'پورت https',
+    created_at: 'string',
+    last_uptime: 'string',
+    is_lock: t('table.desktop'),
     daas_configs: {
-      is_globally_config: t("table.defaultSetting"),
-      can_upload_file: t("table.accessSetting"),
-      can_download_file: "",
-      clipboard_down: "",
-      clipboard_up: "",
+      is_globally_config: t('table.defaultSetting'),
+      can_upload_file: t('table.accessSetting'),
+      can_download_file: '',
+      clipboard_down: '',
+      clipboard_up: '',
       time_limit_duration: ETimeLimitDuration.DAILY,
-      time_limit_value_in_hour: "",
-      max_transmission_download_size: "0",
-      max_transmission_upload_size: "0",
-      webcam_privilege: "false",
-      microphone_privilege: "false",
+      time_limit_value_in_hour: '',
+      max_transmission_download_size: '0',
+      max_transmission_upload_size: '0',
+      webcam_privilege: 'false',
+      microphone_privilege: 'false',
     },
-    is_running: t("table.status"),
-    usage_in_minute: t("table.usedTime"),
-    extra_allowed_download_files: "",
-    extra_allowed_upload_files: "",
-    forbidden_upload_files: "",
-    forbidden_download_files: "",
-    allowed_files_type_for_download: "",
-    allowed_files_type_for_upload: "",
-    daas_version: t("table.desktopV"),
+    is_running: t('table.status'),
+    usage_in_minute: t('table.usedTime'),
+    extra_allowed_download_files: '',
+    extra_allowed_upload_files: '',
+    forbidden_upload_files: '',
+    forbidden_download_files: '',
+    allowed_files_type_for_download: '',
+    allowed_files_type_for_upload: '',
+    daas_version: t('table.desktopV'),
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,24 +128,24 @@ export function DaAsList() {
     action: ActionOnClickActionsType,
     daas?: Partial<IDaAs> | string
   ): any {
-    if (action === "mutate") {
+    if (action === 'mutate') {
       mutate();
       return;
     }
 
-    if (action === "edit") {
+    if (action === 'edit') {
       setActiveDaas(daas as IDaAs);
       setOpenSettingModal(true);
       return;
     }
 
-    if (action === "editLock") {
+    if (action === 'editLock') {
       setActiveDaas(daas as IDaAs);
       setOpenModal(true);
       return;
     }
 
-    if (daas !== undefined && typeof daas !== "string") {
+    if (daas !== undefined && typeof daas !== 'string') {
       setActionOnClick(action);
       setActiveDaas(daas);
       setOpenModal(true);
@@ -156,11 +156,11 @@ export function DaAsList() {
     if (!activeDaas) return;
 
     setLoadingButtonModal(true);
-    if (actionOnClick === "delete") {
+    if (actionOnClick === 'delete') {
       await API_DAAS_DELETE(activeDaas.id as string)
         .then(() => {
           mutate();
-          toast.success(t("global.successfullyRemoved"));
+          toast.success(t('global.successfullyRemoved'));
           setOpenModal(false);
         })
         .catch((err) => {
@@ -229,7 +229,7 @@ export function DaAsList() {
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
         mutate();
-        toast.success(t("table.sucessfulyUpdated"));
+        toast.success(t('table.sucessfulyUpdated'));
         openModal && setOpenModal(false);
         openSettingModal && setOpenSettingModal(false);
       })
@@ -277,16 +277,16 @@ export function DaAsList() {
         open={openModal}
         setOpen={setOpenModal}
         type="error"
-        title={t("global.sureAboutThis")}
+        title={t('global.sureAboutThis')}
         buttonOne={{
-          label: t("global.yes"),
+          label: t('global.yes'),
           onClick: handleOnRequests,
           loading: loadingButtonModal,
         }}
         buttonTow={{
-          label: t("global.no"),
+          label: t('global.no'),
           onClick: () => setOpenModal(false),
-          color: "red",
+          color: 'red',
         }}
       />
       <Modal
