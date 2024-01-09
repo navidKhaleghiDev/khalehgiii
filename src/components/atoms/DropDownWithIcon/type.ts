@@ -1,5 +1,4 @@
 import { VariantProps } from 'class-variance-authority';
-import { FieldPath, FieldValues, RegisterOptions } from 'react-hook-form';
 import { baseDropDownStyles } from './styles';
 
 export interface IOptionSelect {
@@ -8,14 +7,9 @@ export interface IOptionSelect {
   label: string;
 }
 
-export interface DropdownProps<T extends FieldValues>
-  extends VariantProps<typeof baseDropDownStyles> {
-  id: string;
-  name: FieldPath<T>;
-  rules?: RegisterOptions<T>;
+export interface DropdownProps extends VariantProps<typeof baseDropDownStyles> {
   options: IOptionSelect[];
   fullWidth?: boolean;
-  placeHolder: string;
   containerClassName?: string;
   defaultValue?: any;
   label?: string;

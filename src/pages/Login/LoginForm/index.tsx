@@ -80,12 +80,9 @@ export function LoginForm() {
       <div className="absolute top-[1rem] right-[1rem] ">
         <DropDownWithIcon
           icon={languageIcon}
-          name={'language'}
-          size="sm"
+          size="xs"
           onSelect={(v: string) => changeLanguage(v)}
           options={languageOptions}
-          id={''}
-          placeHolder={''}
         />
       </div>
       <Typography color="neutral" size="h5" className="mb-5">
