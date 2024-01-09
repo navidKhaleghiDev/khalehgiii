@@ -3,6 +3,7 @@ import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
 import gear from '@iconify-icons/ph/gear';
 import trashIcon from '@iconify-icons/ph/trash';
 import { SetAccessTime } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime';
+import { UsedTimeDass } from '@src/pages/DashboardDesktopList/DaAsList/UsedTimeDass';
 
 export const desktopListHeaderItem = [
   {
@@ -48,9 +49,12 @@ export const desktopListHeaderItem = [
   {
     label: 'table.usedTime',
     id: 'usage_in_minute',
-    type: 'none',
+    type: 'component',
+    component: (props: any) => (
+      <UsedTimeDass time={props.row.usage_in_minute} />
+    ),
     dir: '',
-    style: 'px-3 w-2/12',
+    style: 'px-3 w-3/12',
     size: 'body4',
   },
   {

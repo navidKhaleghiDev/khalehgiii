@@ -67,6 +67,7 @@ export function UsersDaAsList() {
         />
       </div>
       <BaseTable
+        loading={isLoading}
         body={listDaas}
         header={monitoringHeaderItem()}
         onClick={userHandler}

@@ -19,6 +19,7 @@ import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
+import Pagination from '@ui/molecules/Pagination';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -89,7 +90,7 @@ export function DaAsList() {
   };
 
   const listDaas = data?.data?.results ?? [];
-  // const countPage = data?.data?.count || 0;
+  const countPage = data?.data?.count || 0;
 
   function handleOnClickActions(
     action: ActionOnClickActionsType,
@@ -225,23 +226,13 @@ export function DaAsList() {
         body={listDaas}
         onClick={handleOnClickActions}
       />
-      {/* <DaAsCard daas={headerItem} isHeader />
-			{isLoading ? (
-				<LoadingSpinner />
-			) : listDaas.length > 0 ? (
-				listDaas.map((item) => (
-					<DaAsCard key={item.id} daas={item} onClickActions={handleOnClickActions} />
-				))
-			) : (
-				<NoResult />
-			)}
-			{!!countPage && (
-				<Pagination
-					currentPage={currentPage}
-					totalPages={Math.ceil(countPage / PAGE_SIZE)}
-					onPageChange={handlePageChange}
-				/>
-			)} */}
+      {!!countPage && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(countPage / PAGE_SIZE)}
+          onPageChange={handlePageChange}
+        />
+      )}
       <Modal
         open={openModal}
         setOpen={setOpenModal}
