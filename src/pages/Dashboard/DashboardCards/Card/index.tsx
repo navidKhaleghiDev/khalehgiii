@@ -1,5 +1,5 @@
-import { IconType } from "@src/types/global";
-import { Typography, BaseIcon } from "@ui/atoms";
+import { IconType } from '@src/types/global';
+import { Typography, BaseIcon } from '@ui/atoms';
 
 type PropsType = {
   icon: IconType;
@@ -11,7 +11,7 @@ type PropsType = {
 export function Card({ icon, title, description, onClick }: PropsType) {
   return (
     <button
-      className="w-full flex items-center bg-white hover:bg-gray-200 rounded-md shadow-xl disabled:hover:bg-white text-right"
+      className="w-full h-16 flex items-center bg-white hover:bg-gray-200 rounded-md shadow-xl disabled:hover:bg-white text-right"
       onClick={onClick}
       disabled={!onClick}
     >

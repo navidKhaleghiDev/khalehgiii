@@ -1,16 +1,16 @@
-import { IDaasConfig } from "../config/types";
+import { IDaasConfig } from '../config/types';
 
 export enum ETimeLimitDuration {
-  DAILY = "DAILY",
-  MONTHLY = "MONTHLY",
-  WEEKLY = "WEEKLY",
-  PERMANENTLY = "PERMANENTLY",
-  TEMPORARY = "TEMPORARY",
+  DAILY = 'DAILY',
+  MONTHLY = 'MONTHLY',
+  WEEKLY = 'WEEKLY',
+  PERMANENTLY = 'PERMANENTLY',
+  TEMPORARY = 'TEMPORARY',
 }
 
 export enum EAccessMode {
-  HAS_ACCESS = "HAS_ACCESS",
-  NO_ACCESS = "NO_ACCESS",
+  HAS_ACCESS = 'HAS_ACCESS',
+  NO_ACCESS = 'NO_ACCESS',
 }
 
 export interface IDaAs {

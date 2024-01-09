@@ -6,20 +6,20 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 
 type PropsType = {
-	daas: IDaAs;
-	onClickActions?: OnClickActionsType;
+  daas: IDaAs;
+  onClickActions?: OnClickActionsType;
 };
 
 export function SetAccessUpload({ daas, onClickActions }: PropsType) {
-	const { t } = useTranslation();
-	return (
-		<ToolTip tooltip={t('global.setting')}>
-			<IconButton
-				icon={gear}
-				onClick={() => {
-					onClickActions && onClickActions('edit', daas);
-				}}
-			/>
-		</ToolTip>
-	);
+  const { t } = useTranslation();
+  return (
+    <ToolTip tooltip={t('global.setting')}>
+      <IconButton
+        icon={gear}
+        onClick={() => {
+          onClickActions && onClickActions('edit', daas);
+        }}
+      />
+    </ToolTip>
+  );
 }

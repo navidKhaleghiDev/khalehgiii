@@ -10,27 +10,30 @@ import { http_analyses } from '@src/services/http';
 import { useTranslation } from 'react-i18next';
 
 export function CardScanStats() {
-	const { t } = useTranslation();
-	const { data } = useSWR<ISwrResponse<IScanStats>>(E_ANALYZE_SCAN_STATS, http_analyses.fetcherSWR);
-	const todayScans = data?.data?.info?.today_scans || '-';
-	const remainingDays = data?.data?.info?.remaining_days || '-';
+  const { t } = useTranslation();
+  const { data } = useSWR<ISwrResponse<IScanStats>>(
+    E_ANALYZE_SCAN_STATS,
+    http_analyses.fetcherSWR
+  );
+  const todayScans = data?.data?.info?.today_scans || '-';
+  const remainingDays = data?.data?.info?.remaining_days || '-';
 
-	return (
-		<>
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={scanIcon}
-					title={t('dashboard.numberOfTodayScans')}
-					description={`${todayScans}`}
-				/>
-			</div>
-			<div className="col-span-10 md:col-span-6 xl:col-span-3">
-				<Card
-					icon={certificateIcon}
-					title={t('dashboard.dayLeft')}
-					description={`${remainingDays}`}
-				/>
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={scanIcon}
+          title={t('dashboard.numberOfTodayScans')}
+          description={`${todayScans}`}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={certificateIcon}
+          title={t('dashboard.dayLeft')}
+          description={`${remainingDays}`}
+        />
+      </div>
+    </>
+  );
 }

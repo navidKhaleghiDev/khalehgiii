@@ -7,9 +7,9 @@ import './i18next';
 import { LanguageProvider } from '@context/settings/languageContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-	<React.StrictMode>
-		<LanguageProvider>
-			<App />
-		</LanguageProvider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
+  </React.StrictMode>
 );

@@ -21,86 +21,85 @@ import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { languageOptions } from '@src/constants/optios';
 
 export function NavbarDashboard() {
-	const navigate = useNavigate();
-	const { t } = useTranslation();
-	const [openModal, setOpenModal] = useState(false);
-	const { user, setUser } = useUserContext();
-	const { changeLanguage, lang } = useLanguage();
-	const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const [openModal, setOpenModal] = useState(false);
+  const { user, setUser } = useUserContext();
+  const { changeLanguage, lang } = useLanguage();
+  const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
-	const logout = () => {
-		setUser(null);
-		http.removeAuthHeader();
-		navigate(ROUTES_PATH.login);
-	};
+  const logout = () => {
+    setUser(null);
+    http.removeAuthHeader();
+    navigate(ROUTES_PATH.login);
+  };
 
-	return (
-		<nav className="w-full bg-black px-8 2xl:container h-12">
-			<div className="flex items-center justify-between ">
-				<div className="flex items-center">
-					<ToolTip tooltip={t('global.exit')} position="bottom">
-						<IconButton
-							icon={signOutBoldIcon}
-							size="xl"
-							className="ml-4 rounded-3xl"
-							color="red"
-							onClick={logout}
-						/>
-					</ToolTip>
+  return (
+    <nav className="w-full bg-black px-8 2xl:container h-12">
+      <div className="flex items-center justify-between ">
+        <div className="flex items-center">
+          <ToolTip tooltip={t('global.exit')} position="bottom">
+            <IconButton
+              icon={signOutBoldIcon}
+              size="xl"
+              className="ml-4 rounded-3xl"
+              color="red"
+              onClick={logout}
+            />
+          </ToolTip>
 
-					{user?.is_superuser && (
-						<ToolTip tooltip={t('global.setting')} position="bottom">
-							<IconButton
-								icon={gearIcon}
-								size="xl"
-								className="ml-4 rounded-3xl"
-								color="teal"
-								onClick={() => setOpenModal(true)}
-							/>
-						</ToolTip>
-					)}
-					<ToolTip tooltip={t('global.language')} position="right">
-						<DropDownWithIcon
-							icon={languageIcon}
-							name={'language'}
-							size="ls"
-							onSelect={(l) => changeLanguage(l)}
-							options={languageOptions}
-						/>
-					</ToolTip>
-					<Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
-					<div className={lang === 'en' ? 'ml-2' : 'none'}>
-						<Typography weight="bold" color="white" size="caption">
-							{user?.email}
-						</Typography>
-						<Typography color="white" size="caption">
-							{user?.is_superuser ? t('header.admin') : t('header.user')}
-						</Typography>
-					</div>
+          {user?.is_superuser && (
+            <ToolTip tooltip={t('global.setting')} position="bottom">
+              <IconButton
+                icon={gearIcon}
+                size="xl"
+                className="ml-4 rounded-3xl"
+                color="teal"
+                onClick={() => setOpenModal(true)}
+              />
+            </ToolTip>
+          )}
+          <ToolTip tooltip={t('global.language')} position="right">
+            <DropDownWithIcon
+              icon={languageIcon}
+              size="xs"
+              onSelect={(v: string) => changeLanguage(v)}
+              options={languageOptions}
+            />
+          </ToolTip>
+          <Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
+          <div className={lang === 'en' ? 'ml-2' : 'none'}>
+            <Typography weight="bold" color="white" size="caption">
+              {user?.email}
+            </Typography>
+            <Typography color="white" size="caption">
+              {user?.is_superuser ? t('header.admin') : t('header.user')}
+            </Typography>
+          </div>
 
-					{user ? (
-						user?.is_superuser ? null : (
-							<div className={timeStyle}>
-								<AccessTime />
-							</div>
-						)
-					) : null}
-				</div>
+          {user ? (
+            user?.is_superuser ? null : (
+              <div className={timeStyle}>
+                <AccessTime />
+              </div>
+            )
+          ) : null}
+        </div>
 
-				<div className="flex">
-					{/* <NavigationButtons /> */}
-					<Link to={ROUTES_PATH.dashboard}>
-						<img src="/logo.png" alt="logo" className="h-8" />
-					</Link>
-				</div>
-			</div>
-			<Modal
-				open={openModal}
-				setOpen={setOpenModal}
-				title={t('global.changeNameAndPassword')}
-				content={<ChangePasswordForm user={user} logout={logout} />}
-				type="success"
-			/>
-		</nav>
-	);
+        <div className="flex">
+          {/* <NavigationButtons /> */}
+          <Link to={ROUTES_PATH.dashboard}>
+            <img src="/logo.png" alt="logo" className="h-8" />
+          </Link>
+        </div>
+      </div>
+      <Modal
+        open={openModal}
+        setOpen={setOpenModal}
+        title={t('global.changeNameAndPassword')}
+        content={<ChangePasswordForm user={user} logout={logout} />}
+        type="success"
+      />
+    </nav>
+  );
 }

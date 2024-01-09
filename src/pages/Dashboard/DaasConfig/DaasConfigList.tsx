@@ -1,42 +1,42 @@
-import { useCallback, useState } from "react";
-import useSWR from "swr";
-import { IResponsePagination } from "@src/types/services";
-import { IDaasConfig } from "@src/services/config/types";
-import { http } from "@src/services/http";
-import { E_DAAS_CONFIGS } from "@src/services/config/endpoint";
-import { LoadingSpinner } from "@ui/molecules/Loading";
-import { DlpConfigCard } from "./DlpConfigCard";
-import { StringifyProperties } from "@src/types/global";
-import { ActionOnClickActionsType } from "./DlpConfigCard/types";
-import { NoResult } from "@ui/molecules/NoResult";
-import Pagination from "@ui/molecules/Pagination";
-import { Modal } from "@ui/molecules/Modal";
-import { SettingDaasConfigModal } from "./SettingDaasConfigModal";
-import { createAPIEndpoint } from "@src/helper/utils";
-import { debounce } from "lodash";
-import { SearchInput } from "@ui/atoms/Inputs/SearchInput";
+import { useCallback, useState } from 'react';
+import useSWR from 'swr';
+import { IResponsePagination } from '@src/types/services';
+import { IDaasConfig } from '@src/services/config/types';
+import { http } from '@src/services/http';
+import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { DlpConfigCard } from './DlpConfigCard';
+import { StringifyProperties } from '@src/types/global';
+import { ActionOnClickActionsType } from './DlpConfigCard/types';
+import { NoResult } from '@ui/molecules/NoResult';
+import Pagination from '@ui/molecules/Pagination';
+import { Modal } from '@ui/molecules/Modal';
+import { SettingDaasConfigModal } from './SettingDaasConfigModal';
+import { createAPIEndpoint } from '@src/helper/utils';
+import { debounce } from 'lodash';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
 const headerItem: StringifyProperties<IDaasConfig> = {
-  id: "",
-  can_upload_file: "آپلود",
-  can_download_file: "دانلود",
-  clipboard_up: "کلیپبورد از کلاینت به سرور",
-  clipboard_down: "کلیپبورد از سرور به کلاینت",
-  webcam_privilege: "وب کم",
-  microphone_privilege: "میکروفن",
-  time_limit_duration: "زمان مجاز دسترسی",
-  time_limit_value_in_hour: "",
-  max_transmission_upload_size: "سایز آپلود",
-  max_transmission_download_size: "سایز دانلود",
-  is_globally_config: "",
+  id: '',
+  can_upload_file: 'آپلود',
+  can_download_file: 'دانلود',
+  clipboard_up: 'کلیپبورد از کلاینت به سرور',
+  clipboard_down: 'کلیپبورد از سرور به کلاینت',
+  webcam_privilege: 'وب کم',
+  microphone_privilege: 'میکروفن',
+  time_limit_duration: 'زمان مجاز دسترسی',
+  time_limit_value_in_hour: '',
+  max_transmission_upload_size: 'سایز آپلود',
+  max_transmission_download_size: 'سایز دانلود',
+  is_globally_config: '',
 };
 
 export function DaasConfigList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>("");
+  const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaasConfig] = useState<Partial<IDaasConfig>>();
   const [openSettingModal, setOpenSettingModal] = useState(false);
 
@@ -81,7 +81,7 @@ export function DaasConfigList() {
     action: ActionOnClickActionsType,
     daasConfig?: StringifyProperties<IDaasConfig> | IDaasConfig
   ): any {
-    if (action === "mutate") {
+    if (action === 'mutate') {
       mutate();
       return;
     }

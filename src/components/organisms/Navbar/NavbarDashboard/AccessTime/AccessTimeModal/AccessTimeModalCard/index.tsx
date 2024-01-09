@@ -1,5 +1,5 @@
-import { Typography } from "@ui/atoms/Typography/Typography";
-import { Card } from "@ui/atoms";
+import { Typography } from '@ui/atoms/Typography/Typography';
+import { Card } from '@ui/atoms';
 
 export function AccessTimeModalCard({ label, name, value }: any) {
   return (

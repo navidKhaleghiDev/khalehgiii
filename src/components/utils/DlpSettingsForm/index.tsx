@@ -1,5 +1,5 @@
-import { IDaAs } from "@src/services/users/types";
-import { DlpList } from "./DlpList";
+import { IDaAs } from '@src/services/users/types';
+import { DlpList } from './DlpList';
 
 type PropsType = {
   handleSetDlpValues: (name: keyof IDaAs, values: string[]) => void;

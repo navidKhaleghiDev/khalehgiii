@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import arrowLeftIcon from "@iconify-icons/ph/arrow-left";
+import arrowLeftIcon from '@iconify-icons/ph/arrow-left';
 
-import { BaseIcon, Typography } from "@ui/atoms";
-import { AccordionButtonProps } from "./types";
-import { titleStyles, contentStyles } from "./styles";
+import { BaseIcon, Typography } from '@ui/atoms';
+import { AccordionButtonProps } from './types';
+import { titleStyles, contentStyles } from './styles';
 
 export function AccordionButton({ open, setOpen, item }: AccordionButtonProps) {
   return (
@@ -18,7 +18,7 @@ export function AccordionButton({ open, setOpen, item }: AccordionButtonProps) {
       >
         <BaseIcon
           icon={arrowLeftIcon}
-          className={open === item.id ? "-rotate-90" : ""}
+          className={open === item.id ? '-rotate-90' : ''}
         />
         <Typography className="mr-3" size="body3">
           {item.title}
@@ -27,7 +27,7 @@ export function AccordionButton({ open, setOpen, item }: AccordionButtonProps) {
       <div
         className={contentStyles({
           active: open === item.id,
-          className: `${open !== item.id && "hidden"} `,
+          className: `${open !== item.id && 'hidden'} `,
         })}
       >
         {item.content}

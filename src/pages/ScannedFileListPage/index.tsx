@@ -1,7 +1,7 @@
-import { ContainerDashboard } from "@ui/Templates/ContainerDashboard";
+import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 
-import { ScannedFileList } from "./ScannedFileList";
-import { BackButton } from "@ui/atoms/BackButton";
+import { ScannedFileList } from './ScannedFileList';
+import { BackButton } from '@ui/atoms/BackButton';
 
 export function ScannedFileListPage() {
   return (

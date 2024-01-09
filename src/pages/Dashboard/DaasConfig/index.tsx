@@ -14,85 +14,93 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 export function DaasConfig() {
-	const { t } = useTranslation();
-	const [openConfirmModal, setOpenConfirmModal] = useState(false);
-	const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-	const { data: daasConfig, isLoading } = useSWR<ISwrResponse<IDaasConfig>>(
-		E_DAAS_CONFIGS,
-		http.fetcherSWR
-	);
+  const { t } = useTranslation();
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
+  const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const { data: daasConfig, isLoading } = useSWR<ISwrResponse<IDaasConfig>>(
+    E_DAAS_CONFIGS,
+    http.fetcherSWR
+  );
 
-	const { control, handleSubmit, getValues, reset } = useForm<IDaasConfig>({
-		mode: 'onChange',
-		defaultValues: {
-			id: daasConfig?.data?.id,
-			can_upload_file: daasConfig?.data?.can_upload_file,
-			can_download_file: daasConfig?.data?.can_download_file,
-			clipboard_down: daasConfig?.data?.clipboard_down,
-			clipboard_up: daasConfig?.data?.clipboard_up,
-			webcam_privilege: daasConfig?.data?.webcam_privilege,
-			microphone_privilege: daasConfig?.data?.microphone_privilege,
-			max_transmission_download_size: daasConfig?.data?.max_transmission_download_size,
-			max_transmission_upload_size: daasConfig?.data?.max_transmission_upload_size,
-		},
-	});
+  const { control, handleSubmit, getValues, reset } = useForm<IDaasConfig>({
+    mode: 'onChange',
+    defaultValues: {
+      id: daasConfig?.data?.id,
+      can_upload_file: daasConfig?.data?.can_upload_file,
+      can_download_file: daasConfig?.data?.can_download_file,
+      clipboard_down: daasConfig?.data?.clipboard_down,
+      clipboard_up: daasConfig?.data?.clipboard_up,
+      webcam_privilege: daasConfig?.data?.webcam_privilege,
+      microphone_privilege: daasConfig?.data?.microphone_privilege,
+      max_transmission_download_size:
+        daasConfig?.data?.max_transmission_download_size,
+      max_transmission_upload_size:
+        daasConfig?.data?.max_transmission_upload_size,
+    },
+  });
 
-	useEffect(() => {
-		reset(daasConfig?.data);
-	}, [daasConfig]);
+  useEffect(() => {
+    reset(daasConfig?.data);
+  }, [daasConfig]);
 
-	const handleOnSubmit = () => {
-		setOpenConfirmModal(true);
-	};
+  const handleOnSubmit = () => {
+    setOpenConfirmModal(true);
+  };
 
-	const handleOnUpdate = async () => {
-		const updatedDaasConfig = getValues();
-		setLoadingButtonModal(true);
+  const handleOnUpdate = async () => {
+    const updatedDaasConfig = getValues();
+    setLoadingButtonModal(true);
 
-		if (updatedDaasConfig.id) {
-			await API_UPDATE_DAAS_CONFIG(updatedDaasConfig)
-				.then(() => {
-					toast.success(t('global.sucessfulyUpdated'));
-					setOpenConfirmModal(false);
-				})
-				.catch((err) => {
-					toast.error(err);
-				})
-				.finally(() => {
-					setLoadingButtonModal(false);
-				});
-			return;
-		}
-	};
+    if (updatedDaasConfig.id) {
+      await API_UPDATE_DAAS_CONFIG(updatedDaasConfig)
+        .then(() => {
+          toast.success(t('global.sucessfulyUpdated'));
+          setOpenConfirmModal(false);
+        })
+        .catch((err) => {
+          toast.error(err);
+        })
+        .finally(() => {
+          setLoadingButtonModal(false);
+        });
+      return;
+    }
+  };
 
-	if (isLoading) {
-		return <LoadingSpinner />;
-	}
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
-	return (
-		<form
-			className="w-full h-full grid grid-cols-6 gap-8 p-4"
-			onSubmit={handleSubmit(handleOnSubmit)}>
-			<DaasConfigForm control={control} />
-			<div className="flex justify-center col-span-6">
-				<BaseButton label={t('dashboard.update')} size="md" type="default" submit />
-			</div>
-			<Modal
-				open={openConfirmModal}
-				setOpen={setOpenConfirmModal}
-				type="error"
-				title={t('dashboard.sureAboutThis')}
-				buttonOne={{
-					label: t('global.yes'),
-					onClick: handleOnUpdate,
-					loading: loadingButtonModal,
-				}}
-				buttonTow={{
-					label: t('global.no'),
-					onClick: () => setOpenConfirmModal(false),
-					color: 'red',
-				}}
-			/>
-		</form>
-	);
+  return (
+    <form
+      className="w-full h-full grid grid-cols-6 gap-8 p-4"
+      onSubmit={handleSubmit(handleOnSubmit)}
+    >
+      <DaasConfigForm control={control} />
+      <div className="flex justify-center col-span-6">
+        <BaseButton
+          label={t('dashboard.update')}
+          size="md"
+          type="default"
+          submit
+        />
+      </div>
+      <Modal
+        open={openConfirmModal}
+        setOpen={setOpenConfirmModal}
+        type="error"
+        title={t('dashboard.sureAboutThis')}
+        buttonOne={{
+          label: t('global.yes'),
+          onClick: handleOnUpdate,
+          loading: loadingButtonModal,
+        }}
+        buttonTow={{
+          label: t('global.no'),
+          onClick: () => setOpenConfirmModal(false),
+          color: 'red',
+        }}
+      />
+    </form>
+  );
 }

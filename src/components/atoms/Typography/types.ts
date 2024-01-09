@@ -1,32 +1,32 @@
-import { ComponentProps, PropsWithChildren } from "react";
-import { VariantProps } from "class-variance-authority";
+import { ComponentProps, PropsWithChildren } from 'react';
+import { VariantProps } from 'class-variance-authority';
 
-import { typographyStyles } from "./styles";
-import { BaseIcon } from "../BaseIcon";
-import { IconType } from "@src/types/global";
+import { typographyStyles } from './styles';
+import { BaseIcon } from '../BaseIcon';
+import { IconType } from '@src/types/global';
 
 export interface ITypography
   extends VariantProps<typeof typographyStyles>,
     PropsWithChildren {
   type?:
-    | "p"
-    | "h1"
-    | "h2"
-    | "h3"
-    | "h4"
-    | "h5"
-    | "h6"
-    | "caption"
-    | "span"
-    | "div";
+    | 'p'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'caption'
+    | 'span'
+    | 'div';
   className?: string;
 }
 
 type BaseIconProps = ComponentProps<typeof BaseIcon>;
-export interface ITypographyIcon extends Omit<ITypography, "children"> {
+export interface ITypographyIcon extends Omit<ITypography, 'children'> {
   text: string;
-  iconColor?: BaseIconProps["color"];
-  iconSize?: BaseIconProps["size"];
+  iconColor?: BaseIconProps['color'];
+  iconSize?: BaseIconProps['size'];
   startIcon?: IconType;
   endIcon?: IconType;
 }

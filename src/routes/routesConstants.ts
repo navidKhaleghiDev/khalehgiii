@@ -1,30 +1,30 @@
 export type RoutePathType =
-  | "unauthorized"
-  | "login"
-  | "dashboard"
-  | "home"
-  | "monitoring"
-  | "adminKeycloakPage"
-  | "monitoringDetails"
-  | "dashboardAdminsList"
-  | "uba"
-  | "extensionList"
-  | "dashboardDesktopList";
+  | 'unauthorized'
+  | 'login'
+  | 'dashboard'
+  | 'home'
+  | 'monitoring'
+  | 'adminKeycloakPage'
+  | 'monitoringDetails'
+  | 'dashboardAdminsList'
+  | 'uba'
+  | 'extensionList'
+  | 'dashboardDesktopList';
 
 export const RoutesName = {
-  HOME: "home",
-  DASHBOARD: "dashboard",
-  UNAUTHORIZED: "unauthorized",
-  DESKTOP_LIST: "desktop-list",
-  ADMINS_LIST: "admins-list",
-  MONITORING: "monitoring",
-  ADMIN_KEYKLOAK: "keycloak-panel",
-  EXTENSION_LIST: "extension-list",
-  UBA: "uba",
+  HOME: 'home',
+  DASHBOARD: 'dashboard',
+  UNAUTHORIZED: 'unauthorized',
+  DESKTOP_LIST: 'desktop-list',
+  ADMINS_LIST: 'admins-list',
+  MONITORING: 'monitoring',
+  ADMIN_KEYKLOAK: 'keycloak-panel',
+  EXTENSION_LIST: 'extension-list',
+  UBA: 'uba',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
-  home: "/",
+  home: '/',
   unauthorized: `/${RoutesName.UNAUTHORIZED}`,
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,

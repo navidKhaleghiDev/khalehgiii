@@ -7,7 +7,6 @@ import { http, AxiosRequestConfig } from '.';
 export type MutationPostOptions<T> = SWRMutationConfiguration<
   T,
   unknown,
-  unknown,
   string
 >;
 
@@ -34,7 +33,7 @@ const useGet = <ResponseData = unknown, Error = unknown>(
 function usePost<T = object, R = AxiosResponse<T>>(
   mutationURL: string,
   body: T,
-  options?: MutationPostOptions<T>
+  options?: any
 ) {
   const post = (_url: string) =>
     http.post<T, R>(_url, body) as FetcherResponse<T>;

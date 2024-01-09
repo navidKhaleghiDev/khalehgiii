@@ -1,7 +1,7 @@
 export enum EScannerStatus {
-  FINISHED = "FINISHED",
-  IN_PROCESS = "IN_PROCESS",
-  FAILED = "FAILED",
+  FINISHED = 'FINISHED',
+  IN_PROCESS = 'IN_PROCESS',
+  FAILED = 'FAILED',
 }
 
 export interface IScannedFile {

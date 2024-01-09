@@ -3,7 +3,7 @@ import {
   FieldPath,
   FieldValues,
   RegisterOptions,
-} from "react-hook-form";
+} from 'react-hook-form';
 
 export interface IToggleSwitch<T extends FieldValues> {
   control: Control<T>;

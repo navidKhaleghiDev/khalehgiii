@@ -1,13 +1,13 @@
-import { useRef } from "react";
-import { useClickOutside } from "@src/helper/hooks/useClickOutside";
-import shieldWarningIcon from "@iconify-icons/ph/shield-warning";
-import shieldCheckIcon from "@iconify-icons/ph/shield-check";
-import xIcon from "@iconify-icons/ph/x";
+import { useRef } from 'react';
+import { useClickOutside } from '@src/helper/hooks/useClickOutside';
+import shieldWarningIcon from '@iconify-icons/ph/shield-warning';
+import shieldCheckIcon from '@iconify-icons/ph/shield-check';
+import xIcon from '@iconify-icons/ph/x';
 
-import { BaseIcon, Typography } from "@ui/atoms";
-import { BaseButton, IconButton } from "@ui/atoms/BaseButton";
-import { containerStyles, contentStyles, headerStyles } from "./styles";
-import { IModal } from "./types";
+import { BaseIcon, Typography } from '@ui/atoms';
+import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
+import { containerStyles, contentStyles, headerStyles } from './styles';
+import { IModal } from './types';
 
 export function Modal({
   open,
@@ -28,7 +28,7 @@ export function Modal({
   return open ? (
     <div
       className={`main-modal fixed w-full h-100 inset-0 z-50 animated fadeIn faster main-modal  h-100  overflow-hidden flex justify-center items-center `}
-      style={{ background: "rgba(0, 0, 0, 0.2)" }}
+      style={{ background: 'rgba(0, 0, 0, 0.2)' }}
     >
       <div
         ref={ref}
@@ -38,7 +38,7 @@ export function Modal({
         })}
       >
         <div className={contentStyles({ type })}>
-          {type !== "none" && (
+          {type !== 'none' && (
             <div className={headerStyles({ type })}>
               <div className="modal-close cursor-pointer z-50">
                 <IconButton
@@ -48,7 +48,7 @@ export function Modal({
                 />
               </div>
               <BaseIcon
-                icon={type === "error" ? shieldWarningIcon : shieldCheckIcon}
+                icon={type === 'error' ? shieldWarningIcon : shieldCheckIcon}
                 className="h-8 w-8 text-neutral-100"
               />
             </div>

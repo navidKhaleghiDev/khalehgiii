@@ -1,14 +1,14 @@
-import { VariantProps } from "class-variance-authority";
-import { HTMLInputTypeAttribute } from "react";
+import { VariantProps } from 'class-variance-authority';
+import { HTMLInputTypeAttribute } from 'react';
 import {
   Control,
   FieldPath,
   FieldValues,
   RegisterOptions,
   UseFormSetError,
-} from "react-hook-form";
-import { baseInputStyles } from "./styles";
-import { IconType } from "@src/types/global";
+} from 'react-hook-form';
+import { baseInputStyles } from './styles';
+import { IconType } from '@src/types/global';
 
 export interface BaseInputProps<T extends FieldValues>
   extends VariantProps<typeof baseInputStyles> {
@@ -19,19 +19,19 @@ export interface BaseInputProps<T extends FieldValues>
   setError?: UseFormSetError<T>;
   defaultValue?: any;
   type?:
-    | "email"
-    | "number"
-    | "password"
-    | "search"
-    | "tel"
-    | "text"
-    | "url"
-    | "file"
-    | "date"
-    | "datetime-local"
-    | "time";
+    | 'email'
+    | 'number'
+    | 'password'
+    | 'search'
+    | 'tel'
+    | 'text'
+    | 'url'
+    | 'file'
+    | 'date'
+    | 'datetime-local'
+    | 'time';
   label?: string;
-  placeholder?: string;
+  placeholder?: string | undefined;
   className?: string;
   classNameInput?: string;
   maxLength?: number;
@@ -46,6 +46,7 @@ export interface BaseInputProps<T extends FieldValues>
   pureValue?: string;
   pureError?: string;
   ltrLabel?: boolean;
+  autoComplete?: string;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
@@ -58,4 +59,4 @@ export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
   type?: HTMLInputTypeAttribute;
 }
 
-export type ColorIndent = "default" | "error" | undefined | null;
+export type ColorIndent = 'default' | 'error' | undefined | null;

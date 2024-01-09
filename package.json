@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "format": "prettier --config .prettierrc.cjs --write src",
+    "format": "prettier --config .prettierrc.json --write src",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "prepare": "husky install",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -46,6 +47,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "sonarqube-scanner": "^3.0.1",
@@ -53,5 +56,16 @@
     "typescript": "^5.0.2",
     "vite": "^5.0.11",
     "vite-tsconfig-paths": "^4.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

@@ -1,11 +1,11 @@
-import shieldWarningIcon from "@iconify-icons/ph/shield-warning";
-import shieldCheckIcon from "@iconify-icons/ph/shield-check";
+import shieldWarningIcon from '@iconify-icons/ph/shield-warning';
+import shieldCheckIcon from '@iconify-icons/ph/shield-check';
 
-import { BaseIcon } from "../BaseIcon";
-import { Card } from "../Card";
-import { Typography } from "../Typography";
-import { notificationStyles } from "./styles";
-import { INotification } from "./types";
+import { BaseIcon } from '../BaseIcon';
+import { Card } from '../Card';
+import { Typography } from '../Typography';
+import { notificationStyles } from './styles';
+import { INotification } from './types';
 
 export function NotificationCard({
   className,
@@ -21,7 +21,7 @@ export function NotificationCard({
     >
       <div className="flex items-center">
         <BaseIcon
-          icon={type === "error" ? shieldWarningIcon : shieldCheckIcon}
+          icon={type === 'error' ? shieldWarningIcon : shieldCheckIcon}
           className="ml-5"
         />
         <Typography size="body3" weight="medium">

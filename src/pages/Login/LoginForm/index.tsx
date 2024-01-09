@@ -22,74 +22,74 @@ import languageIcon from '@iconify-icons/ph/globe-thin';
 import { languageOptions } from '@src/constants/optios';
 
 export function LoginForm() {
-	const [error, setError] = useState<string | null>(null);
-	const [loadingButton, setLoadingButton] = useState(false);
-	const { changeLanguage } = useLanguage();
+  const [error, setError] = useState<string | null>(null);
+  const [loadingButton, setLoadingButton] = useState(false);
+  const { changeLanguage } = useLanguage();
 
-	const { setUser } = useUserContext();
-	const { t } = useTranslation();
+  const { setUser } = useUserContext();
+  const { t } = useTranslation();
 
-	const navigate = useNavigate();
-	const { control, handleSubmit } = useForm<ILoginFieldValues>({
-		mode: 'onChange',
-	});
+  const navigate = useNavigate();
+  const { control, handleSubmit } = useForm<ILoginFieldValues>({
+    mode: 'onChange',
+  });
 
-	const handelGetProfile = async () => {
-		await API_USERS_PROFILE()
-			.then(({ data }) => {
-				if (data.exceeded_usage) {
-					navigate(ROUTES_PATH.unauthorized);
-					return;
-				}
-				setUser(data);
-				toast.success(t('global.successfullyLogedIn'));
-				navigate(ROUTES_PATH.dashboard);
-			})
-			.catch((err) => {
-				setError(err);
-			})
-			.finally(() => {
-				setLoadingButton(false);
-			});
-	};
+  const handelGetProfile = async () => {
+    await API_USERS_PROFILE()
+      .then(({ data }) => {
+        if (data.exceeded_usage) {
+          navigate(ROUTES_PATH.unauthorized);
+          return;
+        }
+        setUser(data);
+        toast.success(t('global.successfullyLogedIn'));
+        navigate(ROUTES_PATH.dashboard);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setLoadingButton(false);
+      });
+  };
 
-	const handelSubmitForm = async ({ email, password }: ILoginFieldValues) => {
-		setLoadingButton(true);
-		await API_USERS_LOGIN({ email, password })
-			.then(({ data }) => {
-				localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
-				http.setAuthHeader(data.access_token, data.refresh_token);
-				handelGetProfile();
-			})
-			.catch((err) => {
-				console.log({ err });
+  const handelSubmitForm = async ({ email, password }: ILoginFieldValues) => {
+    setLoadingButton(true);
+    await API_USERS_LOGIN({ email, password })
+      .then(({ data }) => {
+        localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
+        http.setAuthHeader(data.access_token, data.refresh_token);
+        handelGetProfile();
+      })
+      .catch((err) => {
+        console.log({ err });
 
-				setError(err);
-				setLoadingButton(false);
-			});
-	};
+        setError(err);
+        setLoadingButton(false);
+      });
+  };
 
-	return (
-		<form
-			onSubmit={handleSubmit(handelSubmitForm)}
-			className="flex flex-col items-center w-full mt-auto ">
-			<div className="absolute top-[-6rem]">
-				<Avatar icon={userIcon} intent="grey" size="lg" />
-			</div>
-			<div className="absolute top-[1rem] right-[1rem] ">
-				<DropDownWithIcon
-					icon={languageIcon}
-					name={'language'}
-					size="ls"
-					onSelect={(v) => changeLanguage(v)}
-					options={languageOptions}
-				/>
-			</div>
-			<Typography color="neutral" size="h5" className="mb-5">
-				{t('login.loginTitle')}
-			</Typography>
+  return (
+    <form
+      onSubmit={handleSubmit(handelSubmitForm)}
+      className="flex flex-col items-center w-full mt-auto "
+    >
+      <div className="absolute top-[-6rem]">
+        <Avatar icon={userIcon} intent="grey" size="lg" />
+      </div>
+      <div className="absolute top-[1rem] right-[1rem] ">
+        <DropDownWithIcon
+          icon={languageIcon}
+          size="xs"
+          onSelect={(v: string) => changeLanguage(v)}
+          options={languageOptions}
+        />
+      </div>
+      <Typography color="neutral" size="h5" className="mb-5">
+        {t('login.loginTitle')}
+      </Typography>
 
-			{/* <div>
+      {/* <div>
 				<ul>
 					{Object.keys(locales).map((locale) => (
 						<li key={locale}>
@@ -101,34 +101,39 @@ export function LoginForm() {
 				</ul>
 			</div> */}
 
-			{error && (
-				<Typography color="red" size="body3" className="mb-2">
-					{error}
-				</Typography>
-			)}
-			<div className="w-full flex flex-col items-center justify-end">
-				<BaseInput
-					fullWidth
-					control={control}
-					placeholder={t('global.userName')}
-					rules={{
-						required: regexPattern.required,
-					}}
-					id="email"
-					name="email"
-					endIcon={userIcon}
-				/>
-				<PasswordInput name="password" control={control} placeholder={t('global.password')} />
-				<BaseButton
-					label={t('login.login')}
-					endIcon={signInBoldIcon}
-					className="mt-8"
-					loading={loadingButton}
-					size="md"
-					submit
-					fullWidth
-				/>
-			</div>
-		</form>
-	);
+      {error && (
+        <Typography color="red" size="body3" className="mb-2">
+          {error}
+        </Typography>
+      )}
+      <div className="w-full flex flex-col items-center justify-end">
+        <BaseInput
+          fullWidth
+          control={control}
+          placeholder={t('global.userName')}
+          rules={{
+            required: regexPattern.required,
+          }}
+          id="email"
+          name="email"
+          size="lg"
+          endIcon={userIcon}
+        />
+        <PasswordInput
+          name="password"
+          control={control}
+          placeholder={t('global.password')}
+        />
+        <BaseButton
+          label={t('login.login')}
+          endIcon={signInBoldIcon}
+          className="mt-8"
+          loading={loadingButton}
+          size="md"
+          submit
+          fullWidth
+        />
+      </div>
+    </form>
+  );
 }

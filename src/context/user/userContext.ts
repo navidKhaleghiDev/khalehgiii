@@ -1,5 +1,5 @@
-import { IUser } from "@src/services/users/types";
-import { Dispatch, SetStateAction, createContext, useContext } from "react";
+import { IUser } from '@src/services/users/types';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
 export interface IUserContext {
   user: IUser | null;

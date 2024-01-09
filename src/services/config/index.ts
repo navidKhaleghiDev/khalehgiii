@@ -1,12 +1,12 @@
-import { http } from "@src/services/http";
-import { IAxiosResponse } from "@src/types/services";
-import { IAddConfig, IDaasConfig, IFileType } from "./types";
+import { http } from '@src/services/http';
+import { IAxiosResponse } from '@src/types/services';
+import { IAddConfig, IDaasConfig, IFileType } from './types';
 import {
   E_CONFIG,
   E_DAAS_CONFIGS,
   E_UPDATE_DELETE_CONFIG,
   E_WHITE_LIST_FILES,
-} from "./endpoint";
+} from './endpoint';
 
 export const API_ADD_CONFIG = (body: IAddConfig) =>
   http.post<IAddConfig, IAxiosResponse<IAddConfig[]>>(E_CONFIG, body);

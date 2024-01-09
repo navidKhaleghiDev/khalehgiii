@@ -1,7 +1,7 @@
-import { Controller } from "react-hook-form";
+import { Controller } from 'react-hook-form';
 
-import { IBaseSwitch } from "./types";
-import { Typography } from "@ui/atoms/Typography";
+import { IBaseSwitch } from './types';
+import { Typography } from '@ui/atoms/Typography';
 
 export function BaseSwitch({
   label,
@@ -28,7 +28,7 @@ export function BaseSwitch({
               <label
                 htmlFor={name}
                 className={`block mb-1 ${
-                  ltrLabel ? "text-left uppercase" : "text-right"
+                  ltrLabel ? 'text-left uppercase' : 'text-right'
                 }`}
               >
                 <Typography color="teal" size="h5">
@@ -45,12 +45,12 @@ export function BaseSwitch({
               />
               <span
                 className={`slider mr-3 flex h-[26px] w-[50px] items-center rounded-full p-1 duration-200 ${
-                  field.value ? "bg-teal-600" : "bg-[#CCCCCE]"
+                  field.value ? 'bg-teal-600' : 'bg-[#CCCCCE]'
                 }`}
               >
                 <span
                   className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
-                    field.value ? "translate-x-6" : ""
+                    field.value ? 'translate-x-6' : ''
                   }`}
                 ></span>
               </span>
@@ -64,7 +64,7 @@ export function BaseSwitch({
       {label && (
         <label
           htmlFor={name}
-          className={`block mb-1 ${ltrLabel && "text-left uppercase"}`}
+          className={`block mb-1 ${ltrLabel && 'text-left uppercase'}`}
         >
           <Typography color="teal" size="h5">
             {label}
@@ -82,12 +82,12 @@ export function BaseSwitch({
         />
         <span
           className={`slider mr-3 flex h-[26px] w-[50px] items-center rounded-full p-1 duration-200 ${
-            pureValue ? "bg-teal-600" : "bg-[#CCCCCE]"
+            pureValue ? 'bg-teal-600' : 'bg-[#CCCCCE]'
           }`}
         >
           <span
             className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
-              pureValue ? "translate-x-6" : ""
+              pureValue ? 'translate-x-6' : ''
             }`}
           ></span>
         </span>

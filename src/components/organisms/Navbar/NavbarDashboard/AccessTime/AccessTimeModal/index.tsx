@@ -1,37 +1,37 @@
-import { Typography } from "@ui/atoms/Typography/Typography";
-import { Card } from "@ui/atoms";
-import { IconButton } from "@ui/atoms/BaseButton";
-import { ETimeLimitDuration } from "@src/services/users/types";
-import xIcon from "@iconify-icons/ph/x";
+import { Typography } from '@ui/atoms/Typography/Typography';
+import { Card } from '@ui/atoms';
+import { IconButton } from '@ui/atoms/BaseButton';
+import { ETimeLimitDuration } from '@src/services/users/types';
+import xIcon from '@iconify-icons/ph/x';
 
 import {
   tomorrow,
   getNextSaturday,
   firstDayOfNextMonth,
-} from "@src/helper/utils/dateUtils";
+} from '@src/helper/utils/dateUtils';
 import {
   TimeLimitDurationLabel,
   TimeLimitDurationLabelDetails,
-} from "@src/constants/accessTime";
-import { AccessTimeModalCard } from "./AccessTimeModalCard";
-import { formatDuration } from "@src/helper/utils/timeUtils";
+} from '@src/constants/accessTime';
+import { AccessTimeModalCard } from './AccessTimeModalCard';
+import { formatDuration } from '@src/helper/utils/timeUtils';
 
 function getExtensionTime(label: ETimeLimitDuration): string {
   switch (label) {
     case ETimeLimitDuration.DAILY:
-      return tomorrow.toLocaleDateString("fa-IR");
+      return tomorrow.toLocaleDateString('fa-IR');
 
     case ETimeLimitDuration.WEEKLY:
-      return getNextSaturday().toLocaleDateString("fa-IR");
+      return getNextSaturday().toLocaleDateString('fa-IR');
 
     case ETimeLimitDuration.MONTHLY:
-      return firstDayOfNextMonth.toLocaleDateString("fa-IR");
+      return firstDayOfNextMonth.toLocaleDateString('fa-IR');
 
     case ETimeLimitDuration.PERMANENTLY:
-      return "ندارد";
+      return 'ندارد';
 
     default:
-      return "";
+      return '';
   }
 }
 
@@ -77,7 +77,7 @@ export function AccessTimeModal({
           label="زمان استفاده شده"
           name={TimeLimitDurationLabelDetails[timeLimitDuration]}
           value={
-            usageInMinute ? formatDuration(Math.floor(usageInMinute)) : "-"
+            usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
           }
         />
         <AccessTimeModalCard
@@ -85,9 +85,9 @@ export function AccessTimeModal({
           name={TimeLimitDurationLabelDetails[timeLimitDuration]}
           value={
             timeLimitDuration === ETimeLimitDuration.PERMANENTLY
-              ? ""
+              ? ''
               : remainingTime < 0
-              ? "به اتمام رسیده است"
+              ? 'به اتمام رسیده است'
               : formatDuration(remainingTime)
           }
         />
@@ -95,7 +95,7 @@ export function AccessTimeModal({
           label="زمان تمدید"
           name={getExtensionTime(timeLimitDuration)}
           value={
-            timeLimitDuration !== ETimeLimitDuration.PERMANENTLY ? "00:01" : ""
+            timeLimitDuration !== ETimeLimitDuration.PERMANENTLY ? '00:01' : ''
           }
         />
       </div>

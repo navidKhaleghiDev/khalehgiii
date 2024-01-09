@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useRef, useState } from "react";
-import { useClickOutside } from "@src/helper/hooks/useClickOutside";
-import caretLeftFill from "@iconify-icons/ph/caret-left-fill";
+import { useRef, useState } from 'react';
+import { useClickOutside } from '@src/helper/hooks/useClickOutside';
+import caretLeftFill from '@iconify-icons/ph/caret-left-fill';
 
-import { ICard, OptionType } from "./types";
-import { BaseButton } from "../BaseButton";
+import { ICard, OptionType } from './types';
+import { BaseButton } from '../BaseButton';
 
 const optionMock = [
-  { id: "1", label: "select one", value: "1" },
-  { id: "2", label: "select tow", value: "2" },
+  { id: '1', label: 'select one', value: '1' },
+  { id: '2', label: 'select tow', value: '2' },
 ];
 export function Select({ label, options = optionMock }: ICard) {
   const ref = useRef(null);
@@ -23,14 +23,14 @@ export function Select({ label, options = optionMock }: ICard) {
     <div className="relative" ref={ref}>
       <BaseButton
         label={label}
-        type={open ? "default" : "shadow"}
+        type={open ? 'default' : 'shadow'}
         endIcon={caretLeftFill}
         onClick={() => setOpen(!open)}
       />
 
       <ul
         className={`${
-          !open && "hidden"
+          !open && 'hidden'
         } z-2 absolute mt-3 w-full rounded bg-gray-50 ring-1 ring-gray-300`}
       >
         {options.map((option) => (

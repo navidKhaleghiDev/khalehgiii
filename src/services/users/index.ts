@@ -1,6 +1,6 @@
-import { http } from "@src/services/http";
-import { IAxiosResponse, IServerResponse } from "@src/types/services";
-import { IBodyUsersLogin, IResponseLogin, IDaAs, IUser } from "./types";
+import { http } from '@src/services/http';
+import { IAxiosResponse, IServerResponse } from '@src/types/services';
+import { IBodyUsersLogin, IResponseLogin, IDaAs, IUser } from './types';
 import {
   E_USERS_DAAS_DELETE,
   E_USERS_DAAS_RESET_ALL_USAGE,
@@ -11,8 +11,8 @@ import {
   E_UPDATE_USER,
   E_USERS_DELETE,
   E_USERS,
-} from "./endpoint";
-import { IDaasConfig } from "../config/types";
+} from './endpoint';
+import { IDaasConfig } from '../config/types';
 
 export const API_UPDATE_USER = (
   body: Partial<IUser>,
@@ -28,7 +28,7 @@ export const API_DAAS_DELETE = (id: string) =>
 export const API_USERS_DELETE = (id: number) =>
   http.delete<IAxiosResponse<any>>(E_USERS_DELETE(id));
 
-interface IDaAsUpdated extends Omit<IDaAs, "daas_configs"> {
+interface IDaAsUpdated extends Omit<IDaAs, 'daas_configs'> {
   daas_configs: Partial<IDaasConfig>;
 }
 
@@ -52,4 +52,4 @@ export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
 
 export const API_USERS_PROFILE = () => http.get<IUser>(E_USERS_PROFILE);
 
-export const STORAGE_KEY_USER = "user";
+export const STORAGE_KEY_USER = 'user';
