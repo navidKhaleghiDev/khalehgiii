@@ -18,11 +18,11 @@ export const baseDropDownStyles = cva(
         true: 'text-teal-600',
       },
       size: {
-        xs: `w-52 h-6 py-1 ${SIZE.TYPOGRAPHY.BODY4}`,
-        sm: `w-[18.75rem] h-10 text-md${SIZE.TYPOGRAPHY.BODY3}`,
-        md: `w-[27.5rem] h-10 text-lg ${SIZE.TYPOGRAPHY.BODY3}`,
-        lg: `w-[60rem] h-10 text-xl ${SIZE.TYPOGRAPHY.BODY2}`,
-        xl: `w-[60rem] h-16 text-xl ${SIZE.TYPOGRAPHY.BODY2}`,
+        xs: `w-30 h-6 py-1 ${SIZE.TYPOGRAPHY.BODY4}`,
+        sm: `w-[18.75rem] h-10 ${SIZE.TYPOGRAPHY.BODY3}`,
+        md: `w-[27.5rem] h-10 ${SIZE.TYPOGRAPHY.BODY3}`,
+        lg: `w-[60rem] h-10 ${SIZE.TYPOGRAPHY.BODY2}`,
+        xl: `w-[60rem] h-16 ${SIZE.TYPOGRAPHY.BODY2}`,
       },
     },
     defaultVariants: {
@@ -43,11 +43,11 @@ export const optionSelectStyles = cva(
         true: 'w-full',
       },
       size: {
-        xs: `w-52 ${SIZE.TYPOGRAPHY.BODY4}`,
-        sm: `w-[18.75rem] text-md${SIZE.TYPOGRAPHY.BODY3}`,
-        md: `w-[27.5rem] text-lg ${SIZE.TYPOGRAPHY.BODY3}`,
-        lg: `w-[60rem] text-xl ${SIZE.TYPOGRAPHY.BODY2}`,
-        xl: `w-[60rem] text-xl ${SIZE.TYPOGRAPHY.BODY2}`,
+        xs: `w-30 ${SIZE.TYPOGRAPHY.BODY4}`,
+        sm: `w-[18.75rem] ${SIZE.TYPOGRAPHY.BODY3}`,
+        md: `w-[27.5rem] ${SIZE.TYPOGRAPHY.BODY3}`,
+        lg: `w-[60rem] ${SIZE.TYPOGRAPHY.BODY2}`,
+        xl: `w-[60rem] ${SIZE.TYPOGRAPHY.BODY2}`,
       },
     },
     defaultVariants: {
