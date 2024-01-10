@@ -14,6 +14,7 @@ export function withNoAuth<T extends Partial<T>>(
     const token = cookie.get(STORAGE_KEY_TOKEN);
 
     return !token ? (
+      // eslint-disable-next-line react/jsx-props-no-spreading
       <WrappedComponent {...props} />
     ) : (
       <Navigate replace to={ROUTES_PATH.dashboard} />

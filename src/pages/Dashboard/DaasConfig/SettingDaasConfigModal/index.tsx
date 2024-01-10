@@ -44,7 +44,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
         {showConfirm && (
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">آیا مطمین هستید؟</Typography>
-            <BaseButton label={'بله'} size="sm" submit className="mx-2" />
+            <BaseButton label="بله" size="sm" submit className="mx-2" />
             <BaseButton
               label="خیر"
               size="sm"
@@ -57,7 +57,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
 
         {!showConfirm && (
           <BaseButton
-            label={'ثبت'}
+            label="ثبت"
             size="md"
             onClick={() => setShowConfirm(true)}
           />

@@ -15,15 +15,17 @@ import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
 import { Divider } from '@ui/atoms/Divider';
 import { useTranslation } from 'react-i18next';
 
-const TitleSection = ({ label }: { label: string }) => (
-  <Typography
-    color="neutral"
-    size="h5"
-    className="w-full my-4 col-span-12 text-left uppercase"
-  >
-    {label}
-  </Typography>
-);
+function TitleSection({ label }: { label: string }) {
+  return (
+    <Typography
+      color="neutral"
+      size="h5"
+      className="w-full my-4 col-span-12 text-left uppercase"
+    >
+      {label}
+    </Typography>
+  );
+}
 export function SettingsKeycloak({ user }: { user: IUser | null }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
@@ -61,6 +63,7 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
     if (user) {
       getConfig();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleOnSubmit = async (data: IAddConfig) => {

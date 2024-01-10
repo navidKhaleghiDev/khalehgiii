@@ -1,9 +1,9 @@
 import { ComponentProps, PropsWithChildren } from 'react';
 import { VariantProps } from 'class-variance-authority';
 
+import { IconType } from '@src/types/global';
 import { typographyStyles } from './styles';
 import { BaseIcon } from '../BaseIcon';
-import { IconType } from '@src/types/global';
 
 export interface ITypography
   extends VariantProps<typeof typographyStyles>,

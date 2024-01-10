@@ -1,9 +1,7 @@
 import { useCallback, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
-import { UserDaAsCard } from './UserDaAsCard';
-import { ETimeLimitDuration } from '@src/services/users/types';
-import { IDaAs } from '@src/services/users/types';
+import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
@@ -14,6 +12,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
+import { UserDaAsCard } from './UserDaAsCard';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -66,6 +65,7 @@ export function UsersDaAsList() {
     http.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -85,6 +85,13 @@ export function UsersDaAsList() {
     setCurrentPage(page);
   };
 
+  const loadingComponent = isLoading ? <LoadingSpinner /> : null;
+  const noResultComponent = listDaas.length === 0 ? <NoResult /> : null;
+  const daasCards =
+    listDaas.length > 0
+      ? listDaas.map((item) => <UserDaAsCard key={item.id} daas={item} />)
+      : null;
+
   return (
     <div className="w-full p-4">
       <div className="flex items-center justify-between">
@@ -96,13 +103,7 @@ export function UsersDaAsList() {
         />
       </div>
       <UserDaAsCard daas={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listDaas.length > 0 ? (
-        listDaas.map((item) => <UserDaAsCard key={item.id} daas={item} />)
-      ) : (
-        <NoResult />
-      )}
+      {loadingComponent || noResultComponent || daasCards}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

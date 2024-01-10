@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
-import { UbaCard } from './UbaCard';
 import useSWR from 'swr';
-import { http_analyses } from '@src/services/http';
+import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import Pagination from '@ui/molecules/Pagination';
 import { Typography } from '@ui/atoms';
@@ -14,6 +13,7 @@ import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
+import { UbaCard } from './UbaCard';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -39,12 +39,13 @@ export function UbaAsList() {
     malbehave_count: t('table.unauthorizedBehavior'),
   };
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
       setFilterQuery(query);
     }, 1000),
-    []
+    [currentPage, setFilterQuery]
   );
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +58,7 @@ export function UbaAsList() {
       pageSize: PAGE_SIZE,
       filter: `search=${encodeURIComponent(filterQuery)}`,
     }),
-    http_analyses.fetcherSWR,
+    HTTP_ANALYSES.fetcherSWR,
     {
       revalidateOnFocus: false,
       errorRetryCount: 0,
@@ -71,6 +72,15 @@ export function UbaAsList() {
     setCurrentPage(page);
   };
 
+  let content;
+
+  if (isLoading) {
+    content = <LoadingSpinner />;
+  } else if (listUba.length > 0) {
+    content = listUba.map((item) => <UbaCard key={item.id} uba={item} />);
+  } else {
+    content = <NoResult />;
+  }
   return (
     <div className="w-full p-4">
       <div className="flex items-center">
@@ -89,13 +99,7 @@ export function UbaAsList() {
         </Typography>
       </div>
       <UbaCard uba={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listUba.length > 0 ? (
-        listUba.map((item) => <UbaCard key={item.id} uba={item} />)
-      ) : (
-        <NoResult />
-      )}
+      {content}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

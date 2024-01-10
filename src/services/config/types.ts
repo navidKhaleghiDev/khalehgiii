@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { ETimeLimitDuration } from '../users/types';
 
 export interface IAddConfig {

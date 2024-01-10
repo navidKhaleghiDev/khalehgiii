@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useRef, useState, KeyboardEvent } from 'react';
 import { Controller } from 'react-hook-form';
-import { KeyboardEvent } from 'react';
 
+import { BaseChip } from '@ui/atoms/BaseChip';
 import { BaseInputProps } from '../types';
 import { baseSelectStyles } from './styles';
 import { Typography } from '../../Typography';
-import { useEffect, useRef, useState } from 'react';
-import { BaseChip } from '@ui/atoms/BaseChip';
 
 // type OptionSelectedType = {
 //   [key: number]: string;
@@ -52,7 +51,7 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
   };
 
   const remove = (value: string) => {
-    let newArray = selected.filter((item) => item !== value);
+    const newArray = selected.filter((item) => item !== value);
     setSelected(newArray);
     // window.dispatchEvent(
     //   new CustomEvent("selected", { detail: Object.keys(selected) })
@@ -97,6 +96,7 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
     //  return () => {
     //    debouncedSearch.cancel()
     // debouncedSearchValue()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   return (
@@ -118,7 +118,8 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
                 {label}
               </label>
             )}
-            <div
+            <button
+              type="button"
               className={`rounded-md flex justify-end gap-1 flex-wrap ${
                 fullWidth ? 'w-full' : 'w-64'
               }`}
@@ -138,9 +139,9 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
                 })}
                 onKeyDown={handleKeyPress}
               />
-              {selected.map((value, index) => (
+              {selected.map((value) => (
                 <BaseChip
-                  key={index}
+                  key={value}
                   onClick={() => remove(value)}
                   label={value}
                 />
@@ -148,18 +149,19 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
               {showSelector && (
                 <div className="absolute left-0 top-20 p-2 rounded-md border-2 border-teal-600 bg-white z-50 w-full rounded-b-md font-medium">
                   <div className="space-y-1 bg-green-200">
-                    {options.map((value, index) => {
+                    {options.map((value) => {
                       const indexOf = selected.indexOf(value);
 
                       return (
-                        <div key={index}>
+                        <div key={value}>
                           {!selected[indexOf] && (
-                            <div
+                            <button
+                              type="button"
                               className="bg-gray-200 cursor-pointer rounded-md p-2 hover:border-light-blue-1"
                               onClick={() => select(value)}
                             >
                               {name}
-                            </div>
+                            </button>
                           )}
                         </div>
                       );
@@ -170,7 +172,7 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
                   </div>
                 </div>
               )}
-            </div>
+            </button>
             {/* 
               <select
                 id={id}

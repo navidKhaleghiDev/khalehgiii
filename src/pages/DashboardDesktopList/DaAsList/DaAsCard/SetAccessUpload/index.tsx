@@ -1,9 +1,9 @@
 import { IDaAs } from '@src/services/users/types';
 import ToolTip from '@ui/atoms/Tooltip';
-import { OnClickActionsType } from '../types';
 import gear from '@iconify-icons/ph/gear';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
+import { OnClickActionsType } from '../types';
 
 type PropsType = {
   daas: IDaAs;
@@ -17,7 +17,7 @@ export function SetAccessUpload({ daas, onClickActions }: PropsType) {
       <IconButton
         icon={gear}
         onClick={() => {
-          onClickActions && onClickActions('edit', daas);
+          if (onClickActions) onClickActions('edit', daas);
         }}
       />
     </ToolTip>

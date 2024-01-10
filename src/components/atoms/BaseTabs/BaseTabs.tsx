@@ -1,14 +1,14 @@
 // Tabs.tsx
 import React, { useState } from 'react';
+import { useLanguage } from '@context/settings/languageContext';
 import { IBaseTabProps, IBaseTabsProps } from './types';
 import { Typography } from '../Typography';
-import { useLanguage } from '@context/settings/languageContext';
 
-export const BaseTab: React.FC<IBaseTabProps> = ({ children }) => {
-  return <>{children}</>;
-};
+export function BaseTab({ children }: IBaseTabProps): JSX.Element {
+  return <div>{children}</div>;
+}
 
-export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
+export function BaseTabs({ children, label }: IBaseTabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState(0);
   const { lang } = useLanguage();
 
@@ -18,8 +18,6 @@ export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
   const changeTab = (index: number) => {
     setActiveTab(index);
   };
-
-  console.log(lang);
 
   return (
     <div className="flex flex-col w-full">
@@ -31,9 +29,10 @@ export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
       <div className="flex">
         {React.Children.map(children, (child, index) => {
           if (React.isValidElement<IBaseTabProps>(child)) {
-            const { label } = child.props;
+            const { label: propsLabel } = child.props;
             return (
               <button
+                type="button"
                 className={`uppercase px-4 py-2 ${
                   index === 0 && radiusIndexOne
                 } ${
@@ -46,7 +45,7 @@ export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
                 }`}
                 onClick={() => changeTab(index)}
               >
-                <Typography size="body3">{label}</Typography>
+                <Typography size="body3">{propsLabel}</Typography>
               </button>
             );
           }
@@ -58,4 +57,4 @@ export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
       </div>
     </div>
   );
-};
+}

@@ -1,27 +1,26 @@
 import { IconButton } from '@ui/atoms/BaseButton';
 import plusIcon from '@iconify-icons/ph/plus';
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { IFileType } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { FileTypeCard } from './FileTypeCard';
 import { StringifyProperties } from '@src/types/global';
-import { ActionOnClickActionsType } from './FileTypeCard/types';
 import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
-import { UpdateFileTypeModal } from './UpdateFileTypeModal';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
 import { toast } from 'react-toastify';
 import debounce from 'lodash/debounce';
 import ToolTip from '@ui/atoms/Tooltip';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import React from 'react';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useTranslation } from 'react-i18next';
+import { UpdateFileTypeModal } from './UpdateFileTypeModal';
+import { ActionOnClickActionsType } from './FileTypeCard/types';
+import { FileTypeCard } from './FileTypeCard';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
@@ -65,6 +64,7 @@ export function DlpConfig() {
     IResponsePagination<IFileType>
   >(endpoint, http.fetcherSWR);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -126,14 +126,26 @@ export function DlpConfig() {
     }
     if (action === 'edit') {
       setOpenUpdateModal(true);
-      return;
     }
   }
 
   const handleCreateNewType = () => {
-    activeFileType && setActiveFileType(undefined);
+    if (activeFileType) setActiveFileType(undefined);
     setOpenUpdateModal(true);
   };
+  const FileTypeCardContent = isLoading ? (
+    <LoadingSpinner />
+  ) : (
+    (listWhiteList.length > 0 &&
+      listWhiteList.map((item) => (
+        <FileTypeCard
+          key={item.id}
+          fileType={item}
+          // eslint-disable-next-line react/jsx-no-bind
+          onClickActions={handleOnClickActions}
+        />
+      ))) || <NoResult />
+  );
 
   return (
     <div className="w-full p-4">
@@ -154,19 +166,7 @@ export function DlpConfig() {
         </ToolTip>
       </div>
       <FileTypeCard fileType={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listWhiteList.length > 0 ? (
-        listWhiteList.map((item) => (
-          <FileTypeCard
-            key={item.id}
-            fileType={item}
-            onClickActions={handleOnClickActions}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {FileTypeCardContent}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

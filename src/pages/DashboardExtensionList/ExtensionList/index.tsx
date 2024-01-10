@@ -3,15 +3,12 @@ import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
-import { http_analyses } from '@src/services/http';
+import { HTTP_ANALYSES } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { MimeTypeCard } from './MimeTypeCard';
 import { StringifyProperties } from '@src/types/global';
-import { ActionOnClickActionsType } from './MimeTypeCard/types';
 import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
-import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 import { toast } from 'react-toastify';
 import ToolTip from '@ui/atoms/Tooltip';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
@@ -20,6 +17,9 @@ import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
+import { CreateMimeTypeModal } from './CreateMimeTypeModal';
+import { ActionOnClickActionsType } from './MimeTypeCard/types';
+import { MimeTypeCard } from './MimeTypeCard';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -50,9 +50,10 @@ export function ExtensionList() {
 
   const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
     endpoint,
-    http_analyses.fetcherSWR
+    HTTP_ANALYSES.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -114,7 +115,6 @@ export function ExtensionList() {
 
     if (action === 'edit') {
       setOpenUpdateModal(true);
-      return;
     }
 
     // if (daas !== undefined && typeof daas !== "string") {
@@ -124,8 +124,22 @@ export function ExtensionList() {
     // }
   }
 
+  const content = isLoading ? (
+    <LoadingSpinner />
+  ) : (
+    (listWhiteList.length > 0 &&
+      listWhiteList.map((item) => (
+        <MimeTypeCard
+          key={item.id}
+          mimeType={item}
+          // eslint-disable-next-line react/jsx-no-bind
+          onClickActions={handleOnClickActions}
+        />
+      ))) || <NoResult />
+  );
+
   const handleCreateAdmin = () => {
-    activeAdmin && setActiveAdmin(undefined);
+    if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
   return (
@@ -147,19 +161,7 @@ export function ExtensionList() {
         </ToolTip>
       </div>
       <MimeTypeCard mimeType={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listWhiteList.length > 0 ? (
-        listWhiteList.map((item) => (
-          <MimeTypeCard
-            key={item.id}
-            mimeType={item}
-            onClickActions={handleOnClickActions}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {content}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

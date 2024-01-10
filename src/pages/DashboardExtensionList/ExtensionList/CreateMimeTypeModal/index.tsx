@@ -75,7 +75,7 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">آیا مطمین هستید؟</Typography>
             <BaseButton
-              label={'بله'}
+              label="بله"
               size="sm"
               submit
               className="mx-2"
@@ -94,12 +94,12 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
         {!showConfirm && (
           <div className="flex gap-2">
             <BaseButton
-              label={'ثبت'}
+              label="ثبت"
               size="md"
               onClick={() => setShowConfirm(true)}
             />
             <BaseButton
-              label={'لغو'}
+              label="لغو"
               type="red"
               size="md"
               onClick={handleClose}

@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
-import { ScannedFileCard } from './ScannedFileCard';
 import useSWR from 'swr';
-import { http_analyses } from '@src/services/http';
+import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import Pagination from '@ui/molecules/Pagination';
 import { Typography } from '@ui/atoms';
@@ -12,10 +11,11 @@ import { StringifyProperties } from '@src/types/global';
 import { useParams } from 'react-router-dom';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { Modal } from '@ui/molecules/Modal';
-import { DetailsContentModal } from './DetailsContentModal';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import { DetailsContentModal } from './DetailsContentModal';
+import { ScannedFileCard } from './ScannedFileCard';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -34,15 +34,15 @@ export function ScannedFileList() {
     file_size_in_bytes: '',
     file_content_type: t('table.type'),
     username: 'Radmehr.h@test1.local',
-    yara_scanner_status: t('table.resultScanerStatus') + 'YARA',
-    clamav_scanner_status: t('table.resultScanerStatus') + 'CLAMAV',
+    yara_scanner_status: `${t('table.resultScanerStatus')}YARA`,
+    clamav_scanner_status: `${t('table.resultScanerStatus')}CLAMAV`,
     yara_scan_summary: '',
     yara_scan_result: 'نتیجه اسکن YARA',
     yara_error_message: '',
     clamav_scan_summary: '',
     clamav_scan_result: 'نتیجه اسکن CLAMAV',
     antiviruses_scan_result: 'نتیجه اسکن SANDBOX',
-    antiviruses_scanner_status: t('table.resultScanerStatus') + 'SANDBOX',
+    antiviruses_scanner_status: `${t('table.resultScanerStatus')}SANDBOX`,
     antiviruses_scan_sandbox_summary: '',
     antiviruses_scan_vendors_summary: '',
     antiviruses_last_analysis_stats: '',
@@ -60,9 +60,10 @@ export function ScannedFileList() {
           filter: `search=${encodeURIComponent(filterQuery)}`,
         })
       : null,
-    http_analyses.fetcherSWR
+    HTTP_ANALYSES.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -87,6 +88,22 @@ export function ScannedFileList() {
     setOpenDetailsModal(true);
   };
 
+  let scanedFileTable;
+
+  if (isLoading) {
+    scanedFileTable = <LoadingSpinner />;
+  } else if (listDaas.length > 0) {
+    scanedFileTable = listDaas.map((item) => (
+      <ScannedFileCard
+        key={item.id}
+        scannedFile={item}
+        onOpenDetailModal={() => handleOpenModal(item)}
+      />
+    ));
+  } else {
+    scanedFileTable = <NoResult />;
+  }
+
   return (
     <div className="w-full p-4">
       <div className="flex items-center justify-between">
@@ -101,19 +118,7 @@ export function ScannedFileList() {
         </Typography>
       </div>
       <ScannedFileCard scannedFile={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listDaas.length > 0 ? (
-        listDaas.map((item) => (
-          <ScannedFileCard
-            key={item.id}
-            scannedFile={item}
-            onOpenDetailModal={() => handleOpenModal(item)}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {scanedFileTable}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

@@ -19,8 +19,8 @@ import { ETimeLimitDuration } from '@src/services/users/types';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
 import ToolTip from '@ui/atoms/Tooltip';
 import { Modal } from '@ui/molecules/Modal';
-import { OnClickActionsType } from '../types';
 import { useTranslation } from 'react-i18next';
+import { OnClickActionsType } from '../types';
 
 interface IUpdateDaasValues extends FieldValues {
   time_limit_duration: ETimeLimitDuration;
@@ -85,6 +85,7 @@ export function SetAccessTime({
         time_limit_value_in_hour: timeLimitValue,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleOnCancel = () => {
@@ -104,7 +105,7 @@ export function SetAccessTime({
       .then(() => {
         setIsEditable(false);
         toast.success(t('global.sucessfulyUpdated'));
-        onClickActions && onClickActions('mutate');
+        if (onClickActions) onClickActions('mutate');
       })
       .catch((err) => {
         toast.error(err);
@@ -119,7 +120,7 @@ export function SetAccessTime({
     await API_DAAS_RESET_USAGE_DAAS(id)
       .then(() => {
         toast.success(t('global.successfullySet'));
-        onClickActions && onClickActions('mutate');
+        if (onClickActions) onClickActions('mutate');
         setOpenModalDelete(false);
       })
       .catch((err) => {

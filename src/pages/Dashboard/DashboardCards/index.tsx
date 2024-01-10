@@ -1,5 +1,4 @@
 import { dateAndNumber, dayLabel } from '@src/helper/utils/dateUtils';
-import { Card } from './Card';
 import { useNavigate } from 'react-router-dom';
 import calendarCheckIcon from '@iconify-icons/ph/calendar-check';
 import keyIcon from '@iconify-icons/ph/key';
@@ -8,8 +7,9 @@ import usersThreeIcon from '@iconify-icons/ph/users-three';
 import { useUserContext } from '@context/user/userContext';
 import shieldCheckIcon from '@iconify-icons/ph/shield-check';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { CardScanStats } from './CardScanStats';
 import { useTranslation } from 'react-i18next';
+import { CardScanStats } from './CardScanStats';
+import { Card } from './Card';
 
 export function DashboardCards() {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export function DashboardCards() {
       <div className="col-span-10 md:col-span-6 xl:col-span-3">
         <Card
           icon={keyIcon}
-          title={t('dashboard.adminPanel') + ' keycloak'}
+          title={`${t('dashboard.adminPanel')} keycloak`}
           description=""
           onClick={() => {
             window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, '_blank');

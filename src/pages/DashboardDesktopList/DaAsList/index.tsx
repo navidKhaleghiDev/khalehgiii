@@ -1,10 +1,9 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useCallback, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
-import { DaAsCard } from './DaAsCard';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
-import { ETimeLimitDuration } from '@src/services/users/types';
-import { IDaAs } from '@src/services/users/types';
+import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
@@ -12,15 +11,16 @@ import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import Pagination from '@ui/molecules/Pagination';
+import { createAPIEndpoint } from '@src/helper/utils';
+import { debounce } from 'lodash';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { useTranslation } from 'react-i18next';
 import { ResetAllAccessTime } from './ResetAllAccessTime';
 import { ActionOnClickActionsType } from './DaAsCard/types';
 import { SettingDaasModal } from './SettingDaasModal';
 
 import { IHeaderDaasCard } from './types';
-import { createAPIEndpoint } from '@src/helper/utils';
-import { debounce } from 'lodash';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { useTranslation } from 'react-i18next';
+import { DaAsCard } from './DaAsCard';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -78,6 +78,7 @@ export function DaAsList() {
     http.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -230,8 +231,8 @@ export function DaAsList() {
       .then(() => {
         mutate();
         toast.success(t('table.sucessfulyUpdated'));
-        openModal && setOpenModal(false);
-        openSettingModal && setOpenSettingModal(false);
+        if (openModal) setOpenModal(false);
+        if (openSettingModal) setOpenSettingModal(false);
       })
       .catch((err) => {
         toast.error(err);
@@ -240,6 +241,20 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+
+  const DassCardContent = isLoading ? (
+    <LoadingSpinner />
+  ) : (
+    (listDaas.length > 0 &&
+      listDaas.map((item) => (
+        <DaAsCard
+          key={item.id}
+          daas={item}
+          // eslint-disable-next-line react/jsx-no-bind
+          onClickActions={handleOnClickActions}
+        />
+      ))) || <NoResult />
+  );
 
   return (
     <div className="w-full p-4">
@@ -253,19 +268,7 @@ export function DaAsList() {
         <ResetAllAccessTime />
       </div>
       <DaAsCard daas={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listDaas.length > 0 ? (
-        listDaas.map((item) => (
-          <DaAsCard
-            key={item.id}
-            daas={item}
-            onClickActions={handleOnClickActions}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {DassCardContent}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
