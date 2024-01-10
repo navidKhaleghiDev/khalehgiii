@@ -1,4 +1,5 @@
 import { dateAndNumber, dayLabel } from '@src/helper/utils/dateUtils';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import calendarCheckIcon from '@iconify-icons/ph/calendar-check';
 import keyIcon from '@iconify-icons/ph/key';
@@ -7,7 +8,7 @@ import usersThreeIcon from '@iconify-icons/ph/users-three';
 import { useUserContext } from '@context/user/userContext';
 import shieldCheckIcon from '@iconify-icons/ph/shield-check';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { useTranslation } from 'react-i18next';
+
 import { CardScanStats } from './CardScanStats';
 import { Card } from './Card';
 
@@ -60,6 +61,14 @@ export function DashboardCards() {
           title={t('dashboard.fileScanReports')}
           description=""
           onClick={() => navigate(ROUTES_PATH.monitoring)}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
+          title={t('dashboard.extensionList')}
+          description=""
+          onClick={() => navigate(ROUTES_PATH.extensionList)}
         />
       </div>
       <div className="col-span-10 md:col-span-6 xl:col-span-3">

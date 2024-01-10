@@ -67,7 +67,8 @@
     "updateSetting": "Update Settings",
     "update": "Update",
     "saveSettings": "Save Settings",
-    "preparationTheDesktop": "Preparation the Desktop"
+    "preparationTheDesktop": "Preparation the Desktop",
+    "extensionList": "Extension Lists"
   },
   "global": {
     "userName": "Username",
