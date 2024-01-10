@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form';
+import { Typography } from '@ui/atoms/Typography';
 
 import { IBaseSwitch } from './types';
-import { Typography } from '@ui/atoms/Typography';
 
 export function BaseSwitch({
   label,
@@ -89,7 +89,7 @@ export function BaseSwitch({
             className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
               pureValue ? 'translate-x-6' : ''
             }`}
-          ></span>
+          />
         </span>
       </label>
       {pureError && (

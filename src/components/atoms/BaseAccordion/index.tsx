@@ -1,9 +1,5 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import { useState } from 'react';
 
-/* eslint-disable jsx-a11y/label-has-associated-control */
 export function BaseAccordion() {
   const [open, setOpen] = useState<number | null>(null);
   // const handleOpen = (value: number | null) => {

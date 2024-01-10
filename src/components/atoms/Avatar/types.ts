@@ -1,7 +1,7 @@
 import { VariantProps } from 'class-variance-authority';
 
-import { avatarStyles } from './styles';
 import { IconType } from '@src/types/global';
+import { avatarStyles } from './styles';
 
 export interface IAvatar extends VariantProps<typeof avatarStyles> {
   className?: string;

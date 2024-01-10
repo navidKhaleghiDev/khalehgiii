@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
-import { IUser } from './services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
+import { IUser } from './services/users/types';
 
 const router = createBrowserRouter(routesConfig);
 
