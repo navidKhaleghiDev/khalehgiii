@@ -3,8 +3,23 @@ export interface HeaderItem {
   style?: string;
   dir?: string;
   label: string;
+  icon?: string;
   type?: string;
-  function?: () => void;
+  size?:
+    | 'caption'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'body4'
+    | 'body1'
+    | 'body2'
+    | 'body3'
+    | null
+    | undefined;
+  function?: () => [];
   component?: React.Component;
 }
 
@@ -31,4 +46,13 @@ export interface RowCardProps {
   row: object;
   header: HeaderItem;
   onClick: () => void;
+}
+export interface TableCell {
+  id?: string;
+  row?: object;
+  head?: HeaderItem;
+  onClick?: (action: string, row: object) => unknown;
+}
+export interface TableRowProps {
+  id?: string;
 }

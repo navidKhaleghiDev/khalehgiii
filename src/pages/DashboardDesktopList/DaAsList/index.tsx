@@ -108,6 +108,7 @@ export function DaAsList() {
     }
 
     if (action === 'editLock') {
+      console.log('RUNNN');
       setActiveDaas(daas as IDaAs);
       setOpenModal(true);
       return;

@@ -1,9 +1,10 @@
-import lockKeyFillIcon from '@iconify-icons/ph/lock-key-fill';
-import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
 import gear from '@iconify-icons/ph/gear';
 import trashIcon from '@iconify-icons/ph/trash';
 import { SetAccessTime } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime';
 import { UsedTimeDass } from '@src/pages/DashboardDesktopList/DaAsList/UsedTimeDass';
+import { ActionLockCell } from '@ui/atoms/BaseTable/BaseTableComponents/ActionLockCell';
+import { CircleBg } from '@ui/atoms/CircleBg';
+import { CheckCell } from '@ui/atoms/BaseTable/BaseTableComponents/CheckCell';
 
 export const desktopListHeaderItem = [
   {
@@ -35,15 +36,15 @@ export const desktopListHeaderItem = [
     type: 'component',
     component: (props: any) => (
       <SetAccessTime
-        id={props.id as string}
-        {...props}
+        id={props.row.id as string}
+        onClickActions={props.onClick}
         timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
         timeLimitDuration={props.row.daas_configs.time_limit_duration}
       />
     ),
 
     dir: 'rtl',
-    style: 'px-3 w-2/12',
+    style: 'px-3 w-4/12',
     size: 'body4',
   },
   {
@@ -59,8 +60,16 @@ export const desktopListHeaderItem = [
   },
   {
     label: 'table.desktop',
-    id: 'file_names',
-    type: 'none',
+    id: 'is_lock',
+    type: 'component',
+    component: (props: any) => (
+      <ActionLockCell
+        id={props.row.is_lock}
+        row={props.row}
+        onClick={props.onClick}
+      />
+    ),
+
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',
@@ -75,19 +84,31 @@ export const desktopListHeaderItem = [
   },
   {
     label: 'table.status',
-    id: 'is_ban',
+    id: 'is_running',
     type: 'icon',
-    icon: [lockKeyFillIcon, lockKeyOpenFillIcon],
-    dir: '',
-    style: 'px-3 w-2/12',
+    icon: CircleBg,
+    color: ['bg-teal-600', 'bg-gray-400'],
+    style: 'px-3 w-1/12',
     size: 'body4',
   },
   {
     label: 'table.defaultSetting',
-    id: 'transmission_type',
-    type: 'none',
-    dir: '',
+    id: 'daas_configs',
+    type: 'component',
+    component: (props) => (
+      <CheckCell
+        id={props.row.daas_configs.is_globally_config}
+        head={props.head}
+      />
+    ),
     style: 'px-3 w-2/12',
+    size: 'body4',
+  },
+  {
+    label: 'table.email',
+    id: 'email',
+    type: 'none',
+    style: 'px-3 w-3/12',
     size: 'body4',
   },
 ];

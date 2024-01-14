@@ -19,7 +19,9 @@ function cellsComponent(row: object, head: HeaderItem, onClick: () => void) {
 
   const components: ComponentsProps = {
     none: <NoneCell row={row} head={head} id={id} />,
-    component: <ComponentCell row={row} head={head} id={id} />,
+    component: (
+      <ComponentCell row={row} head={head} id={id} onClick={onClick} />
+    ),
     function: <FunctionCell row={row} head={head} id={id} />,
     icon: <IconCell row={row} head={head} id={id} />,
     action: <ActionCell row={row} head={head} id={id} onClick={onClick} />,
