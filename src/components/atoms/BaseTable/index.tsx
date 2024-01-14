@@ -1,69 +1,72 @@
-import React from 'react';
 import { Card } from '@ui/atoms';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
 import { BaseTabelHeader } from './BaseTabelHeader';
-import { useTranslation } from 'react-i18next';
 import { NoneCell } from './BaseTableComponents/NoneCell';
 import { FunctionCell } from './BaseTableComponents/FunctionCell';
 import { IconCell } from './BaseTableComponents/IconCell';
 import { ActionCell } from './BaseTableComponents/ActionCell';
 import { ComponentCell } from './BaseTableComponents/ComponentCell';
-import { BaseTableProps, ComponentsProps } from './BaseTableTypes';
+import {
+  BaseTableProps,
+  ComponentsProps,
+  HeaderItem,
+  RowCardProps,
+} from './BaseTableTypes';
 
-const StatusComponent = ({ row }: any) => <div>{'dkhfkdshkjfsdhk'}</div>;
-
-function cellsComponent(row: any, head: keyof ComponentsProps, onClick: any) {
+function cellsComponent(row: object, head: HeaderItem, onClick: () => void) {
   const id = head?.id;
-  const convertedData = { row, id, head, onClick };
 
   const components: ComponentsProps = {
-    none: <NoneCell {...convertedData} />,
-    component: <ComponentCell {...convertedData} />,
-    status: <StatusComponent {...convertedData} />,
-    function: <FunctionCell {...convertedData} />,
-    icon: <IconCell {...convertedData} />,
-    action: <ActionCell {...convertedData} />,
+    none: <NoneCell row={row} head={head} id={id} />,
+    component: <ComponentCell row={row} head={head} id={id} />,
+    function: <FunctionCell row={row} head={head} id={id} />,
+    icon: <IconCell row={row} head={head} id={id} />,
+    action: <ActionCell row={row} head={head} id={id} onClick={onClick} />,
   };
 
-  return components[head.type] || null;
+  return components[head?.type] || null;
 }
 
-const RowCard = ({ item, header, onClick }: any) => {
+function RowCard({ row, header, onClick }: RowCardProps) {
   return (
     <Card
       color="neutral"
-      className={`flex items-center px-2 my-2 w-full text-neutral-600 h-14`}
+      className="flex items-center px-2 my-2 w-full text-neutral-600 h-14"
     >
-      {header.map((head: any, i: string) => (
+      {header.map((head: HeaderItem) => (
         <div
-          key={i}
+          key={head.id}
           className={`${head.style} flex justify-center items-center `}
           dir={!head.dir ? 'ltr' : head.dir}
         >
-          {cellsComponent(item, head, onClick)}
+          {cellsComponent(row, head, onClick)}
         </div>
       ))}
     </Card>
   );
-};
+}
 
-export const BaseTable: React.FC<BaseTableProps> = (props) => {
+export function BaseTable(props: BaseTableProps) {
   const { header, body, loading, onClick } = props;
-  const { t } = useTranslation();
+  let content;
 
+  switch (true) {
+    case loading:
+      content = <LoadingSpinner />;
+      break;
+    case body.length > 0:
+      content = body.map((item) => (
+        <RowCard key={item.id} row={item} header={header} onClick={onClick} />
+      ));
+      break;
+    default:
+      content = <NoResult />;
+  }
   return (
     <>
       <BaseTabelHeader header={header} />
-      {loading ? (
-        <LoadingSpinner />
-      ) : body.length > 0 ? (
-        body.map((item, index) => (
-          <RowCard key={index} item={item} header={header} onClick={onClick} />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {content}
     </>
   );
-};
+}

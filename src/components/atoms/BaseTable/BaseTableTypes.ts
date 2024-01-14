@@ -1,16 +1,20 @@
 export interface HeaderItem {
-  style: string;
-  dir: string;
+  id: string;
+  style?: string;
+  dir?: string;
   label: string;
-  type: string;
+  type?: string;
+  function?: () => void;
+  component?: React.Component;
 }
 
 export interface BodyItem {
-  item: { [key: string]: any };
+  item: { [key: string]: string };
   index: number;
 }
 
 export interface BaseTableProps {
+  id: string;
   header: HeaderItem[];
   body: BodyItem[];
   loading: boolean;
@@ -19,7 +23,12 @@ export interface BaseTableProps {
 export interface ComponentsProps {
   none: JSX.Element;
   component: JSX.Element;
-  status: JSX.Element;
-  function: any;
-  icon: any;
+  function: JSX.Element;
+  action: JSX.Element;
+  icon: JSX.Element;
+}
+export interface RowCardProps {
+  row: object;
+  header: HeaderItem;
+  onClick: () => void;
 }
