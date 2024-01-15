@@ -37,10 +37,11 @@ export function BaseSwitch({
               </label>
             )}
             <label
-              htmlFor={name}
+              htmlFor={`${name}_input`}
               className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center"
             >
               <input
+                id={`${name}_input`}
                 type="checkbox"
                 className="sr-only"
                 checked={field.value}
