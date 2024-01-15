@@ -92,34 +92,33 @@ export function DaAsList() {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    daas?: Partial<IDaAs> | string
-  ): any {
-    if (action === 'mutate') {
-      mutate();
-      return;
-    }
+  const handleOnClickActions = useCallback(
+    (action: ActionOnClickActionsType, daas?: Partial<IDaAs> | string) => {
+      if (action === 'mutate') {
+        mutate();
+        return;
+      }
 
-    if (action === 'edit') {
-      setActiveDaas(daas as IDaAs);
-      setOpenSettingModal(true);
-      return;
-    }
+      if (action === 'edit') {
+        setActiveDaas(daas as IDaAs);
+        setOpenSettingModal(true);
+        return;
+      }
 
-    if (action === 'editLock') {
-      console.log('RUNNN');
-      setActiveDaas(daas as IDaAs);
-      setOpenModal(true);
-      return;
-    }
+      if (action === 'editLock') {
+        setActiveDaas(daas as IDaAs);
+        setOpenModal(true);
+        return;
+      }
 
-    if (daas !== undefined && typeof daas !== 'string') {
-      setActionOnClick(action);
-      setActiveDaas(daas);
-      setOpenModal(true);
-    }
-  }
+      if (daas !== undefined && typeof daas !== 'string') {
+        setActionOnClick(action);
+        setActiveDaas(daas);
+        setOpenModal(true);
+      }
+    },
+    [mutate] // Include any dependencies used within the function
+  );
 
   const handleOnRequests = async () => {
     if (!activeDaas) return;
@@ -227,6 +226,7 @@ export function DaAsList() {
         body={listDaas}
         onClick={handleOnClickActions}
       />
+
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

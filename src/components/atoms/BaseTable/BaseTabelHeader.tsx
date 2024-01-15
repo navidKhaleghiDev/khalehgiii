@@ -1,18 +1,12 @@
 import { Card, Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
+import { HeaderItem } from './BaseTableTypes';
 
-interface HeaderItem {
-  style: string;
-  dir: string;
-  label: string;
-  id: string;
-}
-
-interface BaseTableHeaderProps {
+interface PropsType {
   header: HeaderItem[];
 }
 
-export function BaseTabelHeader({ header }: BaseTableHeaderProps) {
+export function BaseTabelHeader({ header }: PropsType) {
   const { t } = useTranslation();
 
   return (

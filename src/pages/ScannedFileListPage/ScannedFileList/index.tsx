@@ -75,7 +75,7 @@ export function ScannedFileList() {
         </Typography>
       </div>
       <BaseTable
-        header={scannedFileHeaderItem()}
+        header={scannedFileHeaderItem}
         body={listDaas}
         onClick={handleOpenModal}
       />

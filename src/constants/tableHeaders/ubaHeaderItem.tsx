@@ -1,8 +1,9 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import lockKeyFillIcon from '@iconify-icons/ph/lock-key-fill';
 import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
+import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
 
-export const ubaHeaderItem = [
+export const ubaHeaderItem: HeaderItem[] = [
   {
     label: 'table.nameOfTheUser',
     id: 'username',
@@ -15,7 +16,7 @@ export const ubaHeaderItem = [
     label: 'table.dateOfUpdated',
     id: 'updated_at',
     type: 'function',
-    function: (props: any) => dateAndNumber(props.updated_at),
+    function: dateAndNumber,
     dir: 'rtl',
     style: 'px-3 w-2/12',
     size: 'body4',

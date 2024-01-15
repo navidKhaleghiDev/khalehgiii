@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 type PropsType = {
   label: string;
   onClick: () => void;

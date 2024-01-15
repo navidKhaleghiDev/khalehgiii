@@ -70,7 +70,7 @@ export function UsersDaAsList() {
       <BaseTable
         loading={isLoading}
         body={listDaas}
-        header={monitoringHeaderItem()}
+        header={monitoringHeaderItem}
         onClick={userHandler}
       />
       {!!countPage && (

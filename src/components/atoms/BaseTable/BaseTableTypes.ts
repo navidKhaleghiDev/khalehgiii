@@ -1,10 +1,20 @@
+import { ActionOnClickActionsType } from '@src/pages/Dashboard/DlpConfig/FileTypeCard/types';
+import { IDaAs } from '@src/services/users/types';
+import React, { ReactNode, ComponentType } from 'react';
+
+export interface ActionItem {
+  action: string;
+  icon: any;
+  color: string;
+  style: string;
+}
 export interface HeaderItem {
-  id: string;
+  id: string | number | null | undefined;
+  label: string;
   style?: string;
   dir?: string;
-  label: string;
-  icon?: string;
-  type?: string;
+  icon?: any;
+  type?: 'action' | 'none' | 'component' | 'function' | 'icon' | 'user';
   size?:
     | 'caption'
     | 'h1'
@@ -19,21 +29,18 @@ export interface HeaderItem {
     | 'body3'
     | null
     | undefined;
-  function?: () => [];
-  component?: React.Component;
-}
-
-export interface BodyItem {
-  item: { [key: string]: string };
-  index: number;
+  function?: () => ReactNode[] | ReactNode;
+  component?: ComponentType<any> | undefined;
+  action?: ActionItem[];
+  color?: string | string[];
 }
 
 export interface BaseTableProps {
   id: string;
-  header: HeaderItem[];
-  body: BodyItem[];
+  header: HeaderItem;
+  body: IDaAs[];
   loading: boolean;
-  onClick: () => void;
+  onClick: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;
 }
 export interface ComponentsProps {
   none: JSX.Element;
@@ -43,15 +50,15 @@ export interface ComponentsProps {
   icon: JSX.Element;
 }
 export interface RowCardProps {
-  row: object;
-  header: HeaderItem;
-  onClick: () => void;
+  row?: object;
+  header?: HeaderItem;
+  onClick?: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;
 }
 export interface TableCell {
   id?: string;
   row?: object;
   head?: HeaderItem;
-  onClick?: (action: string, row: object) => unknown;
+  onClick: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;
 }
 export interface TableRowProps {
   id?: string;

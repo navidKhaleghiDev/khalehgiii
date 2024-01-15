@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import { IconButton } from '@ui/atoms/BaseButton';
 import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';
@@ -22,7 +23,6 @@ import { BaseTable } from '@ui/atoms/BaseTable';
 import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { ActionOnClickActionsType } from './UserAdminCard/types';
-import { UserAdminCard } from './UserAdminCard';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -124,20 +124,6 @@ export function AdminsList() {
     setOpenUpdateModal(true);
   };
 
-  const userAdminCardContent = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listWhiteList.length > 0 &&
-      listWhiteList.map((item) => (
-        <UserAdminCard
-          key={item.id}
-          user={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
-
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
@@ -159,7 +145,7 @@ export function AdminsList() {
       <BaseTable
         loading={isLoading}
         body={listWhiteList}
-        header={adminListHeaderItem()}
+        header={adminListHeaderItem}
         onClick={handleOnClickActions}
       />
       {!!countPage && (
