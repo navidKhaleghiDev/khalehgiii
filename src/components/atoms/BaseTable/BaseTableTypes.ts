@@ -48,6 +48,7 @@ export interface ComponentsProps {
   function: JSX.Element;
   action: JSX.Element;
   icon: JSX.Element;
+  user: JSX.Element;
 }
 export interface RowCardProps {
   row?: object;

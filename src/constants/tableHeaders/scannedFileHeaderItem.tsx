@@ -10,7 +10,7 @@ export const scannedFileHeaderItem: HeaderItem[] = [
     id: 'file_name',
     type: 'none',
     dir: '',
-    style: 'px-3 w-3/12 font-bold',
+    style: 'px-3 w-2/12 font-bold',
     size: 'body4',
   },
   {
@@ -29,7 +29,7 @@ export const scannedFileHeaderItem: HeaderItem[] = [
       <CircleBGBorder results={props.row.yara_scan_result} {...props} />
     ),
     dir: '',
-    style: 'px-3 w-3/12',
+    style: 'px-3 w-2/12',
     size: 'body4',
   },
   {
@@ -40,7 +40,7 @@ export const scannedFileHeaderItem: HeaderItem[] = [
       <CircleBGBorder results={props.row.clamav_scan_result} {...props} />
     ),
     dir: '',
-    style: 'px-3 w-3/12',
+    style: 'px-3 w-2/12',
     size: 'body4',
   },
   {
@@ -51,7 +51,7 @@ export const scannedFileHeaderItem: HeaderItem[] = [
       <CircleBGBorder results={props.row.antiviruses_scan_result} {...props} />
     ),
     dir: '',
-    style: 'px-3 w-3/12',
+    style: 'px-3 w-2/12',
     size: 'body4',
   },
   {
