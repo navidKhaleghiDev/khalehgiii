@@ -20,6 +20,8 @@ import { IMimeType } from '@src/services/analyze/types';
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 import { ActionOnClickActionsType } from './MimeTypeCard/types';
 import { MimeTypeCard } from './MimeTypeCard';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -124,20 +126,6 @@ export function ExtensionList() {
     // }
   }
 
-  const content = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listWhiteList.length > 0 &&
-      listWhiteList.map((item) => (
-        <MimeTypeCard
-          key={item.id}
-          mimeType={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
-
   const handleCreateAdmin = () => {
     if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
@@ -160,8 +148,11 @@ export function ExtensionList() {
           />
         </ToolTip>
       </div>
-      <MimeTypeCard mimeType={headerItem} isHeader />
-      {content}
+      <BaseTable
+        loading={isLoading}
+        header={extensionListHeaderItem()}
+        body={listWhiteList}
+      />
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
