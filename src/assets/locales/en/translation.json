@@ -56,7 +56,9 @@
     "allowedForDownload": "Allowed For Download",
     "thisWeek": " This Week",
     "thisMonth": "This Month",
-    "accessSetting": "Access Setting"
+    "accessSetting": "Access Setting",
+    "string": "String",
+    "fileExtension": "File Extension"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

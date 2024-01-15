@@ -56,7 +56,9 @@
     "allowedForDownload": "مجاز برای دانلود",
     "thisWeek": "این هفته",
     "thisMonth": "این ماه",
-    "accessSetting": "تنظیمات دسترسی"
+    "accessSetting": "تنظیمات دسترسی",
+    "string": "رشته فایل",
+    "fileExtension": "پسوند فایل"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
