@@ -16,10 +16,9 @@ type PropsType = {
 
 export function DlpList({ name, valueList, onChange, label }: PropsType) {
   const [displayInput, setDisplayInput] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string>();
 
-  const [value, setValue] = useState<string>(''); // Provide a default value for better type inference
-
+  const [value, setValue] = useState<string>();
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -39,22 +38,18 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
     }
   };
 
-  const remove = (val: string) => {
-    const newArray = valueList.filter((item) => item !== val);
+  const remove = (data: string) => {
+    const newArray = valueList.filter((item) => item !== data);
     onChange(name, newArray);
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value: v } = event.target;
+    const { value: eventValue } = event.target;
     const regex = regexPattern.wordStartedWithPointAndEn;
-    if (!regex.value.test(v)) {
+    if (!regex.value.test(eventValue)) {
       setError(regex.message);
-    } else {
-      if (error) {
-        setError(undefined);
-      }
-      setValue(v);
-    }
+    } else if (error) setError(undefined);
+    setValue(eventValue);
   };
 
   return (
@@ -75,6 +70,9 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           name={name}
           id={name}
           pureError={error}
+          // rules={{
+          //   pattern: regexPattern.wordStartedWithPointAndEn,
+          // }}
           onKeyDown={handleKeyPress}
           placeholder=".text"
           ltrLabel
@@ -86,12 +84,8 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto h-20"
           dir="ltr"
         >
-          {valueList.map((labelV) => (
-            <BaseChip
-              key={labelV}
-              label={labelV}
-              onClick={() => remove(labelV)}
-            />
+          {valueList.map((l) => (
+            <BaseChip key={l} label={l} onClick={() => remove(l)} />
           ))}
         </div>
       )}

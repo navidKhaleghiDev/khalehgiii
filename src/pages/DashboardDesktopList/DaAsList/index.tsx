@@ -198,7 +198,7 @@ export function DaAsList() {
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
         mutate();
-        toast.success(t('table.sucessfulyUpdated'));
+        toast.success(t('global.sucessfulyUpdated'));
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);
       })
