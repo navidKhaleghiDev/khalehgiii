@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import arrowLeftBoldIcon from '@iconify-icons/ph/arrow-left-bold';
@@ -7,7 +7,7 @@ import arrowClockwiseBoldIcon from '@iconify-icons/ph/arrow-clockwise-bold';
 
 import { IconButton } from '@ui/atoms/BaseButton';
 
-export const NavigationButtons: React.FC = () => {
+export function NavigationButtons(): JSX.Element {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,6 +23,7 @@ export const NavigationButtons: React.FC = () => {
       ]);
       setCurrentIndex((prev) => prev + 1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const refreshPage = () => {
@@ -65,4 +66,4 @@ export const NavigationButtons: React.FC = () => {
       />
     </div>
   );
-};
+}

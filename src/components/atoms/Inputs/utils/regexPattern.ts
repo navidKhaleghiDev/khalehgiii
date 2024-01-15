@@ -1,4 +1,5 @@
 import { t } from 'i18next';
+
 export const regexPattern = {
   onlyEnglishNdOtherCharacters: {
     value: /^(?!.*[\u0600-\u06E9\u200C])/,

@@ -1,13 +1,13 @@
-import { SettingsKeycloak } from './SettingsKeycloak';
-import { DashboardCards } from './DashboardCards';
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 import { useUserContext } from '@context/user/userContext';
-import { Daas } from './Daas';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
+import { useTranslation } from 'react-i18next';
+import { SettingsKeycloak } from './SettingsKeycloak';
+import { DashboardCards } from './DashboardCards';
+import { Daas } from './Daas';
 import { DlpConfig } from './DlpConfig';
 import { DaasConfig } from './DaasConfig';
 import { SettingsMalware } from './SettingsMalware';
-import { useTranslation } from 'react-i18next';
 
 export function DashboardPage() {
   const { user } = useUserContext();

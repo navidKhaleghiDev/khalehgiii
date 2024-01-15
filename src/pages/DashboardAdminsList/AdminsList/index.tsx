@@ -5,13 +5,10 @@ import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { UserAdminCard } from './UserAdminCard';
 import { StringifyProperties } from '@src/types/global';
-import { ActionOnClickActionsType } from './UserAdminCard/types';
 import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
-import { UpdateAdminModal } from './UpdateAdminModal';
 import { toast } from 'react-toastify';
 import ToolTip from '@ui/atoms/Tooltip';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
@@ -21,6 +18,9 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
+import { UpdateAdminModal } from './UpdateAdminModal';
+import { ActionOnClickActionsType } from './UserAdminCard/types';
+import { UserAdminCard } from './UserAdminCard';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -72,6 +72,7 @@ export function AdminsList() {
     http.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -133,7 +134,6 @@ export function AdminsList() {
 
     if (action === 'edit') {
       setOpenUpdateModal(true);
-      return;
     }
 
     // if (daas !== undefined && typeof daas !== "string") {
@@ -144,9 +144,24 @@ export function AdminsList() {
   }
 
   const handleCreateAdmin = () => {
-    activeAdmin && setActiveAdmin(undefined);
+    if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
+
+  const userAdminCardContent = isLoading ? (
+    <LoadingSpinner />
+  ) : (
+    (listWhiteList.length > 0 &&
+      listWhiteList.map((item) => (
+        <UserAdminCard
+          key={item.id}
+          user={item}
+          // eslint-disable-next-line react/jsx-no-bind
+          onClickActions={handleOnClickActions}
+        />
+      ))) || <NoResult />
+  );
+
   return (
     <div className="w-full p-4">
       <div className="flex justify-between items-center">
@@ -166,19 +181,7 @@ export function AdminsList() {
         </ToolTip>
       </div>
       <UserAdminCard user={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listWhiteList.length > 0 ? (
-        listWhiteList.map((item) => (
-          <UserAdminCard
-            key={item.id}
-            user={item}
-            onClickActions={handleOnClickActions}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {userAdminCardContent}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

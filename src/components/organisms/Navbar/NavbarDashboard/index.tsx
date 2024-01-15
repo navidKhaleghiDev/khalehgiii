@@ -9,16 +9,16 @@ import languageIcon from '@iconify-icons/ph/globe-thin';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
 
-import { AccessTime } from './AccessTime';
 import { useUserContext } from '@context/user/userContext';
 import { http } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
-import { ChangePasswordForm } from './ChangePasswordForm';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { languageOptions } from '@src/constants/optios';
+import { ChangePasswordForm } from './ChangePasswordForm';
+import { AccessTime } from './AccessTime';
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
@@ -62,12 +62,9 @@ export function NavbarDashboard() {
           <ToolTip tooltip={t('global.language')} position="right">
             <DropDownWithIcon
               icon={languageIcon}
-              name={'language'}
-              size="sm"
-              onSelect={(l: string) => changeLanguage(l)}
+              size="xs"
+              onSelect={(v: string) => changeLanguage(v)}
               options={languageOptions}
-              id={''}
-              placeHolder={''}
             />
           </ToolTip>
           <Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
@@ -80,13 +77,11 @@ export function NavbarDashboard() {
             </Typography>
           </div>
 
-          {user ? (
-            user?.is_superuser ? null : (
-              <div className={timeStyle}>
-                <AccessTime />
-              </div>
-            )
-          ) : null}
+          {user && !user.is_superuser && (
+            <div className={timeStyle}>
+              <AccessTime />
+            </div>
+          )}
         </div>
 
         <div className="flex">

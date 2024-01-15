@@ -2,12 +2,12 @@
 import { Controller } from 'react-hook-form';
 import caretCircleLeftIcon from '@iconify-icons/ph/caret-circle-left';
 
+import { t } from 'i18next';
 import { BaseInputProps } from '../types';
 import { baseSelectStyles } from './styles';
 import { Typography } from '../../Typography';
 import { IOptionSelect, OptionSelect } from './OptionSelect';
 import { IconInput } from '../IconInput';
-import { t } from 'i18next';
 
 export function BaseSelect(props: BaseInputProps<any>) {
   const {

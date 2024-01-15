@@ -10,9 +10,9 @@ export const TimeLimitDurationLabel = {
 };
 
 export const TimeLimitDurationLabelDetails = {
-  [ETimeLimitDuration.DAILY]: t('tabel.today'),
-  [ETimeLimitDuration.WEEKLY]: t('tabel.thisWeek'),
-  [ETimeLimitDuration.MONTHLY]: t('thisMonth'),
+  [ETimeLimitDuration.DAILY]: t('table.today'),
+  [ETimeLimitDuration.WEEKLY]: t('table.thisWeek'),
+  [ETimeLimitDuration.MONTHLY]: t('table.thisMonth'),
   [ETimeLimitDuration.PERMANENTLY]: t('table.permanently'),
   [ETimeLimitDuration.TEMPORARY]: t('table.temporary'),
 };

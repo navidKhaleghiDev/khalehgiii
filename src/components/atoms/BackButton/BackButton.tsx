@@ -16,11 +16,6 @@ export function BackButton({ withLabel, onClick, className }: BackButtonProps) {
   const { t } = useTranslation();
   const { lang } = useLanguage();
 
-  const config = {
-    endIcon: lang === 'fa' ? arrowLineLeft : 'null',
-    startIcon: lang === 'en' ? arrowLineLeft : 'null',
-  };
-
   const handleClick = () => {
     if (!onClick) {
       navigate(-1);
@@ -43,7 +38,8 @@ export function BackButton({ withLabel, onClick, className }: BackButtonProps) {
       label={t('global.pageBack')}
       onClick={handleClick}
       className={className}
-      {...config}
+      endIcon={lang === 'fa' ? arrowLineLeft : 'null'}
+      startIcon={lang === 'en' ? arrowLineLeft : 'null'}
     />
   );
 }

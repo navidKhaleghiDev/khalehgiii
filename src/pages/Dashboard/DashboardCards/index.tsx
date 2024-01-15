@@ -8,8 +8,9 @@ import usersThreeIcon from '@iconify-icons/ph/users-three';
 import { useUserContext } from '@context/user/userContext';
 import shieldCheckIcon from '@iconify-icons/ph/shield-check';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { Card } from './Card';
+
 import { CardScanStats } from './CardScanStats';
+import { Card } from './Card';
 
 export function DashboardCards() {
   const navigate = useNavigate();

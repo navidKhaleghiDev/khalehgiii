@@ -7,14 +7,14 @@ import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
 import checkBoldIcon from '@iconify-icons/ph/check-bold';
 import xIcon from '@iconify-icons/ph/x';
 
-import { SetAccessTime } from './SetAccessTime';
 import { CircleBg } from '@ui/atoms/CircleBg';
-import { SetAccessUpload } from './SetAccessUpload';
-import { OnClickActionsType } from './types';
-import { IHeaderDaasCard } from '../types';
 import { IDaasConfig } from '@src/services/config/types';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
+import { SetAccessTime } from './SetAccessTime';
+import { SetAccessUpload } from './SetAccessUpload';
+import { OnClickActionsType } from './types';
+import { IHeaderDaasCard } from '../types';
 
 type ProductCardProps = {
   daas: IHeaderDaasCard | IDaAs;

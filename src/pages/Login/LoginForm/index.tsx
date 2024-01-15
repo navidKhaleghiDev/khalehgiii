@@ -14,12 +14,12 @@ import { useUserContext } from '@context/user/userContext';
 import userIcon from '@iconify-icons/ph/user';
 import signInBoldIcon from '@iconify-icons/ph/sign-in-bold';
 
-import { ILoginFieldValues } from '../types';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import { languageOptions } from '@src/constants/optios';
+import { ILoginFieldValues } from '../types';
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
@@ -80,12 +80,9 @@ export function LoginForm() {
       <div className="absolute top-[1rem] right-[1rem] ">
         <DropDownWithIcon
           icon={languageIcon}
-          name={'language'}
-          size="sm"
+          size="xs"
           onSelect={(v: string) => changeLanguage(v)}
           options={languageOptions}
-          id={''}
-          placeHolder={''}
         />
       </div>
       <Typography color="neutral" size="h5" className="mb-5">

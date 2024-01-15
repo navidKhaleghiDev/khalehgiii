@@ -1,7 +1,7 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 
-import { UbaAsList } from './UbaAsList';
 import { BackButton } from '@ui/atoms/BackButton';
+import { UbaAsList } from './UbaAsList';
 
 export function UbaPage() {
   return (

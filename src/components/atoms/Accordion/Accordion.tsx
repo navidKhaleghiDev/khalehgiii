@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { BaseIcon } from '@ui/atoms';
+import arrowLeftIcon from '@iconify-icons/ph/arrow-left';
 import { AccordionProps } from './types';
 import { titleStyles, contentStyles } from './styles';
-import arrowLeftIcon from '@iconify-icons/ph/arrow-left';
 
 export function Accordion({
   title,

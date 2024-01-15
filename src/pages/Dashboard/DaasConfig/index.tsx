@@ -41,6 +41,7 @@ export function DaasConfig() {
 
   useEffect(() => {
     reset(daasConfig?.data);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [daasConfig]);
 
   const handleOnSubmit = () => {
@@ -63,7 +64,6 @@ export function DaasConfig() {
         .finally(() => {
           setLoadingButtonModal(false);
         });
-      return;
     }
   };
 

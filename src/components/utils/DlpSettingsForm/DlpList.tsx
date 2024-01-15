@@ -16,9 +16,10 @@ type PropsType = {
 
 export function DlpList({ name, valueList, onChange, label }: PropsType) {
   const [displayInput, setDisplayInput] = useState(false);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string | undefined>(undefined);
 
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>(''); // Provide a default value for better type inference
+
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -28,9 +29,8 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
       if (!regex.value.test(mValue)) {
         setError(regex.message);
         return;
-      } else {
-        error && setError(undefined);
       }
+      if (error) setError(undefined);
 
       if (!valueList.includes(mValue) && mValue !== '') {
         onChange(name, [...valueList, mValue]);
@@ -39,20 +39,22 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
     }
   };
 
-  const remove = (value: string) => {
-    let newArray = valueList.filter((item) => item !== value);
+  const remove = (val: string) => {
+    const newArray = valueList.filter((item) => item !== val);
     onChange(name, newArray);
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
+    const { value: v } = event.target;
     const regex = regexPattern.wordStartedWithPointAndEn;
-    if (!regex.value.test(value)) {
+    if (!regex.value.test(v)) {
       setError(regex.message);
     } else {
-      error && setError(undefined);
+      if (error) {
+        setError(undefined);
+      }
+      setValue(v);
     }
-    setValue(value);
   };
 
   return (
@@ -73,9 +75,6 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           name={name}
           id={name}
           pureError={error}
-          // rules={{
-          //   pattern: regexPattern.wordStartedWithPointAndEn,
-          // }}
           onKeyDown={handleKeyPress}
           placeholder=".text"
           ltrLabel
@@ -87,8 +86,12 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto h-20"
           dir="ltr"
         >
-          {valueList.map((label, i) => (
-            <BaseChip key={i} label={label} onClick={() => remove(label)} />
+          {valueList.map((labelV) => (
+            <BaseChip
+              key={labelV}
+              label={labelV}
+              onClick={() => remove(labelV)}
+            />
           ))}
         </div>
       )}

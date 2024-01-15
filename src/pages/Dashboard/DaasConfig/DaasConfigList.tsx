@@ -5,16 +5,16 @@ import { IDaasConfig } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { DlpConfigCard } from './DlpConfigCard';
 import { StringifyProperties } from '@src/types/global';
-import { ActionOnClickActionsType } from './DlpConfigCard/types';
 import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
-import { SettingDaasConfigModal } from './SettingDaasConfigModal';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { SettingDaasConfigModal } from './SettingDaasConfigModal';
+import { ActionOnClickActionsType } from './DlpConfigCard/types';
+import { DlpConfigCard } from './DlpConfigCard';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -51,6 +51,7 @@ export function DaasConfigList() {
     http.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -62,10 +63,6 @@ export function DaasConfigList() {
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   const listDaasConfig = data?.data?.results ?? [];
 
@@ -87,6 +84,19 @@ export function DaasConfigList() {
     }
     console.log({ daasConfig });
   }
+  const dlpConfigCardContent = isLoading ? (
+    <LoadingSpinner />
+  ) : (
+    (listDaasConfig.length > 0 &&
+      listDaasConfig.map((item) => (
+        <DlpConfigCard
+          key={item.id}
+          daasConfig={item}
+          // eslint-disable-next-line react/jsx-no-bind
+          onClickActions={handleOnClickActions}
+        />
+      ))) || <NoResult />
+  );
 
   return (
     <div className="w-full p-4">
@@ -99,19 +109,7 @@ export function DaasConfigList() {
         />
       </div>
       <DlpConfigCard daasConfig={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listDaasConfig.length > 0 ? (
-        listDaasConfig.map((item) => (
-          <DlpConfigCard
-            key={item.id}
-            daasConfig={item}
-            onClickActions={handleOnClickActions}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      {dlpConfigCardContent}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

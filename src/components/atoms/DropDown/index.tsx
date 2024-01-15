@@ -4,11 +4,11 @@ import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import caretCircleDownIcon from '@iconify-icons/ph/caret-circle-down';
 import caretCircleLeftIcon from '@iconify-icons/ph/caret-circle-left';
 
+import { useTranslation } from 'react-i18next';
 import { DropdownProps, IOptionSelect, StateType } from './type';
 import { optionSelectStyles, baseDropDownStyles } from './styles';
 import { BaseIcon } from '../BaseIcon';
 import { Typography } from '../Typography';
-import { useTranslation } from 'react-i18next';
 
 const initState = {
   activeOption: null,

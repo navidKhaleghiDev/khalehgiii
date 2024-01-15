@@ -142,7 +142,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
 
         <div className="w-1/3 flex justify-between items-center mt-2">
           <Typography className="mb-1" type="h4" color="teal">
-            {t('global.metaAdmin') + ':'}
+            {`${t('global.metaAdmin')}:`}
           </Typography>
           <BaseSwitch control={control} name="is_meta_admin" />
         </div>
