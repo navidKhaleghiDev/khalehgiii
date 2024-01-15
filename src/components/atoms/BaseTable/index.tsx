@@ -41,7 +41,7 @@ function RowCard({ row, header, onClick }: RowCardProps) {
       {header.map((head: HeaderItem) => (
         <div
           key={head.id}
-          className={`${head.style} flex justify-center items-center`}
+          className={`${head.style} flex justify-center items-center group w-3/12 text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6 `}
           dir={!head.dir ? 'ltr' : head.dir}
         >
           {cellsComponent(row, head, onClick)}

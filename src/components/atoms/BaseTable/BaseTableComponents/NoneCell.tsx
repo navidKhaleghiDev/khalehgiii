@@ -1,16 +1,12 @@
 import { Typography } from '@ui/atoms/Typography';
-import ToolTip from '@ui/atoms/Tooltip';
-
 export function NoneCell({ row, id, head }: any) {
   return (
-    // <ToolTip position="bottom" tooltip={row[id]}>
     <Typography
       size={head?.size ? head?.size : 'body3'}
       type="div"
-      className={` overflow-hidden overflow-ellipsis bg-slate-300 `}
+      className={` overflow-hidden overflow-ellipsis group-hover:text-gray-800 rounded-md group-hover:border group-hover-border-gray-300 p-2 group-hover:bg-white group-hover:shadow-lg transition duration-300 z-auto group-hover:absolute  group-hover:max-w-[30vw]  `}
     >
       {row[id]}
     </Typography>
-    // </ToolTip>
   );
 }
