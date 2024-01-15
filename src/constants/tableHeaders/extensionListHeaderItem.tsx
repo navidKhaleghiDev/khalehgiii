@@ -17,7 +17,7 @@ export function extensionListHeaderItem() {
       ],
 
       dir: '',
-      style: 'px-3 w-2/12',
+      style: 'px-3 w-3/12',
     },
     {
       label: 'table.string',
@@ -32,7 +32,7 @@ export function extensionListHeaderItem() {
       id: 'extension_list',
       type: 'none',
       dir: '',
-      style: 'px-3 w-2/12',
+      style: 'px-3 w-3/12',
       size: 'body4',
     },
     {
@@ -41,7 +41,7 @@ export function extensionListHeaderItem() {
       type: 'function',
       function: dateAndNumber,
       dir: '',
-      style: 'px-3 w-2/12',
+      style: 'px-3 w-3/12',
       size: 'body4',
     },
   ];

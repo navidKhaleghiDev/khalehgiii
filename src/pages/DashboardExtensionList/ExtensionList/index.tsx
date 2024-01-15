@@ -6,34 +6,32 @@ import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
+import { BaseTable } from '@ui/atoms/BaseTable';
 import ToolTip from '@ui/atoms/Tooltip';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { createAPIEndpoint } from '@src/helper/utils';
+import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
 import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 import { ActionOnClickActionsType } from './MimeTypeCard/types';
-import { MimeTypeCard } from './MimeTypeCard';
-import { BaseTable } from '@ui/atoms/BaseTable';
-import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
 
-const headerItem: StringifyProperties<IMimeType> = {
-  id: '',
-  extension_list: 'پسوند فایل',
-  mimetype_list: 'رشته فایل',
-  created_at: 'تاریخ ایجاد',
-  updated_at: '',
-  file: '',
-};
+// const headerItem: StringifyProperties<IMimeType> = {
+//   id: '',
+//   extension_list: 'پسوند فایل',
+//   mimetype_list: 'رشته فایل',
+//   created_at: 'تاریخ ایجاد',
+//   updated_at: '',
+//   file: '',
+// };
 
 export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
