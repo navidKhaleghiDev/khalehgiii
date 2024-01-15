@@ -7,6 +7,7 @@ import { FunctionCell } from './BaseTableComponents/FunctionCell';
 import { IconCell } from './BaseTableComponents/IconCell';
 import { ActionCell } from './BaseTableComponents/ActionCell';
 import { ComponentCell } from './BaseTableComponents/ComponentCell';
+import { UserCell } from './BaseTableComponents/UserCell';
 import {
   BaseTableProps,
   ComponentsProps,
@@ -25,6 +26,7 @@ function cellsComponent(row: object, head: HeaderItem, onClick: () => void) {
     function: <FunctionCell row={row} head={head} id={id} />,
     icon: <IconCell row={row} head={head} id={id} />,
     action: <ActionCell row={row} head={head} id={id} onClick={onClick} />,
+    user: <UserCell row={row} head={head} id={id} onClick={onClick} />,
   };
 
   return components[head?.type] || null;

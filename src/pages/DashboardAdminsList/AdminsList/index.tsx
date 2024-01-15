@@ -21,6 +21,8 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -165,20 +167,12 @@ export function AdminsList() {
           />
         </ToolTip>
       </div>
-      <UserAdminCard user={headerItem} isHeader />
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : listWhiteList.length > 0 ? (
-        listWhiteList.map((item) => (
-          <UserAdminCard
-            key={item.id}
-            user={item}
-            onClickActions={handleOnClickActions}
-          />
-        ))
-      ) : (
-        <NoResult />
-      )}
+      <BaseTable
+        loading={isLoading}
+        body={listWhiteList}
+        header={adminListHeaderItem()}
+        onClick={handleOnClickActions}
+      />
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
