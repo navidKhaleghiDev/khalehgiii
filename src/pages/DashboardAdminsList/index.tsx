@@ -2,8 +2,8 @@ import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 import { useUserContext } from '@context/user/userContext';
 import { BackButton } from '@ui/atoms/BackButton';
 
-import { AdminsList } from './AdminsList';
 import { NotificationCard } from '@ui/atoms';
+import { AdminsList } from './AdminsList';
 
 export function DashboardAdminsListPage() {
   const { user } = useUserContext();

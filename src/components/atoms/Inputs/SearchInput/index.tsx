@@ -1,7 +1,7 @@
 import { useState, memo } from 'react';
 
-import { BaseInput } from '../BaseInput';
 import { useTranslation } from 'react-i18next';
+import { BaseInput } from '../BaseInput';
 
 interface SearchInputProps {
   value: string;
@@ -10,12 +10,12 @@ interface SearchInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchInputComponent = ({
+function SearchInputComponent({
   onChange,
   value,
   name,
   className,
-}: SearchInputProps) => {
+}: SearchInputProps) {
   const [searchValue, setSearchValue] = useState(value);
   const { t } = useTranslation();
 
@@ -38,5 +38,5 @@ const SearchInputComponent = ({
       />
     </div>
   );
-};
+}
 export const SearchInput = memo(SearchInputComponent);

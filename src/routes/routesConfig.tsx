@@ -7,10 +7,10 @@ import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { DashboardMonitoring } from '@src/pages/DashboardMonitoring';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 
-import { ROUTES_PATH } from './routesConstants';
 import { UbaPage } from '@src/pages/Uba';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
+import { ROUTES_PATH } from './routesConstants';
 
 const routesConfig = [
   {

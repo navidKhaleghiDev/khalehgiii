@@ -1,23 +1,19 @@
 import { useCallback, useState } from 'react';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { NoResult } from '@ui/molecules/NoResult';
-import { ScannedFileCard } from './ScannedFileCard';
 import useSWR from 'swr';
-import { http_analyses } from '@src/services/http';
+import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import Pagination from '@ui/molecules/Pagination';
 import { Typography } from '@ui/atoms';
 import { IScannedFile } from '@src/services/analyze/types';
-import { StringifyProperties } from '@src/types/global';
 import { useParams } from 'react-router-dom';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { Modal } from '@ui/molecules/Modal';
-import { DetailsContentModal } from './DetailsContentModal';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { scannedFileHeaderItem } from '@src/constants/tableHeaders/scannedFileHeaderItem';
+import { DetailsContentModal } from './DetailsContentModal';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -37,9 +33,10 @@ export function ScannedFileList() {
           filter: `search=${encodeURIComponent(filterQuery)}`,
         })
       : null,
-    http_analyses.fetcherSWR
+    HTTP_ANALYSES.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -82,20 +79,6 @@ export function ScannedFileList() {
         body={listDaas}
         onClick={handleOpenModal}
       />
-      {/* <ScannedFileCard scannedFile={headerItem} isHeader /> */}
-      {/* {isLoading ? (
-				<LoadingSpinner />
-			) : listDaas.length > 0 ? (
-				listDaas.map((item) => (
-					<ScannedFileCard
-						key={item.id}
-						scannedFile={item}
-						onOpenDetailModal={() => handleOpenModal(item)}
-					/>
-				))
-			) : (
-				<NoResult />
-			)} */}
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

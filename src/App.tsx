@@ -3,11 +3,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
-import { IUser } from './services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
+import { IUser } from './services/users/types';
 
 const router = createBrowserRouter(routesConfig);
 
+type AppStyle = {
+  direction?: any;
+  fontSize: number;
+};
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const { dir, lang } = useLanguage();
@@ -22,7 +26,7 @@ function App() {
         </Suspense>
         <ToastContainer
           rtl={lang === 'fa'}
-          style={{ direction: dir, fontSize: 20 }}
+          style={{ direction: dir, fontSize: 20 } as AppStyle}
         />
       </div>
     </UserContext.Provider>

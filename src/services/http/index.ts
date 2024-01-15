@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-throw-literal */
-/* eslint-disable class-methods-use-this */
+
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -216,6 +216,6 @@ export class Http {
   }
 }
 const http = new Http();
-const http_analyses = new Http(import.meta.env.VITE_ANALYSES_BASE_URL);
+const HTTP_ANALYSES = new Http(import.meta.env.VITE_ANALYSES_BASE_URL);
 
-export { type AxiosRequestConfig, http, http_analyses };
+export { type AxiosRequestConfig, http, HTTP_ANALYSES };

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { IDaasConfig } from '../config/types';
 
 export enum ETimeLimitDuration {

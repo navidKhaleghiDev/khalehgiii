@@ -13,8 +13,8 @@ import {
   TimeLimitDurationLabel,
   TimeLimitDurationLabelDetails,
 } from '@src/constants/accessTime';
-import { AccessTimeModalCard } from './AccessTimeModalCard';
 import { formatDuration } from '@src/helper/utils/timeUtils';
+import { AccessTimeModalCard } from './AccessTimeModalCard';
 
 function getExtensionTime(label: ETimeLimitDuration): string {
   switch (label) {
@@ -35,6 +35,8 @@ function getExtensionTime(label: ETimeLimitDuration): string {
   }
 }
 
+// Use the `displayText` variable where needed
+
 type PropsType = {
   onClick: (value: boolean) => void;
   timeLimitDuration: ETimeLimitDuration;
@@ -49,6 +51,16 @@ export function AccessTimeModal({
 }: PropsType) {
   const timeLimitValueInMinute = Math.floor(timeLimitValueInHour) * 60;
   const remainingTime = timeLimitValueInMinute - Math.floor(usageInMinute);
+
+  let timeLeft;
+
+  if (timeLimitDuration === ETimeLimitDuration.PERMANENTLY) {
+    timeLeft = '';
+  } else if (remainingTime < 0) {
+    timeLeft = 'به اتمام رسیده است';
+  } else {
+    timeLeft = formatDuration(remainingTime);
+  }
   return (
     <div className="w-full">
       <div className="flex w-full justify-end p-2">
@@ -83,13 +95,7 @@ export function AccessTimeModal({
         <AccessTimeModalCard
           label="زمان باقی مانده"
           name={TimeLimitDurationLabelDetails[timeLimitDuration]}
-          value={
-            timeLimitDuration === ETimeLimitDuration.PERMANENTLY
-              ? ''
-              : remainingTime < 0
-              ? 'به اتمام رسیده است'
-              : formatDuration(remainingTime)
-          }
+          value={timeLeft}
         />
         <AccessTimeModalCard
           label="زمان تمدید"

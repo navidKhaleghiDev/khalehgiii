@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form';
+import { Typography } from '@ui/atoms/Typography';
 
 import { IBaseSwitch } from './types';
-import { Typography } from '@ui/atoms/Typography';
 
 export function BaseSwitch({
   label,
@@ -36,7 +36,10 @@ export function BaseSwitch({
                 </Typography>
               </label>
             )}
-            <label className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center">
+            <label
+              htmlFor={name}
+              className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center"
+            >
               <input
                 type="checkbox"
                 className="sr-only"
@@ -52,7 +55,7 @@ export function BaseSwitch({
                   className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
                     field.value ? 'translate-x-6' : ''
                   }`}
-                ></span>
+                />
               </span>
             </label>
           </div>
@@ -71,7 +74,10 @@ export function BaseSwitch({
           </Typography>
         </label>
       )}
-      <label className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center">
+      <label
+        htmlFor={name}
+        className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center"
+      >
         <input
           type="checkbox"
           className="sr-only"
@@ -89,7 +95,7 @@ export function BaseSwitch({
             className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${
               pureValue ? 'translate-x-6' : ''
             }`}
-          ></span>
+          />
         </span>
       </label>
       {pureError && (

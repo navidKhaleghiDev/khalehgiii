@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useCallback, useState } from 'react';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
-import { ETimeLimitDuration } from '@src/services/users/types';
 import { IDaAs } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
@@ -8,18 +8,17 @@ import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import { ResetAllAccessTime } from './ResetAllAccessTime';
-import { ActionOnClickActionsType } from './DaAsCard/types';
-import { SettingDaasModal } from './SettingDaasModal';
-
-import { IHeaderDaasCard } from './types';
 import { createAPIEndpoint } from '@src/helper/utils';
+
 import { debounce } from 'lodash';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import Pagination from '@ui/molecules/Pagination';
+import { SettingDaasModal } from './SettingDaasModal';
+import { ActionOnClickActionsType } from './DaAsCard/types';
+import { ResetAllAccessTime } from './ResetAllAccessTime';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -77,6 +76,7 @@ export function DaAsList() {
     http.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -199,8 +199,8 @@ export function DaAsList() {
       .then(() => {
         mutate();
         toast.success(t('table.sucessfulyUpdated'));
-        openModal && setOpenModal(false);
-        openSettingModal && setOpenSettingModal(false);
+        if (openModal) setOpenModal(false);
+        if (openSettingModal) setOpenSettingModal(false);
       })
       .catch((err) => {
         toast.error(err);

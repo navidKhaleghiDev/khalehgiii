@@ -69,7 +69,8 @@
     "updateSetting": "بروزرسانی تنظیمات",
     "update": "بروزرسانی",
     "saveSettings": "ذخیره تنظیمات",
-    "preparationTheDesktop": "در حال آماده‌سازی دسکتاپ"
+    "preparationTheDesktop": "در حال آماده‌سازی دسکتاپ",
+    "extensionList": "لیست extension ها"
   },
   "global": {
     "userName": "نام کاربری",

@@ -7,8 +7,8 @@ import {
   RegisterOptions,
   UseFormSetError,
 } from 'react-hook-form';
-import { baseInputStyles } from './styles';
 import { IconType } from '@src/types/global';
+import { baseInputStyles } from './styles';
 
 export interface BaseInputProps<T extends FieldValues>
   extends VariantProps<typeof baseInputStyles> {

@@ -37,6 +37,7 @@ export function UsersDaAsList() {
     http.fetcherSWR
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);

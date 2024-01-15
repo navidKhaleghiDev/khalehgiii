@@ -1,4 +1,3 @@
-import { Card } from './Card';
 import certificateIcon from '@iconify-icons/ph/certificate';
 import scanIcon from '@iconify-icons/ph/scan';
 
@@ -6,14 +5,15 @@ import useSWR from 'swr';
 import { ISwrResponse } from '@src/types/services';
 import { IScanStats } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
-import { http_analyses } from '@src/services/http';
+import { HTTP_ANALYSES } from '@src/services/http';
 import { useTranslation } from 'react-i18next';
+import { Card } from './Card';
 
 export function CardScanStats() {
   const { t } = useTranslation();
   const { data } = useSWR<ISwrResponse<IScanStats>>(
     E_ANALYZE_SCAN_STATS,
-    http_analyses.fetcherSWR
+    HTTP_ANALYSES.fetcherSWR
   );
   const todayScans = data?.data?.info?.today_scans || '-';
   const remainingDays = data?.data?.info?.remaining_days || '-';

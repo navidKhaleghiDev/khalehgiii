@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
-import { http_analyses } from '@src/services/http';
+import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import Pagination from '@ui/molecules/Pagination';
 import { Typography } from '@ui/atoms';
@@ -25,12 +25,13 @@ export function UbaAsList() {
 
   const direction = lang === 'en' ? 'right' : 'left';
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
       setFilterQuery(query);
     }, 1000),
-    []
+    [currentPage, setFilterQuery]
   );
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +44,7 @@ export function UbaAsList() {
       pageSize: PAGE_SIZE,
       filter: `search=${encodeURIComponent(filterQuery)}`,
     }),
-    http_analyses.fetcherSWR,
+    HTTP_ANALYSES.fetcherSWR,
     {
       revalidateOnFocus: false,
       errorRetryCount: 0,

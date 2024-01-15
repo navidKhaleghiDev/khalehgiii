@@ -47,6 +47,7 @@ export const firstDayOfNextMonth = new Date(
 export function getLocaleDateString(
   date: Date,
   locales?: Intl.LocalesArgument,
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   options?: Intl.DateTimeFormatOptions | undefined
 ) {
   return date.toLocaleDateString(locales, options);
@@ -79,10 +80,13 @@ export function dayLabel(date?: string) {
 }
 
 export const getNextSaturday = (): Date => {
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const today = new Date();
   const currentDayOfWeek = today.getDay();
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const daysUntilNextSaturday =
     currentDayOfWeek <= 6 ? 6 - currentDayOfWeek + 1 : 7; // Calculate the number of days until the next Saturday
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const nextSaturday = new Date(
     today.getFullYear(),
     today.getMonth(),

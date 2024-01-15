@@ -1,6 +1,6 @@
+import { Controller } from 'react-hook-form';
 import { IToggleSwitch } from './types';
 import { BaseIcon } from '../BaseIcon';
-import { Controller } from 'react-hook-form';
 
 export function ToggleSwitch({
   leftButton,
@@ -18,11 +18,15 @@ export function ToggleSwitch({
       defaultValue={defaultValue}
       render={({ field: { value, ...field } }) => {
         return (
-          <label className="themeSwitcherTwo shadow-card relative inline-flex cursor-pointer select-none items-center justify-center rounded-md bg-[#f4f7ff] p-1">
+          <label
+            htmlFor={name}
+            className="themeSwitcherTwo shadow-card relative inline-flex cursor-pointer select-none items-center justify-center rounded-md bg-[#f4f7ff] p-1"
+          >
             <input
               type="checkbox"
               className="sr-only"
               value={value}
+              // eslint-disable-next-line react/jsx-props-no-spreading
               {...field}
             />
             <span

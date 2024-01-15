@@ -15,8 +15,8 @@ import { http } from '@src/services/http';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { ISwrResponse } from '@src/types/services';
-import { AccessTimeModal } from './AccessTimeModal';
 import { useTranslation } from 'react-i18next';
+import { AccessTimeModal } from './AccessTimeModal';
 
 export function AccessTime() {
   const [openModal, setOpenModal] = useState(false);

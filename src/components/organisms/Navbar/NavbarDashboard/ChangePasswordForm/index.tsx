@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { BaseInput, regexPattern } from '@ui/atoms/Inputs';
 import { Typography } from '@ui/atoms/Typography';
@@ -46,7 +47,7 @@ export function ChangePasswordForm({ user, logout }: any) {
     await API_UPDATE_USER({ email, password }, `${user.id}`)
       .then(() => {
         toast.success(
-          t('global.sucessfulyUpdated') + ' ' + t('global.pleaseEnterAgain')
+          `${t('global.sucessfulyUpdated')} ${t('global.pleaseEnterAgain')}`
         );
         logout();
       })
@@ -95,16 +96,15 @@ export function ChangePasswordForm({ user, logout }: any) {
                   trigger('password_r');
                 }
                 return true;
-              } else {
-                setFormError(
-                  'password_r',
-                  {
-                    type: 'manual',
-                    message: t('global.repeatNewPasswordNotSame'),
-                  },
-                  { shouldFocus: true }
-                );
               }
+              setFormError(
+                'password_r',
+                {
+                  type: 'manual',
+                  message: t('global.repeatNewPasswordNotSame'),
+                },
+                { shouldFocus: true }
+              );
             },
           }}
         />
