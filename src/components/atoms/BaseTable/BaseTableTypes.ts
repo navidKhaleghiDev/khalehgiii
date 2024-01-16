@@ -56,7 +56,7 @@ export interface RowCardProps {
   onClick?: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;
 }
 export interface TableCell {
-  id?: string;
+  id?: string | number | null | undefined;
   row?: object;
   head?: HeaderItem;
   onClick: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;

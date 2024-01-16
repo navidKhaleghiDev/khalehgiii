@@ -29,7 +29,7 @@ function cellsComponent(row: object, head: HeaderItem, onClick: () => void) {
     user: <UserCell row={row} head={head} id={id} onClick={onClick} />,
   };
 
-  return components[head?.type] || null;
+  return components[head?.type ?? 'none'] || null;
 }
 
 function RowCard({ row, header, onClick }: RowCardProps) {
@@ -41,7 +41,7 @@ function RowCard({ row, header, onClick }: RowCardProps) {
       {header.map((head: HeaderItem) => (
         <div
           key={head.id}
-          className={`${head.style} flex justify-center items-center group w-3/12 text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6 `}
+          className={`${head.style} flex justify-center items-center group text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis  px-6 `}
           dir={!head.dir ? 'ltr' : head.dir}
         >
           {cellsComponent(row, head, onClick)}

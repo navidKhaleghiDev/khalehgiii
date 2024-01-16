@@ -1,7 +1,7 @@
 import { Typography } from '@ui/atoms/Typography';
 import { TableCell } from '../BaseTableTypes';
 
-export function FunctionCell({ row, head, id }: TableCell) {
+export function FunctionCell({ row, head, id }: any) {
   return (
     <Typography
       size={head?.size ? head?.size : 'body3'}
