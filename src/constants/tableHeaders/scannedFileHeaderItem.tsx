@@ -8,7 +8,7 @@ export const scannedFileHeaderItem: HeaderItem[] = [
   {
     label: 'table.fileName',
     id: 'file_name',
-    type: 'none',
+    type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12 font-bold',
     size: 'body4',

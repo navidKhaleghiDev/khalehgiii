@@ -1,20 +1,28 @@
 import { ActionOnClickActionsType } from '@src/pages/Dashboard/DlpConfig/FileTypeCard/types';
 import { IDaAs } from '@src/services/users/types';
-import React, { ReactNode, ComponentType } from 'react';
+import React from 'react';
 
-export interface ActionItem {
-  action: string;
-  icon: any;
-  color: string;
-  style: string;
-}
-export interface HeaderItem {
-  id: string | number | null | undefined;
+export type HeaderItem =
+  | (HeaderItemBase & HeaderItemWithTooltip)
+  | (HeaderItemBase & HeaderItemWithFunction)
+  | (HeaderItemBase & HeaderItemWithComponent)
+  | (HeaderItemBase & HeaderItemWithIcon)
+  | (HeaderItemBase & HeaderItemWithAction)
+  | (HeaderItemBase & HeaderItemWithNone);
+
+type HeaderItemBase = {
   label: string;
   style?: string;
   dir?: string;
   icon?: any;
-  type?: 'action' | 'none' | 'component' | 'function' | 'icon' | 'user';
+  type?:
+    | 'action'
+    | 'none'
+    | 'component'
+    | 'function'
+    | 'icon'
+    | 'user'
+    | 'tooltip';
   size?:
     | 'caption'
     | 'h1'
@@ -29,11 +37,7 @@ export interface HeaderItem {
     | 'body3'
     | null
     | undefined;
-  function?: () => ReactNode[] | ReactNode;
-  component?: ComponentType<any> | undefined;
-  action?: ActionItem[];
-  color?: string | string[];
-}
+};
 
 export interface BaseTableProps {
   id: string;
@@ -49,6 +53,7 @@ export interface ComponentsProps {
   action: JSX.Element;
   icon: JSX.Element;
   user: JSX.Element;
+  tooltip: JSX.Element;
 }
 export interface RowCardProps {
   row?: object;
@@ -59,8 +64,50 @@ export interface TableCell {
   id?: string | number | null | undefined;
   row?: object;
   head?: HeaderItem;
-  onClick: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;
+  onClick?: (action: ActionOnClickActionsType, dass: Partial<IDaAs>) => void;
 }
 export interface TableRowProps {
   id?: string;
+}
+export type HeaderItemWithTooltip = {
+  id: string;
+  type: 'tooltip';
+  // tooltip: string;
+};
+
+export type HeaderItemWithFunction = {
+  id: string;
+  type: 'function';
+  function: () => React.ReactNode[] | React.ReactNode;
+};
+
+export type HeaderItemWithComponent = {
+  id: string;
+  type: 'component';
+  component: () => React.ComponentType<any> | undefined;
+};
+export type HeaderItemWithAction = {
+  id: string;
+  type: 'action';
+  action: ActionItem[];
+};
+export type HeaderItemWithIcon = {
+  id: string;
+  type: 'icon';
+  color?: string | string[];
+  icon: JSX.Element | any[];
+};
+export type HeaderItemWithNone = {
+  type: 'none';
+  id: string;
+};
+export type HeaderItemWithUser = {
+  type: 'user';
+  id: string[];
+};
+export interface ActionItem {
+  action: string;
+  icon: any;
+  color: string;
+  style: string;
 }

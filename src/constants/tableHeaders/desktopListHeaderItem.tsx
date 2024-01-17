@@ -96,7 +96,7 @@ export const desktopListHeaderItem: HeaderItem[] = [
     label: 'table.defaultSetting',
     id: 'daas_configs',
     type: 'component',
-    component: (props) => (
+    component: (props: any) => (
       <CheckCell
         id={props.row.daas_configs.is_globally_config}
         head={props.head}

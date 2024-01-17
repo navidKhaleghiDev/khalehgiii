@@ -22,7 +22,7 @@ export const extensionListHeaderItem: HeaderItem[] = [
   {
     label: 'table.string',
     id: 'mimetype_list',
-    type: 'none',
+    type: 'tooltip',
     dir: '',
     style: 'px-3 w-4/12',
     size: 'body4',

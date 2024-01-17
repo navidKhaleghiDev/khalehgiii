@@ -32,7 +32,7 @@ export const ubaHeaderItem: HeaderItem[] = [
   {
     label: 'table.updatedNames',
     id: 'file_names',
-    type: 'none',
+    type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',

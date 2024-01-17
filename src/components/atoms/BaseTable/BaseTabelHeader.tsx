@@ -12,7 +12,7 @@ export function BaseTabelHeader({ header }: PropsType) {
   return (
     <Card
       color="neutral"
-      className="flex items-center px-2 my-2 w-full bg-teal-500 text-white h-10"
+      className="flex items-center px-2 my-2  bg-teal-500 text-white h-10 w-full"
     >
       {header.map((head: HeaderItem) => (
         <div
