@@ -1,7 +1,7 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import lockKeyFillIcon from '@iconify-icons/ph/lock-key-fill';
 import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
-import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
+import { HeaderItem } from '@ui/atoms/BaseTable/types';
 
 export const ubaHeaderItem: HeaderItem[] = [
   {

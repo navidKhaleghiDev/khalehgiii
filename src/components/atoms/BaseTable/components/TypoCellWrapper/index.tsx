@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography } from '@ui/atoms/Typography';
-import { HeaderItem } from '../BaseTableTypes';
 
 interface TypoCellWrapperProps {
   children: React.ReactNode;

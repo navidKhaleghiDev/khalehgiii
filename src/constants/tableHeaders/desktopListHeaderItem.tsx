@@ -5,9 +5,9 @@ import { UsedTimeDass } from '@src/pages/DashboardDesktopList/DaAsList/UsedTimeD
 import { ActionLockCell } from '@ui/atoms/BaseTable/BaseTableComponents/ActionLockCell';
 import { CircleBg } from '@ui/atoms/CircleBg';
 import { CheckCell } from '@ui/atoms/BaseTable/BaseTableComponents/CheckCell';
-import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const desktopListHeaderItem: HeaderItem[] = [
+export const desktopListHeaderItem: IHeaderTable[] = [
   {
     label: 'table.accessSetting',
     id: 'can_upload_file',

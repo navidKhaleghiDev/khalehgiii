@@ -3,7 +3,7 @@ import { CircleBg } from '@ui/atoms/CircleBg';
 import trashIcon from '@iconify-icons/ph/trash';
 import notePencilIcon from '@iconify-icons/ph/note-pencil';
 import { CheckCell } from '@ui/atoms/BaseTable/BaseTableComponents/CheckCell';
-import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
+import { HeaderItem } from '@ui/atoms/BaseTable/types';
 
 export const adminListHeaderItem: HeaderItem[] = [
   {

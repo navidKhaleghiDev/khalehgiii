@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
+import { HeaderItem } from '@ui/atoms/BaseTable/types';
 import { CircleBGBorder } from '@ui/atoms/BaseTable/CicleBGBorder';
 
 export const scannedFileHeaderItem: HeaderItem[] = [

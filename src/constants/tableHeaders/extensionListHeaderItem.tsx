@@ -1,6 +1,6 @@
 import trashIcon from '@iconify-icons/ph/trash';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
+import { HeaderItem } from '@ui/atoms/BaseTable/types';
 
 export const extensionListHeaderItem: HeaderItem[] = [
   {

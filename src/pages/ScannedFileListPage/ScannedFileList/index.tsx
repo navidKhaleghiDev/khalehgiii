@@ -10,7 +10,6 @@ import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { Modal } from '@ui/molecules/Modal';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
-import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { scannedFileHeaderItem } from '@src/constants/tableHeaders/scannedFileHeaderItem';
 import { DetailsContentModal } from './DetailsContentModal';
@@ -19,7 +18,6 @@ const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function ScannedFileList() {
-  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [openDetailsModal, setOpenDetailsModal] = useState(false);

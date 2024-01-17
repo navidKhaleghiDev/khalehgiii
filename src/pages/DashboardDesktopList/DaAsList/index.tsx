@@ -223,7 +223,7 @@ export function DaAsList() {
       <BaseTable
         loading={isLoading}
         header={desktopListHeaderItem}
-        body={listDaas}
+        listBody={listDaas}
         onClick={handleOnClickActions}
       />
 

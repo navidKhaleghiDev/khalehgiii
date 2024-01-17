@@ -1,5 +1,4 @@
 import { cva } from 'class-variance-authority';
-import { SIZE } from '@src/constants/theme';
 
 export const tooltipStyles = cva(
   'absolute -z-10 h-2 w-2 rotate-45 rounded-sm bg-black',

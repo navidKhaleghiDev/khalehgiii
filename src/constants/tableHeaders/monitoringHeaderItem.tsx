@@ -3,7 +3,7 @@ import { CircleBg } from '@ui/atoms/CircleBg';
 import { UserScanCount } from '@src/pages/DashboardMonitoring/UsersDaAsList/UserDaAsCard/UserScanCount';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { HeaderItem } from '@ui/atoms/BaseTable/BaseTableTypes';
+import { HeaderItem } from '@ui/atoms/BaseTable/types';
 
 export const monitoringHeaderItem: HeaderItem[] = [
   {

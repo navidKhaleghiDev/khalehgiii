@@ -8,7 +8,6 @@ import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
 import { IUba } from '@src/services/analyze/types';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
-import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { BaseTable } from '@ui/atoms/BaseTable';
 
@@ -18,7 +17,6 @@ const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function UbaAsList() {
-  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const { lang } = useLanguage();

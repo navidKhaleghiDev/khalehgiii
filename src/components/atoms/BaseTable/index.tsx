@@ -1,29 +1,45 @@
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
-import { BaseTabelHeader } from './BaseTabelHeader';
-import { RowCard } from './BaseTableComponents/BaseTableRowCard';
-import { BaseTableProps } from './BaseTableTypes';
+import { BaseTabelHeader } from './components/BaseTabelHeader';
+import { RowTable } from './components/BaseTableRowCard';
+import { IBaseTableProps } from './types';
 
-export function BaseTable(props: BaseTableProps) {
-  const { header, body, loading, onClick } = props;
-  let content;
+type RowType<T> = T & {
+  id: string;
+};
+
+export function BaseTable<T>(props: IBaseTableProps<RowType<T>>) {
+  const { headers, listBody, loading, onClick } = props;
+  let tableBody;
 
   switch (true) {
     case loading:
-      content = <LoadingSpinner />;
+      tableBody = <LoadingSpinner />;
       break;
-    case body.length > 0:
-      content = body.map((item) => (
-        <RowCard key={item.id} row={item} header={header} onClick={onClick} />
+
+    case listBody.length > 0:
+      tableBody = listBody.map((item: RowType<T>) => (
+        <RowTable
+          key={item.id}
+          row={item}
+          headers={headers}
+          onClick={onClick}
+        />
       ));
       break;
+
+    case listBody.length === 0:
+      tableBody = <NoResult />;
+      break;
+
     default:
-      content = <NoResult />;
+      tableBody = <NoResult />;
   }
+
   return (
     <div className="overflow-y-auto">
-      <BaseTabelHeader header={header} />
-      {content}
+      <BaseTabelHeader header={headers} />
+      {tableBody}
     </div>
   );
 }

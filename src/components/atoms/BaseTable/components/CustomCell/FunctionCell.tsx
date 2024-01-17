@@ -1,5 +1,4 @@
 import { Typography } from '@ui/atoms/Typography';
-import { TableCell } from '../BaseTableTypes';
 
 export function FunctionCell({ row, head, id }: any) {
   return (

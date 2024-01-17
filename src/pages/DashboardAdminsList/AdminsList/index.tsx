@@ -7,7 +7,6 @@ import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';

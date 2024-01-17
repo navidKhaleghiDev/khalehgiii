@@ -2,10 +2,11 @@ import { Typography } from '@ui/atoms/Typography';
 import { BaseIcon } from '@ui/atoms/BaseIcon';
 import checkBoldIcon from '@iconify-icons/ph/check-bold';
 import xIcon from '@iconify-icons/ph/x';
-import { TableCell, HeaderItem } from '../BaseTableTypes';
+import { IComponentTable } from '../../types';
 
-export function CheckCell({ id, head }: TableCell) {
-  const sizeCondition: HeaderItem['size'] = head?.size || 'body3';
+export function CheckCell({ id, header }: IComponentTable) {
+  const sizeCondition = header?.size || 'body3';
+
   return (
     <Typography
       size={sizeCondition}

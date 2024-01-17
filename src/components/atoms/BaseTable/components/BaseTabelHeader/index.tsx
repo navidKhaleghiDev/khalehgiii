@@ -1,9 +1,9 @@
 import { Card, Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
-import { HeaderItem } from './BaseTableTypes';
+import { IHeaderTable } from '../../types';
 
 interface PropsType {
-  header: HeaderItem[];
+  header: IHeaderTable[];
 }
 
 export function BaseTabelHeader({ header }: PropsType) {
@@ -14,7 +14,7 @@ export function BaseTabelHeader({ header }: PropsType) {
       color="neutral"
       className="flex items-center px-2 my-2  bg-teal-500 text-white h-10 w-full"
     >
-      {header.map((head: HeaderItem) => (
+      {header.map((head: IHeaderTable) => (
         <div
           key={head.id}
           className={`${head.style} flex justify-center items-center font-normal`}

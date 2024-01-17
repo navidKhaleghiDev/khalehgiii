@@ -1,8 +1,9 @@
 import React from 'react';
 import { Typography } from '@ui/atoms/Typography';
 import ToolTip from '@ui/atoms/Tooltip';
+import { IComponentTable } from '../../types';
 
-export function UserCell({ row, id, head }: any) {
+export function UserCell({ row, id, header }: any) {
   const username = id.map((i, index) => (
     <React.Fragment key={i[index]}>
       {index > 0 && ' '}
@@ -12,7 +13,7 @@ export function UserCell({ row, id, head }: any) {
   return (
     <ToolTip position="bottom" tooltip={username}>
       <Typography
-        size={head?.size ? head?.size : 'body3'}
+        size={header?.size ? header?.size : 'body3'}
         type="div"
         className="max-h-14"
       >

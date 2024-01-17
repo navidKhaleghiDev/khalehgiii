@@ -8,7 +8,6 @@ import Pagination from '@ui/molecules/Pagination';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { monitoringHeaderItem } from '@src/constants/tableHeaders/monitoringHeaderItem';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +17,6 @@ const PAGE = 1;
 
 export function UsersDaAsList() {
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
 
