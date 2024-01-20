@@ -4,7 +4,6 @@ export function AdminKeycloakPage() {
   //   onClick={() => {
   //   window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, "_blank");
   // }}
-  console.log({ ddd: import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL });
 
   return (
     <ContainerDashboard>
