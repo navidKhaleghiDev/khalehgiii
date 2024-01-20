@@ -6,7 +6,6 @@ import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { StringifyProperties } from '@src/types/global';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
@@ -20,8 +19,8 @@ import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { UpdateAdminModal } from './UpdateAdminModal';
-import { ActionOnClickActionsType } from './UserAdminCard/types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -96,10 +95,10 @@ export function AdminsList() {
     setOpenUpdateModal(false);
   };
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IUser> | IUser
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IUser> | undefined = (
+    action,
+    fileType
+  ) => {
     setActiveAdmin(fileType as IUser);
 
     if (action === 'delete') {
@@ -116,7 +115,7 @@ export function AdminsList() {
     //   setActiveDaas(daas);
     //   setDeleteModal(true);
     // }
-  }
+  };
 
   const handleCreateAdmin = () => {
     if (activeAdmin) setActiveAdmin(undefined);

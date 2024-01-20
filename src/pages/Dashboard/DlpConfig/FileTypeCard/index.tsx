@@ -12,7 +12,7 @@ import { booleanIcon } from '../utils';
 type FileTypeCardProps = {
   fileType: StringifyProperties<IFileType> | IFileType;
   isHeader?: boolean;
-  onClickActions?: OnClickActionsType;
+  onClickActions?: OnClickActionsType<any>;
 };
 
 export function FileTypeCard({

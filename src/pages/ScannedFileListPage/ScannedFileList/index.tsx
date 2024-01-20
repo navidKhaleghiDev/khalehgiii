@@ -12,6 +12,7 @@ import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { scannedFileHeaderItem } from '@src/constants/tableHeaders/scannedFileHeaderItem';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { DetailsContentModal } from './DetailsContentModal';
 
 const PAGE_SIZE = 8;
@@ -54,8 +55,8 @@ export function ScannedFileList() {
     setCurrentPage(page);
   };
 
-  const handleOpenModal = (_, item: IScannedFile) => {
-    setActiveScannedFile(item);
+  const handleOpenModal: OnClickActionsType<IScannedFile> = (_, item) => {
+    setActiveScannedFile(item as IScannedFile);
     setOpenDetailsModal(true);
   };
 
@@ -72,8 +73,8 @@ export function ScannedFileList() {
           {id}
         </Typography>
       </div>
-      <BaseTable
-        laoding={isLoading}
+      <BaseTable<IScannedFile>
+        loading={isLoading}
         headers={scannedFileHeaderItem}
         bodyList={listDaas}
         onClick={handleOpenModal}

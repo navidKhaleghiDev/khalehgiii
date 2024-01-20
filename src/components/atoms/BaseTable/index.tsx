@@ -2,13 +2,9 @@ import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
 import { BaseTabelHeader } from './components/BaseTabelHeader';
 import { RowTable } from './components/BaseTableRowCard';
-import { IBaseTableProps } from './types';
+import { IBaseTableProps, TIdItem } from './types';
 
-type RowType<T> = T & {
-  id: string;
-};
-
-export function BaseTable<T>(props: IBaseTableProps<RowType<T>>) {
+export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
   const { headers, bodyList, loading, onClick } = props;
   let tableBody;
 
@@ -17,9 +13,9 @@ export function BaseTable<T>(props: IBaseTableProps<RowType<T>>) {
       tableBody = <LoadingSpinner />;
       break;
     case bodyList.length > 0:
-      tableBody = bodyList.map((item: RowType<T>) => (
+      tableBody = bodyList.map((item: T) => (
         <RowTable
-          key={item.id}
+          key={item?.id}
           row={item}
           headers={headers}
           onClick={onClick}

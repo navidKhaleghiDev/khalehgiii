@@ -14,8 +14,9 @@ import { debounce } from 'lodash';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import Pagination from '@ui/molecules/Pagination';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import { SettingDaasModal } from './SettingDaasModal';
 import { ActionOnClickActionsType } from './DaAsCard/types';
 import { ResetAllAccessTime } from './ResetAllAccessTime';
@@ -92,33 +93,33 @@ export function DaAsList() {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  const handleOnClickActions = useCallback(
-    (action: ActionOnClickActionsType, daas?: Partial<IDaAs> | string) => {
-      if (action === 'mutate') {
-        mutate();
-        return;
-      }
+  const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
+    action,
+    fileType
+  ) => {
+    if (action === 'mutate') {
+      mutate();
+      return;
+    }
 
-      if (action === 'edit') {
-        setActiveDaas(daas as IDaAs);
-        setOpenSettingModal(true);
-        return;
-      }
+    if (action === 'edit') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenSettingModal(true);
+      return;
+    }
 
-      if (action === 'editLock') {
-        setActiveDaas(daas as IDaAs);
-        setOpenModal(true);
-        return;
-      }
+    if (action === 'editLock') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenModal(true);
+      return;
+    }
 
-      if (daas !== undefined && typeof daas !== 'string') {
-        setActionOnClick(action);
-        setActiveDaas(daas);
-        setOpenModal(true);
-      }
-    },
-    [mutate] // Include any dependencies used within the function
-  );
+    if (fileType !== undefined && typeof fileType !== 'string') {
+      setActionOnClick(action);
+      setActiveDaas(fileType as IDaAs);
+      setOpenModal(true);
+    }
+  };
 
   const handleOnRequests = async () => {
     if (!activeDaas) return;
@@ -220,7 +221,7 @@ export function DaAsList() {
         />
         <ResetAllAccessTime />
       </div>
-      <BaseTable
+      <BaseTable<IDaAs>
         loading={isLoading}
         headers={desktopListHeaderItem}
         bodyList={listDaas}

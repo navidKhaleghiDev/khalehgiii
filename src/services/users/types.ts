@@ -15,7 +15,7 @@ export enum EAccessMode {
 }
 
 export interface IDaAs {
-  id?: string;
+  id: string;
   is_lock: boolean;
   daas_configs: IDaasConfig;
   allowed_files_type_for_download: string[] | null;

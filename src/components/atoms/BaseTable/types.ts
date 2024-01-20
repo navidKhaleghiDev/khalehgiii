@@ -3,12 +3,17 @@ import { IconType, StringifyProperties } from '@src/types/global';
 import { IBaseIcon } from '../BaseIcon/types';
 import { IIconButton } from '../BaseButton';
 
+export type RowType<T> = T & {
+  id: string | number;
+};
+
+export type TIdItem = { id: string | number };
+
 type TTableType =
   | 'action'
   | 'none'
   | 'component'
   | 'function'
-  | 'icon'
   | 'user'
   | 'tooltip';
 
@@ -51,11 +56,10 @@ export interface IHeaderTable {
 }
 
 export interface IBaseTableProps<BodyType> {
-  id: string | string[];
   headers: IHeaderTable[];
   bodyList: BodyType[];
   loading: boolean;
-  onClick?: (action: ActionOnClickActionsType, dass: Partial<BodyType>) => void;
+  onClick?: OnClickActionsType<BodyType>;
 }
 
 export type OnClickActionsType<DataType> = (

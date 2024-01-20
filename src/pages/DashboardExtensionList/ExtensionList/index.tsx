@@ -5,7 +5,6 @@ import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { StringifyProperties } from '@src/types/global';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
@@ -18,8 +17,9 @@ import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
-import { ActionOnClickActionsType } from './MimeTypeCard/types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -102,12 +102,11 @@ export function ExtensionList() {
     setOpenUpdateModal(false);
   };
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IMimeType> | IMimeType
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
+    action,
+    fileType
+  ) => {
     setActiveAdmin(fileType as IMimeType);
-
     if (action === 'delete') {
       setDeleteModal(true);
       return;
@@ -122,7 +121,7 @@ export function ExtensionList() {
     //   setActiveDaas(daas);
     //   setDeleteModal(true);
     // }
-  }
+  };
 
   const handleCreateAdmin = () => {
     if (activeAdmin) setActiveAdmin(undefined);
@@ -146,7 +145,7 @@ export function ExtensionList() {
           />
         </ToolTip>
       </div>
-      <BaseTable
+      <BaseTable<IMimeType>
         loading={isLoading}
         headers={extensionListHeaderItem}
         bodyList={listWhiteList}

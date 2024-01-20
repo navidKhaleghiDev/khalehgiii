@@ -1,6 +1,4 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import lockKeyFillIcon from '@iconify-icons/ph/lock-key-fill';
-import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Lock } from '@ui/atoms/BaseTable/components/tableIcons/Lock';
 
