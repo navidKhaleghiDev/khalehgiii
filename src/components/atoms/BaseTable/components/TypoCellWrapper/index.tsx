@@ -1,13 +1,14 @@
 import React from 'react';
 import { Typography } from '@ui/atoms/Typography';
+import { IHeaderTable } from '../../types';
 
 interface TypoCellWrapperProps {
   children: React.ReactNode;
-  head: HeaderItem;
+  header: IHeaderTable;
 }
 
-export function TypoCellWrapper({ children, head }: TypoCellWrapperProps) {
-  const sizeCondition: HeaderItem['size'] = head?.size || 'body3';
+export function TypoCellWrapper({ children, header }: TypoCellWrapperProps) {
+  const sizeCondition: IHeaderTable['size'] = header?.size || 'body3';
   return (
     <Typography
       size={sizeCondition}

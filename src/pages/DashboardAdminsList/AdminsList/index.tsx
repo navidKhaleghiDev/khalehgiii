@@ -143,8 +143,8 @@ export function AdminsList() {
       </div>
       <BaseTable
         loading={isLoading}
-        body={listWhiteList}
-        header={adminListHeaderItem}
+        bodyList={listWhiteList}
+        headers={adminListHeaderItem}
         onClick={handleOnClickActions}
       />
       {!!countPage && (

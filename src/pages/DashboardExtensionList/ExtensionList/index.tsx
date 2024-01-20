@@ -148,8 +148,9 @@ export function ExtensionList() {
       </div>
       <BaseTable
         loading={isLoading}
-        header={extensionListHeaderItem}
-        body={listWhiteList}
+        headers={extensionListHeaderItem}
+        bodyList={listWhiteList}
+        onClick={handleOnClickActions}
       />
       {!!countPage && (
         <Pagination

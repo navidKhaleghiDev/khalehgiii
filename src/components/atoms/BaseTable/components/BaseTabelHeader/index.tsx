@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { Card, Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 import { IHeaderTable } from '../../types';
@@ -14,9 +15,9 @@ export function BaseTabelHeader({ header }: PropsType) {
       color="neutral"
       className="flex items-center px-2 my-2  bg-teal-500 text-white h-10 w-full"
     >
-      {header.map((head: IHeaderTable) => (
+      {header.map((head: IHeaderTable, index: number) => (
         <div
-          key={head.id}
+          key={index}
           className={`${head.style} flex justify-center items-center font-normal`}
           dir={!head.dir ? 'ltr' : head.dir}
         >

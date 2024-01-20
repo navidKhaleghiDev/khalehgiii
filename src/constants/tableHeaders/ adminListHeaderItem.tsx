@@ -1,11 +1,11 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { CircleBg } from '@ui/atoms/CircleBg';
 import trashIcon from '@iconify-icons/ph/trash';
 import notePencilIcon from '@iconify-icons/ph/note-pencil';
-import { CheckCell } from '@ui/atoms/BaseTable/BaseTableComponents/CheckCell';
-import { HeaderItem } from '@ui/atoms/BaseTable/types';
+import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
-export const adminListHeaderItem: HeaderItem[] = [
+export const adminListHeaderItem: IHeaderTable[] = [
   {
     label: '',
     id: 'id',
@@ -55,9 +55,8 @@ export const adminListHeaderItem: HeaderItem[] = [
   {
     label: 'table.active',
     id: 'is_active',
-    type: 'icon',
-    icon: CircleBg,
-    color: ['bg-green-600', 'bg-gray-400'],
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.is_active} />,
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',
@@ -67,7 +66,7 @@ export const adminListHeaderItem: HeaderItem[] = [
     id: 'is_meta_admin',
     type: 'component',
     component: (props: any) => (
-      <CheckCell id={props.row.is_meta_admin} head={props.head} />
+      <Check id={props.row.is_meta_admin} header={props.head} />
     ),
     dir: '',
     style: 'px-3 w-2/12',

@@ -1,11 +1,11 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { CircleBg } from '@ui/atoms/CircleBg';
 import { UserScanCount } from '@src/pages/DashboardMonitoring/UsersDaAsList/UserDaAsCard/UserScanCount';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { HeaderItem } from '@ui/atoms/BaseTable/types';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
-export const monitoringHeaderItem: HeaderItem[] = [
+export const monitoringHeaderItem: IHeaderTable[] = [
   {
     label: 'table.observeUserBehavior',
     id: 'id',
@@ -50,9 +50,8 @@ export const monitoringHeaderItem: HeaderItem[] = [
   {
     label: 'table.userStatus',
     id: 'is_running',
-    type: 'icon',
-    icon: CircleBg,
-    color: ['bg-green-600', 'bg-gray-400'],
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.is_running} />,
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',

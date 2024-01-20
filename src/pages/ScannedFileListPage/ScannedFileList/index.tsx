@@ -73,8 +73,9 @@ export function ScannedFileList() {
         </Typography>
       </div>
       <BaseTable
-        header={scannedFileHeaderItem}
-        body={listDaas}
+        laoding={isLoading}
+        headers={scannedFileHeaderItem}
+        bodyList={listDaas}
         onClick={handleOpenModal}
       />
       {!!countPage && (

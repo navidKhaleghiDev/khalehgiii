@@ -9,16 +9,15 @@ type RowType<T> = T & {
 };
 
 export function BaseTable<T>(props: IBaseTableProps<RowType<T>>) {
-  const { headers, listBody, loading, onClick } = props;
+  const { headers, bodyList, loading, onClick } = props;
   let tableBody;
 
   switch (true) {
     case loading:
       tableBody = <LoadingSpinner />;
       break;
-
-    case listBody.length > 0:
-      tableBody = listBody.map((item: RowType<T>) => (
+    case bodyList.length > 0:
+      tableBody = bodyList.map((item: RowType<T>) => (
         <RowTable
           key={item.id}
           row={item}
@@ -28,7 +27,7 @@ export function BaseTable<T>(props: IBaseTableProps<RowType<T>>) {
       ));
       break;
 
-    case listBody.length === 0:
+    case bodyList.length === 0:
       tableBody = <NoResult />;
       break;
 

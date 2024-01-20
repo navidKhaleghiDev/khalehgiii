@@ -73,7 +73,11 @@ export function UbaAsList() {
           :UBA List
         </Typography>
       </div>
-      <BaseTable loading={isLoading} body={listUba} header={ubaHeaderItem} />
+      <BaseTable
+        loading={isLoading}
+        bodyList={listUba}
+        headers={ubaHeaderItem}
+      />
       {!!countPage && (
         <Pagination
           currentPage={currentPage}

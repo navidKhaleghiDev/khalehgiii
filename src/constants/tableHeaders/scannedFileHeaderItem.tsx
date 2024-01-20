@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { HeaderItem } from '@ui/atoms/BaseTable/types';
-import { CircleBGBorder } from '@ui/atoms/BaseTable/CicleBGBorder';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { CircleBorder } from '@ui/atoms/BaseTable/components/tableIcons/CircleBorder';
 
-export const scannedFileHeaderItem: HeaderItem[] = [
+export const scannedFileHeaderItem: IHeaderTable[] = [
   {
     label: 'table.fileName',
     id: 'file_name',
@@ -26,7 +26,10 @@ export const scannedFileHeaderItem: HeaderItem[] = [
     id: 'yara_scanner_status',
     type: 'component',
     component: (props: any) => (
-      <CircleBGBorder results={props.row.yara_scan_result} {...props} />
+      <CircleBorder
+        results={props.row.yara_scan_result}
+        id={props.row[props.id]}
+      />
     ),
     dir: '',
     style: 'px-3 w-2/12',
@@ -37,7 +40,10 @@ export const scannedFileHeaderItem: HeaderItem[] = [
     id: 'clamav_scanner_status',
     type: 'component',
     component: (props: any) => (
-      <CircleBGBorder results={props.row.clamav_scan_result} {...props} />
+      <CircleBorder
+        results={props.row.clamav_scan_result}
+        id={props.row[props.id]}
+      />
     ),
     dir: '',
     style: 'px-3 w-2/12',
@@ -48,7 +54,10 @@ export const scannedFileHeaderItem: HeaderItem[] = [
     id: 'antiviruses_scanner_status',
     type: 'component',
     component: (props: any) => (
-      <CircleBGBorder results={props.row.antiviruses_scan_result} {...props} />
+      <CircleBorder
+        results={props.row.antiviruses_scan_result}
+        id={props.row[props.id]}
+      />
     ),
     dir: '',
     style: 'px-3 w-2/12',

@@ -222,8 +222,8 @@ export function DaAsList() {
       </div>
       <BaseTable
         loading={isLoading}
-        header={desktopListHeaderItem}
-        listBody={listDaas}
+        headers={desktopListHeaderItem}
+        bodyList={listDaas}
         onClick={handleOnClickActions}
       />
 

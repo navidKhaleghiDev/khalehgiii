@@ -1,8 +1,8 @@
 import trashIcon from '@iconify-icons/ph/trash';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { HeaderItem } from '@ui/atoms/BaseTable/types';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const extensionListHeaderItem: HeaderItem[] = [
+export const extensionListHeaderItem: IHeaderTable[] = [
   {
     label: '',
     id: 'id',

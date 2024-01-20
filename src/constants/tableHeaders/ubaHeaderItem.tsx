@@ -1,9 +1,10 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import lockKeyFillIcon from '@iconify-icons/ph/lock-key-fill';
 import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
-import { HeaderItem } from '@ui/atoms/BaseTable/types';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { Lock } from '@ui/atoms/BaseTable/components/tableIcons/Lock';
 
-export const ubaHeaderItem: HeaderItem[] = [
+export const ubaHeaderItem: IHeaderTable[] = [
   {
     label: 'table.nameOfTheUser',
     id: 'username',
@@ -48,8 +49,8 @@ export const ubaHeaderItem: HeaderItem[] = [
   {
     label: 'table.blocked',
     id: 'is_ban',
-    type: 'icon',
-    icon: [lockKeyFillIcon, lockKeyOpenFillIcon],
+    type: 'component',
+    component: (props: any) => <Lock id={props.row.is_ban} />,
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',
