@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import { IconButton } from '@ui/atoms/BaseButton';
 import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';

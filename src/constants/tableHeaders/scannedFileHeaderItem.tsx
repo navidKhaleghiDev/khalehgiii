@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';

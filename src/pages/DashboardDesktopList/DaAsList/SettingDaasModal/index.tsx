@@ -68,6 +68,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     extra_allowed_upload_files,
     ...data
   }: ExtendTwoType<IDaAs, IDaasConfig>) => {
+    console.log('--------', { data });
     // id?: string;
     // is_lock: boolean;
     // daas_configs: IDaasConfig;
@@ -75,7 +76,6 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     // allowed_files_type_for_upload: string[] | null;
     // email: string;
     // http_port: number | string;
-    console.log('--------', { data });
     // https_port: number | string;
     // created_at: string;
     // last_uptime: string;
@@ -88,7 +88,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     // daas_version: string;
 
     const updatedDaasData = {
-      id: data.id,
+      // id: data.id,
       daas_configs: {
         can_upload_file,
         can_download_file,
@@ -109,14 +109,6 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       forbidden_download_files,
       extra_allowed_download_files,
       extra_allowed_upload_files,
-      // email: data.email,
-      // http_port: data.http_port,
-      // https_port: data.https_port,
-      // created_at: data.created_at,
-      // last_uptime: data.last_uptime,
-      // is_running: data.is_running,
-      // usage_in_minute: data.usage_in_minute,
-      // daas_versio: data.daas_version,
       ...data,
     };
     handleOnChange(updatedDaasData);
