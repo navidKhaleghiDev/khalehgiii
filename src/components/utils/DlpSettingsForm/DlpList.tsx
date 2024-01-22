@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { IconButton } from '@ui/atoms/BaseButton';
 import plusIcon from '@iconify-icons/ph/plus';
 import minusIcon from '@iconify-icons/ph/minus';
@@ -28,8 +30,9 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
       if (!regex.value.test(mValue)) {
         setError(regex.message);
         return;
+      } else {
+        error && setError(undefined);
       }
-      if (error) setError(undefined);
 
       if (!valueList.includes(mValue) && mValue !== '') {
         onChange(name, [...valueList, mValue]);
@@ -38,8 +41,8 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
     }
   };
 
-  const remove = (val: string) => {
-    const newArray = valueList.filter((item) => item !== val);
+  const remove = (mValue: string) => {
+    const newArray = valueList.filter((item) => item !== mValue);
     onChange(name, newArray);
   };
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

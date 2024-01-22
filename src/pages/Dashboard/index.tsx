@@ -13,8 +13,14 @@ export function DashboardPage() {
   const { user } = useUserContext();
   const { t } = useTranslation();
 
+  const isSSl = import.meta.env.VITE_IS_SSL;
+
   return !user?.is_superuser ? (
-    <Daas src={`http://${user?.base_url}:${user?.http_port}`} />
+    <Daas
+      src={`http://${user?.base_url}:${
+        isSSl ? user?.https_port : user?.http_port
+      }`}
+    />
   ) : (
     <ContainerDashboard>
       <DashboardCards />
