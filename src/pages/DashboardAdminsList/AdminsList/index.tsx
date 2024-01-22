@@ -1,15 +1,10 @@
-import { IconButton } from '@ui/atoms/BaseButton';
-import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
-import ToolTip from '@ui/atoms/Tooltip';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -19,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { ButtonAdd } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/components/SearchBarButtons/ButtonAdd';
 import { UpdateAdminModal } from './UpdateAdminModal';
 
 const PAGE_SIZE = 10;
@@ -120,10 +116,28 @@ export function AdminsList() {
     if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
+
+  const searchBarProps = {
+    name: 'search-admin-list',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'component',
+      component: () => (
+        <ButtonAdd onClick={handleCreateAdmin} label={t('table.addNewAdmin')} />
+      ),
+    },
+  };
 
   return (
     <div className="w-full p-4">
-      <div className="flex justify-between items-center">
+      {/* <div className="flex justify-between items-center">
         <SearchInput
           name="search-admin-list"
           value={filterQuery}
@@ -138,20 +152,15 @@ export function AdminsList() {
             onClick={handleCreateAdmin}
           />
         </ToolTip>
-      </div>
+      </div> */}
       <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}
         headers={adminListHeaderItem}
         onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
       />
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}

@@ -43,6 +43,12 @@ export type TTableIcon = {
   color?: IBaseIcon['color'] | IBaseIcon['color'][];
 };
 
+export type TPagination = {
+  currentPage: number;
+  totalPages: number;
+  countPage: number;
+  onPageChange: (page: number) => void;
+};
 export interface IHeaderTable {
   action?: any;
   component?: any;
@@ -60,6 +66,7 @@ export interface IBaseTableProps<BodyType> {
   bodyList: BodyType[];
   loading: boolean;
   onClick?: OnClickActionsType<BodyType>;
+  pagination?: TPagination;
 }
 
 export type OnClickActionsType<DataType> = (
