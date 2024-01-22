@@ -38,18 +38,18 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
     }
   };
 
-  const remove = (data: string) => {
-    const newArray = valueList.filter((item) => item !== data);
+  const remove = (val: string) => {
+    const newArray = valueList.filter((item) => item !== val);
     onChange(name, newArray);
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value: eventValue } = event.target;
+    const values = event.target.value;
     const regex = regexPattern.wordStartedWithPointAndEn;
-    if (!regex.value.test(eventValue)) {
+    if (!regex.value.test(values)) {
       setError(regex.message);
     } else if (error) setError(undefined);
-    setValue(eventValue);
+    setValue(value);
   };
 
   return (
@@ -84,8 +84,13 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto h-20"
           dir="ltr"
         >
-          {valueList.map((l) => (
-            <BaseChip key={l} label={l} onClick={() => remove(l)} />
+          {valueList.map((labelItem, i) => (
+            <BaseChip
+              // eslint-disable-next-line react/no-array-index-key
+              key={i}
+              label={labelItem}
+              onClick={() => remove(labelItem)}
+            />
           ))}
         </div>
       )}
