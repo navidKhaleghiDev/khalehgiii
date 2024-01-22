@@ -1,5 +1,5 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { UserScanCount } from '@src/pages/DashboardMonitoring/UsersDaAsList/UserDaAsCard/UserScanCount';
+import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';

@@ -18,22 +18,15 @@ import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { useTranslation } from 'react-i18next';
 
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
 
-// const headerItem: StringifyProperties<IMimeType> = {
-//   id: '',
-//   extension_list: 'پسوند فایل',
-//   mimetype_list: 'رشته فایل',
-//   created_at: 'تاریخ ایجاد',
-//   updated_at: '',
-//   file: '',
-// };
-
 export function ExtensionList() {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
@@ -80,7 +73,7 @@ export function ExtensionList() {
     await API_ANALYZE_MIME_TYPE_DELETE(activeAdmin?.id as number)
       .then(() => {
         mutate();
-        toast.success('با موفقیت حذف شد');
+        toast.success(t('global.successfullyRemoved'));
         setDeleteModal(false);
       })
       .catch((err) => {
@@ -136,7 +129,7 @@ export function ExtensionList() {
           onChange={handleFilterChange}
           className="w-1/4"
         />
-        <ToolTip tooltip="اضافه کردن رشته فایل جدید" position="right">
+        <ToolTip tooltip={t('global.addNewFile')} position="right">
           <IconButton
             icon={plusIcon}
             color="teal"
@@ -162,14 +155,14 @@ export function ExtensionList() {
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title="از انجام این کار مطمئن هستید؟"
+        title={t('global.sureAboutThis')}
         buttonOne={{
-          label: 'بله',
+          label: t('global.yes'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
         }}
         buttonTow={{
-          label: 'خیر',
+          label: t('global.no'),
           onClick: () => setDeleteModal(false),
           color: 'red',
         }}
