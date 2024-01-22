@@ -42,16 +42,14 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
     const newArray = valueList.filter((item) => item !== val);
     onChange(name, newArray);
   };
-
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const values = event.target.value;
     const regex = regexPattern.wordStartedWithPointAndEn;
     if (!regex.value.test(values)) {
       setError(regex.message);
     } else if (error) setError(undefined);
-    setValue(value);
+    setValue(values);
   };
-
   return (
     <>
       <div className="flex w-full justify-between items-center">
