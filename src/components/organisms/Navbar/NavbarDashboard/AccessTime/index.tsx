@@ -42,8 +42,6 @@ export function AccessTime() {
   const timeLimitValueInHour =
     data?.data?.daas_configs?.time_limit_value_in_hour ?? 0;
 
-  const usageInMinute = data?.data.usage_in_minute ?? 0;
-
   return (
     <>
       <Card
@@ -74,15 +72,8 @@ export function AccessTime() {
       <Modal
         open={openModal}
         setOpen={setOpenModal}
-        content={
-          <AccessTimeModal
-            onClick={setOpenModal}
-            timeLimitDuration={timeLimitDuration}
-            timeLimitValueInHour={timeLimitValueInHour}
-            usageInMinute={Number(usageInMinute)}
-          />
-        }
-        classContainer="border border-teal-600 w-[30rem]"
+        content={<AccessTimeModal onClick={setOpenModal} daas={data?.data} />}
+        classContainer="border border-teal-600 w-1/2 h-1/2"
         type="none"
         freeSize
       />

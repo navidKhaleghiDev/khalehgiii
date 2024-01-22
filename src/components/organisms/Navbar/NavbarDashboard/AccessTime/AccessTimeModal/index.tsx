@@ -1,7 +1,7 @@
 import { Typography } from '@ui/atoms/Typography/Typography';
 import { Card } from '@ui/atoms';
 import { IconButton } from '@ui/atoms/BaseButton';
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
 import xIcon from '@iconify-icons/ph/x';
 
 import {
@@ -15,6 +15,7 @@ import {
 } from '@src/constants/accessTime';
 import { formatDuration } from '@src/helper/utils/timeUtils';
 import { AccessTimeModalCard } from './AccessTimeModalCard';
+import { AccessDlpModalCard } from './AccessDlpModalCard';
 
 function getExtensionTime(label: ETimeLimitDuration): string {
   switch (label) {
@@ -39,16 +40,21 @@ function getExtensionTime(label: ETimeLimitDuration): string {
 
 type PropsType = {
   onClick: (value: boolean) => void;
-  timeLimitDuration: ETimeLimitDuration;
-  timeLimitValueInHour: number;
-  usageInMinute: number;
+  // timeLimitDuration: ETimeLimitDuration;
+  // timeLimitValueInHour: number;
+  // usageInMinute: number;
+  daas?: IDaAs;
 };
-export function AccessTimeModal({
-  onClick,
-  timeLimitDuration,
-  timeLimitValueInHour,
-  usageInMinute,
-}: PropsType) {
+
+export function AccessTimeModal({ onClick, daas }: PropsType) {
+  const timeLimitDuration: ETimeLimitDuration =
+    daas?.daas_configs?.time_limit_duration ?? ETimeLimitDuration.DAILY;
+
+  const timeLimitValueInHour =
+    daas?.daas_configs?.time_limit_value_in_hour ?? 0;
+
+  const usageInMinute: number = (daas?.usage_in_minute as number) ?? 0;
+
   const timeLimitValueInMinute = Math.floor(timeLimitValueInHour) * 60;
   const remainingTime = timeLimitValueInMinute - Math.floor(usageInMinute);
 
@@ -61,6 +67,7 @@ export function AccessTimeModal({
   } else {
     timeLeft = formatDuration(remainingTime);
   }
+
   return (
     <div className="w-full">
       <div className="flex w-full justify-end p-2">
@@ -85,25 +92,73 @@ export function AccessTimeModal({
             </Typography>
           </div>
         </Card>
-        <AccessTimeModalCard
-          label="زمان استفاده شده"
-          name={TimeLimitDurationLabelDetails[timeLimitDuration]}
-          value={
-            usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
-          }
-        />
-        <AccessTimeModalCard
-          label="زمان باقی مانده"
-          name={TimeLimitDurationLabelDetails[timeLimitDuration]}
-          value={timeLeft}
-        />
-        <AccessTimeModalCard
-          label="زمان تمدید"
-          name={getExtensionTime(timeLimitDuration)}
-          value={
-            timeLimitDuration !== ETimeLimitDuration.PERMANENTLY ? '00:01' : ''
-          }
-        />
+        <div className="flex gap-2">
+          <AccessTimeModalCard
+            label="زمان استفاده شده"
+            name={TimeLimitDurationLabelDetails[timeLimitDuration]}
+            value={
+              usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
+            }
+          />
+          <AccessTimeModalCard
+            label="زمان باقی مانده"
+            name={TimeLimitDurationLabelDetails[timeLimitDuration]}
+            value={timeLeft}
+          />
+          <AccessTimeModalCard
+            label="زمان تمدید"
+            name={getExtensionTime(timeLimitDuration)}
+            value={
+              timeLimitDuration !== ETimeLimitDuration.PERMANENTLY
+                ? '00:01'
+                : ''
+            }
+          />
+        </div>
+        <div className="flex flex-col gap-2 mt-4">
+          <AccessDlpModalCard label="نسخه دسکتاپ" value={daas?.daas_version} />
+          <AccessDlpModalCard
+            label="حجم مجاز آپلود"
+            value={`${daas?.daas_configs?.max_transmission_upload_size} MB`}
+            contentDirection="ltr"
+          />
+          <AccessDlpModalCard
+            label="حجم مجاز دانلود"
+            value={`${daas?.daas_configs?.max_transmission_download_size} MB`}
+            contentDirection="ltr"
+          />
+          <AccessDlpModalCard
+            label="دسترسی میکرفن"
+            isAccess={daas?.daas_configs?.microphone_privilege}
+          />
+          <AccessDlpModalCard
+            label="دسترسی وب کم"
+            isAccess={daas?.daas_configs?.webcam_privilege}
+          />
+          <AccessDlpModalCard
+            label="دسترسی آپلود"
+            isAccess={daas?.daas_configs?.can_upload_file}
+          />
+          <AccessDlpModalCard
+            label="دسترسی دانلود"
+            isAccess={daas?.daas_configs?.can_download_file}
+          />
+        </div>
+        <div className="flex gap-2">
+          <AccessTimeModalCard
+            label="تایپ های مجاز آپلود"
+            value={`${daas?.allowed_files_type_for_upload?.join(' ')}`}
+            contentDirection="ltr"
+          />
+        </div>
+
+        <div className="flex gap-2">
+          <AccessTimeModalCard
+            label="تایپ های مجاز دانلود"
+            value={`${daas?.allowed_files_type_for_download?.join(' ')}`}
+            contentDirection="ltr"
+          />
+        </div>
       </div>
     </div>
   );

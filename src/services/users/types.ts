@@ -26,6 +26,7 @@ export interface IDaAs {
   created_at: string;
   last_uptime: string;
   is_running?: boolean | string;
+  exceeded_usage?: boolean | string;
   usage_in_minute: number | string;
   forbidden_upload_files: string[] | null;
   forbidden_download_files: string[] | null;
