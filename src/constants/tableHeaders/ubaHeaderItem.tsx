@@ -23,7 +23,7 @@ export const ubaHeaderItem: IHeaderTable[] = [
   {
     label: 'table.realName',
     id: 'original_file_name',
-    type: 'none',
+    type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',
