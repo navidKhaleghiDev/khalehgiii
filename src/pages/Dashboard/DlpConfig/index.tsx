@@ -7,8 +7,6 @@ import { IFileType } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
 import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
@@ -18,22 +16,13 @@ import ToolTip from '@ui/atoms/Tooltip';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { dlpConfigHeaderItem } from '@src/constants/tableHeaders/dlpConfigHeaderItem';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { UpdateFileTypeModal } from './UpdateFileTypeModal';
-import { ActionOnClickActionsType } from './FileTypeCard/types';
-import { FileTypeCard } from './FileTypeCard';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
-
-// const headerItem: StringifyProperties<IFileType> = {
-// 	id: '',
-// 	file_type: t('table.fileType'),
-// 	allowed_for_upload: t('table.allowedForUpload'),
-// 	allowed_for_download: t('table.allowedForDownload'),
-// 	is_active: t('table.active'),
-// 	created_at: t('table.dateOfCreated'),
-// 	updated_at: t('table.dateOfUpdated'),
-// };
 
 export function DlpConfig() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
@@ -43,16 +32,6 @@ export function DlpConfig() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const { t } = useTranslation();
-
-  const headerItem = {
-    id: '',
-    file_type: t('table.fileType'),
-    allowed_for_upload: t('table.allowedForUpload'),
-    allowed_for_download: t('table.allowedForDownload'),
-    is_active: t('table.active'),
-    created_at: t('table.dateOfCreated'),
-    updated_at: t('table.dateOfUpdated'),
-  };
 
   const endpoint = createAPIEndpoint({
     endPoint: E_WHITE_LIST_FILES,
@@ -115,10 +94,10 @@ export function DlpConfig() {
     setOpenUpdateModal(false);
   };
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IFileType> | IFileType
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IFileType> | undefined = (
+    action,
+    fileType
+  ) => {
     setActiveFileType(fileType as IFileType);
     if (action === 'delete') {
       setDeleteModal(true);
@@ -127,25 +106,12 @@ export function DlpConfig() {
     if (action === 'edit') {
       setOpenUpdateModal(true);
     }
-  }
+  };
 
   const handleCreateNewType = () => {
     if (activeFileType) setActiveFileType(undefined);
     setOpenUpdateModal(true);
   };
-  const FileTypeCardContent = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listWhiteList.length > 0 &&
-      listWhiteList.map((item) => (
-        <FileTypeCard
-          key={item.id}
-          fileType={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
 
   return (
     <div className="w-full p-4">
@@ -165,8 +131,12 @@ export function DlpConfig() {
           />
         </ToolTip>
       </div>
-      <FileTypeCard fileType={headerItem} isHeader />
-      {FileTypeCardContent}
+      <BaseTable
+        loading={isLoading}
+        headers={dlpConfigHeaderItem}
+        bodyList={listWhiteList}
+        onClick={handleOnClickActions}
+      />
       {!!countPage && (
         <Pagination
           currentPage={currentPage}
