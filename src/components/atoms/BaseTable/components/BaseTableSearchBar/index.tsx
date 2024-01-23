@@ -1,13 +1,19 @@
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { Typography } from '@ui/atoms/Typography';
+import { ResetAllAccessTime } from '@src/pages/DashboardDesktopList/DaAsList/ResetAllAccessTime';
 import { ButtonAdd } from './components/SearchBarButtons/ButtonAdd';
-import { ITableSearchButton, TComponent, TSearchBar } from './types';
+import { ITableSearchComponent, TComponent, TSearchBar } from './types';
 
-function SearchComponent(componentProps: ITableSearchButton) {
-  const { onClick, label, type } = componentProps;
+function SearchComponent(componentProps: ITableSearchComponent) {
+  const { onClick, label, type, className } = componentProps || {};
   const components: TComponent = {
     actionAdd: <ButtonAdd onClick={onClick} label={label} />,
-    typography: <h1>typography</h1>,
-    actionRefresh: <h1>actionREfreah</h1>,
+    typography: (
+      <Typography size="h4" color="teal" className={className}>
+        {label}
+      </Typography>
+    ),
+    actionRefresh: <ResetAllAccessTime />,
   };
   return components[type ?? 'typography'] || null;
 }
@@ -23,7 +29,7 @@ export function BaseTableSearchBar(props: TSearchBar) {
         onChange={handleSearchInput}
         className="w-1/4"
       />
-      {SearchComponent(componentProps)}
+      {componentProps && SearchComponent(componentProps)}
     </div>
   );
 }

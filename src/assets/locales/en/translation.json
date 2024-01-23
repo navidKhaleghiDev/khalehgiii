@@ -58,7 +58,8 @@
     "thisMonth": "This Month",
     "accessSetting": "Access Setting",
     "string": "String",
-    "fileExtension": "File Extension"
+    "fileExtension": "File Extension",
+    "addNewType": "Add New Type"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

@@ -11,15 +11,13 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 
 import { debounce } from 'lodash';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import Pagination from '@ui/molecules/Pagination';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { SettingDaasModal } from './SettingDaasModal';
 import { ActionOnClickActionsType } from './DaAsCard/types';
-import { ResetAllAccessTime } from './ResetAllAccessTime';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -209,32 +207,32 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
+
+  const searchBarProps: TSearchBar = {
+    name: 'search',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'actionRefresh',
+    },
+  };
 
   return (
     <div className="w-full p-4">
-      <div className="flex items-center justify-between">
-        <SearchInput
-          name="search"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ResetAllAccessTime />
-      </div>
-      <BaseTable<IDaAs>
+      <BaseTable
         loading={isLoading}
         headers={desktopListHeaderItem}
         bodyList={listDaas}
         onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
       />
-
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
       <Modal
         open={openModal}
         setOpen={setOpenModal}

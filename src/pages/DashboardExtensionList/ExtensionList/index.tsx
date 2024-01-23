@@ -1,16 +1,11 @@
-import { IconButton } from '@ui/atoms/BaseButton';
-import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import ToolTip from '@ui/atoms/Tooltip';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
 import { debounce } from 'lodash';
@@ -20,6 +15,7 @@ import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { useTranslation } from 'react-i18next';
 
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 
 const PAGE_SIZE = 10;
@@ -120,37 +116,35 @@ export function ExtensionList() {
     if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
+
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
+
+  const searchBarProps: TSearchBar = {
+    name: 'search-extension',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'actionAdd',
+      label: 'global.addNewFile',
+      onClick: handleCreateAdmin,
+    },
+  };
   return (
     <div className="w-full p-4">
-      <div className="flex justify-between items-center">
-        <SearchInput
-          name="search-extension"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ToolTip tooltip={t('global.addNewFile')} position="right">
-          <IconButton
-            icon={plusIcon}
-            color="teal"
-            size="lg"
-            onClick={handleCreateAdmin}
-          />
-        </ToolTip>
-      </div>
-      <BaseTable<IMimeType>
+      <BaseTable
         loading={isLoading}
         headers={extensionListHeaderItem}
         bodyList={listWhiteList}
         onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
       />
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}

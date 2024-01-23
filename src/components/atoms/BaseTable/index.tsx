@@ -5,7 +5,6 @@ import { BaseTabelHeader } from './components/BaseTabelHeader';
 import { RowTable } from './components/BaseTableRowCard';
 import { IBaseTableProps, TIdItem, TPagination } from './types';
 import { BaseTableSearchBar } from './components/BaseTableSearchBar';
-import { TSearchBar } from './components/BaseTableSearchBar/types';
 
 export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
   const {
@@ -13,12 +12,10 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
     bodyList,
     loading,
     onClick,
-    searchBar,
+    searchBar = null,
     pagination = {} as TPagination,
   } = props;
   const { countPage, currentPage, totalPages, onPageChange } = pagination;
-  const { name, value, handleSearchInput, componentProps } =
-    searchBar as TSearchBar;
 
   let tableBody;
 
@@ -47,10 +44,10 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
     <>
       {searchBar && (
         <BaseTableSearchBar
-          name={name}
-          value={value}
-          handleSearchInput={handleSearchInput}
-          componentProps={componentProps}
+          name={searchBar.name}
+          value={searchBar.value}
+          handleSearchInput={searchBar.handleSearchInput}
+          componentProps={searchBar.componentProps}
         />
       )}
       <div className="overflow-y-auto">

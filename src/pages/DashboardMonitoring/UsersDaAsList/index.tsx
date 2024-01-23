@@ -4,13 +4,12 @@ import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import Pagination from '@ui/molecules/Pagination';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { monitoringHeaderItem } from '@src/constants/tableHeaders/monitoringHeaderItem';
 import { useNavigate } from 'react-router-dom';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -54,30 +53,28 @@ export function UsersDaAsList() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
 
+  const searchBarProps: TSearchBar = {
+    name: 'search-users-daas-list',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+  };
   return (
     <div className="w-full p-4">
-      <div className="flex items-center justify-between">
-        <SearchInput
-          name="search-users-daas-list"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-      </div>
       <BaseTable
         loading={isLoading}
         bodyList={listDaas}
         headers={monitoringHeaderItem}
         onClick={userHandler}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
       />
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
     </div>
   );
 }

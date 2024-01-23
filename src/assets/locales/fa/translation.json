@@ -58,7 +58,8 @@
     "thisMonth": "این ماه",
     "accessSetting": "تنظیمات دسترسی",
     "string": "رشته فایل",
-    "fileExtension": "پسوند فایل"
+    "fileExtension": "پسوند فایل",
+    "addNewType": "اضافه کردن تایپ جدید"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

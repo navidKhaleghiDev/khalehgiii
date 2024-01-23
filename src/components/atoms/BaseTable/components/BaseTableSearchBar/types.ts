@@ -1,20 +1,17 @@
 export type TComponentType = 'actionAdd' | 'actionRefresh' | 'typography';
 
-export interface ITableSearchButton {
+export interface ITableSearchComponent {
   type?: TComponentType;
   label?: string;
   onClick?: () => void;
+  className?: string;
 }
 
 export type TSearchBar = {
   name: string;
   value: string;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  componentProps: {
-    type?: TComponentType;
-    label?: string;
-    onClick?: () => void;
-  };
+  componentProps?: ITableSearchComponent;
 };
 
 export type TComponent = {
