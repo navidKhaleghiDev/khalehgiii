@@ -2,6 +2,7 @@ import { IconType, StringifyProperties } from '@src/types/global';
 
 import { IBaseIcon } from '../BaseIcon/types';
 import { IIconButton } from '../BaseButton';
+import { TSearchBar } from './components/BaseTableSearchBar/types';
 
 export type RowType<T> = T & {
   id: string | number;
@@ -67,6 +68,7 @@ export interface IBaseTableProps<BodyType> {
   loading: boolean;
   onClick?: OnClickActionsType<BodyType>;
   pagination?: TPagination;
+  searchBar?: TSearchBar;
 }
 
 export type OnClickActionsType<DataType> = (

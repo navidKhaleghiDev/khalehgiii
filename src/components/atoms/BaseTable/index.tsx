@@ -5,6 +5,7 @@ import { BaseTabelHeader } from './components/BaseTabelHeader';
 import { RowTable } from './components/BaseTableRowCard';
 import { IBaseTableProps, TIdItem, TPagination } from './types';
 import { BaseTableSearchBar } from './components/BaseTableSearchBar';
+import { TSearchBar } from './components/BaseTableSearchBar/types';
 
 export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
   const {
@@ -12,11 +13,12 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
     bodyList,
     loading,
     onClick,
-    searchBar = {} as any,
+    searchBar,
     pagination = {} as TPagination,
   } = props;
   const { countPage, currentPage, totalPages, onPageChange } = pagination;
-  const { name, value, handleSearchInput, componentProps } = searchBar;
+  const { name, value, handleSearchInput, componentProps } =
+    searchBar as TSearchBar;
 
   let tableBody;
 

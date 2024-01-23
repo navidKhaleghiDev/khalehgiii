@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { ButtonAdd } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/components/SearchBarButtons/ButtonAdd';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { UpdateAdminModal } from './UpdateAdminModal';
 
 const PAGE_SIZE = 10;
@@ -123,36 +123,19 @@ export function AdminsList() {
     onPageChange: handlePageChange,
   };
 
-  const searchBarProps = {
+  const searchBarProps: TSearchBar = {
     name: 'search-admin-list',
     value: filterQuery,
     handleSearchInput: handleFilterChange,
     componentProps: {
-      type: 'component',
-      component: () => (
-        <ButtonAdd onClick={handleCreateAdmin} label={t('table.addNewAdmin')} />
-      ),
+      type: 'actionAdd',
+      label: 'table.addNewAdmin',
+      onClick: handleCreateAdmin,
     },
   };
 
   return (
     <div className="w-full p-4">
-      {/* <div className="flex justify-between items-center">
-        <SearchInput
-          name="search-admin-list"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ToolTip tooltip={t('table.addNewAdmin')} position="right">
-          <IconButton
-            icon={plusIcon}
-            color="teal"
-            size="lg"
-            onClick={handleCreateAdmin}
-          />
-        </ToolTip>
-      </div> */}
       <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}

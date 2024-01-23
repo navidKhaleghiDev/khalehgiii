@@ -1,26 +1,24 @@
-import { IconType } from '@src/types/global';
-import { IIconButton } from '@ui/atoms/BaseButton/types';
+export type TComponentType = 'actionAdd' | 'actionRefresh' | 'typography';
 
-export type TComponentType = 'component' | 'typography';
 export interface ITableSearchButton {
+  type?: TComponentType;
+  label?: string;
+  onClick?: () => void;
+}
+
+export type TSearchBar = {
+  name: string;
+  value: string;
+  handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
   componentProps: {
-    handleClickButton?: () => void;
-    icon: IconType;
-    label: string;
-    size: IIconButton['size'];
-    color: IIconButton['color'];
+    type?: TComponentType;
+    label?: string;
+    onClick?: () => void;
   };
-}
-export interface ITableSearchBar {
-  componentProps: any;
-}
+};
+
 export type TComponent = {
-  component: JSX.Element;
+  actionAdd: JSX.Element;
+  actionRefresh: JSX.Element;
   typography: JSX.Element;
 };
-// type: TComponentType;
-
-export interface IComponentPropsType {
-  type: TComponentType;
-  component?: JSX.Element;
-}
