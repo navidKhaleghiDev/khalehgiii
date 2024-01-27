@@ -54,7 +54,10 @@
     "allowedForDownload": "مجاز برای دانلود",
     "thisWeek": "این هفته",
     "thisMonth": "این ماه",
-    "accessSetting": "تنظیمات دسترسی"
+    "accessSetting": "تنظیمات دسترسی",
+    "sandbox": "سندباکس",
+    "clamav": "کلم ای وی",
+    "yara": "یارا"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

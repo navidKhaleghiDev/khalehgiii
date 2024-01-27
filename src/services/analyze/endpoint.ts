@@ -31,3 +31,5 @@ export const E_UBA_LIST_PAGINATION = ({
   filter,
 }: IPagination) =>
   `${E_UBA}${filter ? `?${filter}&` : '?'}page_size=${pageSize}&page=${page}`;
+
+export const E_ANALYZE_SCANNER = 'analyze/scanners_config/';

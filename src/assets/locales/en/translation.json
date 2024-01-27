@@ -54,7 +54,10 @@
     "allowedForDownload": "Allowed For Download",
     "thisWeek": " This Week",
     "thisMonth": "This Month",
-    "accessSetting": "Access Setting"
+    "accessSetting": "Access Setting",
+    "sandbox": "sandbox",
+    "clamav": "clamav",
+    "yara": "yara"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
