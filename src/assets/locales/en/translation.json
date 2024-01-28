@@ -57,7 +57,11 @@
     "accessSetting": "Access Setting",
     "sandbox": "sandbox",
     "clamav": "clamav",
-    "yara": "yara"
+    "yara": "yara",
+    "license_id": "license",
+    "licenseExpirationDate": "licenseExpirationDate",
+    "licenseCreation": "licenseCreation",
+    "validLicense": "validLicense"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

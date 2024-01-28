@@ -14,6 +14,7 @@ export function BaseSwitch({
   pureValue,
   defaultChecked,
   pureError,
+  disabled = false,
 }: IBaseSwitch<any>) {
   return control ? (
     <Controller
@@ -77,9 +78,14 @@ export function BaseSwitch({
       )}
       <label
         htmlFor={name}
-        className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center"
+        className={
+          disabled
+            ? 'cursor-not-allowed'
+            : `autoSaverSwitch relative inline-flex cursor-pointer select-none items-center`
+        }
       >
         <input
+          disabled={disabled}
           type="checkbox"
           className="sr-only"
           checked={pureValue}
