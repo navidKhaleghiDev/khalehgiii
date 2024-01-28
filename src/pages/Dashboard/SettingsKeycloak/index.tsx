@@ -31,19 +31,20 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const { control, handleSubmit, reset, getValues } = useForm<IAddConfig>({
-    mode: 'onChange',
-    defaultValues: {
-      id: null,
-      keycloak_base_url: '',
-      keycloak_port: '',
-      keycloak_ssl: false,
-      keycloak_client_id: '',
-      keycloak_secret: '',
-      keycloak_realm: '',
-      daas_provider_baseurl: '',
-    },
-  });
+  const { control, handleSubmit, reset, getValues, formState } =
+    useForm<IAddConfig>({
+      mode: 'onChange',
+      defaultValues: {
+        id: null,
+        keycloak_base_url: '',
+        keycloak_port: '',
+        keycloak_ssl: false,
+        keycloak_client_id: '',
+        keycloak_secret: '',
+        keycloak_realm: '',
+        daas_provider_baseurl: '',
+      },
+    });
 
   useEffect(() => {
     const getConfig = async () => {
@@ -264,6 +265,7 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
         size="xl"
         submit
         loading={loadingButton}
+        disabled={!formState.isDirty}
       />
     </form>
   );
