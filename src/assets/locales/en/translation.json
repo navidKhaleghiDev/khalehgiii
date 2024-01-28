@@ -59,9 +59,9 @@
     "clamav": "clamav",
     "yara": "yara",
     "license_id": "license",
-    "licenseExpirationDate": "licenseExpirationDate",
-    "licenseCreation": "licenseCreation",
-    "validLicense": "validLicense"
+    "licenseExpirationDate": "license Expiration Date",
+    "licenseCreation": "license Creation",
+    "validLicense": "valid License"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

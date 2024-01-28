@@ -78,11 +78,9 @@ export function BaseSwitch({
       )}
       <label
         htmlFor={name}
-        className={
-          disabled
-            ? 'cursor-not-allowed'
-            : `autoSaverSwitch relative inline-flex cursor-pointer select-none items-center`
-        }
+        className={`select-none items-center autoSaverSwitch relative inline-flex ${
+          disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+        }`}
       >
         <input
           disabled={disabled}
