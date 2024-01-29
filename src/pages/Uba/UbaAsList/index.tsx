@@ -82,7 +82,7 @@ export function UbaAsList() {
     content = <NoResult />;
   }
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <div className="flex items-center">
         <SearchInput
           name="search-uba-list"

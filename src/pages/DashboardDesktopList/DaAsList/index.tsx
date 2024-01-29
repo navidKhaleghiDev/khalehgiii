@@ -257,7 +257,7 @@ export function DaAsList() {
   );
 
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <div className="flex items-center justify-between">
         <SearchInput
           name="search-daas-list"

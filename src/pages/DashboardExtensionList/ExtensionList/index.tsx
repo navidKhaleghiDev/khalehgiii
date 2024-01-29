@@ -66,10 +66,6 @@ export function ExtensionList() {
     debouncedSetFilterQuery(event.target.value);
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -143,7 +139,7 @@ export function ExtensionList() {
     setOpenUpdateModal(true);
   };
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <div className="flex justify-between items-center">
         <SearchInput
           name="search-extension"
