@@ -76,6 +76,7 @@ export function DaasConfig() {
     <form
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
+      dir="rtl"
     >
       <DaasConfigForm control={control} />
       <div className="flex justify-center col-span-6">
@@ -91,7 +92,7 @@ export function DaasConfig() {
         open={openConfirmModal}
         setOpen={setOpenConfirmModal}
         type="error"
-        title={t('dashboard.sureAboutThis')}
+        title={t('global.sureAboutThis')}
         buttonOne={{
           label: t('global.yes'),
           onClick: handleOnUpdate,

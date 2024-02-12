@@ -149,11 +149,11 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
       </div>
 
       <Typography className="px-2 col-span-6 flex justify-start" color="red">
-        {t('global.systemAdminDescription1')}
+        {t('title.systemAdminDescription1')}
       </Typography>
 
       <Typography className="px-2 col-span-6 flex justify-start" color="red">
-        {t('global.systemAdminDescription2')}
+        {t('title.systemAdminDescription2')}
       </Typography>
       <div className="flex justify-center col-span-6">
         {showConfirm && (
