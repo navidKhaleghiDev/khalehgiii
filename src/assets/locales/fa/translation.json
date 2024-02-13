@@ -69,7 +69,7 @@
     "addNewType": "اضافه کردن تایپ جدید",
     "httpPort": "http پورت",
     "httpsPort": "https پورت",
-    "exceededUsage": "مصرف مجاز",
+    "exceededUsage": "عبوراز حد مصرف مجاز ",
     "containerId": " کانتینر id",
     "lastUptime": "اخرین ورود",
     "lastLoginIp": "اخرین ورود ip"

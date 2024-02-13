@@ -10,6 +10,14 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
 export const desktopListHeaderItem: IHeaderTable[] = [
   {
+    label: 'table.email',
+    id: 'email',
+    type: 'none',
+    dir: '',
+    style: 'w-2/12',
+    size: 'body4',
+  },
+  {
     label: 'table.httpPort',
     id: 'http_port',
     type: 'none',
