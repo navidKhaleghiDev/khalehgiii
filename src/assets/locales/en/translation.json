@@ -66,7 +66,13 @@
     "license_id": "license",
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreation": "license Creation",
-    "validLicense": "valid License"
+    "validLicense": "valid License",
+    "httpPort": "http port",
+    "httpsPort": "https port",
+    "exceededUsage": "exceeded usage",
+    "containerId": "container id",
+    "lastUptime": "last uptime",
+    "lastLoginIp": "last Login Ip"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

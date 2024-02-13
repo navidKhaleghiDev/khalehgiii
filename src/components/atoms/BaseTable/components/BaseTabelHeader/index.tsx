@@ -11,7 +11,7 @@ export function BaseTabelHeader({ header }: PropsType) {
   const { t } = useTranslation();
 
   return (
-    <thead className="flex items-center px-2 bg-teal-500 rounded-md text-white h-10 w-full">
+    <thead className="flex items-center px-2 bg-teal-500 rounded-md text-white h-10 w-full mb-1">
       {header.map((head: IHeaderTable, index: number) => (
         <tr
           key={index}
@@ -19,7 +19,11 @@ export function BaseTabelHeader({ header }: PropsType) {
           dir={!head.dir ? 'ltr' : head.dir}
         >
           <td className="">
-            <Typography size="body4" type="div" className="uppercase ellipsis">
+            <Typography
+              size="body4"
+              type="div"
+              className="uppercase ellipsis font-bold"
+            >
               {t(head.label)}
             </Typography>
           </td>

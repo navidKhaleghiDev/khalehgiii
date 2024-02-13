@@ -10,10 +10,48 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
 export const desktopListHeaderItem: IHeaderTable[] = [
   {
-    label: 'table.email',
-    id: 'email',
+    label: 'table.httpPort',
+    id: 'http_port',
     type: 'none',
-    style: 'px-3 w-3/12',
+    dir: '',
+    style: 'w-1/12',
+    size: 'body4',
+  },
+  {
+    label: 'table.httpsPort',
+    id: 'https_port',
+    type: 'none',
+    style: 'w-1/12',
+    size: 'body4',
+  },
+  {
+    label: 'table.exceededUsage',
+    id: 'exceeded_usage',
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.exceeded_usage} />,
+    dir: '',
+    style: 'w-1/12',
+    size: 'body4',
+  },
+  {
+    label: 'table.containerId',
+    id: 'container_id',
+    type: 'tooltip',
+    style: 'w-1/12',
+    size: 'body4',
+  },
+  {
+    label: 'table.lastUptime',
+    id: 'last_uptime',
+    type: 'tooltip',
+    style: ' w-1/12',
+    size: 'body4',
+  },
+  {
+    label: 'table.lastLoginIp',
+    id: 'last_login_ip',
+    type: 'none',
+    style: 'w-1/12',
     size: 'body4',
   },
   {
@@ -21,17 +59,10 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'is_running',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
-    style: 'px-3 w-1/12',
+    style: 'w-1/12',
     size: 'body4',
   },
-  {
-    label: 'table.desktopV',
-    id: 'daas_version',
-    type: 'none',
-    dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
-  },
+
   {
     label: 'table.desktop',
     id: 'is_lock',
@@ -45,9 +76,19 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ),
 
     dir: '',
-    style: 'px-3 w-1/12',
+    style: 'w-1/12',
     size: 'body4',
   },
+
+  {
+    label: 'table.desktopV',
+    id: 'daas_version',
+    type: 'none',
+    dir: '',
+    style: 'w-1/12',
+    size: 'body4',
+  },
+
   {
     label: 'table.usedTime',
     id: 'usage_in_minute',
@@ -56,7 +97,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       <UsedTimeDass time={props.row.usage_in_minute} />
     ),
     dir: '',
-    style: 'px-3 w-2/12',
+    style: 'w-1/12',
     size: 'body4',
   },
   {
@@ -71,9 +112,8 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         timeLimitDuration={props.row.daas_configs.time_limit_duration}
       />
     ),
-
     dir: 'rtl',
-    style: 'px-3 w-4/12',
+    style: 'w-2/12',
     size: 'body4',
   },
 
@@ -87,7 +127,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         header={props.head}
       />
     ),
-    style: 'px-3 w-2/12',
+    style: 'w-1/12',
     size: 'body4',
   },
 
@@ -111,7 +151,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ],
 
     dir: '',
-    style: 'px-3 w-2/12',
+    style: 'w-1/12',
     size: 'body4',
   },
 ];
