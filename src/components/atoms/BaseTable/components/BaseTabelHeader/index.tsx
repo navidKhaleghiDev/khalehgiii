@@ -11,21 +11,20 @@ export function BaseTabelHeader({ header }: PropsType) {
   const { t } = useTranslation();
 
   return (
-    <Card
-      color="neutral"
-      className="flex items-center px-2 my-2  bg-teal-500 text-white h-10 w-full"
-    >
+    <thead className="flex items-center px-2 bg-teal-500 rounded-md text-white h-10 w-full">
       {header.map((head: IHeaderTable, index: number) => (
-        <div
+        <tr
           key={index}
           className={`${head.style} flex justify-center items-center font-normal`}
           dir={!head.dir ? 'ltr' : head.dir}
         >
-          <Typography size="body4" type="div" className="uppercase ellipsis">
-            {t(head.label)}
-          </Typography>
-        </div>
+          <td className="">
+            <Typography size="body4" type="div" className="uppercase ellipsis">
+              {t(head.label)}
+            </Typography>
+          </td>
+        </tr>
       ))}
-    </Card>
+    </thead>
   );
 }

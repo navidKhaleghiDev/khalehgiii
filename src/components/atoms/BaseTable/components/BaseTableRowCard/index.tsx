@@ -32,23 +32,22 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
 
 export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
   return (
-    <Card
-      color="neutral"
-      className="flex items-center px-2 my-2 text-neutral-600 h-14 w-full "
-    >
-      {headers.map((header: IHeaderTable, index: number) => (
-        <div
-          key={index}
-          className={`${header.style} flex justify-center items-center group text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6`}
-          dir={!header.dir ? 'ltr' : header.dir}
-        >
-          {rowCellsComponent({
-            row,
-            header,
-            onClick,
-          })}
-        </div>
-      ))}
-    </Card>
+    <tbody>
+      <tr className="bg-neutral-100 dark:bg-neutral-300 rounded-md undefined flex h-14 items-center px-2 my-2 w-full text-neutral-600">
+        {headers.map((header, colIndex) => (
+          <td
+            key={colIndex}
+            className={`${header.style} flex justify-center items-center group text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6`}
+            dir={!header.dir ? 'ltr' : header.dir}
+          >
+            {rowCellsComponent({
+              row,
+              header,
+              onClick,
+            })}
+          </td>
+        ))}
+      </tr>
+    </tbody>
   );
 }
