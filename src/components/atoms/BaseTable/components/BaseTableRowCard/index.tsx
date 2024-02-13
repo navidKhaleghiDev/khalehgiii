@@ -1,8 +1,6 @@
 /* eslint-disable react/no-array-index-key */
-import { Card } from '@ui/atoms/Card';
 import {
   IComponentsHeader,
-  IHeaderTable,
   IRowTableProps,
   IRowCellsComponent,
 } from '../../types';

@@ -4,7 +4,6 @@ import { IResponsePagination } from '@src/types/services';
 import { IFileType } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
-import { LoadingSpinner } from '@ui/molecules/Loading';
 import { Modal } from '@ui/molecules/Modal';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
 import { toast } from 'react-toastify';

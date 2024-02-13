@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import { Card, Typography } from '@ui/atoms';
+import { Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 import { IHeaderTable } from '../../types';
 

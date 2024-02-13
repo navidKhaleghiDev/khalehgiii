@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { LoadingSpinner } from '@ui/molecules/Loading';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
 import { BaseTable } from '@ui/atoms/BaseTable';
