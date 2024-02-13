@@ -196,7 +196,7 @@ export function DaAsList() {
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
         mutate();
-        toast.success(t('global.sucessfulyUpdated'));
+        toast.success(t('table.sucessfulyUpdated'));
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);
       })
@@ -224,7 +224,7 @@ export function DaAsList() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
         headers={desktopListHeaderItem}

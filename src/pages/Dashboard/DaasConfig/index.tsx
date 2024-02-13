@@ -22,22 +22,23 @@ export function DaasConfig() {
     http.fetcherSWR
   );
 
-  const { control, handleSubmit, getValues, reset } = useForm<IDaasConfig>({
-    mode: 'onChange',
-    defaultValues: {
-      id: daasConfig?.data?.id,
-      can_upload_file: daasConfig?.data?.can_upload_file,
-      can_download_file: daasConfig?.data?.can_download_file,
-      clipboard_down: daasConfig?.data?.clipboard_down,
-      clipboard_up: daasConfig?.data?.clipboard_up,
-      webcam_privilege: daasConfig?.data?.webcam_privilege,
-      microphone_privilege: daasConfig?.data?.microphone_privilege,
-      max_transmission_download_size:
-        daasConfig?.data?.max_transmission_download_size,
-      max_transmission_upload_size:
-        daasConfig?.data?.max_transmission_upload_size,
-    },
-  });
+  const { control, handleSubmit, getValues, reset, formState } =
+    useForm<IDaasConfig>({
+      mode: 'onChange',
+      defaultValues: {
+        id: daasConfig?.data?.id,
+        can_upload_file: daasConfig?.data?.can_upload_file,
+        can_download_file: daasConfig?.data?.can_download_file,
+        clipboard_down: daasConfig?.data?.clipboard_down,
+        clipboard_up: daasConfig?.data?.clipboard_up,
+        webcam_privilege: daasConfig?.data?.webcam_privilege,
+        microphone_privilege: daasConfig?.data?.microphone_privilege,
+        max_transmission_download_size:
+          daasConfig?.data?.max_transmission_download_size,
+        max_transmission_upload_size:
+          daasConfig?.data?.max_transmission_upload_size,
+      },
+    });
 
   useEffect(() => {
     reset(daasConfig?.data);
@@ -75,6 +76,7 @@ export function DaasConfig() {
     <form
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
+      dir="rtl"
     >
       <DaasConfigForm control={control} />
       <div className="flex justify-center col-span-6">
@@ -82,6 +84,7 @@ export function DaasConfig() {
           label={t('dashboard.update')}
           size="md"
           type="default"
+          disabled={!formState.isDirty}
           submit
         />
       </div>
@@ -89,7 +92,7 @@ export function DaasConfig() {
         open={openConfirmModal}
         setOpen={setOpenConfirmModal}
         type="error"
-        title={t('dashboard.sureAboutThis')}
+        title={t('global.sureAboutThis')}
         buttonOne={{
           label: t('global.yes'),
           onClick: handleOnUpdate,

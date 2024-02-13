@@ -58,10 +58,6 @@ export function DlpConfig() {
 
   if (error) return <div>Failed to load data.</div>;
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -126,7 +122,7 @@ export function DlpConfig() {
     },
   };
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
         headers={dlpConfigHeaderItem}

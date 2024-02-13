@@ -60,3 +60,18 @@ select option {
   height: 50px;
   margin-top: 10;
 }
+.loading {
+  position: relative;
+  z-index: 1;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}

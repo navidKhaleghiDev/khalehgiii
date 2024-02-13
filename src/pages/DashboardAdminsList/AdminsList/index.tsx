@@ -49,14 +49,9 @@ export function AdminsList() {
     }, 1000),
     []
   );
-
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -135,7 +130,7 @@ export function AdminsList() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}

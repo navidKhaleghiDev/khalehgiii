@@ -59,7 +59,14 @@
     "accessSetting": "Access Setting",
     "string": "String",
     "fileExtension": "File Extension",
-    "addNewType": "Add New Type"
+    "addNewType": "Add New Type",
+    "sandbox": "sandbox",
+    "clamav": "clamav",
+    "yara": "yara",
+    "license_id": "license",
+    "licenseExpirationDate": "license Expiration Date",
+    "licenseCreation": "license Creation",
+    "validLicense": "valid License"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

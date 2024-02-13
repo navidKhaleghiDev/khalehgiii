@@ -66,7 +66,7 @@ export function UsersDaAsList() {
     handleSearchInput: handleFilterChange,
   };
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
         bodyList={listDaas}

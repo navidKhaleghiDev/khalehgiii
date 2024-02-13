@@ -70,7 +70,7 @@ export function UbaAsList() {
     },
   };
   return (
-    <div className="w-full p-4">
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
         bodyList={listUba}

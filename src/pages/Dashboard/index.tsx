@@ -34,7 +34,7 @@ export function DashboardPage() {
         <BaseTab label="DLP">
           <DlpConfig />
         </BaseTab>
-        <BaseTab label="malware log server">
+        <BaseTab label="malware">
           <SettingsMalware user={user} />
         </BaseTab>
       </BaseTabs>

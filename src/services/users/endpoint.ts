@@ -31,3 +31,6 @@ export const E_USERS_DAAS_UPDATE_USAGE = 'users/daas/update_usage/';
 
 export const E_USERS_PROFILE = 'users/profile/';
 export const E_USERS_LOGIN = '/users/login/';
+
+export const E_MALWARE_ANTIVIRUS = (id: string) =>
+  `/analyze/scanners_config/${id}/`;

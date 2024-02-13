@@ -57,6 +57,13 @@
     "thisWeek": "این هفته",
     "thisMonth": "این ماه",
     "accessSetting": "تنظیمات دسترسی",
+    "sandbox": "sandbox",
+    "clamav": "clamav",
+    "yara": "yara",
+    "license_id": "لایسنس",
+    "licenseExpirationDate": "تاریخ انقضالایسنس",
+    "licenseCreation": "تاریخ ایجاد لایسنس",
+    "validLicense": "اعتبارلایسنس",
     "string": "رشته فایل",
     "fileExtension": "پسوند فایل",
     "addNewType": "اضافه کردن تایپ جدید"

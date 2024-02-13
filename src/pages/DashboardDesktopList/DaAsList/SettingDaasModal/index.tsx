@@ -125,6 +125,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     <form
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
+      dir="rtl"
     >
       <DaasConfigForm control={control} />
       <DlpSettingsForm
