@@ -50,7 +50,7 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
           componentProps={searchBar.componentProps}
         />
       )}
-      <div className="overflow-x-auto ">
+      <div className="overflow-x-auto custom-scrollbar">
         <table className="w-full bg-white border-gray-300 border-none ">
           <BaseTabelHeader header={headers} />
           {tableBody}

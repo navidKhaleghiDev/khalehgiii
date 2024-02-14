@@ -7,21 +7,6 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
 export const monitoringHeaderItem: IHeaderTable[] = [
   {
-    label: 'table.observeUserBehavior',
-    id: 'id',
-    type: 'action',
-    action: [
-      {
-        action: ROUTES_PATH.monitoring,
-        icon: moreIcon,
-        color: 'neutralNoBg',
-        style: '',
-      },
-    ],
-    dir: '',
-    style: 'px-3 w-2/12',
-  },
-  {
     label: 'table.userName',
     id: 'email',
     type: 'none',
@@ -29,6 +14,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     style: 'px-3 w-4/12',
     size: 'body4',
   },
+
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
@@ -55,5 +41,20 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',
+  },
+  {
+    label: 'table.observeUserBehavior',
+    id: 'id',
+    type: 'action',
+    action: [
+      {
+        action: ROUTES_PATH.monitoring,
+        icon: moreIcon,
+        color: 'neutralNoBg',
+        style: '',
+      },
+    ],
+    dir: '',
+    style: 'px-3 w-2/12',
   },
 ];

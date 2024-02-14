@@ -69,10 +69,10 @@
     "addNewType": "اضافه کردن تایپ جدید",
     "httpPort": "http پورت",
     "httpsPort": "https پورت",
-    "exceededUsage": "عبوراز حد مصرف مجاز ",
+    "accessCapacity": "شامل ظرفیت مجاز",
     "containerId": " کانتینر id",
-    "lastUptime": "اخرین ورود",
-    "lastLoginIp": "اخرین ورود ip"
+    "lastUptime": "آخرین ورود",
+    "lastLoginIp": "آخرین ورود ip"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -129,7 +129,18 @@
     "needAuthentication": "شما نیاز به احراز هویت دارید",
     "limitedNumberRequest": "تعداد درخواست‌های شما محدود شده است. یک دقیقه بعد مجددا تلاش کنید.",
     "pleaseBePatient": "لطفاً شکیبا باشید",
-    "addNewFile": "اضافه کردن رشته فایل جدید"
+    "addNewFile": "اضافه کردن رشته فایل جدید",
+    "timeAccess": " زمان دسترسی",
+    "hasBeenFinished": "به اتمام رسیده است",
+    "maximumUploadSize": "حجم مجاز آپلود",
+    "maximumDownloadSize": "حجم مجاز دانلود",
+    "microphoneAccess": "دسترسی میکروفن",
+    "webcamAccess": "دسترسی وب کم",
+    "uploadAccess": "دسترسی آپلود",
+    "downloadAccess": "دسترسی دانلود",
+    "allowedTypeForUpload": "تایپ های مجاز آپلود",
+    "allowedTypeForDownload": "تایپ های مجاز دانلود",
+    "doesNot": "ندارد"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

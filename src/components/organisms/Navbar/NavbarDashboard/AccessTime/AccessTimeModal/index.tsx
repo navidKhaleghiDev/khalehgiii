@@ -14,27 +14,10 @@ import {
   TimeLimitDurationLabelDetails,
 } from '@src/constants/accessTime';
 import { formatDuration } from '@src/helper/utils/timeUtils';
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@context/settings/languageContext';
 import { AccessTimeModalCard } from './AccessTimeModalCard';
 import { AccessDlpModalCard } from './AccessDlpModalCard';
-
-function getExtensionTime(label: ETimeLimitDuration): string {
-  switch (label) {
-    case ETimeLimitDuration.DAILY:
-      return tomorrow.toLocaleDateString('fa-IR');
-
-    case ETimeLimitDuration.WEEKLY:
-      return getNextSaturday().toLocaleDateString('fa-IR');
-
-    case ETimeLimitDuration.MONTHLY:
-      return firstDayOfNextMonth.toLocaleDateString('fa-IR');
-
-    case ETimeLimitDuration.PERMANENTLY:
-      return 'ندارد';
-
-    default:
-      return '';
-  }
-}
 
 // Use the `displayText` variable where needed
 
@@ -47,6 +30,10 @@ type PropsType = {
 };
 
 export function AccessTimeModal({ onClick, daas }: PropsType) {
+  const { lang } = useLanguage();
+  const localizationDate = lang === 'fa' ? 'fa-IR' : 'en-US';
+
+  const { t } = useTranslation();
   const timeLimitDuration: ETimeLimitDuration =
     daas?.daas_configs?.time_limit_duration ?? ETimeLimitDuration.DAILY;
 
@@ -63,9 +50,28 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
   if (timeLimitDuration === ETimeLimitDuration.PERMANENTLY) {
     timeLeft = '';
   } else if (remainingTime < 0) {
-    timeLeft = 'به اتمام رسیده است';
+    timeLeft = t('global.hasBeenFinished');
   } else {
     timeLeft = formatDuration(remainingTime);
+  }
+
+  function getExtensionTime(label: ETimeLimitDuration): string {
+    switch (label) {
+      case ETimeLimitDuration.DAILY:
+        return tomorrow.toLocaleDateString(localizationDate);
+
+      case ETimeLimitDuration.WEEKLY:
+        return getNextSaturday().toLocaleDateString(localizationDate);
+
+      case ETimeLimitDuration.MONTHLY:
+        return firstDayOfNextMonth.toLocaleDateString(localizationDate);
+
+      case ETimeLimitDuration.PERMANENTLY:
+        return t('global.doesNot');
+
+      default:
+        return '';
+    }
   }
 
   return (
@@ -80,7 +86,7 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
       <div className="px-16 pt-8 pb-16 w-full">
         <Card className="bg-teal-600 flex items-center justify-between h-10 text-white px-2">
           <Typography size="body3" color="white">
-            زمان دسترسی
+            {t('global.timeAccess')}
           </Typography>
           <div className="flex items-center justify-between w-1/2">
             <Typography size="body3" color="white">
@@ -88,25 +94,25 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
             </Typography>
             |
             <Typography size="body3" color="white">
-              {timeLimitValueInHour} ساعت
+              {timeLimitValueInHour} {t('global.hour')}
             </Typography>
           </div>
         </Card>
         <div className="flex gap-2">
           <AccessTimeModalCard
-            label="زمان استفاده شده"
+            label={t('table.usedTime')}
             name={TimeLimitDurationLabelDetails[timeLimitDuration]}
             value={
               usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
             }
           />
           <AccessTimeModalCard
-            label="زمان باقی مانده"
+            label={t('table.leftTime')}
             name={TimeLimitDurationLabelDetails[timeLimitDuration]}
             value={timeLeft}
           />
           <AccessTimeModalCard
-            label="زمان تمدید"
+            label={t('table.extendTime')}
             name={getExtensionTime(timeLimitDuration)}
             value={
               timeLimitDuration !== ETimeLimitDuration.PERMANENTLY
@@ -116,37 +122,40 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
           />
         </div>
         <div className="flex flex-col gap-2 mt-4">
-          <AccessDlpModalCard label="نسخه دسکتاپ" value={daas?.daas_version} />
           <AccessDlpModalCard
-            label="حجم مجاز آپلود"
+            label={t('table.desktopV')}
+            value={daas?.daas_version}
+          />
+          <AccessDlpModalCard
+            label={t('global.maximumUploadSize')}
             value={`${daas?.daas_configs?.max_transmission_upload_size} MB`}
             contentDirection="ltr"
           />
           <AccessDlpModalCard
-            label="حجم مجاز دانلود"
+            label={t('global.maximumDownloadSize')}
             value={`${daas?.daas_configs?.max_transmission_download_size} MB`}
             contentDirection="ltr"
           />
           <AccessDlpModalCard
-            label="دسترسی میکرفن"
+            label={t('global.microphoneAccess')}
             isAccess={daas?.daas_configs?.microphone_privilege}
           />
           <AccessDlpModalCard
-            label="دسترسی وب کم"
+            label={t('global.webcamAccess')}
             isAccess={daas?.daas_configs?.webcam_privilege}
           />
           <AccessDlpModalCard
-            label="دسترسی آپلود"
+            label={t('global.uploadAccess')}
             isAccess={daas?.daas_configs?.can_upload_file}
           />
           <AccessDlpModalCard
-            label="دسترسی دانلود"
+            label={t('global.downloadAccess')}
             isAccess={daas?.daas_configs?.can_download_file}
           />
         </div>
         <div className="flex gap-2">
           <AccessTimeModalCard
-            label="تایپ های مجاز آپلود"
+            label={t('global.allowedTypeForUpload')}
             value={`${daas?.allowed_files_type_for_upload?.join(' ')}`}
             contentDirection="ltr"
           />
@@ -154,7 +163,7 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
 
         <div className="flex gap-2">
           <AccessTimeModalCard
-            label="تایپ های مجاز دانلود"
+            label={t('global.allowedTypeForDownload')}
             value={`${daas?.allowed_files_type_for_download?.join(' ')}`}
             contentDirection="ltr"
           />

@@ -29,6 +29,7 @@ export function LanguageProvider({
       setLang(l || newLang);
       i18next.changeLanguage(l || newLang);
       localStorage.setItem('lang', l || newLang);
+      window.location.reload();
     },
     [newLang]
   );

@@ -69,7 +69,7 @@
     "validLicense": "valid License",
     "httpPort": "http port",
     "httpsPort": "https port",
-    "exceededUsage": "exceeded usage",
+    "accessCapacity": "authorized capacity",
     "containerId": "container id",
     "lastUptime": "last uptime",
     "lastLoginIp": "last Login Ip"
@@ -129,10 +129,22 @@
     "dontHaveAccess": "You dont Have Access",
     "limitedNumberRequest": "The number of your requests has been limited. Please try again in one minute.",
     "pleaseBePatient": "Please be patient",
-    "addNewFile": "add new String File"
+    "addNewFile": "add new String File",
+    "timeAccess": "time access",
+    "hasBeenFinished": "has been finished",
+    "maximumUploadSize": "Maximum Upload Size",
+    "maximumDownloadSize": "Maximum Download Size",
+    "microphoneAccess": "microphone access",
+    "webcamAccess": "Webcam Access",
+    "uploadAccess": "upload access",
+    "downloadAccess": "download Access",
+    "allowedTypeForDownload": "allowed Type For Download",
+    "allowedTypeForUpload": "allowed Type For Upload",
+    "doseNot": "does not "
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
-    "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins."
+    "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
+    "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?"
   }
 }

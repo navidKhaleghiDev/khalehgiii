@@ -14,7 +14,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'email',
     type: 'none',
     dir: '',
-    style: 'w-2/12',
+    style: 'w-40 max-w-full',
     size: 'body4',
   },
   {
@@ -22,44 +22,46 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'http_port',
     type: 'none',
     dir: '',
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
   {
     label: 'table.httpsPort',
     id: 'https_port',
     type: 'none',
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
   {
-    label: 'table.exceededUsage',
+    label: 'table.accessCapacity',
     id: 'exceeded_usage',
     type: 'component',
-    component: (props: any) => <Circle id={props.row.exceeded_usage} />,
+    component: (props: any) => (
+      <Check id={!props.row.exceeded_usage} header={props.head} />
+    ),
     dir: '',
-    style: 'w-1/12',
+    style: 'w-40 max-w-full',
     size: 'body4',
   },
   {
     label: 'table.containerId',
     id: 'container_id',
     type: 'tooltip',
-    style: 'w-1/12',
+    style: 'w-40 max-w-full',
     size: 'body4',
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'tooltip',
-    style: ' w-1/12',
+    style: ' w-40 max-w-full',
     size: 'body4',
   },
   {
     label: 'table.lastLoginIp',
     id: 'last_login_ip',
     type: 'none',
-    style: 'w-1/12',
+    style: 'w-40 max-w-full',
     size: 'body4',
   },
   {
@@ -67,7 +69,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'is_running',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
 
@@ -84,7 +86,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ),
 
     dir: '',
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
 
@@ -93,7 +95,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'daas_version',
     type: 'none',
     dir: '',
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
 
@@ -105,7 +107,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       <UsedTimeDass time={props.row.usage_in_minute} />
     ),
     dir: '',
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
   {
@@ -121,7 +123,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       />
     ),
     dir: 'rtl',
-    style: 'w-2/12',
+    style: 'w-64 max-w-full',
     size: 'body4',
   },
 
@@ -135,7 +137,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         header={props.head}
       />
     ),
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
 
@@ -159,7 +161,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ],
 
     dir: '',
-    style: 'w-1/12',
+    style: 'w-32 max-w-full',
     size: 'body4',
   },
 ];
