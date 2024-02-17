@@ -1,7 +1,8 @@
-import { http } from '@src/services/http';
+import { HTTP_ANALYSES, http } from '@src/services/http';
 import { IAxiosResponse, IServerResponse } from '@src/types/services';
 import { IBodyUsersLogin, IResponseLogin, IDaAs, IUser } from './types';
 import {
+  E_MALWARE_ANTIVIRUS,
   E_USERS_DAAS_DELETE,
   E_USERS_DAAS_RESET_ALL_USAGE,
   E_USERS_DAAS_RESET_USAGE,
@@ -53,3 +54,12 @@ export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
 export const API_USERS_PROFILE = () => http.get<IUser>(E_USERS_PROFILE);
 
 export const STORAGE_KEY_USER = 'user';
+
+export const API_MALWARE_ANTIVIRUS_UPDATE = (
+  id: string,
+  body: Partial<IDaAsUpdated>
+) =>
+  HTTP_ANALYSES.patch<Partial<IDaAsUpdated>, IAxiosResponse<IDaAs[]>>(
+    E_MALWARE_ANTIVIRUS(id),
+    body
+  );

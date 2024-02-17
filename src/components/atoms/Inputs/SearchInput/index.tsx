@@ -1,6 +1,7 @@
 import { useState, memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@context/settings/languageContext';
 import { BaseInput } from '../BaseInput';
 
 interface SearchInputProps {
@@ -18,6 +19,8 @@ function SearchInputComponent({
 }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState(value);
   const { t } = useTranslation();
+  const { lang } = useLanguage();
+  const lableDirection = lang === 'en';
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -27,6 +30,7 @@ function SearchInputComponent({
   return (
     <div className={className}>
       <BaseInput
+        ltrLabel={lableDirection}
         size="sm"
         name={name}
         placeholder={t('table.search')}

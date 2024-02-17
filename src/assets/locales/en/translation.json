@@ -41,7 +41,9 @@
     "userStatus": "User Status",
     "fileName": "File Name",
     "type": "Type",
-    "resultScanerStatus": "Result/Scanner Status",
+    "resultScanerStatusSandbox": "SANDBOX Scanner",
+    "resultScanerStatusClamav": "CLAMAV Scanner",
+    "resultScanerStatusYara": " YARA Scanner",
     "moreDetail": "More Details",
     "removeSelected": "Remove Selected",
     "daily": "Daily",
@@ -54,7 +56,23 @@
     "allowedForDownload": "Allowed For Download",
     "thisWeek": " This Week",
     "thisMonth": "This Month",
-    "accessSetting": "Access Setting"
+    "accessSetting": "Access Setting",
+    "string": "String",
+    "fileExtension": "File Extension",
+    "addNewType": "Add New Type",
+    "sandbox": "sandbox",
+    "clamav": "clamav",
+    "yara": "yara",
+    "license_id": "license",
+    "licenseExpirationDate": "license Expiration Date",
+    "licenseCreation": "license Creation",
+    "validLicense": "valid License",
+    "httpPort": "http port",
+    "httpsPort": "https port",
+    "accessCapacity": "authorized capacity",
+    "containerId": "container id",
+    "lastUptime": "last uptime",
+    "lastLoginIp": "last Login Ip"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -109,10 +127,24 @@
     "language": "Language",
     "callServicess": "Call Servicess",
     "dontHaveAccess": "You dont Have Access",
-    "limitedNumberRequest": "The number of your requests has been limited. Please try again in one minute."
+    "limitedNumberRequest": "The number of your requests has been limited. Please try again in one minute.",
+    "pleaseBePatient": "Please be patient",
+    "addNewFile": "add new String File",
+    "timeAccess": "time access",
+    "hasBeenFinished": "has been finished",
+    "maximumUploadSize": "Maximum Upload Size",
+    "maximumDownloadSize": "Maximum Download Size",
+    "microphoneAccess": "microphone access",
+    "webcamAccess": "Webcam Access",
+    "uploadAccess": "upload access",
+    "downloadAccess": "download Access",
+    "allowedTypeForDownload": "allowed Type For Download",
+    "allowedTypeForUpload": "allowed Type For Upload",
+    "doseNot": "does not "
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
-    "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins."
+    "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
+    "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?"
   }
 }

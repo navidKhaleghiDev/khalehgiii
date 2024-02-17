@@ -60,3 +60,37 @@ select option {
   height: 50px;
   margin-top: 10;
 }
+.loading {
+  position: relative;
+  z-index: 1;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1;
+}
+/* styles.css */
+.custom-scrollbar {
+  scrollbar-color: rgb(20 184 166) rgb(229 229 229);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(20 184 166);
+  border-radius: 6px; /* Adjust the value as needed */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: rgb(229 229 229);
+  border-radius: 6px; /* Adjust the value as needed */
+}

@@ -68,8 +68,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     extra_allowed_upload_files,
     ...data
   }: ExtendTwoType<IDaAs, IDaasConfig>) => {
-    // console.log("--------", { data });
-
+    console.log('--------', { data });
     // id?: string;
     // is_lock: boolean;
     // daas_configs: IDaasConfig;
@@ -89,7 +88,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     // daas_version: string;
 
     const updatedDaasData = {
-      id: data.id,
+      // id: data.id,
       daas_configs: {
         can_upload_file,
         can_download_file,
@@ -126,6 +125,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     <form
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
+      dir="rtl"
     >
       <DaasConfigForm control={control} />
       <DlpSettingsForm

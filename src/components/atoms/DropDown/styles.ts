@@ -33,7 +33,7 @@ export const baseDropDownStyles = cva(
 );
 
 export const optionSelectStyles = cva(
-  'absolute block bg-neutral-100 rounded text-right mt-2 border-2 border-teal-500 max-h-28 overflow-y-auto z-10',
+  'absolute block bg-neutral-100 rounded text-right mt-2 border-2 border-teal-500 max-h-28 overflow-y-auto z-10 flex flex-col',
   {
     variants: {
       isShow: {

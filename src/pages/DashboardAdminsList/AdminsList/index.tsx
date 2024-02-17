@@ -1,26 +1,20 @@
-import { IconButton } from '@ui/atoms/BaseButton';
-import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
-import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
-import ToolTip from '@ui/atoms/Tooltip';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { UpdateAdminModal } from './UpdateAdminModal';
-import { ActionOnClickActionsType } from './UserAdminCard/types';
-import { UserAdminCard } from './UserAdminCard';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -33,32 +27,6 @@ export function AdminsList() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-
-  const headerItem: StringifyProperties<IUser> = {
-    id: '',
-    email: t('table.email'),
-    last_login: t('table.lastLogin'),
-    username: t('table.userName'),
-    first_name: t('table.firstNameLastName'),
-    is_active: t('table.active'),
-    created_at: t('table.dateOfCreated'),
-    is_meta_admin: t('table.metaAdmin'),
-    last_name: '',
-
-    is_superuser: 'boolean',
-    exceeded_usage: 'boolean',
-    base_url: 'string',
-    is_staff: 'boolean',
-    date_joined: 'string',
-    http_port: 'number',
-    https_port: 'number',
-    time_limit_duration: 'ETimeLimitDuration',
-    time_limit_value_in_hour: 'number',
-    last_uptime: 'string',
-    is_running: 'boolean',
-    exceeded_time_limit: 'boolean',
-    usage_in_minute: 'number',
-  };
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS,
@@ -80,14 +48,9 @@ export function AdminsList() {
     }, 1000),
     []
   );
-
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
 
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -121,10 +84,10 @@ export function AdminsList() {
     setOpenUpdateModal(false);
   };
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IUser> | IUser
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IUser> | undefined = (
+    action,
+    fileType
+  ) => {
     setActiveAdmin(fileType as IUser);
 
     if (action === 'delete') {
@@ -141,54 +104,40 @@ export function AdminsList() {
     //   setActiveDaas(daas);
     //   setDeleteModal(true);
     // }
-  }
+  };
 
   const handleCreateAdmin = () => {
     if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
 
-  const userAdminCardContent = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listWhiteList.length > 0 &&
-      listWhiteList.map((item) => (
-        <UserAdminCard
-          key={item.id}
-          user={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
+  const searchBarProps: TSearchBar = {
+    name: 'search-admin-list',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'actionAdd',
+      label: 'table.addNewAdmin',
+      onClick: handleCreateAdmin,
+    },
+  };
 
   return (
-    <div className="w-full p-4">
-      <div className="flex justify-between items-center">
-        <SearchInput
-          name="search-admin-list"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ToolTip tooltip={t('table.addNewAdmin')} position="right">
-          <IconButton
-            icon={plusIcon}
-            color="teal"
-            size="lg"
-            onClick={handleCreateAdmin}
-          />
-        </ToolTip>
-      </div>
-      <UserAdminCard user={headerItem} isHeader />
-      {userAdminCardContent}
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
+        loading={isLoading}
+        bodyList={listWhiteList}
+        headers={adminListHeaderItem}
+        onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
+      />
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}

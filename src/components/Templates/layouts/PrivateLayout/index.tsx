@@ -9,8 +9,10 @@ import { API_USERS_PROFILE } from '@src/services/users';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
+import { useTranslation } from 'react-i18next';
 
 function LayoutCp() {
+  const { t } = useTranslation();
   const [loading, setLoading] = React.useState(false);
   const { user, setUser } = useUserContext();
 
@@ -56,7 +58,7 @@ function LayoutCp() {
       </div>
     );
   }
-  return <LoadingPage description="لطفا شکیبا باشید" />;
+  return <LoadingPage description={t('global.pleaseBePatient')} />;
 }
 
 export default withAuth(LayoutCp);

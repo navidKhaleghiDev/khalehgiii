@@ -1,39 +1,27 @@
-import { IconButton } from '@ui/atoms/BaseButton';
-import plusIcon from '@iconify-icons/ph/plus';
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
-import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
-import ToolTip from '@ui/atoms/Tooltip';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { BaseTable } from '@ui/atoms/BaseTable';
 import { createAPIEndpoint } from '@src/helper/utils';
+import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
 import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { useTranslation } from 'react-i18next';
+
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
-import { ActionOnClickActionsType } from './MimeTypeCard/types';
-import { MimeTypeCard } from './MimeTypeCard';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
 
-const headerItem: StringifyProperties<IMimeType> = {
-  id: '',
-  extension_list: 'پسوند فایل',
-  mimetype_list: 'رشته فایل',
-  created_at: 'تاریخ ایجاد',
-  updated_at: '',
-  file: '',
-};
-
 export function ExtensionList() {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
@@ -66,10 +54,6 @@ export function ExtensionList() {
     debouncedSetFilterQuery(event.target.value);
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -80,7 +64,7 @@ export function ExtensionList() {
     await API_ANALYZE_MIME_TYPE_DELETE(activeAdmin?.id as number)
       .then(() => {
         mutate();
-        toast.success('با موفقیت حذف شد');
+        toast.success(t('global.successfullyRemoved'));
         setDeleteModal(false);
       })
       .catch((err) => {
@@ -102,12 +86,11 @@ export function ExtensionList() {
     setOpenUpdateModal(false);
   };
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IMimeType> | IMimeType
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
+    action,
+    fileType
+  ) => {
     setActiveAdmin(fileType as IMimeType);
-
     if (action === 'delete') {
       setDeleteModal(true);
       return;
@@ -122,65 +105,53 @@ export function ExtensionList() {
     //   setActiveDaas(daas);
     //   setDeleteModal(true);
     // }
-  }
-
-  const content = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listWhiteList.length > 0 &&
-      listWhiteList.map((item) => (
-        <MimeTypeCard
-          key={item.id}
-          mimeType={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
+  };
 
   const handleCreateAdmin = () => {
     if (activeAdmin) setActiveAdmin(undefined);
     setOpenUpdateModal(true);
   };
+
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
+
+  const searchBarProps: TSearchBar = {
+    name: 'search-extension',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'actionAdd',
+      label: 'global.addNewFile',
+      onClick: handleCreateAdmin,
+    },
+  };
   return (
-    <div className="w-full p-4">
-      <div className="flex justify-between items-center">
-        <SearchInput
-          name="search-extension"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ToolTip tooltip="اضافه کردن رشته فایل جدید" position="right">
-          <IconButton
-            icon={plusIcon}
-            color="teal"
-            size="lg"
-            onClick={handleCreateAdmin}
-          />
-        </ToolTip>
-      </div>
-      <MimeTypeCard mimeType={headerItem} isHeader />
-      {content}
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
+        loading={isLoading}
+        headers={extensionListHeaderItem}
+        bodyList={listWhiteList}
+        onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
+      />
+
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title="از انجام این کار مطمئن هستید؟"
+        title={t('global.sureAboutThis')}
         buttonOne={{
-          label: 'بله',
+          label: t('global.yes'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
         }}
         buttonTow={{
-          label: 'خیر',
+          label: t('global.no'),
           onClick: () => setDeleteModal(false),
           color: 'red',
         }}

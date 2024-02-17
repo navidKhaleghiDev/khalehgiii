@@ -1,57 +1,26 @@
 import { useCallback, useState } from 'react';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { NoResult } from '@ui/molecules/NoResult';
-import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
+import { IDaAs } from '@src/services/users/types';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import Pagination from '@ui/molecules/Pagination';
-import { IHeaderDaasCard } from '@src/pages/DashboardDesktopList/DaAsList/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { useTranslation } from 'react-i18next';
-import { UserDaAsCard } from './UserDaAsCard';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { monitoringHeaderItem } from '@src/constants/tableHeaders/monitoringHeaderItem';
+import { useNavigate } from 'react-router-dom';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function UsersDaAsList() {
-  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
 
-  const headerItem: IHeaderDaasCard = {
-    id: t('table.observeUserBehavior'),
-    email: t('table.userName'),
-    http_port: 'پورت http',
-    https_port: 'پورت https',
-    created_at: t('table.dateOfCreated'),
-    daas_configs: {
-      time_limit_duration: ETimeLimitDuration.DAILY,
-      time_limit_value_in_hour: '',
-      can_download_file: '',
-      clipboard_down: '',
-      clipboard_up: '',
-      webcam_privilege: '',
-      microphone_privilege: '',
-      max_transmission_download_size: '',
-      max_transmission_upload_size: '',
-      can_upload_file: 'تنظیمات دسترسی',
-      is_globally_config: '',
-    },
-    forbidden_upload_files: '',
-    forbidden_download_files: '',
-    last_uptime: t('table.numberOfScans'),
-    is_running: t('table.userStatus'),
-    usage_in_minute: 'زمان استفاده شده',
-    extra_allowed_download_files: '',
-    extra_allowed_upload_files: '',
-    allowed_files_type_for_download: '',
-    allowed_files_type_for_upload: '',
-    daas_version: 'نسخه دسکتاپ',
-    is_lock: 'دسکتاپ',
+  const userHandler = (url: any, list: any) => {
+    return navigate(`${url}/${list.email}`);
   };
 
   const endpoint = createAPIEndpoint({
@@ -84,33 +53,28 @@ export function UsersDaAsList() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
 
-  const loadingComponent = isLoading ? <LoadingSpinner /> : null;
-  const noResultComponent = listDaas.length === 0 ? <NoResult /> : null;
-  const daasCards =
-    listDaas.length > 0
-      ? listDaas.map((item) => <UserDaAsCard key={item.id} daas={item} />)
-      : null;
-
+  const searchBarProps: TSearchBar = {
+    name: 'search-users-daas-list',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+  };
   return (
-    <div className="w-full p-4">
-      <div className="flex items-center justify-between">
-        <SearchInput
-          name="search-users-daas-list"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-      </div>
-      <UserDaAsCard daas={headerItem} isHeader />
-      {loadingComponent || noResultComponent || daasCards}
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
+        loading={isLoading}
+        bodyList={listDaas}
+        headers={monitoringHeaderItem}
+        onClick={userHandler}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
+      />
     </div>
   );
 }

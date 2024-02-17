@@ -1,39 +1,23 @@
-import { IconButton } from '@ui/atoms/BaseButton';
-import plusIcon from '@iconify-icons/ph/plus';
 import React, { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { IFileType } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
-import Pagination from '@ui/molecules/Pagination';
 import { Modal } from '@ui/molecules/Modal';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
 import { toast } from 'react-toastify';
 import debounce from 'lodash/debounce';
-import ToolTip from '@ui/atoms/Tooltip';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { dlpConfigHeaderItem } from '@src/constants/tableHeaders/dlpConfigHeaderItem';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { UpdateFileTypeModal } from './UpdateFileTypeModal';
-import { ActionOnClickActionsType } from './FileTypeCard/types';
-import { FileTypeCard } from './FileTypeCard';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
-
-// const headerItem: StringifyProperties<IFileType> = {
-// 	id: '',
-// 	file_type: t('table.fileType'),
-// 	allowed_for_upload: t('table.allowedForUpload'),
-// 	allowed_for_download: t('table.allowedForDownload'),
-// 	is_active: t('table.active'),
-// 	created_at: t('table.dateOfCreated'),
-// 	updated_at: t('table.dateOfUpdated'),
-// };
 
 export function DlpConfig() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
@@ -43,16 +27,6 @@ export function DlpConfig() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const { t } = useTranslation();
-
-  const headerItem = {
-    id: '',
-    file_type: t('table.fileType'),
-    allowed_for_upload: t('table.allowedForUpload'),
-    allowed_for_download: t('table.allowedForDownload'),
-    is_active: t('table.active'),
-    created_at: t('table.dateOfCreated'),
-    updated_at: t('table.dateOfUpdated'),
-  };
 
   const endpoint = createAPIEndpoint({
     endPoint: E_WHITE_LIST_FILES,
@@ -83,10 +57,6 @@ export function DlpConfig() {
 
   if (error) return <div>Failed to load data.</div>;
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -115,10 +85,10 @@ export function DlpConfig() {
     setOpenUpdateModal(false);
   };
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    fileType?: StringifyProperties<IFileType> | IFileType
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IFileType> | undefined = (
+    action,
+    fileType
+  ) => {
     setActiveFileType(fileType as IFileType);
     if (action === 'delete') {
       setDeleteModal(true);
@@ -127,58 +97,45 @@ export function DlpConfig() {
     if (action === 'edit') {
       setOpenUpdateModal(true);
     }
-  }
+  };
 
   const handleCreateNewType = () => {
     if (activeFileType) setActiveFileType(undefined);
     setOpenUpdateModal(true);
   };
-  const FileTypeCardContent = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listWhiteList.length > 0 &&
-      listWhiteList.map((item) => (
-        <FileTypeCard
-          key={item.id}
-          fileType={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
 
+  const searchBarProps: TSearchBar = {
+    name: 'search-extension',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'actionAdd',
+      label: 'table.addNewType',
+      onClick: handleCreateNewType,
+    },
+  };
   return (
-    <div className="w-full p-4">
-      <div className="flex justify-between items-center">
-        <SearchInput
-          name="search-dlp-config"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ToolTip tooltip="اضافه کردن تایپ جدید" position="right">
-          <IconButton
-            icon={plusIcon}
-            color="teal"
-            size="lg"
-            onClick={handleCreateNewType}
-          />
-        </ToolTip>
-      </div>
-      <FileTypeCard fileType={headerItem} isHeader />
-      {FileTypeCardContent}
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
+        loading={isLoading}
+        headers={dlpConfigHeaderItem}
+        bodyList={listWhiteList}
+        onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
+      />
+
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title="از انجام این کار مطمئن هستید؟"
+        title={t('global.sureAboutThis')}
         buttonOne={{
           label: t('global.yes'),
           onClick: handleOnDeleteFileType,

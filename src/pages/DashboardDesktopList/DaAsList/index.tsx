@@ -1,26 +1,23 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useCallback, useState } from 'react';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { NoResult } from '@ui/molecules/NoResult';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
-import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
+import { IDaAs } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import Pagination from '@ui/molecules/Pagination';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { debounce } from 'lodash';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { useTranslation } from 'react-i18next';
-import { ResetAllAccessTime } from './ResetAllAccessTime';
-import { ActionOnClickActionsType } from './DaAsCard/types';
-import { SettingDaasModal } from './SettingDaasModal';
 
-import { IHeaderDaasCard } from './types';
-import { DaAsCard } from './DaAsCard';
+import { debounce } from 'lodash';
+import { useTranslation } from 'react-i18next';
+import { BaseTable } from '@ui/atoms/BaseTable';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { SettingDaasModal } from './SettingDaasModal';
+import { ActionOnClickActionsType } from './DaAsCard/types';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -87,37 +84,6 @@ export function DaAsList() {
     []
   );
 
-  const headerItem: IHeaderDaasCard = {
-    email: t('table.email'),
-    http_port: 'پورت http',
-    https_port: 'پورت https',
-    created_at: 'string',
-    last_uptime: 'string',
-    is_lock: t('table.desktop'),
-    daas_configs: {
-      is_globally_config: t('table.defaultSetting'),
-      can_upload_file: t('table.accessSetting'),
-      can_download_file: '',
-      clipboard_down: '',
-      clipboard_up: '',
-      time_limit_duration: ETimeLimitDuration.DAILY,
-      time_limit_value_in_hour: '',
-      max_transmission_download_size: '0',
-      max_transmission_upload_size: '0',
-      webcam_privilege: 'false',
-      microphone_privilege: 'false',
-    },
-    is_running: t('table.status'),
-    usage_in_minute: t('table.usedTime'),
-    extra_allowed_download_files: '',
-    extra_allowed_upload_files: '',
-    forbidden_upload_files: '',
-    forbidden_download_files: '',
-    allowed_files_type_for_download: '',
-    allowed_files_type_for_upload: '',
-    daas_version: t('table.desktopV'),
-  };
-
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
@@ -125,33 +91,33 @@ export function DaAsList() {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    daas?: Partial<IDaAs> | string
-  ): any {
+  const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
+    action,
+    fileType
+  ) => {
     if (action === 'mutate') {
       mutate();
       return;
     }
 
     if (action === 'edit') {
-      setActiveDaas(daas as IDaAs);
+      setActiveDaas(fileType as IDaAs);
       setOpenSettingModal(true);
       return;
     }
 
     if (action === 'editLock') {
-      setActiveDaas(daas as IDaAs);
+      setActiveDaas(fileType as IDaAs);
       setOpenModal(true);
       return;
     }
 
-    if (daas !== undefined && typeof daas !== 'string') {
+    if (fileType !== undefined && typeof fileType !== 'string') {
       setActionOnClick(action);
-      setActiveDaas(daas);
+      setActiveDaas(fileType as IDaAs);
       setOpenModal(true);
     }
-  }
+  };
 
   const handleOnRequests = async () => {
     if (!activeDaas) return;
@@ -230,7 +196,7 @@ export function DaAsList() {
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
         mutate();
-        toast.success(t('table.sucessfulyUpdated'));
+        toast.success(t('global.sucessfulyUpdated'));
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);
       })
@@ -241,41 +207,32 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
 
-  const DassCardContent = isLoading ? (
-    <LoadingSpinner />
-  ) : (
-    (listDaas.length > 0 &&
-      listDaas.map((item) => (
-        <DaAsCard
-          key={item.id}
-          daas={item}
-          // eslint-disable-next-line react/jsx-no-bind
-          onClickActions={handleOnClickActions}
-        />
-      ))) || <NoResult />
-  );
+  const searchBarProps: TSearchBar = {
+    name: 'search',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      type: 'actionRefresh',
+    },
+  };
 
   return (
-    <div className="w-full p-4">
-      <div className="flex items-center justify-between">
-        <SearchInput
-          name="search-daas-list"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <ResetAllAccessTime />
-      </div>
-      <DaAsCard daas={headerItem} isHeader />
-      {DassCardContent}
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
+        loading={isLoading}
+        headers={desktopListHeaderItem}
+        bodyList={listDaas}
+        onClick={handleOnClickActions}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
+      />
       <Modal
         open={openModal}
         setOpen={setOpenModal}

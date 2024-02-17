@@ -1,45 +1,27 @@
 import { useCallback, useState } from 'react';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-import { NoResult } from '@ui/molecules/NoResult';
 import useSWR from 'swr';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
-import Pagination from '@ui/molecules/Pagination';
-import { Typography } from '@ui/atoms';
 import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
 import { IUba } from '@src/services/analyze/types';
-import { StringifyProperties } from '@src/types/global';
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
-import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
-import { UbaCard } from './UbaCard';
+import { BaseTable } from '@ui/atoms/BaseTable';
+
+import { ubaHeaderItem } from '@src/constants/tableHeaders/ubaHeaderItem';
+import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function UbaAsList() {
-  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const { lang } = useLanguage();
 
   const direction = lang === 'en' ? 'right' : 'left';
 
-  const headerItem: StringifyProperties<IUba> = {
-    id: '',
-    created_at: '',
-    updated_at: t('table.dateOfUpdated'),
-    username: t('table.nameOfTheUser'),
-    file_names: t('table.fileName'),
-    original_file_name: t('table.realName'),
-    file_hash: 'هش فایل',
-    transmission_type: t('table.action'),
-    is_ban: t('table.blocked'),
-    malbehave_count: t('table.unauthorizedBehavior'),
-  };
-
-  /* eslint-disable react-hooks/exhaustive-deps */
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
       setCurrentPage(PAGE);
@@ -71,42 +53,31 @@ export function UbaAsList() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+  const paginationProps = {
+    countPage,
+    currentPage,
+    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    onPageChange: handlePageChange,
+  };
 
-  let content;
-
-  if (isLoading) {
-    content = <LoadingSpinner />;
-  } else if (listUba.length > 0) {
-    content = listUba.map((item) => <UbaCard key={item.id} uba={item} />);
-  } else {
-    content = <NoResult />;
-  }
+  const searchBarProps: TSearchBar = {
+    name: 'search-uba-list',
+    value: filterQuery,
+    handleSearchInput: handleFilterChange,
+    componentProps: {
+      label: ':UBA List',
+      className: `text-${direction} w-full`,
+    },
+  };
   return (
-    <div className="w-full p-4">
-      <div className="flex items-center">
-        <SearchInput
-          name="search-uba-list"
-          value={filterQuery}
-          onChange={handleFilterChange}
-          className="w-1/4"
-        />
-        <Typography
-          size="h4"
-          color="teal"
-          className={`text-${direction} w-full`}
-        >
-          :UBA List
-        </Typography>
-      </div>
-      <UbaCard uba={headerItem} isHeader />
-      {content}
-      {!!countPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / PAGE_SIZE)}
-          onPageChange={handlePageChange}
-        />
-      )}
+    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
+        loading={isLoading}
+        bodyList={listUba}
+        headers={ubaHeaderItem}
+        pagination={paginationProps}
+        searchBar={searchBarProps}
+      />
     </div>
   );
 }

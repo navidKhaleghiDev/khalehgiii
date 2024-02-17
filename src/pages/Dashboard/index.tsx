@@ -12,14 +12,15 @@ import { SettingsMalware } from './SettingsMalware';
 export function DashboardPage() {
   const { user } = useUserContext();
   const { t } = useTranslation();
-  const isSSl = import.meta.env.VITE_IS_SSL === 'true';
+
+  const isSSl = import.meta.env.VITE_IS_SSL;
+  const isSSlTrue = isSSl === 'true';
+
+  const httpCondition = isSSlTrue ? 'https' : 'http';
+  const changePort = isSSlTrue ? user?.https_port : user?.http_port;
 
   return !user?.is_superuser ? (
-    <Daas
-      src={`${isSSl ? 'https' : 'http'}://${user?.base_url}:${
-        isSSl ? user?.https_port : user?.http_port
-      }`}
-    />
+    <Daas src={`${httpCondition}://${user?.base_url}:${changePort}`} />
   ) : (
     <ContainerDashboard>
       <DashboardCards />
@@ -33,7 +34,7 @@ export function DashboardPage() {
         <BaseTab label="DLP">
           <DlpConfig />
         </BaseTab>
-        <BaseTab label="malware log server">
+        <BaseTab label="malware">
           <SettingsMalware user={user} />
         </BaseTab>
       </BaseTabs>

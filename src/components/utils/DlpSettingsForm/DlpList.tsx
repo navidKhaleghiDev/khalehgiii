@@ -45,18 +45,14 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
     const newArray = valueList.filter((item) => item !== mValue);
     onChange(name, newArray);
   };
-
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const mValue = event.target.value;
+    const values = event.target.value;
     const regex = regexPattern.wordStartedWithPointAndEn;
-    if (!regex.value.test(mValue)) {
+    if (!regex.value.test(values)) {
       setError(regex.message);
-    } else {
-      error && setError(undefined);
-    }
-    setValue(mValue);
+    } else if (error) setError(undefined);
+    setValue(values);
   };
-
   return (
     <>
       <div className="flex w-full justify-between items-center">
@@ -75,6 +71,9 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           name={name}
           id={name}
           pureError={error}
+          // rules={{
+          //   pattern: regexPattern.wordStartedWithPointAndEn,
+          // }}
           onKeyDown={handleKeyPress}
           placeholder=".text"
           ltrLabel
@@ -86,11 +85,12 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
           className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto h-20"
           dir="ltr"
         >
-          {valueList.map((mLabel) => (
+          {valueList.map((labelItem, i) => (
             <BaseChip
-              key={mLabel}
-              label={mLabel}
-              onClick={() => remove(mLabel)}
+              // eslint-disable-next-line react/no-array-index-key
+              key={i}
+              label={labelItem}
+              onClick={() => remove(labelItem)}
             />
           ))}
         </div>

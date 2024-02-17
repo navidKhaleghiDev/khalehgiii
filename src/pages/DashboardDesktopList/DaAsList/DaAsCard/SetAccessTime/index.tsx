@@ -135,7 +135,9 @@ export function SetAccessTime({
     watch('time_limit_duration') === ETimeLimitDuration.PERMANENTLY;
 
   return (
-    <div className="w-full flex justify-center">
+    <div
+      className={`${isEditable ? 'absolute' : ''} flex justify-center w-full`}
+    >
       {!isEditable ? (
         <Card color="white" className="px-2 h-6 w-64 ">
           <div className="flex items-center justify-between  h-full">
@@ -157,7 +159,7 @@ export function SetAccessTime({
               color="tealNoBg"
               onClick={() => setIsEditable(true)}
             />
-            <ToolTip tooltip={t('global.restart')}>
+            <ToolTip position="top" tooltip={t('global.restart')}>
               <IconButton
                 icon={clockCounterClockwiseIcon}
                 color="redNoBg"
