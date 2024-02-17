@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { BaseIcon } from '@ui/atoms/BaseIcon';
 import { IconType } from '@src/types/global';
 import { ColorIndent } from '../types';

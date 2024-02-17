@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { iconButtonStyles } from './styles';
 import { IIconButton } from './types';
 import { BaseIcon } from '../BaseIcon';
