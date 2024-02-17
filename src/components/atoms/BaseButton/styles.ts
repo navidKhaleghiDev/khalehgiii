@@ -5,7 +5,7 @@ const disabledClass =
   'disabled:opacity-100 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:border-2 disabled:shadow-none';
 
 export const baseButtonStyles = cva(
-  `flex items-center justify-center transition duration-150 ease-in-out rounded-md focus:outline-none p-px ${SIZE.TYPOGRAPHY.BODY2} ${disabledClass}`,
+  `flex items-center justify-center transition duration-150 ease-in-out rounded-md focus:outline-none p-px z-10 ${SIZE.TYPOGRAPHY.BODY2} ${disabledClass}`,
   {
     variants: {
       type: {

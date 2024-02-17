@@ -62,8 +62,6 @@ export function LoginForm() {
         handelGetProfile();
       })
       .catch((err) => {
-        console.log({ err });
-
         setError(err);
         setLoadingButton(false);
       });
