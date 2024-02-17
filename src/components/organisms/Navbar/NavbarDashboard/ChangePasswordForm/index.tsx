@@ -120,7 +120,7 @@ export function ChangePasswordForm({ user, logout }: any) {
         />
 
         <BaseButton
-          label="ثبت"
+          label={t('global.confirm')}
           className="mt-8"
           size="md"
           submit
