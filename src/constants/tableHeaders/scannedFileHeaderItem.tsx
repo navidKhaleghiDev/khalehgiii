@@ -15,7 +15,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
   {
     label: 'table.type',
     id: 'file_content_type',
-    type: 'none',
+    type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12',
     size: 'body4',
