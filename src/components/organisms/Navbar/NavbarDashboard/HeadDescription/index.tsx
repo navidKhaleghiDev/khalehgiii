@@ -29,11 +29,11 @@ export function HeadDescription() {
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${remainingDays} ${t('dashboard.dayLeft')}`}
+        {` ${malwareFiles}  ${t('dashboard.infectedFile')}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${malwareFiles}  ${t('dashboard.infectedFile')}`}
+        {` ${remainingDays} ${t('dashboard.dayLeft')}`}
       </Typography>
     </div>
   );

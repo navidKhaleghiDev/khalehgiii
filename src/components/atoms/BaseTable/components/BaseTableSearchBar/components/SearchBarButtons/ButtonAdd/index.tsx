@@ -9,7 +9,7 @@ interface IButtonAdd {
   onClick?: () => void;
 }
 
-export function ButtonAdd({ label, onClick }: IButtonAdd) {
+export function ButtonAdd({ label = '', onClick }: IButtonAdd) {
   const { lang } = useLanguage();
   const position = lang === 'fa' ? 'right' : 'left';
 
