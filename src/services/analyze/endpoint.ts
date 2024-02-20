@@ -22,6 +22,8 @@ export const E_ANALYZE_SCAN_PAGINATION = (
 
 export const E_ANALYZE_SCAN_USER_PAGINATION = (userEmail: string) =>
   `analyze/scan/?username=${userEmail}`;
+export const E_ANALYZE_DOWNLOAD_FILE = (username: string, file_hash: string) =>
+  `analyze/download/?username=${username}&file_hash=${file_hash}`;
 
 export const E_UBA = `analyze/mal_uba/`;
 

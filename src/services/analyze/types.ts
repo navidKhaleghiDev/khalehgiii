@@ -55,7 +55,13 @@ export interface IMimeType {
 }
 
 export interface IAddConfigAnalyze {
+  file_content_type: any;
   id?: number | null;
   log_server_host: string;
   log_server_port: number;
+}
+export interface IAddConfigAnalyzeDownload {
+  file_content_type: string;
+  username: string;
+  file_hash: string;
 }

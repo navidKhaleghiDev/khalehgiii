@@ -19,6 +19,7 @@ import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { languageOptions } from '@src/constants/optios';
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
+import { HeadDescription } from './HeadDescription';
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
@@ -77,15 +78,18 @@ export function NavbarDashboard() {
             </Typography>
           </div>
 
-          {user && !user.is_superuser && (
+          {user && !user.is_superuser ? (
             <div className={timeStyle}>
               <AccessTime />
+            </div>
+          ) : (
+            <div className={timeStyle}>
+              <HeadDescription />
             </div>
           )}
         </div>
 
         <div className="flex">
-          {/* <NavigationButtons /> */}
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />
           </Link>

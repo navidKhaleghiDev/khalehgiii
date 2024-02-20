@@ -9,7 +9,8 @@ export type RoutePathType =
   | 'dashboardAdminsList'
   | 'uba'
   | 'extensionList'
-  | 'dashboardDesktopList';
+  | 'dashboardDesktopList'
+  | 'scannedFileDownload';
 
 export const RoutesName = {
   HOME: 'home',
@@ -33,6 +34,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   dashboardAdminsList: `/${RoutesName.DASHBOARD}/${RoutesName.ADMINS_LIST}`,
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
+  scannedFileDownload: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
   extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
 };
