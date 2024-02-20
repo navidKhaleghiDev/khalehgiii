@@ -8,10 +8,6 @@ import { IUser } from './services/users/types';
 
 const router = createBrowserRouter(routesConfig);
 
-type AppStyle = {
-  direction?: any;
-  fontSize: number;
-};
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const { dir, lang } = useLanguage();
@@ -26,7 +22,7 @@ function App() {
         </Suspense>
         <ToastContainer
           rtl={lang === 'fa'}
-          style={{ direction: dir, fontSize: 20 } as AppStyle}
+          style={{ direction: 'rtl', fontSize: 20 }}
         />
       </div>
     </UserContext.Provider>

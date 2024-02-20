@@ -86,7 +86,8 @@
     "update": "Update",
     "saveSettings": "Save Settings",
     "preparationTheDesktop": "Preparation the Desktop",
-    "extensionList": "Extension Lists"
+    "extensionList": "Extension Lists",
+    "infectedFile": "infected File"
   },
   "global": {
     "userName": "Username",

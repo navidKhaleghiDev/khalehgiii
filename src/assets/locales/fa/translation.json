@@ -86,7 +86,8 @@
     "update": "بروزرسانی",
     "saveSettings": "ذخیره تنظیمات",
     "preparationTheDesktop": "در حال آماده‌سازی دسکتاپ",
-    "extensionList": "لیست extension ها"
+    "extensionList": "لیست extension ها",
+    "infectedFile": "فایل آلوده"
   },
   "global": {
     "userName": "نام کاربری",

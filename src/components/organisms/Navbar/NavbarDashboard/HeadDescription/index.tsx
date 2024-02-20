@@ -16,6 +16,7 @@ export function HeadDescription() {
   );
   const todayScans = data?.data?.info?.today_scans || '0';
   const remainingDays = data?.data?.info?.remaining_days || '--';
+  const malwareFiles = data?.data?.info?.malware_files || '0';
 
   return (
     <div className=" shadow-md rounded-lg h-7 px-2 flex justify-center items-center bg-white ">
@@ -29,6 +30,10 @@ export function HeadDescription() {
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
         {` ${remainingDays} ${t('dashboard.dayLeft')}`}
+      </Typography>
+      <Typography className=" px-1 ">|</Typography>
+      <Typography color="teal" className=" px-2 ">
+        {` ${malwareFiles}  ${t('dashboard.infectedFile')}`}
       </Typography>
     </div>
   );

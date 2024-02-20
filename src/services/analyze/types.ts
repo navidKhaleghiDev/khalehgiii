@@ -42,7 +42,7 @@ export interface IUba {
 }
 
 export interface IScanStats {
-  info: { today_scans: number; remaining_days: number };
+  info: { today_scans: number; remaining_days: number; malware_files: number };
 }
 
 export interface IMimeType {

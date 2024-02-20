@@ -27,7 +27,7 @@ export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
 
 export const API_USERS_DELETE = (id: number) =>
-  http.delete<IAxiosResponse<any>>(E_USERS_DELETE(id));
+  http.delete<IAxiosResponse<number>>(E_USERS_DELETE(id));
 
 interface IDaAsUpdated extends Omit<IDaAs, 'daas_configs'> {
   daas_configs: Partial<IDaasConfig>;
