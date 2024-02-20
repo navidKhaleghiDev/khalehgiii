@@ -5,7 +5,9 @@ export type ActionOnClickActionsType =
   | 'edit'
   | 'details'
   | 'mutate'
-  | 'editLock';
+  | 'editLock'
+  | 'download';
+
 export type OnClickActionsType = (
   action: ActionOnClickActionsType,
   daas?: Partial<IDaAs> | string
