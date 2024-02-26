@@ -71,6 +71,14 @@ export function DashboardCards() {
           onClick={() => navigate(ROUTES_PATH.uba)}
         />
       </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
+          title="گزارشات"
+          description=""
+          onClick={() => navigate(ROUTES_PATH.reports)}
+        />
+      </div>
     </div>
   );
 }

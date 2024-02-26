@@ -7,6 +7,8 @@ import {
   RegisterOptions,
   UseFormSetError,
 } from 'react-hook-form';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { DateObject } from 'react-multi-date-picker';
 import { IconType } from '@src/types/global';
 import { baseInputStyles } from './styles';
 
@@ -57,6 +59,13 @@ export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
   label?: string;
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
+}
+
+export interface DatePickerProps extends BaseInputProps<any> {
+  minDate?: string | number | DateObject | Date;
+  maxDate?: string | number | DateObject | Date;
+  showTimePicker?: boolean;
+  format?: string;
 }
 
 export type ColorIndent = 'default' | 'error' | undefined | null;

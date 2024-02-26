@@ -15,7 +15,13 @@ export function BaseTabelHeader({ header }: PropsType) {
       {header.map((head: IHeaderTable, index: number) => (
         <tr
           key={index}
-          className={`${head.style} flex justify-center items-center font-normal`}
+          className={` flex justify-center items-center font-normal ${
+            head.style
+          } ${
+            head.style && head.style.includes('fixed')
+              ? 'px-2 bg-teal-500 h-10'
+              : ''
+          } `}
           dir={!head.dir ? 'ltr' : head.dir}
         >
           <td className="">

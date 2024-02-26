@@ -35,7 +35,13 @@ export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
         {headers.map((header, colIndex) => (
           <td
             key={colIndex}
-            className={`${header.style} flex justify-center items-center group text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6`}
+            className={`flex justify-center items-center group text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6 header ${
+              header.style
+            }  ${
+              header.style && header.style.includes('fixed')
+                ? 'bg-neutral-100 h-14 px-2'
+                : ''
+            } `}
             dir={!header.dir ? 'ltr' : header.dir}
           >
             {rowCellsComponent({

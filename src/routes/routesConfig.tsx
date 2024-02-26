@@ -6,6 +6,7 @@ import UnauthorizedPage from '@src/pages/Unauthorized';
 import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { DashboardMonitoring } from '@src/pages/DashboardMonitoring';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
+import { Reports } from '@src/pages/Dashboard/Reports';
 
 import { UbaPage } from '@src/pages/Uba';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
@@ -31,6 +32,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboard,
         element: <DashboardPage />,
+      },
+      {
+        path: ROUTES_PATH.reports,
+        element: <Reports />,
       },
       {
         path: ROUTES_PATH.dashboardDesktopList,

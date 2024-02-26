@@ -8,13 +8,15 @@ import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
+const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
+
 export const desktopListHeaderItem: IHeaderTable[] = [
   {
     label: 'table.email',
     id: 'email',
     type: 'none',
     dir: '',
-    style: 'w-40 max-w-full',
+    style: 'w-40 max-w-full fixed',
     size: 'body4',
   },
   {
@@ -22,7 +24,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'http_port',
     type: 'none',
     dir: '',
-    style: 'w-32 max-w-full',
+    style: `w-32 max-w-full ${style} `,
     size: 'body4',
   },
   {
