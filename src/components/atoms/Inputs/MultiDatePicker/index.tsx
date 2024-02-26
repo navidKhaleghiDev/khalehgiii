@@ -9,7 +9,7 @@ import gregorian from 'react-date-object/calendars/gregorian';
 import persian_fa from 'react-date-object/locales/persian_fa';
 import { Controller } from 'react-hook-form';
 import { Typography } from '@ui/atoms/Typography';
-import TimePicker from 'react-multi-date-picker/plugins/time_picker';
+// import TimePicker from 'react-multi-date-picker/plugins/time_picker';
 import DatePicker from 'react-multi-date-picker';
 // import TimePicker from 'react-multi-date-picker/plugins/analog_time_picker';
 
@@ -19,8 +19,8 @@ import { IconInput } from '../IconInput';
 import { IconButtonInput } from '../IconButtonInput';
 
 export function convertI2ToAD(
-  i2Date?: DateObject | DateObject[] | undefined,
-  format = 'YYYY-MM-DD hh:mm:ss'
+  i2Date?: DateObject | DateObject[] | undefined
+  // format = 'YYYY-MM-DD hh:mm:ss'
 ): string | string[] | undefined {
   if (!i2Date) return undefined;
 
@@ -47,7 +47,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
   className,
   maxDate,
   minDate,
-  showTimePicker = false,
+  // showTimePicker = false,
   format = 'YYYY/MM/DD',
 }: DatePickerProps) {
   const containerClass = `${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`;

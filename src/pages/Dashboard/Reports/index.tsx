@@ -3,15 +3,15 @@ import {
   convertI2ToAD,
 } from '@ui/atoms/Inputs/MultiDatePicker';
 import { useForm } from 'react-hook-form';
-import useSWR from 'swr';
+// import useSWR from 'swr';
 
 export function Reports() {
   const { control, watch } = useForm({
     mode: 'onChange',
   });
   console.log(
-    convertI2ToAD(watch('startedDate'), 'YYYY-MM-DD'),
-    convertI2ToAD(watch('endedDate'), 'YYYY-MM-DD')
+    convertI2ToAD(watch('startedDate')),
+    convertI2ToAD(watch('endedDate'))
   );
   // const { data, isLoading, mutate } = useSWR<
   //   PaginationResponseSwr<IMyLearner[]>
