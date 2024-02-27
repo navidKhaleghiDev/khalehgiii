@@ -66,6 +66,13 @@ export interface DatePickerProps extends BaseInputProps<any> {
   maxDate?: string | number | DateObject | Date;
   showTimePicker?: boolean;
   format?: string;
+  timeDuration?: TTimeDuration;
 }
+
+type TTimeDuration = {
+  weekly: boolean;
+  montly: boolean;
+  year: boolean;
+};
 
 export type ColorIndent = 'default' | 'error' | undefined | null;

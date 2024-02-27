@@ -1,6 +1,9 @@
 import { SIZE } from '@src/constants/theme';
 import { cva } from 'class-variance-authority';
 
+const lang = localStorage.getItem('lang');
+const style = lang === 'fa' ? ' left-0' : 'right-0';
+
 export const baseInputStyles = cva(
   'px-2.5 py-2.5 flex block rounded-lg outline-none placeholder-opacity-50 focus:placeholder-opacity-0',
   {
@@ -35,7 +38,7 @@ export const baseInputStyles = cva(
 );
 
 export const iconBaseInputStyles = cva(
-  'absolute inset-y-0 left-0 flex px-2 items-center fill-current ',
+  `absolute inset-y-0 flex px-2 items-center fill-current ${style} `,
   {
     variants: {
       intent: {

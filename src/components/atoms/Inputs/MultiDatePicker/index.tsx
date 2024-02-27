@@ -1,18 +1,19 @@
-/* eslint-disable import/no-duplicates */
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-key */
 import { memo } from 'react';
-import { DateObject } from 'react-multi-date-picker';
-import xIcon from '@iconify-icons/ph/x';
-import calendarIcon from '@iconify-icons/ph/calendar';
+import DatePicker, { DateObject } from 'react-multi-date-picker';
+
+import 'react-multi-date-picker/styles/colors/teal.css';
 import persian from 'react-date-object/calendars/persian';
 import gregorian from 'react-date-object/calendars/gregorian';
+
+import gregorian_en from 'react-date-object/locales/gregorian_en';
 import persian_fa from 'react-date-object/locales/persian_fa';
 import { Controller } from 'react-hook-form';
 import { Typography } from '@ui/atoms/Typography';
-// import TimePicker from 'react-multi-date-picker/plugins/time_picker';
-import DatePicker from 'react-multi-date-picker';
-// import TimePicker from 'react-multi-date-picker/plugins/analog_time_picker';
 
+import { useLanguage } from '@context/settings/languageContext';
+import xIcon from '@iconify-icons/ph/x';
+import calendarIcon from '@iconify-icons/ph/calendar';
 import { DatePickerProps } from '../types';
 import { baseInputStyles } from '../styles';
 import { IconInput } from '../IconInput';
@@ -20,7 +21,6 @@ import { IconButtonInput } from '../IconButtonInput';
 
 export function convertI2ToAD(
   i2Date?: DateObject | DateObject[] | undefined
-  // format = 'YYYY-MM-DD hh:mm:ss'
 ): string | string[] | undefined {
   if (!i2Date) return undefined;
 
@@ -28,7 +28,7 @@ export function convertI2ToAD(
     new DateObject({
       date: date.toDate(),
       calendar: gregorian,
-    }).format('YYYY-MM-DD');
+    }).format('YYYY-MM-DD hh:mm:ss');
 
   return Array.isArray(i2Date) ? i2Date.map(convertDate) : convertDate(i2Date);
 }
@@ -47,7 +47,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
   className,
   maxDate,
   minDate,
-  // showTimePicker = false,
+  timeDuration,
   format = 'YYYY/MM/DD',
 }: DatePickerProps) {
   const containerClass = `${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`;
@@ -57,6 +57,9 @@ export const MultiDatePicker = memo(function MultiDatePicker({
     fullWidth,
     size: 'none',
   });
+  const { lang } = useLanguage();
+  const local = lang === 'fa' ? persian_fa : gregorian_en;
+  const calendar = lang === 'fa' ? persian : gregorian;
 
   return (
     <Controller
@@ -64,7 +67,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
       control={control}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field: { onChange, value }, fieldState: { error } }) => {
+      render={({ field, fieldState: { error } }) => {
         return (
           <div className={containerClass}>
             {label && (
@@ -75,28 +78,30 @@ export const MultiDatePicker = memo(function MultiDatePicker({
               </label>
             )}
             <div className="relative">
-              {value ? (
+              {field.value ? (
                 <IconButtonInput
                   icon={xIcon}
                   intent={intent}
-                  onClick={() => onChange(null)}
+                  onClick={() => {
+                    field.onChange(undefined);
+                  }}
                 />
               ) : (
                 <IconInput icon={calendarIcon} intent={intent} />
               )}
-
               <DatePicker
-                onFocusedDateChange={(newDate) =>
-                  onChange(newDate?.isValid ? newDate : '')
-                }
-                value={value}
+                onlyYearPicker={timeDuration?.year}
+                onlyMonthPicker={timeDuration?.montly}
+                weekPicker={timeDuration?.weekly}
+                onChange={field.onChange}
+                value={field.value}
                 format={format}
-                calendar={persian}
-                // multiple
-                // range
-                locale={persian_fa}
+                calendar={calendar}
+                range
+                locale={local}
                 placeholder={placeholder}
                 calendarPosition="bottom-right"
+                className="teal"
                 containerClassName={containerClass}
                 inputClass={inputClass}
                 minDate={minDate}
