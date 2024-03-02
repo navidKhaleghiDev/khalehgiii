@@ -16,7 +16,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
+import { useTheme } from '@context/settings/themeContext';
 import { languageOptions } from '@src/constants/optios';
+import { BaseSwitchOnClick } from '@ui/atoms/Inputs/BaseSwitchOnClick';
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
@@ -26,6 +28,7 @@ export function NavbarDashboard() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const { user, setUser } = useUserContext();
+  const { toggleTheme, theme } = useTheme();
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
@@ -93,6 +96,10 @@ export function NavbarDashboard() {
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />
           </Link>
+          <BaseSwitchOnClick
+            pureValue={theme === 'light'}
+            pureOnChange={() => toggleTheme()}
+          />
         </div>
       </div>
       <Modal

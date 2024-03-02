@@ -61,11 +61,11 @@ export const iconInButtonStyles = cva('fill-current ', {
 });
 
 export const iconButtonStyles = cva(
-  'fill-current rounded p-1 flex items-center justify-center',
+  'fill-current rounded p-1 flex items-center justify-center dark:bg-red-500 dark:p-10',
   {
     variants: {
       color: {
-        teal: 'bg-teal-600 text-neutral-100',
+        teal: 'bg-teal-600 text-neutral-100 ',
         tealNoBg: 'text-teal-600',
         neutral: 'bg-neutral-200 text-teal-600',
         neutralNoBg: 'text-neutral-600',

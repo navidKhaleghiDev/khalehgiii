@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';
+import { useTheme } from '@context/settings/themeContext';
 import { IUser } from './services/users/types';
 
 const router = createBrowserRouter(routesConfig);
@@ -11,12 +12,14 @@ const router = createBrowserRouter(routesConfig);
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const { dir, lang } = useLanguage();
+  const { theme } = useTheme();
+  console.log(theme);
 
   const userValue = useMemo(() => ({ user, setUser }), [user]);
 
   return (
     <UserContext.Provider value={userValue}>
-      <div dir={dir}>
+      <div dir={dir} className={theme}>
         <Suspense>
           <RouterProvider router={router} />
         </Suspense>
