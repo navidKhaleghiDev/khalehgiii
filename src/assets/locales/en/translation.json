@@ -141,7 +141,8 @@
     "downloadAccess": "download Access",
     "allowedTypeForDownload": "allowed Type For Download",
     "allowedTypeForUpload": "allowed Type For Upload",
-    "doseNot": "does not "
+    "doseNot": "does not ",
+    "onlineUsers": "Online Users"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

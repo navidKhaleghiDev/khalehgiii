@@ -17,14 +17,14 @@ export function getPasswordStrength(
     return score;
   }
 
-  console.log('teal', /^[a-zA-Z0-9@#$%^&*()].*$/.test(password));
-  console.log(
-    'yellow',
-    /^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[A-Z])).{6,64}$/.test(
-      password
-    )
-  );
-  console.log('red', /^(?=.*[a-zA-Z0-9]).{6,64}$/.test(password));
+  // console.log('teal', /^[a-zA-Z0-9@#$%^&*()].*$/.test(password));
+  // console.log(
+  //   'yellow',
+  //   /^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[A-Z])).{6,64}$/.test(
+  //     password
+  //   )
+  // );
+  // console.log('red', /^(?=.*[a-zA-Z0-9]).{6,64}$/.test(password));
 
   switch (true) {
     case /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$&_*\s]).{6,64}$/.test(

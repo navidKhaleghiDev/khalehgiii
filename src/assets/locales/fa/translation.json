@@ -141,7 +141,8 @@
     "downloadAccess": "دسترسی دانلود",
     "allowedTypeForUpload": "تایپ های مجاز آپلود",
     "allowedTypeForDownload": "تایپ های مجاز دانلود",
-    "doesNot": "ندارد"
+    "doesNot": "ندارد",
+    "onlineUsers": "یوزر آنلاین"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

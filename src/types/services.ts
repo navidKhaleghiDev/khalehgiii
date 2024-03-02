@@ -17,6 +17,7 @@ export interface IServerResponsePagination<T> {
 
 export interface IResponsePagination<T> {
   data: {
+    online_users?: number;
     count: number;
     next: string;
     previous: string;

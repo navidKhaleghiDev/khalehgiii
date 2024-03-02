@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { memo } from 'react';
 import DatePicker, { DateObject } from 'react-multi-date-picker';
 

@@ -19,7 +19,7 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
     component: (
       <ComponentCell row={row} header={header} id={id} onClick={onClick} />
     ),
-    function: <FunctionCell row={row} head={header} id={id} />,
+    function: <FunctionCell row={row} header={header} id={id} />,
     action: <ActionCell row={row} header={header} id={id} onClick={onClick} />,
     user: <UserCell row={row} header={header} id={id} onClick={onClick} />,
     tooltip: <TooltipCell row={row} header={header} id={id} />,

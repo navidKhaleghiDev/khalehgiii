@@ -7,7 +7,6 @@ import {
   RegisterOptions,
   UseFormSetError,
 } from 'react-hook-form';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { DateObject } from 'react-multi-date-picker';
 import { IconType } from '@src/types/global';
 import { baseInputStyles } from './styles';

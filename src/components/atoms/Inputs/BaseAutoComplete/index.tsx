@@ -106,8 +106,6 @@ export function BaseAutoComplete(props: BaseInputProps<any>) {
       rules={rules}
       defaultValue={defaultValue}
       render={({ fieldState: { error } }) => {
-        console.log({ selected });
-
         return (
           <div className={`${className} ${fullWidth && 'w-full'} relative`}>
             {label && (
