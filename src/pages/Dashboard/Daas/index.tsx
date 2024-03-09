@@ -10,7 +10,7 @@ export function Daas({ src }: any) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 5000);
 
     return () => {
       clearTimeout(timer);
@@ -23,7 +23,7 @@ export function Daas({ src }: any) {
         {t('dashboard.preparationTheDesktop')}
       </Typography>
       <div className="w-1/2">
-        <ProgressBar durationInSeconds={3} />
+        <ProgressBar durationInSeconds={5} />
       </div>
     </div>
   ) : (

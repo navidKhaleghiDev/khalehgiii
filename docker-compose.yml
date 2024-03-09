@@ -2,6 +2,7 @@ version: '3.4'
 services:
   vite_docker:
     image: node:alpine
+    restart: always
     container_name: vite_docker
     environment:
       - VITE_CLIENT_BASE_URL=http://192.168.200.2:8000
