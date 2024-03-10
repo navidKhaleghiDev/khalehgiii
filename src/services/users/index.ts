@@ -12,6 +12,7 @@ import {
   E_UPDATE_USER,
   E_USERS_DELETE,
   E_USERS,
+  E_USERS_LOGOUT,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -44,6 +45,7 @@ export const API_DAAS_RESET_USAGE_DAAS = (id: string) =>
 
 export const API_DAAS_RESET_ALL_USAGE_DAAS = () =>
   http.get(E_USERS_DAAS_RESET_ALL_USAGE);
+export const API_USERS_LOGOUT = (body) => http.post(E_USERS_LOGOUT, body);
 
 export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
   http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(

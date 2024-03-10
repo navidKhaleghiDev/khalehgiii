@@ -10,7 +10,11 @@ import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
 
 import { useUserContext } from '@context/user/userContext';
-import { http } from '@src/services/http';
+import {
+  STORAGE_KEY_REFRESH_TOKEN,
+  STORAGE_KEY_TOKEN,
+  http,
+} from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +23,8 @@ import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { useTheme } from '@context/settings/themeContext';
 import { languageOptions } from '@src/constants/optios';
 import { BaseSwitchOnClick } from '@ui/atoms/Inputs/BaseSwitchOnClick';
+import { API_USERS_LOGOUT } from '@src/services/users';
+import cookie from 'js-cookie';
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
@@ -32,14 +38,25 @@ export function NavbarDashboard() {
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
+  const access = cookie.get(STORAGE_KEY_TOKEN);
+  const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+  async function logoutFunction() {
+    const data = {
+      access_token: access,
+      refresh_token: refresh,
+    };
+
+    await API_USERS_LOGOUT(data);
+  }
   const logout = () => {
+    logoutFunction();
     setUser(null);
     http.removeAuthHeader();
     navigate(ROUTES_PATH.login);
   };
 
   return (
-    <nav className="w-full bg-black px-8 2xl:container h-12">
+    <nav className="w-full bg-black dark:bg-slate-800 px-8 2xl:container h-12">
       <div className="flex items-center justify-between ">
         <div className="flex items-center">
           <ToolTip tooltip={t('global.exit')} position="bottom">

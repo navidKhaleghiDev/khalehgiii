@@ -27,7 +27,7 @@ export function convertI2ToAD(
     new DateObject({
       date: date.toDate(),
       calendar: gregorian,
-    }).format('YYYY-MM-DD hh:mm:ss');
+    }).format('YYYY-MM-DD');
 
   return Array.isArray(i2Date) ? i2Date.map(convertDate) : convertDate(i2Date);
 }

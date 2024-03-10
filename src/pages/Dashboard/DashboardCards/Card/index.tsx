@@ -12,7 +12,7 @@ export function Card({ icon, title, description, onClick }: PropsType) {
   return (
     <button
       type="button"
-      className="w-full h-16 flex items-center bg-white hover:bg-gray-200 rounded-md shadow-xl disabled:hover:bg-white text-right"
+      className="w-full h-16 flex items-center bg-white dark:bg-slate-800 dark:hover:bg-cyan-900 hover:bg-gray-200 rounded-md shadow-xl disabled:hover:bg-white text-right"
       onClick={onClick}
       disabled={!onClick}
     >

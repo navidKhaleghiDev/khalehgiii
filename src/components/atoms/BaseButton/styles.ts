@@ -5,7 +5,7 @@ const disabledClass =
   'disabled:opacity-100 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:border-2 disabled:shadow-none ';
 
 export const baseButtonStyles = cva(
-  `flex items-center justify-center transition duration-150 ease-in-out rounded-md focus:outline-none p-px z-10 ${SIZE.TYPOGRAPHY.BODY2} ${disabledClass}`,
+  `flex items-center justify-center transition duration-150 ease-in-out rounded-md focus:outline-none p-px z-10  dark:bg-black ${SIZE.TYPOGRAPHY.BODY2} ${disabledClass}`,
   {
     variants: {
       type: {
@@ -61,11 +61,11 @@ export const iconInButtonStyles = cva('fill-current ', {
 });
 
 export const iconButtonStyles = cva(
-  'fill-current rounded p-1 flex items-center justify-center dark:bg-red-500 dark:p-10',
+  'fill-current rounded p-1 flex items-center justify-center',
   {
     variants: {
       color: {
-        teal: 'bg-teal-600 text-neutral-100 ',
+        teal: 'bg-teal-600 text-neutral-100 dark:bg-gray-600 ',
         tealNoBg: 'text-teal-600',
         neutral: 'bg-neutral-200 text-teal-600',
         neutralNoBg: 'text-neutral-600',

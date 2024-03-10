@@ -14,6 +14,7 @@ type Theme = 'light' | 'dark';
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
+  isDark: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -26,17 +27,18 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState(
     themeMode === null || undefined || '' ? 'dark' : themeMode
   );
+  const isDark = localStorage.getItem('theme') === 'dark';
 
   const toggleTheme = useCallback(() => {
     localStorage.setItem(
       'theme',
       localStorage.getItem('theme') === 'light' ? 'dark' : 'light'
     );
-    setTheme(themeMode as string);
+    setTheme(localStorage.getItem('theme') as string);
   }, []);
   const contextValue = useMemo(
-    () => ({ theme, toggleTheme }),
-    [theme, toggleTheme]
+    () => ({ theme, toggleTheme, isDark }),
+    [theme, toggleTheme, isDark]
   );
   return (
     <ThemeContext.Provider value={contextValue as ThemeContextType}>

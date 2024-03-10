@@ -25,6 +25,9 @@ export const E_ANALYZE_SCAN_USER_PAGINATION = (userEmail: string) =>
 export const E_ANALYZE_DOWNLOAD_FILE = (username: string, file_hash: string) =>
   `analyze/download/?username=${username}&file_hash=${file_hash}`;
 
+export const E_ANALYZE_REPORTS = (start_date: string, end_date: string) =>
+  `${E_ANALYZE_SCAN_STATS}?start_date=${start_date}&end_date=${end_date}`;
+
 export const E_UBA = `analyze/mal_uba/`;
 
 export const E_UBA_LIST_PAGINATION = ({

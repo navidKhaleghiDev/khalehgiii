@@ -1,4 +1,4 @@
-import { useRef, useReducer } from 'react';
+import { useRef, useReducer, useState } from 'react';
 import {
   MultiDatePicker,
   convertI2ToAD,
@@ -17,7 +17,8 @@ import {
   Tooltip,
 } from 'chart.js';
 import { BaseButton } from '@ui/atoms';
-// import useSWR from 'swr';
+import { IAddConfig } from '@src/services/config/types';
+import { API_GET_REPORTS } from '@src/services/config';
 
 ChartJS.register(
   LinearScale,
@@ -75,6 +76,7 @@ const reducer = (
   }
 };
 export function Reports() {
+  const [reports, setReports] = useState([]);
   const initialState = {
     weekly: false,
     montly: false,
@@ -83,26 +85,50 @@ export function Reports() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const { control, watch } = useForm({
-    mode: 'onChange',
-  });
-  console.log(convertI2ToAD(watch('startedDate')));
-  // const { data, isLoading, mutate } = useSWR<
-  //   PaginationResponseSwr<IMyLearner[]>
-  // >(
-  //   E_AI_MY_LEARNER_PAGINATION({
-  //     page: currentPage,
-  //     pageSize: LIMIT_MU_LISTENER_LIST,
-  //     time_from: convertI2ToAD(watch('startDate'), 'YYYY-MM-DD'),
-  //     time_to: convertI2ToAD(watch('endDate'), 'YYYY-MM-DD'),
-  //     listener_id: watch('listener_id'),
-  //   }),
-  //   http.fetcherSWR,
-  //   {
-  //     revalidateOnFocus: false,
-  //     errorRetryCount: 0,
-  //   }
-  // );
+  const { control, handleSubmit, reset, getValues, formState } =
+    useForm<IAddConfig>({
+      mode: 'onChange',
+      defaultValues: {
+        start_date: '',
+        end_date: '',
+      },
+    });
+
+  const handleOnSubmit = async (data: IAddConfig) => {
+    const updatedData = {
+      start_date: convertI2ToAD(data.start_date[0]),
+      end_date: convertI2ToAD(data.start_date[1]),
+    };
+
+    if (updatedData) {
+      // update
+      await API_GET_REPORTS(updatedData)
+        .then((res) => {
+          console.log(res);
+          setReports(res.data);
+          // toast.success(t('global.sucessfulyUpdated'));
+        })
+        .catch((err) => {
+          console.log(err);
+          // toast.error(err);
+        });
+    }
+  };
+
+  const monthsArray = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   const options = {
     responsive: true,
@@ -116,58 +142,59 @@ export function Reports() {
       },
     },
   };
+  console.log(reports);
 
   const ref = useRef();
 
-  // function triggerTooltip(chart: ChartJS | null) {
-  //   const tooltip = chart?.tooltip;
+  function triggerTooltip(chart: ChartJS | null) {
+    const tooltip = chart?.tooltip;
 
-  //   if (!tooltip) {
-  //     return;
-  //   }
+    if (!tooltip) {
+      return;
+    }
 
-  //   if (tooltip.getActiveElements().length > 0) {
-  //     tooltip.setActiveElements([], { x: 0, y: 0 });
-  //   } else {
-  //     const { chartArea } = chart;
+    if (tooltip.getActiveElements().length > 0) {
+      tooltip.setActiveElements([], { x: 0, y: 0 });
+    } else {
+      const { chartArea } = chart;
 
-  //     tooltip.setActiveElements(
-  //       [
-  //         {
-  //           datasetIndex: 0,
-  //           index: 2,
-  //         },
-  //         {
-  //           datasetIndex: 1,
-  //           index: 2,
-  //         },
-  //       ],
-  //       {
-  //         x: (chartArea.left + chartArea.right) / 2,
-  //         y: (chartArea.top + chartArea.bottom) / 2,
-  //       }
-  //     );
-  //   }
+      tooltip.setActiveElements(
+        [
+          {
+            datasetIndex: 0,
+            index: 2,
+          },
+          {
+            datasetIndex: 1,
+            index: 2,
+          },
+        ],
+        {
+          x: (chartArea.left + chartArea.right) / 2,
+          y: (chartArea.top + chartArea.bottom) / 2,
+        }
+      );
+    }
 
-  //   chart.update();
-  // }
+    chart.update();
+  }
 
   const data = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: monthsArray,
     datasets: [
       {
         label: 'First dataset',
-        data: [33, 53, 85, 41, 44, 65],
+        data: reports,
         fill: true,
         backgroundColor: 'rgba(75,192,192,0.2)',
         borderColor: 'rgba(75,192,192,1)',
       },
-      {
-        label: 'Second dataset',
-        data: [33, 25, 35, 51, 54, 76],
-        fill: false,
-        borderColor: '#742774',
-      },
+      // {
+      //   label: 'Second dataset',
+      //   data: [33, 25, 35, 51, 54, 76],
+      //   fill: false,
+      //   borderColor: '#742774',
+      // },
     ],
   };
 
@@ -197,25 +224,32 @@ export function Reports() {
           onClick={() => dispatch({ type: 'year' })}
         />
       </div>
-      <div className="col-span-3  mt-20">
-        <MultiDatePicker
-          timeDuration={state}
-          control={control}
-          placeholder="startedDate"
-          id="startedDate"
-          name="startedDate"
-          format="YYYY-MM-DD"
-          maxDate={new Date()}
-          fullWidth
-        />
-      </div>
+      <form className="" onSubmit={handleSubmit(handleOnSubmit)}>
+        <div className="col-span-3  mt-20">
+          <MultiDatePicker
+            timeDuration={state}
+            control={control}
+            placeholder="start_date"
+            id="start_date"
+            name="start_date"
+            format="YYYY-MM-DD"
+            maxDate={new Date()}
+            fullWidth
+          />
+        </div>
+        {/* <BaseButton label="shadow" type="secondary" /> */}
+        <button type="submit" className="bg-red-500 w-f h-15">
+          submit
+        </button>
+      </form>
+
       <div className="col-span-4  p-10 ">
         <Chart ref={ref} type="bar" data={data} options={options} />
       </div>
       <div className="col-span-4  p-10 ">
         <Chart ref={ref} type="line" data={data} options={options} />
       </div>
-      <div className="col-span-4  p-10 ">
+      {/* <div className="col-span-4  p-10 ">
         <Chart ref={ref} type="pie" data={data} options={options} />
       </div>
       <div className="col-span-4  p-10 ">
@@ -232,7 +266,7 @@ export function Reports() {
       </div>
       <div className="col-span-4  p-10 ">
         <Chart ref={ref} type="bubble" data={data} options={options} />
-      </div>
+      </div> */}
     </div>
   );
 }
