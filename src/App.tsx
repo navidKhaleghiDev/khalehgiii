@@ -13,8 +13,6 @@ function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const { dir, lang } = useLanguage();
   const { theme } = useTheme();
-  console.log(theme);
-
   const userValue = useMemo(() => ({ user, setUser }), [user]);
 
   return (
