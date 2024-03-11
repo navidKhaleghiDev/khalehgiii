@@ -1,6 +1,12 @@
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { IAxiosResponse, IServerResponse } from '@src/types/services';
-import { IBodyUsersLogin, IResponseLogin, IDaAs, IUser } from './types';
+import {
+  IBodyUsersLogin,
+  IResponseLogin,
+  IDaAs,
+  IUser,
+  IBodyUsersLogout,
+} from './types';
 import {
   E_MALWARE_ANTIVIRUS,
   E_USERS_DAAS_DELETE,
@@ -45,7 +51,8 @@ export const API_DAAS_RESET_USAGE_DAAS = (id: string) =>
 
 export const API_DAAS_RESET_ALL_USAGE_DAAS = () =>
   http.get(E_USERS_DAAS_RESET_ALL_USAGE);
-export const API_USERS_LOGOUT = (body) => http.post(E_USERS_LOGOUT, body);
+export const API_USERS_LOGOUT = (body: IBodyUsersLogout) =>
+  http.post(E_USERS_LOGOUT, body);
 
 export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
   http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(

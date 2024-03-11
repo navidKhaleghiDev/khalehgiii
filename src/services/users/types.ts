@@ -41,6 +41,10 @@ export interface IBodyUsersLogin {
   password: string;
   // is_admin: boolean;
 }
+export interface IBodyUsersLogout {
+  refresh_token: string;
+}
+
 export interface IResponseLogin {
   info?: string;
   http?: string;
