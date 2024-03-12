@@ -20,7 +20,7 @@ export const API_ADD_UPDATE = (body: IAddConfig) =>
   );
 
 export const API_GET_REPORTS = (body: IFormDate) =>
-  HTTP_ANALYSES.get<IAddConfig, IAxiosResponse<IAddConfig[]>>(
+  HTTP_ANALYSES.get<IAddConfig, IAxiosResponse<IFormDate[]>>(
     `${E_ANALYZE_REPORTS(body.start_date, body.end_date)}`
   );
 export const API_CONFIG_LIST = () =>

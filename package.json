@@ -35,6 +35,7 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.202",
+    "@types/moment-jalaali": "^0.7.9",
     "@types/node": "^20.2.5",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",

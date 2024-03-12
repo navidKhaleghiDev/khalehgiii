@@ -43,8 +43,8 @@ export function NavbarDashboard() {
   const logout = () => {
     logoutFunction();
     setUser(null);
-    // http.removeAuthHeader();
-    // navigate(ROUTES_PATH.login);
+    http.removeAuthHeader();
+    navigate(ROUTES_PATH.login);
   };
 
   return (
