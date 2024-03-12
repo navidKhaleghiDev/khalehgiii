@@ -1,5 +1,6 @@
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { IAxiosResponse } from '@src/types/services';
+import { IFormDate } from '@src/pages/Dashboard/Reports/types';
 import { IAddConfig, IDaasConfig, IFileType } from './types';
 import {
   E_CONFIG,
@@ -7,7 +8,7 @@ import {
   E_UPDATE_DELETE_CONFIG,
   E_WHITE_LIST_FILES,
 } from './endpoint';
-import { E_ANALYZE_REPORTS, E_ANALYZE_SCAN_STATS } from '../analyze/endpoint';
+import { E_ANALYZE_REPORTS } from '../analyze/endpoint';
 
 export const API_ADD_CONFIG = (body: IAddConfig) =>
   http.post<IAddConfig, IAxiosResponse<IAddConfig[]>>(E_CONFIG, body);
@@ -18,7 +19,7 @@ export const API_ADD_UPDATE = (body: IAddConfig) =>
     body
   );
 
-export const API_GET_REPORTS = (body: IAddConfig) =>
+export const API_GET_REPORTS = (body: IFormDate) =>
   HTTP_ANALYSES.get<IAddConfig, IAxiosResponse<IAddConfig[]>>(
     `${E_ANALYZE_REPORTS(body.start_date, body.end_date)}`
   );

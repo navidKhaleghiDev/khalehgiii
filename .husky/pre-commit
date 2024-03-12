@@ -5,7 +5,7 @@
 echo '🏗️👷 Styling, testing and building your project before committing'
 
 # Check ESLint Standards
-npm run  ||
+npm run build ||
 (
         echo '😤🏀👋😤 Get that weak s**t out of here! 😤🏀👋😤 
                 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
