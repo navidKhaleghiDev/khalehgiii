@@ -66,6 +66,7 @@ export interface DatePickerProps extends BaseInputProps<any> {
   showTimePicker?: boolean;
   format?: string;
   timeDuration?: TTimeDuration;
+  submitButton?: boolean;
 }
 
 type TTimeDuration = {

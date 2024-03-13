@@ -13,6 +13,7 @@ import { Typography } from '@ui/atoms/Typography';
 import { useLanguage } from '@context/settings/languageContext';
 import xIcon from '@iconify-icons/ph/x';
 import calendarIcon from '@iconify-icons/ph/calendar';
+import { BaseButton } from '@ui/atoms/BaseButton';
 import { DatePickerProps } from '../types';
 import { baseInputStyles } from '../styles';
 import { IconInput } from '../IconInput';
@@ -48,6 +49,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
   minDate,
   timeDuration,
   format = 'YYYY/MM/DD',
+  submitButton = false,
 }: DatePickerProps) {
   const containerClass = `${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`;
   const inputClass = baseInputStyles({
@@ -105,7 +107,16 @@ export const MultiDatePicker = memo(function MultiDatePicker({
                 inputClass={inputClass}
                 minDate={minDate}
                 maxDate={maxDate}
-              />
+              >
+                {submitButton && (
+                  <BaseButton
+                    className="flex mx-auto  "
+                    type="default"
+                    submit
+                    label="submit"
+                  />
+                )}
+              </DatePicker>
             </div>
             {!hiddenError && (
               <Typography color="red" size="caption" className="h-6">

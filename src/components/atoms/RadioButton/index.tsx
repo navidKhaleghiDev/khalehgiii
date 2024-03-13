@@ -10,7 +10,7 @@ export interface IRadioButton {
 function RadioButton({ value, label, checked, onChange }: IRadioButton) {
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className="bg-red-500 ">
+    <label className=" flex gap-2">
       <input type="radio" value={value} checked={checked} onChange={onChange} />
       {label}
     </label>
