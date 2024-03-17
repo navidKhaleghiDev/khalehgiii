@@ -32,7 +32,10 @@ ChartJS.register(
   Tooltip
 );
 let activeState = 'normal';
-let condition = '';
+
+const HOURLY_FORMAT = 'HH:mm';
+const DAILY_FORMAT = 'dddd';
+const MONTLY_FORMAT = 'MMMM';
 const reducer = (
   _state: {
     weekly: boolean;
@@ -85,14 +88,112 @@ const reducer = (
   }
 };
 
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    },
+    title: {
+      display: false,
+      text: 'Chart.js Bar Chart',
+    },
+  },
+};
+
+const daysOfWeek = [
+  'Saturday',
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+];
+
+type TDataSet = {
+  label: string;
+  data: string[];
+  fill: boolean;
+  backgroundColor: string;
+  borderColor: string;
+};
+
+type TDataType = 'hourly' | 'daily' | 'monthly';
+type TData = Record<string, number>;
+
+const formatData = {
+  hourly: HOURLY_FORMAT,
+  monthly: MONTLY_FORMAT,
+  daily: DAILY_FORMAT,
+};
+
+type TDataGeneratorReturn = {
+  labels: string[];
+  datasets: Array<{
+    label: string;
+    data: number[];
+    fill: boolean;
+    backgroundColor: string;
+    borderColor: string;
+  }>;
+};
+
+function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
+  const isDaily = formatData[type] === DAILY_FORMAT;
+  const dataList: number[] = [];
+  const labelList: string[] = [];
+  const weeksKey: string[] = [];
+  if (Object.keys(data).length > 0) {
+    Object.entries(data).forEach(([key, value]) => {
+      if (isDaily) {
+        const weekStart = moment(key).startOf('isoWeek');
+        const weekKey = weekStart.format('jYYYY-jMM-jDD');
+        if (!dataList[weekKey]) {
+          dataList[weekKey] = {};
+          weeksKey.push(weekKey);
+        }
+        dataList[weekKey][moment(key).format(formatData[type])] = value;
+      } else {
+        dataList.push(value);
+        labelList.push(moment(key).format(formatData[type]));
+      }
+    });
+  }
+  const dailyDataset = () =>
+    Object.values(dataList).map((listData, i) => {
+      return {
+        label: `week ${i + 1}`,
+        data: listData,
+        fill: false,
+      };
+    });
+  const result = dailyDataset();
+
+  return {
+    datasets: isDaily
+      ? result
+      : [
+          {
+            label: '',
+            data: dataList,
+            fill: true,
+          },
+        ],
+    labels: labelList,
+  };
+}
+
 export function Reports() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [reports, setReports] = useState({ records: '', type: '' });
+  const ref = useRef();
+  const [recordsData, setRecordsData] = useState({});
   const initialState = {
     weekly: false,
     montly: false,
     year: false,
   };
+  const [flag, setFlag] = useState<TDataType>('daily');
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -109,13 +210,11 @@ export function Reports() {
       start_date: convertI2ToAD(data.start_date[0]),
       end_date: convertI2ToAD(data.start_date[1]),
     };
-
     if (updatedData) {
-      // update
       await API_GET_REPORTS(updatedData as any)
         .then((res) => {
-          console.log(res);
-          setReports(res.data as any);
+          setRecordsData(res.data.records as any);
+          setFlag(res.data.type);
           // toast.success(t('global.sucessfulyUpdated'));
         })
         .catch((err) => {
@@ -125,131 +224,11 @@ export function Reports() {
     }
   };
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: false,
-        text: 'Chart.js Bar Chart',
-      },
-    },
-  };
-  const hourly = reports.type === 'hourly';
-  const daily = reports.type === 'daily';
-  const montly = reports.type === 'montly';
-  const dateConvertor = (
-    isoDate: any,
-    format = 'YYYY-M-D HH:mm:ss',
-    local: 'fa'
-  ) => {
-    const newConvertedData = {} as any;
-    moment.locale(local);
-    Object.entries(isoDate).forEach(([d, value]) => {
-      const date = moment(d).format(
-        // format.replace('jMMMM', monthNames[moment(d).jMonth()])
-        format
-      );
-      newConvertedData[date] = value;
-    });
-    return newConvertedData;
-  };
-  switch (reports.type) {
-    case 'hourly':
-      condition = 'HH:mm';
-      break;
-    case 'daily':
-      condition = 'dddd';
-      break;
-    case 'monthly':
-      condition = 'MMMM';
-      break;
-    default:
-      condition = 'HH:mm';
-      break;
-  }
-  const ref = useRef();
-  // console.log(Object.keys(dateConvertor(reports?.records, condition, 'fa')));
-  // console.log(Object.keys(dateConvertor(reports?.records, 'jMMMM', 'fa')));
-
-  const splitDataByWeek = (originalData) => {
-    const dataByWeek = {};
-
-    Object.entries(originalData).forEach(([date, value]) => {
-      const weekStart = moment(date).startOf('isoWeek');
-      const weekKey = weekStart.format('YYYY-MM-DD');
-
-      if (!dataByWeek[weekKey]) {
-        dataByWeek[weekKey] = {};
-      }
-
-      dataByWeek[weekKey][date] = value;
-    });
-
-    return Object.values(dataByWeek);
-  };
-  // const data = [
-  //   {
-  //     '2024-03-01 00:00:00': 3,
-  //     '2024-03-02 00:00:00': 0,
-  //     ' 2024-03-03 00:00:00': 0,
-  //   },
-  //   {
-  //     '2024-03-04 00:00:00': 0,
-  //     '2024-03-05 00:00:00': 1,
-  //     '2024-03-06 00:00:00': 6,
-  //     '2024-03-07 00:00:00': 0,
-  //     '2024-03-08 00:00:00': 8,
-  //     '2024-03-09 00:00:00': 0,
-  //     '2024-03-10 00:00:00': 0,
-  //   },
-  //   {
-  //     '2024-03-03 00:00:00': 10,
-  //   },
-  // ];
-
-  //  const resultData =  splitDataByWeek(reports?.records)[0]
-
-  console.log(splitDataByWeek(reports?.records));
+  console.log(dataGenerator(flag, recordsData).datasets, '=======<');
+  console.log(dataGenerator(flag, recordsData).labels, '----->');
   const dataList = {
-    labels: Object.keys(dateConvertor(reports?.records, condition, 'fa')),
-    datasets: [
-      {
-        label: 'first week ',
-        data: splitDataByWeek(reports?.records)[0],
-        fill: true,
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: 'rgba(75,192,192,1)',
-      },
-      {
-        label: 'first week ',
-        data: splitDataByWeek(reports?.records)[1],
-        fill: true,
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: 'rgba(75,192,192,1)',
-      },
-      {
-        label: 'first week ',
-        data: splitDataByWeek(reports?.records)[2],
-        fill: true,
-        backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: 'rgba(75,192,192,1)',
-      },
-      // {
-      //   label: 'second week ',
-      //   data: splitDataByWeek(reports?.records)[1],
-      //   fill: true,
-      //   borderColor: '#742774',
-      // },
-      // {
-      //   label: 'tirth week',
-      //   data: splitDataByWeek(reports?.records)[2],
-      //   fill: true,
-      //   borderColor: '#742774',
-      // },
-    ],
+    labels: dataGenerator(flag, recordsData).labels,
+    datasets: dataGenerator(flag, recordsData).datasets,
   };
 
   return (
@@ -295,184 +274,3 @@ export function Reports() {
     </div>
   );
 }
-
-// const data = {
-//   // year
-//   '2015-10-31 00:00:00': 20,
-//   '2016-11-29 00:00:00': 7,
-//   '2017-12-29 00:00:00': 16,
-//   '2028-01-29 00:00:00': 1,
-//   '2019-02-29 00:00:00': 8,
-//   '2020-03-29 00:00:00': 50,
-//   '2022-04-30 00:00:00': 120,
-//   '2023-05-29 00:00:00': 75,
-//   '2024-06-29 00:00:00': 88,
-// };
-
-// const monthsArray = {
-//   persian: [
-//     'فروردين',
-//     'ارديبهشت',
-//     'خرداد',
-//     'تير',
-//     'مرداد',
-//     'شهريور',
-//     'مهر',
-//     'آبان',
-//     'آذر',
-//     'دي',
-//     'بهمن',
-//     'اسفند',
-//   ],
-//   gregorian: [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December',
-//   ],
-// };
-
-// const dayArray = {
-//   persian: [
-//     'شنبه',
-//     'يكشنبه',
-//     'دوشنبه',
-//     'سه شنبه',
-//     'چهارشنبه',
-//     'پنج شنبه',
-//     'جمعه',
-//   ],
-//   gregorian: [
-//     'Saturday',
-//     'Sunday',
-//     'Monday',
-//     'Tuesday',
-//     'Wednesday',
-//     'Thursday',
-//     'Friday',
-//   ],
-// };
-
-// const hourArray = [
-//   '00',
-//   '01',
-//   '02',
-//   '03',
-//   '04',
-//   '05',
-//   '06',
-//   '07',
-//   '08',
-//   '09',
-//   '10',
-//   '11',
-//   '12',
-//   '13',
-//   '14',
-//   '15',
-//   '16',
-//   '17',
-//   '18',
-//   '19',
-//   '20',
-//   '21',
-//   '22',
-//   '23',
-// ];
-// const monthNames = [
-//   'فروردین',
-//   'اردیبهشت',
-//   'خرداد',
-//   'تیر',
-//   'مرداد',
-//   'شهریور',
-//   'مهر',
-//   'آبان',
-//   'آذر',
-//   'دی',
-//   'بهمن',
-//   'اسفند',
-// ];
-// console.log(
-//   dateConvertor(data, 'jMMMM', 'fa'),
-//   dateConvertor(data, 'jYYYY-jM-jD', 'fa')
-// );
-// console.log(data);
-// const splitDataByYear = (originalData) => {
-//   const dataByYear = {};
-
-//   Object.entries(originalData).forEach(([date, value]) => {
-//     const year = moment(date).jYear();
-//     if (!dataByYear[year]) {
-//       dataByYear[year] = {};
-//     }
-
-//     dataByYear[year][date] = value;
-//   });
-
-//   return dataByYear;
-// };
-
-// const result = splitDataByYear(data);
-// console.log(Object.keys(result)[0]);
-
-// function triggerTooltip(chart: ChartJS | null) {
-//   const tooltip = chart?.tooltip;
-
-//   if (!tooltip) {
-//     return;
-//   }
-
-//   if (tooltip.getActiveElements().length > 0) {
-//     tooltip.setActiveElements([], { x: 0, y: 0 });
-//   } else {
-//     const { chartArea } = chart;
-
-//     tooltip.setActiveElements(
-//       [
-//         {
-//           datasetIndex: 0,
-//           index: 2,
-//         },
-//         {
-//           datasetIndex: 1,
-//           index: 2,
-//         },
-//       ],
-//       {
-//         x: (chartArea.left + chartArea.right) / 2,
-//         y: (chartArea.top + chartArea.bottom) / 2,
-//       }
-//     );
-//   }
-
-//   chart.update();
-// }
-
-// const firstFourLetters = Object.keys(data).map((date) => date.slice(0, 4));
-// const data = {
-//   // month
-//   '2023-10-30 00:00:00': 4,
-//   '2023-11-30 00:00:00': 4,
-//   '2023-12-30 00:00:00': 4,
-//   '2024-01-31 00:00:00': 4,
-//   '2024-02-29 00:00:00': 1,
-//   '2024-03-29 00:00:00': 20,
-//   '2024-04-29 00:00:00': 10,
-//   '2024-05-29 00:00:00': 2,
-//   '2024-06-29 00:00:00': 44,
-//   '2024-07-30 00:00:00': 5,
-//   '2024-08-29 00:00:00': 50,
-//   '2024-09-29 00:00:00': 5,
-//   '2024-10-29 00:00:00': 2,
-//   '2024-11-29 00:00:00': 9,
-//   '2024-12-29 00:00:00': 7,
-// };
