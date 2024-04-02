@@ -1,23 +1,41 @@
-import { useReducer, useState } from 'react';
+import { useRef, useReducer, useState } from 'react';
 import {
   MultiDatePicker,
   convertI2ToAD,
 } from '@ui/atoms/Inputs/MultiDatePicker';
 import { useForm } from 'react-hook-form';
-import { Bar } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import 'chart.js/auto';
-
+import {
+  Chart as ChartJS,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Legend,
+  Tooltip,
+} from 'chart.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import moment from 'moment-jalaali';
 import { API_GET_REPORTS } from '@src/services/config';
 import RadioButton from '@ui/atoms/RadioButton';
 import { IFormDate, IFormDateData } from './types';
 
+ChartJS.register(
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Legend,
+  Tooltip
+);
 let activeState = 'normal';
 
 const HOURLY_FORMAT = 'HH:mm';
-const DAILY_FORMAT = ' dddd';
-const MONTLY_FORMAT = 'jMMMM';
+const DAILY_FORMAT = 'dddd';
+const MONTLY_FORMAT = 'MMMM';
 const reducer = (
   _state: {
     weekly: boolean;
@@ -72,22 +90,7 @@ const reducer = (
 
 const options = {
   responsive: true,
-  tooltip: {
-    enabled: false,
-    position: 'nearest',
-    titleColor: 'rgba(0, 0, 0, 0.8)',
-  },
   plugins: {
-    tooltip: {
-      // backgroundColor: '#fff',
-      callbacks: {
-        label: function (res) {
-          console.log(res);
-
-          return res.label;
-        },
-      },
-    },
     legend: {
       position: 'top' as const,
     },
@@ -97,6 +100,16 @@ const options = {
     },
   },
 };
+
+const daysOfWeek = [
+  'Saturday',
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+];
 
 type TDataSet = {
   label: string;
@@ -131,36 +144,33 @@ function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
   const dataList: number[] = [];
   const labelList: string[] = [];
   const weeksKey: string[] = [];
-
   if (Object.keys(data).length > 0) {
     Object.entries(data).forEach(([key, value]) => {
+      // console.log(key, value);
       if (isDaily) {
-        const weekStart = moment(key, 'jYYYY-jMM-jDD').startOf('jWeek');
-        while (weekStart.isoWeekday() !== 5) {
-          weekStart.subtract(1, 'day');
-        }
+        const weekStart = moment(key).startOf('isoWeek');
         const weekKey = weekStart.format('jYYYY-jMM-jDD');
+        console.log(weekKey);
         if (!dataList[weekKey]) {
           dataList[weekKey] = {};
+          console.log(weekKey);
           weeksKey.push(weekKey);
         }
         dataList[weekKey][moment(key).format(formatData[type])] = value;
       } else {
         dataList.push(value);
-        labelList.push(moment(key).format(formatData[type]));
+        // labelList.push(moment(key).format(formatData[type]));
       }
     });
   }
-
   const dailyDataset = () =>
     Object.values(dataList).map((listData, i) => {
       return {
-        label: `Week ${i + 1}`,
+        label: `week ${i + 1}`,
         data: listData,
         fill: false,
       };
     });
-
   const result = dailyDataset();
 
   return {
@@ -179,8 +189,8 @@ function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
 
 export function Reports() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-  const [recordsData, setRecordsData] = useState(inputData);
+  const ref = useRef();
+  const [recordsData, setRecordsData] = useState({});
   const initialState = {
     weekly: false,
     montly: false,
@@ -217,11 +227,11 @@ export function Reports() {
     }
   };
 
-  console.log(dataGenerator(flag, recordsData).datasets, '=======<');
+  console.log(dataGenerator(flag, inputData).datasets, '=======<');
   // console.log(dataGenerator(flag, inputData).labels, '----->');
   const dataList = {
-    labels: dataGenerator(flag, recordsData).labels,
-    datasets: dataGenerator(flag, recordsData).datasets,
+    // labels: dataGenerator(flag, inputData).labels,
+    datasets: dataGenerator(flag, inputData).datasets,
   };
 
   return (
@@ -262,15 +272,12 @@ export function Reports() {
         />
       </div>
       <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
-        <Bar data={dataList} options={options} />
+        <Chart ref={ref} type="bar" data={dataList} options={options} />
       </div>
     </div>
   );
 }
 const inputData = {
-  '2024-02-27 00:00:00': 4,
-  '2024-02-28 00:00:00': 4,
-  '2024-02-29 00:00:00': 4,
   '2024-03-01 00:00:00': 4,
   '2024-03-02 00:00:00': 6,
   '2024-03-03 00:00:00': 7,
@@ -287,23 +294,3 @@ const inputData = {
   '2024-03-14 00:00:00': 3,
   '2024-03-15 00:00:00': 1,
 };
-// const inputData = {
-//   '2024-02-27 00:00:00': 4,
-//   '2024-02-27 01:00:00': 4,
-//   '2024-02-27 02:00:00': 4,
-//   '2024-02-27 03:00:00': 4,
-//   '2024-02-27 04:00:00': 4,
-//   '2024-02-27 05:00:00': 4,
-//   '2024-02-27 06:00:00': 4,
-//   '2024-02-27 07:00:00': 4,
-//   '2024-02-27 08:00:00': 4,
-//   '2024-02-27 09:00:00': 4,
-//   '2024-02-27 10:00:00': 4,
-//   '2024-02-27 11:00:00': 4,
-//   '2024-02-27 12:00:00': 4,
-// };
-// const inputData = {
-//   '2024-02-1 00:00:00': 16,
-//   '2024-03-1 00:00:00': 30,
-//   '2024-04-1 00:00:00': 60,
-// };
