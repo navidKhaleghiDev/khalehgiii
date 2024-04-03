@@ -84,7 +84,7 @@ const options = {
         label: function (res) {
           console.log(res);
 
-          return res.label;
+          return res.raw.s;
         },
       },
     },
@@ -131,6 +131,7 @@ function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
   const dataList: number[] = [];
   const labelList: string[] = [];
   const weeksKey: string[] = [];
+  const timeStamp: string[] = [];
 
   if (Object.keys(data).length > 0) {
     Object.entries(data).forEach(([key, value]) => {
@@ -145,6 +146,8 @@ function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
           weeksKey.push(weekKey);
         }
         dataList[weekKey][moment(key).format(formatData[type])] = value;
+        // labelList.push(moment(key).format(formatData[type]));
+        timeStamp.push(moment(key).format('jYYYY-jMM-jDD'));
       } else {
         dataList.push(value);
         labelList.push(moment(key).format(formatData[type]));
@@ -176,6 +179,51 @@ function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
     labels: labelList,
   };
 }
+
+const dataA = {
+  // labels: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+  datasets: [
+    {
+      label: 'Dataset 1',
+      data: [
+        { x: '1', y: 0, s: '2016-12-25' },
+        { x: '2', y: 0, s: '2016-12-25' },
+        { x: '3', y: 10, s: '2016-12-25' },
+        { x: '4', y: 10, s: '2016-12-25' },
+        { x: '5', y: 10, s: '2016-12-25' },
+        { x: '6', y: 10, s: '2016-12-25' },
+        { x: '7', y: 10, s: '2016-12-25' },
+      ],
+      yAxisID: 'y',
+    },
+    {
+      label: 'Dataset 2',
+      data: [
+        { x: '1', y: 20, s: '2016-12-26' },
+        { x: '2', y: 10, s: '2016-12-27' },
+        { x: '3', y: 10, s: '2016-12-28' },
+        { x: '4', y: 10, s: '2016-12-29' },
+        { x: '5', y: 10, s: '2016-12-30' },
+        { x: '6', y: 10, s: '2016-12-31' },
+        { x: '7', y: 10, s: '2017-01-01' },
+      ],
+      yAxisID: 'y',
+    },
+    {
+      label: 'Dataset 3',
+      data: [
+        { x: '1', y: 20, s: '2016-12-25' },
+        { x: '2', y: 10, s: '2016-12-25' },
+        { x: '3', y: 10, s: '2016-12-25' },
+        { x: '4', y: 10, s: '2016-12-25' },
+        { x: '5', y: 10, s: '2016-12-25' },
+        { x: '6', y: 10, s: '2016-12-25' },
+        { x: '7', y: 10, s: '2016-12-25' },
+      ],
+      yAxisID: 'y',
+    },
+  ],
+};
 
 export function Reports() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -217,8 +265,9 @@ export function Reports() {
     }
   };
 
-  console.log(dataGenerator(flag, recordsData).datasets, '=======<');
+  // console.log(dataGenerator(flag, recordsData).datasets, '=======<');
   // console.log(dataGenerator(flag, inputData).labels, '----->');
+  // console.log(dataGenerator(flag, inputData).la, '----->');
   const dataList = {
     labels: dataGenerator(flag, recordsData).labels,
     datasets: dataGenerator(flag, recordsData).datasets,
@@ -261,12 +310,16 @@ export function Reports() {
           label="week"
         />
       </div>
-      <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
+      {/* <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
         <Bar data={dataList} options={options} />
+      </div> */}
+      <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
+        <Bar data={dataA} options={options} />
       </div>
     </div>
   );
 }
+
 const inputData = {
   '2024-02-27 00:00:00': 4,
   '2024-02-28 00:00:00': 4,
