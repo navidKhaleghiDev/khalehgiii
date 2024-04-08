@@ -84,8 +84,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
                   icon={xIcon}
                   intent={intent}
                   onClick={() => {
-                    console.log(field);
-                    // field.onChange(undefined);
+                    field.onChange(undefined);
                   }}
                 />
               ) : (
