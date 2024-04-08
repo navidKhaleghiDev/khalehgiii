@@ -10,6 +10,7 @@ import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import {
   IFormDateData,
   TDataType,
+  TRecords,
   TReducerStateType,
   TypeReducerActionType,
 } from './types';
@@ -21,7 +22,7 @@ const lang = localStorage.getItem('lang');
 const isFarsi = lang === 'fa';
 
 const HOURLY_FORMAT = 'HH:mm';
-const DAILY_FORMAT = ' dddd';
+const DAILY_FORMAT = 'dddd';
 const MONTLY_FORMAT = 'MMMM';
 const NORMAL_FORMAT = !isFarsi ? 'YYYY-MM-DD' : 'jYYYY-jMM-jDD';
 
@@ -65,7 +66,7 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
 };
 
 export function Reports() {
-  const [recordsData, setRecordsData] = useState([]);
+  const [recordsData, setRecordsData] = useState<TRecords>();
 
   const [flag, setFlag] = useState<TDataType>('daily');
 
@@ -80,10 +81,11 @@ export function Reports() {
       dispatch({ type: 'LOADING_ON' });
       await API_GET_REPORTS(updatedData as any)
         .then((res) => {
-          const result = res.data as any;
+          const result = res.data;
           setRecordsData(result.records);
           setFlag(result.type);
           dispatch({ type: 'LOADING_OFF' });
+          // console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

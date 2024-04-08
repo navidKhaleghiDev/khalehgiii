@@ -111,7 +111,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
                 {submitButton && (
                   <div className="p-4">
                     <BaseButton
-                      // disabled={true}
+                      disabled={field.value.length < 2}
                       className="flex mx-auto "
                       type="default"
                       submit

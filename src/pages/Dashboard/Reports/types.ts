@@ -1,6 +1,8 @@
 import { DateObject } from 'react-multi-date-picker';
 
 export interface IFormDate {
+  records: TRecords;
+  type: string;
   start_date: string;
   end_date: string;
 }
@@ -17,7 +19,10 @@ export type TDataSet = {
   borderColor: string;
 };
 
-export type TDataType = 'hourly' | 'daily' | 'monthly';
+export type TDataType = string;
+export type TFormatData = {
+  [key: string]: string;
+};
 
 export type TData = Record<string, any>;
 export type TDataGeneratorReturn = {
@@ -57,4 +62,13 @@ export type TypeReducerActionType = {
 export type TypeReportOptions = {
   state: TReducerStateType;
   dispatch: any;
+};
+
+export type TResultOfRecords = {
+  type: string;
+  records: TRecords | [];
+};
+
+export type TRecords = {
+  [date: string]: number | [];
 };

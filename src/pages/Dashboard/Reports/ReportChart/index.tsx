@@ -5,6 +5,7 @@ import {
   TData,
   TDataGeneratorReturn,
   TDataType,
+  TFormatData,
 } from '../types';
 
 export function ReportsChart({ props }: IReportChartType) {
@@ -17,7 +18,7 @@ export function ReportsChart({ props }: IReportChartType) {
     recordsData,
     isFarsi,
   } = props;
-  const formatData = {
+  const formatData: TFormatData = {
     hourly: HOURLY_FORMAT,
     monthly: MONTLY_FORMAT,
     daily: DAILY_FORMAT,
