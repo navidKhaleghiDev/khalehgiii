@@ -10,6 +10,7 @@ import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import {
   IFormDateData,
   TDataType,
+  TFormDate,
   TRecords,
   TReducerStateType,
   TypeReducerActionType,
@@ -66,7 +67,7 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
 };
 
 export function Reports() {
-  const [recordsData, setRecordsData] = useState<TRecords>();
+  const [recordsData, setRecordsData] = useState<TRecords | []>([]);
 
   const [flag, setFlag] = useState<TDataType>('daily');
 
@@ -79,18 +80,15 @@ export function Reports() {
     };
     if (updatedData.end_date) {
       dispatch({ type: 'LOADING_ON' });
-      await API_GET_REPORTS(updatedData as any)
+      await API_GET_REPORTS(updatedData as TFormDate)
         .then((res) => {
           const result = res.data;
           setRecordsData(result.records);
           setFlag(result.type);
           dispatch({ type: 'LOADING_OFF' });
-          // console.log(res.data);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           dispatch({ type: 'LOADING_OFF' });
-          // toast.error(err);
         });
     }
   };
@@ -115,7 +113,7 @@ export function Reports() {
       </div>
       <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
         <LoadingWrapper isLoading={state.loading}>
-          <ReportsChart props={chartData} />
+          {recordsData && <ReportsChart props={chartData} />}
         </LoadingWrapper>
       </div>
     </div>

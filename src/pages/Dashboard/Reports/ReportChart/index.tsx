@@ -1,5 +1,6 @@
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment-jalaali';
+import { useTranslation } from 'react-i18next';
 import {
   IReportChartType,
   TData,
@@ -9,6 +10,7 @@ import {
 } from '../types';
 
 export function ReportsChart({ props }: IReportChartType) {
+  const { t } = useTranslation();
   const {
     HOURLY_FORMAT,
     MONTLY_FORMAT,
@@ -61,7 +63,7 @@ export function ReportsChart({ props }: IReportChartType) {
     const dailyDataset = () =>
       Object.values(dataList).map((listData, i) => {
         return {
-          label: `Week ${i + 1}`,
+          label: ` ${t('global.week')} ${i + 1}`,
           data: listData,
           fill: false,
         };
@@ -83,8 +85,8 @@ export function ReportsChart({ props }: IReportChartType) {
     };
   }
   const dataList = {
-    labels: dataGenerator(flag as any, recordsData).labels,
-    datasets: dataGenerator(flag as any, recordsData).datasets,
+    labels: dataGenerator(flag, recordsData).labels,
+    datasets: dataGenerator(flag, recordsData).datasets,
   };
 
   const options = {

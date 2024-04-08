@@ -10,7 +10,7 @@ export interface IFormDateData {
   start_date: [DateObject, DateObject];
   // data: RecordsData;
 }
-
+export type TFormDate = Pick<IFormDate, 'start_date' | 'end_date'>;
 export type TDataSet = {
   label: string;
   data: string[];
