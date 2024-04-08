@@ -84,14 +84,15 @@ export const MultiDatePicker = memo(function MultiDatePicker({
                   icon={xIcon}
                   intent={intent}
                   onClick={() => {
-                    field.onChange(undefined);
+                    console.log(field);
+                    // field.onChange(undefined);
                   }}
                 />
               ) : (
                 <IconInput icon={calendarIcon} intent={intent} />
               )}
               <DatePicker
-                onlyYearPicker={timeDuration?.year}
+                // onlyYearPicker={timeDuration?.year}
                 onlyMonthPicker={timeDuration?.montly}
                 weekPicker={timeDuration?.weekly}
                 onChange={field.onChange}
@@ -109,12 +110,15 @@ export const MultiDatePicker = memo(function MultiDatePicker({
                 maxDate={maxDate}
               >
                 {submitButton && (
-                  <BaseButton
-                    className="flex mx-auto  "
-                    type="default"
-                    submit
-                    label="submit"
-                  />
+                  <div className="p-4">
+                    <BaseButton
+                      // disabled={true}
+                      className="flex mx-auto "
+                      type="default"
+                      submit
+                      label="submit"
+                    />
+                  </div>
                 )}
               </DatePicker>
             </div>

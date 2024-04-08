@@ -18,6 +18,7 @@ export type TDataSet = {
 };
 
 export type TDataType = 'hourly' | 'daily' | 'monthly';
+
 export type TData = Record<string, any>;
 export type TDataGeneratorReturn = {
   labels: string[];
@@ -26,4 +27,34 @@ export type TDataGeneratorReturn = {
     data: number[] | any;
     fill: boolean;
   }>;
+};
+export interface IReportChartType {
+  props: TPropsChartType;
+}
+export type TPropsChartType = {
+  HOURLY_FORMAT: string;
+  MONTLY_FORMAT: string;
+  DAILY_FORMAT: string;
+  NORMAL_FORMAT: string;
+  flag: string;
+  recordsData: any;
+  isFarsi: boolean;
+};
+export type IReportFormType = {
+  handleOnSubmit: any;
+  state: TReducerStateType;
+};
+
+export type TReducerStateType = {
+  weekly: boolean;
+  montly: boolean;
+  loading: boolean;
+};
+export type TypeReducerActionType = {
+  type: 'WEEK' | 'MONTH' | 'NORMAL' | 'LOADING_OFF' | 'LOADING_ON';
+};
+
+export type TypeReportOptions = {
+  state: TReducerStateType;
+  dispatch: any;
 };

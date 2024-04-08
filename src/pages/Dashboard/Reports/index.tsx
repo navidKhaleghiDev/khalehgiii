@@ -1,23 +1,21 @@
 import { useReducer, useState } from 'react';
-import {
-  MultiDatePicker,
-  convertI2ToAD,
-} from '@ui/atoms/Inputs/MultiDatePicker';
-import { useForm } from 'react-hook-form';
-import { Bar } from 'react-chartjs-2';
+import { convertI2ToAD } from '@ui/atoms/Inputs/MultiDatePicker';
+
 import 'chart.js/auto';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import moment from 'moment-jalaali';
+
 import { API_GET_REPORTS } from '@src/services/config';
-import RadioButton from '@ui/atoms/RadioButton';
+import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import {
-  IFormDate,
   IFormDateData,
-  TData,
-  TDataGeneratorReturn,
   TDataType,
+  TReducerStateType,
+  TypeReducerActionType,
 } from './types';
+import { ReportsChart } from './ReportChart';
+import { ReportForm } from './ReportForm';
+import { ReportOptions } from './ReportOptions';
 
 const lang = localStorage.getItem('lang');
 const isFarsi = lang === 'fa';
@@ -27,225 +25,96 @@ const DAILY_FORMAT = ' dddd';
 const MONTLY_FORMAT = 'MMMM';
 const NORMAL_FORMAT = !isFarsi ? 'YYYY-MM-DD' : 'jYYYY-jMM-jDD';
 
-const reducer = (
-  _state: {
-    weekly: boolean;
-    montly: boolean;
-    year: boolean;
-  },
-  action: { type: 'week' | 'month' | 'year' | 'normal' }
-) => {
+const initialState = {
+  weekly: false,
+  montly: false,
+  year: false,
+  loading: false,
+};
+const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
   switch (action.type) {
-    case 'week': {
+    case 'WEEK': {
       return {
+        ...state,
         weekly: true,
         montly: false,
         year: false,
       };
     }
-    case 'month': {
+    case 'MONTH': {
       return {
+        ...state,
         weekly: false,
         montly: true,
         year: false,
       };
     }
-    case 'year': {
-      return {
-        weekly: false,
-        montly: false,
-        year: true,
-      };
+    case 'NORMAL': {
+      return initialState;
     }
-    case 'normal': {
-      return {
-        weekly: false,
-        montly: false,
-        year: false,
-      };
+    case 'LOADING_ON': {
+      return { ...state, loading: true };
+    }
+    case 'LOADING_OFF': {
+      return { ...state, loading: false };
     }
     default: {
-      return {
-        weekly: false,
-        montly: false,
-        year: false,
-      };
+      return initialState;
     }
   }
 };
-
-const options = {
-  responsive: true,
-  tooltip: {
-    enabled: false,
-    position: 'nearest',
-    titleColor: 'rgba(0, 0, 0, 0.8)',
-  },
-  plugins: {
-    tooltip: {
-      callbacks: {
-        label(res: any) {
-          return res.raw.s;
-        },
-      },
-    },
-    legend: {
-      position: 'top' as const,
-    },
-    title: {
-      display: false,
-      text: 'Chart.js Bar Chart',
-    },
-  },
-};
-const formatData = {
-  hourly: HOURLY_FORMAT,
-  monthly: MONTLY_FORMAT,
-  daily: DAILY_FORMAT,
-};
-
-function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
-  const isDaily = formatData[type] === DAILY_FORMAT;
-  const dataList: number[] | any = [];
-  const labelList: string[] = [];
-  const weeksKey: string[] = [];
-
-  if (data && Object.keys(data).length > 0) {
-    Object.entries(data).forEach(([key, value]) => {
-      if (isDaily) {
-        const weekStart = moment(key, 'YYYY-MM-DD').startOf('week');
-        while (weekStart.isoWeekday() !== 6) {
-          weekStart.subtract(1, 'day');
-        }
-        const weekKey = weekStart.format(NORMAL_FORMAT);
-        if (!dataList[weekKey]) {
-          dataList[weekKey] = [];
-          weeksKey.push(weekKey);
-        }
-        dataList[weekKey].push({
-          s: moment(key).format(NORMAL_FORMAT),
-          y: value,
-          x: moment(key).format(formatData[type]),
-        });
-      } else {
-        dataList.push(value);
-        labelList.push(moment(key).format(formatData[type]));
-      }
-    });
-  }
-
-  if (isFarsi) {
-    moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
-  }
-
-  const dailyDataset = () =>
-    Object.values(dataList).map((listData, i) => {
-      return {
-        label: `Week ${i + 1}`,
-        data: listData,
-        fill: false,
-      };
-    });
-
-  const result = dailyDataset();
-
-  return {
-    datasets: isDaily
-      ? result
-      : [
-          {
-            label: '',
-            data: dataList,
-            fill: true,
-          },
-        ],
-    labels: labelList,
-  };
-}
 
 export function Reports() {
   const [recordsData, setRecordsData] = useState([]);
-  const initialState = {
-    weekly: false,
-    montly: false,
-    year: false,
-  };
+
   const [flag, setFlag] = useState<TDataType>('daily');
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const { control, handleSubmit } = useForm<IFormDate>({
-    mode: 'onChange',
-    defaultValues: {
-      start_date: '',
-      end_date: '',
-    },
-  });
 
   const handleOnSubmit = async (data: IFormDateData) => {
     const updatedData = {
       start_date: convertI2ToAD(data.start_date[0]),
       end_date: convertI2ToAD(data.start_date[1]),
     };
-    if (updatedData) {
+    if (updatedData.end_date) {
+      dispatch({ type: 'LOADING_ON' });
       await API_GET_REPORTS(updatedData as any)
         .then((res) => {
           const result = res.data as any;
           setRecordsData(result.records);
           setFlag(result.type);
-          // toast.success(t('global.sucessfulyUpdated'));
+          dispatch({ type: 'LOADING_OFF' });
         })
         .catch((err) => {
           console.log(err);
+          dispatch({ type: 'LOADING_OFF' });
           // toast.error(err);
         });
     }
   };
 
-  const dataList = {
-    labels: dataGenerator(flag, recordsData).labels,
-    datasets: dataGenerator(flag, recordsData).datasets,
+  const chartData = {
+    flag,
+    recordsData,
+    HOURLY_FORMAT,
+    DAILY_FORMAT,
+    MONTLY_FORMAT,
+    NORMAL_FORMAT,
+    isFarsi,
   };
 
   return (
     <div className=" flex-wrap flex items-center justify-center px-2  rounded-md  w-full mb-1 gap-3">
       <div className="w-3/12 mt-20  h-12">
-        <form className="" onSubmit={handleSubmit(handleOnSubmit as any)}>
-          <MultiDatePicker
-            timeDuration={state}
-            control={control}
-            placeholder="start_date"
-            id="start_date"
-            name="start_date"
-            format="YYYY-MM-DD"
-            maxDate={new Date()}
-            submitButton
-            fullWidth
-          />
-        </form>
+        <ReportForm handleOnSubmit={handleOnSubmit} state={state} />
       </div>
       <div className="gap-4 w-3/12 h-12 flex items-center justify-between self-end  px-6">
-        <RadioButton
-          onChange={() => dispatch({ type: 'normal' })}
-          value="normal"
-          checked={!state.montly && !state.weekly && !state.year}
-          label="normal"
-        />
-        <RadioButton
-          onChange={() => dispatch({ type: 'month' })}
-          value="month"
-          checked={state.montly}
-          label="month"
-        />
-        <RadioButton
-          onChange={() => dispatch({ type: 'week' })}
-          value="week"
-          checked={state.weekly}
-          label="week"
-        />
+        <ReportOptions state={state} dispatch={dispatch} />
       </div>
       <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
-        <Bar data={dataList} options={options} />
+        <LoadingWrapper isLoading={state.loading}>
+          <ReportsChart props={chartData} />
+        </LoadingWrapper>
       </div>
     </div>
   );

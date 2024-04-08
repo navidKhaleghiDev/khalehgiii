@@ -72,7 +72,6 @@ export interface DatePickerProps extends BaseInputProps<any> {
 type TTimeDuration = {
   weekly: boolean;
   montly: boolean;
-  year: boolean;
 };
 
 export type ColorIndent = 'default' | 'error' | undefined | null;
