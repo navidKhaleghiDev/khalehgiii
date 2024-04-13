@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Controller } from 'react-hook-form';
 import { Typography } from '@ui/atoms/Typography';
 

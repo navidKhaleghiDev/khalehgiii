@@ -68,7 +68,6 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     extra_allowed_upload_files,
     ...data
   }: ExtendTwoType<IDaAs, IDaasConfig>) => {
-    console.log('--------', { data });
     // id?: string;
     // is_lock: boolean;
     // daas_configs: IDaasConfig;

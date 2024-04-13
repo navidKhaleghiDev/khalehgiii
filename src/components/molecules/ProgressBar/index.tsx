@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function ProgressBar({ durationInSeconds = 30 }: any) {
+export function ProgressBar({ durationInSeconds = 30 }) {
   const [progress, setProgress] = useState(0);
   const intervalDuration = (durationInSeconds * 1000) / 100; // Divide durationInSeconds by 100 to get the interval duration
 

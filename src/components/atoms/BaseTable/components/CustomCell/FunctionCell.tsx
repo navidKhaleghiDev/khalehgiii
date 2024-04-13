@@ -1,13 +1,14 @@
 import { Typography } from '@ui/atoms/Typography';
+import { IComponentTable } from '../../types';
 
-export function FunctionCell({ row, head, id }: any) {
+export function FunctionCell({ row, header, id }: IComponentTable) {
   return (
     <Typography
-      size={head?.size ? head?.size : 'body3'}
+      size={header?.size ? header?.size : 'body3'}
       type="div"
       className="whitespace-no-wrap break-all"
     >
-      {head?.function(row[id])}
+      {header?.function(row[id])}
     </Typography>
   );
 }

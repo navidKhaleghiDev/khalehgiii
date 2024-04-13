@@ -11,11 +11,17 @@ export function BaseTabelHeader({ header }: PropsType) {
   const { t } = useTranslation();
 
   return (
-    <thead className="flex items-center px-2 bg-teal-500 rounded-md text-white h-10 w-full mb-1">
+    <thead className="flex items-center px-2 bg-teal-500 dark:bg-gray-600  rounded-md text-white h-10 w-full mb-1">
       {header.map((head: IHeaderTable, index: number) => (
         <tr
           key={index}
-          className={`${head.style} flex justify-center items-center font-normal`}
+          className={` flex justify-center items-center font-normal ${
+            head.style
+          } ${
+            head.style && head.style.includes('fixed')
+              ? 'px-2 bg-teal-500 dark:bg-gray-600  h-10'
+              : ''
+          } `}
           dir={!head.dir ? 'ltr' : head.dir}
         >
           <td className="">

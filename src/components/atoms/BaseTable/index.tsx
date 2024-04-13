@@ -51,7 +51,7 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
         />
       )}
       <div className="overflow-x-auto custom-scrollbar">
-        <table className="w-full bg-white border-gray-300 border-none ">
+        <table className="w-full bg-white dark:bg-slate-900  border-gray-300 border-none ">
           <BaseTabelHeader header={headers} />
           {tableBody}
         </table>

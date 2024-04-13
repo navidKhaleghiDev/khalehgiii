@@ -5,7 +5,7 @@ import { ButtonAdd } from './components/SearchBarButtons/ButtonAdd';
 import { ITableSearchComponent, TComponent, TSearchBar } from './types';
 
 function SearchComponent(componentProps: ITableSearchComponent) {
-  const { onClick, label, type, className } = componentProps || {};
+  const { onClick, label = '', type, className } = componentProps || {};
   const components: TComponent = {
     actionAdd: <ButtonAdd onClick={onClick} label={label} />,
     typography: (

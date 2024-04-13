@@ -1,4 +1,5 @@
 import { IPagination } from '@src/types/services';
+import { E_ANALYZE_SCAN_STATS } from '../analyze/endpoint';
 
 // users endpoints
 export const E_USERS = '/users/';
@@ -26,6 +27,10 @@ export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
   `/users/reset_usage/${id}/`;
 
 export const E_USERS_DAAS_RESET_ALL_USAGE = '/users/reset_usage/';
+export const E_USERS_LOGOUT = `users/logout/`;
+
+export const E_ANALYZE_REPORTS = (start_date: string, end_date: string) =>
+  `${E_ANALYZE_SCAN_STATS}?start_date=${start_date}&end_date=${end_date}`;
 
 export const E_USERS_DAAS_UPDATE_USAGE = 'users/daas/update_usage/';
 

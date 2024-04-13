@@ -12,6 +12,7 @@ export default {
     },
     fontSize,
     fontFamily: {
+      IRANSans: ['IRANSans', 'on'],
       on: ['on', 'sans-serif'],
       sans: ['ui-sans-serif', 'system-ui'],
       serif: ['ui-serif', 'Georgia'],

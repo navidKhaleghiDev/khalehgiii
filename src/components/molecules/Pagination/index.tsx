@@ -5,12 +5,14 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 const mClass =
-  'flex w-8 h-8 mx-0.5 p-0 justify-center items-center rounded-md leading-tight text-xl border border-teal-500 ';
+  'flex w-8 h-8 mx-0.5 p-0 justify-center items-center rounded-md leading-tight text-xl border border-teal-500 dark:border-white';
 
 const disableClass =
   'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400';
-const activeClass = 'bg-teal-500 text-white cursor-not-allowed';
-const arrowButtonClass = 'bg-teal-500 text-white';
+const activeClass =
+  'bg-teal-500 text-white cursor-not-allowed dark:bg-cyan-900';
+const arrowButtonClass =
+  'bg-teal-500 text-white dark:text-white dark:bg-slate-800';
 
 export function Pagination({
   currentPage,
@@ -76,7 +78,9 @@ export function Pagination({
         <button
           type="button"
           className={`${mClass} ${
-            currentPage === number ? activeClass : 'bg-white text-teal-500'
+            currentPage === number
+              ? activeClass
+              : 'bg-white text-teal-500 dark:text-white dark:bg-slate-800 '
           }`}
           disabled={isEllipsis}
           key={number}

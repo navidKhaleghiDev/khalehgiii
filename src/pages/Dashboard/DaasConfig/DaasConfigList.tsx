@@ -74,15 +74,10 @@ export function DaasConfigList() {
 
   const handleCloseModal = () => {};
 
-  function handleOnClickActions(
-    action: ActionOnClickActionsType,
-    daasConfig?: StringifyProperties<IDaasConfig> | IDaasConfig
-  ): any {
+  function handleOnClickActions(action: ActionOnClickActionsType) {
     if (action === 'mutate') {
       mutate();
-      return;
     }
-    console.log({ daasConfig });
   }
   const dlpConfigCardContent = isLoading ? (
     <LoadingSpinner />

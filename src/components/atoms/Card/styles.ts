@@ -8,7 +8,7 @@ export const cardStyles = cva('', {
       teal: `${PALLET.BG_COLOR.TEAL} `,
       yellow: `${PALLET.BG_COLOR.YELLOW} `,
       red: `${PALLET.BG_COLOR.RED} `,
-      white: `bg-white dark:bg-neutral-300`,
+      white: `bg-white dark:bg-gray-600 `,
       none: ``,
     },
     borderColor: {

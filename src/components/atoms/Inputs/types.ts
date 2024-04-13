@@ -7,6 +7,7 @@ import {
   RegisterOptions,
   UseFormSetError,
 } from 'react-hook-form';
+import { DateObject } from 'react-multi-date-picker';
 import { IconType } from '@src/types/global';
 import { baseInputStyles } from './styles';
 
@@ -58,5 +59,19 @@ export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
 }
+
+export interface DatePickerProps extends BaseInputProps<any> {
+  minDate?: string | number | DateObject | Date;
+  maxDate?: string | number | DateObject | Date;
+  showTimePicker?: boolean;
+  format?: string;
+  timeDuration?: TTimeDuration;
+  submitButton?: boolean;
+}
+
+type TTimeDuration = {
+  weekly: boolean;
+  montly: boolean;
+};
 
 export type ColorIndent = 'default' | 'error' | undefined | null;

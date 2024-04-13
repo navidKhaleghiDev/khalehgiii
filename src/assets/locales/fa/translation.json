@@ -79,14 +79,15 @@
     "desktopLists": "لیست دسکتاپ ها",
     "adminPanel": "ادمین پنل",
     "fileScanReports": "گزارش اسکن فایل ها",
-    "numberOfTodayScans": "تعداد اسکن های انجام شده امروز",
-    "dayLeft": "روز های باقیمانده",
+    "numbersOfScans": "تعداد اسکن ها",
+    "dayLeft": "روز باقی مانده",
     "setting": "تنظیمات",
     "updateSetting": "بروزرسانی تنظیمات",
     "update": "بروزرسانی",
     "saveSettings": "ذخیره تنظیمات",
     "preparationTheDesktop": "در حال آماده‌سازی دسکتاپ",
-    "extensionList": "لیست extension ها"
+    "extensionList": "لیست extension ها",
+    "infectedFile": "فایل آلوده"
   },
   "global": {
     "userName": "نام کاربری",
@@ -140,7 +141,15 @@
     "downloadAccess": "دسترسی دانلود",
     "allowedTypeForUpload": "تایپ های مجاز آپلود",
     "allowedTypeForDownload": "تایپ های مجاز دانلود",
-    "doesNot": "ندارد"
+    "doesNot": "ندارد",
+    "onlineUsers": "یوزر آنلاین",
+    "week": "هفته",
+    "reports": "گزارشات",
+    "selectDate": "انتخاب تاریخ",
+    "monthlySelect": "انتخاب ماهانه",
+    "weeklySelect": "انتخاب هفتگی",
+    "normalSelect": "انتخاب معمولی",
+    "send": "ارسال"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

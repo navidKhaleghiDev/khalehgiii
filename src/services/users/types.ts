@@ -33,6 +33,7 @@ export interface IDaAs {
   extra_allowed_download_files: string[] | null;
   extra_allowed_upload_files: string[] | null;
   daas_version: string;
+  online_users?: number;
 }
 
 export interface IBodyUsersLogin {
@@ -40,6 +41,10 @@ export interface IBodyUsersLogin {
   password: string;
   // is_admin: boolean;
 }
+export interface IBodyUsersLogout {
+  refresh_token: string;
+}
+
 export interface IResponseLogin {
   info?: string;
   http?: string;

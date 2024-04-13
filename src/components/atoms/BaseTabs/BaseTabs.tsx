@@ -40,8 +40,8 @@ export function BaseTabs({ children, label }: IBaseTabsProps): JSX.Element {
                   radiusIndexLast
                 } ${
                   index === activeTab
-                    ? 'bg-teal-500 text-white'
-                    : 'bg-neutral-100 text-neutral-600'
+                    ? 'bg-teal-500 text-white dark:bg-cyan-900 dark:text-sky-500'
+                    : 'bg-neutral-100 text-neutral-600 dark:bg-slate-800 dark:text-white'
                 }`}
                 onClick={() => changeTab(index)}
               >
