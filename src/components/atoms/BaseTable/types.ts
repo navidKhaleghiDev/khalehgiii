@@ -39,12 +39,14 @@ export type TPagination = {
   countPage: number;
   onPageChange: (page: number) => void;
 };
+
+type TTableLabel = `table.${string}`;
 export interface IHeaderTable {
   action?: any;
   component?: any;
   function?: any;
   id: string | string[];
-  label: string;
+  label: TTableLabel;
   class?: string;
   dir?: string;
   type: TTableType;
