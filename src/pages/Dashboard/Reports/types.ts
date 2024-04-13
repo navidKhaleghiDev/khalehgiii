@@ -62,6 +62,7 @@ export type TypeReducerActionType = {
 export type TypeReportOptions = {
   state: TReducerStateType;
   dispatch: any;
+  keys: { DIS_KEY_WEEK: string; DIS_KEY_MONTH: string; DIS_KEY_NORMAL: string };
 };
 
 export type TResultOfRecords = {

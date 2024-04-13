@@ -27,6 +27,12 @@ const DAILY_FORMAT = 'dddd';
 const MONTLY_FORMAT = 'MMMM';
 const NORMAL_FORMAT = !isFarsi ? 'YYYY-MM-DD' : 'jYYYY-jMM-jDD';
 
+const DIS_KEY_ISLOADING = 'LOADING_ON';
+const DIS_KEY_ISNOTLOADING = 'LOADING_OFF';
+const DIS_KEY_WEEK = 'WEEK';
+const DIS_KEY_MONTH = 'MONTH';
+const DIS_KEY_NORMAL = 'NORMAL';
+
 const initialState = {
   weekly: false,
   montly: false,
@@ -35,7 +41,7 @@ const initialState = {
 };
 const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
   switch (action.type) {
-    case 'WEEK': {
+    case DIS_KEY_WEEK: {
       return {
         ...state,
         weekly: true,
@@ -43,7 +49,7 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
         year: false,
       };
     }
-    case 'MONTH': {
+    case DIS_KEY_MONTH: {
       return {
         ...state,
         weekly: false,
@@ -51,13 +57,13 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
         year: false,
       };
     }
-    case 'NORMAL': {
+    case DIS_KEY_NORMAL: {
       return initialState;
     }
-    case 'LOADING_ON': {
+    case DIS_KEY_ISLOADING: {
       return { ...state, loading: true };
     }
-    case 'LOADING_OFF': {
+    case DIS_KEY_ISNOTLOADING: {
       return { ...state, loading: false };
     }
     default: {
@@ -79,16 +85,16 @@ export function Reports() {
       end_date: convertI2ToAD(data.start_date[1]),
     };
     if (updatedData.end_date) {
-      dispatch({ type: 'LOADING_ON' });
+      dispatch({ type: DIS_KEY_ISLOADING });
       await API_GET_REPORTS(updatedData as TFormDate)
         .then((res) => {
           const result = res.data;
           setRecordsData(result.records);
           setFlag(result.type);
-          dispatch({ type: 'LOADING_OFF' });
+          dispatch({ type: DIS_KEY_ISNOTLOADING });
         })
         .catch(() => {
-          dispatch({ type: 'LOADING_OFF' });
+          dispatch({ type: DIS_KEY_ISNOTLOADING });
         });
     }
   };
@@ -103,13 +109,19 @@ export function Reports() {
     isFarsi,
   };
 
+  const dispatchKeys = {
+    DIS_KEY_WEEK,
+    DIS_KEY_MONTH,
+    DIS_KEY_NORMAL,
+  };
+
   return (
     <div className=" flex-wrap flex items-center justify-center px-2  rounded-md  w-full mb-1 gap-3">
       <div className="w-3/12 mt-20  h-12">
         <ReportForm handleOnSubmit={handleOnSubmit} state={state} />
       </div>
       <div className="gap-4 w-3/12 h-12 flex items-center justify-between self-end  px-6">
-        <ReportOptions state={state} dispatch={dispatch} />
+        <ReportOptions state={state} dispatch={dispatch} keys={dispatchKeys} />
       </div>
       <div className="w-7/12 p-10 border-solid border-2 rounded-md  mt-8">
         <LoadingWrapper isLoading={state.loading}>

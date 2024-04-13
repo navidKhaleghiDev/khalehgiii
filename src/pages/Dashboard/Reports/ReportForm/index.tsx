@@ -14,7 +14,7 @@ export function ReportForm({ handleOnSubmit, state }: IReportFormType) {
   });
 
   return (
-    <form className="" onSubmit={handleSubmit(handleOnSubmit as any)}>
+    <form className="" onSubmit={handleSubmit(handleOnSubmit)}>
       <MultiDatePicker
         timeDuration={state}
         control={control}
