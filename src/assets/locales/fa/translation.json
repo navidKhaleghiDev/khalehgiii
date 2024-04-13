@@ -143,7 +143,13 @@
     "allowedTypeForDownload": "تایپ های مجاز دانلود",
     "doesNot": "ندارد",
     "onlineUsers": "یوزر آنلاین",
-    "week": "هفته"
+    "week": "هفته",
+    "reports": "گزارشات",
+    "selectDate": "انتخاب تاریخ",
+    "monthlySelect": "انتخاب ماهانه",
+    "weeklySelect": "انتخاب هفتگی",
+    "normalSelect": "انتخاب معمولی",
+    "send": "ارسال"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

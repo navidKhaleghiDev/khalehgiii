@@ -14,6 +14,7 @@ import { useLanguage } from '@context/settings/languageContext';
 import xIcon from '@iconify-icons/ph/x';
 import calendarIcon from '@iconify-icons/ph/calendar';
 import { BaseButton } from '@ui/atoms/BaseButton';
+import { useTranslation } from 'react-i18next';
 import { DatePickerProps } from '../types';
 import { baseInputStyles } from '../styles';
 import { IconInput } from '../IconInput';
@@ -51,6 +52,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
   format = 'YYYY/MM/DD',
   submitButton = false,
 }: DatePickerProps) {
+  const { t } = useTranslation();
   const containerClass = `${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`;
   const inputClass = baseInputStyles({
     intent,
@@ -69,6 +71,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => {
+        console.log(field.value);
         return (
           <div className={containerClass}>
             {label && (
@@ -111,11 +114,11 @@ export const MultiDatePicker = memo(function MultiDatePicker({
                 {submitButton && (
                   <div className="p-4">
                     <BaseButton
-                      disabled={field.value.length < 2}
+                      disabled={!field.value || !field.value[1]}
                       className="flex mx-auto "
                       type="default"
                       submit
-                      label="submit"
+                      label={t('global.send')}
                     />
                   </div>
                 )}

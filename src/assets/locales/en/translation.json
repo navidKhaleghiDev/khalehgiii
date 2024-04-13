@@ -143,7 +143,13 @@
     "allowedTypeForUpload": "allowed Type For Upload",
     "doseNot": "does not ",
     "onlineUsers": "Online Users",
-    "week": "week"
+    "week": "week",
+    "reports": "Reports",
+    "selectDate": "Select Date",
+    "monthlySelect": "Monthly Select",
+    "weeklySelect": "Weekly Select",
+    "normalSelect": "Normal Select",
+    "send": "Send"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
