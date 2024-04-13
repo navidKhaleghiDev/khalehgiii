@@ -39,6 +39,9 @@ export function ReportsChart({ props }: IReportChartType) {
     if (data && Object.keys(data).length > 0) {
       Object.entries(data).forEach(([key, value]) => {
         if (isDaily) {
+          // convert data base on daily mode
+          // check and update base on local language
+          // seprate date by week and put any date in seprate object
           const weekStart = moment(key, 'YYYY-MM-DD').startOf('week');
           while (weekStart.isoWeekday() !== 6) {
             weekStart.subtract(1, 'day');
@@ -84,6 +87,7 @@ export function ReportsChart({ props }: IReportChartType) {
       labels: labelList,
     };
   }
+
   const dataList = {
     labels: dataGenerator(flag, recordsData).labels,
     datasets: dataGenerator(flag, recordsData).datasets,
