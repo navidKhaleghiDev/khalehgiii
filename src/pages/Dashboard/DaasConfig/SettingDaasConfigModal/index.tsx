@@ -27,9 +27,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
     },
   });
 
-  const handleOnSubmit = (data: IDaasConfig) => {
-    console.log([data]);
-
+  const handleOnSubmit = () => {
     handleClose();
     // handleOnChange({ ...daas, ...data });
   };

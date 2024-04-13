@@ -31,6 +31,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off', // Since we do not use prop-types
     'react/require-default-props': 'off', // Since we do not use prop-types
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   ignorePatterns: [
     'tailwind.config.js',
