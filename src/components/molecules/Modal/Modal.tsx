@@ -54,12 +54,12 @@ export function Modal({
             </div>
           )}
           {title && (
-            <Typography size="body2" color="neutral" className="mt-6">
+            <Typography variant="body2" color="neutral" className="mt-6">
               {title}
             </Typography>
           )}
           {description && (
-            <Typography size="body3" color="neutral">
+            <Typography variant="body3" color="neutral">
               {description}
             </Typography>
           )}

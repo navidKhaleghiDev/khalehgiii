@@ -28,7 +28,7 @@ export function UsedTimeDass({ time }: TUsedTimeProps) {
       className="w-full text-center break-words uppercase"
       dir={lang === 'en' ? 'ltr' : 'rtl'}
     >
-      <Typography size="body4">{formattedTime}</Typography>
+      <Typography variant="body4">{formattedTime}</Typography>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export function UserCell({ row, id, header }: IComponentTable) {
   return (
     <ToolTip position="bottom" tooltip={username}>
       <Typography
-        size={header?.size ? header?.size : 'body3'}
+        variant={header?.variant ? header?.variant : 'body4'}
         type="div"
         className="max-h-14"
       >

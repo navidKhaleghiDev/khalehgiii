@@ -12,7 +12,10 @@ export function TooltipCell({ row, id, header }: IComponentTable) {
       tabIndex={0}
       className={`overflow-hidden overflow-ellipsis flex cursor-text ${titleStyle} `}
     >
-      <Typography size={header?.size ? header?.size : 'body3'} type="div">
+      <Typography
+        variant={header?.variant ? header?.variant : 'body4'}
+        type="div"
+      >
         {row[id] ? row[id] : '--'}
       </Typography>
     </div>

@@ -48,15 +48,15 @@ export function AccessTime() {
         color="neutral"
         className="flex items-center justify-between w-80 px-2"
       >
-        <Typography size="body3" color="teal">
+        <Typography variant="body3" color="teal">
           {t('global.timeAccess')}
         </Typography>
         <div className="flex items-center justify-between w-1/2">
-          <Typography size="body3" color="neutral">
+          <Typography variant="body3" color="neutral">
             {TimeLimitDurationLabel[timeLimitDuration]}
           </Typography>
           |
-          <Typography size="body3" color="neutral">
+          <Typography variant="body3" color="neutral">
             {timeLimitValueInHour} {t('table.hours')}
           </Typography>
         </div>

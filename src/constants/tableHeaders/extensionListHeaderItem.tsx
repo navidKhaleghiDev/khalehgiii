@@ -25,7 +25,6 @@ export const extensionListHeaderItem: IHeaderTable[] = [
     type: 'tooltip',
     dir: '',
     style: 'px-3 w-4/12',
-    size: 'body4',
   },
   {
     label: 'table.fileExtension',
@@ -33,7 +32,6 @@ export const extensionListHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-3/12',
-    size: 'body4',
   },
   {
     label: 'table.dateOfCreated',
@@ -42,6 +40,5 @@ export const extensionListHeaderItem: IHeaderTable[] = [
     function: dateAndNumber,
     dir: '',
     style: 'px-3 w-3/12',
-    size: 'body4',
   },
 ];

@@ -35,7 +35,7 @@ export function ScannedFileCard({
       >
         <div className={overflowUiStyle.div}>
           <Typography
-            size="body4"
+            variant="body4"
             type="div"
             className={`${overflowUiStyle.typo} ${
               !isHeader ? 'font-bold' : ''
@@ -46,7 +46,7 @@ export function ScannedFileCard({
         </div>
         <div className={overflowUiStyle.div}>
           <Typography
-            size="body4"
+            variant="body4"
             type="div"
             className={`${overflowUiStyle.typo} uppercase `}
           >
@@ -54,7 +54,7 @@ export function ScannedFileCard({
           </Typography>
         </div>
         <Typography
-          size="body4"
+          variant="body4"
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
@@ -72,7 +72,7 @@ export function ScannedFileCard({
           )}
         </Typography>
         <Typography
-          size="body4"
+          variant="body4"
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
@@ -90,7 +90,7 @@ export function ScannedFileCard({
           )}
         </Typography>
         <Typography
-          size="body4"
+          variant="body4"
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
@@ -118,7 +118,7 @@ export function ScannedFileCard({
               onClick={onOpenDetailModal}
             />
           ) : (
-            <Typography size="body4">{scannedFile.id}</Typography>
+            <Typography variant="body4">{scannedFile.id}</Typography>
           )}
         </div>
       </Card>

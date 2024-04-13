@@ -24,7 +24,7 @@ export function NotificationCard({
           icon={type === 'error' ? shieldWarningIcon : shieldCheckIcon}
           className="ml-5"
         />
-        <Typography size="body3" weight="medium">
+        <Typography variant="body3" weight="medium">
           {title}
         </Typography>
       </div>

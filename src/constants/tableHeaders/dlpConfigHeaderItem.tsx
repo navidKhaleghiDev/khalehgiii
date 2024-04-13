@@ -33,7 +33,6 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-4/12',
-    size: 'body4',
   },
   {
     label: 'table.allowedForDownload',
@@ -42,7 +41,6 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     function: booleanIcon,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.allowedForUpload',
@@ -51,7 +49,6 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     function: booleanIcon,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.active',
@@ -60,7 +57,6 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     function: booleanIcon,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.dateOfCreated',
@@ -69,6 +65,5 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     function: dateAndNumber,
     dir: 'rtl',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
 ];

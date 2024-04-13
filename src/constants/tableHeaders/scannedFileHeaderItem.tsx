@@ -24,7 +24,6 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
     type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12 font-bold',
-    size: 'body4',
   },
   {
     label: 'table.type',
@@ -32,7 +31,6 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
     type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.resultScanerStatusYara',
@@ -46,7 +44,6 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
     ),
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.resultScanerStatusClamav',
@@ -60,7 +57,6 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
     ),
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.resultScanerStatusSandbox',
@@ -74,7 +70,6 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
     ),
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.moreDetail',
@@ -90,6 +85,5 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
     ],
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
 ];

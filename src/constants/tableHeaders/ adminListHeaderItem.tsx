@@ -34,7 +34,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-4/12',
-    size: 'body4',
   },
   {
     label: 'table.email',
@@ -42,7 +41,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.firstNameLastName',
@@ -50,7 +48,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     type: 'user',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.active',
@@ -59,7 +56,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     component: (props: any) => <Circle id={props.row.is_active} />,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.metaAdmin',
@@ -70,7 +66,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     ),
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.dateOfCreated',
@@ -79,7 +74,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     function: dateAndNumber,
     dir: 'rtl',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.lastLogin',
@@ -88,6 +82,5 @@ export const adminListHeaderItem: IHeaderTable[] = [
     function: dateAndNumber,
     dir: 'rtl',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
 ];

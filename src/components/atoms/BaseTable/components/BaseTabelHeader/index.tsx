@@ -2,6 +2,7 @@
 import { Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 import { IHeaderTable } from '../../types';
+import { baseTableHeader } from '../../styles';
 
 interface PropsType {
   header: IHeaderTable[];
@@ -15,18 +16,15 @@ export function BaseTabelHeader({ header }: PropsType) {
       {header.map((head: IHeaderTable, index: number) => (
         <tr
           key={index}
-          className={` flex justify-center items-center font-normal ${
-            head.style
-          } ${
-            head.style && head.style.includes('fixed')
-              ? 'px-2 bg-teal-500 dark:bg-gray-600  h-10'
-              : ''
-          } `}
+          className={baseTableHeader({
+            fixed: head.fixed,
+            className: `${head.style} ${head.fixed && 'fixed'}`,
+          })}
           dir={!head.dir ? 'ltr' : head.dir}
         >
           <td className="">
             <Typography
-              size="body4"
+              variant="body4"
               type="div"
               className="uppercase ellipsis font-bold"
             >

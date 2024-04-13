@@ -21,7 +21,7 @@ export function AccessDlpModalCard({
       color="neutral"
       className="w-full flex justify-between items-center h-10 px-2"
     >
-      <Typography size="h6" color="neutral">
+      <Typography variant="h6" color="neutral">
         {label}
       </Typography>
       {isAccess !== undefined && (
@@ -32,7 +32,7 @@ export function AccessDlpModalCard({
       )}
       {value && (
         <div dir={contentDirection}>
-          <Typography size="h6" color="neutral">
+          <Typography variant="h6" color="neutral">
             {value}
           </Typography>
         </div>

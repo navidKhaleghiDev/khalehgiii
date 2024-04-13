@@ -5,11 +5,11 @@ import xIcon from '@iconify-icons/ph/x';
 import { IComponentTable } from '../../../types';
 
 export function Check({ id, header }: IComponentTable) {
-  const sizeCondition = header?.size || 'body3';
+  const sizeCondition = header?.variant || 'body3';
 
   return (
     <Typography
-      size={sizeCondition}
+      variant={sizeCondition}
       type="div"
       className="text-xl whitespace-no-wrap break-all"
     >

@@ -5,7 +5,7 @@ import { ITypography } from './types';
 
 export function Typography({
   color,
-  size,
+  variant,
   children,
   className,
   type = 'p',
@@ -17,7 +17,7 @@ export function Typography({
       className: typographyStyles({
         color,
         weight,
-        size,
+        variant,
         className,
       }),
     },

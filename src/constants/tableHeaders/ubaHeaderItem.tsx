@@ -9,7 +9,6 @@ export const ubaHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.dateOfUpdated',
@@ -18,7 +17,6 @@ export const ubaHeaderItem: IHeaderTable[] = [
     function: dateAndNumber,
     dir: 'rtl',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.realName',
@@ -26,7 +24,6 @@ export const ubaHeaderItem: IHeaderTable[] = [
     type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.updatedNames',
@@ -34,7 +31,6 @@ export const ubaHeaderItem: IHeaderTable[] = [
     type: 'tooltip',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.unauthorizedBehavior',
@@ -42,7 +38,6 @@ export const ubaHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.blocked',
@@ -51,7 +46,6 @@ export const ubaHeaderItem: IHeaderTable[] = [
     component: (props: any) => <Lock id={props.row.is_ban} />,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.action',
@@ -59,6 +53,5 @@ export const ubaHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
 ];

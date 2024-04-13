@@ -52,7 +52,7 @@ export function BaseInput(props: BaseInputProps<any>) {
                 ltrLabel ? 'text-left uppercase' : 'text-right'
               }`}
             >
-              <Typography color="teal" size="h5">
+              <Typography color="teal" variant="h5">
                 {label}
               </Typography>
             </label>
@@ -103,7 +103,7 @@ export function BaseInput(props: BaseInputProps<any>) {
           {!hiddenError && (
             <Typography
               color="red"
-              size="caption"
+              variant="caption"
               className={`h-6 ${ltrLabel ? 'text-left' : 'text-right'}`}
             >
               {error?.message ?? ''}
@@ -119,7 +119,7 @@ export function BaseInput(props: BaseInputProps<any>) {
           htmlFor={id}
           className={`block mb-1 ${ltrLabel && 'text-left uppercase'}`}
         >
-          <Typography color="teal" size="h5">
+          <Typography color="teal" variant="h5">
             {label}
           </Typography>
         </label>
@@ -144,7 +144,7 @@ export function BaseInput(props: BaseInputProps<any>) {
         placeholder={placeholder}
         autoComplete="off"
       />
-      <Typography color="red" size="caption" className="h-6">
+      <Typography color="red" variant="caption" className="h-6">
         {pureError ?? ''}
       </Typography>
     </div>

@@ -60,7 +60,7 @@ export interface IHeaderTable {
   style?: string;
   dir?: string;
   type: TTableType;
-  size?: TTableSize;
+  variant?: TTableSize;
   fixed?: boolean;
 }
 

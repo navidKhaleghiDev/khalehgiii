@@ -17,8 +17,10 @@ function UnauthorizedPage() {
           className="object-contain "
         />
       </div>
-      <Typography size="h3">متاسفم!</Typography>
-      <Typography size="h4">شما اجازه دسترسی به این بخش را ندارید!</Typography>
+      <Typography variant="h3">متاسفم!</Typography>
+      <Typography variant="h4">
+        شما اجازه دسترسی به این بخش را ندارید!
+      </Typography>
 
       <Link to={ROUTES_PATH.home}>
         <BaseButton className="mt-6" label="برو صفحه اصلی" size="lg" />

@@ -15,5 +15,5 @@ export function UserScanCount({ email }: UserScanCountProps) {
     HTTP_ANALYSES.fetcherSWR
   );
   const count = data?.data?.count || '-';
-  return <Typography size="body3">{count}</Typography>;
+  return <Typography variant="body3">{count}</Typography>;
 }

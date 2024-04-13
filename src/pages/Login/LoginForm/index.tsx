@@ -83,7 +83,7 @@ export function LoginForm() {
           options={languageOptions}
         />
       </div>
-      <Typography color="neutral" size="h5" className="mb-5">
+      <Typography color="neutral" variant="h5" className="mb-5">
         {t('login.loginTitle')}
       </Typography>
 
@@ -100,7 +100,7 @@ export function LoginForm() {
 			</div> */}
 
       {error && (
-        <Typography color="red" size="body3" className="mb-2">
+        <Typography color="red" variant="body3" className="mb-2">
           {error}
         </Typography>
       )}

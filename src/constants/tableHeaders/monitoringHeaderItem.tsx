@@ -12,7 +12,6 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'none',
     dir: '',
     style: 'px-3 w-4/12',
-    size: 'body4',
   },
 
   {
@@ -22,7 +21,6 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     function: dateAndNumber,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.numberOfScans',
@@ -31,7 +29,6 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     component: (props: any) => <UserScanCount email={props.row.email} />,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.userStatus',
@@ -40,7 +37,6 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     component: (props: any) => <Circle id={props.row.is_running} />,
     dir: '',
     style: 'px-3 w-2/12',
-    size: 'body4',
   },
   {
     label: 'table.observeUserBehavior',

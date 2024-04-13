@@ -8,10 +8,10 @@ interface TypoCellWrapperProps {
 }
 
 export function TypoCellWrapper({ children, header }: TypoCellWrapperProps) {
-  const sizeCondition: IHeaderTable['size'] = header?.size || 'body3';
+  const sizeCondition: IHeaderTable['variant'] = header?.variant || 'body3';
   return (
     <Typography
-      size={sizeCondition}
+      variant={sizeCondition}
       type="div"
       className="text-xl whitespace-no-wrap break-all"
     >
