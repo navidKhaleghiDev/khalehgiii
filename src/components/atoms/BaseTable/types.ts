@@ -3,6 +3,7 @@ import { IconType, StringifyProperties } from '@src/types/global';
 import { IBaseIcon } from '../BaseIcon/types';
 import { IIconButton } from '../BaseButton';
 import { TSearchBar } from './components/BaseTableSearchBar/types';
+import { ITypography } from '../Typography';
 
 export type RowType<T> = T & {
   id: string | number;
@@ -17,20 +18,6 @@ type TTableType =
   | 'function'
   | 'user'
   | 'tooltip';
-
-export type TTableSize =
-  | 'caption'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'body4'
-  | 'body1'
-  | 'body2'
-  | 'body3'
-  | null;
 
 export type ActionOnClickActionsType =
   | 'delete'
@@ -57,10 +44,10 @@ export interface IHeaderTable {
   function?: any;
   id: string | string[];
   label: string;
-  style?: string;
+  class?: string;
   dir?: string;
   type: TTableType;
-  variant?: TTableSize;
+  variant?: ITypography['type'];
   fixed?: boolean;
 }
 

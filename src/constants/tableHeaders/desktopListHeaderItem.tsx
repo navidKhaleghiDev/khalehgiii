@@ -15,20 +15,20 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     label: 'table.email',
     id: 'email',
     type: 'none',
-    style: 'w-40',
+    class: 'w-40',
     fixed: true,
   },
   {
     label: 'table.httpPort',
     id: 'http_port',
     type: 'none',
-    style: `w-32  ${style} `,
+    class: `w-32  ${style} `,
   },
   {
     label: 'table.httpsPort',
     id: 'https_port',
     type: 'none',
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
   {
     label: 'table.accessCapacity',
@@ -38,32 +38,32 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       <Check id={!props.row.exceeded_usage} header={props.head} />
     ),
 
-    style: 'w-40 ',
+    class: 'w-40 ',
   },
   {
     label: 'table.containerId',
     id: 'container_id',
     type: 'tooltip',
-    style: 'w-40 ',
+    class: 'w-40 ',
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'tooltip',
-    style: ' w-40 ',
+    class: ' w-40 ',
   },
   {
     label: 'table.lastLoginIp',
     id: 'last_login_ip',
     type: 'none',
-    style: 'w-40 ',
+    class: 'w-40 ',
   },
   {
     label: 'table.status',
     id: 'is_running',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
 
   {
@@ -78,14 +78,14 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       />
     ),
 
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
 
   {
     label: 'table.desktopV',
     id: 'daas_version',
     type: 'none',
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
 
   {
@@ -96,7 +96,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       <UsedTimeDass time={props.row.usage_in_minute} />
     ),
 
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
   {
     label: 'table.accessSettingsTime',
@@ -111,7 +111,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       />
     ),
     dir: 'rtl',
-    style: 'w-64 ',
+    class: 'w-64 ',
   },
 
   {
@@ -124,7 +124,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         header={props.head}
       />
     ),
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
 
   {
@@ -136,16 +136,14 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
-        style: '',
       },
       {
         action: 'edit',
         icon: gear,
         color: 'neutralNoBg',
-        style: '',
       },
     ],
 
-    style: 'w-32 ',
+    class: 'w-32 ',
   },
 ];

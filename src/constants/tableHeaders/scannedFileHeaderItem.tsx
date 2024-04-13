@@ -12,25 +12,24 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         action: 'download',
         icon: moreIcon,
         color: 'neutralNoBg',
-        style: '',
       },
     ],
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.fileName',
     id: 'file_name',
     type: 'tooltip',
     dir: '',
-    style: 'px-3 w-2/12 font-bold',
+    class: 'px-3 w-2/12 font-bold',
   },
   {
     label: 'table.type',
     id: 'file_content_type',
     type: 'tooltip',
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.resultScanerStatusYara',
@@ -43,7 +42,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
       />
     ),
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.resultScanerStatusClamav',
@@ -56,7 +55,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
       />
     ),
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.resultScanerStatusSandbox',
@@ -69,7 +68,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
       />
     ),
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.moreDetail',
@@ -80,10 +79,9 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         action: 'modal',
         icon: moreIcon,
         color: 'neutralNoBg',
-        style: '',
       },
     ],
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
 ];

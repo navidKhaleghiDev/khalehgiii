@@ -14,25 +14,23 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
-        style: '',
       },
       {
         action: 'edit',
         icon: notePencilIcon,
         color: 'neutralNoBg',
-        style: '',
       },
     ],
 
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.fileType',
     id: 'file_type',
     type: 'none',
     dir: '',
-    style: 'px-3 w-4/12',
+    class: 'px-3 w-4/12',
   },
   {
     label: 'table.allowedForDownload',
@@ -40,7 +38,7 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: booleanIcon,
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.allowedForUpload',
@@ -48,7 +46,7 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: booleanIcon,
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.active',
@@ -56,7 +54,7 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: booleanIcon,
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.dateOfCreated',
@@ -64,6 +62,6 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: dateAndNumber,
     dir: 'rtl',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
 ];

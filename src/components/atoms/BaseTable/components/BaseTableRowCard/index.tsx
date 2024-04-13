@@ -38,7 +38,7 @@ export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
             key={colIndex}
             className={baseTableRowCard({
               fixed: header.fixed,
-              className: `${header.style} ${header.fixed && 'fixed'}`,
+              className: `${header.class} ${header.fixed && 'fixed'}`,
             })}
             dir={!header.dir ? 'ltr' : header.dir}
           >
