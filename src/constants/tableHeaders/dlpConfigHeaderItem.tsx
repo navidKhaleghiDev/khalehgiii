@@ -6,7 +6,6 @@ import { booleanIcon } from '@src/pages/Dashboard/DlpConfig/utils';
 
 export const dlpConfigHeaderItem: IHeaderTable[] = [
   {
-    label: '',
     id: 'id',
     type: 'action',
     action: [

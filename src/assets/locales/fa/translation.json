@@ -72,7 +72,8 @@
     "accessCapacity": "شامل ظرفیت مجاز",
     "containerId": " کانتینر id",
     "lastUptime": "آخرین ورود",
-    "lastLoginIp": "آخرین ورود ip"
+    "lastLoginIp": "آخرین ورود ip",
+    "download": "دانلود"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

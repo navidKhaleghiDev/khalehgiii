@@ -28,7 +28,7 @@ export function BaseTabelHeader({ header }: PropsType) {
               type="div"
               className="uppercase ellipsis font-bold"
             >
-              {t(head.label)}
+              {t(head.label as string)}
             </Typography>
           </td>
         </tr>

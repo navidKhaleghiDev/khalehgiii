@@ -46,7 +46,7 @@ export interface IHeaderTable {
   component?: any;
   function?: any;
   id: string | string[];
-  label: TTableLabel;
+  label?: TTableLabel;
   class?: string;
   dir?: string;
   type: TTableType;

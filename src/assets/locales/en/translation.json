@@ -72,7 +72,8 @@
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
     "lastUptime": "last uptime",
-    "lastLoginIp": "last Login Ip"
+    "lastLoginIp": "last Login Ip",
+    "download": "download"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

@@ -7,7 +7,6 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
 export const adminListHeaderItem: IHeaderTable[] = [
   {
-    label: '',
     id: 'id',
     type: 'action',
     action: [

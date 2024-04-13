@@ -4,7 +4,7 @@ import { CircleBorder } from '@ui/atoms/BaseTable/components/tableIcons/CircleBo
 
 export const scannedFileHeaderItem: IHeaderTable[] = [
   {
-    label: 'download',
+    label: 'table.download',
     id: 'id',
     type: 'action',
     action: [

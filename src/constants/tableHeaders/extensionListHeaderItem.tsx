@@ -4,7 +4,6 @@ import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 export const extensionListHeaderItem: IHeaderTable[] = [
   {
-    label: '',
     id: 'id',
     type: 'action',
     action: [
