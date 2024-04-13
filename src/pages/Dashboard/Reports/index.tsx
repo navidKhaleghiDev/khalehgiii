@@ -3,8 +3,6 @@ import { convertI2ToAD } from '@ui/atoms/Inputs/MultiDatePicker';
 
 import 'chart.js/auto';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-
 import { API_GET_REPORTS } from '@src/services/config';
 import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import {
