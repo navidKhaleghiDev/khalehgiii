@@ -25,7 +25,7 @@ type ThemeProviderProps = {
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState(
-    themeMode === null || undefined || '' ? 'dark' : themeMode
+    themeMode === null || undefined || '' ? 'light' : themeMode
   );
   const isDark = localStorage.getItem('theme') === 'dark';
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState, KeyboardEvent } from 'react';
 import { Controller } from 'react-hook-form';
 

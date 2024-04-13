@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Controller } from 'react-hook-form';
 import caretCircleLeftIcon from '@iconify-icons/ph/caret-circle-left';
 
