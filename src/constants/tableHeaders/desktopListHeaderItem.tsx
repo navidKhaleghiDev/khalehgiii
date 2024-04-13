@@ -16,8 +16,9 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'email',
     type: 'none',
     dir: '',
-    style: 'w-40 max-w-full fixed',
+    style: 'w-40 max-w-full',
     size: 'body4',
+    fixed: true,
   },
   {
     label: 'table.httpPort',

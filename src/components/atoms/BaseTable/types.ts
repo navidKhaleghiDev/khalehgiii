@@ -61,6 +61,7 @@ export interface IHeaderTable {
   dir?: string;
   type: TTableType;
   size?: TTableSize;
+  fixed?: boolean;
 }
 
 export interface IBaseTableProps<BodyType> {
