@@ -13,6 +13,9 @@ export const TYPOGRAPHY_VARIANT = {
   body3: SIZE.TYPOGRAPHY.BODY3,
   body4: SIZE.TYPOGRAPHY.BODY4,
   caption: SIZE.TYPOGRAPHY.CAPTION,
+  // p: SIZE.TYPOGRAPHY.CAPTION,
+  // span: SIZE.TYPOGRAPHY.CAPTION,
+  // div: SIZE.TYPOGRAPHY.CAPTION,
 };
 
 export const typographyStyles = cva('', {

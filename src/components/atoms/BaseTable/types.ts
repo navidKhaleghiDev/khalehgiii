@@ -1,9 +1,10 @@
 import { IconType, StringifyProperties } from '@src/types/global';
 
+import { VariantProps } from 'class-variance-authority';
 import { IBaseIcon } from '../BaseIcon/types';
 import { IIconButton } from '../BaseButton';
 import { TSearchBar } from './components/BaseTableSearchBar/types';
-import { ITypography } from '../Typography';
+import { typographyStyles } from '../Typography/styles';
 
 export type RowType<T> = T & {
   id: string | number;
@@ -47,7 +48,7 @@ export interface IHeaderTable {
   class?: string;
   dir?: string;
   type: TTableType;
-  variant?: ITypography['type'];
+  variant?: VariantProps<typeof typographyStyles>['variant'];
   fixed?: boolean;
 }
 
