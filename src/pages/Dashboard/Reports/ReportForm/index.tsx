@@ -18,7 +18,7 @@ export function ReportForm({ handleOnSubmit, state }: IReportFormType) {
       <MultiDatePicker
         timeDuration={state}
         control={control}
-        placeholder={t('global.selectDate')}
+        placeholder={t('global.periodOfTime')}
         id="start_date"
         name="start_date"
         format="YYYY-MM-DD"

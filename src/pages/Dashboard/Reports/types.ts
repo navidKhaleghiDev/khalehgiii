@@ -54,9 +54,10 @@ export type TReducerStateType = {
   weekly: boolean;
   montly: boolean;
   loading: boolean;
+  error: boolean;
 };
 export type TypeReducerActionType = {
-  type: 'WEEK' | 'MONTH' | 'NORMAL' | 'LOADING_OFF' | 'LOADING_ON';
+  type: 'WEEK' | 'MONTH' | 'NORMAL' | 'LOADING_OFF' | 'LOADING_ON' | 'ERROR';
 };
 
 export type TypeReportOptions = {

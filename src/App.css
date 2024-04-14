@@ -91,3 +91,9 @@ select option {
 input[type='radio'] {
   accent-color: teal;
 }
+.custom-height {
+  height: 45rem;
+  min-height: auto;
+  max-height: calc(65vh);
+  /* height: ; */
+}
