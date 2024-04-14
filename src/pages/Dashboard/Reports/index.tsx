@@ -7,7 +7,7 @@ import { BaseIcon, Typography } from '@ui/atoms';
 import { API_GET_REPORTS } from '@src/services/config';
 import { BackButton } from '@ui/atoms/BackButton';
 import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import calendarBlankBuotone from '@iconify-icons/ph/calendar-blank-duotone';
 import calendarXDuotone from '@iconify-icons/ph/calendar-x-duotone';
 import {
@@ -82,7 +82,7 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
 };
 
 export function Reports() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [recordsData, setRecordsData] = useState<TRecords | []>();
 
   const [flag, setFlag] = useState<TDataType>('daily');
