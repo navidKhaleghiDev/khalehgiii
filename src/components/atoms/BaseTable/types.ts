@@ -1,8 +1,10 @@
 import { IconType, StringifyProperties } from '@src/types/global';
 
+import { VariantProps } from 'class-variance-authority';
 import { IBaseIcon } from '../BaseIcon/types';
 import { IIconButton } from '../BaseButton';
 import { TSearchBar } from './components/BaseTableSearchBar/types';
+import { typographyStyles } from '../Typography/styles';
 
 export type RowType<T> = T & {
   id: string | number;
@@ -17,20 +19,6 @@ type TTableType =
   | 'function'
   | 'user'
   | 'tooltip';
-
-export type TTableSize =
-  | 'caption'
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
-  | 'body4'
-  | 'body1'
-  | 'body2'
-  | 'body3'
-  | null;
 
 export type ActionOnClickActionsType =
   | 'delete'
@@ -51,16 +39,19 @@ export type TPagination = {
   countPage: number;
   onPageChange: (page: number) => void;
 };
+
+type TTableLabel = `table.${string}`;
 export interface IHeaderTable {
   action?: any;
   component?: any;
   function?: any;
   id: string | string[];
-  label: string;
-  style?: string;
+  label?: TTableLabel;
+  class?: string;
   dir?: string;
   type: TTableType;
-  size?: TTableSize;
+  variant?: VariantProps<typeof typographyStyles>['variant'];
+  fixed?: boolean;
 }
 
 export interface IBaseTableProps<BodyType> {

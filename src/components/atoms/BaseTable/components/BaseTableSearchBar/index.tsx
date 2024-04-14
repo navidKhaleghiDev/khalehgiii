@@ -9,7 +9,7 @@ function SearchComponent(componentProps: ITableSearchComponent) {
   const components: TComponent = {
     actionAdd: <ButtonAdd onClick={onClick} label={label} />,
     typography: (
-      <Typography size="h4" color="teal" className={className}>
+      <Typography variant="h4" color="teal" className={className}>
         {label}
       </Typography>
     ),

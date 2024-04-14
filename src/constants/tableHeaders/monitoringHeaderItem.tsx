@@ -11,8 +11,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'email',
     type: 'none',
     dir: '',
-    style: 'px-3 w-4/12',
-    size: 'body4',
+    class: 'px-3 w-4/12',
   },
 
   {
@@ -21,8 +20,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: dateAndNumber,
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.numberOfScans',
@@ -30,8 +28,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'component',
     component: (props: any) => <UserScanCount email={props.row.email} />,
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.userStatus',
@@ -39,8 +36,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.observeUserBehavior',
@@ -51,10 +47,9 @@ export const monitoringHeaderItem: IHeaderTable[] = [
         action: ROUTES_PATH.monitoring,
         icon: moreIcon,
         color: 'neutralNoBg',
-        style: '',
       },
     ],
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
 ];

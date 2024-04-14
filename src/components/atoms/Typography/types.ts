@@ -19,6 +19,7 @@ export interface ITypography
     | 'caption'
     | 'span'
     | 'div';
+
   className?: string;
 }
 

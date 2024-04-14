@@ -38,7 +38,7 @@ export function MimeTypeCard({
       </div>
 
       <div className="px-3 w-4/12 flex justify-center items-center" dir="ltr">
-        <Typography size="body3" type="div" className="uppercase">
+        <Typography variant="body3" type="div" className="uppercase">
           {Array.isArray(mimeType.mimetype_list)
             ? mimeType.mimetype_list.join(' , ')
             : mimeType.mimetype_list}
@@ -46,14 +46,14 @@ export function MimeTypeCard({
       </div>
 
       <div className="px-3 w-3/12 flex justify-center items-center" dir="ltr">
-        <Typography size="body3" type="div" className="uppercase">
+        <Typography variant="body3" type="div" className="uppercase">
           {Array.isArray(mimeType.extension_list)
             ? mimeType.extension_list.join(' , ')
             : mimeType.extension_list}
         </Typography>
       </div>
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-3/12 text-center break-words uppercase"
       >

@@ -7,7 +7,6 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
 export const adminListHeaderItem: IHeaderTable[] = [
   {
-    label: '',
     id: 'id',
     type: 'action',
     action: [
@@ -15,42 +14,37 @@ export const adminListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
-        style: '',
       },
       {
         action: 'edit',
         icon: notePencilIcon,
         color: 'neutralNoBg',
-        style: '',
       },
     ],
 
     dir: '',
-    style: 'px-3 w-2/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.userName',
     id: 'username',
     type: 'none',
     dir: '',
-    style: 'px-3 w-4/12',
-    size: 'body4',
+    class: 'px-3 w-4/12',
   },
   {
     label: 'table.email',
     id: 'email',
     type: 'none',
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.firstNameLastName',
     id: ['first_name', 'last_name'],
     type: 'user',
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.active',
@@ -58,8 +52,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_active} />,
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.metaAdmin',
@@ -69,8 +62,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
       <Check id={props.row.is_meta_admin} header={props.head} />
     ),
     dir: '',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.dateOfCreated',
@@ -78,8 +70,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: dateAndNumber,
     dir: 'rtl',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.lastLogin',
@@ -87,7 +78,6 @@ export const adminListHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: dateAndNumber,
     dir: 'rtl',
-    style: 'px-3 w-2/12',
-    size: 'body4',
+    class: 'px-3 w-2/12',
   },
 ];

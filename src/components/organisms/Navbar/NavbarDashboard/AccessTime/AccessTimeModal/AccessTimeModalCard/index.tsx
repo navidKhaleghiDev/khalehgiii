@@ -16,7 +16,7 @@ export function AccessTimeModalCard({
 }: AccessTimeModalCardProps) {
   return (
     <div className="w-full flex flex-col items-start mt-4">
-      <Typography size="body3" color="neutral">
+      <Typography variant="body3" color="neutral">
         {label}
       </Typography>
       <Card
@@ -25,11 +25,11 @@ export function AccessTimeModalCard({
       >
         <div className="flex" dir={contentDirection}>
           {name && (
-            <Typography size="h5" color="neutral">
+            <Typography variant="h5" color="neutral">
               {name}،
             </Typography>
           )}
-          <Typography size="h5" color="teal">
+          <Typography variant="h5" color="teal">
             {value}
           </Typography>
         </div>

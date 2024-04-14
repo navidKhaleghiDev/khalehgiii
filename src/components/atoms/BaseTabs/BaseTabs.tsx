@@ -22,7 +22,7 @@ export function BaseTabs({ children, label }: IBaseTabsProps): JSX.Element {
   return (
     <div className="flex flex-col w-full">
       {label && (
-        <Typography color="teal" size="h4">
+        <Typography color="teal" variant="h4">
           {label}
         </Typography>
       )}
@@ -45,7 +45,7 @@ export function BaseTabs({ children, label }: IBaseTabsProps): JSX.Element {
                 }`}
                 onClick={() => changeTab(index)}
               >
-                <Typography size="body3">{propsLabel}</Typography>
+                <Typography variant="body3">{propsLabel}</Typography>
               </button>
             );
           }

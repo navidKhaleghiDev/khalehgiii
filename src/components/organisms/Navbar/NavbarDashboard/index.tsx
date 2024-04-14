@@ -82,10 +82,10 @@ export function NavbarDashboard() {
           </ToolTip>
           <Avatar icon={userIcon} intent="primary" size="sm" className="ml-4" />
           <div className={lang === 'en' ? 'ml-2' : 'none'}>
-            <Typography weight="bold" color="white" size="caption">
+            <Typography weight="bold" color="white" variant="caption">
               {user?.email}
             </Typography>
-            <Typography color="white" size="caption">
+            <Typography color="white" variant="caption">
               {user?.is_superuser ? t('header.admin') : t('header.user')}
             </Typography>
           </div>

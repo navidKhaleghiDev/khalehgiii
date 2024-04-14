@@ -11,7 +11,7 @@ export function ComponentCell({ row, id, header, onClick }: IComponentTable) {
       row={row}
       id={id}
       head={header}
-      size={header?.size}
+      size={header?.variant}
       onClick={onClick}
     />
   );

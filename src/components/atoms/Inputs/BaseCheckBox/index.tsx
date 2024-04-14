@@ -46,7 +46,7 @@ export function BaseCheckBox(props: BaseCheckBoxProps<any>) {
             </label>
           </div>
           {!hiddenError && (
-            <Typography color="red" size="caption" className="h-6">
+            <Typography color="red" variant="caption" className="h-6">
               {error?.message ?? ''}
             </Typography>
           )}

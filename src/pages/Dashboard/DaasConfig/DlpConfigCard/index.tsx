@@ -46,21 +46,21 @@ export function DlpConfigCard({
       </div>
 
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-1/12 flex justify-center items-center uppercase"
       >
         {booleanIcon(daasConfig.can_upload_file)}
       </Typography>
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-1/12 flex justify-center items-center uppercase"
       >
         {booleanIcon(daasConfig.can_download_file)}
       </Typography>
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-2/12 flex justify-center items-center uppercase"
       >
@@ -68,7 +68,7 @@ export function DlpConfigCard({
       </Typography>
 
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-2/12 flex justify-center items-center uppercase"
       >
@@ -76,14 +76,14 @@ export function DlpConfigCard({
       </Typography>
 
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-1/12 flex justify-center items-center uppercase"
       >
         {booleanIcon(daasConfig.webcam_privilege)}
       </Typography>
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-1/12 flex justify-center items-center uppercase"
       >
@@ -91,7 +91,7 @@ export function DlpConfigCard({
       </Typography>
 
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-2/12 text-center break-words uppercase"
       >
@@ -105,7 +105,7 @@ export function DlpConfigCard({
       </Typography>
 
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-1/12 text-center break-words"
       >
@@ -114,7 +114,7 @@ export function DlpConfigCard({
           : `${daasConfig.max_transmission_download_size}mb`}
       </Typography>
       <Typography
-        size="body3"
+        variant="body3"
         type="div"
         className="px-3 w-1/12 text-center break-words"
       >

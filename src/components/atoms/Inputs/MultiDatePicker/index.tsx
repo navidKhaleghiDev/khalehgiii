@@ -75,7 +75,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
           <div className={containerClass}>
             {label && (
               <label htmlFor={id} className="block mb-1">
-                <Typography color="teal" size="h5">
+                <Typography color="teal" variant="h5">
                   {label}
                 </Typography>
               </label>
@@ -124,7 +124,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
               </DatePicker>
             </div>
             {!hiddenError && (
-              <Typography color="red" size="caption" className="h-6">
+              <Typography color="red" variant="caption" className="h-6">
                 {error?.message ?? ''}
               </Typography>
             )}

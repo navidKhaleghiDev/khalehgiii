@@ -7,7 +7,7 @@ export const accordionButtonData: IAccordion[] = [
     title: <h3>خرید کالا چگونه انجام میشود؟</h3>,
     content: (
       <div>
-        <Typography size="body3" color="neutral">
+        <Typography variant="body3" color="neutral">
           توضیحات
         </Typography>
       </div>
@@ -18,7 +18,7 @@ export const accordionButtonData: IAccordion[] = [
     title: <h3>خرید کالا چگونه انجام میشود؟</h3>,
     content: (
       <div>
-        <Typography size="body3" color="neutral">
+        <Typography variant="body3" color="neutral">
           توضیحات
         </Typography>
       </div>
@@ -29,7 +29,7 @@ export const accordionButtonData: IAccordion[] = [
     title: <h3>خرید کالا چگونه انجام میشود؟</h3>,
     content: (
       <div>
-        <Typography size="body3" color="neutral">
+        <Typography variant="body3" color="neutral">
           توضیحات
         </Typography>
       </div>
@@ -40,7 +40,7 @@ export const accordionButtonData: IAccordion[] = [
     title: <h3>خرید کالا چگونه انجام میشود؟</h3>,
     content: (
       <div>
-        <Typography size="body3" color="neutral">
+        <Typography variant="body3" color="neutral">
           توضیحات
         </Typography>
       </div>
@@ -51,7 +51,7 @@ export const accordionButtonData: IAccordion[] = [
     title: <h3>خرید کالا چگونه انجام میشود؟</h3>,
     content: (
       <div>
-        <Typography size="body3" color="neutral">
+        <Typography variant="body3" color="neutral">
           توضیحات
         </Typography>
       </div>
@@ -62,7 +62,7 @@ export const accordionButtonData: IAccordion[] = [
     title: <h3>خرید کالا چگونه انجام میشود؟</h3>,
     content: (
       <div>
-        <Typography size="body3" color="neutral">
+        <Typography variant="body3" color="neutral">
           توضیحات
         </Typography>
       </div>

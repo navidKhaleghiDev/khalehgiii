@@ -18,10 +18,10 @@ export function Card({ icon, title, description, onClick }: PropsType) {
     >
       <BaseIcon icon={icon} className="m-4" color="teal" size="md" />
       <div>
-        <Typography color="teal" size="h5">
+        <Typography color="teal" variant="h5">
           {title}
         </Typography>
-        <Typography className="text-neutral-400" size="h6">
+        <Typography className="text-neutral-400" variant="h6">
           {description}
         </Typography>
       </div>

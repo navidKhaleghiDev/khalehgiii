@@ -65,7 +65,7 @@ export function ChangePasswordForm({ user, logout }: any) {
       className="w-full flex flex-col items-center justify-end mt-auto p-16"
     >
       {error && (
-        <Typography color="red" size="body3" className="mb-2">
+        <Typography color="red" variant="body3" className="mb-2">
           {error}
         </Typography>
       )}

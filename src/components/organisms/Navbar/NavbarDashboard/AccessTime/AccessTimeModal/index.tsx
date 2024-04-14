@@ -85,15 +85,15 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
       </div>
       <div className="px-16 pt-8 pb-16 w-full">
         <Card className="bg-teal-600 flex items-center justify-between h-10 text-white px-2">
-          <Typography size="body3" color="white">
+          <Typography variant="body3" color="white">
             {t('global.timeAccess')}
           </Typography>
           <div className="flex items-center justify-between w-1/2">
-            <Typography size="body3" color="white">
+            <Typography variant="body3" color="white">
               {TimeLimitDurationLabel[timeLimitDuration]}
             </Typography>
             |
-            <Typography size="body3" color="white">
+            <Typography variant="body3" color="white">
               {timeLimitValueInHour} {t('global.hour')}
             </Typography>
           </div>

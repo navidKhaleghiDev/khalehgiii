@@ -4,7 +4,7 @@ import { IComponentTable } from '../../types';
 export function FunctionCell({ row, header, id }: IComponentTable) {
   return (
     <Typography
-      size={header?.size ? header?.size : 'body3'}
+      variant={header?.variant ? header?.variant : 'body4'}
       type="div"
       className="whitespace-no-wrap break-all"
     >

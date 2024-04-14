@@ -10,6 +10,7 @@ import { FunctionCell } from '../CustomCell/FunctionCell';
 import { ActionCell } from '../CustomCell/ActionCell';
 import { UserCell } from '../CustomCell/UserCell';
 import { TooltipCell } from '../CustomCell/TooltipCell';
+import { baseTableRowCard } from '../../styles';
 
 function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
   const id = header?.id;
@@ -35,13 +36,10 @@ export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
         {headers.map((header, colIndex) => (
           <td
             key={colIndex}
-            className={`flex justify-center items-center group text-center break-words whitespace-nowrap overflow-hidden overflow-ellipsis px-6 header ${
-              header.style
-            }  ${
-              header.style && header.style.includes('fixed')
-                ? 'bg-neutral-100 dark:bg-slate-800 h-14 px-2'
-                : ''
-            } `}
+            className={baseTableRowCard({
+              fixed: header.fixed,
+              className: `${header.class} ${header.fixed && 'fixed'}`,
+            })}
             dir={!header.dir ? 'ltr' : header.dir}
           >
             {rowCellsComponent({

@@ -72,7 +72,9 @@
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
     "lastUptime": "last uptime",
-    "lastLoginIp": "last Login Ip"
+    "lastLoginIp": "last Login Ip",
+    "download": "download",
+    "selectTimeFrame": "Select Time Frame"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -145,11 +147,12 @@
     "onlineUsers": "Online Users",
     "week": "week",
     "reports": "Reports",
-    "selectDate": "Select Date",
-    "monthlySelect": "Monthly Select",
-    "weeklySelect": "Weekly Select",
-    "normalSelect": "Normal Select",
-    "send": "Send"
+    "periodOfTime": "Period Of Time",
+    "monthlySelect": "Monthly",
+    "weeklySelect": "Weekly",
+    "arbitrary": "Arbitrary",
+    "send": "Send",
+    "reportsChart": "ReportsChart"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

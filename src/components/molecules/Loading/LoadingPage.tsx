@@ -21,7 +21,7 @@ export function LoadingPage({ description }: PropsType) {
         />
       </svg>
       {description && (
-        <Typography color="neutral" className="mt-2" size="body2">
+        <Typography color="neutral" className="mt-2" variant="body2">
           {description}
         </Typography>
       )}

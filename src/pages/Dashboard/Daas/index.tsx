@@ -23,7 +23,7 @@ export function Daas({ src }: TDassProps) {
 
   return loading ? (
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <Typography size="body3">
+      <Typography variant="body3">
         {t('dashboard.preparationTheDesktop')}
       </Typography>
       <div className="w-1/2">

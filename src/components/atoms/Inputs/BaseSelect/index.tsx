@@ -66,7 +66,7 @@ export function BaseSelect(props: BaseInputProps<any>) {
             </div>
           </div>
           {!hiddenError && (
-            <Typography color="red" size="caption" className="h-6">
+            <Typography color="red" variant="caption" className="h-6">
               {error?.message ?? ''}
             </Typography>
           )}

@@ -10,12 +10,6 @@
 
 @font-face {
   font-family: 'on';
-  src: url('/src/assets/fonts/IRANSans.eot'),
-    url('/src/assets/fonts/OnNormal.woff');
-}
-
-@font-face {
-  font-family: 'on';
   src: url('/src/assets/fonts/OnMedium.woff2'),
     url('/src/assets/fonts/OnMedium.woff');
 }
@@ -96,4 +90,10 @@ select option {
 }
 input[type='radio'] {
   accent-color: teal;
+}
+.custom-height {
+  height: 45rem;
+  min-height: auto;
+  max-height: calc(65vh);
+  /* height: ; */
 }

@@ -29,7 +29,7 @@ export function BaseTextarea(props: BaseTextareaProps<any>) {
         <div className={`${className} ${fullWidth && 'w-full'}`}>
           {label && (
             <label htmlFor={id} className="block mb-1">
-              <Typography color="teal" size="h5">
+              <Typography color="teal" variant="h5">
                 {label}
               </Typography>
             </label>
@@ -51,7 +51,7 @@ export function BaseTextarea(props: BaseTextareaProps<any>) {
             placeholder={placeholder}
           />
           {!hiddenError && (
-            <Typography color="red" size="caption" className="h-6">
+            <Typography color="red" variant="caption" className="h-6">
               {error?.message ?? ''}
             </Typography>
           )}
