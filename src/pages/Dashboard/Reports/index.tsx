@@ -205,7 +205,7 @@ export function Reports() {
             </Typography>
           )}
         </LoadingWrapper>
-        {!recordsData && (
+        {recordsData && (
           <Typography
             color="neutral"
             className="absolute bottom-3 right-4 "
