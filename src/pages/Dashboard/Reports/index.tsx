@@ -115,8 +115,8 @@ export function Reports() {
     }
   };
   const message = !state.error
-    ? 'بازه زمانی مورد نظر را وارد کنید'
-    : 'درحال حاظر گزارشی وجود ندارد';
+    ? t('global.enterPriodOfTime')
+    : t('global.noReportAvailable');
 
   const chartData = {
     flag,

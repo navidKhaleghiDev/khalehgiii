@@ -74,7 +74,8 @@
     "lastUptime": "last uptime",
     "lastLoginIp": "last Login Ip",
     "download": "download",
-    "selectTimeFrame": "Select Time Frame"
+    "selectTimeFrame": "Select Time Frame",
+    "file": "File"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -154,11 +155,14 @@
     "arbitrary": "Arbitrary",
     "send": "Send",
     "reportsChart": "ReportsChart",
-    "to": "To"
+    "to": "To",
+    "enterPriodOfTime": "Enter the desired period of time",
+    "noReportAvailable": "There is currently no report available"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
     "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
-    "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?"
+    "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?",
+    "extensionListTitle": "To create a new file string and file extension, upload your associated file."
   }
 }
