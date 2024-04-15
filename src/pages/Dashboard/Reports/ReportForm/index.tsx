@@ -3,7 +3,11 @@ import { MultiDatePicker } from '@ui/atoms/Inputs/MultiDatePicker';
 import { useForm } from 'react-hook-form';
 import { IFormDate, IReportFormType } from '../types';
 
-export function ReportForm({ handleOnSubmit, state }: IReportFormType) {
+export function ReportForm({
+  handleOnSubmit,
+  state,
+  onClick,
+}: IReportFormType) {
   const { t } = useTranslation();
   const { control, handleSubmit } = useForm<IFormDate>({
     mode: 'onChange',
@@ -16,6 +20,7 @@ export function ReportForm({ handleOnSubmit, state }: IReportFormType) {
   return (
     <form className="" onSubmit={handleSubmit(handleOnSubmit)}>
       <MultiDatePicker
+        onClick={onClick}
         timeDuration={state}
         control={control}
         placeholder={t('global.periodOfTime')}

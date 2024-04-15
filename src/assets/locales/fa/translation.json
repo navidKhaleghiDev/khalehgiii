@@ -149,10 +149,12 @@
     "periodOfTime": "بازه زمانی",
     "monthlySelect": "ماهانه",
     "weeklySelect": "هفتگی",
+    "dailySelect": "روزانه",
     "arbitrary": "دلخواه",
     "send": "ارسال",
     "selectTimeFrame": "بازه ای از زمان را انتخاب کنید",
-    "reportsChart": "نمودارگزارش"
+    "reportsChart": "نمودارگزارش",
+    "to": "الی"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

@@ -150,9 +150,11 @@
     "periodOfTime": "Period Of Time",
     "monthlySelect": "Monthly",
     "weeklySelect": "Weekly",
+    "dailySelect": "daily",
     "arbitrary": "Arbitrary",
     "send": "Send",
-    "reportsChart": "ReportsChart"
+    "reportsChart": "ReportsChart",
+    "to": "To"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
