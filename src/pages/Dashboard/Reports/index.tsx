@@ -33,7 +33,7 @@ const isFarsi = lang === 'fa';
 
 const HOURLY_FORMAT = 'HH:mm';
 const DAILY_FORMAT = 'dddd';
-const MONTLY_FORMAT = !isFarsi ? 'jMMMM' : 'MMMM';
+const MONTLY_FORMAT = !isFarsi ? 'MMMM' : 'jMMMM';
 const NORMAL_FORMAT = !isFarsi ? 'YYYY-MM-DD' : 'jYYYY-jMM-jDD';
 
 const DIS_KEY_ISLOADING = 'LOADING_ON';
@@ -134,10 +134,6 @@ export function Reports() {
     DIS_KEY_NORMAL,
   };
 
-  useEffect(() => {
-    dynamicKey = `global.${flag}Select`;
-  }, [flag, recordsData]);
-
   const convertDate = (date: DateObject) =>
     new DateObject({
       date: date.toDate(),
@@ -205,12 +201,12 @@ export function Reports() {
             </Typography>
           )}
         </LoadingWrapper>
-        {recordsData && (
+        {recordsData && !state.error && (
           <Typography
             color="neutral"
             className="absolute bottom-3 right-4 "
           >{`${t('global.reportsChart')}  ${t(
-            dynamicKey
+            `global.${flag}Select`
           )}  | ${convertedTimeTitle}  `}</Typography>
         )}
       </Card>
