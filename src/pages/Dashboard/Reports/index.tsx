@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from 'react';
+import { useCallback, useReducer, useState } from 'react';
 import { convertI2ToAD } from '@ui/atoms/Inputs/MultiDatePicker';
 
 import 'chart.js/auto';
@@ -25,7 +25,6 @@ import { ReportsChart } from './ReportChart';
 import { ReportForm } from './ReportForm';
 import { ReportOptions } from './ReportOptions';
 
-let dynamicKey: string;
 let convertedTimeTitle: any;
 
 const lang = localStorage.getItem('lang');
