@@ -19,4 +19,5 @@ export interface BaseCheckBoxProps<T extends FieldValues>
   label?: string;
   hiddenError?: boolean;
   className?: string;
+  disabled?: boolean;
 }

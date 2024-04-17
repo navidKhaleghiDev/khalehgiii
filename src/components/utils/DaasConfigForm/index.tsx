@@ -44,6 +44,12 @@ export function DaasConfigForm({ control }: PropsType) {
         <Typography className="mb-1">:Microphone Privilege</Typography>
       </div>
 
+      <div className="flex justify-between items-center px-2 col-span-3">
+        <BaseSwitch control={control} name="session_record" />
+        <Typography className="mb-1">:Session Record</Typography>
+      </div>
+      <div className="flex justify-between items-center px-2 col-span-3" />
+
       <div className="px-2 col-span-3 text-left">
         <Typography className="mb-1">:Time Limit Duration</Typography>
         <Dropdown

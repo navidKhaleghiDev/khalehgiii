@@ -8,3 +8,7 @@ export interface ICard
     PropsWithChildren {
   className?: string;
 }
+
+export interface ICardButton extends ICard {
+  onClick?: () => void;
+}

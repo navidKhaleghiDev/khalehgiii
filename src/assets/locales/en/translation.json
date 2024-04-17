@@ -154,6 +154,14 @@
     "send": "Send",
     "reportsChart": "ReportsChart"
   },
+  "groupManagement": {
+    "person": "person",
+    "label": "Group Management",
+    "createGroup": "Create Group",
+    "editGroup": "Edit Group",
+    "choiceAdmin": "Choice Admin",
+    "choiceUsers": "Choice Users"
+  },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
     "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
