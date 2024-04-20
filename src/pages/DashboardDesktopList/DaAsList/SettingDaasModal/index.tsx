@@ -33,6 +33,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       clipboard_up: daas.daas_configs.clipboard_up,
       webcam_privilege: daas.daas_configs.webcam_privilege,
       microphone_privilege: daas.daas_configs.microphone_privilege,
+      is_recording: daas.daas_configs.is_recording,
       max_transmission_download_size:
         daas.daas_configs.max_transmission_download_size,
       max_transmission_upload_size:
@@ -60,6 +61,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     is_globally_config,
     daas_configs,
     is_lock,
+    is_recording,
     allowed_files_type_for_download,
     allowed_files_type_for_upload,
     forbidden_upload_files,
@@ -91,6 +93,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       daas_configs: {
         can_upload_file,
         can_download_file,
+        is_recording,
         clipboard_up,
         clipboard_down,
         webcam_privilege,
@@ -132,7 +135,6 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
         dlpDownloadList={dlpDownloadList}
         dlpUploadList={dlpUploadList}
       />
-
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">
