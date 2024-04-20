@@ -67,10 +67,10 @@ export function GroupManagement({ user }: { user: IUser | null }) {
             title="Developer"
             // img="/not-found.jpg"
             listCount={2}
-            onClickActions={handleOnClickAddCard}
+            onClickActions={() => handleOnClickEditCard('1')}
           />
         ))}
-        <GroupCardAdd onClickActions={() => handleOnClickEditCard('1')} />
+        <GroupCardAdd onClickActions={handleOnClickAddCard} />
       </div>
       <Modal
         open={openGroupModal.open}

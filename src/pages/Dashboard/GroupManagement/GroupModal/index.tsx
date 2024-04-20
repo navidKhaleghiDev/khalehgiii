@@ -7,7 +7,8 @@ import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
 import { IDaasConfig } from '@src/services/config/types';
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
-import { ListUsers } from './ListUsers';
+import { UsersList } from './UsersList';
+import { AdminsList } from './AdminsList';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -49,48 +50,20 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
         />
       </div>
       <BaseTabs
-        label={t(`groupManagement.${!groupId ? 'createGroup' : 'editGroup'}`)}
+        label={t(`groupManagement.${groupId ? 'editGroup' : 'createGroup'}`)}
         className="px-12 pb-10"
       >
-        <BaseTab label={t('groupManagement.choiceAdmin')}>
-          <ListUsers />
+        <BaseTab
+          label={t(`groupManagement.${groupId ? 'admins' : 'choiceAdmins'}`)}
+        >
+          <AdminsList groupId={groupId} />
         </BaseTab>
-        <BaseTab label={t('groupManagement.choiceUsers')}>
-          <ListUsers />
+        <BaseTab
+          label={t(`groupManagement.${groupId ? 'users' : 'choiceUsers'}`)}
+        >
+          <UsersList groupId={groupId} />
         </BaseTab>
       </BaseTabs>
     </div>
   );
-
-  //   return (
-  //     <form
-  //       className="w-full h-full grid grid-cols-6 gap-8 p-4"
-  //       onSubmit={handleSubmit(handleOnSubmit)}
-  //     >
-  //       <DaasConfigForm control={control} />
-  //       <div className="flex justify-center col-span-6">
-  //         {showConfirm && (
-  //           <div className="flex justify-center items-center w-full">
-  //             <Typography className="mx-2">آیا مطمین هستید؟</Typography>
-  //             <BaseButton label="بله" size="sm" submit className="mx-2" />
-  //             <BaseButton
-  //               label="خیر"
-  //               size="sm"
-  //               type="red"
-  //               className="mx-2"
-  //               onClick={() => setShowConfirm(false)}
-  //             />
-  //           </div>
-  //         )}
-
-  //         {!showConfirm && (
-  //           <BaseButton
-  //             label="ثبت"
-  //             size="md"
-  //             onClick={() => setShowConfirm(true)}
-  //           />
-  //         )}
-  //       </div>
-  //     </form>
-  //   );
 }

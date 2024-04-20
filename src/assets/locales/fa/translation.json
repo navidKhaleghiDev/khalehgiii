@@ -110,7 +110,7 @@
     "email": "ایمیل",
     "metaAdmin": "سوپر ادمین",
     "confirm": "ثبت",
-    "cancell": "لغو",
+    "cancel": "لغو",
     "successfullySet": "با موفقیت تنظیم شد",
     "hour": "ساعت",
     "restart": "شروع مجدد",
@@ -159,8 +159,11 @@
     "label": "گروه بندی",
     "createGroup": "ساخت گروه",
     "editGroup": "ویرایش گروه",
-    "choiceAdmin": "انتخاب ادمین",
-    "choiceUsers": "انتخاب کاربران"
+    "choiceAdmins": "انتخاب ادمین",
+    "choiceUsers": "انتخاب کاربران",
+    "newAdmin": "ادمین جدید",
+    "users": "کاربران",
+    "admins": "ادمین ها"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

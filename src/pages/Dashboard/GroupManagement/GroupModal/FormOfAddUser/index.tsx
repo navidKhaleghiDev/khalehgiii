@@ -23,7 +23,7 @@ type FormData = {
   };
 };
 
-export function ListUsers() {
+export function FormOfAddUser() {
   const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
 

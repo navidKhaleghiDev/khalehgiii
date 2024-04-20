@@ -111,7 +111,7 @@
     "email": "Email",
     "metaAdmin": "Super Admin",
     "confirm": "Confirm",
-    "cancell": "Cancell",
+    "cancel": "Cancel",
     "successfullySet": "Successfully Set",
     "hour": "Hour",
     "restart": "Restart",
@@ -160,7 +160,10 @@
     "createGroup": "Create Group",
     "editGroup": "Edit Group",
     "choiceAdmin": "Choice Admin",
-    "choiceUsers": "Choice Users"
+    "choiceUsers": "Choice Users",
+    "newAdmins": "New Admins",
+    "users": "Users",
+    "admins": "Admins"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
