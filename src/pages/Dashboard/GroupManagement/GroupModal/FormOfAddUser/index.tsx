@@ -1,21 +1,19 @@
-import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
-import { BaseIcon, Typography } from '@ui/atoms';
+import { BaseButton } from '@ui/atoms/BaseButton';
+import { Typography } from '@ui/atoms';
 import { useCallback, useState } from 'react';
 
-import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
-import { IDaasConfig } from '@src/services/config/types';
-import { useTranslation } from 'react-i18next';
-import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
+// import { useTranslation } from 'react-i18next';
+
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
-import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
-type TListUsersProps = {
-  handleClose: (isUpdated?: boolean) => void;
-  groupId?: string;
-};
+// type TListUsersProps = {
+//   handleClose: (isUpdated?: boolean) => void;
+//   groupId?: string;
+// };
 
 type FormData = {
   checkboxes: {
@@ -24,21 +22,19 @@ type FormData = {
 };
 
 export function FormOfAddUser() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
 
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [setShowConfirm] = useState(false);
 
-  const { register, control, handleSubmit } = useForm<FormData>();
-  const checkboxes = useWatch({
-    control,
-    name: 'checkboxes',
-    defaultValue: {},
-  });
+  const { control, handleSubmit } = useForm<FormData>();
+  // const checkboxes = useWatch({
+  //   control,
+  //   name: 'checkboxes',
+  //   defaultValue: {},
+  // });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<FormData> = () => {};
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
@@ -70,7 +66,7 @@ export function FormOfAddUser() {
               key={item}
               className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
             >
-              <BaseCheckBox id={'asdsad'} name={'sadsa'} control={control} />
+              <BaseCheckBox id="asdsad" name="sadsa" control={control} />
               {/* <input
               type="checkbox"
               className="form-checkbox h-5 w-5 text-indigo-600"

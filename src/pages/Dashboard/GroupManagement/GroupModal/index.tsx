@@ -18,13 +18,11 @@ type PropsType = {
 export function GroupModal({ handleClose, groupId }: PropsType) {
   const { t } = useTranslation();
 
-  const [showConfirm, setShowConfirm] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   const {
     control,
     setValue,
-    watch,
     setError,
     clearErrors,
     formState: { errors },
@@ -35,10 +33,10 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
     },
   });
 
-  const handleOnSubmit = () => {
-    handleClose();
-    // handleOnChange({ ...daas, ...data });
-  };
+  // const handleOnSubmit = () => {
+  //   handleClose();
+  //   // handleOnChange({ ...daas, ...data });
+  // };
 
   const validateFileSize = (file: TFile) => {
     if (file.size > 3 * 1024 * 1024) {

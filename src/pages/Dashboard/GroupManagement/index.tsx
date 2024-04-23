@@ -1,21 +1,8 @@
-import { useEffect, useState } from 'react';
-import { BaseButton, BaseInput, Typography } from '@ui/atoms';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { regexPattern } from '@ui/atoms/Inputs';
+import { useState } from 'react';
 import { IUser } from '@src/services/users/types';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { Divider } from '@ui/atoms/Divider';
-import { HTTP_ANALYSES } from '@src/services/http';
-import useSWR from 'swr';
-import {
-  API_ANALYZE_LOG_CREATE,
-  API_ANALYZE_LOG_UPDATE,
-  API_CONFIG_ANALYZE_LOG,
-} from '@src/services/analyze';
-import { IAddConfigAnalyze } from '@src/services/analyze/types';
-import { API_MALWARE_ANTIVIRUS_UPDATE } from '@src/services/users';
-import { useTranslation } from 'react-i18next';
+
+// import { useTranslation } from 'react-i18next';
 import { Modal } from '@ui/molecules/Modal';
 
 import { GroupCardEdit } from './GroupCardEdit';
@@ -26,17 +13,18 @@ type TModal = {
   open: boolean;
   groupId?: string;
 };
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function GroupManagement({ user }: { user: IUser | null }) {
-  const { t } = useTranslation();
-  const [loadingButton, setLoadingButton] = useState(false);
-  const [loading, setLoading] = useState(true);
+  // const { t } = useTranslation();
+  // const [loadingButton, setLoadingButton] = useState(false);
+  const [loading] = useState(true);
   const [openGroupModal, setOpenGroupModal] = useState<TModal>({
     open: false,
   });
-  const [isAdd, setIsAdd] = useState(false);
+  // const [isAdd, setIsAdd] = useState(false);
 
-  const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [malwereData, setMalwereData] = useState({ action: '', data: '' });
+  // const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  // const [malwereData, setMalwereData] = useState({ action: '', data: '' });
 
   // const {
   //   data: listData,
