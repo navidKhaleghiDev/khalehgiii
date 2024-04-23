@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { IUser } from '@src/services/users/types';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 
 // import { useTranslation } from 'react-i18next';
@@ -13,8 +12,8 @@ type TModal = {
   open: boolean;
   groupId?: string;
 };
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function GroupManagement({ user }: { user: IUser | null }) {
+export function GroupManagement() {
+  // { user }: { user: IUser | null }
   // const { t } = useTranslation();
   // const [loadingButton, setLoadingButton] = useState(false);
   const [loading] = useState(true);
