@@ -13,7 +13,9 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
+import { useNavigate } from 'react-router-dom';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { SettingDaasModal } from './SettingDaasModal';
@@ -52,6 +54,7 @@ const PAGE = 1;
 
 export function DaAsList() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
 
@@ -99,7 +102,11 @@ export function DaAsList() {
       mutate();
       return;
     }
-
+    if (action === 'more') {
+      // we neded to do somthing
+      navigate(`${ROUTES_PATH.dashboardSessionRecordingList}`);
+      return;
+    }
     if (action === 'edit') {
       setActiveDaas(fileType as IDaAs);
       setOpenSettingModal(true);

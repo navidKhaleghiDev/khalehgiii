@@ -26,6 +26,7 @@ export type ActionOnClickActionsType =
   | 'details'
   | 'mutate'
   | 'download'
+  | 'more'
   | 'editLock';
 
 export type TTableIcon = {

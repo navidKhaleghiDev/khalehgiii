@@ -8,7 +8,6 @@ import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
 
 const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
 
@@ -129,18 +128,18 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     class: 'w-32 ',
   },
   {
-    label: 'table.observeUserBehavior',
+    label: 'table.sessionRecording',
     id: 'id',
     type: 'action',
     action: [
       {
-        action: ROUTES_PATH.monitoring,
+        action: 'more',
         icon: moreIcon,
         color: 'neutralNoBg',
       },
     ],
     dir: '',
-    class: 'px-3 w-2/12',
+    class: 'w-32',
   },
 
   {
