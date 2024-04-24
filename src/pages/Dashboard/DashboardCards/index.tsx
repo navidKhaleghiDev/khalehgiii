@@ -7,6 +7,7 @@ import desktopIcon from '@iconify-icons/ph/desktop';
 import usersThreeIcon from '@iconify-icons/ph/users-three';
 import { useUserContext } from '@context/user/userContext';
 import shieldCheckIcon from '@iconify-icons/ph/shield-check';
+import PhGlobeHemisphereWest from '@iconify-icons/ph/globe-hemisphere-west';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 
 // import { CardScanStats } from './CardScanStats';
@@ -77,6 +78,14 @@ export function DashboardCards() {
           title={t('global.reports')}
           description=""
           onClick={() => navigate(ROUTES_PATH.reports)}
+        />
+      </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={PhGlobeHemisphereWest}
+          title={t('global.internetLog')}
+          description=""
+          onClick={() => navigate(ROUTES_PATH.internetLog)}
         />
       </div>
     </div>

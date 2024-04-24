@@ -11,7 +11,8 @@ export type RoutePathType =
   | 'extensionList'
   | 'reports'
   | 'dashboardDesktopList'
-  | 'dashboardSessionRecordingList';
+  | 'dashboardSessionRecordingList'
+  | 'internetLog';
 
 export const RoutesName = {
   HOME: 'home',
@@ -25,6 +26,7 @@ export const RoutesName = {
   UBA: 'uba',
   REPORTS: 'reports',
   SESSIONRECORDING: 'session-recording',
+  INTERNETLOG: 'internet-log',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -39,6 +41,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
   reports: `/${RoutesName.DASHBOARD}/${RoutesName.REPORTS}`,
+  internetLog: `/${RoutesName.DASHBOARD}/${RoutesName.INTERNETLOG}`,
   extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
 };
