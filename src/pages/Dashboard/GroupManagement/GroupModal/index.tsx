@@ -93,11 +93,10 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
         />
       </div>
       {hasError && (
-        <Typography variant="h5" className=" -mt-6 mb-5 ">
+        <Typography variant="h5" className=" -mt-6 mb-5 " color="red">
           {errors.image?.message}
         </Typography>
       )}
-
       <BaseTabs className="px-12 pb-10">
         <BaseTab
           label={t(`groupManagement.${groupId ? 'admins' : 'choiceAdmins'}`)}

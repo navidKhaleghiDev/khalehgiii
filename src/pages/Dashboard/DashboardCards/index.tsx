@@ -76,6 +76,14 @@ export function DashboardCards() {
           onClick={() => navigate(ROUTES_PATH.reports)}
         />
       </div>
+      <div className="col-span-10 md:col-span-6 xl:col-span-3">
+        <Card
+          icon={shieldCheckIcon}
+          title="sarg"
+          description=""
+          onClick={() => navigate(ROUTES_PATH.sarg)}
+        />
+      </div>
     </div>
   );
 }

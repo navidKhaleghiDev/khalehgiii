@@ -10,7 +10,8 @@ export type RoutePathType =
   | 'uba'
   | 'extensionList'
   | 'reports'
-  | 'dashboardDesktopList';
+  | 'dashboardDesktopList'
+  | 'sarg';
 
 export const RoutesName = {
   HOME: 'home',
@@ -23,6 +24,7 @@ export const RoutesName = {
   EXTENSION_LIST: 'extension-list',
   UBA: 'uba',
   REPORTS: 'reports',
+  SARG: 'sarg',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -36,6 +38,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
   reports: `/${RoutesName.DASHBOARD}/${RoutesName.REPORTS}`,
+  sarg: `/${RoutesName.DASHBOARD}/${RoutesName.SARG}`,
   extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
 };

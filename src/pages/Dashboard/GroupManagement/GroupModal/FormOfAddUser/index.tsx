@@ -25,7 +25,8 @@ export function FormOfAddUser() {
   // const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
 
-  const [setShowConfirm] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  console.log(showConfirm);
 
   const { control, handleSubmit } = useForm<FormData>();
   // const checkboxes = useWatch({

@@ -27,7 +27,8 @@ export function UsersList({ groupId }: AdminsListProps) {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [isAddNew, setIsAddNew] = useState(false);
 
-  const [setShowConfirm] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  console.log(showConfirm);
 
   const { control, handleSubmit } = useForm<FormData>();
   // const checkboxes = useWatch({
