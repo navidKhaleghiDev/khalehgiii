@@ -152,7 +152,8 @@
     "weeklySelect": "Weekly",
     "arbitrary": "Arbitrary",
     "send": "Send",
-    "reportsChart": "ReportsChart"
+    "reportsChart": "ReportsChart",
+    "internetLog": "Internet log"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
