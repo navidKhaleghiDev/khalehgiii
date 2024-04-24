@@ -11,6 +11,7 @@ import { Reports } from '@src/pages/Dashboard/Reports';
 import { UbaPage } from '@src/pages/Uba';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
+import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import { ROUTES_PATH } from './routesConstants';
 
 const routesConfig = [
@@ -36,6 +37,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.reports,
         element: <Reports />,
+      },
+      {
+        path: ROUTES_PATH.internetLog,
+        element: <InternetLog />,
       },
       {
         path: ROUTES_PATH.dashboardDesktopList,
