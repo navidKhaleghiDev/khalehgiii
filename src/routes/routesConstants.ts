@@ -10,7 +10,8 @@ export type RoutePathType =
   | 'uba'
   | 'extensionList'
   | 'reports'
-  | 'dashboardDesktopList';
+  | 'dashboardDesktopList'
+  | 'dashboardSessionRecordingList';
 
 export const RoutesName = {
   HOME: 'home',
@@ -23,6 +24,7 @@ export const RoutesName = {
   EXTENSION_LIST: 'extension-list',
   UBA: 'uba',
   REPORTS: 'reports',
+  SESSIONRECORDING: 'session-recording',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -32,6 +34,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
   dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
+  dashboardSessionRecordingList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
   dashboardAdminsList: `/${RoutesName.DASHBOARD}/${RoutesName.ADMINS_LIST}`,
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
