@@ -74,7 +74,12 @@
     "lastUptime": "last uptime",
     "lastLoginIp": "last Login Ip",
     "download": "download",
-    "selectTimeFrame": "Select Time Frame"
+    "selectTimeFrame": "Select Time Frame",
+    "sessionRecording": "Session Recording",
+    "play": "play",
+    "time": "time",
+    "date": "date",
+    "day": "day"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -155,7 +160,9 @@
     "reportsChart": "ReportsChart",
     "internetLog": "Internet log",
     "wholeList": "whole List",
-    "todayList": "toDayList"
+    "todayList": "toDayList",
+    "notFoundPage": "page not found!",
+    "goToHome": "go To Home"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

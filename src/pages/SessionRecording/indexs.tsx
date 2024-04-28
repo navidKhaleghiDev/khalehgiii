@@ -5,7 +5,6 @@ import { BackButton } from '@ui/atoms/BackButton';
 import { SessionRecordingList } from './SessionRecordingList/indexs';
 
 export function SessionRecording() {
-  // const { id } = useParams();
   return (
     <ContainerDashboard>
       <BackButton withLabel className="absolute bottom-20 left-24" />

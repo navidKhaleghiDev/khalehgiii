@@ -37,3 +37,6 @@ export const API_CREATE_FILE_TYPE = (body: IFileType) =>
 
 export const API_UPDATE_DAAS_CONFIG = (body: IDaasConfig) =>
   http.patch<IAxiosResponse<any>>(`${E_DAAS_CONFIGS}${body.id}/`, body);
+
+export const API_GET_RECORDED_VIDEO = (body: IDaasConfig) =>
+  http.get<IAxiosResponse<any>>(`users/record_file?record_name=${body}`);

@@ -73,7 +73,12 @@
     "containerId": " کانتینر id",
     "lastUptime": "آخرین ورود",
     "lastLoginIp": "آخرین ورود ip",
-    "download": "دانلود"
+    "download": "دانلود",
+    "sessionRecording": "ظبط فعالیت",
+    "play": "پخش",
+    "time": "زمان",
+    "date": "تاریخ",
+    "day": "روز"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -155,7 +160,9 @@
     "reportsChart": "نمودارگزارش",
     "internetLog": "لاگ های اینترنت",
     "wholeList": "لیست کلی",
-    "todayList": "لیست امروز"
+    "todayList": "لیست امروز",
+    "notFoundPage": "صفحه مورد نظر یافت نشد!",
+    "goToHome": "برو به خانه"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

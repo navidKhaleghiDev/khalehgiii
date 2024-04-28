@@ -104,7 +104,7 @@ export function DaAsList() {
     }
     if (action === 'more') {
       // we neded to do somthing
-      navigate(`${ROUTES_PATH.dashboardSessionRecordingList}`);
+      navigate(`${ROUTES_PATH.dashboardSessionRecordingList}${fileType?.id} `);
       return;
     }
     if (action === 'edit') {

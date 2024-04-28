@@ -4,6 +4,7 @@ export const E_CONFIG = '/config/';
 export const E_UPDATE_DELETE_CONFIG = (id: number) => `/config/${id}/`;
 
 export const E_DAAS_CONFIGS = '/config/daas_configs/';
+export const E_SESSION_RECORDING = 'users/record_list/';
 
 export const E_DAAS_CONFIG_LIST = ({ pageSize, page, filter }: IPagination) =>
   `${E_DAAS_CONFIGS}${
@@ -19,4 +20,11 @@ export const E_DAAS_CONFIG_LIST_PAGINATION = ({
 }: IPagination) =>
   `${E_WHITE_LIST_FILES}${
     filter ? `?${filter}&` : '?'
+  }page_size=${pageSize}&page=${page}`;
+export const E_SESSION_RECORD_LIST_PAGINATION = (
+  id: string,
+  { pageSize, page, filter }: IPagination
+) =>
+  `${E_SESSION_RECORDING}?id=${id}&${
+    filter ? `${filter}&` : ''
   }page_size=${pageSize}&page=${page}`;
