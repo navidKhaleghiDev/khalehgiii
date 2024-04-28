@@ -32,6 +32,7 @@ const headerItem: StringifyProperties<IDaasConfig> = {
   max_transmission_upload_size: 'سایز آپلود',
   max_transmission_download_size: 'سایز دانلود',
   is_globally_config: '',
+  is_recording: '',
 };
 
 export function DaasConfigList() {

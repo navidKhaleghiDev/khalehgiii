@@ -28,3 +28,5 @@ export const E_SESSION_RECORD_LIST_PAGINATION = (
   `${E_SESSION_RECORDING}?id=${id}&${
     filter ? `${filter}&` : ''
   }page_size=${pageSize}&page=${page}`;
+export const E_GET_RECORDED_VIDEO = (body: any) =>
+  `users/record_file?record_name=${body}`;
