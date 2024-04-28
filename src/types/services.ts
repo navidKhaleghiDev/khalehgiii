@@ -14,6 +14,15 @@ export interface IServerResponsePagination<T> {
     results: T;
   };
 }
+export interface ISessionResponsePagination<T> {
+  data: {
+    count?: number;
+    next?: string;
+    previous?: string;
+    history: T;
+    today: T;
+  };
+}
 
 export interface IResponsePagination<T> {
   data: {

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ISessionResponsePagination } from '@src/types/services';
 import { useParams } from 'react-router-dom';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
@@ -28,7 +28,9 @@ export function SessionRecordingList() {
   const ids = id?.replace(':id', '');
   //   ISessionRecordList
   // TRecordData
-  const { data, isLoading } = useSWR<IResponsePagination<ISessionRecordList>>(
+  const { data, isLoading } = useSWR<
+    ISessionResponsePagination<ISessionRecordList>
+  >(
     ids
       ? E_SESSION_RECORD_LIST_PAGINATION(ids, {
           page: currentPage,
