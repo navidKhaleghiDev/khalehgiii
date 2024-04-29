@@ -5,7 +5,7 @@ import { IComponentTable, IActionItem } from '../../types';
 export function ActionCell({ row, header, onClick }: IComponentTable) {
   return (
     header?.action && (
-      <>
+      <div className="absolute flex">
         {header.action.map((action: IActionItem, i: number) => (
           <IconButton
             key={i}
@@ -15,7 +15,7 @@ export function ActionCell({ row, header, onClick }: IComponentTable) {
             onClick={onClick ? () => onClick(action.action, row) : undefined}
           />
         ))}
-      </>
+      </div>
     )
   );
 }

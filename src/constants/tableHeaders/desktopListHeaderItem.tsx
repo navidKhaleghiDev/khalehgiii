@@ -151,11 +151,13 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
+        tooltip: 'table.delete',
       },
       {
         action: 'edit',
         icon: gear,
         color: 'neutralNoBg',
+        tooltip: 'table.edit',
       },
     ],
 

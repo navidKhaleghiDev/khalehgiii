@@ -13,7 +13,7 @@ function ToolTip({
     return children;
   }
   return (
-    <div className="group relative inline-block">
+    <div className="relative block">
       <div className={containerTooltipStyles({ position, show })}>
         <span className={tooltipStyles({ position })} />
         {tooltip}

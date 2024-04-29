@@ -12,14 +12,13 @@ export const tooltipStyles = cva(
       },
     },
     defaultVariants: {
-      position: 'bottom',
+      position: 'top',
     },
   }
 );
 
 export const containerTooltipStyles = cva(
   'absolute z-20 whitespace-nowrap rounded bg-black py-[6px] px-4 text-sm font-semibold text-white',
-  // 'absolute z-20 whitespace-nowrap rounded bg-black py-[6px] px-4 text-sm font-semibold text-white opacity-0 group-hover:opacity-100',
   {
     variants: {
       position: {
@@ -34,7 +33,7 @@ export const containerTooltipStyles = cva(
       },
     },
     defaultVariants: {
-      position: 'bottom',
+      position: 'top',
     },
   }
 );
