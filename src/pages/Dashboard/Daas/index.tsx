@@ -31,6 +31,12 @@ export function Daas({ src }: TDassProps) {
       </div>
     </div>
   ) : (
-    <iframe width="100%" height="100%" src={src} title="Desktop As Service" />
+    <div
+      style={{
+        height: `${window.innerHeight - 50}px`,
+      }}
+    >
+      <iframe width="100%" height="100%" src={src} title="Desktop As Service" />
+    </div>
   );
 }
