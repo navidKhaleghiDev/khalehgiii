@@ -26,8 +26,6 @@ export function SessionRecordingList() {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const { id } = useParams();
   const ids = id?.replace(':id', '');
-  //   ISessionRecordList
-  // TRecordData
   const { data, isLoading } = useSWR<
     ISessionResponsePagination<ISessionRecordList>
   >(

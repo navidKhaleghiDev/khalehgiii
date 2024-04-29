@@ -42,7 +42,7 @@ export const API_UPDATE_DAAS_CONFIG = (body: IDaasConfig) =>
 export const API_GET_RECORDED_VIDEO = (body: any) =>
   http.get(E_GET_RECORDED_VIDEO(body), {
     headers: {
-      'Content-Type': body.file_content_type,
+      'Content-Type': 'video/mp4',
     },
     responseType: 'blob',
   });
