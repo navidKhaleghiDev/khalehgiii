@@ -138,7 +138,6 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    dir: '',
     class: 'w-32',
   },
 
