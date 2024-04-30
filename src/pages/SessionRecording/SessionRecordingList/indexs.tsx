@@ -64,13 +64,13 @@ export function SessionRecordingList() {
     setLoading(true);
     await API_GET_RECORDED_VIDEO(video)
       .then((res) => {
-        setLoading(false);
         const blob = new Blob([res.data], { type: 'video/mp4' });
         const videoURL = URL.createObjectURL(blob);
         setRecordedVideo(videoURL);
         setOpenModal(true);
       })
-      .catch(() => {
+      .catch(() => {})
+      .finally(() => {
         setLoading(false);
       });
   };

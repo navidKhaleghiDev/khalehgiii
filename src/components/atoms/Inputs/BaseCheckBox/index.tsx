@@ -16,6 +16,7 @@ export function BaseCheckBox(props: BaseCheckBoxProps<any>) {
     hiddenError,
     label,
     className,
+    disabled,
   } = props;
   return (
     <Controller
@@ -37,6 +38,7 @@ export function BaseCheckBox(props: BaseCheckBoxProps<any>) {
                 className: 'pl-8',
                 size,
               })}
+              disabled={disabled}
             />
             <label
               htmlFor={id}
