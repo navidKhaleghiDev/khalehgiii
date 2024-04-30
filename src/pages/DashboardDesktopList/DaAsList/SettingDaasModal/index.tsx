@@ -135,7 +135,6 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
         dlpDownloadList={dlpDownloadList}
         dlpUploadList={dlpUploadList}
       />
-
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">

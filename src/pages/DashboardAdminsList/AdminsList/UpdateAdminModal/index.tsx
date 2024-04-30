@@ -184,7 +184,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               onClick={() => setShowConfirm(true)}
             />
             <BaseButton
-              label={t('global.cancell')}
+              label={t('global.cancel')}
               type="red"
               size="md"
               onClick={() => handleClose(true)}

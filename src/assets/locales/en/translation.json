@@ -79,7 +79,8 @@
     "play": "play",
     "time": "time",
     "date": "date",
-    "day": "day"
+    "day": "day",
+    "file": "File"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -116,7 +117,7 @@
     "email": "Email",
     "metaAdmin": "Super Admin",
     "confirm": "Confirm",
-    "cancell": "Cancell",
+    "cancel": "Cancel",
     "successfullySet": "Successfully Set",
     "hour": "Hour",
     "restart": "Restart",
@@ -155,6 +156,7 @@
     "periodOfTime": "Period Of Time",
     "monthlySelect": "Monthly",
     "weeklySelect": "Weekly",
+    "dailySelect": "daily",
     "arbitrary": "Arbitrary",
     "send": "Send",
     "reportsChart": "ReportsChart",
@@ -162,11 +164,26 @@
     "wholeList": "whole List",
     "todayList": "toDayList",
     "notFoundPage": "page not found!",
-    "goToHome": "go To Home"
+    "goToHome": "go To Home",
+    "to": "To",
+    "enterPriodOfTime": "Enter the desired period of time",
+    "noReportAvailable": "There is currently no report available"
+  },
+  "groupManagement": {
+    "person": "person",
+    "label": "Group Management",
+    "createGroup": "Create Group",
+    "editGroup": "Edit Group",
+    "choiceAdmin": "Choice Admin",
+    "choiceUsers": "Choice Users",
+    "newAdmins": "New Admins",
+    "users": "Users",
+    "admins": "Admins"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
     "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
-    "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?"
+    "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?",
+    "extensionListTitle": "To create a new file string and file extension, upload your associated file."
   }
 }

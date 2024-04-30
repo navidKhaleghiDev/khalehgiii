@@ -74,11 +74,7 @@
     "lastUptime": "آخرین ورود",
     "lastLoginIp": "آخرین ورود ip",
     "download": "دانلود",
-    "sessionRecording": "فعالیت های ظبط شده",
-    "play": "پخش",
-    "time": "زمان",
-    "date": "تاریخ",
-    "day": "روز"
+    "file": "فایل"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -115,7 +111,7 @@
     "email": "ایمیل",
     "metaAdmin": "سوپر ادمین",
     "confirm": "ثبت",
-    "cancell": "لغو",
+    "cancel": "لغو",
     "successfullySet": "با موفقیت تنظیم شد",
     "hour": "ساعت",
     "restart": "شروع مجدد",
@@ -154,6 +150,7 @@
     "periodOfTime": "بازه زمانی",
     "monthlySelect": "ماهانه",
     "weeklySelect": "هفتگی",
+    "dailySelect": "روزانه",
     "arbitrary": "دلخواه",
     "send": "ارسال",
     "selectTimeFrame": "بازه ای از زمان را انتخاب کنید",
@@ -162,11 +159,26 @@
     "wholeList": "لیست کلی",
     "todayList": "لیست امروز",
     "notFoundPage": "صفحه مورد نظر یافت نشد!",
-    "goToHome": "برو به خانه"
+    "goToHome": "برو به خانه",
+    "to": "الی",
+    "enterPriodOfTime": "بازه زمانی مورد نظر را وارد کنید",
+    "noReportAvailable": "درحال حاظر گزارشی وجود ندارد"
+  },
+  "groupManagement": {
+    "person": "نفر",
+    "label": "گروه بندی",
+    "createGroup": "ساخت گروه",
+    "editGroup": "ویرایش گروه",
+    "choiceAdmins": "انتخاب ادمین",
+    "choiceUsers": "انتخاب کاربران",
+    "newAdmin": "ادمین جدید",
+    "users": "کاربران",
+    "admins": "ادمین ها"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
     "systemAdminDescription2": "2- توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
-    "acessTimeModalDescription1": "زمان دسترسی این کاربر به حالت اول بر می گردد. از انجام این کار مطمئن هستید؟"
+    "acessTimeModalDescription1": "زمان دسترسی این کاربر به حالت اول بر می گردد. از انجام این کار مطمئن هستید؟",
+    "extensionListTitle": "برای ایجاد رشته فایل و پسوند فایل جدید ، فایل مرتبط خود را آپلود نماپید."
   }
 }

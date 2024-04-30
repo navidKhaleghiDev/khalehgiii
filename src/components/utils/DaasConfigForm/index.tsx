@@ -38,7 +38,6 @@ export function DaasConfigForm({ control }: PropsType) {
         <BaseSwitch control={control} name="webcam_privilege" />
         <Typography className="mb-1">:Webcam Privilege</Typography>
       </div>
-
       <div className="flex justify-between items-center px-2 col-span-3">
         <BaseSwitch control={control} name="microphone_privilege" />
         <Typography className="mb-1">:Microphone Privilege</Typography>
