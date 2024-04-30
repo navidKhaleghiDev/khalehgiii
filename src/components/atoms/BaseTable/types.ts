@@ -85,6 +85,7 @@ export interface IActionItem {
   icon: IIconButton['icon'];
   color: IIconButton['color'];
   size: IIconButton['size'];
+  tooltip: string;
 }
 
 export interface IRowTableProps<BodyType> {

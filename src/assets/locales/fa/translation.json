@@ -75,7 +75,9 @@
     "lastLoginIp": "آخرین ورود ip",
     "download": "دانلود",
     "file": "فایل",
-    "sessionRecording": "فعالیت های ظبط شده"
+    "sessionRecording": "فعالیت های ظبط شده",
+    "edit": "ویرایش",
+    "delete": "حذف"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

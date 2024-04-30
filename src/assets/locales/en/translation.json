@@ -80,7 +80,9 @@
     "time": "time",
     "date": "date",
     "day": "day",
-    "file": "File"
+    "file": "File",
+    "edit": "edit",
+    "delete": "delete"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

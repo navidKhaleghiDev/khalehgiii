@@ -4,6 +4,7 @@ import { iconButtonStyles } from './styles';
 import { IIconButton } from './types';
 import { BaseIcon } from '../BaseIcon';
 import ToolTip from '../Tooltip';
+import { TooltipPosition } from '../Tooltip/types';
 
 export function IconButton({
   onClick,
@@ -38,7 +39,10 @@ export function IconButton({
   return (
     <div>
       {tooltip ? (
-        <ToolTip tooltip={tooltip} position={tooltipPosition}>
+        <ToolTip
+          tooltip={tooltip}
+          position={tooltipPosition as TooltipPosition}
+        >
           <Component />
         </ToolTip>
       ) : (

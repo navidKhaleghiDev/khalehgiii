@@ -1,23 +1,23 @@
 import { Typography } from '@ui/atoms/Typography';
-import { CustomTolltip } from '@ui/atoms/CustomTolltip';
+import ToolTip from '@ui/atoms/Tooltip';
 import { IComponentTable } from '../../types';
 
 export function TooltipCell({ row, id, header }: IComponentTable) {
   const variant = header?.variant ? header?.variant : 'body4';
   variant as string;
+  const title = row[id] ? row[id] : '--';
 
   return (
-    <>
-      <CustomTolltip title={row[id] ? row[id] : '--'} />
-      <div
-        role="button"
-        tabIndex={0}
-        className={` group cursor-text overflow-hidden overflow-ellipsis flex  `}
-      >
+    <div
+      role="button"
+      tabIndex={0}
+      className={`absolute -z-1 cursor-text flex `}
+    >
+      <ToolTip tooltip={title} position="top">
         <Typography variant={variant} type="div">
-          {row[id] ? row[id] : '--'}
+          {title}
         </Typography>
-      </div>
-    </>
+      </ToolTip>
+    </div>
   );
 }

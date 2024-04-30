@@ -47,6 +47,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
         action: ROUTES_PATH.monitoring,
         icon: moreIcon,
         color: 'neutralNoBg',
+        tooltip: 'table.observeUserBehavior',
       },
     ],
     dir: '',

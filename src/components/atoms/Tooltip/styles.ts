@@ -12,7 +12,7 @@ export const tooltipStyles = cva(
       },
     },
     defaultVariants: {
-      position: 'top',
+      position: 'bottom',
     },
   }
 );
@@ -33,7 +33,7 @@ export const containerTooltipStyles = cva(
       },
     },
     defaultVariants: {
-      position: 'top',
+      position: 'bottom',
     },
   }
 );
