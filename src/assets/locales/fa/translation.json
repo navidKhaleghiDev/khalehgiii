@@ -74,7 +74,8 @@
     "lastUptime": "آخرین ورود",
     "lastLoginIp": "آخرین ورود ip",
     "download": "دانلود",
-    "file": "فایل"
+    "file": "فایل",
+    "sessionRecording": "فعالیت های ظبط شده"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
