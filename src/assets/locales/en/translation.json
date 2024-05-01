@@ -82,7 +82,16 @@
     "day": "day",
     "file": "File",
     "edit": "edit",
-    "delete": "delete"
+    "delete": "delete",
+    "upload": "upload",
+    "webcamPrivilege": "Webcam Privilege",
+    "microphonePrivilege": "Microphone Privilege",
+    "timeLimitDuration": "Time Limit Duration",
+    "timeLimitValueInHour": "Time Limit Value In Hour",
+    "maxDownloadSize": "Max Download Size (MB)",
+    "maxUploadSize": "Max Upload Size (MB)",
+    "trustedDownloadFormat": "Trusted Download Format",
+    "trustedUploadFormat": "Trusted Upload Format"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

@@ -77,7 +77,16 @@
     "file": "فایل",
     "sessionRecording": "فعالیت های ظبط شده",
     "edit": "ویرایش",
-    "delete": "حذف"
+    "delete": "حذف",
+    "upload": "آپلود",
+    "webcamPrivilege": "دسترسی وبکم",
+    "microphonePrivilege": "دسترسی میکروفن",
+    "timeLimitDuration": "محدود کردن براساس زمان",
+    "timeLimitValueInHour": "محدود کردن براساس ساعت",
+    "maxDownloadSize": "حداکثر سایز دانلود (MB) ",
+    "maxUploadSize": "حداکثر سایز آپلود (MB) ",
+    "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
+    "trustedUploadFormat": "فرمت های مورد تایید آپلود"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
