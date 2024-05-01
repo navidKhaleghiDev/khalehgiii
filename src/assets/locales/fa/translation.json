@@ -86,7 +86,9 @@
     "maxDownloadSize": "حداکثر سایز دانلود (MB) ",
     "maxUploadSize": "حداکثر سایز آپلود (MB) ",
     "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
-    "trustedUploadFormat": "فرمت های مورد تایید آپلود"
+    "trustedUploadFormat": "فرمت های مورد تایید آپلود",
+    "downloadPrivilege": "دسترسی دانلود",
+    "uploadPrivilege": "دسترسی آپلود"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

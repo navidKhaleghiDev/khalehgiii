@@ -91,7 +91,9 @@
     "maxDownloadSize": "Max Download Size (MB)",
     "maxUploadSize": "Max Upload Size (MB)",
     "trustedDownloadFormat": "Trusted Download Format",
-    "trustedUploadFormat": "Trusted Upload Format"
+    "trustedUploadFormat": "Trusted Upload Format",
+    "downloadPrivilege": "Download Privilege",
+    "uploadPrivilege": "upload Privilege"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
