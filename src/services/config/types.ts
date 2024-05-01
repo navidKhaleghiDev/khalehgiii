@@ -28,7 +28,6 @@ export interface IDaasConfig {
   max_transmission_upload_size: number;
   max_transmission_download_size: number;
   is_globally_config: boolean;
-  is_recording: boolean;
 }
 
 export interface IFileType {

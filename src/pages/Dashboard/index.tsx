@@ -8,7 +8,7 @@ import { Daas } from './Daas';
 import { DlpConfig } from './DlpConfig';
 import { DaasConfig } from './DaasConfig';
 import { SettingsMalware } from './SettingsMalware';
-import { GroupManagement } from './GroupManagement';
+// import { GroupManagement } from './GroupManagement';
 
 export function DashboardPage() {
   const { user } = useUserContext();
