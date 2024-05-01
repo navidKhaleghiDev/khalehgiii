@@ -74,6 +74,7 @@ export function DaasConfigForm({ control }: PropsType) {
         <BaseInput
           control={control}
           // size="xs"
+
           id="time_limit_value_in_hour"
           name="time_limit_value_in_hour"
           placeholder={t('global.selectHour')}
