@@ -75,7 +75,7 @@
     "lastLoginIp": "آخرین ورود ip",
     "download": "دانلود",
     "file": "فایل",
-    "sessionRecording": "فعالیت های ظبط شده",
+    "sessionRecording": "ظبط دسکتاپ",
     "edit": "ویرایش",
     "delete": "حذف",
     "upload": "آپلود",
@@ -88,7 +88,8 @@
     "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
-    "uploadPrivilege": "دسترسی آپلود"
+    "uploadPrivilege": "دسترسی آپلود",
+    "recordingActivity": "فعالیت های ظبط شده"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

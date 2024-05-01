@@ -129,7 +129,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       onSubmit={handleSubmit(handleOnSubmit)}
       dir="rtl"
     >
-      <DaasConfigForm control={control} />
+      <DaasConfigForm isRecording control={control} />
       <DlpSettingsForm
         handleSetDlpValues={handleSetDlpValues}
         dlpDownloadList={dlpDownloadList}

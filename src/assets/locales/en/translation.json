@@ -93,7 +93,8 @@
     "trustedDownloadFormat": "Trusted Download Format",
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
-    "uploadPrivilege": "upload Privilege"
+    "uploadPrivilege": "upload Privilege",
+    "recordingActivity": "recording Activity"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

@@ -8,9 +8,10 @@ import { useTranslation } from 'react-i18next';
 
 type PropsType = {
   control: Control<any>;
+  isRecording?: boolean;
 };
 
-export function DaasConfigForm({ control }: PropsType) {
+export function DaasConfigForm({ control, isRecording }: PropsType) {
   const { t } = useTranslation();
   return (
     <>
@@ -44,11 +45,17 @@ export function DaasConfigForm({ control }: PropsType) {
         </Typography>
         <BaseSwitch control={control} name="microphone_privilege" />
       </div>
-      <div className="flex justify-between items-center px-2 col-span-3">
-        <Typography className="mb-1">{t('table.sessionRecording')}</Typography>
-        <BaseSwitch control={control} name="is_recording" />
-      </div>
-      <div className="flex justify-between items-center px-2 col-span-3" />
+      {isRecording && (
+        <>
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">
+              {t('table.sessionRecording')}
+            </Typography>
+            <BaseSwitch control={control} name="is_recording" />
+          </div>
+          <div className="flex justify-between items-center px-2 col-span-3" />
+        </>
+      )}
 
       <div className="px-2 col-span-3 ">
         <Typography className="mb-1">{t('table.timeLimitDuration')}</Typography>

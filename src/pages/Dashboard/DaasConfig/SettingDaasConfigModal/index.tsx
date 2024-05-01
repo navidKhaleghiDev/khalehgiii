@@ -40,7 +40,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <DaasConfigForm control={control} />
+      <DaasConfigForm isRecording control={control} />
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">

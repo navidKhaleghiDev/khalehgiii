@@ -128,7 +128,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     class: 'w-32 ',
   },
   {
-    label: 'table.sessionRecording',
+    label: 'table.recordingActivity',
     id: 'id',
     type: 'action',
     action: [
@@ -136,7 +136,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         action: 'more',
         icon: PhListBulletsFill,
         color: 'neutralNoBg',
-        tooltip: 'table.sessionRecording',
+        tooltip: 'table.recordingActivity',
       },
     ],
     class: 'w-32',
