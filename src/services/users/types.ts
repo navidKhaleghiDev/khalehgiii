@@ -33,7 +33,6 @@ export interface IDaAs {
   extra_allowed_download_files: string[] | null;
   extra_allowed_upload_files: string[] | null;
   daas_version: string;
-  online_users?: number;
 }
 
 export interface IBodyUsersLogin {

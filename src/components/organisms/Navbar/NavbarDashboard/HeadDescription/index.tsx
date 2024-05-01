@@ -30,6 +30,7 @@ export function HeadDescription() {
   const remainingDays = data?.data?.info?.remaining_days || '--';
   const malwareFiles = data?.data?.info?.malware_files || '0';
   const onlineUsers = list?.data?.online_users || '0';
+  const recordingSessions = list?.data?.online_recording_sessions || '0';
 
   return (
     <div className=" shadow-md rounded-lg h-7 px-2 flex justify-center items-center bg-white dark:inset-0 dark:bg-cover dark:bg-blur dark:bg-opacity-20 ">
@@ -51,6 +52,10 @@ export function HeadDescription() {
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
         {` ${onlineUsers} ${t('global.onlineUsers')}`}
+      </Typography>
+      <Typography className=" px-1 ">|</Typography>
+      <Typography color="teal" className=" px-2 ">
+        {` ${recordingSessions} ${t('global.inRecording')}`}
       </Typography>
     </div>
   );

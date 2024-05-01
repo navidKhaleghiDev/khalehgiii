@@ -75,7 +75,7 @@
     "lastLoginIp": "آخرین ورود ip",
     "download": "دانلود",
     "file": "فایل",
-    "sessionRecording": "ظبط دسکتاپ",
+    "sessionRecording": "ضبط دسکتاپ",
     "edit": "ویرایش",
     "delete": "حذف",
     "upload": "آپلود",
@@ -89,7 +89,7 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
     "uploadPrivilege": "دسترسی آپلود",
-    "recordingActivity": "فعالیت های ظبط شده"
+    "recordingActivity": "فعالیت های ضبط شده"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -177,7 +177,8 @@
     "goToHome": "برو به خانه",
     "to": "الی",
     "enterPriodOfTime": "بازه زمانی مورد نظر را وارد کنید",
-    "noReportAvailable": "درحال حاظر گزارشی وجود ندارد"
+    "noReportAvailable": "درحال حاظر گزارشی وجود ندارد",
+    "inRecording": "درحال ضبط"
   },
   "groupManagement": {
     "person": "نفر",

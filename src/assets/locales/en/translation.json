@@ -181,7 +181,8 @@
     "goToHome": "go To Home",
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
-    "noReportAvailable": "There is currently no report available"
+    "noReportAvailable": "There is currently no report available",
+    "inRecording": "In Recording"
   },
   "groupManagement": {
     "person": "person",
