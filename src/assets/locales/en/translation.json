@@ -171,6 +171,7 @@
     "monthlySelect": "Monthly",
     "weeklySelect": "Weekly",
     "dailySelect": "daily",
+    "hourlySelect": "hourly",
     "arbitrary": "Arbitrary",
     "send": "Send",
     "reportsChart": "ReportsChart",
