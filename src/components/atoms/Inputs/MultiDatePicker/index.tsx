@@ -72,6 +72,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => {
+        console.log(field.value);
         if ((field.value, onClick)) {
           onClick(field.value);
         }
