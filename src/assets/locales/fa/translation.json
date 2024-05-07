@@ -89,7 +89,11 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
     "uploadPrivilege": "دسترسی آپلود",
-    "recordingActivity": "فعالیت های ضبط شده"
+    "recordingActivity": "فعالیت های ضبط شده",
+    "date": "تاریخ",
+    "day": "روز",
+    "time": "زمان",
+    "play": "اجرا"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
