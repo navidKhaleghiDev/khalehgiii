@@ -9,6 +9,15 @@ import {
   TFormatData,
 } from '../types';
 
+// filter data for montly format
+const filterByIndex = (data, index) => data.filter((l, i) => i !== index);
+const filterChartData = (label, data) => {
+  const index = label.findIndex((e) => e === e);
+  const removeList = filterByIndex(label, index);
+  const removeDataList = filterByIndex(data, index);
+  return { labelList: removeList, dataList: removeDataList };
+};
+
 export function ReportsChart({ props }: IReportChartType) {
   const { t } = useTranslation();
   const {
@@ -32,6 +41,7 @@ export function ReportsChart({ props }: IReportChartType) {
 
   function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
     const isDaily = formatData[type] === DAILY_FORMAT;
+    const isMonthly = formatData[type] === MONTLY_FORMAT;
     const dataList: number[] | any = [];
     const labelList: string[] = [];
     const weeksKey: string[] = [];
@@ -63,6 +73,8 @@ export function ReportsChart({ props }: IReportChartType) {
       });
     }
 
+    const res = filterChartData(labelList, dataList);
+
     const dailyDataset = () =>
       Object.values(dataList).map((listData, i) => {
         return {
@@ -80,11 +92,11 @@ export function ReportsChart({ props }: IReportChartType) {
         : [
             {
               label: '',
-              data: dataList,
+              data: isMonthly ? res.dataList : dataList,
               fill: true,
             },
           ],
-      labels: labelList,
+      labels: isMonthly ? res.labelList : labelList,
     };
   }
 
