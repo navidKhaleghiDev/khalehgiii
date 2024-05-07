@@ -17,11 +17,11 @@ export function ReportForm({
     },
   });
 
-  const todayDate = new Date();
-  todayDate.setDate(todayDate.getDate() + 1);
+  // const todayDate = new Date();
+  // todayDate.setDate(todayDate.getDate() + 1);
 
   return (
-    <form className="" onSubmit={handleSubmit(handleOnSubmit)}>
+    <form onSubmit={handleSubmit(handleOnSubmit)}>
       <MultiDatePicker
         onClick={onClick}
         timeDuration={state}
@@ -30,7 +30,7 @@ export function ReportForm({
         id="start_date"
         name="start_date"
         format="YYYY-MM-DD"
-        maxDate={todayDate}
+        maxDate={new Date()}
         submitButton
         fullWidth
       />

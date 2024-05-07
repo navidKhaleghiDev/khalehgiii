@@ -9,13 +9,23 @@ import {
   TFormatData,
 } from '../types';
 
+let duplicates: number;
 // filter data for montly format
-const filterByIndex = (data, index) => data.filter((l, i) => i !== index);
-const filterChartData = (label, data) => {
-  const index = label.findIndex((e) => e === e);
-  const removeList = filterByIndex(label, index);
-  const removeDataList = filterByIndex(data, index);
-  return { labelList: removeList, dataList: removeDataList };
+const filterByIndex = (data: string[] | number[], index: number) =>
+  data.filter((_, i) => i !== index);
+const filterChartData = (label: string[], data: number[]) => {
+  const map = new Map();
+  label.forEach((element, index) => {
+    if (map.has(element)) {
+      duplicates = map.get(element);
+      // console.log(`Index of current occurrence: ${index}`);
+    } else {
+      map.set(element, index);
+    }
+  });
+  const removeList = filterByIndex(label, duplicates);
+  const removeDataList = filterByIndex(data, duplicates);
+  return { dataList: removeDataList, labelList: removeList };
 };
 
 export function ReportsChart({ props }: IReportChartType) {
@@ -86,17 +96,19 @@ export function ReportsChart({ props }: IReportChartType) {
 
     const result = dailyDataset();
 
+    const labels = isMonthly ? res.labelList : labelList;
+    const chartData = isMonthly ? res.dataList : dataList;
     return {
       datasets: isDaily
         ? result
         : [
             {
               label: '',
-              data: isMonthly ? res.dataList : dataList,
+              data: chartData,
               fill: true,
             },
           ],
-      labels: isMonthly ? res.labelList : labelList,
+      labels: labels as string[],
     };
   }
 
