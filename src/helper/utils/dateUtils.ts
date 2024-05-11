@@ -71,7 +71,7 @@ export function dateAndNumber(date?: string) {
   if (date) {
     return new Date(date).toLocaleDateString(condition, options);
   }
-  return today.toLocaleDateString(condition, options);
+  return now.toLocaleDateString(condition, options);
 }
 if (isFarsi) {
   moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
