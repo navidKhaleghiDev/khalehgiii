@@ -21,6 +21,8 @@ export const E_USERS_DAAS_PAGINATION = ({
     filter ? `?${filter}&` : '?'
   }page_size=${pageSize}&page=${page}`;
 
+export const E_USERS_DAAS_SEESSION_RECORDING = () =>
+  `/users/daas?is_recording=${true}`;
 export const E_USERS_DAAS_DELETE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_UPDATE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
