@@ -93,7 +93,9 @@
     "date": "تاریخ",
     "day": "روز",
     "time": "زمان",
-    "play": "اجرا"
+    "play": "اجرا",
+    "startDate": "تاریخ شروع",
+    "endDate": "تاریخ اتمام"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

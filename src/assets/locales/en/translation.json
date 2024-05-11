@@ -94,7 +94,9 @@
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
-    "recordingActivity": "recording Activity"
+    "recordingActivity": "recording Activity",
+    "startDate": "start Date",
+    "endDate": "end Date"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

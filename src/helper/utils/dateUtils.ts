@@ -77,26 +77,51 @@ if (isFarsi) {
   moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 }
 export function convertToDay(date: string) {
-  const year = date.substring(0, 4);
-  const month = date.substring(4, 6);
-  const day = date.substring(6, 8);
+  if (date) {
+    const year = date.substring(0, 4);
+    const month = date.substring(4, 6);
+    const day = date.substring(6, 8);
 
-  const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
-    'dddd'
-  );
+    const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
+      'dddd'
+    );
 
-  return formatedDate;
+    return formatedDate;
+  }
+  return null;
 }
 export function convertToDateFormat(date: string) {
-  const year = date.substring(0, 4);
-  const month = date.substring(4, 6);
-  const day = date.substring(6, 8);
+  if (date) {
+    const year = date.substring(0, 4);
+    const month = date.substring(4, 6);
+    const day = date.substring(6, 8);
 
-  const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
-    isFarsi ? 'jYYYY/jDD/jMM' : 'YYYY/MMMM/DD'
-  );
+    const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
+      isFarsi ? 'jYYYY/jDD/jMM' : 'YYYY/MMMM/DD'
+    );
 
-  return formatedDate;
+    return formatedDate;
+  }
+  return null;
+}
+
+export function convertToHourFormat(date: string) {
+  if (date) {
+    const currentDate = moment();
+
+    const [hours, minutes, seconds] = date.split(':').map(Number);
+
+    currentDate.hour(hours);
+    currentDate.minute(minutes);
+    currentDate.second(seconds);
+
+    const formattedDateTime = currentDate.format(
+      isFarsi ? 'HH:mm:ss' : 'HH:mm:ss a'
+    );
+    return formattedDateTime;
+  }
+  return null;
+  // or use other formatting methods
 }
 
 export function dayLabel(date?: string) {

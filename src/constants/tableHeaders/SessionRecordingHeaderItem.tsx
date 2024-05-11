@@ -1,6 +1,10 @@
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import PhPlayCircleLight from '@iconify-icons/ph/play-circle-light';
-import { convertToDateFormat, convertToDay } from '@src/helper/utils/dateUtils';
+import {
+  convertToDateFormat,
+  convertToDay,
+  convertToHourFormat,
+} from '@src/helper/utils/dateUtils';
 
 export const SessionRecordingHeaderItem: IHeaderTable[] = [
   {
@@ -15,6 +19,20 @@ export const SessionRecordingHeaderItem: IHeaderTable[] = [
     id: 'recrod_date',
     type: 'function',
     function: convertToDateFormat,
+    class: 'w-4/12',
+  },
+  {
+    label: 'table.startDate',
+    id: 'start',
+    type: 'function',
+    function: convertToHourFormat,
+    class: 'w-4/12',
+  },
+  {
+    label: 'table.endDate',
+    id: 'end',
+    type: 'function',
+    function: convertToHourFormat,
     class: 'w-4/12',
   },
   {
