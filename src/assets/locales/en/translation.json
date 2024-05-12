@@ -185,7 +185,7 @@
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
     "noReportAvailable": "There is currently no report available",
-    "inRecording": "In Recording"
+    "usedPamLicense": "used PAM License"
   },
   "groupManagement": {
     "person": "person",

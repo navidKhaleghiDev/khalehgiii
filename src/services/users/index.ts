@@ -19,7 +19,6 @@ import {
   E_USERS_DELETE,
   E_USERS,
   E_USERS_LOGOUT,
-  E_USERS_DAAS_SEESSION_RECORDING,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -62,8 +61,11 @@ export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
   );
 
 export const API_USERS_PROFILE = () => http.get<IUser>(E_USERS_PROFILE);
-export const API_USERS_SEESSION_RECORDING = () =>
-  http.get(E_USERS_DAAS_SEESSION_RECORDING);
+
+export const API_USERS_LICENSE_UPDATE = (body: any) =>
+  http.patch(`/users/daas/${body.id}/`, {
+    daas_configs: { is_recording: body.is_recording },
+  });
 
 export const STORAGE_KEY_USER = 'user';
 

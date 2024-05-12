@@ -21,8 +21,6 @@ export const E_USERS_DAAS_PAGINATION = ({
     filter ? `?${filter}&` : '?'
   }page_size=${pageSize}&page=${page}`;
 
-export const E_USERS_DAAS_SEESSION_RECORDING = () =>
-  `/users/daas?is_recording=${true}`;
 export const E_USERS_DAAS_DELETE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_UPDATE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
@@ -30,6 +28,8 @@ export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
 
 export const E_USERS_DAAS_RESET_ALL_USAGE = '/users/reset_usage/';
 export const E_USERS_LOGOUT = `users/logout/`;
+
+export const E_USERS_LICENSE = '/users/daas?is_recording=True';
 
 export const E_ANALYZE_REPORTS = (start_date: string, end_date: string) =>
   `${E_ANALYZE_SCAN_STATS}?start_date=${start_date}&end_date=${end_date}`;
