@@ -7,42 +7,35 @@ import { IResponsePagination, ISwrResponse } from '@src/types/services';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 import { BaseButton, Typography } from '@ui/atoms';
-import { createAPIEndpoint } from '@src/helper/utils';
-import { E_USERS_DAAS, E_USERS_LICENSE } from '@src/services/users/endpoint';
+import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { IDaAs } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { API_USERS_LICENSE_UPDATE } from '@src/services/users';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
-import { LicenseStatusForm } from './LicenseStatusForm';
-
-const PAGE_SIZE = 8;
-const PAGE = 1;
+import { licenseTrueStatusHeaderItem } from '@src/constants/tableHeaders/pamLicenseHeaderItem';
 
 export function HeadDescription() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  // const [loading, setLoading] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>('');
-
-  // const [licenseData, setLiscenseData] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { data } = useSWR<ISwrResponse<IScanStats>>(
     E_ANALYZE_SCAN_STATS,
     HTTP_ANALYSES.fetcherSWR
   );
-  const endpoint = createAPIEndpoint({
-    endPoint: E_USERS_DAAS,
-    pageSize: PAGE_SIZE,
-    currentPage,
-    filterQuery,
-  });
+
   const {
     data: list,
     isLoading,
     mutate,
-  } = useSWR<IResponsePagination<IDaAs>>(endpoint, http.fetcherSWR);
+  } = useSWR<IResponsePagination<IDaAs>>(
+    `${E_USERS_DAAS}?is_recording=True `,
+    http.fetcherSWR,
+    {
+      revalidateOnMount: true,
+      revalidateOnFocus: true,
+    }
+  );
   const todayScans = data?.data?.info?.today_scans || '0';
   const remainingDays = data?.data?.info?.remaining_days || '--';
   const malwareFiles = data?.data?.info?.malware_files || '0';
@@ -50,33 +43,20 @@ export function HeadDescription() {
   const recordingSessions = list?.data?.online_recording_sessions || '0';
   const licenseData = list?.data.results;
 
-  // const getLicense = async () => {
-  //   setLoading(true);
-  //   await API_USERS_LICENSE()
-  //     .then((res) => {
-  //       setLiscenseData(res.data.results);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // };
-
-  const updateLicense = useCallback(async (updatedData: any) => {
-    // setLoading(true);
-    await API_USERS_LICENSE_UPDATE(updatedData)
-      .then((res) => {
-        mutate();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        // setLoading(false);
-      });
-  }, []);
+  const updateLicense = useCallback(
+    async (updatedData: any) => {
+      setLoading(true);
+      await API_USERS_LICENSE_UPDATE(updatedData)
+        .then(() => {
+          mutate();
+        })
+        .catch(() => {})
+        .finally(() => {
+          setLoading(false);
+        });
+    },
+    [mutate]
+  );
 
   const licenseButtonHandler = () => {
     setOpenModal(true);
@@ -120,15 +100,12 @@ export function HeadDescription() {
       <Modal
         open={openModal}
         setOpen={setOpenModal}
-        // title={t('global.changeNameAndPassword')}
-        // content={<BaseTable />}
         content={
           <BaseTable
-            loading={isLoading}
+            loading={isLoading || loading}
             headers={licenseTrueStatusHeaderItem}
-            bodyList={licenseData}
+            bodyList={licenseData as []}
             onClick={handleOnClickActions}
-            // pagination={paginationProps}
           />
         }
         type="none"
@@ -136,24 +113,3 @@ export function HeadDescription() {
     </div>
   );
 }
-let licenseTrueStatusHeaderItem: IHeaderTable[] = [
-  {
-    label: 'table.nameOfTheUser',
-    id: 'email',
-    type: 'tooltip',
-    class: 'px-3 w-6/12',
-  },
-  {
-    label: 'table.realName',
-    id: 'daas_configs.is_recording',
-    type: 'component',
-    component: (props: any) => (
-      <LicenseStatusForm
-        id={props.row.id as any}
-        name={props.row.daas_configs.is_recording as any}
-        onClick={props.onClick}
-      />
-    ),
-    class: 'px-3 w-6/12',
-  },
-];

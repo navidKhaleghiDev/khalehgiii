@@ -3,7 +3,7 @@ import { E_ANALYZE_SCAN_STATS } from '../analyze/endpoint';
 
 // users endpoints
 export const E_USERS = '/users/';
-export const E_USERS_DAAS = '/users/daas/';
+export const E_USERS_DAAS = '/users/daas';
 
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
 export const E_USERS_DELETE = (id: number) => `${E_USERS}${id}/`;
