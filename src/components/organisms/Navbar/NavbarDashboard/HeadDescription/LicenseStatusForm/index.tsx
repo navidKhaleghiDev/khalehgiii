@@ -18,21 +18,27 @@ export function LicenseStatusForm({ id, name, onClick }: LicenseFormProps) {
   });
 
   const handleOnSubmit = useCallback((data: any) => {
+    console.log('handleClick');
     onClick(data);
-  });
+  }, []);
 
   useEffect(() => {
-    if (formState.defaultValues?.is_recording !== watch('is_recording')) {
-      handleOnSubmit(watch());
-    }
+    console.log('run');
+    handleOnSubmit(watch());
   }, [formState.defaultValues?.is_recording, handleOnSubmit, name, watch]);
+
+  console.log(formState.defaultValues?.is_recording !== watch('is_recording'));
 
   return (
     <form
       className="w-full h-full grid grid-cols-12 "
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <BaseSwitch control={control} name="is_recording" />
+      <BaseSwitch
+        pureOnChange={() => console.log('onchange')}
+        control={control}
+        name="is_recording"
+      />
     </form>
   );
 }

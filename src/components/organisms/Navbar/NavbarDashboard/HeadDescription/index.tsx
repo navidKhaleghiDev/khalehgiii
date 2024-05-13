@@ -16,10 +16,15 @@ import { API_USERS_LICENSE_UPDATE } from '@src/services/users';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { LicenseStatusForm } from './LicenseStatusForm';
 
+const PAGE_SIZE = 8;
+const PAGE = 1;
+
 export function HeadDescription() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [filterQuery, setFilterQuery] = useState<string>('');
 
   // const [licenseData, setLiscenseData] = useState([]);
 
@@ -29,8 +34,9 @@ export function HeadDescription() {
   );
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
-    pageSize: 1,
-    currentPage: 1,
+    pageSize: PAGE_SIZE,
+    currentPage,
+    filterQuery,
   });
   const {
     data: list,
@@ -43,8 +49,6 @@ export function HeadDescription() {
   const onlineUsers = list?.data?.online_users || '0';
   const recordingSessions = list?.data?.online_recording_sessions || '0';
   const licenseData = list?.data.results;
-
-  console.log(licenseData);
 
   // const getLicense = async () => {
   //   setLoading(true);
@@ -61,7 +65,7 @@ export function HeadDescription() {
   // };
 
   const updateLicense = useCallback(async (updatedData: any) => {
-    setLoading(true);
+    // setLoading(true);
     await API_USERS_LICENSE_UPDATE(updatedData)
       .then((res) => {
         mutate();
@@ -70,7 +74,7 @@ export function HeadDescription() {
         console.log(err);
       })
       .finally(() => {
-        setLoading(false);
+        // setLoading(false);
       });
   }, []);
 
@@ -78,9 +82,12 @@ export function HeadDescription() {
     setOpenModal(true);
   };
 
-  const handleOnClickActions = useCallback((actions: any) => {
-    updateLicense(actions);
-  }, []);
+  const handleOnClickActions = useCallback(
+    (actions: any) => {
+      updateLicense(actions);
+    },
+    [updateLicense]
+  );
 
   return (
     <div className=" shadow-md rounded-lg h-7 px-2 flex justify-center items-center bg-white dark:inset-0 dark:bg-cover dark:bg-blur dark:bg-opacity-20 ">
