@@ -185,7 +185,8 @@
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
     "noReportAvailable": "There is currently no report available",
-    "usedPamLicense": "used PAM License"
+    "usedPamLicense": "used PAM License",
+    "activeDeactive": "Active/Deactive"
   },
   "groupManagement": {
     "person": "person",

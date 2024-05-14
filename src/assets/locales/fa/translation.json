@@ -95,7 +95,8 @@
     "time": "زمان",
     "play": "اجرا",
     "startDate": "تاریخ شروع",
-    "endDate": "تاریخ اتمام"
+    "endDate": "تاریخ اتمام",
+    "activeDeactive": "فعال /غیرفعال"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

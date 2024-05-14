@@ -9,7 +9,7 @@ export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
     class: 'px-3 w-6/12',
   },
   {
-    label: 'table.realName',
+    label: 'table.activeDeactive',
     id: 'daas_configs.is_recording',
     type: 'component',
     component: (props: any) => (

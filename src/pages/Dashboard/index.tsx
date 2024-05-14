@@ -35,7 +35,7 @@ export function DashboardPage() {
         <BaseTab label="DLP">
           <DlpConfig />
         </BaseTab>
-        <BaseTab label="malware">
+        <BaseTab label="license">
           <SettingsMalware user={user} />
         </BaseTab>
         {/* <BaseTab label={t('groupManagement.label')}>
