@@ -1,4 +1,3 @@
-import { Avatar } from '@ui/atoms/Avatar';
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { useNavigate } from 'react-router-dom';
 import { BaseInput, regexPattern } from '@ui/atoms/Inputs';
@@ -21,7 +20,7 @@ import languageIcon from '@iconify-icons/ph/globe-thin';
 import { languageOptions } from '@src/constants/optios';
 import { ILoginFieldValues } from '../types';
 
-export function LoginForm() {
+export function LoginForm({ setIsOtpActive }: any) {
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
   const { changeLanguage } = useLanguage();
@@ -60,6 +59,7 @@ export function LoginForm() {
         localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
         http.setAuthHeader(data.access_token, data.refresh_token);
         handelGetProfile();
+        setIsOtpActive(true);
       })
       .catch((err) => {
         setError(err);
@@ -70,11 +70,8 @@ export function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(handelSubmitForm)}
-      className="flex flex-col items-center w-full mt-auto "
+      className="flex flex-col items-center w-full  "
     >
-      <div className="absolute top-[-6rem]">
-        <Avatar icon={userIcon} intent="grey" size="lg" />
-      </div>
       <div className="absolute top-[1rem] right-[1rem] ">
         <DropDownWithIcon
           icon={languageIcon}
@@ -86,18 +83,6 @@ export function LoginForm() {
       <Typography color="neutral" variant="h5" className="mb-5">
         {t('login.loginTitle')}
       </Typography>
-
-      {/* <div>
-				<ul>
-					{Object.keys(locales).map((locale) => (
-						<li key={locale}>
-							<button style={{ backgroundColor: 'green', fontSize: '2rem' }}>
-								{locales[locale].title}
-							</button>
-						</li>
-					))}
-				</ul>
-			</div> */}
 
       {error && (
         <Typography color="red" variant="body3" className="mb-2">
@@ -123,7 +108,7 @@ export function LoginForm() {
           placeholder={t('global.password')}
         />
         <BaseButton
-          label={t('login.login')}
+          label={t('login.confirm')}
           endIcon={signInBoldIcon}
           className="mt-8"
           loading={loadingButton}

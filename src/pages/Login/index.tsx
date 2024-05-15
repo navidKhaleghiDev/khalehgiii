@@ -1,6 +1,6 @@
 import { Card } from '@ui/atoms/Card';
 import { withNoAuth } from '@src/helper/hoc/withNoAuth';
-import { LoginForm } from './LoginForm';
+import { LoginSteps } from './LoginSteps';
 
 function LoginPageCp() {
   return (
@@ -9,7 +9,7 @@ function LoginPageCp() {
         color="white"
         className="relative p-10 w-[29.375rem] h-[33rem] flex flex-col items-center "
       >
-        <LoginForm />
+        <LoginSteps />
       </Card>
     </div>
   );

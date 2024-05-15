@@ -1,7 +1,8 @@
 {
   "login": {
     "loginTitle": "Please enter your email and password",
-    "login": "Login to Your User Account"
+    "login": "Login to Your User Account",
+    "otp": "Please enter the received code "
   },
   "header": {
     "user": "User",
