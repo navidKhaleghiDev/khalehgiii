@@ -9,7 +9,6 @@ import {
   API_ADD_UPDATE,
   API_CONFIG_LIST,
 } from '@src/services/config';
-import { IUser } from '@src/services/users/types';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
 import { Divider } from '@ui/atoms/Divider';
@@ -26,7 +25,7 @@ function TitleSection({ label }: { label: string }) {
     </Typography>
   );
 }
-export function SettingsKeycloak({ user }: { user: IUser | null }) {
+export function SettingsKeycloak({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -61,7 +60,7 @@ export function SettingsKeycloak({ user }: { user: IUser | null }) {
           setLoading(false);
         });
     };
-    if (user) {
+    if (userExist) {
       getConfig();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

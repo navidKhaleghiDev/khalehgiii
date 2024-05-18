@@ -1,3 +1,4 @@
+import { IUserPermissions } from '@src/types/permissions';
 // eslint-disable-next-line import/no-cycle
 import { IDaasConfig } from '../config/types';
 
@@ -55,19 +56,21 @@ export interface IResponseLogin {
 
 export interface IUser {
   id: 1;
+  user_permissions: IUserPermissions[];
   password?: string;
-  email: string;
   last_login?: string;
   is_superuser?: boolean;
-  is_meta_admin: boolean;
-  exceeded_usage: boolean;
-  base_url?: string;
   username?: string;
   first_name?: string;
   last_name?: string;
   is_staff?: boolean;
   is_active?: boolean;
   date_joined?: string;
+  email: string;
+  is_meta_admin: boolean;
+  // .....
+  exceeded_usage: boolean;
+  base_url?: string;
   http_port?: number;
   https_port?: number;
   time_limit_duration?: ETimeLimitDuration;
