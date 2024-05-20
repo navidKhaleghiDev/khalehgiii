@@ -9,6 +9,7 @@ import { IUser } from '@src/services/users/types';
 import { API_UPDATE_USER, API_CREATE_USER } from '@src/services/users';
 import { PasswordInput } from '@ui/atoms/Inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
+import BaseQrCode from '@ui/atoms/BaseQrCode';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -29,6 +30,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
       first_name: admin?.first_name ?? '',
       last_name: admin?.last_name ?? '',
       is_meta_admin: admin?.is_meta_admin ?? false,
+      totp_enable: admin?.totp_enable ?? false,
     },
   });
 
@@ -138,13 +140,24 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               required: regexPattern.required,
             }}
           />
+          <div>
+            <Typography className="mb-1" type="h4" color="teal">
+              :{t('global.genrateQrcode')}
+            </Typography>
+            <BaseQrCode email={admin?.email} />
+          </div>
         </div>
-
         <div className="w-1/3 flex justify-between items-center mt-2">
           <Typography className="mb-1" type="h4" color="teal">
             {`${t('global.metaAdmin')}:`}
           </Typography>
           <BaseSwitch control={control} name="is_meta_admin" />
+        </div>
+        <div className="w-1/3 flex justify-between items-center mt-2">
+          <Typography className="mb-1" type="h4" color="teal">
+            {`${t('table.activeOtp')}:`}
+          </Typography>
+          <BaseSwitch control={control} name="totp_enable" />
         </div>
       </div>
 

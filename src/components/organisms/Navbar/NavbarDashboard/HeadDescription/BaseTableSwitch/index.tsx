@@ -4,15 +4,21 @@ import { useForm } from 'react-hook-form';
 
 type LicenseFormProps = {
   id: any;
-  name: any;
+  name: string;
+  value: boolean;
   onClick: (actions: any) => void;
 };
 
-export function LicenseStatusForm({ id, name, onClick }: LicenseFormProps) {
+export function BaseTableSwitch({
+  id,
+  name,
+  onClick,
+  value,
+}: LicenseFormProps) {
   const { control, handleSubmit, watch } = useForm({
     mode: 'onChange',
     defaultValues: {
-      is_recording: name,
+      is_recording: value,
       id,
     },
   });
@@ -32,7 +38,7 @@ export function LicenseStatusForm({ id, name, onClick }: LicenseFormProps) {
       <BaseSwitch
         pureOnChange={() => handleOnSubmit(watch())}
         control={control}
-        name="is_recording"
+        name={name}
       />
     </form>
   );

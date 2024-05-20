@@ -1,6 +1,6 @@
 import { Controller } from 'react-hook-form';
-import { baseOtpStyles } from './styles';
 import { Typography } from '../Typography';
+import { baseOtpStyles } from './styles';
 
 let errorMessage: string;
 

@@ -76,4 +76,5 @@ export interface IUser {
   exceeded_time_limit?: boolean;
   usage_in_minute?: number;
   created_at?: string;
+  totp_enable?: boolean;
 }

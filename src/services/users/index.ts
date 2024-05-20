@@ -19,6 +19,8 @@ import {
   E_USERS_DELETE,
   E_USERS,
   E_USERS_LOGOUT,
+  E_USER_GET_OTP,
+  E_USERS_OTP_LOGIN,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -59,8 +61,15 @@ export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
     E_USERS_LOGIN,
     body
   );
+export const API_USERS_LOGIN_OTP = (body: IBodyUsersLogin) =>
+  http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(
+    E_USERS_OTP_LOGIN,
+    body
+  );
 
 export const API_USERS_PROFILE = () => http.get<IUser>(E_USERS_PROFILE);
+export const API_USERS_OTP = (email: string) =>
+  http.get<IUser>(E_USER_GET_OTP(email));
 
 export const API_USERS_LICENSE_UPDATE = (body: any) =>
   http.patch(`/users/daas/${body.id}/`, {
