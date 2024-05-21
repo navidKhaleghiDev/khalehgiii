@@ -98,7 +98,9 @@
     "play": "اجرا",
     "startDate": "تاریخ شروع",
     "endDate": "تاریخ اتمام",
-    "activeDeactive": "فعال /غیرفعال"
+    "activeDeactive": "فعال /غیرفعال",
+    "activeQrcode": "Qrcode",
+    "activeOtp": "Otp"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -188,7 +190,10 @@
     "to": "الی",
     "enterPriodOfTime": "بازه زمانی مورد نظر را وارد کنید",
     "noReportAvailable": "درحال حاظر گزارشی وجود ندارد",
-    "usedPamLicense": "لایسنس PAM استفاده شده"
+    "usedPamLicense": "لایسنس PAM استفاده شده",
+    "somthingWentWrong": "مشگلی پیش آمد",
+    "genrateQrcode": "تولید Qrcode ",
+    "activateOtp": "فعال کردن otp"
   },
   "groupManagement": {
     "person": "نفر",

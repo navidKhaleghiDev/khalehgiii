@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@ui/atoms/Typography/Typography';
 import { BackButton } from '@ui/atoms/BackButton';
 
-export default function LogInOtpForm({ control, setIsOtpActive }: any) {
+export default function LogInOtpForm({
+  control,
+  setIsOtpActive,
+  error,
+  name = 'totp',
+}: any) {
   const { t } = useTranslation();
 
   return (
@@ -16,12 +21,12 @@ export default function LogInOtpForm({ control, setIsOtpActive }: any) {
         {t('login.otp')}
       </Typography>
 
-      {/* {error && (
-        <Typography color="red" variant="body3" className="mb-2">
+      {error && (
+        <Typography color="red" variant="body3" className="mb-2 text-center ">
           {error}
         </Typography>
-      )} */}
-      {/* <BaseOtp name="totp_co" valueLength={6} control={control} size="md" /> */}
+      )}
+      <BaseOtp name={name} valueLength={6} control={control} size="md" />
     </div>
   );
 }

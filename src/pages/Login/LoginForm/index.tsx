@@ -29,7 +29,7 @@ export function LoginForm({ control, error }: any) {
       </Typography>
 
       {error && (
-        <Typography color="red" variant="body3" className="mb-2">
+        <Typography color="red" variant="body3" className="mb-2 text-center ">
           {error}
         </Typography>
       )}

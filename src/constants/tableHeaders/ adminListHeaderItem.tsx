@@ -4,7 +4,6 @@ import notePencilIcon from '@iconify-icons/ph/note-pencil';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
-import { BaseTableSwitch } from '@ui/organisms/Navbar/NavbarDashboard/HeadDescription/BaseTableSwitch';
 
 export const adminListHeaderItem: IHeaderTable[] = [
   {
@@ -78,6 +77,13 @@ export const adminListHeaderItem: IHeaderTable[] = [
     id: 'totp_enable',
     type: 'component',
     component: (props: any) => <Circle id={props.row.totp_enable} />,
+    class: 'px-3 w-2/12',
+  },
+  {
+    label: 'table.activeQrcode',
+    id: 'totp_secret',
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.totp_secret} />,
     class: 'px-3 w-2/12',
   },
 

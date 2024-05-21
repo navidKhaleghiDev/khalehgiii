@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Avatar, BaseButton } from '@ui/atoms';
 import userIcon from '@iconify-icons/ph/user';
 import {
@@ -14,27 +14,25 @@ import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
 import signInBoldIcon from '@iconify-icons/ph/sign-in-bold';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { BaseOtp } from '@ui/atoms/BaseOtp';
 import LogInOtpForm from '../LoginOtpForm';
 import { LoginForm } from '../LoginForm';
 import { ILoginFieldValues } from '../types';
 
 export function LoginSteps() {
   const { setUser } = useUserContext();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
 
-  const { t } = useTranslation();
-
-  const navigate = useNavigate();
-
-  const { control, handleSubmit, getValues } = useForm<ILoginFieldValues>({
+  const { control, handleSubmit } = useForm<ILoginFieldValues>({
     mode: 'onChange',
     defaultValues: {},
   });
 
-  const handelGetProfile = useCallback(async () => {
+  const handleGetProfile = useCallback(async () => {
     await API_USERS_PROFILE()
       .then(({ data }) => {
         if (data.exceeded_usage) {
@@ -70,34 +68,41 @@ export function LoginSteps() {
         } else {
           localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
           http.setAuthHeader(data.access_token, data.refresh_token);
-          handelGetProfile();
+          handleGetProfile();
         }
       } catch (err) {
-        setError(err.message || 'An unknown error occurred');
+        setError(err as string);
       } finally {
         setLoadingButton(false);
       }
     },
-    [handelGetProfile, isOtpActive]
+    [handleGetProfile, isOtpActive]
   );
+
+  useEffect(() => {
+    setError(null);
+  }, [isOtpActive]);
 
   return (
     <div className="flex flex-col items-center w-full mt-auto">
       <form
         onSubmit={handleSubmit(handleSubmitForm)}
-        className="flex flex-col items-center w-full  "
+        className="flex flex-col items-center w-full"
       >
         <div className="absolute top-[-6rem]">
           <Avatar icon={userIcon} intent="grey" size="lg" />
         </div>
         {isOtpActive ? (
-          <BaseOtp name="totp" valueLength={6} control={control} size="md" />
+          <LogInOtpForm
+            control={control}
+            setIsOtpActive={setIsOtpActive}
+            error={error}
+          />
         ) : (
           <LoginForm control={control} error={error} />
         )}
-
         <BaseButton
-          label={t('login.confirm')}
+          label={t('login.login')}
           endIcon={signInBoldIcon}
           className="mt-8"
           loading={loadingButton}

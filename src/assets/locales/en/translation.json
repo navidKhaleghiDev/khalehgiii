@@ -97,7 +97,9 @@
     "uploadPrivilege": "upload Privilege",
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
-    "endDate": "end Date"
+    "endDate": "end Date",
+    "activeQrcode": " Qrcode ",
+    "activeOtp": "  Otp "
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -187,7 +189,10 @@
     "enterPriodOfTime": "Enter the desired period of time",
     "noReportAvailable": "There is currently no report available",
     "usedPamLicense": "used PAM License",
-    "activeDeactive": "Active/Deactive"
+    "activeDeactive": "Active/Deactive",
+    "somthingWentWrong": "Somthing Went Wrong",
+    "genrateQrcode": "genrate Qrcode",
+    "activateOtp": "activate Otp"
   },
   "groupManagement": {
     "person": "person",
