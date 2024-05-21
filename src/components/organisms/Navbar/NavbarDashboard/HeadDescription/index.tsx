@@ -87,23 +87,23 @@ export function HeadDescription() {
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2  ">
-        {` ${t('dashboard.numbersOfScans')}: ${todayScans}`}
+        {` ${t('dashboard.numbersOfScans')} : ${todayScans}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${t('dashboard.infectedFile')}: ${malwareFiles} `}
+        {` ${t('dashboard.infectedFile')} : ${malwareFiles} `}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${t('dashboard.dayLeft')} :${remainingDays}`}
+        {` ${t('dashboard.dayLeft')} : ${remainingDays}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {`  ${t('global.onlineUsers')} :${onlineUsers}`}
+        {`  ${t('global.onlineUsers')} : ${onlineUsers}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <BaseButton
-        label={` ${t('global.usedPamLicense')} :${recordingSessions} `}
+        label={` ${t('global.usedPamLicense')} : ${recordingSessions} `}
         className="text-base"
         onClick={licenseButtonHandler}
         type="tealLink"

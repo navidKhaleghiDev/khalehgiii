@@ -22,28 +22,27 @@ export const adminListHeaderItem: IHeaderTable[] = [
       },
     ],
 
-    dir: '',
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.userName',
     id: 'username',
     type: 'none',
-    dir: '',
-    class: 'px-3 w-4/12',
+
+    class: 'px-3 w-1/12',
   },
   {
     label: 'table.email',
     id: 'email',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.firstNameLastName',
     id: ['first_name', 'last_name'],
     type: 'user',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -51,7 +50,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
     id: 'is_active',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_active} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -61,7 +60,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
     component: (props: any) => (
       <Check id={props.row.is_meta_admin} header={props.head} />
     ),
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {

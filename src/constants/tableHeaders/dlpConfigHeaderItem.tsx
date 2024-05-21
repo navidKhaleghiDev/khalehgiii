@@ -21,14 +21,13 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
       },
     ],
 
-    dir: '',
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.fileType',
     id: 'file_type',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-4/12',
   },
   {
@@ -36,7 +35,7 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     id: 'allowed_for_download',
     type: 'function',
     function: booleanIcon,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -44,7 +43,7 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     id: 'allowed_for_upload',
     type: 'function',
     function: booleanIcon,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -52,7 +51,7 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
     id: 'is_active',
     type: 'function',
     function: booleanIcon,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {

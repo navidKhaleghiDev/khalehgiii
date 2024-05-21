@@ -10,7 +10,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     label: 'table.userName',
     id: 'email',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-4/12',
   },
 
@@ -19,7 +19,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'created_at',
     type: 'function',
     function: dateAndNumber,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -27,7 +27,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'last_uptime',
     type: 'component',
     component: (props: any) => <UserScanCount email={props.row.email} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -35,7 +35,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'is_running',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -50,7 +50,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
         tooltip: 'table.observeUserBehavior',
       },
     ],
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
 ];
