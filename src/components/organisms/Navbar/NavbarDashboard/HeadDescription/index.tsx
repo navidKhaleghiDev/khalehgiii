@@ -32,11 +32,11 @@ export function HeadDescription() {
     `${E_USERS_DAAS}?is_recording=True `,
     http.fetcherSWR
   );
-  const todayScans = data?.data?.info?.today_scans || '0';
-  const remainingDays = data?.data?.info?.remaining_days || '--';
-  const malwareFiles = data?.data?.info?.malware_files || '0';
-  const onlineUsers = list?.data?.online_users || '0';
-  const recordingSessions = list?.data?.online_recording_sessions || '0';
+  const todayScans = data?.data?.info?.today_scans || ' 0';
+  const remainingDays = data?.data?.info?.remaining_days || ' 0';
+  const malwareFiles = data?.data?.info?.malware_files || ' 0';
+  const onlineUsers = list?.data?.online_users || ' 0';
+  const recordingSessions = list?.data?.online_recording_sessions || ' 0';
   const licenseData = list?.data.results;
   const countPage = list?.data?.count || 0;
 
@@ -87,23 +87,23 @@ export function HeadDescription() {
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2  ">
-        {` ${t('dashboard.numbersOfScans')} ${todayScans}`}
+        {` ${t('dashboard.numbersOfScans')}: ${todayScans}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${malwareFiles}  ${t('dashboard.infectedFile')}`}
+        {` ${t('dashboard.infectedFile')}: ${malwareFiles} `}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${remainingDays} ${t('dashboard.dayLeft')}`}
+        {` ${t('dashboard.dayLeft')} :${remainingDays}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <Typography color="teal" className=" px-2 ">
-        {` ${onlineUsers} ${t('global.onlineUsers')}`}
+        {`  ${t('global.onlineUsers')} :${onlineUsers}`}
       </Typography>
       <Typography className=" px-1 ">|</Typography>
       <BaseButton
-        label={` ${recordingSessions} ${t('global.usedPamLicense')}`}
+        label={` ${t('global.usedPamLicense')} :${recordingSessions} `}
         className="text-base"
         onClick={licenseButtonHandler}
         type="tealLink"
