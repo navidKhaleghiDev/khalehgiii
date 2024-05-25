@@ -62,8 +62,8 @@ export function LoginSteps() {
           : await API_USERS_LOGIN({ email, password });
 
         const { data } = response;
-
-        if (data.info === 'ready to get totp to verify') {
+        const needOtp = data.info === 'ready to get totp to verify';
+        if (needOtp) {
           setIsOtpActive(true);
         } else {
           localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
