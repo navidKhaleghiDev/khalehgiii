@@ -129,7 +129,7 @@ export function dayLabel(date?: string) {
   if (date) {
     return getLabelOfWeek(new Date(date).getDay());
   }
-  return getLabelOfWeek(today.getDay());
+  return getLabelOfWeek(now.getDay());
 }
 
 export const getNextSaturday = (): Date => {
