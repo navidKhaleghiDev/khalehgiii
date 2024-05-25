@@ -11,6 +11,8 @@ export function checkPermission(
   permissions?: PermissionsCodeName[],
   requiredPermissions?: PermissionsCodeName | PermissionsCodeName[]
 ): boolean {
+  console.count('checkPermission');
+
   if (!permissions || !requiredPermissions) {
     return false;
   }
@@ -30,8 +32,8 @@ export const usePermission = (
   const { user } = useUserContext();
 
   const userPermissions = useMemo(
-    () => user?.user_permissions || [],
-    [user?.user_permissions]
+    () => (user && user?.user_permissions) || [],
+    [user]
   );
 
   const allUserPermissions = useMemo(
