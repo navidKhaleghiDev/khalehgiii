@@ -1,20 +1,9 @@
 import { Controller } from 'react-hook-form';
 import { Typography } from '../Typography';
 import { baseOtpStyles } from './styles';
+import { TBaseInputProps } from './types';
 
 let errorMessage: string;
-
-type TBaseInputProps = {
-  name: string;
-  control: any;
-  valueLength: number;
-  rules?: any;
-  className?: string;
-  intent?: any;
-  size?: any;
-  fullWidth?: boolean;
-  pureError?: any;
-};
 
 export function BaseOtp({
   name,
@@ -26,7 +15,7 @@ export function BaseOtp({
   size,
   fullWidth,
   pureError,
-}: TBaseInputProps) {
+}: TBaseInputProps<any>) {
   const handleChange = (e: any, index: any, field: any) => {
     const val = e.target.value;
     if (/[^0-9]/.test(val)) return;
