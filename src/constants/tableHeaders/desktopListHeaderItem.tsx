@@ -7,6 +7,7 @@ import { ActionLockCell } from '@ui/atoms/BaseTable/components/CustomCell/Action
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
 
 const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
 
@@ -126,6 +127,20 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ),
     class: 'w-32 ',
   },
+  {
+    label: 'table.recordingActivity',
+    id: 'id',
+    type: 'action',
+    action: [
+      {
+        action: 'more',
+        icon: PhListBulletsFill,
+        color: 'neutralNoBg',
+        tooltip: 'table.recordingActivity',
+      },
+    ],
+    class: 'w-32',
+  },
 
   {
     label: 'table.accessSetting',
@@ -136,11 +151,13 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
+        tooltip: 'table.delete',
       },
       {
         action: 'edit',
         icon: gear,
         color: 'neutralNoBg',
+        tooltip: 'table.edit',
       },
     ],
 

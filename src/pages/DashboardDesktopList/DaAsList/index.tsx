@@ -4,7 +4,7 @@ import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
 import { IDaAs } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { toast } from 'react-toastify';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
@@ -13,7 +13,9 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
+import { useNavigate } from 'react-router-dom';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { SettingDaasModal } from './SettingDaasModal';
@@ -51,7 +53,9 @@ const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function DaAsList() {
+  const { mutate } = useSWRConfig();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
 
@@ -70,10 +74,18 @@ export function DaAsList() {
     currentPage,
     filterQuery,
   });
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
+
+  const mutateConfigUserDass = useCallback(() => {
+    mutate(
+      (key) => typeof key === 'string' && key.startsWith(E_USERS_DAAS),
+      undefined,
+      { revalidate: true }
+    );
+  }, [mutate]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
@@ -96,10 +108,18 @@ export function DaAsList() {
     fileType
   ) => {
     if (action === 'mutate') {
-      mutate();
+      mutate(
+        (key) => typeof key === 'string' && key.startsWith('/users/daas'),
+        undefined,
+        { revalidate: true }
+      );
       return;
     }
-
+    if (action === 'more') {
+      // we neded to do somthing
+      navigate(`${ROUTES_PATH.dashboardSessionRecordingList}${fileType?.id} `);
+      return;
+    }
     if (action === 'edit') {
       setActiveDaas(fileType as IDaAs);
       setOpenSettingModal(true);
@@ -126,9 +146,9 @@ export function DaAsList() {
     if (actionOnClick === 'delete') {
       await API_DAAS_DELETE(activeDaas.id as string)
         .then(() => {
-          mutate();
           toast.success(t('global.successfullyRemoved'));
           setOpenModal(false);
+          mutateConfigUserDass();
         })
         .catch((err) => {
           toast.error(err);
@@ -195,7 +215,7 @@ export function DaAsList() {
     // get
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
-        mutate();
+        mutateConfigUserDass();
         toast.success(t('global.sucessfulyUpdated'));
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);

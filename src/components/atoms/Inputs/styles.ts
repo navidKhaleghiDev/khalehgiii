@@ -81,7 +81,7 @@ export const baseTextareaStyles = cva(
 );
 
 export const baseCheckBoxStyles = cva(
-  'w-5 h-5 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-teal-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600',
+  'accent-teal-600 cursor-pointer border-gray-300 rounded disabled:cursor-auto dark:focus:ring-teal-600 dark:ring-offset-teal-800  dark:bg-gray-700 dark:border-gray-600',
   {
     variants: {
       intent: {
@@ -89,16 +89,16 @@ export const baseCheckBoxStyles = cva(
         error: '',
       },
       size: {
-        xs: ``,
-        sm: ``,
-        md: ``,
-        lg: ``,
-        xl: ``,
+        xs: `w-3 h-3`,
+        sm: `w-4 h-4`,
+        md: `w-5 h-5`,
+        lg: `w-8 h-8`,
+        xl: `w-10 h-10`,
       },
     },
     defaultVariants: {
       intent: 'default',
-      size: 'sm',
+      size: 'md',
     },
   }
 );

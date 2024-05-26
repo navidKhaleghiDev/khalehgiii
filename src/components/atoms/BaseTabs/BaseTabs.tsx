@@ -4,11 +4,15 @@ import { useLanguage } from '@context/settings/languageContext';
 import { IBaseTabProps, IBaseTabsProps } from './types';
 import { Typography } from '../Typography';
 
-export function BaseTab({ children }: IBaseTabProps): JSX.Element {
-  return <div>{children}</div>;
+export function BaseTab({ children, className }: IBaseTabProps): JSX.Element {
+  return <div className={className}>{children}</div>;
 }
 
-export function BaseTabs({ children, label }: IBaseTabsProps): JSX.Element {
+export function BaseTabs({
+  children,
+  label,
+  className,
+}: IBaseTabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState(0);
   const { lang } = useLanguage();
 
@@ -20,7 +24,7 @@ export function BaseTabs({ children, label }: IBaseTabsProps): JSX.Element {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className={`flex flex-col w-full ${className}`}>
       {label && (
         <Typography color="teal" variant="h4">
           {label}

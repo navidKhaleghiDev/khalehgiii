@@ -47,7 +47,10 @@ export function BaseSwitch({
                 type="checkbox"
                 className="sr-only"
                 checked={field.value}
-                onChange={(e) => field.onChange(e.target.checked)}
+                onChange={(e) => {
+                  field.onChange(e.target.checked);
+                  if (pureOnChange) pureOnChange(e.target.checked);
+                }}
               />
               <span
                 className={`slider mr-3 flex h-[26px] w-[50px] items-center rounded-full p-1 duration-200 ${
@@ -88,7 +91,6 @@ export function BaseSwitch({
           type="checkbox"
           className="sr-only"
           checked={pureValue}
-          onChange={pureOnChange}
           defaultValue={defaultValue}
           defaultChecked={defaultChecked}
         />

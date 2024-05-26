@@ -14,21 +14,21 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.fileName',
     id: 'file_name',
     type: 'tooltip',
-    dir: '',
+
     class: 'px-3 w-2/12 font-bold',
   },
   {
     label: 'table.type',
     id: 'file_content_type',
     type: 'tooltip',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -41,7 +41,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         id={props.row[props.id]}
       />
     ),
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -54,7 +54,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         id={props.row[props.id]}
       />
     ),
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -67,7 +67,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         id={props.row[props.id]}
       />
     ),
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -81,7 +81,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
 ];

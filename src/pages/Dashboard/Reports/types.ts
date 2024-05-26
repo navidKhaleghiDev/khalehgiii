@@ -1,3 +1,4 @@
+import { TOnClickDate } from '@ui/atoms/Inputs';
 import { DateObject } from 'react-multi-date-picker';
 
 export interface IFormDate {
@@ -48,6 +49,7 @@ export type TPropsChartType = {
 export type IReportFormType = {
   handleOnSubmit: any;
   state: TReducerStateType;
+  onChange: TOnClickDate;
 };
 
 export type TReducerStateType = {
@@ -57,7 +59,14 @@ export type TReducerStateType = {
   error: boolean;
 };
 export type TypeReducerActionType = {
-  type: 'WEEK' | 'MONTH' | 'NORMAL' | 'LOADING_OFF' | 'LOADING_ON' | 'ERROR';
+  type:
+    | 'WEEK'
+    | 'MONTH'
+    | 'NORMAL'
+    | 'LOADING_OFF'
+    | 'LOADING_ON'
+    | 'ERROR'
+    | 'CLEARERROR';
 };
 
 export type TypeReportOptions = {

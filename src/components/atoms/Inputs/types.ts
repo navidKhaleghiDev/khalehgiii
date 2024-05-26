@@ -52,6 +52,9 @@ export interface BaseInputProps<T extends FieldValues>
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
+export type TOnClickDate = (
+  date: DateObject | [DateObject, DateObject]
+) => void;
 export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
   name: string;
   id: string;
@@ -67,6 +70,7 @@ export interface DatePickerProps extends BaseInputProps<any> {
   format?: string;
   timeDuration?: TTimeDuration;
   submitButton?: boolean;
+  onChange?: TOnClickDate;
 }
 
 type TTimeDuration = {
