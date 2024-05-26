@@ -38,9 +38,6 @@ export function DashboardPage() {
         <BaseTab label="license">
           <SettingsMalware user={user} />
         </BaseTab>
-        {/* <BaseTab label={t('groupManagement.label')}>
-          <GroupManagement />
-        </BaseTab> */}
       </BaseTabs>
     </ContainerDashboard>
   );
