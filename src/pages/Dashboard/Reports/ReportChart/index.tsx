@@ -18,7 +18,6 @@ const filterChartData = (label: string[], data: number[]) => {
   label.forEach((element, index) => {
     if (map.has(element)) {
       duplicates = map.get(element);
-      // console.log(`Index of current occurrence: ${index}`);
     } else {
       map.set(element, index);
     }
