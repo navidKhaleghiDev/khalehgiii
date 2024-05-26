@@ -172,7 +172,7 @@ export function Reports() {
           <ReportForm
             handleOnSubmit={handleOnSubmit}
             state={state}
-            onClick={handleGetDate}
+            onChange={handleGetDate}
           />
         </div>
       </Card>

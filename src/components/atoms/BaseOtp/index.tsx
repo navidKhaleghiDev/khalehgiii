@@ -1,9 +1,9 @@
+import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { Typography } from '../Typography';
 import { baseOtpStyles } from './styles';
-import { TBaseInputProps } from './types';
-
-let errorMessage: string;
+import { TBaseInputProps, THandleChange, THandleKeyDown } from './types';
+import { regexPattern } from '../Inputs';
 
 export function BaseOtp({
   name,
@@ -16,9 +16,10 @@ export function BaseOtp({
   fullWidth,
   pureError,
 }: TBaseInputProps<any>) {
-  const handleChange = (e: any, index: any, field: any) => {
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const handleChange: THandleChange = (e, index, field) => {
     const val = e.target.value;
-    if (/[^0-9]/.test(val)) return;
+    // if (/[^0-9]/.test(val)) return;
 
     const currentOtp = field.value || '';
     const newOtp = currentOtp.split('');
@@ -27,13 +28,21 @@ export function BaseOtp({
     field.onChange(updatedOtp);
 
     if (val && index < valueLength - 1) {
-      e.target.nextElementSibling.focus();
+      const nextElement = e.target
+        .nextElementSibling as HTMLInputElement | null;
+      if (nextElement) {
+        nextElement.focus();
+      }
     }
   };
 
-  const handleKeyDown = (e: any, index: number) => {
-    if (e.key === 'Backspace' && !e.target.value && index > 0) {
-      e.target?.previousElementSibling.focus();
+  const handleKeyDown: THandleKeyDown = (e, index) => {
+    if (e.key === 'Backspace' && !e.currentTarget.value && index > 0) {
+      const previousElement = e.currentTarget
+        .previousElementSibling as HTMLInputElement | null;
+      if (previousElement) {
+        previousElement.focus();
+      }
     }
   };
 
@@ -42,11 +51,17 @@ export function BaseOtp({
       <Controller
         name={name}
         control={control}
-        rules={rules}
+        rules={{
+          required: regexPattern.required,
+          ...rules,
+          pattern: regexPattern.numbers,
+        }}
         render={({ field, fieldState: { error } }) => {
           const otpValue = field.value || '';
           if (error?.message) {
-            errorMessage = error?.message;
+            setErrorMessage(error?.message);
+          } else {
+            setErrorMessage('');
           }
           return (
             <div style={{ display: 'flex', gap: '10px' }}>
@@ -70,7 +85,11 @@ export function BaseOtp({
           );
         }}
       />
-      <Typography color="red" variant="caption" className="h-6">
+      <Typography
+        color="red"
+        variant="caption"
+        className="h-6 mt-2 text-center "
+      >
         {(pureError || errorMessage) ?? ''}
       </Typography>
     </div>

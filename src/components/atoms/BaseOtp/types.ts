@@ -17,3 +17,13 @@ export interface TBaseInputProps<T extends FieldValues>
   fullWidth?: boolean;
   pureError?: string;
 }
+
+export type THandleChange = (
+  e: React.ChangeEvent<HTMLInputElement>,
+  index: number,
+  field: { value: string; onChange: (value: string) => void }
+) => void;
+export type THandleKeyDown = (
+  e: React.KeyboardEvent<HTMLInputElement>,
+  index: number
+) => void;

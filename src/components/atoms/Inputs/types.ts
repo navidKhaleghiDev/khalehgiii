@@ -70,7 +70,7 @@ export interface DatePickerProps extends BaseInputProps<any> {
   format?: string;
   timeDuration?: TTimeDuration;
   submitButton?: boolean;
-  onClick?: TOnClickDate;
+  onChange?: TOnClickDate;
 }
 
 type TTimeDuration = {
