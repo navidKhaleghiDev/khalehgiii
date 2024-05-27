@@ -11,8 +11,6 @@ export function checkPermission(
   permissions?: PermissionsCodeName[],
   requiredPermissions?: PermissionsCodeName | PermissionsCodeName[]
 ): boolean {
-  console.count('checkPermission');
-
   if (!permissions || !requiredPermissions) {
     return false;
   }

@@ -21,6 +21,7 @@ import {
   EPermissionUsers,
 } from '@src/types/permissions';
 
+import { SessionRecording } from '@src/pages/SessionRecording/indexs';
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
 
@@ -67,6 +68,10 @@ const routesConfig = [
             <DashboardDesktopListPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: ROUTES_PATH.dashboardSessionRecordingList,
+        element: <SessionRecording />,
       },
       {
         path: ROUTES_PATH.dashboardAdminsList,

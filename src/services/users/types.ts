@@ -34,12 +34,12 @@ export interface IDaAs {
   extra_allowed_download_files: string[] | null;
   extra_allowed_upload_files: string[] | null;
   daas_version: string;
-  online_users?: number;
 }
 
 export interface IBodyUsersLogin {
   email: string;
   password: string;
+  totp?: string;
   // is_admin: boolean;
 }
 export interface IBodyUsersLogout {
@@ -80,4 +80,7 @@ export interface IUser {
   exceeded_time_limit?: boolean;
   usage_in_minute?: number;
   created_at?: string;
+  totp_enable?: boolean;
+  secret?: string | undefined;
+  totp_secret?: string | null;
 }

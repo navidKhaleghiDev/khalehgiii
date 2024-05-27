@@ -51,6 +51,7 @@ export const MultiDatePicker = memo(function MultiDatePicker({
   timeDuration,
   format = 'YYYY/MM/DD',
   submitButton = false,
+  onChange,
 }: DatePickerProps) {
   const { t } = useTranslation();
   const containerClass = `${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`;
@@ -71,6 +72,9 @@ export const MultiDatePicker = memo(function MultiDatePicker({
       rules={rules}
       defaultValue={defaultValue}
       render={({ field, fieldState: { error } }) => {
+        if (field.value && onChange) {
+          onChange(field.value);
+        }
         return (
           <div className={containerClass}>
             {label && (
