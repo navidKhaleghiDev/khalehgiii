@@ -15,6 +15,7 @@ import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import {
   EPermissionDaas,
   EPermissionExtensions,
+  EPermissionFileScan,
   EPermissionInternetLogs,
   EPermissionScanReports,
   EPermissionUba,
@@ -84,7 +85,7 @@ const routesConfig = [
       {
         path: ROUTES_PATH.monitoringDetails,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
             <ScannedFileListPage />
           </ProtectedRoute>
         ),
@@ -92,7 +93,7 @@ const routesConfig = [
       {
         path: ROUTES_PATH.monitoring,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionDaas.VIEW}>
+          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
             <DashboardMonitoring />
           </ProtectedRoute>
         ),

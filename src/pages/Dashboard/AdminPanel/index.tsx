@@ -1,16 +1,7 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { useTranslation } from 'react-i18next';
-import {
-  usePermission,
-  checkPermission,
-} from '@src/helper/hooks/usePermission';
-import {
-  EPermissionDaasMetaConfig,
-  EPermissionKeycloak,
-  EPermissionMalware,
-  EPermissionWhiteListFiles,
-} from '@src/types/permissions';
+import { usePermission } from '@src/helper/hooks/usePermission';
 
 import { SettingsKeycloak } from '../SettingsKeycloak';
 import { DashboardCards } from '../DashboardCards';
@@ -26,34 +17,21 @@ export function AdminPanel({ userExist }: { userExist: boolean }) {
     <ContainerDashboard>
       <DashboardCards permissions={allUserPermissions ?? []} />
       <BaseTabs label={t('global.setting')}>
-        {checkPermission(allUserPermissions, EPermissionKeycloak.VIEW) && (
-          <BaseTab label="application">
-            <SettingsKeycloak userExist={userExist} />
-          </BaseTab>
-        )}
-        {checkPermission(
-          allUserPermissions,
-          EPermissionDaasMetaConfig.VIEW
-        ) && (
-          <BaseTab label="Daas">
-            <DaasConfig />
-          </BaseTab>
-        )}
+        <BaseTab label="application">
+          <SettingsKeycloak userExist={userExist} />
+        </BaseTab>
 
-        {checkPermission(
-          allUserPermissions,
-          EPermissionWhiteListFiles.VIEW
-        ) && (
-          <BaseTab label="DLP">
-            <DlpConfig />
-          </BaseTab>
-        )}
+        <BaseTab label="Daas">
+          <DaasConfig />
+        </BaseTab>
 
-        {checkPermission(allUserPermissions, EPermissionMalware.VIEW) && (
-          <BaseTab label="malware">
-            <SettingsMalware userExist={userExist} />
-          </BaseTab>
-        )}
+        <BaseTab label="DLP">
+          <DlpConfig />
+        </BaseTab>
+
+        <BaseTab label="malware">
+          <SettingsMalware userExist={userExist} />
+        </BaseTab>
       </BaseTabs>
     </ContainerDashboard>
   );

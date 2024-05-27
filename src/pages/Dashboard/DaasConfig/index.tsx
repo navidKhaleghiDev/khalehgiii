@@ -12,8 +12,10 @@ import { Modal } from '@ui/molecules/Modal';
 import { API_UPDATE_DAAS_CONFIG } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { EPermissionDaasMetaConfig } from '@src/types/permissions';
+import { withPermission } from '@src/helper/hoc/withPermission';
 
-export function DaasConfig() {
+export function DaasConfigCp() {
   const { t } = useTranslation();
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -106,3 +108,7 @@ export function DaasConfig() {
     </form>
   );
 }
+
+export const DaasConfig = withPermission(DaasConfigCp, [
+  EPermissionDaasMetaConfig.VIEW,
+]);

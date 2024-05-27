@@ -108,6 +108,7 @@ export function DashboardCards({
           />
         </div>
       )}
+
       {checkPermission(permissions, EPermissionInternetLogs.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
           <Card

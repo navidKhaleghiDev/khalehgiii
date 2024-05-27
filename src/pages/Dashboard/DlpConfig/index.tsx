@@ -13,13 +13,16 @@ import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { dlpConfigHeaderItem } from '@src/constants/tableHeaders/dlpConfigHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { EPermissionWhiteListFiles } from '@src/types/permissions';
+import { withPermission } from '@src/helper/hoc/withPermission';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+
 import { UpdateFileTypeModal } from './UpdateFileTypeModal';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
 
-export function DlpConfig() {
+export function DlpConfigCp() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
@@ -161,3 +164,7 @@ export function DlpConfig() {
     </div>
   );
 }
+
+export const DlpConfig = withPermission(DlpConfigCp, [
+  EPermissionWhiteListFiles.VIEW,
+]);
