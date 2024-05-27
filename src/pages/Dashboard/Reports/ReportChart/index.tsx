@@ -9,6 +9,24 @@ import {
   TFormatData,
 } from '../types';
 
+let duplicates: number;
+// filter data for montly format
+const filterByIndex = (data: string[] | number[], index: number) =>
+  data.filter((_, i) => i !== index);
+const filterChartData = (label: string[], data: number[]) => {
+  const map = new Map();
+  label.forEach((element, index) => {
+    if (map.has(element)) {
+      duplicates = map.get(element);
+    } else {
+      map.set(element, index);
+    }
+  });
+  const removeList = filterByIndex(label, duplicates);
+  const removeDataList = filterByIndex(data, duplicates);
+  return { dataList: removeDataList, labelList: removeList };
+};
+
 export function ReportsChart({ props }: IReportChartType) {
   const { t } = useTranslation();
   const {
@@ -32,6 +50,7 @@ export function ReportsChart({ props }: IReportChartType) {
 
   function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
     const isDaily = formatData[type] === DAILY_FORMAT;
+    const isMonthly = formatData[type] === MONTLY_FORMAT;
     const dataList: number[] | any = [];
     const labelList: string[] = [];
     const weeksKey: string[] = [];
@@ -63,6 +82,8 @@ export function ReportsChart({ props }: IReportChartType) {
       });
     }
 
+    const res = filterChartData(labelList, dataList);
+
     const dailyDataset = () =>
       Object.values(dataList).map((listData, i) => {
         return {
@@ -74,17 +95,19 @@ export function ReportsChart({ props }: IReportChartType) {
 
     const result = dailyDataset();
 
+    const labels = isMonthly ? res.labelList : labelList;
+    const chartData = isMonthly ? res.dataList : dataList;
     return {
       datasets: isDaily
         ? result
         : [
             {
               label: '',
-              data: dataList,
+              data: chartData,
               fill: true,
             },
           ],
-      labels: labelList,
+      labels: labels as string[],
     };
   }
 

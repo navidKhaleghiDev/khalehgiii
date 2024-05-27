@@ -18,7 +18,9 @@ export function BaseTabelHeader({ header }: PropsType) {
           key={index}
           className={baseTableHeader({
             fixed: head.fixed,
-            className: `${head.class} ${head.fixed && 'fixed'}`,
+            className: `${head.class} ${
+              head.fixed && 'fixed  z-50  rounded-md -mx-2'
+            }`,
           })}
           dir={!head.dir ? 'ltr' : head.dir}
         >

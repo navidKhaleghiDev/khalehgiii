@@ -3,10 +3,12 @@ import { useUserContext } from '@context/user/userContext';
 import { BackButton } from '@ui/atoms/BackButton';
 
 import { NotificationCard } from '@ui/atoms';
+import { useTranslation } from 'react-i18next';
 import { AdminsList } from './AdminsList';
 
 export function DashboardAdminsListPage() {
   const { user } = useUserContext();
+  const { t } = useTranslation();
 
   return (
     <ContainerDashboard>
@@ -14,7 +16,7 @@ export function DashboardAdminsListPage() {
       {user?.is_meta_admin ? (
         <AdminsList />
       ) : (
-        <NotificationCard title="شما به این بخش دسترسی ندارید." type="error" />
+        <NotificationCard title={t('global.dontHaveAccess')} type="error" />
       )}
     </ContainerDashboard>
   );

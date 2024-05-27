@@ -1,4 +1,5 @@
 import { IDaAs } from '@src/services/users/types';
+import { useTranslation } from 'react-i18next';
 import { DlpList } from './DlpList';
 
 type PropsType = {
@@ -12,6 +13,7 @@ export function DlpSettingsForm({
   dlpDownloadList,
   dlpUploadList,
 }: PropsType) {
+  const { t } = useTranslation();
   return (
     <>
       <div className="px-2 col-span-3">
@@ -19,7 +21,7 @@ export function DlpSettingsForm({
           name="allowed_files_type_for_download"
           valueList={dlpDownloadList}
           onChange={handleSetDlpValues}
-          label=":Trusted DLP Download"
+          label={t('table.trustedDownloadFormat')}
         />
       </div>
       <div className="px-2 col-span-3">
@@ -27,7 +29,7 @@ export function DlpSettingsForm({
           name="allowed_files_type_for_upload"
           valueList={dlpUploadList}
           onChange={handleSetDlpValues}
-          label=":Trusted DLP Upload"
+          label={t('table.trustedUploadFormat')}
         />
       </div>
     </>

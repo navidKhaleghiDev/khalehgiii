@@ -136,7 +136,7 @@ export function SetAccessTime({
 
   return (
     <div
-      className={`${isEditable ? 'absolute' : ''} flex justify-center w-full`}
+      className={`  ${isEditable ? 'absolute' : ''} flex justify-center w-full`}
     >
       {!isEditable ? (
         <Card color="white" className="px-2 h-6 w-64 ">

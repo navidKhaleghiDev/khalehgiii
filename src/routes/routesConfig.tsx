@@ -12,6 +12,7 @@ import { UbaPage } from '@src/pages/Uba';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
+import { SessionRecording } from '@src/pages/SessionRecording/indexs';
 import { ROUTES_PATH } from './routesConstants';
 
 const routesConfig = [
@@ -45,6 +46,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboardDesktopList,
         element: <DashboardDesktopListPage />,
+      },
+      {
+        path: ROUTES_PATH.dashboardSessionRecordingList,
+        element: <SessionRecording />,
       },
       {
         path: ROUTES_PATH.dashboardAdminsList,

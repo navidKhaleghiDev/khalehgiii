@@ -22,4 +22,6 @@ export interface IIconButton extends VariantProps<typeof iconButtonStyles> {
   classNameIcon?: string;
   type?: 'submit' | 'button';
   disabled?: boolean;
+  tooltip?: string;
+  tooltipPosition?: string;
 }

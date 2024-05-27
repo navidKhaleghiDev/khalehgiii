@@ -1,7 +1,9 @@
 {
   "login": {
     "loginTitle": "لطفا ایمیل و گذرواژه خود را وارد کنید",
-    "login": "وررود به حساب کاربری"
+    "login": "وررود به حساب کاربری",
+    "otp": " لطفا کد دریافت شده را وارد کنید",
+    "confirm": "تایید"
   },
   "header": {
     "user": "کاربر",
@@ -73,7 +75,32 @@
     "containerId": " کانتینر id",
     "lastUptime": "آخرین ورود",
     "lastLoginIp": "آخرین ورود ip",
-    "download": "دانلود"
+    "download": "دانلود",
+    "file": "فایل",
+    "sessionRecording": "ضبط دسکتاپ",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "upload": "آپلود",
+    "webcamPrivilege": "دسترسی وبکم",
+    "microphonePrivilege": "دسترسی میکروفن",
+    "timeLimitDuration": "محدود کردن براساس زمان",
+    "timeLimitValueInHour": "محدود کردن براساس ساعت",
+    "maxDownloadSize": "حداکثر سایز دانلود (MB) ",
+    "maxUploadSize": "حداکثر سایز آپلود (MB) ",
+    "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
+    "trustedUploadFormat": "فرمت های مورد تایید آپلود",
+    "downloadPrivilege": "دسترسی دانلود",
+    "uploadPrivilege": "دسترسی آپلود",
+    "recordingActivity": "فعالیت های ضبط شده",
+    "date": "تاریخ",
+    "day": "روز",
+    "time": "زمان",
+    "play": "اجرا",
+    "startDate": "تاریخ شروع",
+    "endDate": "تاریخ اتمام",
+    "activeDeactive": "فعال /غیرفعال",
+    "activeQrcode": "Qrcode",
+    "activeOtp": "Otp"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -110,7 +137,7 @@
     "email": "ایمیل",
     "metaAdmin": "سوپر ادمین",
     "confirm": "ثبت",
-    "cancell": "لغو",
+    "cancel": "لغو",
     "successfullySet": "با موفقیت تنظیم شد",
     "hour": "ساعت",
     "restart": "شروع مجدد",
@@ -149,15 +176,40 @@
     "periodOfTime": "بازه زمانی",
     "monthlySelect": "ماهانه",
     "weeklySelect": "هفتگی",
+    "dailySelect": "روزانه",
+    "hourlySelect": "ساعتی",
     "arbitrary": "دلخواه",
     "send": "ارسال",
     "selectTimeFrame": "بازه ای از زمان را انتخاب کنید",
     "reportsChart": "نمودارگزارش",
-    "internetLog": "لاگ های اینترنت"
+    "internetLog": "لاگ های اینترنت",
+    "wholeList": "لیست کلی",
+    "todayList": "لیست امروز",
+    "notFoundPage": "صفحه مورد نظر یافت نشد!",
+    "goToHome": "برو به خانه",
+    "to": "الی",
+    "enterPriodOfTime": "بازه زمانی مورد نظر را وارد کنید",
+    "noReportAvailable": "درحال حاضر گزارشی وجود ندارد",
+    "usedPamLicense": "لایسنس PAM استفاده شده",
+    "somthingWentWrong": "مشگلی پیش آمد",
+    "genrateQrcode": "تولید Qrcode ",
+    "activateOtp": "فعال کردن otp"
+  },
+  "groupManagement": {
+    "person": "نفر",
+    "label": "گروه بندی",
+    "createGroup": "ساخت گروه",
+    "editGroup": "ویرایش گروه",
+    "choiceAdmins": "انتخاب ادمین",
+    "choiceUsers": "انتخاب کاربران",
+    "newAdmin": "ادمین جدید",
+    "users": "کاربران",
+    "admins": "ادمین ها"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
     "systemAdminDescription2": "2- توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
-    "acessTimeModalDescription1": "زمان دسترسی این کاربر به حالت اول بر می گردد. از انجام این کار مطمئن هستید؟"
+    "acessTimeModalDescription1": "زمان دسترسی این کاربر به حالت اول بر می گردد. از انجام این کار مطمئن هستید؟",
+    "extensionListTitle": "برای ایجاد رشته فایل و پسوند فایل جدید ، فایل مرتبط خود را آپلود نماپید."
   }
 }

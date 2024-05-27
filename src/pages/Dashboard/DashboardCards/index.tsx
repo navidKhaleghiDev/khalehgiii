@@ -1,7 +1,5 @@
-// import { dateAndNumber, dayLabel } from '@src/helper/utils/dateUtils';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-// import calendarCheckIcon from '@iconify-icons/ph/calendar-check';
 import keyIcon from '@iconify-icons/ph/key';
 import desktopIcon from '@iconify-icons/ph/desktop';
 import usersThreeIcon from '@iconify-icons/ph/users-three';
@@ -10,7 +8,6 @@ import shieldCheckIcon from '@iconify-icons/ph/shield-check';
 import PhGlobeHemisphereWest from '@iconify-icons/ph/globe-hemisphere-west';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 
-// import { CardScanStats } from './CardScanStats';
 import { Card } from './Card';
 
 export function DashboardCards() {

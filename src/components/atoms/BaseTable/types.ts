@@ -26,6 +26,7 @@ export type ActionOnClickActionsType =
   | 'details'
   | 'mutate'
   | 'download'
+  | 'more'
   | 'editLock';
 
 export type TTableIcon = {
@@ -84,6 +85,7 @@ export interface IActionItem {
   icon: IIconButton['icon'];
   color: IIconButton['color'];
   size: IIconButton['size'];
+  tooltip: string;
 }
 
 export interface IRowTableProps<BodyType> {

@@ -8,20 +8,21 @@ import { useTranslation } from 'react-i18next';
 
 type PropsType = {
   control: Control<any>;
+  isRecording?: boolean;
 };
 
-export function DaasConfigForm({ control }: PropsType) {
+export function DaasConfigForm({ control, isRecording }: PropsType) {
   const { t } = useTranslation();
   return (
     <>
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('table.downloadPrivilege')}</Typography>
         <BaseSwitch control={control} name="can_download_file" />
-        <Typography className="mb-1">:Download</Typography>
       </div>
 
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('table.uploadPrivilege')}</Typography>
         <BaseSwitch control={control} name="can_upload_file" />
-        <Typography className="mb-1">:Upload</Typography>
       </div>
 
       {/* <div className="flex justify-between items-center px-2 col-span-3">
@@ -35,17 +36,29 @@ export function DaasConfigForm({ control }: PropsType) {
 			</div> */}
 
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('table.webcamPrivilege')}</Typography>
         <BaseSwitch control={control} name="webcam_privilege" />
-        <Typography className="mb-1">:Webcam Privilege</Typography>
       </div>
-
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">
+          {t('table.microphonePrivilege')}
+        </Typography>
         <BaseSwitch control={control} name="microphone_privilege" />
-        <Typography className="mb-1">:Microphone Privilege</Typography>
       </div>
+      {isRecording && (
+        <>
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">
+              {t('table.sessionRecording')}
+            </Typography>
+            <BaseSwitch control={control} name="is_recording" />
+          </div>
+          <div className="flex justify-between items-center px-2 col-span-3" />
+        </>
+      )}
 
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Time Limit Duration</Typography>
+      <div className="px-2 col-span-3 ">
+        <Typography className="mb-1">{t('table.timeLimitDuration')}</Typography>
         <Dropdown
           control={control}
           id="time_limit_duration"
@@ -61,11 +74,14 @@ export function DaasConfigForm({ control }: PropsType) {
         />
       </div>
 
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Time Limit Value In Hour</Typography>
+      <div className="px-2 col-span-3 ">
+        <Typography className="mb-1">
+          {t('table.timeLimitValueInHour')}
+        </Typography>
         <BaseInput
           control={control}
           // size="xs"
+
           id="time_limit_value_in_hour"
           name="time_limit_value_in_hour"
           placeholder={t('global.selectHour')}
@@ -78,8 +94,8 @@ export function DaasConfigForm({ control }: PropsType) {
           hiddenError
         />
       </div>
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Max Download Size (MB)</Typography>
+      <div className="px-2 col-span-3  ">
+        <Typography className="mb-1">{t('table.maxDownloadSize')}</Typography>
         <BaseInput
           control={control}
           name="max_transmission_download_size"
@@ -89,8 +105,8 @@ export function DaasConfigForm({ control }: PropsType) {
           fullWidth
         />
       </div>
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Max Upload Size (MB)</Typography>
+      <div className="px-2 col-span-3 ">
+        <Typography className="mb-1">{t('table.maxUploadSize')}</Typography>
         <BaseInput
           control={control}
           name="max_transmission_upload_size"

@@ -8,6 +8,7 @@ import { Daas } from './Daas';
 import { DlpConfig } from './DlpConfig';
 import { DaasConfig } from './DaasConfig';
 import { SettingsMalware } from './SettingsMalware';
+// import { GroupManagement } from './GroupManagement';
 
 export function DashboardPage() {
   const { user } = useUserContext();
@@ -34,7 +35,7 @@ export function DashboardPage() {
         <BaseTab label="DLP">
           <DlpConfig />
         </BaseTab>
-        <BaseTab label="malware">
+        <BaseTab label="license">
           <SettingsMalware user={user} />
         </BaseTab>
       </BaseTabs>
