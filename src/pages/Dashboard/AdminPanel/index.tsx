@@ -1,7 +1,7 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { useTranslation } from 'react-i18next';
-import { usePermission } from '@src/helper/hooks/usePermission';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 import { SettingsKeycloak } from '../SettingsKeycloak';
 import { DashboardCards } from '../DashboardCards';
@@ -11,11 +11,11 @@ import { SettingsMalware } from '../SettingsMalware';
 
 export function AdminPanel({ userExist }: { userExist: boolean }) {
   const { t } = useTranslation();
-  const { allUserPermissions } = usePermission();
+  const userPermissions = useUserPermission();
 
   return (
     <ContainerDashboard>
-      <DashboardCards permissions={allUserPermissions ?? []} />
+      <DashboardCards permissions={userPermissions ?? []} />
       <BaseTabs label={t('global.setting')}>
         <BaseTab label="application">
           <SettingsKeycloak userExist={userExist} />

@@ -18,6 +18,13 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { EPermissionDaas } from '@src/types/permissions';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+
 import { SettingDaasModal } from './SettingDaasModal';
 import { ActionOnClickActionsType } from './DaAsCard/types';
 
@@ -58,12 +65,12 @@ export function DaAsList() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
   const [actionOnClick, setActionOnClick] =
     useState<ActionOnClickActionsType>();
-
   const [openModal, setOpenModal] = useState(false);
+  const userPermissions = useUserPermission();
+
   const [openSettingModal, setOpenSettingModal] = useState(false);
 
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -233,21 +240,30 @@ export function DaAsList() {
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
   };
+  const resetPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.CHANGE
+  );
 
   const searchBarProps: TSearchBar = {
     name: 'search',
     value: filterQuery,
     handleSearchInput: handleFilterChange,
-    componentProps: {
-      type: 'actionRefresh',
-    },
+    componentProps: resetPermission
+      ? {
+          type: 'actionRefresh',
+        }
+      : undefined,
   };
 
   return (
     <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        headers={desktopListHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          desktopListHeaderItem
+        )}
         bodyList={listDaas}
         onClick={handleOnClickActions}
         pagination={paginationProps}

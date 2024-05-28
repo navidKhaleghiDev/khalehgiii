@@ -34,10 +34,14 @@ export enum EPermissionFileScan {
   VIEW = 'view_file_scan', // cart in dashboard , rout monitoring , table montoring,
 }
 export enum EPermissionExtensions {
-  ADD = 'add_extensions', // plus icon , modal add
-  CHANGE = 'change_extensions', // without usage
-  DELETE = 'delete_extensions', // delete icon in table
-  VIEW = 'view_extensions', // card extension dashboard , route extension-list , table
+  ADD = 'add_extensions',
+  // plus icon , modal add
+  CHANGE = 'change_extensions',
+  // without usage
+  DELETE = 'delete_extensions',
+  // delete icon in table
+  VIEW = 'view_extensions',
+  // card extension dashboard , route extension-list , table
 }
 export enum EPermissionUba {
   ADD = 'add_uba', // without usage
@@ -94,11 +98,11 @@ export enum EPermissionUsers {
   ADD = 'add_users', // plus icon in route , modal ,
 }
 
-export enum EPermissionMalware {
-  CHANGE = 'change_malware', // tab malware in dashboard,
-  DELETE = 'delete_malware', // no usage
-  VIEW = 'view_malware', // tab malware in dashboard,
-  ADD = 'add_malware', // if log server and log server port is empty
+export enum EPermissionMalwareConfig {
+  CHANGE = 'change_malware_config', // tab malware in dashboard,
+  DELETE = 'delete_malware_config', // no usage
+  VIEW = 'view_malware_config', // tab malware in dashboard,
+  ADD = 'add_malware_config', // if log server and log server port is empty
 }
 
 export type PermissionsCodeName =
@@ -113,7 +117,7 @@ export type PermissionsCodeName =
   | EPermissionDaasMetaConfig
   | EPermissionWhiteListFiles
   | EPermissionDaas
-  | EPermissionMalware
+  | EPermissionMalwareConfig
   | EPermissionUsers;
 
 type TContentTypePermission = {

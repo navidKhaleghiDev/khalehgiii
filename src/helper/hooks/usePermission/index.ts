@@ -2,10 +2,10 @@ import { useMemo } from 'react';
 import { useUserContext } from '@context/user/userContext';
 import { IUserPermissions, PermissionsCodeName } from '@src/types/permissions';
 
-type UsePermissionResult = {
-  hasPermission?: boolean;
-  allUserPermissions?: PermissionsCodeName[];
-};
+// type UsePermissionResult = {
+//   hasPermission?: boolean;
+//   allUserPermissions?: PermissionsCodeName[];
+// };
 
 export function checkPermission(
   permissions?: PermissionsCodeName[],
@@ -24,27 +24,24 @@ export function checkPermission(
   return check(requiredPermissions);
 }
 
-export const usePermission = (
-  requiredPermissions?: PermissionsCodeName | PermissionsCodeName[]
-): UsePermissionResult => {
+export const useUserPermission = (): PermissionsCodeName[] => {
   const { user } = useUserContext();
 
   const userPermissions = useMemo(
     () => (user && user?.user_permissions) || [],
     [user]
   );
+  return userPermissions.map((userP: IUserPermissions) => userP.codename);
+};
 
-  const allUserPermissions = useMemo(
-    () => userPermissions.map((userP: IUserPermissions) => userP.codename),
-    [userPermissions]
-  );
+export const useHasPermission = (
+  requiredPermissions: PermissionsCodeName | PermissionsCodeName[]
+): boolean => {
+  const userPermissions = useUserPermission();
 
   const hasPermission = useMemo(() => {
-    return checkPermission(allUserPermissions, requiredPermissions);
-  }, [requiredPermissions, allUserPermissions]);
+    return checkPermission(userPermissions, requiredPermissions);
+  }, [requiredPermissions, userPermissions]);
 
-  return {
-    hasPermission,
-    allUserPermissions,
-  };
+  return hasPermission;
 };

@@ -4,6 +4,7 @@ import notePencilIcon from '@iconify-icons/ph/note-pencil';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import { EPermissionUsers } from '@src/types/permissions';
 
 export const adminListHeaderItem: IHeaderTable[] = [
   {
@@ -14,21 +15,21 @@ export const adminListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
+        permission: EPermissionUsers.DELETE,
       },
       {
         action: 'edit',
         icon: notePencilIcon,
         color: 'neutralNoBg',
+        permission: EPermissionUsers.CHANGE,
       },
     ],
-
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.userName',
     id: 'username',
     type: 'none',
-
     class: 'px-3 w-1/12',
   },
   {

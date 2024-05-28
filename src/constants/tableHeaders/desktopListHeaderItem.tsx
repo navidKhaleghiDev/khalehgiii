@@ -8,6 +8,10 @@ import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
+import {
+  EPermissionDaas,
+  EPermissionDaasMetaConfig,
+} from '@src/types/permissions';
 
 const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
 
@@ -78,7 +82,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         onClick={props.onClick}
       />
     ),
-
+    permission: EPermissionDaas.CHANGE,
     class: 'w-32 ',
   },
 
@@ -113,6 +117,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ),
     dir: 'rtl',
     class: 'w-64 ',
+    permission: EPermissionDaas.CHANGE,
   },
 
   {
@@ -152,12 +157,14 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         icon: trashIcon,
         color: 'redNoBg',
         tooltip: 'table.delete',
+        permission: EPermissionDaas.DELETE,
       },
       {
         action: 'edit',
         icon: gear,
         color: 'neutralNoBg',
         tooltip: 'table.edit',
+        permission: EPermissionDaasMetaConfig.CHANGE,
       },
     ],
 

@@ -1,4 +1,5 @@
 import { IconType, StringifyProperties } from '@src/types/global';
+import { PermissionsCodeName } from '@src/types/permissions';
 
 import { VariantProps } from 'class-variance-authority';
 import { IBaseIcon } from '../BaseIcon/types';
@@ -53,6 +54,7 @@ export interface IHeaderTable {
   type: TTableType;
   variant?: VariantProps<typeof typographyStyles>['variant'];
   fixed?: boolean;
+  permission?: PermissionsCodeName;
 }
 
 export interface IBaseTableProps<BodyType> {
@@ -86,6 +88,7 @@ export interface IActionItem {
   color: IIconButton['color'];
   size: IIconButton['size'];
   tooltip: string;
+  permission?: PermissionsCodeName;
 }
 
 export interface IRowTableProps<BodyType> {
