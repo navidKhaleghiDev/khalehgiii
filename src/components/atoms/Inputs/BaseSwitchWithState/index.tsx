@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@ui/atoms/Typography';
 import { IBaseSwitchWithState } from './types';
@@ -30,7 +31,7 @@ export function BaseSwitchWithState({
     <div dir="ltr">
       {label && (
         <label
-          htmlFor={name}
+          htmlFor={`${name}_input`}
           className={`block mb-1 ${
             ltrLabel ? 'text-left uppercase' : 'text-right'
           }`}
@@ -43,7 +44,7 @@ export function BaseSwitchWithState({
       <label
         htmlFor={`${name}_input`}
         className={`autoSaverSwitch relative inline-flex cursor-pointer select-none items-center ${
-          disabled && 'cursor-not-allowed'
+          disabled ? 'cursor-not-allowed' : ''
         }`}
       >
         <input
