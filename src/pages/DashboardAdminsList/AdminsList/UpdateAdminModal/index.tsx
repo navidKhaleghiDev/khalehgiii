@@ -10,6 +10,8 @@ import { API_UPDATE_USER, API_CREATE_USER } from '@src/services/users';
 import { PasswordInput } from '@ui/atoms/Inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 import BaseQrCode from '@ui/atoms/BaseQrCode';
+import { useUserContext } from '@context/user/userContext';
+import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -17,9 +19,17 @@ type PropsType = {
 };
 
 export function UpdateAdminModal({ handleClose, admin }: PropsType) {
+  const { user } = useUserContext();
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const [selectedSwiches, setSelectedSwitches] = useState([]);
+
+  const permissions = user?.user_permissions || [];
+
+  const filterdPermissions = permissions.filter((item) =>
+    permissionKeys.includes(item.codename)
+  );
 
   const { control, handleSubmit } = useForm<IUser>({
     mode: 'onChange',
@@ -33,6 +43,18 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
       totp_enable: admin?.totp_enable ?? false,
     },
   });
+
+  const handleSwitchChange = (item, isChecked) => {
+    if (isChecked) {
+      setSelectedSwitches((prev) => [...prev, item]);
+    } else {
+      setSelectedSwitches((prev) =>
+        prev.filter((i) => i.codename !== item.codename)
+      );
+    }
+  };
+
+  console.log(selectedSwiches, 'SELECTED SWITCHES');
 
   const handleOnSubmit = async (data: IUser) => {
     setLoadingButtonModal(true);
@@ -52,8 +74,9 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
         });
       return;
     }
+    const updatedData = { user_permissions: selectedSwiches, ...data };
 
-    await API_CREATE_USER(data)
+    await API_CREATE_USER(updatedData)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         handleClose(true);
@@ -142,7 +165,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
           }}
         />
       </div>
-      {admin?.id && (
+      {admin?.id ? (
         <div className="px-2 col-span-6 flex justify-center items-center w-full mb-4 border border-gray-500 rounded-md p-2  ">
           <div className="w-2/6  flex-col justify-center">
             <div className="w-6/6 flex justify-between items-center mt-2">
@@ -164,6 +187,31 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               defaultValue={admin?.totp_secret}
             />
           </div>
+        </div>
+      ) : (
+        <div
+          dir="ltr"
+          className="px-2 col-span-6 flex justify-center items-center w-full mb-4 border border-gray-500 rounded-md p-2  h-auto flex-wrap "
+        >
+          {filterdPermissions &&
+            filterdPermissions.map((item, index) => (
+              <div key={item.id} className="w-2/6 flex-col justify-center ">
+                <div className="w-6/6 flex justify-between items-center mt-2">
+                  <Typography className="mb-1" type="h4" color="teal">
+                    {item.name}
+                  </Typography>
+                  <BaseSwitchWithState
+                    pureOnChange={(isChecked) =>
+                      handleSwitchChange(item, isChecked)
+                    }
+                    pureValue={selectedSwiches.some(
+                      (i) => i.codename === item.codename
+                    )}
+                    name={item.codename}
+                  />
+                </div>
+              </div>
+            ))}
         </div>
       )}
       <Typography className="px-2 col-span-6 flex justify-start" color="red">
@@ -213,3 +261,35 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     </form>
   );
 }
+const permissionKeys = [
+  'view_keycloak',
+  'view_file_scan',
+  'add_extensions',
+  'delete_extensions',
+  'view_extensions',
+  'view_uba',
+  'view_scan_reports',
+  'view_internet_logs',
+  'change_session_recording',
+  'view_session_recording',
+  'add_config',
+  'change_config',
+  'view_config',
+  'change_daasmetaconfig',
+  'delete_daasmetaconfig',
+  'view_daasmetaconfig',
+  'change_whitelistfiles',
+  'delete_whitelistfiles',
+  'view_whitelistfiles',
+  'add_whitelistfiles',
+  'change_daas',
+  'delete_daas',
+  'view_daas',
+  'change_users',
+  'delete_users',
+  'view_users',
+  'add_users',
+  'change_malware',
+  'view_malware',
+  'add_malware',
+];
