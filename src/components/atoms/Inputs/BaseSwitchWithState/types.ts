@@ -6,7 +6,7 @@ export interface IBaseSwitchWithState<T> {
   ltrLabel?: boolean;
   label?: string;
   disabled?: boolean;
-  pureOnChange?: (event: boolean) => void;
+  pureOnChange?: (event: T) => void;
   pureValue?: boolean;
   pureError?: string;
 }

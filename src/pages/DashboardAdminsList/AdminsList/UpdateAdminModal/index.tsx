@@ -11,7 +11,7 @@ import { PasswordInput } from '@ui/atoms/Inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 import BaseQrCode from '@ui/atoms/BaseQrCode';
 import { useUserContext } from '@context/user/userContext';
-import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
+import { PermissionOptions } from '../PermissionOptions';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -23,13 +23,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [selectedSwiches, setSelectedSwitches] = useState([]);
-
-  const permissions = user?.user_permissions || [];
-
-  const filterdPermissions = permissions.filter((item) =>
-    permissionKeys.includes(item.codename)
-  );
+  const [selectedSwiches, setSelectedSwitches] = useState<number[]>([]);
 
   const { control, handleSubmit } = useForm<IUser>({
     mode: 'onChange',
@@ -44,17 +38,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     },
   });
 
-  const handleSwitchChange = (item, isChecked) => {
-    if (isChecked) {
-      setSelectedSwitches((prev) => [...prev, item]);
-    } else {
-      setSelectedSwitches((prev) =>
-        prev.filter((i) => i.codename !== item.codename)
-      );
-    }
-  };
-
-  console.log(selectedSwiches, 'SELECTED SWITCHES');
+  const permissions = user?.user_permissions || [];
 
   const handleOnSubmit = async (data: IUser) => {
     setLoadingButtonModal(true);
@@ -74,7 +58,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
         });
       return;
     }
-    const updatedData = { user_permissions: selectedSwiches, ...data };
+    const updatedData = { user_permissions_ids: selectedSwiches, ...data };
 
     await API_CREATE_USER(updatedData)
       .then(() => {
@@ -189,30 +173,11 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
           </div>
         </div>
       ) : (
-        <div
-          dir="ltr"
-          className="px-2 col-span-6 flex justify-center items-center w-full mb-4 border border-gray-500 rounded-md p-2  h-auto flex-wrap "
-        >
-          {filterdPermissions &&
-            filterdPermissions.map((item, index) => (
-              <div key={item.id} className="w-2/6 flex-col justify-center ">
-                <div className="w-6/6 flex justify-between items-center mt-2">
-                  <Typography className="mb-1" type="h4" color="teal">
-                    {item.name}
-                  </Typography>
-                  <BaseSwitchWithState
-                    pureOnChange={(isChecked) =>
-                      handleSwitchChange(item, isChecked)
-                    }
-                    pureValue={selectedSwiches.some(
-                      (i) => i.codename === item.codename
-                    )}
-                    name={item.codename}
-                  />
-                </div>
-              </div>
-            ))}
-        </div>
+        <PermissionOptions
+          permissions={permissions}
+          setSelectedSwitches={setSelectedSwitches}
+          selectedSwiches={selectedSwiches}
+        />
       )}
       <Typography className="px-2 col-span-6 flex justify-start" color="red">
         {t('title.systemAdminDescription1')}
@@ -261,35 +226,3 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     </form>
   );
 }
-const permissionKeys = [
-  'view_keycloak',
-  'view_file_scan',
-  'add_extensions',
-  'delete_extensions',
-  'view_extensions',
-  'view_uba',
-  'view_scan_reports',
-  'view_internet_logs',
-  'change_session_recording',
-  'view_session_recording',
-  'add_config',
-  'change_config',
-  'view_config',
-  'change_daasmetaconfig',
-  'delete_daasmetaconfig',
-  'view_daasmetaconfig',
-  'change_whitelistfiles',
-  'delete_whitelistfiles',
-  'view_whitelistfiles',
-  'add_whitelistfiles',
-  'change_daas',
-  'delete_daas',
-  'view_daas',
-  'change_users',
-  'delete_users',
-  'view_users',
-  'add_users',
-  'change_malware',
-  'view_malware',
-  'add_malware',
-];
