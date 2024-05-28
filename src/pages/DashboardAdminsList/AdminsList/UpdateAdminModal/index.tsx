@@ -1,7 +1,7 @@
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { toast } from 'react-toastify';
@@ -39,8 +39,10 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
   });
 
   const permissions = user?.user_permissions || [];
+  const updateUserPermitions = admin?.user_permissions || [];
 
   const handleOnSubmit = async (data: IUser) => {
+    const updatedData = { user_permissions_ids: selectedSwiches, ...data };
     setLoadingButtonModal(true);
 
     if (data.id) {
@@ -58,7 +60,6 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
         });
       return;
     }
-    const updatedData = { user_permissions_ids: selectedSwiches, ...data };
 
     await API_CREATE_USER(updatedData)
       .then(() => {
@@ -149,7 +150,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
           }}
         />
       </div>
-      {admin?.id ? (
+      {admin?.id && (
         <div className="px-2 col-span-6 flex justify-center items-center w-full mb-4 border border-gray-500 rounded-md p-2  ">
           <div className="w-2/6  flex-col justify-center">
             <div className="w-6/6 flex justify-between items-center mt-2">
@@ -172,13 +173,12 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
             />
           </div>
         </div>
-      ) : (
-        <PermissionOptions
-          permissions={permissions}
-          setSelectedSwitches={setSelectedSwitches}
-          selectedSwiches={selectedSwiches}
-        />
       )}
+      <PermissionOptions
+        permissions={permissions}
+        setSelectedSwitches={setSelectedSwitches}
+        selectedSwiches={selectedSwiches}
+      />
       <Typography className="px-2 col-span-6 flex justify-start" color="red">
         {t('title.systemAdminDescription1')}
       </Typography>
