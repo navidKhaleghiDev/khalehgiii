@@ -3,6 +3,7 @@ import { permissionKeys } from '@src/constants/permissionKeys';
 import { Typography } from '@ui/atoms';
 import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 import { IUserPermissions } from '@src/types/permissions';
+import { Divider } from '@ui/atoms/Divider';
 import { IPermissionOptionsProps } from './types';
 
 export function PermissionOptions({
@@ -38,21 +39,18 @@ export function PermissionOptions({
   }, [permissions, selectedSwitches]);
 
   return (
-    <div
-      dir="ltr"
-      className="px-2 col-span-6 flex justify-center items-center w-full mb-4 p-2  h-auto flex-wrap "
-    >
+    <div className="px-2 flex flex-wrap max-h-[35rem] overflow-y-auto">
       {mergedPermissions.map((item) => (
-        <div key={item.id} className="w-2/6 flex-col justify-center ">
-          <div className="w-6/6 flex justify-between items-center mt-2">
-            <Typography className="mb-1" type="h4" color="teal">
-              {item.name}
-            </Typography>
+        <div key={item.id} className="w-full flex-col ">
+          <div className=" mt-2 flex justify-between items-center border-b h-10">
             <BaseSwitchWithState
               pureOnChange={(isChecked) => handleSwitchChange(item, isChecked)}
               pureValue={item.selected}
               name={item.codename}
             />
+            <Typography className="mb-1" type="h4" color="teal">
+              {item.name}
+            </Typography>
           </div>
         </div>
       ))}

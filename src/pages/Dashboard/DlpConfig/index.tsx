@@ -13,8 +13,6 @@ import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { dlpConfigHeaderItem } from '@src/constants/tableHeaders/dlpConfigHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { EPermissionWhiteListFiles } from '@src/types/permissions';
-import { withPermission } from '@src/helper/hoc/withPermission';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -170,7 +168,3 @@ export function DlpConfigCp() {
     </div>
   );
 }
-
-export const DlpConfig = withPermission(DlpConfigCp, [
-  EPermissionWhiteListFiles.VIEW,
-]);

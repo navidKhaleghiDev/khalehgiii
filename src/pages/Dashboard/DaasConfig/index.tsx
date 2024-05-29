@@ -12,8 +12,6 @@ import { Modal } from '@ui/molecules/Modal';
 import { API_UPDATE_DAAS_CONFIG } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { EPermissionDaasMetaConfig } from '@src/types/permissions';
-import { withPermission } from '@src/helper/hoc/withPermission';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 export function DaasConfigCp() {
@@ -110,7 +108,3 @@ export function DaasConfigCp() {
     </form>
   );
 }
-
-export const DaasConfig = withPermission(DaasConfigCp, [
-  EPermissionDaasMetaConfig.VIEW,
-]);

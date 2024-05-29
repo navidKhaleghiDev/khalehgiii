@@ -13,8 +13,6 @@ import { LoadingSpinner } from '@ui/molecules/Loading';
 import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
 import { Divider } from '@ui/atoms/Divider';
 import { useTranslation } from 'react-i18next';
-import { withPermission } from '@src/helper/hoc/withPermission';
-import { EPermissionKeycloak } from '@src/types/permissions';
 
 function TitleSection({ label }: { label: string }) {
   return (
@@ -271,7 +269,3 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
     </form>
   );
 }
-
-export const SettingsKeycloak = withPermission(SettingsKeycloakCp, [
-  EPermissionKeycloak.VIEW,
-]);
