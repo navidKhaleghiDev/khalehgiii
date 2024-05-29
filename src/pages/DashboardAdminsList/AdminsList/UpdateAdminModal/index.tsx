@@ -10,6 +10,9 @@ import { API_UPDATE_USER, API_CREATE_USER } from '@src/services/users';
 import { PasswordInput } from '@ui/atoms/Inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 import BaseQrCode from '@ui/atoms/BaseQrCode';
+import { useUserContext } from '@context/user/userContext';
+import { BaseCollapse } from '@ui/atoms/BaseCollapse';
+import { PermissionOptions } from '../PermissionOptions';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -17,9 +20,13 @@ type PropsType = {
 };
 
 export function UpdateAdminModal({ handleClose, admin }: PropsType) {
+  const { user } = useUserContext();
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const [selectedSwitches, setSelectedSwitches] = useState(
+    admin?.user_permissions || []
+  );
 
   const { control, handleSubmit } = useForm<IUser>({
     mode: 'onChange',
@@ -34,11 +41,15 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     },
   });
 
+  const permissions = user?.user_permissions || [];
+  const getSelectedIds = selectedSwitches.map((item) => item.id);
+
   const handleOnSubmit = async (data: IUser) => {
+    const updatedData = { user_permissions_ids: getSelectedIds, ...data };
     setLoadingButtonModal(true);
 
     if (data.id) {
-      await API_UPDATE_USER(data as IUser, data?.id as number)
+      await API_UPDATE_USER(updatedData as IUser, data?.id as number)
         .then(() => {
           toast.success(t('global.sucessfulyUpdated'));
           handleClose(true);
@@ -53,7 +64,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
       return;
     }
 
-    await API_CREATE_USER(data)
+    await API_CREATE_USER(updatedData)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         handleClose(true);
@@ -69,7 +80,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
 
   return (
     <form
-      className="w-full h-full grid grid-cols-6 p-5"
+      className="w-full h-full grid grid-cols-6 p-5 "
       onSubmit={handleSubmit(handleOnSubmit)}
     >
       <div className="px-2 col-span-6 flex justify-between items-start w-full gap-2">
@@ -166,6 +177,16 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
           </div>
         </div>
       )}
+      <BaseCollapse
+        content={
+          <PermissionOptions
+            permissions={permissions}
+            setSelectedSwitches={setSelectedSwitches}
+            selectedSwitches={selectedSwitches as []}
+          />
+        }
+      />
+
       <Typography className="px-2 col-span-6 flex justify-start" color="red">
         {t('title.systemAdminDescription1')}
       </Typography>
