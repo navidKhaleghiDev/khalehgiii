@@ -31,9 +31,7 @@ export function PermissionOptions({
     );
     const updatedPermissions = filteredPermissions.map((item) => ({
       ...item,
-      selected: selectedSwitches.some(
-        (selected: any) => selected.id === item.id
-      ),
+      selected: selectedSwitches.some((selected) => selected.id === item.id),
     }));
 
     setMergedPermissions(updatedPermissions);
