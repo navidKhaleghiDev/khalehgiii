@@ -54,7 +54,7 @@ export interface IHeaderTable {
   type: TTableType;
   variant?: VariantProps<typeof typographyStyles>['variant'];
   fixed?: boolean;
-  permission?: PermissionsCodeName;
+  permission?: PermissionsCodeName | PermissionsCodeName[];
 }
 
 export interface IBaseTableProps<BodyType> {

@@ -8,7 +8,15 @@ export function checkPermissionHeaderItem(
   // Filter header items based on user permissions
   const filteredHeaderItems = headerItems.filter((item: IHeaderTable) => {
     // Check if the item itself requires a permission
-    if (item.permission && !userPermissions.includes(item.permission)) {
+    if (Array.isArray(item.permission)) {
+      if (
+        !item.permission.some((permission) =>
+          userPermissions.includes(permission)
+        )
+      ) {
+        return false;
+      }
+    } else if (item.permission && !userPermissions.includes(item.permission)) {
       return false;
     }
 

@@ -13,6 +13,8 @@ import { Modal } from '@ui/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { API_USERS_LICENSE_UPDATE } from '@src/services/users';
 import { licenseTrueStatusHeaderItem } from '@src/constants/tableHeaders/pamLicenseHeaderItem';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
@@ -22,6 +24,7 @@ export function HeadDescription() {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const userPermissions = useUserPermission();
 
   const { data } = useSWR<ISwrResponse<IScanStats>>(
     E_ANALYZE_SCAN_STATS,
@@ -114,7 +117,10 @@ export function HeadDescription() {
         content={
           <BaseTable
             loading={isLoading || loading}
-            headers={licenseTrueStatusHeaderItem}
+            headers={checkPermissionHeaderItem(
+              userPermissions,
+              licenseTrueStatusHeaderItem
+            )}
             bodyList={licenseData as []}
             onClick={handleOnClickActions}
             pagination={paginationProps}

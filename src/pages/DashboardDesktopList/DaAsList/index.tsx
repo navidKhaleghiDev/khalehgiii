@@ -69,11 +69,10 @@ export function DaAsList() {
   const [actionOnClick, setActionOnClick] =
     useState<ActionOnClickActionsType>();
   const [openModal, setOpenModal] = useState(false);
-  const userPermissions = useUserPermission();
-
   const [openSettingModal, setOpenSettingModal] = useState(false);
-
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+
+  const userPermissions = useUserPermission();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
@@ -293,6 +292,7 @@ export function DaAsList() {
           <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
+            userPermissions={userPermissions}
           />
         }
       />

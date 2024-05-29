@@ -1,5 +1,6 @@
 import trashIcon from '@iconify-icons/ph/trash';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
+import { EPermissionExtensions } from '@src/types/permissions';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 export const extensionListHeaderItem: IHeaderTable[] = [
@@ -13,6 +14,7 @@ export const extensionListHeaderItem: IHeaderTable[] = [
         color: 'redNoBg',
       },
     ],
+    permission: EPermissionExtensions.DELETE,
 
     class: 'px-3 w-3/12',
   },

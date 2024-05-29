@@ -20,6 +20,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 
@@ -149,7 +150,10 @@ export function ExtensionList() {
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        headers={extensionListHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          extensionListHeaderItem
+        )}
         bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}

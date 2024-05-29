@@ -16,6 +16,8 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { EPermissionWhiteListFiles } from '@src/types/permissions';
 import { withPermission } from '@src/helper/hoc/withPermission';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 import { UpdateFileTypeModal } from './UpdateFileTypeModal';
 
@@ -30,6 +32,7 @@ export function DlpConfigCp() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_WHITE_LIST_FILES,
@@ -127,7 +130,10 @@ export function DlpConfigCp() {
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        headers={dlpConfigHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          dlpConfigHeaderItem
+        )}
         bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}

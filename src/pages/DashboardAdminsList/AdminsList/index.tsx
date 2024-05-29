@@ -34,7 +34,6 @@ export function AdminsList() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const userPermissions = useUserPermission();
-
   const addPermission = checkPermission(userPermissions, EPermissionUsers.ADD);
 
   const endpoint = createAPIEndpoint({

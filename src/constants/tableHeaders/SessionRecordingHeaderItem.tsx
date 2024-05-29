@@ -5,6 +5,7 @@ import {
   convertToDay,
   convertToHourFormat,
 } from '@src/helper/utils/dateUtils';
+import { EPermissionSessionRecording } from '@src/types/permissions';
 
 export const SessionRecordingHeaderItem: IHeaderTable[] = [
   {
@@ -53,6 +54,8 @@ export const SessionRecordingHeaderItem: IHeaderTable[] = [
         size: 'xxl',
       },
     ],
+    permission: EPermissionSessionRecording.VIEW,
+
     class: 'w-4/12',
   },
 ];

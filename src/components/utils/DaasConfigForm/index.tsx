@@ -5,14 +5,25 @@ import { Dropdown } from '@ui/atoms/DropDown';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { timeLimitDurationOptions } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime';
 import { useTranslation } from 'react-i18next';
+import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { checkPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   control: Control<any>;
   isRecording?: boolean;
+  userPermissions: PermissionsCodeName[];
 };
 
-export function DaasConfigForm({ control, isRecording }: PropsType) {
+export function DaasConfigForm({
+  control,
+  isRecording,
+  userPermissions,
+}: PropsType) {
   const { t } = useTranslation();
+  const hasChangePermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.CHANGE
+  );
   return (
     <>
       <div className="flex justify-between items-center px-2 col-span-3">
@@ -56,7 +67,6 @@ export function DaasConfigForm({ control, isRecording }: PropsType) {
           <div className="flex justify-between items-center px-2 col-span-3" />
         </>
       )}
-
       <div className="px-2 col-span-3 ">
         <Typography className="mb-1">{t('table.timeLimitDuration')}</Typography>
         <Dropdown
@@ -69,6 +79,7 @@ export function DaasConfigForm({ control, isRecording }: PropsType) {
           rules={{
             required: regexPattern.required,
           }}
+          disabled={!hasChangePermission}
           fullWidth
           hiddenError
         />
@@ -90,6 +101,7 @@ export function DaasConfigForm({ control, isRecording }: PropsType) {
             pattern: regexPattern.numbers,
           }}
           type="number"
+          disabled={!hasChangePermission}
           fullWidth
           hiddenError
         />
@@ -101,6 +113,7 @@ export function DaasConfigForm({ control, isRecording }: PropsType) {
           name="max_transmission_download_size"
           id="max_transmission_download_size"
           type="number"
+          disabled={!hasChangePermission}
           hiddenError
           fullWidth
         />
@@ -112,6 +125,7 @@ export function DaasConfigForm({ control, isRecording }: PropsType) {
           name="max_transmission_upload_size"
           id="max_transmission_upload_size"
           type="number"
+          disabled={!hasChangePermission}
           hiddenError
           fullWidth
         />

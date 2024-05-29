@@ -12,6 +12,9 @@ import { SessionRecordingHeaderItem } from '@src/constants/tableHeaders/SessionR
 import { Modal } from '@ui/molecules/Modal';
 import { debounce } from 'lodash';
 import { API_GET_RECORDED_VIDEO } from '@src/services/config';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+
 import { ISessionRecordList, TRecordData } from '../types';
 
 const PAGE_SIZE = 8;
@@ -26,6 +29,9 @@ export function SessionRecordingList() {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const { id } = useParams();
   const ids = id?.replace(':id', '');
+
+  const userPermissions = useUserPermission();
+
   const { data, isLoading } = useSWR<
     ISessionResponsePagination<ISessionRecordList>
   >(
@@ -106,7 +112,10 @@ export function SessionRecordingList() {
         <BaseTab label={t('global.wholeList')}>
           <BaseTable
             loading={isLoading}
-            headers={SessionRecordingHeaderItem}
+            headers={checkPermissionHeaderItem(
+              userPermissions,
+              SessionRecordingHeaderItem
+            )}
             bodyList={dataTableHistory}
             onClick={handleOpenModal}
             pagination={paginationProps}
@@ -115,7 +124,10 @@ export function SessionRecordingList() {
         <BaseTab label={t('global.todayList')}>
           <BaseTable
             loading={isLoading}
-            headers={SessionRecordingHeaderItem}
+            headers={checkPermissionHeaderItem(
+              userPermissions,
+              SessionRecordingHeaderItem
+            )}
             bodyList={dataTableToday}
             onClick={handleOpenModal}
           />

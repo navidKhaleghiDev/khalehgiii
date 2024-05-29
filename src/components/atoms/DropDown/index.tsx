@@ -28,6 +28,7 @@ export function Dropdown<T extends FieldValues>({
   size,
   hiddenError,
   containerClassName,
+  disabled,
 }: DropdownProps<T>) {
   const ref = useRef(null);
   const [state, setState] = useState<StateType>(initState);
@@ -68,6 +69,7 @@ export function Dropdown<T extends FieldValues>({
           <button
             type="button"
             onClick={toggleOpen}
+            disabled={disabled}
             className={baseDropDownStyles({
               size,
               fullWidth,

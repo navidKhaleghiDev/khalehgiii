@@ -24,6 +24,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
         permission: EPermissionUsers.CHANGE,
       },
     ],
+    permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
     class: 'px-3 w-2/12',
   },
   {

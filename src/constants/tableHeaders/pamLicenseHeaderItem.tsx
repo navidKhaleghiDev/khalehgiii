@@ -1,3 +1,4 @@
+import { EPermissionDaas } from '@src/types/permissions';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { BaseTableSwitch } from '@ui/organisms/Navbar/NavbarDashboard/HeadDescription/BaseTableSwitch';
 
@@ -20,6 +21,8 @@ export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
         onClick={props.onClick}
       />
     ),
+    permission: EPermissionDaas.CHANGE,
+
     class: 'px-3 w-6/12',
   },
 ];

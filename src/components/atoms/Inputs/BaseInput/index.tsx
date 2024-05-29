@@ -38,6 +38,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     ltrLabel = false,
     iconButtonIcon = 'fa-home',
     onKeyDown,
+    disabled,
   } = props;
   return control ? (
     <Controller
@@ -91,6 +92,7 @@ export function BaseInput(props: BaseInputProps<any>) {
               onFocus={onFocus}
               ref={ref}
               autoComplete={autoComplete}
+              disabled={disabled}
             />
 
             {onClickIcon && (

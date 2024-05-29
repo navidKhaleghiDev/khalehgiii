@@ -1,6 +1,7 @@
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { CircleBorder } from '@ui/atoms/BaseTable/components/tableIcons/CircleBorder';
+import { EPermissionScanReports } from '@src/types/permissions';
 
 export const scannedFileHeaderItem: IHeaderTable[] = [
   {
@@ -14,6 +15,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
+    permission: EPermissionScanReports.VIEW,
 
     class: 'px-3 w-2/12',
   },
@@ -81,6 +83,7 @@ export const scannedFileHeaderItem: IHeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
+    permission: EPermissionScanReports.VIEW,
 
     class: 'px-3 w-2/12',
   },

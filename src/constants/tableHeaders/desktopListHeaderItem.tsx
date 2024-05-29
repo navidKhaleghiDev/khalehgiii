@@ -103,6 +103,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
 
     class: 'w-32 ',
   },
+
   {
     label: 'table.accessSettingsTime',
     id: 'updated_at',
@@ -132,6 +133,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ),
     class: 'w-32 ',
   },
+
   {
     label: 'table.recordingActivity',
     id: 'id',
@@ -144,6 +146,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         tooltip: 'table.recordingActivity',
       },
     ],
+    permission: EPermissionDaas.VIEW,
     class: 'w-32',
   },
 
@@ -167,7 +170,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         permission: EPermissionDaasMetaConfig.CHANGE,
       },
     ],
-
+    permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
     class: 'w-32 ',
   },
 ];

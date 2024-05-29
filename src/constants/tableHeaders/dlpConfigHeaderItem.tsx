@@ -3,6 +3,7 @@ import trashIcon from '@iconify-icons/ph/trash';
 import notePencilIcon from '@iconify-icons/ph/note-pencil';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { booleanIcon } from '@src/pages/Dashboard/DlpConfig/utils';
+import { EPermissionWhiteListFiles } from '@src/types/permissions';
 
 export const dlpConfigHeaderItem: IHeaderTable[] = [
   {
@@ -13,12 +14,18 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
+        permission: EPermissionWhiteListFiles.DELETE,
       },
       {
         action: 'edit',
         icon: notePencilIcon,
         color: 'neutralNoBg',
+        permission: EPermissionWhiteListFiles.CHANGE,
       },
+    ],
+    permission: [
+      EPermissionWhiteListFiles.CHANGE,
+      EPermissionWhiteListFiles.DELETE,
     ],
 
     class: 'px-3 w-2/12',

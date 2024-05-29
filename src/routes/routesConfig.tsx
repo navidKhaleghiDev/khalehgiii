@@ -72,7 +72,11 @@ const routesConfig = [
       },
       {
         path: ROUTES_PATH.dashboardSessionRecordingList,
-        element: <SessionRecording />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+            <SessionRecording />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.dashboardAdminsList,

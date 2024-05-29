@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { EPermissionDaasMetaConfig } from '@src/types/permissions';
 import { withPermission } from '@src/helper/hoc/withPermission';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 export function DaasConfigCp() {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export function DaasConfigCp() {
     E_DAAS_CONFIGS,
     http.fetcherSWR
   );
+  const userPermissions = useUserPermission();
 
   const { control, handleSubmit, getValues, reset, formState } =
     useForm<IDaasConfig>({
@@ -79,7 +81,7 @@ export function DaasConfigCp() {
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <DaasConfigForm control={control} />
+      <DaasConfigForm control={control} userPermissions={userPermissions} />
       <div className="flex justify-center col-span-6">
         <BaseButton
           label={t('dashboard.update')}
