@@ -123,6 +123,7 @@ type TContentTypePermission = {
 };
 
 export interface IUserPermissions {
+  selected?: boolean;
   id: number;
   content_type: TContentTypePermission;
   name: string;
