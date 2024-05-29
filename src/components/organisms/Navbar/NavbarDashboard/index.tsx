@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { Avatar } from '@ui/atoms/Avatar';
 import { Typography } from '@ui/atoms/Typography/Typography';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,6 +21,15 @@ import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { languageOptions } from '@src/constants/optios';
 // import { BaseSwitchOnClick } from '@ui/atoms/Inputs/BaseSwitchOnClick';
 import { API_USERS_LOGOUT } from '@src/services/users';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import {
+  EPermissionDaas,
+  EPermissionMalwareConfig,
+} from '@src/types/permissions';
+
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
@@ -29,6 +39,18 @@ export function NavbarDashboard() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const { user, setUser } = useUserContext();
+  const userPermissions = useUserPermission();
+
+  const viewDaasPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.VIEW
+  );
+
+  const viewMalwareConfigPermission = checkPermission(
+    userPermissions,
+    EPermissionMalwareConfig.VIEW
+  );
+
   // const { toggleTheme, theme } = useTheme();
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
@@ -91,14 +113,16 @@ export function NavbarDashboard() {
           </div>
 
           {user && !user.is_superuser ? (
-            <div className={timeStyle}>
-              <AccessTime />
-            </div>
-          ) : (
+            viewDaasPermission ? (
+              <div className={timeStyle}>
+                <AccessTime />
+              </div>
+            ) : null
+          ) : viewMalwareConfigPermission || viewDaasPermission ? (
             <div className={timeStyle}>
               <HeadDescription />
             </div>
-          )}
+          ) : null}
         </div>
 
         <div className="flex">
