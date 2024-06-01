@@ -37,7 +37,7 @@ export function BackButton({ withLabel, onClick, className }: BackButtonProps) {
     <BaseButton
       label={t('global.pageBack')}
       onClick={handleClick}
-      className={className}
+      className={'z-50' && className}
       endIcon={lang === 'fa' ? arrowLineLeft : 'null'}
       startIcon={lang === 'en' ? arrowLineLeft : 'null'}
     />
