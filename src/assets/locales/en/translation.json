@@ -192,7 +192,9 @@
     "activeDeactive": "Active/Deactive",
     "somthingWentWrong": "Somthing Went Wrong",
     "genrateQrcode": "genrate Qrcode",
-    "activateOtp": "activate Otp"
+    "activateOtp": "activate Otp",
+    "userInfo": "user Info",
+    "accessList": "Access list"
   },
   "groupManagement": {
     "person": "person",

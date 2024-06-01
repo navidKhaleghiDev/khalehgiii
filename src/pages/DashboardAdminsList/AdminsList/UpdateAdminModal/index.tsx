@@ -81,8 +81,8 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
   return (
     <form className="my-6 px-4" onSubmit={handleSubmit(handleOnSubmit)}>
       <BaseTabs>
-        <BaseTab label="application">
-          <div className="">
+        <BaseTab label={t('global.userInfo')}>
+          <div className="px-2 col-span-6 flex justify-between items-start w-full gap-2">
             <BaseInput
               control={control}
               name="first_name"
@@ -110,7 +110,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               }}
             />
           </div>
-          <div className="px-2 col-span-6 flex justify-between items-start w-full gap-2">
+          <div className="px-2 col-span-3 flex justify-between items-start w-full gap-2">
             <BaseInput
               control={control}
               name="username"
@@ -136,6 +136,8 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                 }}
               />
             )}
+          </div>
+          <div className="px-2 col-span-3 flex justify-between items-start w-full gap-2 flex-wrap">
             <BaseInput
               control={control}
               name="email"
@@ -150,6 +152,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               }}
             />
           </div>
+
           {admin?.id && (
             <div className="px-2 col-span-6 flex justify-center items-center w-full mb-4 border border-gray-500 rounded-md p-2  ">
               <div className="w-2/6  flex-col justify-center">
@@ -188,7 +191,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
             {t('title.systemAdminDescription2')}
           </Typography>
         </BaseTab>
-        <BaseTab label="options">
+        <BaseTab label={t('global.accessList')}>
           <PermissionOptions
             permissions={permissions}
             setSelectedSwitches={setSelectedSwitches}

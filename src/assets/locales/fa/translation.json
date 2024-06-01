@@ -193,7 +193,9 @@
     "usedPamLicense": "لایسنس PAM استفاده شده",
     "somthingWentWrong": "مشگلی پیش آمد",
     "genrateQrcode": "تولید Qrcode ",
-    "activateOtp": "فعال کردن otp"
+    "activateOtp": "فعال کردن otp",
+    "userInfo": "مشخصات کاربر",
+    "accessList": "لیست دسترسی"
   },
   "groupManagement": {
     "person": "نفر",

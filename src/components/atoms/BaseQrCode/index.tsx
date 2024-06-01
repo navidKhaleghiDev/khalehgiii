@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import QRCode from 'react-qr-code';
 import { API_USERS_OTP } from '@src/services/users';
-import { BaseButton } from '../BaseButton/BaseButton';
+import PhArrowsClockwise from '@iconify-icons/ph/arrows-clockwise';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { IconButton } from '../BaseButton';
 
 export default function BaseQrCode({ email, defaultValue }: any) {
   const { t } = useTranslation();
@@ -24,19 +26,26 @@ export default function BaseQrCode({ email, defaultValue }: any) {
   };
 
   return (
-    <div className="flex-col w-40 h-50">
+    <div
+      className={`flex-col w-40 h-50 relative ${loading ? 'loading' : ''}    `}
+    >
       <div className="flex items-center justify-center w-40 h-40">
-        <QRCode
-          value={`otpauth://totp/netsep?secret=${secret || defaultValue}`}
-          className=" w-36 h-36 "
-        />
+        {!loading ? (
+          <QRCode
+            value={`otpauth://totp/netsep?secret=${secret || defaultValue}`}
+            className=" w-36 h-36 "
+          />
+        ) : (
+          <LoadingSpinner />
+        )}
       </div>
-      <BaseButton
-        label={t('global.genrateQrcode')}
+      <IconButton
+        disabled={loading}
+        className="absolute  bottom-2 -right-7 "
         onClick={() => handleGenarateQrcode()}
-        loading={loading}
-        size="md"
-        fullWidth
+        size="xl"
+        color="teal"
+        icon={PhArrowsClockwise}
       />
     </div>
   );
