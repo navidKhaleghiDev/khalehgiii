@@ -17,13 +17,14 @@ export function HeadDescription() {
 
   const viewDaasPermission = checkPermission(
     userPermissions,
-    EPermissionDaas.ADD
+    EPermissionDaas.VIEW
   );
 
   const viewMalwarePermission = checkPermission(
     userPermissions,
     EPermissionMalwareConfig.VIEW
   );
+
   return (
     <div className=" shadow-md rounded-lg h-7 px-2 flex justify-center items-center bg-white dark:inset-0 dark:bg-cover dark:bg-blur dark:bg-opacity-20 ">
       <Typography color="teal" className=" px-2 ">

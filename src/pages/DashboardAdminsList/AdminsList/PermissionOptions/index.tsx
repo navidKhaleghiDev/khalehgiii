@@ -3,7 +3,6 @@ import { permissionKeys } from '@src/constants/permissionKeys';
 import { Typography } from '@ui/atoms';
 import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 import { IUserPermissions } from '@src/types/permissions';
-import { Divider } from '@ui/atoms/Divider';
 import { IPermissionOptionsProps } from './types';
 
 export function PermissionOptions({
