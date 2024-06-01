@@ -2,6 +2,8 @@
 import { ComponentType, useMemo, ReactNode } from 'react';
 import { useUserContext } from '@context/user/userContext';
 import { IUserPermissions, PermissionsCodeName } from '@src/types/permissions';
+import { UnauthorizedComponent } from '@src/pages/Unauthorized';
+
 import { checkPermission } from '../hooks/usePermission';
 
 export const withPermission = (
@@ -29,7 +31,7 @@ export const withPermission = (
     }, [allUserPermissions]);
 
     if (!hasPermission) {
-      return null;
+      return <UnauthorizedComponent />;
     }
 
     return <WrappedComponent {...props} />;
