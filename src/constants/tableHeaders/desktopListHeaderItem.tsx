@@ -11,6 +11,7 @@ import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
 import {
   EPermissionDaas,
   EPermissionDaasMetaConfig,
+  EPermissionSessionRecording,
 } from '@src/types/permissions';
 
 const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
@@ -146,7 +147,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         tooltip: 'table.recordingActivity',
       },
     ],
-    permission: EPermissionDaas.VIEW,
+    permission: EPermissionSessionRecording.VIEW,
     class: 'w-32',
   },
 

@@ -7,8 +7,8 @@ import {
 } from '@src/helper/hooks/usePermission';
 
 import {
+  EPermissionConfig,
   EPermissionDaasMetaConfig,
-  EPermissionKeycloak,
   EPermissionMalwareConfig,
   EPermissionWhiteListFiles,
 } from '@src/types/permissions';
@@ -21,10 +21,9 @@ import { SettingsKeycloakCp } from '../SettingsKeycloak';
 export function AdminPanel({ userExist }: { userExist: boolean }) {
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
-
-  const SettingsKeycloakP = checkPermission(
+  const SettingsConfigP = checkPermission(
     userPermissions,
-    EPermissionKeycloak.VIEW
+    EPermissionConfig.VIEW
   );
   const DaasConfigP = checkPermission(
     userPermissions,
@@ -40,13 +39,14 @@ export function AdminPanel({ userExist }: { userExist: boolean }) {
   );
 
   const dashboardCoditions =
-    SettingsKeycloakP || DaasConfigP || DlpConfigP || SettingsMalwareP;
+    SettingsConfigP || DaasConfigP || DlpConfigP || SettingsMalwareP;
+
   return (
     <ContainerDashboard>
       <DashboardCards permissions={userPermissions ?? []} />
       {dashboardCoditions && (
         <BaseTabs label={t('global.setting')}>
-          {SettingsKeycloakP ? (
+          {SettingsConfigP ? (
             <BaseTab label="application">
               <SettingsKeycloakCp userExist={userExist} />
             </BaseTab>

@@ -13,7 +13,7 @@ import { licenseTrueStatusHeaderItem } from '@src/constants/tableHeaders/pamLice
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 10;
 const PAGE = 1;
 export function UserDaasInfo() {
   const { mutate } = useSWRConfig();
@@ -24,7 +24,7 @@ export function UserDaasInfo() {
   const userPermissions = useUserPermission();
 
   const { data: list, isLoading } = useSWR<IResponsePagination<IDaAs>>(
-    `${E_USERS_DAAS}?is_recording=True `,
+    `${E_USERS_DAAS}/?is_recording=True `,
     http.fetcherSWR
   );
 
@@ -89,16 +89,18 @@ export function UserDaasInfo() {
         open={openModal}
         setOpen={setOpenModal}
         content={
-          <BaseTable
-            loading={isLoading || loading}
-            headers={checkPermissionHeaderItem(
-              userPermissions,
-              licenseTrueStatusHeaderItem
-            )}
-            bodyList={licenseData as []}
-            onClick={handleOnClickActions}
-            pagination={paginationProps}
-          />
+          <div className="p-5">
+            <BaseTable
+              loading={isLoading || loading}
+              headers={checkPermissionHeaderItem(
+                userPermissions,
+                licenseTrueStatusHeaderItem
+              )}
+              bodyList={licenseData as []}
+              onClick={handleOnClickActions}
+              pagination={paginationProps}
+            />
+          </div>
         }
         type="none"
       />

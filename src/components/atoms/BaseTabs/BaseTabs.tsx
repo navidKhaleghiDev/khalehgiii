@@ -1,5 +1,4 @@
-// Tabs.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@context/settings/languageContext';
 import { IBaseTabProps, IBaseTabsProps } from './types';
 import { Typography } from '../Typography';
@@ -19,6 +18,16 @@ export function BaseTabs({
   const radiusIndexOne = lang === 'en' ? 'rounded-tl-md' : 'rounded-tr-md';
   const radiusIndexLast = lang === 'fa' ? 'rounded-tl-md' : 'rounded-tr-md';
 
+  const validTabs = React.Children.toArray(children).filter(
+    (child) => child !== null
+  );
+
+  useEffect(() => {
+    if (activeTab >= validTabs.length) {
+      setActiveTab(0);
+    }
+  }, [activeTab, validTabs.length]);
+
   const changeTab = (index: number) => {
     setActiveTab(index);
   };
@@ -31,18 +40,16 @@ export function BaseTabs({
         </Typography>
       )}
       <div className="flex">
-        {React.Children.map(children, (child, index) => {
+        {validTabs.map((child, index) => {
           if (React.isValidElement<IBaseTabProps>(child)) {
             const { label: propsLabel } = child.props;
             return (
               <button
                 type="button"
+                key={propsLabel}
                 className={`uppercase px-4 py-2 ${
                   index === 0 && radiusIndexOne
-                } ${
-                  index === React.Children.toArray(children).length - 1 &&
-                  radiusIndexLast
-                } ${
+                } ${index === validTabs.length - 1 && radiusIndexLast} ${
                   index === activeTab
                     ? 'bg-teal-500 text-white dark:bg-cyan-900 dark:text-sky-500'
                     : 'bg-neutral-100 text-neutral-600 dark:bg-slate-800 dark:text-white'
@@ -57,7 +64,7 @@ export function BaseTabs({
         })}
       </div>
       <div className="w-full p-4 border-gray-200 border-2 rounded-md rounded-tr-none">
-        {React.Children.toArray(children)[activeTab]}
+        {validTabs[activeTab]}
       </div>
     </div>
   );
