@@ -1,11 +1,11 @@
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
-import PhPlayCircleLight from '@iconify-icons/ph/play-circle-light';
 import {
   convertToDateFormat,
   convertToDay,
   convertToHourFormat,
 } from '@src/helper/utils/dateUtils';
 import { EPermissionSessionRecording } from '@src/types/permissions';
+import { Recording } from '@src/pages/SessionRecording/SessionRecordingList/components';
 
 export const SessionRecordingHeaderItem: IHeaderTable[] = [
   {
@@ -45,17 +45,11 @@ export const SessionRecordingHeaderItem: IHeaderTable[] = [
   {
     label: 'table.play',
     id: 'record_name',
-    type: 'action',
-    action: [
-      {
-        action: 'more',
-        icon: PhPlayCircleLight,
-        color: 'tealNoBg',
-        size: 'xxl',
-      },
-    ],
+    type: 'component',
+    component: (props: any) => (
+      <Recording row={props.row} onClick={props.onClick} />
+    ),
     permission: EPermissionSessionRecording.VIEW,
-
     class: 'w-4/12',
   },
 ];

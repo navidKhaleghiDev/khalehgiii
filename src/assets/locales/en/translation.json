@@ -99,7 +99,8 @@
     "startDate": "start Date",
     "endDate": "end Date",
     "activeQrcode": " Qrcode ",
-    "activeOtp": "  Otp "
+    "activeOtp": "  Otp ",
+    "isRecording": "Is Recording"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

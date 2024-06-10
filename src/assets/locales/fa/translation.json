@@ -100,7 +100,8 @@
     "endDate": "تاریخ اتمام",
     "activeDeactive": "فعال /غیرفعال",
     "activeQrcode": "Qrcode",
-    "activeOtp": "Otp"
+    "activeOtp": "Otp",
+    "isRecording": "در حال ضبط"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

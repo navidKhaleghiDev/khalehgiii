@@ -18,6 +18,7 @@ import {
   EPermissionFileScan,
   EPermissionInternetLogs,
   EPermissionScanReports,
+  EPermissionSessionRecording,
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
@@ -73,7 +74,7 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboardSessionRecordingList,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+          <ProtectedRoute requiredPermission={EPermissionSessionRecording.VIEW}>
             <SessionRecording />
           </ProtectedRoute>
         ),
