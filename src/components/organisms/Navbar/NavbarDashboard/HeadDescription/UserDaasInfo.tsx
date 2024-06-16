@@ -12,6 +12,7 @@ import { API_USERS_LICENSE_UPDATE } from '@src/services/users';
 import { licenseTrueStatusHeaderItem } from '@src/constants/tableHeaders/pamLicenseHeaderItem';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -66,8 +67,11 @@ export function UserDaasInfo() {
     onPageChange: handlePageChange,
   };
 
-  const handleOnClickActions = (updatedData: any, id: string) => {
-    updateLicense({ data: updatedData, id });
+  const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
+    action,
+    fileType
+  ) => {
+    updateLicense(fileType);
   };
 
   return (

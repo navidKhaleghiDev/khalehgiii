@@ -1,19 +1,14 @@
+import { IDaAs } from '@src/services/users/types';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 
 type LicenseFormProps = {
-  id: any;
   name: string;
   value: any;
-  onClick: (data: any, id: string) => void;
+  onClick: OnClickActionsType<IDaAs>;
 };
 
-export function BaseTableSwitch({
-  id,
-  name,
-  onClick,
-  value,
-}: LicenseFormProps) {
-  //
+export function BaseTableSwitch({ name, onClick, value }: LicenseFormProps) {
   const { daas_configs: configs } = value;
 
   const handleOnClick = (data: any) => {
@@ -25,7 +20,7 @@ export function BaseTableSwitch({
       },
     };
 
-    onClick(updatedValue, id);
+    onClick('edit', updatedValue);
   };
 
   return (

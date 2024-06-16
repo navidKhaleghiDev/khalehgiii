@@ -16,7 +16,6 @@ export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
     component: (props: any) => (
       <BaseTableSwitch
         name={props.row.id}
-        id={props.row.id as any}
         value={props.row}
         onClick={props.onClick}
       />
