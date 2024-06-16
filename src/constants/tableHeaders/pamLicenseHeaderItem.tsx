@@ -15,9 +15,9 @@ export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
     type: 'component',
     component: (props: any) => (
       <BaseTableSwitch
-        name="is_recording"
+        name={props.row.id}
         id={props.row.id as any}
-        value={props.row.daas_configs.is_recording as any}
+        value={props.row}
         onClick={props.onClick}
       />
     ),

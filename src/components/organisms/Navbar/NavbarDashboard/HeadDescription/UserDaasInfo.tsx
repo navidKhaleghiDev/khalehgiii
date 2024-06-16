@@ -66,12 +66,9 @@ export function UserDaasInfo() {
     onPageChange: handlePageChange,
   };
 
-  const handleOnClickActions = useCallback(
-    (actions: any) => {
-      updateLicense(actions);
-    },
-    [updateLicense]
-  );
+  const handleOnClickActions = (updatedData: any, id: string) => {
+    updateLicense({ data: updatedData, id });
+  };
 
   return (
     <>

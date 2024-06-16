@@ -113,6 +113,7 @@ export function DaAsList() {
     action,
     fileType
   ) => {
+    const id = fileType?.id;
     if (action === 'mutate') {
       mutate(
         (key) => typeof key === 'string' && key.startsWith('/users/daas'),
@@ -123,7 +124,8 @@ export function DaAsList() {
     }
     if (action === 'more') {
       // we neded to do somthing
-      navigate(`${ROUTES_PATH.dashboardSessionRecordingList}${fileType?.id} `);
+      navigate(`${ROUTES_PATH.dashboardSessionRecording}/${id}`);
+
       return;
     }
     if (action === 'edit') {

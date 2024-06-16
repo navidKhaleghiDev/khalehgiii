@@ -28,15 +28,14 @@ export function SessionRecordingList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const { id } = useParams();
-  const ids = id?.replace(':id', '');
 
   const userPermissions = useUserPermission();
 
   const { data, isLoading } = useSWR<
     ISessionResponsePagination<ISessionRecordList>
   >(
-    ids
-      ? E_SESSION_RECORD_LIST_PAGINATION(ids, {
+    id
+      ? E_SESSION_RECORD_LIST_PAGINATION(id, {
           page: currentPage,
           pageSize: PAGE_SIZE,
           filter: `search=${encodeURIComponent(filterQuery)}`,

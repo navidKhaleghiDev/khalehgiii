@@ -72,9 +72,7 @@ export const API_USERS_OTP = (email: string) =>
   http.get<IUser>(E_USER_GET_OTP(email));
 
 export const API_USERS_LICENSE_UPDATE = (body: any) =>
-  http.patch(`/users/daas/${body.id}/`, {
-    daas_configs: { is_recording: body.is_recording },
-  });
+  http.patch(`/users/daas/${body.id}/`, body.data);
 
 export const STORAGE_KEY_USER = 'user';
 

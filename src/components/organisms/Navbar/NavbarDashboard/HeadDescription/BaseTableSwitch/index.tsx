@@ -1,12 +1,10 @@
-import { useCallback } from 'react';
-import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
-import { useForm } from 'react-hook-form';
+import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 
 type LicenseFormProps = {
   id: any;
   name: string;
-  value: boolean;
-  onClick: (actions: any) => void;
+  value: any;
+  onClick: (data: any, id: string) => void;
 };
 
 export function BaseTableSwitch({
@@ -15,31 +13,28 @@ export function BaseTableSwitch({
   onClick,
   value,
 }: LicenseFormProps) {
-  const { control, handleSubmit, watch } = useForm({
-    mode: 'onChange',
-    defaultValues: {
-      is_recording: value,
-      id,
-    },
-  });
+  //
+  const { daas_configs: configs } = value;
 
-  const handleOnSubmit = useCallback(
-    (data: any) => {
-      onClick(data);
-    },
-    [onClick]
-  );
+  const handleOnClick = (data: any) => {
+    const updatedValue = {
+      ...value,
+      daas_configs: {
+        ...configs,
+        is_recording: data,
+      },
+    };
+
+    onClick(updatedValue, id);
+  };
 
   return (
-    <form
-      className="w-full h-full grid grid-cols-12 "
-      onSubmit={handleSubmit(handleOnSubmit)}
-    >
-      <BaseSwitch
-        pureOnChange={() => handleOnSubmit(watch())}
-        control={control}
+    <div className="w-full h-full grid grid-cols-12 ">
+      <BaseSwitchWithState
+        pureOnChange={handleOnClick}
         name={name}
+        pureValue={configs.is_recording}
       />
-    </form>
+    </div>
   );
 }
