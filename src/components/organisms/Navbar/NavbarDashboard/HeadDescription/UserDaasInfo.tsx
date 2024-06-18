@@ -68,7 +68,7 @@ export function UserDaasInfo() {
   };
 
   const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
-    action,
+    _,
     fileType
   ) => {
     updateLicense(fileType);
