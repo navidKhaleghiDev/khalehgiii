@@ -22,13 +22,12 @@ type FormData = {
   };
 };
 
-export function UsersList({ groupId }: AdminsListProps) {
+export function UsersList({ users }: AdminsListProps) {
   const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [isAddNew, setIsAddNew] = useState(false);
 
   const [showConfirm, setShowConfirm] = useState(false);
-  console.log(showConfirm);
 
   const { control, handleSubmit } = useForm<FormData>();
   // const checkboxes = useWatch({
@@ -51,6 +50,10 @@ export function UsersList({ groupId }: AdminsListProps) {
     debouncedSetFilterQuery(event.target.value);
   };
 
+  const handleRemoveItem = (id) => {
+    // api call remove item
+  };
+
   return (
     <div>
       <SearchInput
@@ -59,11 +62,15 @@ export function UsersList({ groupId }: AdminsListProps) {
         onChange={handleFilterChange}
         className="w-full"
       />
-      {groupId && !isAddNew ? (
+      {users && !isAddNew ? (
         <div className="flex flex-col items-center">
           <div className="w-full space-y-4 h-72 overflow-auto">
-            {[1, 2, 3, 4, 5].map((item) => (
-              <EditCardList key={item} />
+            {users.map((item) => (
+              <EditCardList
+                onClick={handleRemoveItem}
+                item={item}
+                key={item.id}
+              />
             ))}
           </div>
           <BaseButton

@@ -38,7 +38,7 @@ export function DashboardPage() {
         <BaseTab label="malware">
           <SettingsMalware user={user} />
         </BaseTab>
-        <BaseTab label={t('groupManagement.label')}>
+        <BaseTab label="groupManagement">
           <GroupManagement />
         </BaseTab>
       </BaseTabs>

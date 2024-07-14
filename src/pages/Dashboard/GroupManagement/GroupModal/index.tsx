@@ -1,7 +1,7 @@
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
@@ -32,6 +32,24 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
       image: '',
     },
   });
+
+  const groups = {
+    id: '1',
+    title: 'Developer',
+    img: '',
+    listCount: 5,
+    admins: [
+      { name: 'asghar', id: 3333 },
+      { name: 'akbar', id: 4444 },
+      { name: 'gholi', id: 5555 },
+    ],
+    users: [
+      { name: 'shahram', id: 3333 },
+      { name: 'bahram', id: 4444 },
+      { name: 'parham', id: 5555 },
+      { name: 'ghambar', id: 5555 },
+    ],
+  };
 
   // const handleOnSubmit = () => {
   //   handleClose();
@@ -101,12 +119,12 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
         <BaseTab
           label={t(`groupManagement.${groupId ? 'admins' : 'choiceAdmins'}`)}
         >
-          <AdminsList groupId={groupId} />
+          <AdminsList admins={groups.admins} />
         </BaseTab>
         <BaseTab
           label={t(`groupManagement.${groupId ? 'users' : 'choiceUsers'}`)}
         >
-          <UsersList groupId={groupId} />
+          <UsersList users={groups.users} />
         </BaseTab>
       </BaseTabs>
     </div>

@@ -7,12 +7,12 @@ import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+// import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { EditCardList } from '../components/EditCardList';
 
 type AdminsListProps = {
   // handleClose: (isUpdated?: boolean) => void;
-  groupId?: string;
+  admins?: any;
 };
 
 type FormData = {
@@ -21,13 +21,12 @@ type FormData = {
   };
 };
 
-export function AdminsList({ groupId }: AdminsListProps) {
+export function AdminsList({ admins }: AdminsListProps) {
   const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [isAddNew, setIsAddNew] = useState(false);
 
   const [showConfirm, setShowConfirm] = useState(false);
-  console.log(showConfirm);
 
   const { control, handleSubmit } = useForm<FormData>();
   // const checkboxes = useWatch({
@@ -49,6 +48,9 @@ export function AdminsList({ groupId }: AdminsListProps) {
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
+  const handleRemoveItem = (id) => {
+    // api call remove item
+  };
 
   return (
     <div>
@@ -58,11 +60,15 @@ export function AdminsList({ groupId }: AdminsListProps) {
         onChange={handleFilterChange}
         className="w-full"
       />
-      {groupId && !isAddNew ? (
+      {!admins && !isAddNew ? (
         <div className="flex flex-col items-center">
           <div className="w-full space-y-4 h-72 overflow-auto">
-            {[1, 2, 3, 4, 5].map((item) => (
-              <EditCardList key={item} />
+            {admins.map((item) => (
+              <EditCardList
+                onClick={handleRemoveItem}
+                item={item}
+                key={item.id}
+              />
             ))}
           </div>
           <BaseButton
@@ -80,27 +86,21 @@ export function AdminsList({ groupId }: AdminsListProps) {
           className="flex flex-col items-center"
         >
           <div className="w-full space-y-4 h-72 overflow-auto">
-            {[1, 2, 3, 4, 5].map((item) => (
-              <div
-                key={item}
-                className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
-              >
-                <BaseCheckBox id="asdsad" name="sadsa" control={control} />
-                {/* <input
-                    type="checkbox"
-                    className="form-checkbox h-5 w-5 text-indigo-600"
-                    // eslint-disable-next-line react/jsx-props-no-spreading
-                    {...register(`checkboxes.${item}` as const)}
-                  /> */}
-                <label className="mx-1" htmlFor={`checkbox-${item}`}>
-                  <Typography
-                    variant="body2"
-                    color="neutral"
-                  >{`Item ${item}`}</Typography>
-                </label>
-                <Circle id className="mr-auto" />
-              </div>
-            ))}
+            {admins &&
+              admins.map((item) => (
+                <div
+                  key={item}
+                  className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
+                >
+                  <BaseCheckBox id="asdsad" name="sadsa" control={control} />
+                  <label className="mx-1" htmlFor={`checkbox-${item.id}`}>
+                    <Typography variant="body2" color="neutral">
+                      {item.name}
+                    </Typography>
+                  </label>
+                  {/* <Circle id className="mr-auto" /> */}
+                </div>
+              ))}
           </div>
 
           <div className="w-full flex justify-between">
@@ -116,7 +116,7 @@ export function AdminsList({ groupId }: AdminsListProps) {
               />
             )}
             <BaseButton
-              label="ثبت"
+              label={t('global.confirm')}
               submit
               size="md"
               onClick={() => setShowConfirm(true)}

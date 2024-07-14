@@ -31,11 +31,40 @@ export function GroupManagement() {
   //   mutate,
   // } = useSWR('/analyze/scanners_config/', HTTP_ANALYSES.fetcherSWR);
 
+  const groups = [
+    {
+      id: '1',
+      title: 'Developer',
+      img: '',
+      listCount: 5,
+    },
+    {
+      id: '2',
+      title: 'Media',
+      img: '',
+      listCount: 7,
+    },
+    {
+      id: '3',
+      title: 'It',
+      img: '',
+      listCount: 10,
+    },
+    {
+      id: '4',
+      title: 'Finance',
+      img: '',
+      listCount: 9,
+    },
+  ];
+
   const handleOnClickAddCard = (): any => {
     setOpenGroupModal({ open: true });
   };
 
   const handleOnClickEditCard = (groupId: string): any => {
+    // having api call  by id to get the group data
+
     setOpenGroupModal({ open: true, groupId });
   };
 
@@ -48,15 +77,16 @@ export function GroupManagement() {
   ) : (
     <>
       <div className="flex flex-wrap gap-5 my-4">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+        {groups.map((item) => (
           <GroupCardEdit
-            key={item}
-            title="Developer"
-            // img="/not-found.jpg"
-            listCount={2}
-            onClickActions={() => handleOnClickEditCard('1')}
+            key={item.id}
+            title={item.title}
+            img={item.img}
+            listCount={item.listCount}
+            onClickActions={() => handleOnClickEditCard(item.id)}
           />
         ))}
+
         <GroupCardAdd onClickActions={handleOnClickAddCard} />
       </div>
       <Modal
