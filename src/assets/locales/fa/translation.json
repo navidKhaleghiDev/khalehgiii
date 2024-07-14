@@ -1,7 +1,9 @@
 {
   "login": {
     "loginTitle": "لطفا ایمیل و گذرواژه خود را وارد کنید",
-    "login": "وررود به حساب کاربری"
+    "login": "وررود به حساب کاربری",
+    "otp": " لطفا کد دریافت شده را وارد کنید",
+    "confirm": "تایید"
   },
   "header": {
     "user": "کاربر",
@@ -74,7 +76,32 @@
     "lastUptime": "آخرین ورود",
     "lastLoginIp": "آخرین ورود ip",
     "download": "دانلود",
-    "file": "فایل"
+    "file": "فایل",
+    "sessionRecording": "ضبط دسکتاپ",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "upload": "آپلود",
+    "webcamPrivilege": "دسترسی وبکم",
+    "microphonePrivilege": "دسترسی میکروفن",
+    "timeLimitDuration": "محدود کردن براساس زمان",
+    "timeLimitValueInHour": "محدود کردن براساس ساعت",
+    "maxDownloadSize": "حداکثر سایز دانلود (MB) ",
+    "maxUploadSize": "حداکثر سایز آپلود (MB) ",
+    "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
+    "trustedUploadFormat": "فرمت های مورد تایید آپلود",
+    "downloadPrivilege": "دسترسی دانلود",
+    "uploadPrivilege": "دسترسی آپلود",
+    "recordingActivity": "فعالیت های ضبط شده",
+    "date": "تاریخ",
+    "day": "روز",
+    "time": "زمان",
+    "play": "اجرا",
+    "startDate": "تاریخ شروع",
+    "endDate": "تاریخ اتمام",
+    "activeDeactive": "فعال /غیرفعال",
+    "activeQrcode": "Qrcode",
+    "activeOtp": "Otp",
+    "isRecording": "در حال ضبط"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -151,13 +178,25 @@
     "monthlySelect": "ماهانه",
     "weeklySelect": "هفتگی",
     "dailySelect": "روزانه",
+    "hourlySelect": "ساعتی",
     "arbitrary": "دلخواه",
     "send": "ارسال",
     "selectTimeFrame": "بازه ای از زمان را انتخاب کنید",
     "reportsChart": "نمودارگزارش",
+    "internetLog": "لاگ های اینترنت",
+    "wholeList": "لیست کلی",
+    "todayList": "لیست امروز",
+    "notFoundPage": "صفحه مورد نظر یافت نشد!",
+    "goToHome": "برو به خانه",
     "to": "الی",
     "enterPriodOfTime": "بازه زمانی مورد نظر را وارد کنید",
-    "noReportAvailable": "درحال حاظر گزارشی وجود ندارد"
+    "noReportAvailable": "درحال حاضر گزارشی وجود ندارد",
+    "usedPamLicense": "لایسنس PAM استفاده شده",
+    "somthingWentWrong": "مشگلی پیش آمد",
+    "genrateQrcode": "تولید Qrcode ",
+    "activateOtp": "فعال کردن otp",
+    "userInfo": "مشخصات کاربر",
+    "accessList": "لیست دسترسی"
   },
   "groupManagement": {
     "person": "نفر",

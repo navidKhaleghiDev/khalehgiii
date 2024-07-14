@@ -4,6 +4,7 @@ import notePencilIcon from '@iconify-icons/ph/note-pencil';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import { EPermissionUsers } from '@src/types/permissions';
 
 export const adminListHeaderItem: IHeaderTable[] = [
   {
@@ -14,36 +15,36 @@ export const adminListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
+        permission: EPermissionUsers.DELETE,
       },
       {
         action: 'edit',
         icon: notePencilIcon,
         color: 'neutralNoBg',
+        permission: EPermissionUsers.CHANGE,
       },
     ],
-
-    dir: '',
+    permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.userName',
     id: 'username',
     type: 'none',
-    dir: '',
-    class: 'px-3 w-4/12',
+    class: 'px-3 w-1/12',
   },
   {
     label: 'table.email',
     id: 'email',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.firstNameLastName',
     id: ['first_name', 'last_name'],
     type: 'user',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -51,7 +52,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
     id: 'is_active',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_active} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -61,7 +62,7 @@ export const adminListHeaderItem: IHeaderTable[] = [
     component: (props: any) => (
       <Check id={props.row.is_meta_admin} header={props.head} />
     ),
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -72,6 +73,21 @@ export const adminListHeaderItem: IHeaderTable[] = [
     dir: 'rtl',
     class: 'px-3 w-2/12',
   },
+  {
+    label: 'table.activeOtp',
+    id: 'totp_enable',
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.totp_enable} />,
+    class: 'px-3 w-2/12',
+  },
+  {
+    label: 'table.activeQrcode',
+    id: 'totp_secret',
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.totp_secret} />,
+    class: 'px-3 w-2/12',
+  },
+
   {
     label: 'table.lastLogin',
     id: 'last_login',

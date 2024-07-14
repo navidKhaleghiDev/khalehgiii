@@ -1,5 +1,6 @@
 import trashIcon from '@iconify-icons/ph/trash';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
+import { EPermissionExtensions } from '@src/types/permissions';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 export const extensionListHeaderItem: IHeaderTable[] = [
@@ -13,22 +14,22 @@ export const extensionListHeaderItem: IHeaderTable[] = [
         color: 'redNoBg',
       },
     ],
+    permission: EPermissionExtensions.DELETE,
 
-    dir: '',
     class: 'px-3 w-3/12',
   },
   {
     label: 'table.string',
     id: 'mimetype_list',
     type: 'tooltip',
-    dir: '',
+
     class: 'px-3 w-4/12',
   },
   {
     label: 'table.fileExtension',
     id: 'extension_list',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-3/12',
   },
   {
@@ -36,7 +37,7 @@ export const extensionListHeaderItem: IHeaderTable[] = [
     id: 'created_at',
     type: 'function',
     function: dateAndNumber,
-    dir: '',
+
     class: 'px-3 w-3/12',
   },
 ];

@@ -15,7 +15,7 @@ export interface IBaseSwitch<T extends FieldValues> {
   ltrLabel?: boolean;
   label?: string;
   disabled?: boolean;
-  pureOnChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  pureOnChange?: (event: any) => void;
   pureValue?: boolean;
   pureError?: string;
 }

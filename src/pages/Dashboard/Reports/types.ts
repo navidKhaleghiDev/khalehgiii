@@ -49,7 +49,7 @@ export type TPropsChartType = {
 export type IReportFormType = {
   handleOnSubmit: any;
   state: TReducerStateType;
-  onClick: TOnClickDate;
+  onChange: TOnClickDate;
 };
 
 export type TReducerStateType = {
@@ -59,7 +59,14 @@ export type TReducerStateType = {
   error: boolean;
 };
 export type TypeReducerActionType = {
-  type: 'WEEK' | 'MONTH' | 'NORMAL' | 'LOADING_OFF' | 'LOADING_ON' | 'ERROR';
+  type:
+    | 'WEEK'
+    | 'MONTH'
+    | 'NORMAL'
+    | 'LOADING_OFF'
+    | 'LOADING_ON'
+    | 'ERROR'
+    | 'CLEARERROR';
 };
 
 export type TypeReportOptions = {

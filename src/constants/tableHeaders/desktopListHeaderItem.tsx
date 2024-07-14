@@ -7,6 +7,12 @@ import { ActionLockCell } from '@ui/atoms/BaseTable/components/CustomCell/Action
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
+import {
+  EPermissionDaas,
+  EPermissionDaasMetaConfig,
+  EPermissionSessionRecording,
+} from '@src/types/permissions';
 
 const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
 
@@ -77,7 +83,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         onClick={props.onClick}
       />
     ),
-
+    permission: EPermissionDaas.CHANGE,
     class: 'w-32 ',
   },
 
@@ -98,6 +104,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
 
     class: 'w-32 ',
   },
+
   {
     label: 'table.accessSettingsTime',
     id: 'updated_at',
@@ -112,6 +119,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     ),
     dir: 'rtl',
     class: 'w-64 ',
+    permission: EPermissionDaas.CHANGE,
   },
 
   {
@@ -128,6 +136,22 @@ export const desktopListHeaderItem: IHeaderTable[] = [
   },
 
   {
+    label: 'table.recordingActivity',
+    id: 'id',
+    type: 'action',
+    action: [
+      {
+        action: 'more',
+        icon: PhListBulletsFill,
+        color: 'neutralNoBg',
+        tooltip: 'table.recordingActivity',
+      },
+    ],
+    permission: EPermissionSessionRecording.VIEW,
+    class: 'w-32',
+  },
+
+  {
     label: 'table.accessSetting',
     id: 'can_upload_file',
     type: 'action',
@@ -136,14 +160,18 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
+        tooltip: 'table.delete',
+        permission: EPermissionDaas.DELETE,
       },
       {
         action: 'edit',
         icon: gear,
         color: 'neutralNoBg',
+        tooltip: 'table.edit',
+        permission: EPermissionDaasMetaConfig.CHANGE,
       },
     ],
-
+    permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
     class: 'w-32 ',
   },
 ];

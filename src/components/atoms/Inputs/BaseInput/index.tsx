@@ -1,5 +1,6 @@
 import { Controller } from 'react-hook-form';
 
+import { useLanguage } from '@context/settings/languageContext';
 import { BaseInputProps } from '../types';
 import { baseInputStyles } from '../styles';
 import { Typography } from '../../Typography';
@@ -7,6 +8,7 @@ import { IconInput } from '../IconInput';
 import { IconButtonInput } from '../IconButtonInput';
 
 export function BaseInput(props: BaseInputProps<any>) {
+  const { lang } = useLanguage();
   const {
     control,
     name,
@@ -36,6 +38,7 @@ export function BaseInput(props: BaseInputProps<any>) {
     ltrLabel = false,
     iconButtonIcon = 'fa-home',
     onKeyDown,
+    disabled,
   } = props;
   return control ? (
     <Controller
@@ -79,7 +82,7 @@ export function BaseInput(props: BaseInputProps<any>) {
                 className: `${classNameInput} ${
                   (endIcon || onClickIcon) && 'pl-8'
                 } ${startIcon && 'pr-8'} `,
-                ltrPlaceHolder: ltrLabel,
+                ltrPlaceHolder: lang === 'en',
                 fullWidth,
                 size,
               })}
@@ -89,6 +92,7 @@ export function BaseInput(props: BaseInputProps<any>) {
               onFocus={onFocus}
               ref={ref}
               autoComplete={autoComplete}
+              disabled={disabled}
             />
 
             {onClickIcon && (

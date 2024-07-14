@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
-import { toast } from 'react-toastify';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
@@ -12,9 +13,15 @@ import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { useTranslation } from 'react-i18next';
-
+import { EPermissionExtensions } from '@src/types/permissions';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 
 const PAGE_SIZE = 10;
@@ -22,6 +29,17 @@ const PAGE = 1;
 
 export function ExtensionList() {
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
+
+  const viewTablePermission = checkPermission(
+    userPermissions,
+    EPermissionExtensions.VIEW
+  );
+  const addPermission = checkPermission(
+    userPermissions,
+    EPermissionExtensions.ADD
+  );
+
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
@@ -50,10 +68,11 @@ export function ExtensionList() {
     []
   );
 
+  if (!viewTablePermission) return <NoAccessCard />;
+
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
-
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -99,12 +118,6 @@ export function ExtensionList() {
     if (action === 'edit') {
       setOpenUpdateModal(true);
     }
-
-    // if (daas !== undefined && typeof daas !== "string") {
-    //   setActionOnClick(action);
-    //   setActiveDaas(daas);
-    //   setDeleteModal(true);
-    // }
   };
 
   const handleCreateAdmin = () => {
@@ -123,17 +136,24 @@ export function ExtensionList() {
     name: 'search-extension',
     value: filterQuery,
     handleSearchInput: handleFilterChange,
-    componentProps: {
-      type: 'actionAdd',
-      label: 'global.addNewFile',
-      onClick: handleCreateAdmin,
-    },
+    componentProps: addPermission
+      ? {
+          type: 'actionAdd',
+          permission: EPermissionExtensions.ADD,
+          label: 'global.addNewFile',
+          onClick: handleCreateAdmin,
+        }
+      : undefined,
   };
+
   return (
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        headers={extensionListHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          extensionListHeaderItem
+        )}
         bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}

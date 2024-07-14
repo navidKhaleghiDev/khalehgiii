@@ -4,18 +4,21 @@ import { IComponentTable } from '../../types';
 export function TooltipCell({ row, id, header }: IComponentTable) {
   const variant = header?.variant ? header?.variant : 'body4';
   variant as string;
-  const titleStyle =
-    row[id].length >= 12
-      ? 'group-hover:border group-hover-border-gray-300 p-2 group-hover:bg-white group-hover:shadow-lg transition duration-400 group-hover:absolute group-hover:max-w-[30vw] group-hover:cursor-pointer group-hover:text-gray-800 rounded-md z-100'
-      : '';
+  const title = row[id] ? row[id] : '--';
+  const conditionType = title.length >= 12 || typeof title === 'object';
+
+  const titleStyle = conditionType
+    ? 'group-hover:border  p-2 group-hover:bg-black group-hover:shadow-lg transition duration-400 group-hover:absolute group-hover:max-w-[30vw] group-hover:cursor-text group-hover:text-white rounded-md z-100'
+    : '';
+
   return (
     <div
       role="button"
       tabIndex={0}
-      className={`overflow-hidden overflow-ellipsis flex cursor-text ${titleStyle} `}
+      className={`-z-1 overflow-hidden overflow-ellipsis flex cursor-text ${titleStyle} `}
     >
       <Typography variant={variant} type="div">
-        {row[id] ? row[id] : '--'}
+        {title}
       </Typography>
     </div>
   );

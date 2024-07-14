@@ -4,13 +4,14 @@ import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import { EPermissionFileScan } from '@src/types/permissions';
 
 export const monitoringHeaderItem: IHeaderTable[] = [
   {
     label: 'table.userName',
     id: 'email',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-4/12',
   },
 
@@ -19,7 +20,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'created_at',
     type: 'function',
     function: dateAndNumber,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -27,7 +28,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'last_uptime',
     type: 'component',
     component: (props: any) => <UserScanCount email={props.row.email} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -35,7 +36,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'is_running',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -47,9 +48,11 @@ export const monitoringHeaderItem: IHeaderTable[] = [
         action: ROUTES_PATH.monitoring,
         icon: moreIcon,
         color: 'neutralNoBg',
+        tooltip: 'table.observeUserBehavior',
       },
     ],
-    dir: '',
+    permission: EPermissionFileScan.VIEW,
+
     class: 'px-3 w-2/12',
   },
 ];

@@ -11,7 +11,9 @@ export type RoutePathType =
   | 'extensionList'
   | 'reports'
   | 'dashboardDesktopList'
-  | 'sarg';
+  | 'dashboardSessionRecordingList'
+  | 'dashboardSessionRecording'
+  | 'internetLog';
 
 export const RoutesName = {
   HOME: 'home',
@@ -24,7 +26,8 @@ export const RoutesName = {
   EXTENSION_LIST: 'extension-list',
   UBA: 'uba',
   REPORTS: 'reports',
-  SARG: 'sarg',
+  SESSIONRECORDING: 'session-recording',
+  INTERNETLOG: 'internet-log',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -34,11 +37,13 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
   dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
+  dashboardSessionRecording: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
+  dashboardSessionRecordingList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}/:id`,
   dashboardAdminsList: `/${RoutesName.DASHBOARD}/${RoutesName.ADMINS_LIST}`,
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
   monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
   reports: `/${RoutesName.DASHBOARD}/${RoutesName.REPORTS}`,
-  sarg: `/${RoutesName.DASHBOARD}/${RoutesName.SARG}`,
+  internetLog: `/${RoutesName.DASHBOARD}/${RoutesName.INTERNETLOG}`,
   extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
 };

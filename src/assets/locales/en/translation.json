@@ -1,7 +1,8 @@
 {
   "login": {
     "loginTitle": "Please enter your email and password",
-    "login": "Login to Your User Account"
+    "login": "Login to Your User Account",
+    "otp": "Please enter the received code "
   },
   "header": {
     "user": "User",
@@ -75,7 +76,31 @@
     "lastLoginIp": "last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
-    "file": "File"
+    "sessionRecording": "Session Recording",
+    "play": "play",
+    "time": "time",
+    "date": "date",
+    "day": "day",
+    "file": "File",
+    "edit": "edit",
+    "delete": "delete",
+    "upload": "upload",
+    "webcamPrivilege": "Webcam Privilege",
+    "microphonePrivilege": "Microphone Privilege",
+    "timeLimitDuration": "Time Limit Duration",
+    "timeLimitValueInHour": "Time Limit Value In Hour",
+    "maxDownloadSize": "Max Download Size (MB)",
+    "maxUploadSize": "Max Upload Size (MB)",
+    "trustedDownloadFormat": "Trusted Download Format",
+    "trustedUploadFormat": "Trusted Upload Format",
+    "downloadPrivilege": "Download Privilege",
+    "uploadPrivilege": "upload Privilege",
+    "recordingActivity": "recording Activity",
+    "startDate": "start Date",
+    "endDate": "end Date",
+    "activeQrcode": " Qrcode ",
+    "activeOtp": "  Otp ",
+    "isRecording": "Is Recording"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -152,12 +177,25 @@
     "monthlySelect": "Monthly",
     "weeklySelect": "Weekly",
     "dailySelect": "daily",
+    "hourlySelect": "hourly",
     "arbitrary": "Arbitrary",
     "send": "Send",
     "reportsChart": "ReportsChart",
+    "internetLog": "Internet log",
+    "wholeList": "whole List",
+    "todayList": "toDayList",
+    "notFoundPage": "page not found!",
+    "goToHome": "go To Home",
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
-    "noReportAvailable": "There is currently no report available"
+    "noReportAvailable": "There is currently no report available",
+    "usedPamLicense": "used PAM License",
+    "activeDeactive": "Active/Deactive",
+    "somthingWentWrong": "Somthing Went Wrong",
+    "genrateQrcode": "genrate Qrcode",
+    "activateOtp": "activate Otp",
+    "userInfo": "user Info",
+    "accessList": "Access list"
   },
   "groupManagement": {
     "person": "person",

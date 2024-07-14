@@ -1,21 +1,13 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
-import { useUserContext } from '@context/user/userContext';
 import { BackButton } from '@ui/atoms/BackButton';
 
-import { NotificationCard } from '@ui/atoms';
 import { AdminsList } from './AdminsList';
 
 export function DashboardAdminsListPage() {
-  const { user } = useUserContext();
-
   return (
     <ContainerDashboard>
       <BackButton withLabel className="absolute bottom-20 left-24" />
-      {user?.is_meta_admin ? (
-        <AdminsList />
-      ) : (
-        <NotificationCard title="شما به این بخش دسترسی ندارید." type="error" />
-      )}
+      <AdminsList />
     </ContainerDashboard>
   );
 }

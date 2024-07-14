@@ -1,16 +1,19 @@
+import moment from 'moment-jalaali';
+
 const lang = localStorage.getItem('lang');
-const weekLabels =
-  lang === 'fa'
-    ? ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'جمعه', 'شنبه']
-    : [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-      ];
+const isFarsi = lang === 'fa';
+
+const weekLabels = isFarsi
+  ? ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'جمعه', 'شنبه']
+  : [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
 
 function getLabelOfWeek(day: number) {
   return weekLabels[day];
@@ -64,11 +67,61 @@ export function persianDateNumber(date?: string) {
 
 export function dateAndNumber(date?: string) {
   // ۲۴ خرداد ۱۴۰۲
-  const condition = lang === 'fa' ? 'fa-IR' : 'en-US';
+  const condition = isFarsi ? 'fa-IR' : 'en-US';
   if (date) {
     return new Date(date).toLocaleDateString(condition, options);
   }
-  return today.toLocaleDateString(condition, options);
+  return now.toLocaleDateString(condition, options);
+}
+if (isFarsi) {
+  moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
+}
+export function convertToDay(date: string) {
+  if (date) {
+    const year = date.substring(0, 4);
+    const month = date.substring(4, 6);
+    const day = date.substring(6, 8);
+
+    const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
+      'dddd'
+    );
+
+    return formatedDate;
+  }
+  return null;
+}
+export function convertToDateFormat(date: string) {
+  if (date) {
+    const year = date.substring(0, 4);
+    const month = date.substring(4, 6);
+    const day = date.substring(6, 8);
+
+    const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
+      isFarsi ? 'jYYYY/jMM/jDD' : 'YYYY/MMMM/DD'
+    );
+
+    return formatedDate;
+  }
+  return null;
+}
+
+export function convertToHourFormat(date: string) {
+  if (date) {
+    const currentDate = moment();
+
+    const [hours, minutes, seconds] = date.split(':').map(Number);
+
+    currentDate.hour(hours);
+    currentDate.minute(minutes);
+    currentDate.second(seconds);
+
+    const formattedDateTime = currentDate.format(
+      isFarsi ? 'HH:mm:ss' : 'HH:mm:ss a'
+    );
+    return formattedDateTime;
+  }
+  return null;
+  // or use other formatting methods
 }
 
 export function dayLabel(date?: string) {
@@ -76,7 +129,7 @@ export function dayLabel(date?: string) {
   if (date) {
     return getLabelOfWeek(new Date(date).getDay());
   }
-  return getLabelOfWeek(today.getDay());
+  return getLabelOfWeek(now.getDay());
 }
 
 export const getNextSaturday = (): Date => {

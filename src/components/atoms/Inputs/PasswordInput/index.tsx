@@ -4,7 +4,7 @@ import eyeIcon from '@iconify-icons/ph/eye';
 import eyeSlashIcon from '@iconify-icons/ph/eye-slash';
 
 import { BaseInputProps } from '../types';
-import { regexPattern } from '../utils/regexPattern';
+import { regexPattern } from '../utils/Regex';
 
 export function PasswordInput({
   name,

@@ -5,23 +5,35 @@ import { Dropdown } from '@ui/atoms/DropDown';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { timeLimitDurationOptions } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime';
 import { useTranslation } from 'react-i18next';
+import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { checkPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   control: Control<any>;
+  isRecording?: boolean;
+  userPermissions: PermissionsCodeName[];
 };
 
-export function DaasConfigForm({ control }: PropsType) {
+export function DaasConfigForm({
+  control,
+  isRecording,
+  userPermissions,
+}: PropsType) {
   const { t } = useTranslation();
+  const hasChangePermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.CHANGE
+  );
   return (
     <>
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('table.downloadPrivilege')}</Typography>
         <BaseSwitch control={control} name="can_download_file" />
-        <Typography className="mb-1">:Download</Typography>
       </div>
 
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('table.uploadPrivilege')}</Typography>
         <BaseSwitch control={control} name="can_upload_file" />
-        <Typography className="mb-1">:Upload</Typography>
       </div>
 
       {/* <div className="flex justify-between items-center px-2 col-span-3">
@@ -35,21 +47,28 @@ export function DaasConfigForm({ control }: PropsType) {
 			</div> */}
 
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('table.webcamPrivilege')}</Typography>
         <BaseSwitch control={control} name="webcam_privilege" />
-        <Typography className="mb-1">:Webcam Privilege</Typography>
       </div>
       <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">
+          {t('table.microphonePrivilege')}
+        </Typography>
         <BaseSwitch control={control} name="microphone_privilege" />
-        <Typography className="mb-1">:Microphone Privilege</Typography>
       </div>
-      <div className="flex justify-between items-center px-2 col-span-3">
-        <BaseSwitch control={control} name="is_recording" />
-        <Typography className="mb-1">:Session Recording</Typography>
-      </div>
-      <div className="flex justify-between items-center px-2 col-span-3" />
-
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Time Limit Duration</Typography>
+      {isRecording && (
+        <>
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">
+              {t('table.sessionRecording')}
+            </Typography>
+            <BaseSwitch control={control} name="is_recording" />
+          </div>
+          <div className="flex justify-between items-center px-2 col-span-3" />
+        </>
+      )}
+      <div className="px-2 col-span-3 ">
+        <Typography className="mb-1">{t('table.timeLimitDuration')}</Typography>
         <Dropdown
           control={control}
           id="time_limit_duration"
@@ -60,16 +79,20 @@ export function DaasConfigForm({ control }: PropsType) {
           rules={{
             required: regexPattern.required,
           }}
+          disabled={!hasChangePermission}
           fullWidth
           hiddenError
         />
       </div>
 
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Time Limit Value In Hour</Typography>
+      <div className="px-2 col-span-3 ">
+        <Typography className="mb-1">
+          {t('table.timeLimitValueInHour')}
+        </Typography>
         <BaseInput
           control={control}
           // size="xs"
+
           id="time_limit_value_in_hour"
           name="time_limit_value_in_hour"
           placeholder={t('global.selectHour')}
@@ -78,28 +101,31 @@ export function DaasConfigForm({ control }: PropsType) {
             pattern: regexPattern.numbers,
           }}
           type="number"
+          disabled={!hasChangePermission}
           fullWidth
           hiddenError
         />
       </div>
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Max Download Size (MB)</Typography>
+      <div className="px-2 col-span-3  ">
+        <Typography className="mb-1">{t('table.maxDownloadSize')}</Typography>
         <BaseInput
           control={control}
           name="max_transmission_download_size"
           id="max_transmission_download_size"
           type="number"
+          disabled={!hasChangePermission}
           hiddenError
           fullWidth
         />
       </div>
-      <div className="px-2 col-span-3 text-left">
-        <Typography className="mb-1">:Max Upload Size (MB)</Typography>
+      <div className="px-2 col-span-3 ">
+        <Typography className="mb-1">{t('table.maxUploadSize')}</Typography>
         <BaseInput
           control={control}
           name="max_transmission_upload_size"
           id="max_transmission_upload_size"
           type="number"
+          disabled={!hasChangePermission}
           hiddenError
           fullWidth
         />

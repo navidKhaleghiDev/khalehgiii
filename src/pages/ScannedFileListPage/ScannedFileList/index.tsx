@@ -15,6 +15,9 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { API_ANALYZE_DOWNLOAD_FILE } from '@src/services/analyze';
 import { toast } from 'react-toastify';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+
 import { DetailsContentModal } from './DetailsContentModal';
 
 const PAGE_SIZE = 8;
@@ -27,6 +30,8 @@ export function ScannedFileList() {
   const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
   const downloadLinkRef = useRef(null);
   const { id } = useParams();
+  const userPermissions = useUserPermission();
+
   const { data, isLoading } = useSWR<IResponsePagination<IScannedFile>>(
     id
       ? E_ANALYZE_SCAN_PAGINATION(id, {
@@ -109,7 +114,10 @@ export function ScannedFileList() {
       <a ref={downloadLinkRef} style={{ display: 'none' }} />
       <BaseTable<IScannedFile>
         loading={isLoading}
-        headers={scannedFileHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          scannedFileHeaderItem
+        )}
         bodyList={listDaas}
         onClick={handleOpenModal}
         pagination={paginationProps}

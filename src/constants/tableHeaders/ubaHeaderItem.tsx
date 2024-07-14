@@ -7,7 +7,7 @@ export const ubaHeaderItem: IHeaderTable[] = [
     label: 'table.nameOfTheUser',
     id: 'username',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -22,21 +22,21 @@ export const ubaHeaderItem: IHeaderTable[] = [
     label: 'table.realName',
     id: 'original_file_name',
     type: 'tooltip',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.updatedNames',
     id: 'file_names',
     type: 'tooltip',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.unauthorizedBehavior',
     id: 'malbehave_count',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
@@ -44,14 +44,14 @@ export const ubaHeaderItem: IHeaderTable[] = [
     id: 'is_ban',
     type: 'component',
     component: (props: any) => <Lock id={props.row.is_ban} />,
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
   {
     label: 'table.action',
     id: 'transmission_type',
     type: 'none',
-    dir: '',
+
     class: 'px-3 w-2/12',
   },
 ];

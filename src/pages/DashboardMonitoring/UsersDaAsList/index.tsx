@@ -10,6 +10,8 @@ import { BaseTable } from '@ui/atoms/BaseTable';
 import { monitoringHeaderItem } from '@src/constants/tableHeaders/monitoringHeaderItem';
 import { useNavigate } from 'react-router-dom';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -18,6 +20,7 @@ export function UsersDaAsList() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
+  const userPermissions = useUserPermission();
 
   const userHandler = (url: any, list: any) => {
     return navigate(`${url}/${list.email}`);
@@ -29,6 +32,7 @@ export function UsersDaAsList() {
     currentPage,
     filterQuery,
   });
+
   const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
@@ -53,6 +57,7 @@ export function UsersDaAsList() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
   const paginationProps = {
     countPage,
     currentPage,
@@ -70,7 +75,10 @@ export function UsersDaAsList() {
       <BaseTable
         loading={isLoading}
         bodyList={listDaas}
-        headers={monitoringHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          monitoringHeaderItem
+        )}
         onClick={userHandler}
         pagination={paginationProps}
         searchBar={searchBarProps}

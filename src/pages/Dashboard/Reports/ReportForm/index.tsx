@@ -6,7 +6,7 @@ import { IFormDate, IReportFormType } from '../types';
 export function ReportForm({
   handleOnSubmit,
   state,
-  onClick,
+  onChange,
 }: IReportFormType) {
   const { t } = useTranslation();
   const { control, handleSubmit } = useForm<IFormDate>({
@@ -17,10 +17,13 @@ export function ReportForm({
     },
   });
 
+  // const todayDate = new Date();
+  // todayDate.setDate(todayDate.getDate() + 1);
+
   return (
-    <form className="" onSubmit={handleSubmit(handleOnSubmit)}>
+    <form onSubmit={handleSubmit(handleOnSubmit)}>
       <MultiDatePicker
-        onClick={onClick}
+        onChange={onChange}
         timeDuration={state}
         control={control}
         placeholder={t('global.periodOfTime')}

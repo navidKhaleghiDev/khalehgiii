@@ -36,6 +36,10 @@ export const regexPattern = {
     value: /^[A-Za-z0-9]*$/,
     message: 'فقط حروف انگلیسی و اعداد',
   },
+  enUsername: {
+    value: /^[A-Za-z0-9@\-_.]*$/,
+    message: 'فقط حروف انگلیسی و عدد',
+  },
   lettersDashUnderLineNumbers: {
     value: /^[A-Za-z0-9-_]*[A-Za-z0-9][A-Za-z0-9-_]*$/,
     message: 'فقط حروف انگلیسی و - و _ و اعداد',

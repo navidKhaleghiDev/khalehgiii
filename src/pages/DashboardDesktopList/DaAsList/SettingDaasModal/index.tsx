@@ -9,13 +9,20 @@ import { DlpSettingsForm } from '@ui/utils/DlpSettingsForm';
 import { IDaasConfig } from '@src/services/config/types';
 import { ExtendTwoType } from '@src/types/global';
 import { useTranslation } from 'react-i18next';
+import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { checkPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   handleOnChange: (daas: IDaAs) => void;
   daas: IDaAs;
+  userPermissions: PermissionsCodeName[];
 };
 
-export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
+export function SettingDaasModal({
+  handleOnChange,
+  daas,
+  userPermissions,
+}: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { t } = useTranslation();
 
@@ -123,18 +130,37 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
   const dlpDownloadList = watch('allowed_files_type_for_download') || [];
   const dlpUploadList = watch('allowed_files_type_for_upload') || [];
 
+  const hasViewDaasPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.VIEW
+  );
+
+  const hasViewDlpPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.VIEW
+  );
+
   return (
     <form
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
       dir="rtl"
     >
-      <DaasConfigForm control={control} />
-      <DlpSettingsForm
-        handleSetDlpValues={handleSetDlpValues}
-        dlpDownloadList={dlpDownloadList}
-        dlpUploadList={dlpUploadList}
-      />
+      {hasViewDaasPermission && (
+        <DaasConfigForm
+          userPermissions={userPermissions}
+          isRecording
+          control={control}
+        />
+      )}
+      {hasViewDlpPermission && (
+        <DlpSettingsForm
+          handleSetDlpValues={handleSetDlpValues}
+          dlpDownloadList={dlpDownloadList}
+          dlpUploadList={dlpUploadList}
+          userPermissions={userPermissions}
+        />
+      )}
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">

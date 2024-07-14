@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
 import { IDaasConfig } from '@src/services/config/types';
 import { useTranslation } from 'react-i18next';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -14,6 +15,7 @@ type PropsType = {
 
 export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
 
   const [showConfirm, setShowConfirm] = useState(false);
   const { control, handleSubmit } = useForm<IDaasConfig>({
@@ -40,7 +42,11 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <DaasConfigForm control={control} />
+      <DaasConfigForm
+        isRecording
+        control={control}
+        userPermissions={userPermissions}
+      />
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">

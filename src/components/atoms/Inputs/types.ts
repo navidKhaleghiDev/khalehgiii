@@ -50,6 +50,7 @@ export interface BaseInputProps<T extends FieldValues>
   autoComplete?: string;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  disabled?: boolean;
 }
 
 export type TOnClickDate = (
@@ -70,7 +71,7 @@ export interface DatePickerProps extends BaseInputProps<any> {
   format?: string;
   timeDuration?: TTimeDuration;
   submitButton?: boolean;
-  onClick?: TOnClickDate;
+  onChange?: TOnClickDate;
 }
 
 type TTimeDuration = {

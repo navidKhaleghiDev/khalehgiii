@@ -41,6 +41,7 @@ const DIS_KEY_WEEK = 'WEEK';
 const DIS_KEY_MONTH = 'MONTH';
 const DIS_KEY_NORMAL = 'NORMAL';
 const DIS_KEY_HASERROR = 'ERROR';
+const DIS_KEY_REMOVEERROR = 'CLEARERROR';
 
 const initialState = {
   weekly: false,
@@ -79,6 +80,9 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
     case DIS_KEY_HASERROR: {
       return { ...state, error: true };
     }
+    case DIS_KEY_REMOVEERROR: {
+      return { ...state, error: false };
+    }
 
     default: {
       return initialState;
@@ -100,6 +104,7 @@ export function Reports() {
     };
     if (updatedData.end_date) {
       dispatch({ type: DIS_KEY_ISLOADING });
+      dispatch({ type: DIS_KEY_REMOVEERROR });
       await API_GET_REPORTS(updatedData as TFormDate)
         .then((res) => {
           const result = res.data;
@@ -167,7 +172,7 @@ export function Reports() {
           <ReportForm
             handleOnSubmit={handleOnSubmit}
             state={state}
-            onClick={handleGetDate}
+            onChange={handleGetDate}
           />
         </div>
       </Card>

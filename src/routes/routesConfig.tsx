@@ -11,8 +11,21 @@ import { Reports } from '@src/pages/Dashboard/Reports';
 import { UbaPage } from '@src/pages/Uba';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
-import { Sarg } from '@src/pages/Dashboard/Sarg';
+import { InternetLog } from '@src/pages/Dashboard/InternetLog';
+import {
+  EPermissionDaas,
+  EPermissionExtensions,
+  EPermissionFileScan,
+  EPermissionInternetLogs,
+  EPermissionScanReports,
+  EPermissionSessionRecording,
+  EPermissionUba,
+  EPermissionUsers,
+} from '@src/types/permissions';
+
+import { SessionRecording } from '@src/pages/SessionRecording/indexs';
 import { ROUTES_PATH } from './routesConstants';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const routesConfig = [
   {
@@ -36,35 +49,75 @@ const routesConfig = [
       },
       {
         path: ROUTES_PATH.reports,
-        element: <Reports />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <Reports />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: ROUTES_PATH.sarg,
-        element: <Sarg />,
+        path: ROUTES_PATH.internetLog,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionInternetLogs.VIEW}>
+            <InternetLog />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.dashboardDesktopList,
-        element: <DashboardDesktopListPage />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionDaas.VIEW}>
+            <DashboardDesktopListPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dashboardSessionRecordingList,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionSessionRecording.VIEW}>
+            <SessionRecording />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.dashboardAdminsList,
-        element: <DashboardAdminsListPage />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionUsers.VIEW}>
+            <DashboardAdminsListPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.monitoringDetails,
-        element: <ScannedFileListPage />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+            <ScannedFileListPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.monitoring,
-        element: <DashboardMonitoring />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+            <DashboardMonitoring />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.extensionList,
-        element: <DashboardExtensionListPage />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionExtensions.VIEW}>
+            <DashboardExtensionListPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: ROUTES_PATH.uba,
-        element: <UbaPage />,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
+            <UbaPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
