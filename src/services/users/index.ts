@@ -21,6 +21,8 @@ import {
   E_USERS_LOGOUT,
   E_USER_GET_OTP,
   E_USERS_OTP_LOGIN,
+  E_USERS_GROUPS,
+  USERS_GROUPS_GET,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -31,6 +33,15 @@ export const API_UPDATE_USER = (
 
 export const API_CREATE_USER = (body: IUser) =>
   http.post<IAxiosResponse<IUser>>(E_USERS, body);
+export const API_USERS_GROUPS = (body: IUser) =>
+  http.post<IAxiosResponse<IUser>>(E_USERS_GROUPS, body, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+export const API_USERS_GROUPS_GET = (id: string) =>
+  http.get<IAxiosResponse<IDaAs[]>>(USERS_GROUPS_GET(id));
 
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));

@@ -5,7 +5,9 @@ import { E_ANALYZE_SCAN_STATS } from '../analyze/endpoint';
 export const E_USERS = '/users/';
 export const E_USERS_OTP = '/users/otp_gen';
 export const E_USERS_DAAS = '/users/daas';
+export const E_USERS_GROUPS = '/users/groups/';
 
+export const USERS_GROUPS_GET = (id: string) => `${E_USERS_GROUPS}${id}/`;
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
 export const E_USERS_DELETE = (id: number) => `${E_USERS}${id}/`;
 export const E_UPDATE_USER = (id: string | number) => `${E_USERS}${id}/`;

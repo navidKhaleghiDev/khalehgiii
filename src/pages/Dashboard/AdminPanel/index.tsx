@@ -17,6 +17,7 @@ import { DlpConfigCp } from '../DlpConfig';
 import { DaasConfigCp } from '../DaasConfig';
 import { SettingsMalwareCp } from '../SettingsMalware';
 import { SettingsKeycloakCp } from '../SettingsKeycloak';
+import { GroupManagement } from '../GroupManagement';
 
 export function AdminPanel({ userExist }: { userExist: boolean }) {
   const { t } = useTranslation();
@@ -66,6 +67,9 @@ export function AdminPanel({ userExist }: { userExist: boolean }) {
               <SettingsMalwareCp userExist={userExist} />
             </BaseTab>
           ) : null}
+          <BaseTab label="groupManagement">
+            <GroupManagement />
+          </BaseTab>
         </BaseTabs>
       )}
     </ContainerDashboard>
