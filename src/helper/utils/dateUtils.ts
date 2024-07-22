@@ -97,7 +97,7 @@ export function convertToDateFormat(date: string) {
     const day = date.substring(6, 8);
 
     const formatedDate = moment(`${year}/${month}/${day}`, 'YYYY/MM/DD').format(
-      isFarsi ? 'jYYYY/jDD/jMM' : 'YYYY/MMMM/DD'
+      isFarsi ? 'jYYYY/jMM/jDD' : 'YYYY/MMMM/DD'
     );
 
     return formatedDate;
