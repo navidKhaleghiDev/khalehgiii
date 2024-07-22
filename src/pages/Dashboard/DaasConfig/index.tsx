@@ -79,7 +79,12 @@ export function DaasConfigCp() {
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <DaasConfigForm control={control} userPermissions={userPermissions} />
+      <DaasConfigForm
+        control={control}
+        userPermissions={userPermissions}
+        isMetaConfig
+      />
+
       <div className="flex justify-center col-span-6">
         <BaseButton
           label={t('dashboard.update')}

@@ -51,6 +51,7 @@ export function SettingDaasModal({
       allowed_files_type_for_upload: daas.allowed_files_type_for_upload,
       extra_allowed_download_files: daas.extra_allowed_download_files,
       extra_allowed_upload_files: daas.extra_allowed_upload_files,
+      chatroom_privileged: daas.chatroom_privileged,
     },
   });
 
