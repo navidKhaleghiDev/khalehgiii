@@ -8,7 +8,7 @@ import {
 } from 'react-hook-form';
 import { baseCheckBoxStyles } from '../styles';
 
-export interface BaseCheckBoxProps<T extends FieldValues>
+export interface BaseCustomCheckBoxProps<T extends FieldValues>
   extends VariantProps<typeof baseCheckBoxStyles> {
   id: string;
   control?: Control<T>;
@@ -20,4 +20,5 @@ export interface BaseCheckBoxProps<T extends FieldValues>
   hiddenError?: boolean;
   className?: string;
   disabled?: boolean;
+  data?: any;
 }

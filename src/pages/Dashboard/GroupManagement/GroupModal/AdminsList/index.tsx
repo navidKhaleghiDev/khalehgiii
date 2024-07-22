@@ -1,33 +1,45 @@
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { Typography } from '@ui/atoms';
 import { useCallback, useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
-import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
-import { EditCardList } from '../components/EditCardList';
+import { Control } from 'react-hook-form';
 import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
+import { toast } from 'react-toastify';
+import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
+import { IDaAs } from '@src/services/users/types';
+import { EditCardList } from '../components/EditCardList';
+import { TGroupList } from '../../type';
 
-type AdminsListProps = {
-  // handleClose: (isUpdated?: boolean) => void;
-  admins: any;
-  control: any;
+type TAdminsListProps = {
+  admins: GroupsType;
+  control: Control<any>;
+  isAddNew: boolean;
+  setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
+  listDaas: IDaAs[];
+  handleChangeTab: () => void;
 };
 
-type FormData = {
-  checkboxes: {
-    [key: string]: boolean;
-  };
-};
+type GroupsType = IDaAs[] | TGroupList;
 
-export function AdminsList({ admins, control }: AdminsListProps) {
+let updatedGroupList: TGroupList;
+
+function isTGroupList(groups: GroupsType): groups is TGroupList {
+  return (groups as TGroupList).id !== undefined;
+}
+
+export function AdminsList({
+  admins,
+  control,
+  isAddNew,
+  setIsAddNew,
+  listDaas,
+  handleChangeTab,
+}: TAdminsListProps) {
   const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [isAddNew, setIsAddNew] = useState(false);
-
-  const [showConfirm, setShowConfirm] = useState(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
@@ -40,10 +52,38 @@ export function AdminsList({ admins, control }: AdminsListProps) {
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     debouncedSetFilterQuery(event.target.value);
   };
-  const handleRemoveItem = (id) => {
-    // api call remove item
-    console.log('removed id ', id);
+
+  const updateGroup = async (data: TGroupList) => {
+    await API_USERS_GROUPS_UPDATE(data)
+      .then(() => {
+        toast.success(t('global.successfullyAdded'));
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {});
   };
+
+  const handleRemoveItem = (id: string) => {
+    if (isTGroupList(admins)) {
+      const updatedAdmins = admins.admins.filter((item) => item.id !== id);
+      updatedGroupList = {
+        ...admins,
+        admins: updatedAdmins,
+      };
+      updateGroup(updatedGroupList);
+    }
+  };
+
+  const adminList = isAddNew
+    ? listDaas.filter(
+        (item) =>
+          isTGroupList(admins) &&
+          !admins.admins.some((admin) => item.id === admin.id)
+      )
+    : [];
+
+  const list = isAddNew ? adminList : admins;
 
   return (
     <div>
@@ -53,12 +93,12 @@ export function AdminsList({ admins, control }: AdminsListProps) {
         onChange={handleFilterChange}
         className="w-full"
       />
-      {admins.admins && !isAddNew ? (
+      {isTGroupList(admins) && !isAddNew ? (
         <div className="flex flex-col items-center">
           <div className="w-full space-y-4 h-72 overflow-auto">
             {admins.admins.map((item) => (
               <EditCardList
-                onClick={handleRemoveItem}
+                onClick={() => handleRemoveItem(item.id)}
                 item={item}
                 key={item.id}
               />
@@ -76,27 +116,33 @@ export function AdminsList({ admins, control }: AdminsListProps) {
       ) : (
         <div className="flex flex-col items-center ">
           <div className="w-full space-y-4 h-72 overflow-auto">
-            {admins.map((item) => (
-              <div
-                key={item}
-                className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
-              >
-                <BaseCustomCheckBox
-                  key={item.id}
-                  name="admins"
-                  data={item}
-                  label={item.email}
-                  id={`checkbox-${item.id}`}
-                  control={control}
-                />
-                <label className="mx-1" htmlFor={`checkbox-${item.id}`}>
-                  <Typography variant="body2" color="neutral">
-                    {item.name}
-                  </Typography>
-                </label>
-                <Circle id className="mr-auto" />
-              </div>
-            ))}
+            {Array.isArray(list) &&
+              list.map((item: IDaAs | TGroupList) => (
+                <div
+                  key={'id' in item ? item.id : 'key'}
+                  className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
+                >
+                  {'id' in item && (
+                    <BaseCustomCheckBox
+                      key={item.id}
+                      name="admins"
+                      data={item}
+                      label={'email' in item ? item.email : ''}
+                      id={`checkbox-${item.id}`}
+                      control={control}
+                    />
+                  )}
+                  <label
+                    className="mx-1"
+                    htmlFor={`checkbox-${'id' in item ? item.id : 'key'}`}
+                  >
+                    <Typography variant="body2" color="neutral">
+                      {'name' in item ? item.name : ''}
+                    </Typography>
+                  </label>
+                  <Circle id className="mr-auto" />
+                </div>
+              ))}
           </div>
 
           <div className="w-full flex justify-between">
@@ -112,9 +158,8 @@ export function AdminsList({ admins, control }: AdminsListProps) {
             )}
             <BaseButton
               label={t('global.confirm')}
-              submit
               size="md"
-              onClick={() => setShowConfirm(true)}
+              onClick={handleChangeTab}
               className="mt-4"
             />
           </div>

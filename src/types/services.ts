@@ -51,3 +51,7 @@ export interface IPagination {
 }
 
 export type IAxiosResponse<T> = T;
+
+export interface IResponseData<T> {
+  data: T;
+}

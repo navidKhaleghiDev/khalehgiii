@@ -1,53 +1,79 @@
+import { useState, useRef } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { TFile } from '@ui/atoms/Inputs/BaseUploadInput/types';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
-import { E_USERS_DAAS, USERS_GROUPS_GET } from '@src/services/users/endpoint';
+import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { API_USERS_GROUPS, API_USERS_GROUPS_GET } from '@src/services/users';
+import { API_USERS_GROUPS_CREATE } from '@src/services/users';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
 import { IDaAs } from '@src/services/users/types';
+import { LoadingSpinner } from '@ui/molecules/Loading';
 import { AdminsList } from './AdminsList';
 import { UsersList } from './UsersList';
+import { TGroupList } from '../type';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
-  groupId?: string;
+  groupList?: {
+    id: string;
+    users: { id: string; email: string }[];
+    admins: { id: string; email: string }[];
+    name: string;
+    created_at: string;
+    updated_at: string;
+    image: string | undefined;
+  };
+};
+type TabsRefType = {
+  changeTab: (index: number) => void;
+  getActiveTab?: () => number;
 };
 
 const PAGE_SIZE = 8;
-const PAGE = 1;
+// const PAGE = 1;
 
-export function GroupModal({ handleClose, groupId }: PropsType) {
+export function GroupModal({ handleClose, groupList }: PropsType) {
+  const tabsRef = useRef<TabsRefType>(null);
   const { t } = useTranslation();
 
   const [hasError, setHasError] = useState(false);
-  const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>('');
+  // const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  // const [filterQuery, setFilterQuery] = useState<string>('');
+  // const [selectedAdmins, setSelectedAdmins] = useState();
+  // const [activeTab, setActiveTab] = useState(0);
+  const [isAddNew, setIsAddNew] = useState(false);
+
+  const handleChangeTab = () => {
+    if (tabsRef.current) {
+      tabsRef.current.changeTab(1);
+      // setActiveTab();
+      // tabsRef.current.getActiveTab();
+    }
+  };
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
     pageSize: PAGE_SIZE,
-    currentPage,
-    filterQuery,
+    currentPage: 1,
+    filterQuery: '',
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
 
   const listDaas = data?.data?.results ?? [];
 
-  const countPage = data?.data?.count || 0;
+  // const countPage = data?.data?.count || 0;
 
   const {
     control,
@@ -60,76 +86,32 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
     mode: 'onChange',
     defaultValues: {
       image: '',
+      name: groupList?.id ? groupList.name : '',
     },
   });
-  const createGroup = async (data) => {
-    // setLoadingButtonModal(true);
 
-    await API_USERS_GROUPS(data)
+  const createGroup = async (list: TGroupList) => {
+    await API_USERS_GROUPS_CREATE(list)
       .then(() => {
-        // mutate();
         toast.success(t('global.successfullyAdded'));
-        // setDeleteModal(false);
       })
       .catch((err) => {
         toast.error(err);
       })
-      .finally(() => {
-        // setLoadingButtonModal(false);
-      });
+      .finally(() => {});
   };
 
-  // const getGroupItem = async () => {
-  //   console.log('run');
-  //   await API_USERS_GROUPS_GET(groupId)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       toast.error(err);
-  //     })
-  //     .finally(() => {
-  //       // setLoadingButtonModal(false);
-  //     });
-  // };
+  const groups = !groupList?.id ? listDaas : groupList;
 
-  // useEffect(() => {
-  //   if (groupId) {
-  //     getGroupItem();
-  //   }
-  // }, [groupId]);
-
-  const groups =
-    groupId === undefined
-      ? listDaas
-      : {
-          id: '1',
-          title: 'Developer',
-          img: '',
-          listCount: 5,
-          admins: [
-            { name: 'asghar', id: 3333 },
-            { name: 'akbar', id: 4444 },
-            { name: 'gholi', id: 5555 },
-          ],
-          users: [
-            { name: 'shahram', id: 3333 },
-            { name: 'bahram', id: 4444 },
-            { name: 'parham', id: 5555 },
-            { name: 'ghambar', id: 5555 },
-          ],
-        };
-
-  let updatedData;
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    updatedData = {
-      ...data,
-      users: data?.users.map((item) => item.id),
-      admins: data?.admins.map((item) => item.id),
-    };
-
-    console.log(updatedData, 'submit adminlist');
-    createGroup(updatedData);
+  const onSubmit: SubmitHandler<TGroupList> = (listData) => {
+    const formData = new FormData();
+    formData.append('name', listData.name);
+    listData.users.map((item) => formData.append('users', item.id));
+    listData.admins.map((item) => formData.append('admins', item.id));
+    if (listData.image !== undefined) {
+      formData.append('image', listData.image);
+    }
+    createGroup(formData as any);
   };
 
   const validateFileSize = (file: TFile) => {
@@ -152,7 +134,7 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
   return (
     <div className="p-5 w-full flex flex-col items-center">
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit as any)}
         className="flex flex-col items-center w-full"
       >
         <div className="w-full">
@@ -164,24 +146,24 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
           />
         </div>
         <Typography className=" -mt-8" variant="h4" color="teal">
-          {t(`groupManagement.${groupId ? 'editGroup' : 'createGroup'}`)}
+          {t(`groupManagement.${groupList ? 'editGroup' : 'createGroup'}`)}
         </Typography>
         <div className="flex gap-3 items-center  w-10/12 h-28 ">
           <BaseUploadInput
             name="image"
             control={control}
-            type={groupId ? 'edit' : 'add'}
+            type={groupList ? 'edit' : 'add'}
             setValue={setValue}
             onClick={handleGetImageData}
             clearErrors={clearErrors}
-            defaultValue=""
+            defaultValue={groupList?.id ? groupList?.image : ''}
             rules={undefined}
           />
           <BaseInput
             className="h-11"
             name="name"
             size="lg"
-            id="ss"
+            id="name"
             label=""
             control={control}
             placeholder=""
@@ -195,16 +177,39 @@ export function GroupModal({ handleClose, groupId }: PropsType) {
             {errors.image?.message}
           </Typography>
         )}
-        <BaseTabs className="px-12 pb-10">
+        <BaseTabs ref={tabsRef} className="px-12 pb-10">
           <BaseTab
-            label={t(`groupManagement.${groupId ? 'admins' : 'choiceAdmins'}`)}
+            label={t(
+              `groupManagement.${groupList ? 'admins' : 'choiceAdmins'}`
+            )}
           >
-            <AdminsList control={control} admins={groups} />
+            {!groups ? (
+              <LoadingSpinner />
+            ) : (
+              <AdminsList
+                handleChangeTab={handleChangeTab}
+                listDaas={listDaas}
+                control={control}
+                admins={groups}
+                setIsAddNew={setIsAddNew}
+                isAddNew={isAddNew}
+              />
+            )}
           </BaseTab>
           <BaseTab
-            label={t(`groupManagement.${groupId ? 'users' : 'choiceUsers'}`)}
+            label={t(`groupManagement.${groupList ? 'users' : 'choiceUsers'}`)}
           >
-            <UsersList control={control} users={groups} />
+            {!groups ? (
+              <LoadingSpinner />
+            ) : (
+              <UsersList
+                listDaas={listDaas}
+                control={control}
+                users={groups}
+                setIsAddNew={setIsAddNew}
+                isAddNew={isAddNew}
+              />
+            )}
           </BaseTab>
         </BaseTabs>
       </form>

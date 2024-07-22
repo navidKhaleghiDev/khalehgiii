@@ -9,11 +9,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
-// type TListUsersProps = {
-//   handleClose: (isUpdated?: boolean) => void;
-//   groupId?: string;
-// };
-
 type FormData = {
   checkboxes: {
     [key: string]: boolean;
@@ -24,19 +19,9 @@ export function FormOfAddAdmin() {
   // const { t } = useTranslation();
   const [filterQuery, setFilterQuery] = useState<string>('');
 
-  const [showConfirm, setShowConfirm] = useState(false);
-  console.log(showConfirm);
-
   const { control, handleSubmit } = useForm<FormData>();
-  // const checkboxes = useWatch({
-  //   control,
-  //   name: 'checkboxes',
-  //   defaultValue: {},
-  // });
 
-  const onSubmit: SubmitHandler<FormData> = () => {
-    // console.log(data);
-  };
+  const onSubmit: SubmitHandler<FormData> = () => {};
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
@@ -85,13 +70,7 @@ export function FormOfAddAdmin() {
             </div>
           ))}
         </div>
-        <BaseButton
-          label="ثبت"
-          submit
-          size="md"
-          onClick={() => setShowConfirm(true)}
-          className="mt-4"
-        />
+        <BaseButton label="ثبت" submit size="md" className="mt-4" />
       </form>
     </div>
   );

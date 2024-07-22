@@ -1,40 +1,29 @@
-import { useTranslation } from 'react-i18next';
 import { BaseIcon, Typography } from '@ui/atoms';
 import { CardButton } from '@ui/atoms/Card/CardButton';
 
 type GroupCardEditProps = {
-  title: string;
-  img?: string;
-  onClickActions?: (groupId: string) => void | undefined;
-  listCount?: number;
+  name: string;
+  image: string | undefined;
+  onClickActions?: () => void;
 };
 
 export function GroupCardEdit({
-  title,
-  img,
-  listCount,
+  name,
+  image,
   onClickActions,
 }: GroupCardEditProps) {
-  const { t } = useTranslation();
-
-  const handleClick = () => {
-    if (onClickActions) {
-      onClickActions('3');
-    }
-  };
-
   return (
     <CardButton
       shadow="lg"
       rounded="xl"
       className="w-36 p-3 flex justify-center items-center hover:bg-neutral-100 transition-colors duration-400 group"
-      onClick={handleClick}
+      onClick={onClickActions}
     >
       <div className="flex flex-col items-center">
-        {img ? (
+        {image ? (
           <img
-            src={img}
-            alt={title}
+            src={image}
+            alt={name}
             className="w-20 h-20 rounded-full flex justify-center items-center"
           />
         ) : (
@@ -44,10 +33,7 @@ export function GroupCardEdit({
         )}
 
         <Typography variant="body2" className="mt-3">
-          {title}
-        </Typography>
-        <Typography variant="body4">
-          {`${listCount} ${t(`groupManagement.person`)}`}
+          {name}
         </Typography>
       </div>
     </CardButton>

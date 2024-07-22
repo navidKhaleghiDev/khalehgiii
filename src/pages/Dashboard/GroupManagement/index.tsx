@@ -6,36 +6,30 @@ import { Modal } from '@ui/molecules/Modal';
 import useSWR from 'swr';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
-import { IDaAs } from '@src/services/users/types';
+import { IResponseData } from '@src/types/services';
 import { GroupModal } from './GroupModal';
 import { GroupCardEdit } from './GroupCardEdit';
 import { GroupCardAdd } from './GroupCardAdd';
+import { TGroupList, TGroupModal } from './type';
 
-type TModal = {
-  open: boolean;
-  groupId?: string;
-};
 export function GroupManagement() {
-  const [openGroupModal, setOpenGroupModal] = useState<TModal>({
+  const [openGroupModal, setOpenGroupModal] = useState<TGroupModal>({
     open: false,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading } = useSWR<IResponseData<TGroupList[]>>(
     E_USERS_GROUPS,
     http.fetcherSWR
   );
 
   const groupData = data?.data ?? [];
-  console.log(groupData);
 
   const handleOnClickAddCard = (): any => {
     setOpenGroupModal({ open: true });
   };
 
-  const handleOnClickEditCard = (groupId: string): any => {
-    console.log(groupId);
-    setOpenGroupModal({ open: true, groupId });
+  const handleOnClickEditCard = (groupList: any): any => {
+    setOpenGroupModal({ open: true, groupList });
   };
 
   const handleToggleModal = () => {
@@ -50,9 +44,8 @@ export function GroupManagement() {
         {groupData.map((item) => (
           <GroupCardEdit
             key={item.id}
-            title={item.title}
-            img={item.img}
-            listCount={item.listCount}
+            name={item.name}
+            image={item?.image}
             onClickActions={() => handleOnClickEditCard(item)}
           />
         ))}
@@ -66,7 +59,7 @@ export function GroupManagement() {
         content={
           <GroupModal
             handleClose={handleToggleModal}
-            groupId={openGroupModal.groupId}
+            groupList={openGroupModal.groupList}
           />
         }
       />

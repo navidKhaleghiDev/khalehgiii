@@ -2,9 +2,9 @@ import { useState } from 'react'; // Import useState hook
 import { Controller } from 'react-hook-form';
 import { baseCheckBoxStyles } from '../styles';
 import { Typography } from '../../Typography';
-import { BaseCheckBoxProps } from './types';
+import { BaseCustomCheckBoxProps } from './types';
 
-export function BaseCustomCheckBox(props: BaseCheckBoxProps<any>) {
+export function BaseCustomCheckBox(props: BaseCustomCheckBoxProps<any>) {
   const {
     control,
     name,
@@ -17,10 +17,9 @@ export function BaseCustomCheckBox(props: BaseCheckBoxProps<any>) {
     label,
     className,
     disabled,
-    data, // Assuming data is passed as a prop
+    data,
   } = props;
 
-  // State to manage checked status of the checkbox
   const [isChecked, setIsChecked] = useState(false);
 
   return (
@@ -29,17 +28,16 @@ export function BaseCustomCheckBox(props: BaseCheckBoxProps<any>) {
       control={control}
       rules={rules}
       defaultValue={defaultValue}
-      render={({ field }) => {
-        // Handler to toggle checkbox
-        const handleChange = (e) => {
-          const checked = e.target.checked;
+      render={({ field, fieldState: { error } }) => {
+        const handleChange = (e: { target: HTMLInputElement }) => {
+          const { checked } = e.target;
           setIsChecked(checked);
           if (checked) {
-            // Add data to the form state array
             field.onChange([...(field.value || []), data]);
           } else {
-            // Remove data from the form state array
-            field.onChange(field.value.filter((item) => item.id !== data.id));
+            field.onChange(
+              field.value.filter((item: { id: string }) => item.id !== data.id)
+            );
           }
         };
 
@@ -53,7 +51,7 @@ export function BaseCustomCheckBox(props: BaseCheckBoxProps<any>) {
                 checked={isChecked}
                 onChange={handleChange}
                 className={baseCheckBoxStyles({
-                  intent: field.error ? 'error' : intent,
+                  intent: error?.message ? 'error' : intent,
                   className: 'pl-8',
                   size,
                 })}
@@ -68,7 +66,7 @@ export function BaseCustomCheckBox(props: BaseCheckBoxProps<any>) {
             </div>
             {!hiddenError && (
               <Typography color="red" variant="caption" className="h-6">
-                {field.error?.message ?? ''}
+                {error?.message ?? ''}
               </Typography>
             )}
           </>

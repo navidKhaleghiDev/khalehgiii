@@ -1,5 +1,6 @@
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { IAxiosResponse, IServerResponse } from '@src/types/services';
+import { TGroupList } from '@src/pages/Dashboard/GroupManagement/type';
 import {
   IBodyUsersLogin,
   IResponseLogin,
@@ -33,12 +34,14 @@ export const API_UPDATE_USER = (
 
 export const API_CREATE_USER = (body: IUser) =>
   http.post<IAxiosResponse<IUser>>(E_USERS, body);
-export const API_USERS_GROUPS = (body: IUser) =>
-  http.post<IAxiosResponse<IUser>>(E_USERS_GROUPS, body, {
+export const API_USERS_GROUPS_CREATE = (body: TGroupList) =>
+  http.post<IAxiosResponse<TGroupList>>(E_USERS_GROUPS, body, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
+export const API_USERS_GROUPS_UPDATE = (body: any) =>
+  http.patch<IAxiosResponse<IUser>>(USERS_GROUPS_GET(body.id), body);
 
 export const API_USERS_GROUPS_GET = (id: string) =>
   http.get<IAxiosResponse<IDaAs[]>>(USERS_GROUPS_GET(id));
