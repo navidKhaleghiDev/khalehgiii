@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { Typography } from '@ui/atoms';
 import { useCallback, useState } from 'react';
@@ -5,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
-import { Control } from 'react-hook-form';
+import { Control, useFormContext } from 'react-hook-form';
 import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
 import { toast } from 'react-toastify';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
@@ -39,6 +40,7 @@ export function AdminsList({
   handleChangeTab,
 }: TAdminsListProps) {
   const { t } = useTranslation();
+  const { watch } = useFormContext();
   const [filterQuery, setFilterQuery] = useState<string>('');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -64,6 +66,22 @@ export function AdminsList({
       .finally(() => {});
   };
 
+  const handleUpdateGroupData = () => {
+    console.log(admins);
+
+    const formData = new FormData();
+    formData.append('name', watch('name'));
+    let updatedData = {
+      admin: admins.admins,
+      users: users.users + watch,
+    };
+    listData.users.map((item) => formData.append('users'));
+    listData.admins.map((item) => formData.append('admins', item.id));
+    if (listData.image !== undefined) {
+      formData.append('image', listData.image);
+    }
+  };
+
   const handleRemoveItem = (id: string) => {
     if (isTGroupList(admins)) {
       const updatedAdmins = admins.admins.filter((item) => item.id !== id);
@@ -84,6 +102,8 @@ export function AdminsList({
     : [];
 
   const list = isAddNew ? adminList : admins;
+
+  console.log(watch(), 'MAHDI');
 
   return (
     <div>
@@ -124,6 +144,7 @@ export function AdminsList({
                 >
                   {'id' in item && (
                     <BaseCustomCheckBox
+                      defaultValue={watch('admins')}
                       key={item.id}
                       name="admins"
                       data={item}
@@ -157,10 +178,11 @@ export function AdminsList({
               />
             )}
             <BaseButton
-              label={t('global.confirm')}
+              label={isAddNew ? t('global.confirm') : 'مرحله بعد'}
               size="md"
-              onClick={handleChangeTab}
+              onClick={!isAddNew ? handleChangeTab : handleUpdateGroupData}
               className="mt-4"
+              // submit={!!isAddNew}
             />
           </div>
         </div>

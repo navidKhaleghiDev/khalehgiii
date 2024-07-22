@@ -11,7 +11,7 @@ import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
 import { toast } from 'react-toastify';
 import { IDaAs } from '@src/services/users/types';
-import { Control } from 'react-hook-form';
+import { Control, useFormContext } from 'react-hook-form';
 import { EditCardList } from '../components/EditCardList';
 import { TGroupList } from '../../type';
 
@@ -21,6 +21,7 @@ type TUsersListProps = {
   isAddNew: boolean;
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
   listDaas: IDaAs[];
+  loading: boolean;
 };
 type GroupsType = IDaAs[] | TGroupList;
 
@@ -35,9 +36,11 @@ export function UsersList({
   isAddNew,
   setIsAddNew,
   listDaas,
+  loading,
 }: // watch,
 TUsersListProps) {
   const { t } = useTranslation();
+  const { watch } = useFormContext();
   const [filterQuery, setFilterQuery] = useState<string>('');
 
   // const [showConfirm, setShowConfirm] = useState(false);
@@ -76,7 +79,7 @@ TUsersListProps) {
     }
   };
 
-  const adminList = isAddNew
+  const usersList = isAddNew
     ? listDaas.filter(
         (item) =>
           isTGroupList(users) &&
@@ -84,10 +87,19 @@ TUsersListProps) {
       )
     : [];
 
-  const list = isAddNew ? adminList : users;
+  const filterSelectedAdmins = watch('admins')
+    ? users.filter(
+        (item) => !watch('admins').some((admin) => item.id === admin.id)
+      )
+    : users;
+
+  console.log(watch(), 'GETTING WARVH DATA ');
+
+  const list = isAddNew ? usersList : filterSelectedAdmins;
+  const updatedList = watch('admins') ? filterSelectedAdmins : list;
 
   return (
-    <div>
+    <div className={`${loading ? 'loading' : ''}`}>
       <SearchInput
         name=""
         value={filterQuery}
@@ -117,8 +129,8 @@ TUsersListProps) {
       ) : (
         <div className="flex flex-col items-center  w-full">
           <div className="w-full space-y-4 h-72 overflow-auto">
-            {Array.isArray(list) &&
-              list.map((item: IDaAs | TGroupList) => (
+            {Array.isArray(updatedList) &&
+              updatedList.map((item: IDaAs | TGroupList) => (
                 <div
                   key={'id' in item ? item.id : 'key'}
                   className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
@@ -126,7 +138,7 @@ TUsersListProps) {
                   {'id' in item && (
                     <BaseCustomCheckBox
                       key={item.id}
-                      name="admins"
+                      name="users"
                       data={item}
                       label={'email' in item ? item.email : ''}
                       id={`checkbox-${item.id}`}
@@ -162,6 +174,7 @@ TUsersListProps) {
               label="ثبت"
               submit
               size="md"
+              loading={loading}
               // onClick={() => setShowConfirm(true)}
               className="mt-4"
             />

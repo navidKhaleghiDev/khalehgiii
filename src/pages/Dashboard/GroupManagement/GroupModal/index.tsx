@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
@@ -44,7 +44,8 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
   const tabsRef = useRef<TabsRefType>(null);
   const { t } = useTranslation();
 
-  const [hasError, setHasError] = useState(false);
+  const [hasError, setHasError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   // const [currentPage, setCurrentPage] = useState<number>(PAGE);
   // const [filterQuery, setFilterQuery] = useState<string>('');
   // const [selectedAdmins, setSelectedAdmins] = useState();
@@ -81,6 +82,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
     setError,
     clearErrors,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: 'onChange',
@@ -91,6 +93,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
   });
 
   const createGroup = async (list: TGroupList) => {
+    setLoading(true);
     await API_USERS_GROUPS_CREATE(list)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
@@ -98,7 +101,10 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
       .catch((err) => {
         toast.error(err);
       })
-      .finally(() => {});
+      .finally(() => {
+        setLoading(false);
+        handleClose();
+      });
   };
 
   const groups = !groupList?.id ? listDaas : groupList;
@@ -111,6 +117,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
     if (listData.image !== undefined) {
       formData.append('image', listData.image);
     }
+
     createGroup(formData as any);
   };
 
@@ -133,86 +140,91 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
 
   return (
     <div className="p-5 w-full flex flex-col items-center">
-      <form
-        onSubmit={handleSubmit(onSubmit as any)}
-        className="flex flex-col items-center w-full"
-      >
-        <div className="w-full">
-          <IconButton
-            icon="ph:x"
-            className="flex self-end"
-            size="xl"
-            onClick={handleClose}
-          />
-        </div>
-        <Typography className=" -mt-8" variant="h4" color="teal">
-          {t(`groupManagement.${groupList ? 'editGroup' : 'createGroup'}`)}
-        </Typography>
-        <div className="flex gap-3 items-center  w-10/12 h-28 ">
-          <BaseUploadInput
-            name="image"
-            control={control}
-            type={groupList ? 'edit' : 'add'}
-            setValue={setValue}
-            onClick={handleGetImageData}
-            clearErrors={clearErrors}
-            defaultValue={groupList?.id ? groupList?.image : ''}
-            rules={undefined}
-          />
-          <BaseInput
-            className="h-11"
-            name="name"
-            size="lg"
-            id="name"
-            label=""
-            control={control}
-            placeholder=""
-            type="text"
-            rules={undefined}
-            fullWidth
-          />
-        </div>
-        {hasError && (
-          <Typography variant="h5" className=" -mt-6 mb-5 " color="red">
-            {errors.image?.message}
+      <FormProvider watch={watch}>
+        <form
+          onSubmit={handleSubmit(onSubmit as any)}
+          className="flex flex-col items-center w-full"
+        >
+          <div className="w-full">
+            <IconButton
+              icon="ph:x"
+              className="flex self-end"
+              size="xl"
+              onClick={handleClose}
+            />
+          </div>
+          <Typography className=" -mt-8" variant="h4" color="teal">
+            {t(`groupManagement.${groupList ? 'editGroup' : 'createGroup'}`)}
           </Typography>
-        )}
-        <BaseTabs ref={tabsRef} className="px-12 pb-10">
-          <BaseTab
-            label={t(
-              `groupManagement.${groupList ? 'admins' : 'choiceAdmins'}`
-            )}
-          >
-            {!groups ? (
-              <LoadingSpinner />
-            ) : (
-              <AdminsList
-                handleChangeTab={handleChangeTab}
-                listDaas={listDaas}
-                control={control}
-                admins={groups}
-                setIsAddNew={setIsAddNew}
-                isAddNew={isAddNew}
-              />
-            )}
-          </BaseTab>
-          <BaseTab
-            label={t(`groupManagement.${groupList ? 'users' : 'choiceUsers'}`)}
-          >
-            {!groups ? (
-              <LoadingSpinner />
-            ) : (
-              <UsersList
-                listDaas={listDaas}
-                control={control}
-                users={groups}
-                setIsAddNew={setIsAddNew}
-                isAddNew={isAddNew}
-              />
-            )}
-          </BaseTab>
-        </BaseTabs>
-      </form>
+          <div className="flex gap-3 items-center  w-10/12 h-28 ">
+            <BaseUploadInput
+              name="image"
+              control={control}
+              type={groupList ? 'edit' : 'add'}
+              setValue={setValue}
+              onClick={handleGetImageData}
+              clearErrors={clearErrors}
+              defaultValue={groupList?.id ? groupList?.image : ''}
+              rules={undefined}
+            />
+            <BaseInput
+              className="h-11"
+              name="name"
+              size="lg"
+              id="name"
+              label=""
+              control={control}
+              placeholder=""
+              type="text"
+              rules={undefined}
+              fullWidth
+            />
+          </div>
+          {hasError && (
+            <Typography variant="h5" className=" -mt-6 mb-5 " color="red">
+              {errors.image?.message}
+            </Typography>
+          )}
+          <BaseTabs ref={tabsRef} className="px-12 pb-10">
+            <BaseTab
+              label={t(
+                `groupManagement.${groupList ? 'admins' : 'choiceAdmins'}`
+              )}
+            >
+              {!groups ? (
+                <LoadingSpinner />
+              ) : (
+                <AdminsList
+                  handleChangeTab={handleChangeTab}
+                  listDaas={listDaas}
+                  control={control}
+                  admins={groups}
+                  setIsAddNew={setIsAddNew}
+                  isAddNew={isAddNew}
+                />
+              )}
+            </BaseTab>
+            <BaseTab
+              label={t(
+                `groupManagement.${groupList ? 'users' : 'choiceUsers'}`
+              )}
+            >
+              {!groups ? (
+                <LoadingSpinner />
+              ) : (
+                <UsersList
+                  loading={loading}
+                  listDaas={listDaas}
+                  control={control}
+                  users={groups}
+                  setIsAddNew={setIsAddNew}
+                  isAddNew={isAddNew}
+                />
+              )}
+            </BaseTab>
+          </BaseTabs>
+        </form>
+      </FormProvider>
     </div>
   );
 }

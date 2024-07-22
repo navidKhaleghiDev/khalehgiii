@@ -1,4 +1,4 @@
-import { useState } from 'react'; // Import useState hook
+import { useState, useEffect } from 'react'; // Import useState and useEffect hooks
 import { Controller } from 'react-hook-form';
 import { baseCheckBoxStyles } from '../styles';
 import { Typography } from '../../Typography';
@@ -22,6 +22,13 @@ export function BaseCustomCheckBox(props: BaseCustomCheckBoxProps<any>) {
 
   const [isChecked, setIsChecked] = useState(false);
 
+  useEffect(() => {
+    if (defaultValue && Array.isArray(defaultValue)) {
+      const isDataChecked = defaultValue.some((item) => item.id === data.id);
+      setIsChecked(isDataChecked);
+    }
+  }, [defaultValue, data.id]);
+
   return (
     <Controller
       name={name}
@@ -32,13 +39,22 @@ export function BaseCustomCheckBox(props: BaseCustomCheckBoxProps<any>) {
         const handleChange = (e: { target: HTMLInputElement }) => {
           const { checked } = e.target;
           setIsChecked(checked);
+
+          let updatedValue = [...(field.value || [])];
+
           if (checked) {
-            field.onChange([...(field.value || []), data]);
+            if (
+              !updatedValue.some((item: { id: string }) => item.id === data.id)
+            ) {
+              updatedValue.push(data);
+            }
           } else {
-            field.onChange(
-              field.value.filter((item: { id: string }) => item.id !== data.id)
+            updatedValue = updatedValue.filter(
+              (item: { id: string }) => item.id !== data.id
             );
           }
+
+          field.onChange(updatedValue);
         };
 
         return (
