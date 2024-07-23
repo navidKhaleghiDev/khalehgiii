@@ -8,8 +8,6 @@ import { debounce } from 'lodash';
 import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
-import { toast } from 'react-toastify';
 import { IDaAs } from '@src/services/users/types';
 import { Control, useFormContext } from 'react-hook-form';
 import { EditCardList } from '../components/EditCardList';
@@ -22,6 +20,7 @@ type TUsersListProps = {
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
   listDaas: IDaAs[];
   loading: boolean;
+  updateGroup: () => void;
 };
 type GroupsType = IDaAs[] | TGroupList;
 
@@ -29,6 +28,7 @@ let updatedGroupList;
 function isTGroupList(groups: GroupsType): groups is TGroupList {
   return (groups as TGroupList).id !== undefined;
 }
+const mapData = (data) => data.map((item) => item.id);
 
 export function UsersList({
   users,
@@ -37,13 +37,11 @@ export function UsersList({
   setIsAddNew,
   listDaas,
   loading,
-}: // watch,
-TUsersListProps) {
+  updateGroup,
+}: TUsersListProps) {
   const { t } = useTranslation();
   const { watch } = useFormContext();
   const [filterQuery, setFilterQuery] = useState<string>('');
-
-  // const [showConfirm, setShowConfirm] = useState(false);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
@@ -57,23 +55,23 @@ TUsersListProps) {
     debouncedSetFilterQuery(event.target.value);
   };
 
-  const updateGroup = async (data: TGroupList) => {
-    await API_USERS_GROUPS_UPDATE(data)
-      .then(() => {
-        toast.success(t('global.successfullyAdded'));
-      })
-      .catch((err) => {
-        toast.error(err);
-      })
-      .finally(() => {});
+  const handleUpdateGroupData = () => {
+    const mergedUsers = [...users.users, ...watch('users')];
+    updatedGroupList = {
+      users: mapData(mergedUsers),
+      admins: mapData(users.admins),
+      name: users.name,
+    };
+    updateGroup(updatedGroupList);
   };
 
   const handleRemoveItem = (id: string) => {
     if (isTGroupList(users)) {
       const updatedusers = users.users.filter((item) => item.id !== id);
       updatedGroupList = {
-        ...users,
-        users: updatedusers,
+        users: mapData(updatedusers),
+        admins: mapData(users.admins),
+        name: users.name,
       };
       updateGroup(updatedGroupList);
     }
@@ -87,15 +85,15 @@ TUsersListProps) {
       )
     : [];
 
-  const filterSelectedAdmins = watch('admins')
-    ? users.filter(
-        (item) => !watch('admins').some((admin) => item.id === admin.id)
-      )
-    : users;
-
-  console.log(watch(), 'GETTING WARVH DATA ');
+  const filterSelectedAdmins =
+    watch('admins') !== undefined
+      ? users.filter(
+          (item) => !watch('admins').some((admin) => item.id === admin.id)
+        )
+      : users;
 
   const list = isAddNew ? usersList : filterSelectedAdmins;
+
   const updatedList = watch('admins') ? filterSelectedAdmins : list;
 
   return (
@@ -170,14 +168,24 @@ TUsersListProps) {
                 endIcon="pha:x"
               />
             )}
-            <BaseButton
-              label="ثبت"
-              submit
-              size="md"
-              loading={loading}
-              // onClick={() => setShowConfirm(true)}
-              className="mt-4"
-            />
+
+            {!users.id ? (
+              <BaseButton
+                label="ثبت"
+                size="md"
+                loading={loading}
+                className="mt-4"
+                submit
+              />
+            ) : (
+              <BaseButton
+                label="ثبت"
+                size="md"
+                loading={loading}
+                onClick={handleUpdateGroupData}
+                className="mt-4"
+              />
+            )}
           </div>
         </div>
       )}

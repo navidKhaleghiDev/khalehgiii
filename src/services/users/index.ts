@@ -40,8 +40,8 @@ export const API_USERS_GROUPS_CREATE = (body: TGroupList) =>
       'Content-Type': 'multipart/form-data',
     },
   });
-export const API_USERS_GROUPS_UPDATE = (body: any) =>
-  http.patch<IAxiosResponse<IUser>>(USERS_GROUPS_GET(body.id), body);
+export const API_USERS_GROUPS_UPDATE = (body: any, id: string) =>
+  http.patch<IAxiosResponse<TGroupList>>(USERS_GROUPS_GET(id), body);
 
 export const API_USERS_GROUPS_GET = (id: string) =>
   http.get<IAxiosResponse<IDaAs[]>>(USERS_GROUPS_GET(id));

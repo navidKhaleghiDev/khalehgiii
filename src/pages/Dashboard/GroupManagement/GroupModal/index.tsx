@@ -9,7 +9,10 @@ import { TFile } from '@ui/atoms/Inputs/BaseUploadInput/types';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { API_USERS_GROUPS_CREATE } from '@src/services/users';
+import {
+  API_USERS_GROUPS_CREATE,
+  API_USERS_GROUPS_UPDATE,
+} from '@src/services/users';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { toast } from 'react-toastify';
@@ -107,6 +110,20 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
       });
   };
 
+  const updateGroup = async (data: TGroupList) => {
+    setLoading(true);
+    await API_USERS_GROUPS_UPDATE(data, groupList?.id)
+      .then(() => {
+        toast.success(t('global.successfullyAdded'));
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   const groups = !groupList?.id ? listDaas : groupList;
 
   const onSubmit: SubmitHandler<TGroupList> = (listData) => {
@@ -114,9 +131,6 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
     formData.append('name', listData.name);
     listData.users.map((item) => formData.append('users', item.id));
     listData.admins.map((item) => formData.append('admins', item.id));
-    if (listData.image !== undefined) {
-      formData.append('image', listData.image);
-    }
 
     createGroup(formData as any);
   };
@@ -195,6 +209,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
                 <LoadingSpinner />
               ) : (
                 <AdminsList
+                  updateGroup={updateGroup}
                   handleChangeTab={handleChangeTab}
                   listDaas={listDaas}
                   control={control}
@@ -213,6 +228,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
                 <LoadingSpinner />
               ) : (
                 <UsersList
+                  updateGroup={updateGroup}
                   loading={loading}
                   listDaas={listDaas}
                   control={control}

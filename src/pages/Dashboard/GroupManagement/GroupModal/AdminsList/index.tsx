@@ -8,8 +8,6 @@ import { debounce } from 'lodash';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { Control, useFormContext } from 'react-hook-form';
 import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
-import { toast } from 'react-toastify';
-import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
 import { IDaAs } from '@src/services/users/types';
 import { EditCardList } from '../components/EditCardList';
 import { TGroupList } from '../../type';
@@ -21,6 +19,7 @@ type TAdminsListProps = {
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
   listDaas: IDaAs[];
   handleChangeTab: () => void;
+  updateGroup: () => void;
 };
 
 type GroupsType = IDaAs[] | TGroupList;
@@ -30,6 +29,7 @@ let updatedGroupList: TGroupList;
 function isTGroupList(groups: GroupsType): groups is TGroupList {
   return (groups as TGroupList).id !== undefined;
 }
+const mapData = (data) => data.map((item) => item.id);
 
 export function AdminsList({
   admins,
@@ -38,6 +38,7 @@ export function AdminsList({
   setIsAddNew,
   listDaas,
   handleChangeTab,
+  updateGroup,
 }: TAdminsListProps) {
   const { t } = useTranslation();
   const { watch } = useFormContext();
@@ -55,39 +56,23 @@ export function AdminsList({
     debouncedSetFilterQuery(event.target.value);
   };
 
-  const updateGroup = async (data: TGroupList) => {
-    await API_USERS_GROUPS_UPDATE(data)
-      .then(() => {
-        toast.success(t('global.successfullyAdded'));
-      })
-      .catch((err) => {
-        toast.error(err);
-      })
-      .finally(() => {});
-  };
-
   const handleUpdateGroupData = () => {
-    console.log(admins);
+    const mergedAdmins = [...admins.admins, ...watch('admins')];
 
-    const formData = new FormData();
-    formData.append('name', watch('name'));
-    let updatedData = {
-      admin: admins.admins,
-      users: users.users + watch,
+    updatedGroupList = {
+      users: mapData(admins.users),
+      admins: mapData(mergedAdmins),
+      name: users.name,
     };
-    listData.users.map((item) => formData.append('users'));
-    listData.admins.map((item) => formData.append('admins', item.id));
-    if (listData.image !== undefined) {
-      formData.append('image', listData.image);
-    }
   };
 
   const handleRemoveItem = (id: string) => {
     if (isTGroupList(admins)) {
       const updatedAdmins = admins.admins.filter((item) => item.id !== id);
       updatedGroupList = {
-        ...admins,
-        admins: updatedAdmins,
+        users: mapData(admins.users),
+        admins: mapData(updatedAdmins),
+        name: admins.name,
       };
       updateGroup(updatedGroupList);
     }
@@ -102,8 +87,6 @@ export function AdminsList({
     : [];
 
   const list = isAddNew ? adminList : admins;
-
-  console.log(watch(), 'MAHDI');
 
   return (
     <div>
