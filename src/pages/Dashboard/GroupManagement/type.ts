@@ -3,6 +3,7 @@ export type TGroupModal = {
   groupList?: TGroupList;
 };
 
+export type TUser = [{ id: string; email: string }];
 export type TGroupList = {
   id: string;
   users: { id: string; email: string }[];
@@ -11,4 +12,9 @@ export type TGroupList = {
   created_at: string;
   updated_at: string;
   image: string | undefined;
+};
+export type TGroupListUpdate = {
+  users: { id: string }[];
+  admins: { id: string }[];
+  name: string;
 };

@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { Typography } from '@ui/atoms';
 import { useCallback, useState } from 'react';
@@ -10,26 +9,24 @@ import { Control, useFormContext } from 'react-hook-form';
 import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
 import { IDaAs } from '@src/services/users/types';
 import { EditCardList } from '../components/EditCardList';
-import { TGroupList } from '../../type';
+import { TGroupList, TGroupListUpdate } from '../../type';
 
 type TAdminsListProps = {
-  admins: GroupsType;
+  admins: TGroupList;
   control: Control<any>;
   isAddNew: boolean;
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
   listDaas: IDaAs[];
   handleChangeTab: () => void;
-  updateGroup: () => void;
+  updateGroup: (updatedList: TGroupList) => void;
 };
-
 type GroupsType = IDaAs[] | TGroupList;
 
-let updatedGroupList: TGroupList;
+let updatedGroupList: TGroupListUpdate;
 
 function isTGroupList(groups: GroupsType): groups is TGroupList {
   return (groups as TGroupList).id !== undefined;
 }
-const mapData = (data) => data.map((item) => item.id);
 
 export function AdminsList({
   admins,
@@ -60,21 +57,22 @@ export function AdminsList({
     const mergedAdmins = [...admins.admins, ...watch('admins')];
 
     updatedGroupList = {
-      users: mapData(admins.users),
-      admins: mapData(mergedAdmins),
-      name: users.name,
+      users: admins.users.map((item) => item.id) as any,
+      admins: mergedAdmins.map((item) => item.id),
+      name: admins.name,
     };
+    updateGroup(updatedGroupList as any);
   };
 
   const handleRemoveItem = (id: string) => {
     if (isTGroupList(admins)) {
       const updatedAdmins = admins.admins.filter((item) => item.id !== id);
       updatedGroupList = {
-        users: mapData(admins.users),
-        admins: mapData(updatedAdmins),
+        users: admins.users.map((item) => item.id) as any,
+        admins: updatedAdmins.map((item) => item.id) as any,
         name: admins.name,
       };
-      updateGroup(updatedGroupList);
+      updateGroup(updatedGroupList as any);
     }
   };
 
@@ -161,11 +159,10 @@ export function AdminsList({
               />
             )}
             <BaseButton
-              label={isAddNew ? t('global.confirm') : 'مرحله بعد'}
+              label={isAddNew ? t('global.confirm') : t('groupManagement.next')}
               size="md"
               onClick={!isAddNew ? handleChangeTab : handleUpdateGroupData}
               className="mt-4"
-              // submit={!!isAddNew}
             />
           </div>
         </div>

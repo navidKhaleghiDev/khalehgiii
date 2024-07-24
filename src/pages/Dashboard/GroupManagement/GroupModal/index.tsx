@@ -1,11 +1,16 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { useState, useRef } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
-import { TFile } from '@ui/atoms/Inputs/BaseUploadInput/types';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -34,6 +39,7 @@ type PropsType = {
     updated_at: string;
     image: string | undefined;
   };
+  mutate: any;
 };
 type TabsRefType = {
   changeTab: (index: number) => void;
@@ -43,51 +49,31 @@ type TabsRefType = {
 const PAGE_SIZE = 8;
 // const PAGE = 1;
 
-export function GroupModal({ handleClose, groupList }: PropsType) {
-  const tabsRef = useRef<TabsRefType>(null);
+export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
   const { t } = useTranslation();
-
-  const [hasError, setHasError] = useState<boolean>(false);
+  const tabsRef = useRef<TabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  // const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  // const [filterQuery, setFilterQuery] = useState<string>('');
-  // const [selectedAdmins, setSelectedAdmins] = useState();
-  // const [activeTab, setActiveTab] = useState(0);
   const [isAddNew, setIsAddNew] = useState(false);
 
   const handleChangeTab = () => {
     if (tabsRef.current) {
       tabsRef.current.changeTab(1);
-      // setActiveTab();
-      // tabsRef.current.getActiveTab();
     }
   };
-
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
     pageSize: PAGE_SIZE,
     currentPage: 1,
     filterQuery: '',
   });
-
   const { data } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
-
   const listDaas = data?.data?.results ?? [];
-
   // const countPage = data?.data?.count || 0;
 
-  const {
-    control,
-    setValue,
-    setError,
-    clearErrors,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm({
+  const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
       image: '',
@@ -100,6 +86,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
     await API_USERS_GROUPS_CREATE(list)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
+        mutate();
       })
       .catch((err) => {
         toast.error(err);
@@ -110,11 +97,14 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
       });
   };
 
-  const updateGroup = async (data: TGroupList) => {
+  const updateGroup = async (updatedList: TGroupList) => {
+    if (!groupList?.id) return;
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(data, groupList?.id)
+    await API_USERS_GROUPS_UPDATE(updatedList, groupList?.id)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
+        mutate();
+        handleClose();
       })
       .catch((err) => {
         toast.error(err);
@@ -134,29 +124,11 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
 
     createGroup(formData as any);
   };
-
-  const validateFileSize = (file: TFile) => {
-    if (file.size > 3 * 1024 * 1024) {
-      // 3MB in bytes
-      setError('image', {
-        type: 'manual',
-        message: 'The image file shouldent be more than 3MB ',
-      });
-      return true;
-    }
-    return false;
-  };
-
-  const handleGetImageData = (file: TFile) => {
-    const uploadLimit = validateFileSize(file);
-    if (uploadLimit) setHasError(true);
-  };
-
   return (
     <div className="p-5 w-full flex flex-col items-center">
-      <FormProvider watch={watch}>
+      <FormProvider {...methods}>
         <form
-          onSubmit={handleSubmit(onSubmit as any)}
+          onSubmit={methods.handleSubmit(onSubmit as any)}
           className="flex flex-col items-center w-full"
         >
           <div className="w-full">
@@ -173,11 +145,11 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
           <div className="flex gap-3 items-center  w-10/12 h-28 ">
             <BaseUploadInput
               name="image"
-              control={control}
+              control={methods.control}
               type={groupList ? 'edit' : 'add'}
-              setValue={setValue}
-              onClick={handleGetImageData}
-              clearErrors={clearErrors}
+              setValue={methods.setValue}
+              // onClick={handleGetImageData}
+              clearErrors={methods.clearErrors}
               defaultValue={groupList?.id ? groupList?.image : ''}
               rules={undefined}
             />
@@ -187,18 +159,14 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
               size="lg"
               id="name"
               label=""
-              control={control}
+              control={methods.control}
               placeholder=""
               type="text"
               rules={undefined}
               fullWidth
             />
           </div>
-          {hasError && (
-            <Typography variant="h5" className=" -mt-6 mb-5 " color="red">
-              {errors.image?.message}
-            </Typography>
-          )}
+
           <BaseTabs ref={tabsRef} className="px-12 pb-10">
             <BaseTab
               label={t(
@@ -212,8 +180,8 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
                   updateGroup={updateGroup}
                   handleChangeTab={handleChangeTab}
                   listDaas={listDaas}
-                  control={control}
-                  admins={groups}
+                  control={methods.control}
+                  admins={groups as any}
                   setIsAddNew={setIsAddNew}
                   isAddNew={isAddNew}
                 />
@@ -231,7 +199,7 @@ export function GroupModal({ handleClose, groupList }: PropsType) {
                   updateGroup={updateGroup}
                   loading={loading}
                   listDaas={listDaas}
-                  control={control}
+                  control={methods.control}
                   users={groups}
                   setIsAddNew={setIsAddNew}
                   isAddNew={isAddNew}

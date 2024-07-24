@@ -206,7 +206,8 @@
     "choiceUsers": "Choice Users",
     "newAdmins": "New Admins",
     "users": "Users",
-    "admins": "Admins"
+    "admins": "Admins",
+    "next": "Next"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

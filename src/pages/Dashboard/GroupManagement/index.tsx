@@ -17,7 +17,7 @@ export function GroupManagement() {
     open: false,
   });
 
-  const { data, isLoading } = useSWR<IResponseData<TGroupList[]>>(
+  const { data, isLoading, mutate } = useSWR<IResponseData<TGroupList[]>>(
     E_USERS_GROUPS,
     http.fetcherSWR
   );
@@ -58,6 +58,7 @@ export function GroupManagement() {
         setOpen={handleToggleModal}
         content={
           <GroupModal
+            mutate={mutate}
             handleClose={handleToggleModal}
             groupList={openGroupModal.groupList}
           />

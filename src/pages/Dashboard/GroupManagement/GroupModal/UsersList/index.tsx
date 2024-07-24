@@ -11,24 +11,23 @@ import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { IDaAs } from '@src/services/users/types';
 import { Control, useFormContext } from 'react-hook-form';
 import { EditCardList } from '../components/EditCardList';
-import { TGroupList } from '../../type';
+import { TGroupList, TGroupListUpdate, TUser } from '../../type';
 
 type TUsersListProps = {
-  users: GroupsType;
+  users: any;
   control: Control<any>;
   isAddNew: boolean;
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
   listDaas: IDaAs[];
   loading: boolean;
-  updateGroup: () => void;
+  updateGroup: (updatedList: TGroupList) => void;
 };
 type GroupsType = IDaAs[] | TGroupList;
 
-let updatedGroupList;
+let updatedGroupList: TGroupListUpdate;
 function isTGroupList(groups: GroupsType): groups is TGroupList {
   return (groups as TGroupList).id !== undefined;
 }
-const mapData = (data) => data.map((item) => item.id);
 
 export function UsersList({
   users,
@@ -58,22 +57,22 @@ export function UsersList({
   const handleUpdateGroupData = () => {
     const mergedUsers = [...users.users, ...watch('users')];
     updatedGroupList = {
-      users: mapData(mergedUsers),
-      admins: mapData(users.admins),
+      users: mergedUsers.map((item) => item.id),
+      admins: users.admins.map((item: any) => item.id),
       name: users.name,
     };
-    updateGroup(updatedGroupList);
+    updateGroup(updatedGroupList as any);
   };
 
   const handleRemoveItem = (id: string) => {
     if (isTGroupList(users)) {
       const updatedusers = users.users.filter((item) => item.id !== id);
       updatedGroupList = {
-        users: mapData(updatedusers),
-        admins: mapData(users.admins),
+        users: updatedusers.map((item) => item.id) as any,
+        admins: users.admins.map((item) => item.id) as any,
         name: users.name,
       };
-      updateGroup(updatedGroupList);
+      updateGroup(updatedGroupList as any);
     }
   };
 
@@ -85,12 +84,14 @@ export function UsersList({
       )
     : [];
 
+  const usersUpdate = users as unknown as TUser;
+
   const filterSelectedAdmins =
     watch('admins') !== undefined
-      ? users.filter(
-          (item) => !watch('admins').some((admin) => item.id === admin.id)
+      ? usersUpdate.filter(
+          (item) => !watch('admins').some((admin: any) => item.id === admin.id)
         )
-      : users;
+      : (users as TGroupList);
 
   const list = isAddNew ? usersList : filterSelectedAdmins;
 
@@ -128,7 +129,7 @@ export function UsersList({
         <div className="flex flex-col items-center  w-full">
           <div className="w-full space-y-4 h-72 overflow-auto">
             {Array.isArray(updatedList) &&
-              updatedList.map((item: IDaAs | TGroupList) => (
+              updatedList.map((item: any) => (
                 <div
                   key={'id' in item ? item.id : 'key'}
                   className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
