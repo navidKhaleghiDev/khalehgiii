@@ -86,6 +86,7 @@
     "delete": "delete",
     "upload": "upload",
     "webcamPrivilege": "Webcam Privilege",
+    "conferencePrivilege": "Conference Privilege",
     "microphonePrivilege": "Microphone Privilege",
     "timeLimitDuration": "Time Limit Duration",
     "timeLimitValueInHour": "Time Limit Value In Hour",

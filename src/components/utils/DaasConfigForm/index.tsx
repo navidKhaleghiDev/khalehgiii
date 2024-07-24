@@ -11,6 +11,7 @@ import { checkPermission } from '@src/helper/hooks/usePermission';
 type PropsType = {
   control: Control<any>;
   isRecording?: boolean;
+  isMetaConfig?: boolean;
   userPermissions: PermissionsCodeName[];
 };
 
@@ -18,6 +19,7 @@ export function DaasConfigForm({
   control,
   isRecording,
   userPermissions,
+  isMetaConfig,
 }: PropsType) {
   const { t } = useTranslation();
   const hasChangePermission = checkPermission(
@@ -45,17 +47,19 @@ export function DaasConfigForm({
 				<BaseSwitch control={control} name="clipboard_up" />
 				<Typography className="mb-1">:Clipboard from Client</Typography>
 			</div> */}
+      {!isMetaConfig && (
+        <div className="flex justify-between items-center px-2 col-span-3">
+          <Typography className="mb-1">{t('table.webcamPrivilege')}</Typography>
+          <BaseSwitch control={control} name="chatroom_privileged" />
+        </div>
+      )}
 
-      <div className="flex justify-between items-center px-2 col-span-3">
-        <Typography className="mb-1">{t('table.webcamPrivilege')}</Typography>
-        <BaseSwitch control={control} name="webcam_privilege" />
-      </div>
-      <div className="flex justify-between items-center px-2 col-span-3">
+      {/* <div className="flex justify-between items-center px-2 col-span-3">
         <Typography className="mb-1">
           {t('table.microphonePrivilege')}
         </Typography>
         <BaseSwitch control={control} name="microphone_privilege" />
-      </div>
+      </div> */}
       {isRecording && (
         <>
           <div className="flex justify-between items-center px-2 col-span-3">
