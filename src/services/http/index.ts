@@ -186,7 +186,7 @@ export class Http {
           }
           case StatusCode.Forbidden: {
             // 403 - Handle Forbidden
-            toast.error(t('global.dontHaveAccess'));
+            // toast.error(t('global.dontHaveAccess'));
             throw handleResponseError(data);
           }
           case StatusCode.NotFound: {

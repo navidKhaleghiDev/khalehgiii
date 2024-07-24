@@ -1,23 +1,21 @@
 import { useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-
 import { Modal } from '@ui/molecules/Modal';
-
 import useSWR from 'swr';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
+import { TGroup } from '@src/services/users/types';
 import { IResponseData } from '@src/types/services';
+
 import { GroupModal } from './GroupModal';
 import { GroupCardEdit } from './GroupCardEdit';
 import { GroupCardAdd } from './GroupCardAdd';
-import { TGroupList, TGroupModal } from './type';
 
 export function GroupManagement() {
-  const [openGroupModal, setOpenGroupModal] = useState<TGroupModal>({
-    open: false,
-  });
+  const [openModal, setOpenModal] = useState(false);
+  const [groupSelected, setGroupSelected] = useState<TGroup | undefined>();
 
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroupList[]>>(
+  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
     E_USERS_GROUPS,
     http.fetcherSWR
   );
@@ -25,15 +23,20 @@ export function GroupManagement() {
   const groupData = data?.data ?? [];
 
   const handleOnClickAddCard = (): any => {
-    setOpenGroupModal({ open: true });
+    setOpenModal(true);
   };
 
-  const handleOnClickEditCard = (groupList: any): any => {
-    setOpenGroupModal({ open: true, groupList });
+  const handleOnClickEditCard = (group: TGroup) => {
+    setOpenModal(true);
+    setGroupSelected(group);
   };
 
   const handleToggleModal = () => {
-    setOpenGroupModal({ open: !openGroupModal.open });
+    setOpenModal(!openModal);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setGroupSelected(undefined);
   };
 
   return isLoading ? (
@@ -53,14 +56,15 @@ export function GroupManagement() {
         <GroupCardAdd onClickActions={handleOnClickAddCard} />
       </div>
       <Modal
-        open={openGroupModal.open}
+        open={openModal}
         type="none"
         setOpen={handleToggleModal}
         content={
           <GroupModal
             mutate={mutate}
-            handleClose={handleToggleModal}
-            groupList={openGroupModal.groupList}
+            handleClose={handleCloseModal}
+            group={groupSelected}
+            loadingGroup={isLoading}
           />
         }
       />

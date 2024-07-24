@@ -1,18 +1,12 @@
+import { TGroup } from '@src/services/users/types';
+
 export type TGroupModal = {
   open: boolean;
-  groupList?: TGroupList;
+  groupList?: TGroup;
 };
 
 export type TUser = [{ id: string; email: string }];
-export type TGroupList = {
-  id: string;
-  users: { id: string; email: string }[];
-  admins: { id: string; email: string }[];
-  name: string;
-  created_at: string;
-  updated_at: string;
-  image: string | undefined;
-};
+
 export type TGroupListUpdate = {
   users: { id: string }[];
   admins: { id: string }[];

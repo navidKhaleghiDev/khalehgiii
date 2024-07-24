@@ -1,32 +1,20 @@
 import { BaseButton } from '@ui/atoms/BaseButton';
-import { Typography } from '@ui/atoms';
 import { useCallback, useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
-
 import { debounce } from 'lodash';
-import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { IDaAs } from '@src/services/users/types';
+import { IDaAs, TGroup } from '@src/services/users/types';
+import { AddCardList } from '@src/pages/Dashboard/GroupManagement/GroupModal/components/AddCardList';
 import { Control, useFormContext } from 'react-hook-form';
+import {
+  GroupsType,
+  TUsersListProps,
+} from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { EditCardList } from '../components/EditCardList';
-import { TGroupList, TGroupListUpdate, TUser } from '../../type';
+import { TUser } from '../../type';
 
-type TUsersListProps = {
-  users: any;
-  control: Control<any>;
-  isAddNew: boolean;
-  setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
-  listDaas: IDaAs[];
-  loading: boolean;
-  updateGroup: (updatedList: TGroupList) => void;
-};
-type GroupsType = IDaAs[] | TGroupList;
-
-let updatedGroupList: TGroupListUpdate;
-function isTGroupList(groups: GroupsType): groups is TGroupList {
-  return (groups as TGroupList).id !== undefined;
+function isTGroupList(groups: GroupsType): groups is TGroup {
+  return (groups as TGroup).id !== undefined;
 }
 
 export function UsersList({
@@ -56,23 +44,23 @@ export function UsersList({
 
   const handleUpdateGroupData = () => {
     const mergedUsers = [...users.users, ...watch('users')];
-    updatedGroupList = {
+
+    updateGroup({
       users: mergedUsers.map((item) => item.id),
       admins: users.admins.map((item: any) => item.id),
       name: users.name,
-    };
-    updateGroup(updatedGroupList as any);
+    } as any);
   };
 
   const handleRemoveItem = (id: string) => {
     if (isTGroupList(users)) {
       const updatedusers = users.users.filter((item) => item.id !== id);
-      updatedGroupList = {
+
+      updateGroup({
         users: updatedusers.map((item) => item.id) as any,
         admins: users.admins.map((item) => item.id) as any,
         name: users.name,
-      };
-      updateGroup(updatedGroupList as any);
+      } as any);
     }
   };
 
@@ -91,7 +79,7 @@ export function UsersList({
       ? usersUpdate.filter(
           (item) => !watch('admins').some((admin: any) => item.id === admin.id)
         )
-      : (users as TGroupList);
+      : (users as TGroup);
 
   const list = isAddNew ? usersList : filterSelectedAdmins;
 
@@ -130,30 +118,39 @@ export function UsersList({
           <div className="w-full space-y-4 h-72 overflow-auto">
             {Array.isArray(updatedList) &&
               updatedList.map((item: any) => (
-                <div
-                  key={'id' in item ? item.id : 'key'}
-                  className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
-                >
-                  {'id' in item && (
-                    <BaseCustomCheckBox
-                      key={item.id}
-                      name="users"
-                      data={item}
-                      label={'email' in item ? item.email : ''}
-                      id={`checkbox-${item.id}`}
-                      control={control}
-                    />
-                  )}
-                  <label
-                    className="mx-1"
-                    htmlFor={`checkbox-${'id' in item ? item.id : 'key'}`}
-                  >
-                    <Typography variant="body2" color="neutral">
-                      {'name' in item ? item.name : ''}
-                    </Typography>
-                  </label>
-                  <Circle id className="mr-auto" />
-                </div>
+                <AddCardList
+                  key={item.id}
+                  id={`checkbox-${item.id}`}
+                  label={'email' in item ? item.email : ''}
+                  // selectedValue={watch('admins')}
+                  name="users"
+                  data={item}
+                  control={control}
+                />
+                // <div
+                //   key={'id' in item ? item.id : 'key'}
+                //   className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
+                // >
+                //   {'id' in item && (
+                //     <BaseCustomCheckBox
+                //       key={item.id}
+                //       name="users"
+                //       data={item}
+                //       label={'email' in item ? item.email : ''}
+                //       id={`checkbox-${item.id}`}
+                //       control={control}
+                //     />
+                //   )}
+                //   <label
+                //     className="mx-1"
+                //     htmlFor={`checkbox-${'id' in item ? item.id : 'key'}`}
+                //   >
+                //     <Typography variant="body2" color="neutral">
+                //       {'name' in item ? item.name : ''}
+                //     </Typography>
+                //   </label>
+                //   <Circle id className="mr-auto" />
+                // </div>
               ))}
           </div>
 

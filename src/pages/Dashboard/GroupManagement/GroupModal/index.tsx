@@ -1,14 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState, useRef } from 'react';
+import { useState, useRef, BaseSyntheticEvent } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import {
+  ErrorOption,
+  Field,
+  FieldArray,
+  FieldArrayPath,
+  FieldError,
+  FieldErrors,
+  FieldName,
+  FieldRefs,
   FieldValues,
   FormProvider,
+  FormState,
+  InternalFieldName,
+  RegisterOptions,
+  SubmitErrorHandler,
   SubmitHandler,
   useForm,
+  UseFormRegisterReturn,
 } from 'react-hook-form';
 
+import { GroupTabContent } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupTabContent';
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
@@ -22,44 +36,34 @@ import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
-import { IDaAs } from '@src/services/users/types';
+import { IDaAs, TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import {
+  GroupModalProps,
+  GroupTabsRefType,
+} from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { AdminsList } from './AdminsList';
+// import { AdminsList } from './AdminsList';
 import { UsersList } from './UsersList';
-import { TGroupList } from '../type';
-
-type PropsType = {
-  handleClose: (isUpdated?: boolean) => void;
-  groupList?: {
-    id: string;
-    users: { id: string; email: string }[];
-    admins: { id: string; email: string }[];
-    name: string;
-    created_at: string;
-    updated_at: string;
-    image: string | undefined;
-  };
-  mutate: any;
-};
-type TabsRefType = {
-  changeTab: (index: number) => void;
-  getActiveTab?: () => number;
-};
 
 const PAGE_SIZE = 8;
 // const PAGE = 1;
 
-export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
+export function GroupModal({
+  handleClose,
+  group,
+  mutate,
+  loadingGroup,
+}: GroupModalProps) {
   const { t } = useTranslation();
-  const tabsRef = useRef<TabsRefType>(null);
+  const tabsRef = useRef<GroupTabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [isAddNew, setIsAddNew] = useState(false);
 
-  const handleChangeTab = () => {
-    if (tabsRef.current) {
-      tabsRef.current.changeTab(1);
-    }
-  };
+  // const handleChangeTab = () => {
+  //   if (tabsRef.current) {
+  //     tabsRef.current.changeTab(1);
+  //   }
+  // };
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
     pageSize: PAGE_SIZE,
@@ -70,18 +74,18 @@ export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
     endpoint,
     http.fetcherSWR
   );
-  const listDaas = data?.data?.results ?? [];
+  const listDaas: IDaAs[] = data?.data?.results ?? [];
   // const countPage = data?.data?.count || 0;
 
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
       image: '',
-      name: groupList?.id ? groupList.name : '',
+      name: group?.id ? group.name : '',
     },
   });
 
-  const createGroup = async (list: TGroupList) => {
+  const createGroup = async (list: TGroup) => {
     setLoading(true);
     await API_USERS_GROUPS_CREATE(list)
       .then(() => {
@@ -97,10 +101,10 @@ export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
       });
   };
 
-  const updateGroup = async (updatedList: TGroupList) => {
-    if (!groupList?.id) return;
+  const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
+    if (!group?.id) return;
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(updatedList, groupList?.id)
+    await API_USERS_GROUPS_UPDATE(updatedList, group?.id)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         mutate();
@@ -114,9 +118,9 @@ export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
       });
   };
 
-  const groups = !groupList?.id ? listDaas : groupList;
+  // const groups = !group?.id ? listDaas : group;
 
-  const onSubmit: SubmitHandler<TGroupList> = (listData) => {
+  const onSubmit: SubmitHandler<TGroup> = (listData) => {
     const formData = new FormData();
     formData.append('name', listData.name);
     listData.users.map((item) => formData.append('users', item.id));
@@ -124,33 +128,35 @@ export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
 
     createGroup(formData as any);
   };
+  console.log(group, '====');
+
   return (
     <div className="p-5 w-full flex flex-col items-center">
+      <div className="w-full">
+        <IconButton
+          icon="ph:x"
+          className="flex self-end"
+          size="xl"
+          onClick={handleClose}
+        />
+      </div>
+      <Typography className=" -mt-8" variant="h4" color="teal">
+        {t(`groupManagement.${group ? 'editGroup' : 'createGroup'}`)}
+      </Typography>
       <FormProvider {...methods}>
         <form
           onSubmit={methods.handleSubmit(onSubmit as any)}
           className="flex flex-col items-center w-full"
         >
-          <div className="w-full">
-            <IconButton
-              icon="ph:x"
-              className="flex self-end"
-              size="xl"
-              onClick={handleClose}
-            />
-          </div>
-          <Typography className=" -mt-8" variant="h4" color="teal">
-            {t(`groupManagement.${groupList ? 'editGroup' : 'createGroup'}`)}
-          </Typography>
           <div className="flex gap-3 items-center  w-10/12 h-28 ">
             <BaseUploadInput
               name="image"
               control={methods.control}
-              type={groupList ? 'edit' : 'add'}
+              type={group ? 'edit' : 'add'}
               setValue={methods.setValue}
               // onClick={handleGetImageData}
               clearErrors={methods.clearErrors}
-              defaultValue={groupList?.id ? groupList?.image : ''}
+              defaultValue={group?.id ? group?.image : ''}
               rules={undefined}
             />
             <BaseInput
@@ -166,37 +172,35 @@ export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
               fullWidth
             />
           </div>
-
           <BaseTabs ref={tabsRef} className="px-12 pb-10">
             <BaseTab
-              label={t(
-                `groupManagement.${groupList ? 'admins' : 'choiceAdmins'}`
-              )}
+              label={t(`groupManagement.${group ? 'admins' : 'choiceAdmins'}`)}
             >
-              {!groups ? (
-                <LoadingSpinner />
-              ) : (
-                <AdminsList
-                  updateGroup={updateGroup}
-                  handleChangeTab={handleChangeTab}
-                  listDaas={listDaas}
-                  control={methods.control}
-                  admins={groups as any}
-                  setIsAddNew={setIsAddNew}
-                  isAddNew={isAddNew}
-                />
-              )}
+              <GroupTabContent
+                group={group}
+                control={methods.control}
+                onUpdateGroup={handleUpdateGroup}
+                loading={loadingGroup}
+                onAddNewMember={() => {}}
+                isAdmins
+              />
             </BaseTab>
             <BaseTab
-              label={t(
-                `groupManagement.${groupList ? 'users' : 'choiceUsers'}`
-              )}
+              label={t(`groupManagement.${group ? 'users' : 'choiceUsers'}`)}
             >
-              {!groups ? (
+              <GroupTabContent
+                group={group}
+                control={methods.control}
+                onUpdateGroup={handleUpdateGroup}
+                loading={loadingGroup}
+                onAddNewMember={() => {}}
+              />
+
+              {/* {!groups ? (
                 <LoadingSpinner />
               ) : (
                 <UsersList
-                  updateGroup={updateGroup}
+                  updateGroup={handleUpdateGroup}
                   loading={loading}
                   listDaas={listDaas}
                   control={methods.control}
@@ -204,7 +208,7 @@ export function GroupModal({ handleClose, groupList, mutate }: PropsType) {
                   setIsAddNew={setIsAddNew}
                   isAddNew={isAddNew}
                 />
-              )}
+              )} */}
             </BaseTab>
           </BaseTabs>
         </form>

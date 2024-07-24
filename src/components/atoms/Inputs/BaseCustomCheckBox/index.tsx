@@ -13,7 +13,7 @@ export function BaseCustomCheckBox(props: BaseCustomCheckBoxProps<any>) {
     defaultValue,
     intent,
     size,
-    hiddenError,
+    // hiddenError,
     label,
     className,
     disabled,
@@ -80,7 +80,7 @@ export function BaseCustomCheckBox(props: BaseCustomCheckBoxProps<any>) {
                 {label}
               </label>
             </div>
-            {!hiddenError && (
+            {error?.message && (
               <Typography color="red" variant="caption" className="h-6">
                 {error?.message ?? ''}
               </Typography>

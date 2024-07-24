@@ -17,7 +17,7 @@ export interface BaseCustomCheckBoxProps<T extends FieldValues>
   setError?: UseFormSetError<T>;
   defaultValue?: string;
   label?: string;
-  hiddenError?: boolean;
+  // hiddenError?: boolean;
   className?: string;
   disabled?: boolean;
   data?: any;

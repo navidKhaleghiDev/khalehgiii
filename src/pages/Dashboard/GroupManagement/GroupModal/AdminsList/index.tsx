@@ -1,31 +1,29 @@
 import { BaseButton } from '@ui/atoms/BaseButton';
-import { Typography } from '@ui/atoms';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import { AddCardList } from '@src/pages/Dashboard/GroupManagement/GroupModal/components/AddCardList';
 import { Control, useFormContext } from 'react-hook-form';
-import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
-import { IDaAs } from '@src/services/users/types';
+import { IDaAs, TGroup } from '@src/services/users/types';
 import { EditCardList } from '../components/EditCardList';
-import { TGroupList, TGroupListUpdate } from '../../type';
+import { TGroupListUpdate } from '../../type';
 
 type TAdminsListProps = {
-  admins: TGroupList;
+  admins: TGroup;
   control: Control<any>;
   isAddNew: boolean;
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
   listDaas: IDaAs[];
   handleChangeTab: () => void;
-  updateGroup: (updatedList: TGroupList) => void;
+  onUpdateGroup: (updatedList: TGroup) => void;
 };
-type GroupsType = IDaAs[] | TGroupList;
+type GroupsType = IDaAs[] | TGroup;
 
 let updatedGroupList: TGroupListUpdate;
 
-function isTGroupList(groups: GroupsType): groups is TGroupList {
-  return (groups as TGroupList).id !== undefined;
+function isTGroupList(groups: GroupsType): groups is TGroup {
+  return (groups as TGroup).id !== undefined;
 }
 
 export function AdminsList({
@@ -35,7 +33,7 @@ export function AdminsList({
   setIsAddNew,
   listDaas,
   handleChangeTab,
-  updateGroup,
+  onUpdateGroup,
 }: TAdminsListProps) {
   const { t } = useTranslation();
   const { watch } = useFormContext();
@@ -56,12 +54,11 @@ export function AdminsList({
   const handleUpdateGroupData = () => {
     const mergedAdmins = [...admins.admins, ...watch('admins')];
 
-    updatedGroupList = {
+    onUpdateGroup({
       users: admins.users.map((item) => item.id) as any,
       admins: mergedAdmins.map((item) => item.id),
       name: admins.name,
-    };
-    updateGroup(updatedGroupList as any);
+    } as any);
   };
 
   const handleRemoveItem = (id: string) => {
@@ -72,7 +69,7 @@ export function AdminsList({
         admins: updatedAdmins.map((item) => item.id) as any,
         name: admins.name,
       };
-      updateGroup(updatedGroupList as any);
+      onUpdateGroup(updatedGroupList as any);
     }
   };
 
@@ -118,32 +115,16 @@ export function AdminsList({
         <div className="flex flex-col items-center ">
           <div className="w-full space-y-4 h-72 overflow-auto">
             {Array.isArray(list) &&
-              list.map((item: IDaAs | TGroupList) => (
-                <div
-                  key={'id' in item ? item.id : 'key'}
-                  className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
-                >
-                  {'id' in item && (
-                    <BaseCustomCheckBox
-                      defaultValue={watch('admins')}
-                      key={item.id}
-                      name="admins"
-                      data={item}
-                      label={'email' in item ? item.email : ''}
-                      id={`checkbox-${item.id}`}
-                      control={control}
-                    />
-                  )}
-                  <label
-                    className="mx-1"
-                    htmlFor={`checkbox-${'id' in item ? item.id : 'key'}`}
-                  >
-                    <Typography variant="body2" color="neutral">
-                      {'name' in item ? item.name : ''}
-                    </Typography>
-                  </label>
-                  <Circle id className="mr-auto" />
-                </div>
+              list.map((item: IDaAs | TGroup) => (
+                <AddCardList
+                  key={item.id}
+                  id={item.id}
+                  label={'email' in item ? item.email : ''}
+                  selectedValue={watch('admins')}
+                  name="admins"
+                  data={item}
+                  control={control}
+                />
               ))}
           </div>
 

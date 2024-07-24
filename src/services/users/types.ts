@@ -85,3 +85,19 @@ export interface IUser {
   secret?: string | undefined;
   totp_secret?: string | null;
 }
+
+export type TGroup = {
+  id?: string;
+  users: { id: string; email: string }[];
+  admins: { id: string; email: string }[];
+  name: string;
+  created_at: string;
+  updated_at: string;
+  image: string | undefined;
+};
+
+export type UpdateGroupPayload = {
+  users: string[];
+  admins: string[];
+  name: string;
+};
