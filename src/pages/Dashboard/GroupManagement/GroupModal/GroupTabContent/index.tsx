@@ -14,6 +14,7 @@ export type GroupTabContentProps = {
   loading?: boolean;
   control: Control<any>;
   onAddNewMember: any;
+  activeTab: number;
   onUpdateGroup: (updatedList: UpdateGroupPayload) => void;
 };
 
@@ -24,6 +25,7 @@ export function GroupTabContent({
   isAdmins,
   loading,
   onAddNewMember,
+  activeTab,
 }: GroupTabContentProps) {
   // const { t } = useTranslation();
   // const { watch } = useFormContext();
@@ -64,6 +66,7 @@ export function GroupTabContent({
         />
       ) : (
         <AddNewMember
+          activeTab={activeTab}
           control={control}
           isUpdatingGroupMember={isUpdatingGroupMember}
           onCancel={toggleAddNewMember}

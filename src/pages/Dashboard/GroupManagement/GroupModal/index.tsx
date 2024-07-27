@@ -1,25 +1,12 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState, useRef, BaseSyntheticEvent } from 'react';
+import { useState, useRef } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import {
-  ErrorOption,
-  Field,
-  FieldArray,
-  FieldArrayPath,
-  FieldError,
-  FieldErrors,
-  FieldName,
-  FieldRefs,
   FieldValues,
   FormProvider,
-  FormState,
-  InternalFieldName,
-  RegisterOptions,
-  SubmitErrorHandler,
   SubmitHandler,
   useForm,
-  UseFormRegisterReturn,
 } from 'react-hook-form';
 
 import { GroupTabContent } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupTabContent';
@@ -41,10 +28,7 @@ import {
   GroupModalProps,
   GroupTabsRefType,
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
-import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
-// import { AdminsList } from './AdminsList';
-import { UsersList } from './UsersList';
 
 const PAGE_SIZE = 8;
 // const PAGE = 1;
@@ -72,11 +56,8 @@ export function GroupModal({
   const [loading, setLoading] = useState<boolean>(false);
   const [isAddNew, setIsAddNew] = useState(false);
 
-  // const handleChangeTab = () => {
-  //   if (tabsRef.current) {
-  //     tabsRef.current.changeTab(1);
-  //   }
-  // };
+  const activeTab = tabsRef.current?.getActiveTab ?? 0;
+
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
     pageSize: PAGE_SIZE,
@@ -97,17 +78,7 @@ export function GroupModal({
       name: group?.id ? group.name : '',
     },
   });
-  const {
-    clearErrors,
-    setError,
-    control,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState: { errors },
-  } = methods;
-
-  console.log({ errors });
+  const { clearErrors, control, handleSubmit, setValue, getValues } = methods;
 
   const createGroup = async (list: TGroup) => {
     setLoading(true);
@@ -232,6 +203,7 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'users' : 'choiceUsers'}`)}
             >
               <GroupTabContent
+                activeTab={activeTab}
                 group={group}
                 control={control}
                 onUpdateGroup={handleUpdateGroup}

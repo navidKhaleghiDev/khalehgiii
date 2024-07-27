@@ -14,7 +14,7 @@ export function BaseTab({ children, className }: IBaseTabProps): JSX.Element {
 
 const BaseTabs = forwardRef(
   ({ children, label, className }: IBaseTabsProps, ref): JSX.Element => {
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab, setActiveTab] = useState<number>(0);
     const { lang } = useLanguage();
 
     const radiusIndexOne = lang === 'en' ? 'rounded-tl-md' : 'rounded-tr-md';
@@ -36,7 +36,7 @@ const BaseTabs = forwardRef(
           setActiveTab(index);
         }
       },
-      getActiveTab: () => activeTab,
+      getActiveTab: activeTab,
     }));
 
     return (

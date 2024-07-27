@@ -28,6 +28,7 @@ type AddNewMemberProps = {
   onClickMainButton: () => void;
   group?: TGroup;
   isAdmins?: boolean;
+  activeTab?: number;
 };
 const PAGE_SIZE = 8;
 
@@ -38,9 +39,11 @@ export function AddNewMember({
   onClickMainButton,
   isAdmins,
   group,
+  activeTab,
 }: AddNewMemberProps) {
+  const name = isAdmins ? 'admins' : 'users';
   const { t } = useTranslation();
-  const { watch } = useFormContext();
+  const { watch, setValue } = useFormContext();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
@@ -55,25 +58,31 @@ export function AddNewMember({
   );
   const listDaas: IDaAs[] = data?.data?.results ?? [];
 
-  console.log('wwwwwwwwww', watch('admins'));
-
-  const filteredList = removeDuplicateObjectsWithId<IDaAs, TUserList>(
-    listDaas,
-    isAdmins ? group?.admins ?? [] : group?.users ?? []
-  );
+  const filteredListCreate =
+    activeTab === 1
+      ? removeDuplicateObjectsWithId(
+          listDaas,
+          watch('admins') ? watch('admins') : []
+        )
+      : listDaas;
+  const filteredList =
+    group && isUpdatingGroupMember
+      ? removeDuplicateObjectsWithId<IDaAs, TUserList>(
+          listDaas,
+          isAdmins ? group?.admins ?? [] : group?.users ?? []
+        )
+      : filteredListCreate;
 
   const handleCheckboxChange = (item: IDaAs, isChecked: boolean) => {
-    console.log({ isChecked });
-
-    // const currentItems = watch('items') || [];
-    // if (isChecked) {
-    //   setValue('items', [...currentItems, item]);
-    // } else {
-    //   setValue(
-    //     'items',
-    //     currentItems.filter((i) => i.id !== item.id)
-    //   );
-    // }
+    const currentItems = watch(name) || [];
+    if (isChecked) {
+      setValue(name, [...currentItems, item]);
+    } else {
+      setValue(
+        name,
+        currentItems.filter((i: { id: string }) => i.id !== item.id)
+      );
+    }
   };
 
   return (
@@ -91,8 +100,7 @@ export function AddNewMember({
                 handleCheckboxChange(item, e.target.checked);
               }}
               // selectedValue={watch('admins')}
-              name={isAdmins ? 'admins' : 'users'}
-              data={item}
+              name={name}
               control={control}
             />
           ))}
@@ -113,7 +121,7 @@ export function AddNewMember({
         )}
         <BaseButton
           label={
-            isUpdatingGroupMember
+            isUpdatingGroupMember || activeTab === 1
               ? t('global.confirm')
               : t('groupManagement.next')
           }
