@@ -3,16 +3,10 @@ import { useCallback, useState } from 'react';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { Control } from 'react-hook-form';
-import { IDaAs, TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
 import { AddNewMember } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupTabContent/AddNewMember';
-import { IResponsePagination } from '@src/types/services';
-import useSWR from 'swr';
-import { http } from '@src/services/http';
-import { createAPIEndpoint } from '@src/helper/utils';
-import { LoadingSpinner } from '@ui/molecules/Loading';
-
-import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { EditGroupMembers } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupTabContent/EditGroupMembers';
+import { LoadingSpinner } from '@ui/molecules/Loading';
 
 export type GroupTabContentProps = {
   group?: TGroup;
@@ -61,7 +55,7 @@ export function GroupTabContent({
       />
       {loading ? (
         <LoadingSpinner />
-      ) : group && !isUpdatingGroupMember ? (
+      ) : !isUpdatingGroupMember && group ? (
         <EditGroupMembers
           group={group}
           onUpdateGroup={onUpdateGroup}
@@ -74,7 +68,8 @@ export function GroupTabContent({
           isUpdatingGroupMember={isUpdatingGroupMember}
           onCancel={toggleAddNewMember}
           onClickMainButton={onAddNewMember}
-          name={isAdmins ? 'admins' : 'users'}
+          isAdmins={isAdmins}
+          group={group}
         />
       )}
     </div>

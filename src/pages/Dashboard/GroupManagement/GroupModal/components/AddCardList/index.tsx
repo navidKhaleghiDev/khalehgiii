@@ -1,5 +1,8 @@
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
+import { BaseCheckBoxProps } from '@ui/atoms/Inputs/BaseCheckBox/types';
 import { BaseCustomCheckBox } from '@ui/atoms/Inputs/BaseCustomCheckBox';
+import { FieldValues } from 'react-hook-form';
 
 type AddCardListProps = {
   id: string;
@@ -8,6 +11,7 @@ type AddCardListProps = {
   name: string;
   data: any;
   control: any;
+  onChangeCheckBox: BaseCheckBoxProps<FieldValues>['onChange'];
 };
 
 export function AddCardList({
@@ -16,6 +20,7 @@ export function AddCardList({
   selectedValue,
   name,
   data,
+  onChangeCheckBox,
   control,
 }: AddCardListProps) {
   return (
@@ -24,15 +29,25 @@ export function AddCardList({
       className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
     >
       {id && (
-        <BaseCustomCheckBox
+        <BaseCheckBox
           defaultValue={selectedValue}
           key={id}
           name={name}
-          data={data}
+          onChange={onChangeCheckBox}
+          // data={data}
           label={label}
           id={`checkbox-${id}`}
           control={control}
         />
+        // <BaseCustomCheckBox
+        //   defaultValue={selectedValue}
+        //   key={id}
+        //   name={name}
+        //   data={data}
+        //   label={label}
+        //   id={`checkbox-${id}`}
+        //   control={control}
+        // />
       )}
       <Circle id className="mr-auto" />
     </div>

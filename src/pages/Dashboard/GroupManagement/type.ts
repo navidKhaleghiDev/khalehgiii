@@ -5,7 +5,7 @@ export type TGroupModal = {
   groupList?: TGroup;
 };
 
-export type TUser = [{ id: string; email: string }];
+export type TUserList = { id: string; email: string }[];
 
 export type TGroupListUpdate = {
   users: { id: string }[];

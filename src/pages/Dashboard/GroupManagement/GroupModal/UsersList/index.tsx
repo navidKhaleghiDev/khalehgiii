@@ -11,7 +11,7 @@ import {
   TUsersListProps,
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { EditCardList } from '../components/EditCardList';
-import { TUser } from '../../type';
+import { TUserList } from '../../type';
 
 function isTGroupList(groups: GroupsType): groups is TGroup {
   return (groups as TGroup).id !== undefined;
@@ -72,7 +72,7 @@ export function UsersList({
       )
     : [];
 
-  const usersUpdate = users as unknown as TUser;
+  const usersUpdate = users as unknown as TUserList;
 
   const filterSelectedAdmins =
     watch('admins') !== undefined

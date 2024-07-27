@@ -1,3 +1,4 @@
+import { ChangeEventHandler } from 'react';
 import { VariantProps } from 'class-variance-authority';
 import {
   Control,
@@ -20,4 +21,5 @@ export interface BaseCheckBoxProps<T extends FieldValues>
   hiddenError?: boolean;
   className?: string;
   disabled?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

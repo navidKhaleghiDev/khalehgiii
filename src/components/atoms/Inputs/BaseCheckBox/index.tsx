@@ -17,6 +17,7 @@ export function BaseCheckBox(props: BaseCheckBoxProps<any>) {
     label,
     className,
     disabled,
+    onChange,
   } = props;
   return (
     <Controller
@@ -32,7 +33,13 @@ export function BaseCheckBox(props: BaseCheckBoxProps<any>) {
               type="checkbox"
               name={field.name}
               value={field.value ?? ''}
-              onChange={field.onChange}
+              onChange={(e) => {
+                if (onChange) {
+                  onChange(e);
+                  return;
+                }
+                field.onChange(e);
+              }}
               className={baseCheckBoxStyles({
                 intent: error?.message ? 'error' : intent,
                 className: 'pl-8',

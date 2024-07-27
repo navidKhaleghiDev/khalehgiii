@@ -1,26 +1,33 @@
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
-import { Control } from 'react-hook-form';
+import { Control, useFormContext } from 'react-hook-form';
 import { AddCardList } from '@src/pages/Dashboard/GroupManagement/GroupModal/components/AddCardList';
-import { IDaAs } from '@src/services/users/types';
+import { IDaAs, TGroup } from '@src/services/users/types';
 
-import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
-import { debounce } from 'lodash';
 import { IResponsePagination } from '@src/types/services';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
+import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
 
-import { EditGroupMembers } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupTabContent/EditGroupMembers';
+function removeDuplicateObjectsWithId<
+  TBaseList extends { id: string },
+  TList extends { id: string }[]
+>(baseList: TBaseList[], ...lists: TList[]): TBaseList[] {
+  return baseList.filter(
+    (item) => !lists.some((list) => list.some((item2) => item.id === item2.id))
+  );
+}
 
 type AddNewMemberProps = {
   control: Control<any>;
   isUpdatingGroupMember: boolean;
   onCancel: () => void;
   onClickMainButton: () => void;
-  name: string;
+  group?: TGroup;
+  isAdmins?: boolean;
 };
 const PAGE_SIZE = 8;
 
@@ -29,10 +36,11 @@ export function AddNewMember({
   isUpdatingGroupMember,
   onCancel,
   onClickMainButton,
-  name,
+  isAdmins,
+  group,
 }: AddNewMemberProps) {
   const { t } = useTranslation();
-  // const { watch } = useFormContext();
+  const { watch } = useFormContext();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
@@ -47,19 +55,43 @@ export function AddNewMember({
   );
   const listDaas: IDaAs[] = data?.data?.results ?? [];
 
+  console.log('wwwwwwwwww', watch('admins'));
+
+  const filteredList = removeDuplicateObjectsWithId<IDaAs, TUserList>(
+    listDaas,
+    isAdmins ? group?.admins ?? [] : group?.users ?? []
+  );
+
+  const handleCheckboxChange = (item: IDaAs, isChecked: boolean) => {
+    console.log({ isChecked });
+
+    // const currentItems = watch('items') || [];
+    // if (isChecked) {
+    //   setValue('items', [...currentItems, item]);
+    // } else {
+    //   setValue(
+    //     'items',
+    //     currentItems.filter((i) => i.id !== item.id)
+    //   );
+    // }
+  };
+
   return (
     <div className="flex flex-col items-center ">
       {isLoading ? (
         <LoadingSpinner />
       ) : (
         <div className="w-full space-y-4 h-72 overflow-auto">
-          {listDaas.map((item: IDaAs) => (
+          {filteredList.map((item: IDaAs) => (
             <AddCardList
               key={item.id}
               id={item.id}
               label={'email' in item ? item.email : ''}
+              onChangeCheckBox={(e) => {
+                handleCheckboxChange(item, e.target.checked);
+              }}
               // selectedValue={watch('admins')}
-              name={name}
+              name={isAdmins ? 'admins' : 'users'}
               data={item}
               control={control}
             />
