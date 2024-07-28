@@ -36,7 +36,7 @@ const BaseTabs = forwardRef(
           setActiveTab(index);
         }
       },
-      getActiveTab: activeTab,
+      getActiveTab: () => activeTab,
     }));
 
     return (

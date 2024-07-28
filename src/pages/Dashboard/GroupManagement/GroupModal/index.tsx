@@ -13,24 +13,18 @@ import { GroupTabContent } from '@src/pages/Dashboard/GroupManagement/GroupModal
 import { useTranslation } from 'react-i18next';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
-import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import { createAPIEndpoint } from '@src/helper/utils';
 import {
   API_USERS_GROUPS_CREATE,
   API_USERS_GROUPS_UPDATE,
 } from '@src/services/users';
-import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
 import { toast } from 'react-toastify';
-import useSWR from 'swr';
-import { IDaAs, TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
 import {
   GroupModalProps,
   GroupTabsRefType,
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
 
-const PAGE_SIZE = 8;
 // const PAGE = 1;
 
 type GetIds = {
@@ -54,22 +48,6 @@ export function GroupModal({
   const { t } = useTranslation();
   const tabsRef = useRef<GroupTabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [isAddNew, setIsAddNew] = useState(false);
-
-  const activeTab = tabsRef.current?.getActiveTab ?? 0;
-
-  const endpoint = createAPIEndpoint({
-    endPoint: E_USERS_DAAS,
-    pageSize: PAGE_SIZE,
-    currentPage: 1,
-    filterQuery: '',
-  });
-  const { data } = useSWR<IResponsePagination<IDaAs>>(
-    endpoint,
-    http.fetcherSWR
-  );
-  const listDaas: IDaAs[] = data?.data?.results ?? [];
-  // const countPage = data?.data?.count || 0;
 
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -113,14 +91,11 @@ export function GroupModal({
       });
   };
 
-  // const groups = !group?.id ? listDaas : group;
-
   const onSubmit: SubmitHandler<TGroup> = (listData) => {
     const formData = new FormData();
     formData.append('name', listData.name);
     listData.users.map((item) => formData.append('users', item.id));
     listData.admins.map((item) => formData.append('admins', item.id));
-
     createGroup(formData as any);
   };
 
@@ -171,10 +146,11 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'admins' : 'choiceAdmins'}`)}
             >
               <GroupTabContent
+                activeTab={0}
                 group={group}
                 control={control}
                 onUpdateGroup={handleUpdateGroup}
-                loading={loadingGroup}
+                loading={loadingGroup || loading}
                 onAddNewMember={() => {
                   const adminsIds = getIds({
                     formList: getValues('admins'),
@@ -203,45 +179,27 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'users' : 'choiceUsers'}`)}
             >
               <GroupTabContent
-                activeTab={activeTab}
+                activeTab={1}
                 group={group}
                 control={control}
                 onUpdateGroup={handleUpdateGroup}
-                loading={loadingGroup}
+                loading={loadingGroup || loading}
                 onAddNewMember={() => {
-                  // const adminsIds = getIds({
-                  //   formList: getValues('admins'),
-                  //   list: group?.users,
-                  // });
-
-                  // if (group) {
-                  //   const usersIds = group.users.map((item) => item.id);
-
-                  //   handleUpdateGroup({
-                  //     users: usersIds,
-                  //     admins: adminsIds,
-                  //     name: group?.name,
-                  //   });
-                  //   return;
-                  // }
-
-                  handleSubmit(onSubmit as any);
+                  if (!group) handleSubmit(onSubmit as any)();
+                  const usersIds = getIds({
+                    formList: getValues('users'),
+                    list: group?.users,
+                  });
+                  if (group) {
+                    const adminsId = group.users.map((item) => item.id);
+                    handleUpdateGroup({
+                      users: usersIds,
+                      admins: adminsId,
+                      name: group?.name,
+                    });
+                  }
                 }}
               />
-
-              {/* {!groups ? (
-                <LoadingSpinner />
-              ) : (
-                <UsersList
-                  updateGroup={handleUpdateGroup}
-                  loading={loading}
-                  listDaas={listDaas}
-                  control={methods.control}
-                  users={groups}
-                  setIsAddNew={setIsAddNew}
-                  isAddNew={isAddNew}
-                />
-              )} */}
             </BaseTab>
           </BaseTabs>
         </form>

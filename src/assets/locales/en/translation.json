@@ -208,7 +208,8 @@
     "newAdmins": "New Admins",
     "users": "Users",
     "admins": "Admins",
-    "next": "Next"
+    "next": "Next",
+    "newUser": "new user"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

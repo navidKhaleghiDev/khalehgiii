@@ -1,4 +1,3 @@
-import { ChangeEventHandler } from 'react';
 import { VariantProps } from 'class-variance-authority';
 import {
   Control,

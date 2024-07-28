@@ -20,7 +20,6 @@ export function AddCardList({
   onChangeCheckBox,
   control,
 }: AddCardListProps) {
-  console.log(name, 'get the name ');
   return (
     <div
       key={id}

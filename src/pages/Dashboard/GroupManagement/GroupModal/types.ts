@@ -1,5 +1,5 @@
 import { IDaAs, TGroup } from '@src/services/users/types';
-import { Control, useFormContext } from 'react-hook-form';
+import { Control } from 'react-hook-form';
 
 export type TUsersListProps = {
   users: any;

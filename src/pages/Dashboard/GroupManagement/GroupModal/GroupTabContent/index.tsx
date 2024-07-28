@@ -59,6 +59,7 @@ export function GroupTabContent({
         <LoadingSpinner />
       ) : !isUpdatingGroupMember && group ? (
         <EditGroupMembers
+          activeTab={activeTab}
           group={group}
           onUpdateGroup={onUpdateGroup}
           onClickAddNewAdmin={toggleAddNewMember}

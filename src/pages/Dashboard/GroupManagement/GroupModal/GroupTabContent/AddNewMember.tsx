@@ -99,7 +99,6 @@ export function AddNewMember({
               onChangeCheckBox={(e) => {
                 handleCheckboxChange(item, e.target.checked);
               }}
-              // selectedValue={watch('admins')}
               name={name}
               control={control}
             />
