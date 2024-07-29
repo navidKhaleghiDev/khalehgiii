@@ -129,7 +129,7 @@ export function GroupModal({
       </Typography>
       <FormProvider {...methods}>
         <form
-          onSubmit={handleSubmit(onSubmit as any)}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-center w-full"
         >
           <div className="flex gap-3 items-center  w-10/12 h-28 ">
