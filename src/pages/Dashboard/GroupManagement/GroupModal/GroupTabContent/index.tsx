@@ -71,7 +71,7 @@ export function GroupTabContent({
           control={control}
           isUpdatingGroupMember={isUpdatingGroupMember}
           onCancel={toggleAddNewMember}
-          onClickMainButton={onAddNewMember}
+          onClickMainButton={() => onAddNewMember(isAdmins)}
           isAdmins={isAdmins}
           group={group}
         />

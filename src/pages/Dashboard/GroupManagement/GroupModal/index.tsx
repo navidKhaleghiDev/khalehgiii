@@ -25,13 +25,9 @@ import {
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
 
-// const PAGE = 1;
-
 type GetIds = {
   formList: { id: string }[];
   list?: TUserList;
-  // users: TUserList;
-  // isAdmin?: boolean;
 };
 function getIds({ formList, list }: GetIds): string[] {
   const formListIds = formList.map((item) => item.id);
@@ -73,7 +69,6 @@ export function GroupModal({
         handleClose();
       });
   };
-
   const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
     if (!group?.id) return;
     setLoading(true);
@@ -97,6 +92,27 @@ export function GroupModal({
     listData.users.map((item) => formData.append('users', item.id));
     listData.admins.map((item) => formData.append('admins', item.id));
     createGroup(formData as any);
+  };
+
+  const handleAddNewMember = (isAdmin: boolean | undefined) => {
+    const key = !isAdmin ? 'admins' : 'users';
+    if (!group && !isAdmin) handleSubmit(onSubmit as any)();
+    const updatedList1 = getIds({
+      formList: isAdmin ? getValues('admins') : getValues('users'),
+      list: isAdmin ? group?.admins : group?.users,
+    });
+    if (group) {
+      const updatedList2 = group[key].map((item) => item.id);
+      handleUpdateGroup({
+        users: isAdmin ? updatedList2 : updatedList1,
+        admins: isAdmin ? updatedList1 : updatedList2,
+        name: group?.name,
+      });
+      return;
+    }
+    if (tabsRef.current) {
+      tabsRef.current.changeTab(1);
+    }
   };
 
   return (
@@ -123,7 +139,6 @@ export function GroupModal({
               control={control}
               type={group ? 'edit' : 'add'}
               setValue={setValue}
-              // onClick={handleGetImageData}
               clearErrors={clearErrors}
               defaultValue={group?.id ? group?.image : ''}
               rules={undefined}
@@ -151,27 +166,7 @@ export function GroupModal({
                 control={control}
                 onUpdateGroup={handleUpdateGroup}
                 loading={loadingGroup || loading}
-                onAddNewMember={() => {
-                  const adminsIds = getIds({
-                    formList: getValues('admins'),
-                    list: group?.admins,
-                  });
-
-                  if (group) {
-                    const usersIds = group.users.map((item) => item.id);
-
-                    handleUpdateGroup({
-                      users: usersIds,
-                      admins: adminsIds,
-                      name: group?.name,
-                    });
-                    return;
-                  }
-
-                  if (tabsRef.current) {
-                    tabsRef.current.changeTab(1);
-                  }
-                }}
+                onAddNewMember={handleAddNewMember}
                 isAdmins
               />
             </BaseTab>
@@ -184,21 +179,7 @@ export function GroupModal({
                 control={control}
                 onUpdateGroup={handleUpdateGroup}
                 loading={loadingGroup || loading}
-                onAddNewMember={() => {
-                  if (!group) handleSubmit(onSubmit as any)();
-                  const usersIds = getIds({
-                    formList: getValues('users'),
-                    list: group?.users,
-                  });
-                  if (group) {
-                    const adminsId = group.users.map((item) => item.id);
-                    handleUpdateGroup({
-                      users: usersIds,
-                      admins: adminsId,
-                      name: group?.name,
-                    });
-                  }
-                }}
+                onAddNewMember={handleAddNewMember}
               />
             </BaseTab>
           </BaseTabs>
