@@ -91,8 +91,8 @@ export function GroupModal({
   };
 
   const handleAddNewMember = (isAdmin: boolean | undefined) => {
+    // when we wanted to update  the existed group
     const key = !isAdmin ? 'admins' : 'users';
-    if (!group && !isAdmin) handleSubmit(onSubmit)();
     const updatedList1 = getIds({
       formList: isAdmin ? getValues('admins') : getValues('users'),
       list: isAdmin ? group?.admins : group?.users,
@@ -106,6 +106,9 @@ export function GroupModal({
       });
       return;
     }
+    // when we create the new group
+    if (!group && !isAdmin) handleSubmit(onSubmit)();
+
     if (tabsRef.current) {
       tabsRef.current.changeTab(1);
     }
