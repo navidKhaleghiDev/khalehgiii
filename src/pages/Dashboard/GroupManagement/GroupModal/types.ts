@@ -14,15 +14,6 @@ export type GroupsType = IDaAs[] | TGroup;
 
 export type GroupModalProps = {
   handleClose: (isUpdated?: boolean) => void;
-  // group?: {
-  //   id: string;
-  //   users: { id: string; email: string }[];
-  //   admins: { id: string; email: string }[];
-  //   name: string;
-  //   created_at: string;
-  //   updated_at: string;
-  //   image: string | undefined;
-  // };
   group?: TGroup;
   mutate: any;
   loadingGroup?: boolean;
@@ -30,4 +21,11 @@ export type GroupModalProps = {
 export type GroupTabsRefType = {
   changeTab: (index: number) => void;
   getActiveTab?: () => number;
+};
+export type TGroupUpdate = {
+  id?: string;
+  users: { id: string; email: string }[];
+  admins: { id: string; email: string }[];
+  name: string;
+  image?: string | undefined;
 };

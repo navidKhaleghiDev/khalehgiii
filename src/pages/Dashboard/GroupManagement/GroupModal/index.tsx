@@ -2,12 +2,7 @@
 import { useState, useRef } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
-import {
-  FieldValues,
-  FormProvider,
-  SubmitHandler,
-  useForm,
-} from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { GroupTabContent } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupTabContent';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +17,7 @@ import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
 import {
   GroupModalProps,
   GroupTabsRefType,
+  TGroupUpdate,
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
 
@@ -45,7 +41,7 @@ export function GroupModal({
   const tabsRef = useRef<GroupTabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const methods = useForm<FieldValues>({
+  const methods = useForm<TGroupUpdate>({
     mode: 'onChange',
     defaultValues: {
       image: '',
@@ -86,7 +82,7 @@ export function GroupModal({
       });
   };
 
-  const onSubmit: SubmitHandler<TGroup> = (listData) => {
+  const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
     const formData = new FormData();
     formData.append('name', listData.name);
     listData.users.map((item) => formData.append('users', item.id));
@@ -96,7 +92,7 @@ export function GroupModal({
 
   const handleAddNewMember = (isAdmin: boolean | undefined) => {
     const key = !isAdmin ? 'admins' : 'users';
-    if (!group && !isAdmin) handleSubmit(onSubmit as any)();
+    if (!group && !isAdmin) handleSubmit(onSubmit)();
     const updatedList1 = getIds({
       formList: isAdmin ? getValues('admins') : getValues('users'),
       list: isAdmin ? group?.admins : group?.users,
