@@ -119,6 +119,17 @@ export function DashboardCards({
           />
         </div>
       )}
+
+      {checkPermission(permissions, EPermissionInternetLogs.VIEW) && (
+        <div className="col-span-10 md:col-span-6 xl:col-span-3">
+          <Card
+            icon={PhGlobeHemisphereWest}
+            title={t('global.knowledgeSharing')}
+            description=""
+            onClick={() => navigate(ROUTES_PATH.onlineAssistance)}
+          />
+        </div>
+      )}
     </div>
   );
 }

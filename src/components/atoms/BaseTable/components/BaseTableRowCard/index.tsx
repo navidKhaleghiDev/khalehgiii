@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+import { BaseButton } from '@ui/atoms/BaseButton';
 import {
   IComponentsHeader,
   IRowTableProps,
@@ -24,6 +25,22 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
     action: <ActionCell row={row} header={header} id={id} onClick={onClick} />,
     user: <UserCell row={row} header={header} id={id} onClick={onClick} />,
     tooltip: <TooltipCell row={row} header={header} id={id} />,
+    button: header?.buttonProps ? (
+      <BaseButton
+        label={header?.buttonProps.label}
+        fullWidth={header?.buttonProps.fullWidth}
+        className={header?.buttonProps.className}
+        startIcon={header?.buttonProps.startIcon}
+        endIcon={header?.buttonProps.endIcon}
+        disabled={header?.buttonProps.disabled}
+        size={header?.buttonProps.size}
+        type={header?.buttonProps.type}
+        loading={header?.buttonProps.loading}
+        onClick={onClick ? () => onClick('button', row, id) : undefined}
+      />
+    ) : (
+      <>---</>
+    ),
   };
 
   return components[header?.type ?? 'none'] || null;

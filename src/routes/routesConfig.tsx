@@ -22,8 +22,9 @@ import {
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
-
 import { SessionRecording } from '@src/pages/SessionRecording/indexs';
+import { OnlineAssistance } from '@src/pages/Dashboard/OnlineAssistance';
+
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
 
@@ -46,6 +47,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboard,
         element: <DashboardPage />,
+      },
+      {
+        path: ROUTES_PATH.onlineAssistance,
+        element: <OnlineAssistance />,
       },
       {
         path: ROUTES_PATH.reports,

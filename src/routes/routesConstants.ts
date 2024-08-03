@@ -13,6 +13,7 @@ export type RoutePathType =
   | 'dashboardDesktopList'
   | 'dashboardSessionRecordingList'
   | 'dashboardSessionRecording'
+  | 'onlineAssistance'
   | 'internetLog';
 
 export const RoutesName = {
@@ -28,6 +29,7 @@ export const RoutesName = {
   REPORTS: 'reports',
   SESSIONRECORDING: 'session-recording',
   INTERNETLOG: 'internet-log',
+  ONLINE_ASSISTANCE: 'online-assistance',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -36,6 +38,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
+  onlineAssistance: `/${RoutesName.DASHBOARD}/${RoutesName.ONLINE_ASSISTANCE}`,
   dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
   dashboardSessionRecording: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
   dashboardSessionRecordingList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}/:id`,

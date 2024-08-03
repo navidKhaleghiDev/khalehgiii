@@ -101,3 +101,15 @@ export type UpdateGroupPayload = {
   admins: string[];
   name: string;
 };
+
+export type OnlineAssistanceModel = {
+  id: number;
+  created_at: string;
+  admin_ip_addr: string | null;
+  in_use: boolean;
+  last_uptime: string;
+  duration_time: number;
+  knowledge_management_record_path: string;
+  admin: string;
+  user: string;
+};

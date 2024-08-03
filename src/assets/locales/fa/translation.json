@@ -197,11 +197,14 @@
     "genrateQrcode": "تولید Qrcode ",
     "activateOtp": "فعال کردن otp",
     "userInfo": "مشخصات کاربر",
-    "accessList": "لیست دسترسی"
+    "accessList": "لیست دسترسی",
+    "videoDuration": "مدت زمان ویدیو",
+    "recordDate": "تاریخ ضبط"
   },
   "groupManagement": {
     "person": "نفر",
     "label": "گروه بندی",
+    "group": "گروه",
     "createGroup": "ساخت گروه",
     "editGroup": "ویرایش گروه",
     "choiceAdmins": "انتخاب ادمین",

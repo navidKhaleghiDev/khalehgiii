@@ -6,6 +6,7 @@ export const E_USERS = '/users/';
 export const E_USERS_OTP = '/users/otp_gen';
 export const E_USERS_DAAS = '/users/daas';
 export const E_USERS_GROUPS = '/users/groups/';
+export const E_ONLINE_ASSISTANCE = '/users/online_assistance/';
 
 export const USERS_GROUPS_GET = (id: string) => `${E_USERS_GROUPS}${id}/`;
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
