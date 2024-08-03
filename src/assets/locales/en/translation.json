@@ -211,6 +211,12 @@
     "next": "Next",
     "newUser": "new user"
   },
+  "onlineAssistant": {
+    "internet": "internet",
+    "remote": "Remote Assistance",
+    "exitFromUserProfile": "Exit From User Profile",
+    "enterDesktop": "Enter Desktop"
+  },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
     "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",

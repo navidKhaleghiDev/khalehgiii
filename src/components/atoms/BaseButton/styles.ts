@@ -14,6 +14,7 @@ export const baseButtonStyles = cva(
         shadow: `${PALLET.BUTTON_COLOR.SHADOW}`,
         secondary: `${PALLET.BUTTON_COLOR.YELLOW}`,
         red: `${PALLET.BUTTON_COLOR.RED}`,
+        redBorder: `bg-white  border border-red-500 text-red-500  hover:bg-red-100 `,
         tealLink: `text-teal-600 hover:bg-neutral-200 rounded-none`,
         textLink: `hover:text-teal-800 rounded-none`,
       },
@@ -43,6 +44,7 @@ export const iconInButtonStyles = cva('fill-current ', {
       shadow: `bg-white text-teal-600 shadow-lg`,
       secondary: `${PALLET.BUTTON_COLOR.YELLOW}`,
       red: `${PALLET.BUTTON_COLOR.RED} `,
+      redBorder: `bg-white  border border-red-500 text-red-500  hover:bg-red-100 `,
       tealLink: ``,
       textLink: ``,
     },
@@ -72,6 +74,7 @@ export const iconButtonStyles = cva(
 
         yellow: 'bg-yellow-600 text-neutral-100',
         red: 'bg-red-100 text-red-600',
+        redBorder: `bg-white  border border-red-500 text-red-500  hover:bg-red-100 `,
         redNoBg: 'text-red-600',
         white: 'bg-white text-teal-600',
         default: '',

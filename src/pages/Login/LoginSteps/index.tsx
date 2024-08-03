@@ -40,9 +40,13 @@ export function LoginSteps() {
           return;
         }
         setUser(data);
-        toast.success(t('global.successfullyLogedIn'));
-        navigate(ROUTES_PATH.dashboard);
-        setIsOtpActive(true);
+        if (data.is_meta_admin) {
+          toast.success(t('global.successfullyLogedIn'));
+          navigate(ROUTES_PATH.dashboard);
+          setIsOtpActive(true);
+        } else {
+          navigate(ROUTES_PATH.loginAssistanse);
+        }
       })
       .catch((err) => {
         setError(err);

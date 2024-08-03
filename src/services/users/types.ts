@@ -35,6 +35,11 @@ export interface IDaAs {
   extra_allowed_upload_files: string[] | null;
   daas_version: string;
   chatroom_privileged: boolean;
+  member_of: [key: string] | number | [];
+  admin_group_of: [key: string] | number | [];
+  base_url: string;
+  container_id: string;
+  last_login_ip: string;
 }
 
 export interface IBodyUsersLogin {
@@ -84,12 +89,23 @@ export interface IUser {
   totp_enable?: boolean;
   secret?: string | undefined;
   totp_secret?: string | null;
+  admin_group_of: [key: string] | number;
 }
 
 export type TGroup = {
   id?: string;
-  users: { id: string; email: string }[];
-  admins: { id: string; email: string }[];
+  users: {
+    id: string;
+    email: string;
+    is_running: boolean;
+    has_online_assistance: boolean;
+  }[];
+  admins: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
   name: string;
   created_at: string;
   updated_at: string;

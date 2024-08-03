@@ -7,6 +7,7 @@ import {
   IDaAs,
   IUser,
   IBodyUsersLogout,
+  TGroup,
 } from './types';
 import {
   E_MALWARE_ANTIVIRUS,
@@ -44,7 +45,7 @@ export const API_USERS_GROUPS_UPDATE = (body: any, id: string) =>
   http.patch<IAxiosResponse<TGroupListUpdate>>(USERS_GROUPS_GET(id), body);
 
 export const API_USERS_GROUPS_GET = (id: string) =>
-  http.get<IAxiosResponse<IDaAs[]>>(USERS_GROUPS_GET(id));
+  http.get<IAxiosResponse<TGroup>>(USERS_GROUPS_GET(id));
 
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));

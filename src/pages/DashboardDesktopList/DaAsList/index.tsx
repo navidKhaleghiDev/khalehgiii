@@ -149,7 +149,6 @@ export function DaAsList() {
       setOpenModal(true);
     }
     if (action === 'details') {
-      console.log(fileType);
       setActiveDaas(fileType as IDaAs);
       setOpenOnlineAssistantModal(true);
     }
@@ -310,7 +309,7 @@ export function DaAsList() {
         open={openOnlineAssistantModal}
         setOpen={setOpenOnlineAssistantModal}
         type="success"
-        content={<OnlineAssistantDetailModal daas={activeDaas} />}
+        content={<OnlineAssistantDetailModal daas={activeDaas as IDaAs} />}
       />
     </div>
   );

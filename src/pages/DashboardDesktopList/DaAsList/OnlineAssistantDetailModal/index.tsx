@@ -9,9 +9,9 @@ type TOnlineAssistantDetailModalProps = {
 export function OnlineAssistantDetailModal({
   daas,
 }: TOnlineAssistantDetailModalProps) {
-  const { member_of: members, admin_group_of: admins } = daas;
-
   const { t } = useTranslation();
+
+  const { member_of: members, admin_group_of: admins } = daas;
 
   return (
     <div className="w-full h-full grid grid-cols-2 gap-8 p-4" dir="rtl">
@@ -21,7 +21,7 @@ export function OnlineAssistantDetailModal({
         </Typography>
         <div className="group-list">
           {Array.isArray(admins) &&
-            admins.map((adminGroup, index) => (
+            admins.map((adminGroup) => (
               <div
                 className="group-item bg-yellow-400 p-2 my-2 rounded"
                 key={adminGroup}
@@ -37,10 +37,10 @@ export function OnlineAssistantDetailModal({
         </Typography>
         <div className="group-list">
           {Array.isArray(members) &&
-            members.map((memberGroup, index) => (
+            members.map((memberGroup) => (
               <div
                 className="group-item bg-red-500 p-2 my-2 rounded"
-                key={index}
+                key={memberGroup}
               >
                 {Object.keys(memberGroup)}
               </div>

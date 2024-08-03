@@ -23,9 +23,11 @@ import {
   EPermissionUsers,
 } from '@src/types/permissions';
 
+import { LoginOnlineAssistant } from '@src/pages/LoginOnlineAssistant';
 import { SessionRecording } from '@src/pages/SessionRecording/indexs';
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
+import { AssistanseDashboard } from '../pages/LoginOnlineAssistant/AssistanseDashboard/index';
 
 const routesConfig = [
   {
@@ -46,6 +48,14 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboard,
         element: <DashboardPage />,
+      },
+      {
+        path: ROUTES_PATH.loginAssistanse,
+        element: <LoginOnlineAssistant />,
+      },
+      {
+        path: ROUTES_PATH.assistanseDashboard,
+        element: <AssistanseDashboard />,
       },
       {
         path: ROUTES_PATH.reports,
