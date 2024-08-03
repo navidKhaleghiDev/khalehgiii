@@ -17,9 +17,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
-// import { useTheme } from '@context/settings/themeContext';
 import { languageOptions } from '@src/constants/optios';
-// import { BaseSwitchOnClick } from '@ui/atoms/Inputs/BaseSwitchOnClick';
 import { API_USERS_LOGOUT } from '@src/services/users';
 import {
   checkPermission,
@@ -29,6 +27,7 @@ import {
   EPermissionDaas,
   EPermissionMalwareConfig,
 } from '@src/types/permissions';
+// import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
@@ -56,12 +55,14 @@ export function NavbarDashboard() {
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
   const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+
   async function logoutFunction() {
     const data = {
       refresh_token: refresh || '',
     };
     await API_USERS_LOGOUT(data);
   }
+
   const logout = () => {
     logoutFunction();
     setUser(null);
@@ -125,6 +126,7 @@ export function NavbarDashboard() {
           ) : null}
         </div>
 
+        {/* <HeadOnlineAssistant /> don't remove */}
         <div className="flex">
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />
