@@ -8,6 +8,7 @@ import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
+import PhListMagnifyingGlassDuotone from '@iconify-icons/ph/list-magnifying-glass-duotone';
 import {
   EPermissionDaas,
   EPermissionDaasMetaConfig,
@@ -172,6 +173,20 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       },
     ],
     permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
+    class: 'w-32 ',
+  },
+  {
+    label: 'table.onlineAssistantDetail',
+    id: 'member_of',
+    type: 'action',
+    action: [
+      {
+        action: 'details',
+        icon: PhListMagnifyingGlassDuotone,
+        color: 'neutralNoBg',
+        tooltip: 'table.onlineAssistantDetail',
+      },
+    ],
     class: 'w-32 ',
   },
 ];
