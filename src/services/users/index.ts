@@ -8,6 +8,8 @@ import {
   IUser,
   IBodyUsersLogout,
   TGroup,
+  IResponseAssistance,
+  IBodyAssistance,
 } from './types';
 import {
   E_MALWARE_ANTIVIRUS,
@@ -25,7 +27,7 @@ import {
   E_USERS_OTP_LOGIN,
   E_USERS_GROUPS,
   USERS_GROUPS_GET,
-  E_USERS_ONLINE_ASSISTANSE,
+  E_USERS_ONLINE_ASSISTANSE as E_USERS_ONLINE_ASSISTANCE,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -101,6 +103,9 @@ export const API_MALWARE_ANTIVIRUS_UPDATE = (
     body
   );
 
-export const API_ONLINE_ASSISTANSE = (body: { id: string }) => {
-  return http.post(E_USERS_ONLINE_ASSISTANSE, body);
+export const API_ONLINE_ASSISTANCE = (body: { id: string }) => {
+  return http.post<IBodyAssistance, IServerResponse<IResponseAssistance>>(
+    E_USERS_ONLINE_ASSISTANCE,
+    body
+  );
 };

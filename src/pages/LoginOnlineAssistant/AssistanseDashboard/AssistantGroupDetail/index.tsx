@@ -3,18 +3,18 @@ import { BaseButton, Typography } from '@ui/atoms';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { useTranslation } from 'react-i18next';
 import {
-  API_ONLINE_ASSISTANSE,
+  API_ONLINE_ASSISTANCE,
   API_USERS_GROUPS_GET,
 } from '@src/services/users';
 import { toast } from 'react-toastify';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TGroup } from '@src/services/users/types';
 
-type TAssistanseGroupDetailProps = {
+type TAssistanceGroupDetailProps = {
   id: string;
 };
 
-export function AssistantGroupDetail({ id }: TAssistanseGroupDetailProps) {
+export function AssistantGroupDetail({ id }: TAssistanceGroupDetailProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [memberList, setMemberList] = useState<TGroup['users']>([]);
@@ -42,8 +42,10 @@ export function AssistantGroupDetail({ id }: TAssistanseGroupDetailProps) {
       id: memberId,
     };
     setLoading(true);
-    await API_ONLINE_ASSISTANSE(object)
-      .then((data) => {})
+    await API_ONLINE_ASSISTANCE(object)
+      .then((data) => {
+        window.location.href = data?.data?.http;
+      })
       .catch((err) => {
         toast.error(err.message);
       })

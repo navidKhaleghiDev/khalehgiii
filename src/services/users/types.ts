@@ -117,3 +117,10 @@ export type UpdateGroupPayload = {
   admins: string[];
   name: string;
 };
+export interface IResponseAssistance {
+  http: string;
+  https: string;
+}
+export interface IBodyAssistance {
+  id: string;
+}

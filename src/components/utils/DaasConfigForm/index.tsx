@@ -53,6 +53,10 @@ export function DaasConfigForm({
           <BaseSwitch control={control} name="chatroom_privileged" />
         </div>
       )}
+      <div className="flex justify-between items-center px-2 col-span-3">
+        <Typography className="mb-1">{t('global.onlineAssistance')}</Typography>
+        <BaseSwitch control={control} name="has_online_assistance" />
+      </div>
 
       {/* <div className="flex justify-between items-center px-2 col-span-3">
         <Typography className="mb-1">
