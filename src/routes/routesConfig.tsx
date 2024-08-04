@@ -23,11 +23,11 @@ import {
   EPermissionUsers,
 } from '@src/types/permissions';
 
-import { LoginOnlineAssistant } from '@src/pages/LoginOnlineAssistant';
+import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { SessionRecording } from '@src/pages/SessionRecording/indexs';
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
-import { AssistanseDashboard } from '../pages/LoginOnlineAssistant/AssistanseDashboard/index';
+import { AssistanceDashboard } from '../pages/AssistanceDashboard/index';
 
 const routesConfig = [
   {
@@ -50,12 +50,12 @@ const routesConfig = [
         element: <DashboardPage />,
       },
       {
-        path: ROUTES_PATH.loginAssistanse,
-        element: <LoginOnlineAssistant />,
+        path: ROUTES_PATH.loginAssistance,
+        element: <LoginOnlineAssistance />,
       },
       {
-        path: ROUTES_PATH.assistanseDashboard,
-        element: <AssistanseDashboard />,
+        path: ROUTES_PATH.assistanceDashboard,
+        element: <AssistanceDashboard />,
       },
       {
         path: ROUTES_PATH.reports,

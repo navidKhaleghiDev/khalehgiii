@@ -7,7 +7,7 @@ import { DASS_URL, http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 
-export function LoginOnlineAssistant() {
+export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { setUser } = useUserContext();
@@ -50,7 +50,7 @@ export function LoginOnlineAssistant() {
             onClick={navigateToExternal}
           />
           <BaseButton
-            onClick={() => navigate(ROUTES_PATH.assistanseDashboard)}
+            onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
             label={t('onlineAssistant.remote')}
           />
           <BaseButton

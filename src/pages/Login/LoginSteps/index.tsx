@@ -45,7 +45,7 @@ export function LoginSteps() {
           navigate(ROUTES_PATH.dashboard);
           setIsOtpActive(true);
         } else {
-          navigate(ROUTES_PATH.loginAssistanse);
+          navigate(ROUTES_PATH.loginAssistance);
         }
       })
       .catch((err) => {

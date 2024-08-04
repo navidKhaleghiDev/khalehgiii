@@ -176,7 +176,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     class: 'w-32 ',
   },
   {
-    label: 'table.onlineAssistantDetail',
+    label: 'global.onlineAssistanceDetail',
     id: 'member_of',
     type: 'action',
     action: [
@@ -184,7 +184,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         action: 'details',
         icon: PhListMagnifyingGlassDuotone,
         color: 'neutralNoBg',
-        tooltip: 'table.onlineAssistantDetail',
+        tooltip: 'global.onlineAssistanceDetail',
       },
     ],
     class: 'w-32 ',

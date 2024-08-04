@@ -2,9 +2,9 @@ import { useRef } from 'react';
 import { useUserContext } from '@context/user/userContext';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
-import { AssistantGroupDetail } from './AssistantGroupDetail';
+import { AssistantGroupDetail } from './AssistanceGroupDetail';
 
-export function AssistanseDashboard() {
+export function AssistanceDashboard() {
   const tabsRef = useRef();
   const { user } = useUserContext();
 

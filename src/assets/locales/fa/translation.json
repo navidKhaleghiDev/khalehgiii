@@ -198,7 +198,8 @@
     "activateOtp": "فعال کردن otp",
     "userInfo": "مشخصات کاربر",
     "accessList": "لیست دسترسی",
-    "onlineAssistance": "دستیار آنلاین"
+    "onlineAssistance": "دستیار آنلاین",
+    "onlineAssistanceDetail": "جزيات دستیار"
   },
   "groupManagement": {
     "person": "نفر",

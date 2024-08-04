@@ -197,7 +197,8 @@
     "activateOtp": "activate Otp",
     "userInfo": "user Info",
     "accessList": "Access list",
-    "onlineAssistance": "Online Assistanse"
+    "onlineAssistance": "Online Assistanse",
+    "onlineAssistanceDetail": "online Assistance Detail"
   },
   "groupManagement": {
     "person": "person",
