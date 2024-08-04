@@ -10,7 +10,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useUserContext } from '@context/user/userContext';
-import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
+import { DASS_URL, STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
 import signInBoldIcon from '@iconify-icons/ph/sign-in-bold';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -71,6 +71,7 @@ export function LoginSteps() {
           setIsOtpActive(true);
         } else {
           localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
+          localStorage.setItem(DASS_URL, data?.http ? data?.http : '');
           http.setAuthHeader(data.access_token, data.refresh_token);
           handleGetProfile();
         }

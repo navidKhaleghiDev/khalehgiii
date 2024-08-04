@@ -25,6 +25,7 @@ import {
   E_USERS_OTP_LOGIN,
   E_USERS_GROUPS,
   USERS_GROUPS_GET,
+  E_USERS_ONLINE_ASSISTANSE,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -99,3 +100,7 @@ export const API_MALWARE_ANTIVIRUS_UPDATE = (
     E_MALWARE_ANTIVIRUS(id),
     body
   );
+
+export const API_ONLINE_ASSISTANSE = (body: { id: string }) => {
+  return http.post(E_USERS_ONLINE_ASSISTANSE, body);
+};
