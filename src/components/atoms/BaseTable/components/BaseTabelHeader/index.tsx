@@ -6,9 +6,10 @@ import { baseTableHeader } from '../../styles';
 
 interface PropsType {
   header: IHeaderTable[];
+  hasVerticalScroll: boolean;
 }
 
-export function BaseTabelHeader({ header }: PropsType) {
+export function BaseTabelHeader({ header, hasVerticalScroll }: PropsType) {
   const { t } = useTranslation();
 
   return (
@@ -19,7 +20,9 @@ export function BaseTabelHeader({ header }: PropsType) {
           className={baseTableHeader({
             fixed: head.fixed,
             className: `${head.class} ${
-              head.fixed && 'fixed  z-50  rounded-md -mx-2'
+              head.fixed && !hasVerticalScroll
+                ? 'fixed  z-50  rounded-md -mx-2'
+                : ''
             }`,
           })}
           dir={!head.dir ? 'ltr' : head.dir}

@@ -95,6 +95,7 @@ export interface IRowTableProps<BodyType> {
   row: BodyType;
   headers: IHeaderTable[];
   onClick?: OnClickActionsType<BodyType>;
+  hasVerticalScroll: boolean;
 }
 
 export interface ITableCell<BodyType> {

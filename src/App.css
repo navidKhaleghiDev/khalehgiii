@@ -98,3 +98,10 @@ input[type='radio'] {
   max-height: calc(65vh);
   /* height: ; */
 }
+/* In your CSS file */
+.fixed-header {
+  position: sticky;
+  left: 0;
+  background-color: inherit;
+  z-index: 50;
+}

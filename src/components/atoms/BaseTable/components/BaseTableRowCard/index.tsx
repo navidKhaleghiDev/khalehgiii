@@ -29,7 +29,12 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
   return components[header?.type ?? 'none'] || null;
 }
 
-export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
+export function RowTable({
+  row,
+  headers,
+  onClick,
+  hasVerticalScroll,
+}: IRowTableProps<any>) {
   return (
     <tbody className="relative">
       <tr className="bg-neutral-100 dark:bg-slate-800 rounded-md flex h-14 items-center px-2 my-1 w-full text-neutral-600 dark:text-gray-300">
@@ -39,7 +44,9 @@ export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
             className={baseTableRowCard({
               fixed: header.fixed,
               className: `${header.class} ${
-                header.fixed ? 'fixed z-50 rounded-md -mx-2' : ''
+                header.fixed && !hasVerticalScroll
+                  ? 'fixed z-50 rounded-md -mx-2'
+                  : ''
               }`,
             })}
             dir={header.dir || 'ltr'}
