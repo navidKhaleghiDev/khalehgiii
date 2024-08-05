@@ -199,7 +199,8 @@
     "userInfo": "مشخصات کاربر",
     "accessList": "لیست دسترسی",
     "onlineAssistance": "دستیار آنلاین",
-    "onlineAssistanceDetail": "جزيات دستیار"
+    "onlineAssistanceDetail": "جزيات دستیار",
+    "noData": "دیتایی موجود نیست"
   },
   "groupManagement": {
     "person": "نفر",
@@ -218,7 +219,9 @@
     "internet": "اینترنت",
     "remote": "دسترسی دستیار ",
     "exitFromUserProfile": "خروج از حساب کاربری",
-    "enterDesktop": "ورود به دسکتاپ"
+    "enterDesktop": "ورود به دسکتاپ",
+    "admins": "ادمین گروه های",
+    "members": "عضو گروه های"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

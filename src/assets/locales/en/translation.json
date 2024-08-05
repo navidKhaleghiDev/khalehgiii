@@ -198,7 +198,8 @@
     "userInfo": "user Info",
     "accessList": "Access list",
     "onlineAssistance": "Online Assistanse",
-    "onlineAssistanceDetail": "online Assistance Detail"
+    "onlineAssistanceDetail": "online Assistance Detail",
+    "noData": "No Data"
   },
   "groupManagement": {
     "person": "person",
@@ -217,7 +218,9 @@
     "internet": "internet",
     "remote": "Remote Assistance",
     "exitFromUserProfile": "Exit From User Profile",
-    "enterDesktop": "Enter Desktop"
+    "enterDesktop": "Enter Desktop",
+    "admins": " Admins Of Groups",
+    "members": "Member of Groups"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
