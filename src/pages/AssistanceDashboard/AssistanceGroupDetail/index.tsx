@@ -9,17 +9,18 @@ import {
 import { toast } from 'react-toastify';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TGroup } from '@src/services/users/types';
+import ToolTip from '@ui/atoms/Tooltip';
 
 type TAssistanceGroupDetailProps = {
   id: string;
 };
 
-export function AssistantGroupDetail({ id }: TAssistanceGroupDetailProps) {
+export function AssistanceGroupDetail({ id }: TAssistanceGroupDetailProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [memberList, setMemberList] = useState<TGroup['users']>([]);
 
-  const isValid = memberList && !loading && id;
+  const isValidData = memberList && !loading && id;
 
   const handleGetGroupMembers = useCallback(async () => {
     setLoading(true);
@@ -62,24 +63,36 @@ export function AssistantGroupDetail({ id }: TAssistanceGroupDetailProps) {
 
   return (
     <div className="grid w-full grid-cols-12 gap-6 mb-4">
-      {isValid ? (
-        memberList.map((member) => (
-          <div
-            key={member.id}
-            className="bg-neutral-100 rounded-lg p-2 h-12 col-span-10 md:col-span-6 xl:col-span-4 flex"
-          >
-            <div className="flex  gap-4 items-center mx-2">
-              <BaseButton
-                label={t('onlineAssistant.enterDesktop')}
-                onClick={() => handleGoToUsersDesktop(member.id)}
-              />
-              <Circle id className="bg-red-500" />
+      {isValidData ? (
+        memberList.map((member) => {
+          const onlineUser = member.is_running;
+          return (
+            <div
+              key={member.id}
+              className="bg-neutral-100 rounded-lg p-2 h-12 col-span-10 md:col-span-6 xl:col-span-4 flex"
+            >
+              <div className="flex  gap-4 items-center mx-2">
+                <ToolTip
+                  tooltip={
+                    onlineUser
+                      ? t('onlineAssistance.enterDesktop')
+                      : t('global.dontHaveAccess')
+                  }
+                >
+                  <BaseButton
+                    disabled={!onlineUser}
+                    label={t('onlineAssistance.enterDesktop')}
+                    onClick={() => handleGoToUsersDesktop(member.id)}
+                  />
+                </ToolTip>
+                <Circle id={onlineUser} />
+              </div>
+              <Typography variant="body2" color="neutral" className="mr-auto">
+                {member?.email}
+              </Typography>
             </div>
-            <Typography variant="body2" color="neutral" className="mr-auto">
-              {member?.email}
-            </Typography>
-          </div>
-        ))
+          );
+        })
       ) : (
         <LoadingSpinner />
       )}

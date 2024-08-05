@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useUserContext } from '@context/user/userContext';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
-import { AssistantGroupDetail } from './AssistanceGroupDetail';
+import { AssistanceGroupDetail } from './AssistanceGroupDetail';
 
 export function AssistanceDashboard() {
   const tabsRef = useRef();
@@ -21,7 +21,7 @@ export function AssistanceDashboard() {
 
               return (
                 <BaseTab key={adminGroup} label={label}>
-                  {id && <AssistantGroupDetail id={id} />}
+                  {id && <AssistanceGroupDetail id={id} />}
                 </BaseTab>
               );
             })}

@@ -2,13 +2,13 @@ import { IDaAs } from '@src/services/users/types';
 import { Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 
-type TOnlineAssistantDetailModalProps = {
+type TonlineAssistanceDetailModalProps = {
   daas: IDaAs;
 };
 
-export function OnlineAssistantDetailModal({
+export function OnlineAssistanceDetailModal({
   daas,
-}: TOnlineAssistantDetailModalProps) {
+}: TonlineAssistanceDetailModalProps) {
   const { t } = useTranslation();
 
   const { member_of: members, admin_group_of: admins } = daas;
@@ -17,7 +17,7 @@ export function OnlineAssistantDetailModal({
     <div className="w-full h-full grid grid-cols-2 gap-8 p-4" dir="rtl">
       <div className="admin-section">
         <Typography variant="body4" className="section-title">
-          {t('onlineAssistant.admins')}
+          {t('onlineAssistance.admins')}
         </Typography>
         <div className="group-list">
           {Array.isArray(admins) &&
@@ -33,7 +33,7 @@ export function OnlineAssistantDetailModal({
       </div>
       <div className="member-section">
         <Typography variant="body4" className="section-title">
-          {t('onlineAssistant.members')}
+          {t('onlineAssistance.members')}
         </Typography>
         <div className="group-list">
           {Array.isArray(members) &&

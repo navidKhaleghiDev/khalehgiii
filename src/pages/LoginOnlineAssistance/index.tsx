@@ -46,17 +46,17 @@ export function LoginOnlineAssistance() {
         </div>
         <div className=" relative w-full flex flex-col gap-7 justify-center h-80 ">
           <BaseButton
-            label={t('onlineAssistant.internet')}
+            label={t('onlineAssistance.internet')}
             onClick={navigateToExternal}
           />
           <BaseButton
             onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
-            label={t('onlineAssistant.remote')}
+            label={t('onlineAssistance.remote')}
           />
           <BaseButton
             onClick={logout}
             type="redBorder"
-            label={t('onlineAssistant.exitFromUserProfile')}
+            label={t('onlineAssistance.exitFromUserProfile')}
           />
         </div>
       </Card>
