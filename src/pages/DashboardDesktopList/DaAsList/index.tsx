@@ -72,7 +72,7 @@ export function DaAsList() {
   const [openModal, setOpenModal] = useState(false);
   const [openSettingModal, setOpenSettingModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [openonlineAssistanceModal, setOpenonlineAssistanceModal] =
+  const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
     useState(false);
 
   const userPermissions = useUserPermission();
@@ -150,7 +150,7 @@ export function DaAsList() {
     }
     if (action === 'details') {
       setActiveDaas(fileType as IDaAs);
-      setOpenonlineAssistanceModal(true);
+      setOpenOnlineAssistanceModal(true);
     }
   };
 
@@ -306,8 +306,8 @@ export function DaAsList() {
         }
       />
       <Modal
-        open={openonlineAssistanceModal}
-        setOpen={setOpenonlineAssistanceModal}
+        open={openOnlineAssistanceModal}
+        setOpen={setOpenOnlineAssistanceModal}
         type="success"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
       />
