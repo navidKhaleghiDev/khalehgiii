@@ -26,7 +26,6 @@ enum StatusCode {
 
 export const STORAGE_KEY_TOKEN = 't';
 export const STORAGE_KEY_REFRESH_TOKEN = 'r';
-export const DASS_URL = 'd';
 
 const headers: Readonly<Record<string, string | boolean>> = {
   Accept: 'application/json',

@@ -3,14 +3,18 @@ import { useTranslation } from 'react-i18next';
 import userIcon from '@iconify-icons/ph/user';
 import { API_USERS_LOGOUT } from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
-import { DASS_URL, http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
+import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { useEffect } from 'react';
 
 export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
+
+  const isAdminGroup =
+    Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
   const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
@@ -27,13 +31,9 @@ export function LoginOnlineAssistance() {
     navigate(ROUTES_PATH.login);
   };
 
-  const url = localStorage.getItem(DASS_URL);
-
-  const navigateToExternal = () => {
-    if (url) {
-      window.location.href = url;
-    }
-  };
+  useEffect(() => {
+    if (!isAdminGroup) navigate('/');
+  }, [isAdminGroup, navigate]);
 
   return (
     <div className="font-on bg-white dark:bg-slate-900 flex flex-col items-center justify-center min-h-screen ">
@@ -47,7 +47,7 @@ export function LoginOnlineAssistance() {
         <div className=" relative w-full flex flex-col gap-7 justify-center h-80 ">
           <BaseButton
             label={t('onlineAssistance.internet')}
-            onClick={navigateToExternal}
+            onClick={() => navigate('/')}
           />
           <BaseButton
             onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}

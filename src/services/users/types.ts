@@ -1,3 +1,4 @@
+import { TNumberObjectArray } from '@src/types/global';
 import { IUserPermissions } from '@src/types/permissions';
 // eslint-disable-next-line import/no-cycle
 import { IDaasConfig } from '../config/types';
@@ -35,8 +36,8 @@ export interface IDaAs {
   extra_allowed_upload_files: string[] | null;
   daas_version: string;
   chatroom_privileged: boolean;
-  member_of: [key: string] | number | [];
-  admin_group_of: [key: string] | number | [];
+  member_of: TNumberObjectArray;
+  admin_group_of: TNumberObjectArray;
   base_url: string;
   container_id: string;
   last_login_ip: string;
@@ -89,7 +90,7 @@ export interface IUser {
   totp_enable?: boolean;
   secret?: string | undefined;
   totp_secret?: string | null;
-  admin_group_of: [key: string] | number;
+  admin_group_of: TNumberObjectArray;
 }
 
 export type TGroup = {

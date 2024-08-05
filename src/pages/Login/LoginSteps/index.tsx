@@ -10,7 +10,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useUserContext } from '@context/user/userContext';
-import { DASS_URL, STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
+import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
 import signInBoldIcon from '@iconify-icons/ph/sign-in-bold';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -40,12 +40,12 @@ export function LoginSteps() {
           return;
         }
         setUser(data);
-        if (data.is_meta_admin) {
+        if (!data.is_meta_admin && data.admin_group_of) {
+          navigate(ROUTES_PATH.loginAssistance);
+        } else {
           toast.success(t('global.successfullyLogedIn'));
           navigate(ROUTES_PATH.dashboard);
           setIsOtpActive(true);
-        } else {
-          navigate(ROUTES_PATH.loginAssistance);
         }
       })
       .catch((err) => {
@@ -71,7 +71,6 @@ export function LoginSteps() {
           setIsOtpActive(true);
         } else {
           localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
-          localStorage.setItem(DASS_URL, data?.http ? data?.http : '');
           http.setAuthHeader(data.access_token, data.refresh_token);
           handleGetProfile();
         }

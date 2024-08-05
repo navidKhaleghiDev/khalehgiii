@@ -1,8 +1,9 @@
+import { TNumberObjectArray } from '@src/types/global';
 import { Card, Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 
 type TOnlineAssistanceDetailProps = {
-  data: number | [key: string] | [];
+  data: TNumberObjectArray;
   title: string;
 };
 
@@ -11,6 +12,7 @@ export default function OnlineAssistanceDetail({
   title,
 }: TOnlineAssistanceDetailProps) {
   const { t } = useTranslation();
+
   return (
     <div>
       <Card
@@ -22,19 +24,20 @@ export default function OnlineAssistanceDetail({
           {title}
         </Typography>
       </Card>
-      <div className="  ">
+      <div>
         {Array.isArray(data) && data.length >= 1 ? (
           data.map((item) => (
-            <Card
-              color="white"
-              border
-              borderColor="neutral"
-              shadow="sm"
-              className="h-16 flex justify-start items-center	p-4 border-2 rounded-xl my-2"
-              key={item}
-            >
-              <Typography variant="body2"> {Object.keys(item)}</Typography>
-            </Card>
+            <div key={Object.values(item).toString()}>
+              <Card
+                color="white"
+                border
+                borderColor="neutral"
+                shadow="sm"
+                className="h-16 flex justify-start items-center	p-4 border-2 rounded-xl my-2"
+              >
+                <Typography variant="body2"> {Object.keys(item)}</Typography>
+              </Card>
+            </div>
           ))
         ) : (
           <Typography className="p-6">{t('global.noData')}</Typography>

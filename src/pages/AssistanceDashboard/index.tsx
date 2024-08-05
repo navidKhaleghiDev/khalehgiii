@@ -20,7 +20,7 @@ export function AssistanceDashboard() {
               const id = Object.values(adminGroup)[0].toString();
 
               return (
-                <BaseTab key={adminGroup} label={label}>
+                <BaseTab key={id} label={label}>
                   {id && <AssistanceGroupDetail id={id} />}
                 </BaseTab>
               );
