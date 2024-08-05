@@ -109,3 +109,8 @@ export const API_ONLINE_ASSISTANCE = (body: { id: string }) => {
     body
   );
 };
+export const API_DELETE_GROUP = (id: string) => {
+  return http.delete<IBodyAssistance, IServerResponse<IResponseAssistance>>(
+    USERS_GROUPS_GET(id)
+  );
+};
