@@ -2,13 +2,13 @@ import { IDaAs } from '@src/services/users/types';
 import { Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 
-type TonlineAssistanceDetailModalProps = {
+type TOnlineAssistanceDetailModalProps = {
   daas: IDaAs;
 };
 
 export function OnlineAssistanceDetailModal({
   daas,
-}: TonlineAssistanceDetailModalProps) {
+}: TOnlineAssistanceDetailModalProps) {
   const { t } = useTranslation();
 
   const { member_of: members, admin_group_of: admins } = daas;
