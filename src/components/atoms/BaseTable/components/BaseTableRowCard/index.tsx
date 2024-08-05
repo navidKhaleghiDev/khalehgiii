@@ -42,7 +42,7 @@ export function RowTable({
           <td
             key={colIndex}
             className={baseTableRowCard({
-              fixed: header.fixed,
+              fixed: !hasVerticalScroll && header.fixed,
               className: `${header.class} ${
                 header.fixed && !hasVerticalScroll
                   ? 'fixed z-50 rounded-md -mx-2'

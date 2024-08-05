@@ -18,7 +18,7 @@ export function BaseTabelHeader({ header, hasVerticalScroll }: PropsType) {
         <tr
           key={index}
           className={baseTableHeader({
-            fixed: head.fixed,
+            fixed: !hasVerticalScroll && head.fixed,
             className: `${head.class} ${
               head.fixed && !hasVerticalScroll
                 ? 'fixed  z-50  rounded-md -mx-2'
