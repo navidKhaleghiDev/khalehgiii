@@ -17,7 +17,7 @@ export default function OnlineAssistanceDetail({
     <div>
       <Card
         color="tealDark"
-        className="h-10 flex justify-center items-center  font-semibold	p-2 rounded-xl"
+        className="h-8 flex justify-center items-center font-semibold	p-2 rounded-xl"
         shadow="sm"
       >
         <Typography variant="body3" color="white" className="section-title ">
@@ -29,11 +29,10 @@ export default function OnlineAssistanceDetail({
           data.map((item) => (
             <div key={Object.values(item).toString()}>
               <Card
-                color="white"
                 border
                 borderColor="neutral"
                 shadow="sm"
-                className="h-16 flex justify-start items-center	p-4 border-2 rounded-xl my-2"
+                className="h-19 flex justify-start items-center	p-4 border-2 rounded-2xl my-4"
               >
                 <Typography variant="body2"> {Object.keys(item)}</Typography>
               </Card>
