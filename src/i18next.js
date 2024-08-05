@@ -2,6 +2,7 @@ import i18n, { t } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './assets/locales/en/translation.json';
 import fa from './assets/locales/fa/translation.json';
+
 const lang = localStorage.getItem('lang');
 
 i18n

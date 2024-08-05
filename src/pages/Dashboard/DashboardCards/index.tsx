@@ -124,7 +124,7 @@ export function DashboardCards({
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
           <Card
             icon={PhGlobeHemisphereWest}
-            title={t('global.knowledgeSharing')}
+            title={t('global.knowledgeManagement')}
             description=""
             onClick={() => navigate(ROUTES_PATH.onlineAssistance)}
           />

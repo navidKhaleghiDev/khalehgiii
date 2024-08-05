@@ -20,6 +20,7 @@ type TTableType =
   | 'function'
   | 'user'
   | 'button'
+  | 'date'
   | 'tooltip';
 
 export type ActionOnClickActionsType =

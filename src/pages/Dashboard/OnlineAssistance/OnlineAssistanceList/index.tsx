@@ -1,47 +1,59 @@
 import { useCallback, useState } from 'react';
-import { IDaAs, OnlineAssistanceModel } from '@src/services/users/types';
+import { OnlineAssistanceModel } from '@src/services/users/types';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
-import {
-  E_ONLINE_ASSISTANCE,
-  E_USERS_DAAS,
-} from '@src/services/users/endpoint';
+import { E_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { monitoringHeaderItem } from '@src/constants/tableHeaders/monitoringHeaderItem';
-import { useNavigate } from 'react-router-dom';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { onlineAssistanceListDataMock } from '@src/pages/Dashboard/OnlineAssistance/OnlineAssistanceList/dataMock';
 import { onlineAssistanceHeaderItem } from '@src/pages/Dashboard/OnlineAssistance/constants';
-import {
-  ActionOnClickActionsType,
-  OnClickActionsType,
-  TIdItem,
-} from '@ui/atoms/BaseTable/types';
-import { StringifyProperties } from '@src/types/global';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { Modal } from '@ui/molecules/Modal';
+import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
+import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
+import { IconButton } from '@ui/atoms/BaseButton';
+import { toast } from 'react-toastify';
+import { NoResult } from '@ui/molecules/NoResult';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function OnlineAssistanceList() {
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [openModal, setOpenModal] = useState(false);
-  const [videoFile, setVideoFile] = useState<string | null>(null);
+  const [videoFile, setVideoFile] = useState<{
+    loading?: boolean;
+    file?: any;
+  } | null>(null);
 
   const userPermissions = useUserPermission();
 
-  const userHandler: OnClickActionsType<OnlineAssistanceModel> = (
+  const handleOnClickRow: OnClickActionsType<OnlineAssistanceModel> = async (
     action,
-    typeFile
+    row
   ) => {
-    console.log({ action, typeFile });
+    if (action === 'button') {
+      setOpenModal(true);
+      setVideoFile({ loading: true });
+
+      await API_KNOWLEDGE_MANAGEMENT(row?.id as string)
+        .then((res) => {
+          const blob = new Blob([res.data], { type: 'video/mp4' });
+          const videoURL = URL.createObjectURL(blob);
+          setVideoFile({ loading: false, file: videoURL });
+        })
+        .catch((err) => {
+          setOpenModal(false);
+          toast.success(
+            err.message ?? 'error on get video of knowledge management'
+          );
+        });
+    }
   };
 
   const endpoint = createAPIEndpoint({
@@ -68,7 +80,7 @@ export function OnlineAssistanceList() {
     debouncedSetFilterQuery(event.target.value);
   };
 
-  const listDaas = onlineAssistanceListDataMock ?? [];
+  const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
   const handlePageChange = (page: number) => {
@@ -87,6 +99,7 @@ export function OnlineAssistanceList() {
     value: filterQuery,
     handleSearchInput: handleFilterChange,
   };
+
   return (
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
@@ -96,7 +109,7 @@ export function OnlineAssistanceList() {
           userPermissions,
           onlineAssistanceHeaderItem
         )}
-        onClick={userHandler}
+        onClick={handleOnClickRow}
         pagination={paginationProps}
         searchBar={searchBarProps}
       />
@@ -104,15 +117,25 @@ export function OnlineAssistanceList() {
         open={openModal}
         setOpen={setOpenModal}
         content={
-          <div>
-            {videoFile && (
-              <video width="750" height="500" controls>
-                <track kind="captions" />
-                <source src={videoFile} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            )}
-          </div>
+          <LoadingWrapper isLoading={videoFile?.loading}>
+            <div className="w-full">
+              <IconButton
+                icon="ph:x"
+                className="flex self-end"
+                size="xl"
+                onClick={() => setOpenModal(false)}
+              />
+              {videoFile?.file ? (
+                <video width="750" height="500" controls>
+                  <track kind="captions" />
+                  <source src={videoFile.file} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <NoResult />
+              )}
+            </div>
+          </LoadingWrapper>
         }
         type="none"
       />

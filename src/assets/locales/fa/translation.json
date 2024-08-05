@@ -121,6 +121,7 @@
   },
   "global": {
     "userName": "نام کاربری",
+    "knowledgeManagement": "مدیریت دانش",
     "password": "گذرواژه",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",

@@ -29,8 +29,12 @@ export const E_USERS_DAAS_PAGINATION = ({
 
 export const E_USERS_DAAS_DELETE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_UPDATE = (id: string) => `/users/daas/${id}/`;
+
 export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
   `/users/reset_usage/${id}/`;
+
+export const E_KNOWLEDGE_MANAGEMENT = (id: string) =>
+  `/users/knowledge_management/?id=${id}`;
 
 export const E_USERS_DAAS_RESET_ALL_USAGE = '/users/reset_usage/';
 export const E_USERS_LOGOUT = `users/logout/`;

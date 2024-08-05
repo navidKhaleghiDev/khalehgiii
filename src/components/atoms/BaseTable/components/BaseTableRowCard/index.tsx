@@ -1,5 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { BaseButton } from '@ui/atoms/BaseButton';
+import { dateAndNumber } from '@src/helper/utils/dateUtils';
+
 import {
   IComponentsHeader,
   IRowTableProps,
@@ -14,13 +16,14 @@ import { TooltipCell } from '../CustomCell/TooltipCell';
 import { baseTableRowCard } from '../../styles';
 
 function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
-  const id = header?.id;
+  const id = header?.id as string;
 
   const components: IComponentsHeader = {
     none: <NoneCell row={row} header={header} id={id} />,
     component: (
       <ComponentCell row={row} header={header} id={id} onClick={onClick} />
     ),
+    date: <span>{dateAndNumber(row[id])}</span>,
     function: <FunctionCell row={row} header={header} id={id} />,
     action: <ActionCell row={row} header={header} id={id} onClick={onClick} />,
     user: <UserCell row={row} header={header} id={id} onClick={onClick} />,
