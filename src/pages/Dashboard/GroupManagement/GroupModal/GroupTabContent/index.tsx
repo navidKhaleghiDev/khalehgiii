@@ -16,6 +16,8 @@ export type GroupTabContentProps = {
   onAddNewMember: any;
   activeTab: number;
   onUpdateGroup: (updatedList: UpdateGroupPayload) => void;
+  isUpdatingGroupMember: boolean;
+  setIsUpdatingGroupMember: (data: boolean) => void;
 };
 
 export function GroupTabContent({
@@ -26,10 +28,9 @@ export function GroupTabContent({
   loading,
   onAddNewMember,
   activeTab,
+  isUpdatingGroupMember,
+  setIsUpdatingGroupMember,
 }: GroupTabContentProps) {
-  // const { t } = useTranslation();
-  // const { watch } = useFormContext();
-  const [isUpdatingGroupMember, setIsUpdatingGroupMember] = useState(false);
   const [filterQuery, setFilterQuery] = useState<string>('');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,6 +48,7 @@ export function GroupTabContent({
   const toggleAddNewMember = () => {
     setIsUpdatingGroupMember(!isUpdatingGroupMember);
   };
+
   return (
     <div>
       <SearchInput

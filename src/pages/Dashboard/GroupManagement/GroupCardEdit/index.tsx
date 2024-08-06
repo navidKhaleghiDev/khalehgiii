@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { API_DELETE_GROUP } from '@src/services/users';
 import { Modal } from '@ui/molecules/Modal';
+import { TGroup } from '@src/services/users/types';
 
 type GroupCardEditProps = {
   name: string;
@@ -14,6 +15,7 @@ type GroupCardEditProps = {
   id?: string;
   onClickActions?: () => void;
   mutate: any;
+  setGroupSelected: (value: undefined | TGroup) => void;
 };
 
 export function GroupCardEdit({
@@ -22,6 +24,7 @@ export function GroupCardEdit({
   image,
   onClickActions,
   mutate,
+  setGroupSelected,
 }: GroupCardEditProps) {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
@@ -34,6 +37,7 @@ export function GroupCardEdit({
       .then(() => {
         toast.success(t('global.successfullyRemoved'));
         setOpenModal(false);
+        setGroupSelected(undefined);
         mutate();
       })
       .catch((err) => {

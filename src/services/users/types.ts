@@ -98,8 +98,8 @@ export type TGroup = {
   users: {
     id: string;
     email: string;
-    is_running: boolean;
-    has_online_assistance: boolean;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
   }[];
   admins: {
     id: string;

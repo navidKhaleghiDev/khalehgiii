@@ -46,6 +46,7 @@ export function GroupManagement() {
       <div className="flex flex-wrap gap-5 my-4">
         {groupData.map((item) => (
           <GroupCardEdit
+            setGroupSelected={setGroupSelected}
             mutate={mutate}
             key={item.id}
             id={item.id}

@@ -2,6 +2,7 @@ import { BaseButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 
 import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { useFormContext } from 'react-hook-form';
 import { EditCardList } from '../components/EditCardList';
 
 type EditGroupMembersProps = {
@@ -19,19 +20,16 @@ export function EditGroupMembers({
   onClickAddNewAdmin,
   activeTab,
 }: EditGroupMembersProps) {
+  const { watch } = useFormContext();
   const { t } = useTranslation();
 
   const list = isAdmins ? group?.admins ?? [] : group?.users ?? [];
 
   const updateGroupMembers = (updatedList: { id: string; email: string }[]) => {
     return {
-      users: isAdmins
-        ? group?.users.map((item) => item.id) || []
-        : updatedList.map((item) => item.id),
-      admins: isAdmins
-        ? updatedList.map((item) => item.id)
-        : group?.admins.map((item) => item.id) || [],
-      name: group?.name,
+      users: isAdmins ? group?.users || [] : updatedList,
+      admins: isAdmins ? updatedList : group?.admins || [],
+      name: watch('name') === group?.name ? group?.name : watch('name'),
     };
   };
 
@@ -40,7 +38,7 @@ export function EditGroupMembers({
     const updatedList = list.filter((item) => item.id !== id);
     const updatedGroup = updateGroupMembers(updatedList);
 
-    onUpdateGroup(updatedGroup as UpdateGroupPayload);
+    onUpdateGroup(updatedGroup);
   };
 
   return (
