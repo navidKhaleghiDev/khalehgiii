@@ -13,9 +13,13 @@ import ToolTip from '@ui/atoms/Tooltip';
 
 type TAssistanceGroupDetailProps = {
   id: string;
+  groupName: string;
 };
 
-export function AssistanceGroupDetail({ id }: TAssistanceGroupDetailProps) {
+export function AssistanceGroupDetail({
+  id,
+  groupName,
+}: TAssistanceGroupDetailProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [memberList, setMemberList] = useState<TGroup['users']>([]);
@@ -41,6 +45,7 @@ export function AssistanceGroupDetail({ id }: TAssistanceGroupDetailProps) {
     if (!memberId) return;
     const object = {
       id: memberId,
+      group: groupName,
     };
     setLoading(true);
     await API_ONLINE_ASSISTANCE(object)

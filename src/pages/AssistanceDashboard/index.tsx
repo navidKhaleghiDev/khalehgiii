@@ -21,7 +21,7 @@ export function AssistanceDashboard() {
 
               return (
                 <BaseTab key={id} label={label}>
-                  {id && <AssistanceGroupDetail id={id} />}
+                  <AssistanceGroupDetail groupName={label} id={id} />
                 </BaseTab>
               );
             })}
