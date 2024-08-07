@@ -71,6 +71,7 @@ export function AssistanceGroupDetail({
       {isValidData ? (
         memberList.map((member) => {
           const onlineUser = member.is_running;
+          const isOnlineAssistance = member.has_online_assistance;
           return (
             <div
               key={member.id}
@@ -79,13 +80,13 @@ export function AssistanceGroupDetail({
               <div className="flex  gap-4 items-center mx-2">
                 <ToolTip
                   tooltip={
-                    onlineUser
+                    onlineUser && isOnlineAssistance
                       ? t('onlineAssistance.enterDesktop')
                       : t('global.dontHaveAccess')
                   }
                 >
                   <BaseButton
-                    disabled={!onlineUser}
+                    disabled={!onlineUser || !isOnlineAssistance}
                     label={t('onlineAssistance.enterDesktop')}
                     onClick={() => handleGoToUsersDesktop(member.id)}
                   />

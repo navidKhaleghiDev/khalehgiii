@@ -20,6 +20,7 @@ import {
   TGroupUpdate,
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { Modal } from '@ui/molecules/Modal';
+import { regexPattern } from '@ui/atoms/Inputs';
 
 const getIds = (list: TGroupUpdate) => {
   const users = list.users.map((item) => item.id);
@@ -101,6 +102,7 @@ export function GroupModal({
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
     const formData = new FormData();
     formData.append('name', listData.name);
+    if (listData.image) formData.append('image', listData?.image);
     listData.users.map((item) => formData.append('users', item.id));
     listData.admins.map((item) => formData.append('admins', item.id));
     createGroup(formData as any);
@@ -173,7 +175,9 @@ export function GroupModal({
               control={control}
               placeholder=""
               type="text"
-              rules={undefined}
+              rules={{
+                required: regexPattern.required,
+              }}
               fullWidth
             />
           </div>
@@ -227,7 +231,6 @@ export function GroupModal({
         buttonOne={{
           label: t('global.yes'),
           onClick: updateGroup,
-          loading: false,
         }}
         buttonTow={{
           label: t('global.no'),
