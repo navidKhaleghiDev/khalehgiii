@@ -11,6 +11,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
+import Pagination from '@ui/molecules/Pagination';
 
 function removeDuplicateObjectsWithId<
   TBaseList extends { id: string },
@@ -29,8 +30,11 @@ type AddNewMemberProps = {
   group?: TGroup;
   isAdmins?: boolean;
   activeTab?: number;
+  currentPage: number;
+  filterQuery: any;
+  setCurrentPage: (number: number) => void;
+  pageSize: number;
 };
-const PAGE_SIZE = 8;
 
 export function AddNewMember({
   control,
@@ -40,6 +44,10 @@ export function AddNewMember({
   isAdmins,
   group,
   activeTab,
+  currentPage,
+  filterQuery,
+  setCurrentPage,
+  pageSize,
 }: AddNewMemberProps) {
   const name = isAdmins ? 'admins' : 'users';
   const { t } = useTranslation();
@@ -47,16 +55,22 @@ export function AddNewMember({
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
-    pageSize: PAGE_SIZE,
-    currentPage: 1,
-    filterQuery: '',
+    pageSize,
+    currentPage,
+    filterQuery,
   });
 
   const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   const listDaas: IDaAs[] = data?.data?.results ?? [];
+  const countPage = data?.data?.count || 0;
 
   const filteredListCreate =
     activeTab === 1
@@ -86,50 +100,59 @@ export function AddNewMember({
   };
 
   return (
-    <div className="flex flex-col items-center ">
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <div className="w-full space-y-4 h-72 overflow-auto">
-          {filteredList.map((item: IDaAs) => (
-            <AddCardList
-              key={item.id}
-              id={item.id}
-              label={'email' in item ? item.email : ''}
-              onChangeCheckBox={(e) => {
-                handleCheckboxChange(item, e.target.checked);
-              }}
-              name={name}
-              control={control}
-            />
-          ))}
-        </div>
-      )}
+    <>
+      <div className="flex flex-col items-center ">
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="w-full space-y-4 h-72 overflow-auto">
+            {filteredList.map((item: IDaAs) => (
+              <AddCardList
+                key={item.id}
+                id={item.id}
+                label={'email' in item ? item.email : ''}
+                onChangeCheckBox={(e) => {
+                  handleCheckboxChange(item, e.target.checked);
+                }}
+                name={name}
+                control={control}
+              />
+            ))}
+          </div>
+        )}
 
-      <div className="w-full flex justify-between">
-        {isUpdatingGroupMember && (
+        <div className="w-full flex justify-between">
+          {isUpdatingGroupMember && (
+            <BaseButton
+              label={t('global.cancel')}
+              size="md"
+              onClick={onCancel}
+              type="secondary"
+              className="mt-4"
+              endIcon="pha:x"
+              disabled={isLoading}
+            />
+          )}
           <BaseButton
-            label={t('global.cancel')}
+            label={
+              isUpdatingGroupMember || activeTab === 1
+                ? t('global.confirm')
+                : t('groupManagement.next')
+            }
             size="md"
-            onClick={onCancel}
-            type="secondary"
+            onClick={onClickMainButton}
             className="mt-4"
-            endIcon="pha:x"
             disabled={isLoading}
           />
-        )}
-        <BaseButton
-          label={
-            isUpdatingGroupMember || activeTab === 1
-              ? t('global.confirm')
-              : t('groupManagement.next')
-          }
-          size="md"
-          onClick={onClickMainButton}
-          className="mt-4"
-          disabled={isLoading}
-        />
+        </div>
       </div>
-    </div>
+      {!isLoading && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(countPage / pageSize)}
+          onPageChange={handlePageChange}
+        />
+      )}
+    </>
   );
 }

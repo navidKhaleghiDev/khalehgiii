@@ -20,6 +20,9 @@ export type GroupTabContentProps = {
   setIsUpdatingGroupMember: (data: boolean) => void;
 };
 
+const PAGE_SIZE = 8;
+const PAGE = 1;
+
 export function GroupTabContent({
   group,
   control,
@@ -32,12 +35,14 @@ export function GroupTabContent({
   setIsUpdatingGroupMember,
 }: GroupTabContentProps) {
   const [filterQuery, setFilterQuery] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
     debounce((query: string) => {
+      setCurrentPage(PAGE);
       setFilterQuery(query);
-    }, 1000),
+    }, 2000),
     []
   );
 
@@ -52,7 +57,7 @@ export function GroupTabContent({
   return (
     <div>
       <SearchInput
-        name=""
+        name="search"
         value={filterQuery}
         onChange={handleFilterChange}
         className="w-full"
@@ -69,6 +74,10 @@ export function GroupTabContent({
         />
       ) : (
         <AddNewMember
+          pageSize={PAGE_SIZE}
+          currentPage={currentPage}
+          filterQuery={filterQuery}
+          setCurrentPage={setCurrentPage}
           activeTab={activeTab}
           control={control}
           isUpdatingGroupMember={isUpdatingGroupMember}
