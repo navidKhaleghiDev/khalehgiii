@@ -17,6 +17,7 @@ export type GroupModalProps = {
   group?: TGroup;
   mutate: any;
   loadingGroup?: boolean;
+  setGroupSelected: any;
 };
 export type GroupTabsRefType = {
   changeTab: (index: number) => void;

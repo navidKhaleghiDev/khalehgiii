@@ -7,6 +7,9 @@ import {
   IDaAs,
   IUser,
   IBodyUsersLogout,
+  TGroup,
+  IResponseAssistance,
+  IBodyAssistance,
 } from './types';
 import {
   E_MALWARE_ANTIVIRUS,
@@ -25,6 +28,7 @@ import {
   E_USERS_GROUPS,
   USERS_GROUPS_GET,
   E_KNOWLEDGE_MANAGEMENT,
+  E_USERS_ONLINE_ASSISTANCE,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -45,7 +49,7 @@ export const API_USERS_GROUPS_UPDATE = (body: any, id: string) =>
   http.patch<IAxiosResponse<TGroupListUpdate>>(USERS_GROUPS_GET(id), body);
 
 export const API_USERS_GROUPS_GET = (id: string) =>
-  http.get<IAxiosResponse<IDaAs[]>>(USERS_GROUPS_GET(id));
+  http.get<IAxiosResponse<TGroup>>(USERS_GROUPS_GET(id));
 
 export const API_DAAS_DELETE = (id: string) =>
   http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
@@ -107,3 +111,14 @@ export const API_KNOWLEDGE_MANAGEMENT = (id: string) =>
     },
     responseType: 'blob',
   });
+export const API_ONLINE_ASSISTANCE = (body: { id: string }) => {
+  return http.post<IBodyAssistance, IServerResponse<IResponseAssistance>>(
+    E_USERS_ONLINE_ASSISTANCE,
+    body
+  );
+};
+export const API_DELETE_GROUP = (id: string) => {
+  return http.delete<IBodyAssistance, IServerResponse<IResponseAssistance>>(
+    USERS_GROUPS_GET(id)
+  );
+};

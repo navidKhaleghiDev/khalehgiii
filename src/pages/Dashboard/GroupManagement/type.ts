@@ -8,7 +8,7 @@ export type TGroupModal = {
 export type TUserList = { id: string; email: string }[];
 
 export type TGroupListUpdate = {
-  users: { id: string }[];
-  admins: { id: string }[];
+  users: { id: string; email: string }[];
+  admins: { id: string; email: string }[];
   name: string;
 };

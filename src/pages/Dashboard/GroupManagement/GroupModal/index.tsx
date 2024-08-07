@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState, useRef } from 'react';
-import { IconButton } from '@ui/atoms/BaseButton';
+import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
@@ -19,27 +19,33 @@ import {
   GroupTabsRefType,
   TGroupUpdate,
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
-import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
+import { Modal } from '@ui/molecules/Modal';
 
-type GetIds = {
-  formList: { id: string }[];
-  list?: TUserList;
+const getIds = (list: TGroupUpdate) => {
+  const users = list.users.map((item) => item.id);
+  const admins = list.admins.map((item) => item.id);
+  return {
+    name: list.name,
+    users,
+    admins,
+  };
 };
-function getIds({ formList, list }: GetIds): string[] {
-  const formListIds = formList.map((item) => item.id);
-  const listIds = list ? list.map((item) => item.id) : [];
-  return [...formListIds, ...listIds];
-}
 
 export function GroupModal({
   handleClose,
   group,
   mutate,
   loadingGroup,
+  setGroupSelected,
 }: GroupModalProps) {
   const { t } = useTranslation();
   const tabsRef = useRef<GroupTabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [updatedData, setUpdatedData] = useState<TGroupUpdate | undefined>(
+    undefined
+  );
+  const [isUpdatingGroupMember, setIsUpdatingGroupMember] = useState(false);
 
   const methods = useForm<TGroupUpdate>({
     mode: 'onChange',
@@ -48,7 +54,15 @@ export function GroupModal({
       name: group?.id ? group.name : '',
     },
   });
-  const { clearErrors, control, handleSubmit, setValue, getValues } = methods;
+  const {
+    clearErrors,
+    control,
+    handleSubmit,
+    setValue,
+    getValues,
+    watch,
+    formState: { isDirty },
+  } = methods;
 
   const createGroup = async (list: TGroup) => {
     setLoading(true);
@@ -65,23 +79,25 @@ export function GroupModal({
         handleClose();
       });
   };
-  const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
-    if (!group?.id) return;
+  const updateGroup = async () => {
+    if (!group?.id || !updatedData) return;
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(updatedList, group?.id)
+    await API_USERS_GROUPS_UPDATE(getIds(updatedData), group?.id)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         mutate();
         handleClose();
+        setGroupSelected(undefined);
+        setOpenModal(false);
       })
       .catch((err) => {
         toast.error(err);
       })
       .finally(() => {
+        setOpenModal(false);
         setLoading(false);
       });
   };
-
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
     const formData = new FormData();
     formData.append('name', listData.name);
@@ -92,26 +108,32 @@ export function GroupModal({
 
   const handleAddNewMember = (isAdmin: boolean | undefined) => {
     // when we wanted to update  the existed group
-    const key = !isAdmin ? 'admins' : 'users';
-    const updatedList1 = getIds({
-      formList: isAdmin ? getValues('admins') : getValues('users'),
-      list: isAdmin ? group?.admins : group?.users,
-    });
+    const userType = isAdmin ? 'admins' : 'users';
+    const alternateUserType = !isAdmin ? 'admins' : 'users';
+    const dataValue = getValues(userType) || [];
+    const groupData = group ? group[userType] : [];
+    const alternateGroupData = group ? group[alternateUserType] : [];
+
+    const updatedList = [...groupData, ...dataValue];
     if (group) {
-      const updatedList2 = group[key].map((item) => item.id);
-      handleUpdateGroup({
-        users: isAdmin ? updatedList2 : updatedList1,
-        admins: isAdmin ? updatedList1 : updatedList2,
-        name: group?.name,
+      setUpdatedData({
+        users: isAdmin ? alternateGroupData : updatedList,
+        admins: isAdmin ? updatedList : alternateGroupData,
+        name: watch('name') || group?.name,
       });
-      return;
+
+      setIsUpdatingGroupMember(false);
     }
     // when we create the new group
     if (!group && !isAdmin) handleSubmit(onSubmit)();
 
-    if (tabsRef.current) {
+    if (!group && tabsRef.current) {
       tabsRef.current.changeTab(1);
     }
+  };
+
+  const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
+    setUpdatedData(updatedList as unknown as TGroupUpdate);
   };
 
   return (
@@ -160,8 +182,10 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'admins' : 'choiceAdmins'}`)}
             >
               <GroupTabContent
+                isUpdatingGroupMember={isUpdatingGroupMember}
+                setIsUpdatingGroupMember={setIsUpdatingGroupMember}
                 activeTab={0}
-                group={group}
+                group={updatedData || group}
                 control={control}
                 onUpdateGroup={handleUpdateGroup}
                 loading={loadingGroup || loading}
@@ -173,8 +197,10 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'users' : 'choiceUsers'}`)}
             >
               <GroupTabContent
+                isUpdatingGroupMember={isUpdatingGroupMember}
+                setIsUpdatingGroupMember={setIsUpdatingGroupMember}
                 activeTab={1}
-                group={group}
+                group={updatedData || group}
                 control={control}
                 onUpdateGroup={handleUpdateGroup}
                 loading={loadingGroup || loading}
@@ -182,8 +208,33 @@ export function GroupModal({
               />
             </BaseTab>
           </BaseTabs>
+          {group && (
+            <BaseButton
+              label={t('global.confirm')}
+              size="md"
+              onClick={() => setOpenModal(true)}
+              className="mt-4"
+              disabled={!updatedData && !isDirty}
+            />
+          )}
         </form>
       </FormProvider>
+      <Modal
+        open={openModal}
+        setOpen={setOpenModal}
+        type="error"
+        title={t('global.sureAboutThis')}
+        buttonOne={{
+          label: t('global.yes'),
+          onClick: updateGroup,
+          loading: false,
+        }}
+        buttonTow={{
+          label: t('global.no'),
+          onClick: () => setOpenModal(false),
+          color: 'red',
+        }}
+      />
     </div>
   );
 }

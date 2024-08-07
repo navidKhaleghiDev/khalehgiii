@@ -3,7 +3,7 @@ import { OnlineAssistanceModel } from '@src/services/users/types';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
-import { E_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
+import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { BaseTable } from '@ui/atoms/BaseTable';
@@ -57,7 +57,7 @@ export function OnlineAssistanceList() {
   };
 
   const endpoint = createAPIEndpoint({
-    endPoint: E_ONLINE_ASSISTANCE,
+    endPoint: E_USERS_ONLINE_ASSISTANCE,
     pageSize: PAGE_SIZE,
     currentPage,
     filterQuery,
