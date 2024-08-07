@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+import { useEffect, useState } from 'react';
 import {
   IComponentsHeader,
   IRowTableProps,
@@ -29,12 +30,23 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
   return components[header?.type ?? 'none'] || null;
 }
 
-export function RowTable({
-  row,
-  headers,
-  onClick,
-  hasVerticalScroll,
-}: IRowTableProps<any>) {
+export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
+  const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
+
+  const checkVerticalScroll = () => {
+    setHasVerticalScroll(
+      document.documentElement.scrollHeight > window.innerHeight
+    );
+  };
+
+  useEffect(() => {
+    checkVerticalScroll();
+    window.addEventListener('resize', checkVerticalScroll);
+    return () => {
+      window.removeEventListener('resize', checkVerticalScroll);
+    };
+  }, []);
+
   return (
     <tbody className="relative">
       <tr className="bg-neutral-100 dark:bg-slate-800 rounded-md flex h-14 items-center px-2 my-1 w-full text-neutral-600 dark:text-gray-300">
@@ -42,7 +54,7 @@ export function RowTable({
           <td
             key={colIndex}
             className={baseTableRowCard({
-              fixed: !hasVerticalScroll && header.fixed,
+              fixed: !hasVerticalScroll ? header.fixed : false,
               className: `${header.class} ${
                 header.fixed && !hasVerticalScroll
                   ? 'fixed z-50 rounded-md -mx-2'

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { NoResult } from '@ui/molecules/NoResult';
 import { Pagination } from '@ui/molecules/Pagination';
@@ -17,21 +16,6 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
     pagination = {} as TPagination,
   } = props;
   const { countPage, currentPage, totalPages, onPageChange } = pagination;
-  const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
-
-  const checkVerticalScroll = () => {
-    setHasVerticalScroll(
-      document.documentElement.scrollHeight > window.innerHeight
-    );
-  };
-
-  useEffect(() => {
-    checkVerticalScroll();
-    window.addEventListener('resize', checkVerticalScroll);
-    return () => {
-      window.removeEventListener('resize', checkVerticalScroll);
-    };
-  }, []);
 
   let tableBody;
 
@@ -42,7 +26,6 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
     case bodyList.length > 0:
       tableBody = bodyList.map((item: T) => (
         <RowTable
-          hasVerticalScroll={hasVerticalScroll}
           key={item?.id}
           row={item}
           headers={headers}
@@ -69,10 +52,7 @@ export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
       )}
       <div className="overflow-x-auto custom-scrollbar">
         <table className=" relative w-full bg-white dark:bg-slate-900  border-gray-300 border-none ">
-          <BaseTabelHeader
-            hasVerticalScroll={hasVerticalScroll}
-            header={headers}
-          />
+          <BaseTabelHeader header={headers} />
           {tableBody}
         </table>
       </div>
