@@ -46,7 +46,9 @@ export function GroupManagement() {
       <div className="flex flex-wrap gap-5 my-4">
         {groupData.map((item) => (
           <GroupCardEdit
+            mutate={mutate}
             key={item.id}
+            id={item.id}
             name={item.name}
             image={item?.image}
             onClickActions={() => handleOnClickEditCard(item)}

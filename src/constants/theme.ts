@@ -18,7 +18,7 @@ export const PALLET = {
     TEAL: 'border-teal-600 dark:border-teal-500',
     RED: 'border-red-600 dark:border-red-600',
     YELLOW: 'border-yellow-600 dark:border-yellow-600',
-    NEUTRAL: 'border-neutral-600 dark:border-neutral-600',
+    NEUTRAL: 'border-neutral-200 dark:border-neutral-600',
   },
   BUTTON_COLOR: {
     TEAL: 'bg-teal-600 dark:bg-slate-800 text-neutral-100 hover:bg-teal-700 ', // #0f766e

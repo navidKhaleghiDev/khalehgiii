@@ -193,11 +193,14 @@
     "enterPriodOfTime": "بازه زمانی مورد نظر را وارد کنید",
     "noReportAvailable": "درحال حاضر گزارشی وجود ندارد",
     "usedPamLicense": "لایسنس PAM استفاده شده",
-    "somthingWentWrong": "مشگلی پیش آمد",
+    "somethingWentWrong": "مشگلی پیش آمد",
     "genrateQrcode": "تولید Qrcode ",
     "activateOtp": "فعال کردن otp",
     "userInfo": "مشخصات کاربر",
-    "accessList": "لیست دسترسی"
+    "accessList": "لیست دسترسی",
+    "onlineAssistance": "دستیار آنلاین",
+    "onlineAssistanceDetail": "جزيات دستیار",
+    "noData": "دیتایی موجود نیست"
   },
   "groupManagement": {
     "person": "نفر",
@@ -211,6 +214,14 @@
     "admins": "ادمین ها",
     "next": "مرحله بعد",
     "newUser": "کاربر جدید"
+  },
+  "onlineAssistance": {
+    "internet": "اینترنت",
+    "remote": "دسترسی دستیار ",
+    "exitFromUserProfile": "خروج از حساب کاربری",
+    "enterDesktop": "ورود به دسکتاپ",
+    "admins": "ادمین گروه های",
+    "members": "عضو گروه های"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

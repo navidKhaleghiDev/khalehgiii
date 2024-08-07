@@ -27,6 +27,7 @@ import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/
 
 import { SettingDaasModal } from './SettingDaasModal';
 import { ActionOnClickActionsType } from './DaAsCard/types';
+import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -71,6 +72,8 @@ export function DaAsList() {
   const [openModal, setOpenModal] = useState(false);
   const [openSettingModal, setOpenSettingModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
+    useState(false);
 
   const userPermissions = useUserPermission();
 
@@ -144,6 +147,10 @@ export function DaAsList() {
       setActionOnClick(action);
       setActiveDaas(fileType as IDaAs);
       setOpenModal(true);
+    }
+    if (action === 'details') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenOnlineAssistanceModal(true);
     }
   };
 
@@ -297,6 +304,12 @@ export function DaAsList() {
             userPermissions={userPermissions}
           />
         }
+      />
+      <Modal
+        open={openOnlineAssistanceModal}
+        setOpen={setOpenOnlineAssistanceModal}
+        type="success"
+        content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
       />
     </div>
   );

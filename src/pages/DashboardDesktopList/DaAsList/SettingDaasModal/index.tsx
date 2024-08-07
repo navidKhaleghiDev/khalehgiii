@@ -41,6 +41,7 @@ export function SettingDaasModal({
       webcam_privilege: daas.daas_configs.webcam_privilege,
       microphone_privilege: daas.daas_configs.microphone_privilege,
       is_recording: daas.daas_configs.is_recording,
+      has_online_assistance: daas.daas_configs.has_online_assistance,
       max_transmission_download_size:
         daas.daas_configs.max_transmission_download_size,
       max_transmission_upload_size:
@@ -70,6 +71,7 @@ export function SettingDaasModal({
     daas_configs,
     is_lock,
     is_recording,
+    has_online_assistance,
     allowed_files_type_for_download,
     allowed_files_type_for_upload,
     forbidden_upload_files,
@@ -102,6 +104,7 @@ export function SettingDaasModal({
         can_upload_file,
         can_download_file,
         is_recording,
+        has_online_assistance,
         clipboard_up,
         clipboard_down,
         webcam_privilege,

@@ -6,6 +6,7 @@ export const cardStyles = cva('', {
     color: {
       neutral: `${PALLET.BG_COLOR.NEUTRAL} `,
       teal: `${PALLET.BG_COLOR.TEAL} `,
+      tealDark: `${PALLET.BG_COLOR.TEAL_DARK} `,
       yellow: `${PALLET.BG_COLOR.YELLOW} `,
       red: `${PALLET.BG_COLOR.RED} `,
       white: `bg-white dark:bg-gray-600 `,

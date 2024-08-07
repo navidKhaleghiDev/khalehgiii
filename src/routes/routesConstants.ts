@@ -13,7 +13,9 @@ export type RoutePathType =
   | 'dashboardDesktopList'
   | 'dashboardSessionRecordingList'
   | 'dashboardSessionRecording'
-  | 'internetLog';
+  | 'internetLog'
+  | 'loginAssistance'
+  | 'assistanceDashboard';
 
 export const RoutesName = {
   HOME: 'home',
@@ -28,6 +30,8 @@ export const RoutesName = {
   REPORTS: 'reports',
   SESSIONRECORDING: 'session-recording',
   INTERNETLOG: 'internet-log',
+  LOGIN_ASSISTANCE: 'login-assistanse',
+  ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -46,4 +50,6 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   internetLog: `/${RoutesName.DASHBOARD}/${RoutesName.INTERNETLOG}`,
   extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
+  loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
+  assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
 };

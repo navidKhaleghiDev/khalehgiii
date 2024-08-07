@@ -42,7 +42,7 @@ export type TPagination = {
   onPageChange: (page: number) => void;
 };
 
-type TTableLabel = `table.${string}`;
+type TTableLabel = `table.${string}` | `global.${string}`;
 export interface IHeaderTable {
   action?: any;
   component?: any;
