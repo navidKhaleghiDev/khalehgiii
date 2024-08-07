@@ -16,7 +16,7 @@ export function AssistanceDashboard() {
         <BaseTabs ref={tabsRef}>
           {Array.isArray(admins) &&
             admins.map((adminGroup) => {
-              const label = Object.keys(adminGroup) as unknown as string;
+              const label = Object.keys(adminGroup)[0] as unknown as string;
               const id = Object.values(adminGroup)[0].toString();
 
               return (
