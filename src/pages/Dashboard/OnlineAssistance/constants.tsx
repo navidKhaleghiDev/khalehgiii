@@ -1,16 +1,19 @@
+import { OnlineAssistanceUserModel } from '@src/services/users/types';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 export const onlineAssistanceHeaderItem: IHeaderTable[] = [
   {
     label: 'header.admin',
     id: 'admin',
-    type: 'none',
+    type: 'function',
+    function: (admin: OnlineAssistanceUserModel) => admin?.email,
     class: 'px-3 w-4/12',
   },
   {
     label: 'header.user',
     id: 'user',
-    type: 'none',
+    type: 'function',
+    function: (user: OnlineAssistanceUserModel) => user?.email,
     class: 'px-3 w-2/12',
   },
   {

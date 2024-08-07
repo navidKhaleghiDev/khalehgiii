@@ -82,6 +82,7 @@ export function DaAsList() {
     currentPage,
     filterQuery,
   });
+
   const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR

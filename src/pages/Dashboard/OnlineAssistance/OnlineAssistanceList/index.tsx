@@ -49,7 +49,7 @@ export function OnlineAssistanceList() {
         })
         .catch((err) => {
           setOpenModal(false);
-          toast.success(
+          toast.error(
             err.message ?? 'error on get video of knowledge management'
           );
         });

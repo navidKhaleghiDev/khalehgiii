@@ -102,6 +102,8 @@ export type UpdateGroupPayload = {
   name: string;
 };
 
+export type OnlineAssistanceUserModel = { id: string; email: string };
+
 export type OnlineAssistanceModel = {
   id: number;
   created_at: string;
@@ -110,6 +112,6 @@ export type OnlineAssistanceModel = {
   last_uptime: string;
   duration_time: number;
   knowledge_management_record_path: string;
-  admin: string;
-  user: string;
+  admin: OnlineAssistanceUserModel;
+  user: OnlineAssistanceUserModel;
 };
