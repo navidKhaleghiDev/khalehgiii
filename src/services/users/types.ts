@@ -108,14 +108,14 @@ export type TGroup = {
     has_online_assistance?: boolean;
   }[];
   name: string;
-  created_at: string;
-  updated_at: string;
-  image: string | undefined;
+  created_at?: string;
+  updated_at?: string;
+  image?: string | undefined;
 };
 
 export type UpdateGroupPayload = {
-  users: string[];
-  admins: string[];
+  users: string[] | TGroup['users'];
+  admins: string[] | TGroup['admins'];
   name: string;
 };
 export interface IResponseAssistance {

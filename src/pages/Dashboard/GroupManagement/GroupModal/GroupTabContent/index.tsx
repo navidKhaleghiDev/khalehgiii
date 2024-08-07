@@ -9,7 +9,7 @@ import { EditGroupMembers } from '@src/pages/Dashboard/GroupManagement/GroupModa
 import { LoadingSpinner } from '@ui/molecules/Loading';
 
 export type GroupTabContentProps = {
-  group?: TGroup;
+  group: TGroup | undefined;
   isAdmins?: boolean;
   loading?: boolean;
   control: Control<any>;

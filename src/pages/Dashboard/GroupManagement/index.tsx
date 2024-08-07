@@ -64,6 +64,7 @@ export function GroupManagement() {
         setOpen={handleToggleModal}
         content={
           <GroupModal
+            setGroupSelected={setGroupSelected}
             mutate={mutate}
             handleClose={handleCloseModal}
             group={groupSelected}

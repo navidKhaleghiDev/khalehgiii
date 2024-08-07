@@ -85,7 +85,7 @@ export function AssistanceGroupDetail({ id }: TAssistanceGroupDetailProps) {
                     onClick={() => handleGoToUsersDesktop(member.id)}
                   />
                 </ToolTip>
-                <Circle id={onlineUser} />
+                <Circle id={onlineUser as boolean} />
               </div>
               <Typography variant="body2" color="neutral" className="mr-auto">
                 {member?.email}

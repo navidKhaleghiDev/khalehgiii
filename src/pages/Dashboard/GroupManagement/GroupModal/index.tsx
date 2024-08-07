@@ -13,7 +13,7 @@ import {
   API_USERS_GROUPS_UPDATE,
 } from '@src/services/users';
 import { toast } from 'react-toastify';
-import { IDaAs, TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
 import {
   GroupModalProps,
   GroupTabsRefType,
@@ -21,7 +21,7 @@ import {
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { Modal } from '@ui/molecules/Modal';
 
-const getIds = (list) => {
+const getIds = (list: TGroupUpdate) => {
   const users = list.users.map((item) => item.id);
   const admins = list.admins.map((item) => item.id);
   return {
@@ -36,12 +36,15 @@ export function GroupModal({
   group,
   mutate,
   loadingGroup,
+  setGroupSelected,
 }: GroupModalProps) {
   const { t } = useTranslation();
   const tabsRef = useRef<GroupTabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [updatedData, setUpdatedData] = useState<undefined | IDaAs>(undefined);
+  const [updatedData, setUpdatedData] = useState<TGroupUpdate | undefined>(
+    undefined
+  );
   const [isUpdatingGroupMember, setIsUpdatingGroupMember] = useState(false);
 
   const methods = useForm<TGroupUpdate>({
@@ -77,23 +80,23 @@ export function GroupModal({
       });
   };
   const updateGroup = async () => {
-    console.log('updated');
-    // if (!group?.id || !updatedData) return;
-    // setLoading(true);
-    // await API_USERS_GROUPS_UPDATE(getIds(updatedData), group?.id)
-    //   .then(() => {
-    //     toast.success(t('global.successfullyAdded'));
-    //     mutate();
-    //     handleClose();
-    //     setOpenModal(false);
-    //   })
-    //   .catch((err) => {
-    //     toast.error(err);
-    //   })
-    //   .finally(() => {
-    //     setOpenModal(false);
-    //     setLoading(false);
-    //   });
+    if (!group?.id || !updatedData) return;
+    setLoading(true);
+    await API_USERS_GROUPS_UPDATE(getIds(updatedData), group?.id)
+      .then(() => {
+        toast.success(t('global.successfullyAdded'));
+        mutate();
+        handleClose();
+        setGroupSelected(undefined);
+        setOpenModal(false);
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setOpenModal(false);
+        setLoading(false);
+      });
   };
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
     const formData = new FormData();
@@ -112,14 +115,13 @@ export function GroupModal({
     const alternateGroupData = group ? group[alternateUserType] : [];
 
     const updatedList = [...groupData, ...dataValue];
-    console.log(updatedList, 'getting  the updated list');
-
     if (group) {
       setUpdatedData({
-        users: isAdmin ? updatedList : alternateGroupData,
-        admins: isAdmin ? alternateGroupData : updatedList,
+        users: isAdmin ? alternateGroupData : updatedList,
+        admins: isAdmin ? updatedList : alternateGroupData,
         name: watch('name') || group?.name,
       });
+
       setIsUpdatingGroupMember(false);
     }
     // when we create the new group
@@ -131,7 +133,7 @@ export function GroupModal({
   };
 
   const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
-    setUpdatedData(updatedList);
+    setUpdatedData(updatedList as unknown as TGroupUpdate);
   };
 
   return (
