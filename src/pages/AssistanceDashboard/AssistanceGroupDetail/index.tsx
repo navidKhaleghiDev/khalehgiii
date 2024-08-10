@@ -91,7 +91,15 @@ export function AssistanceGroupDetail({
                     onClick={() => handleGoToUsersDesktop(member.id)}
                   />
                 </ToolTip>
-                <Circle id={onlineUser as boolean} />
+                <ToolTip
+                  tooltip={
+                    onlineUser
+                      ? t('onlineAssistance.onlineUser')
+                      : t('onlineAssistance.offlineUser')
+                  }
+                >
+                  <Circle id={onlineUser as boolean} />
+                </ToolTip>
               </div>
               <Typography variant="body2" color="neutral" className="mr-auto">
                 {member?.email}
