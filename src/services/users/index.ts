@@ -28,6 +28,7 @@ import {
   E_USERS_GROUPS,
   USERS_GROUPS_GET,
   E_USERS_ONLINE_ASSISTANSE as E_USERS_ONLINE_ASSISTANCE,
+  E_USERS_LOGOUT_ONLINE_ASSISTANCE,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -71,8 +72,12 @@ export const API_DAAS_RESET_USAGE_DAAS = (id: string) =>
 
 export const API_DAAS_RESET_ALL_USAGE_DAAS = () =>
   http.get(E_USERS_DAAS_RESET_ALL_USAGE);
+
 export const API_USERS_LOGOUT = (body: IBodyUsersLogout) =>
   http.post(E_USERS_LOGOUT, body);
+
+export const API_USERS_LOGOUT_ONLINE_ASSISTANCE = (body: IBodyUsersLogout) =>
+  http.post(E_USERS_LOGOUT_ONLINE_ASSISTANCE, body);
 
 export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
   http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(

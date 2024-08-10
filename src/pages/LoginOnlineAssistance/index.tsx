@@ -1,7 +1,10 @@
 import { Avatar, BaseButton, Card } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 import userIcon from '@iconify-icons/ph/user';
-import { API_USERS_LOGOUT } from '@src/services/users';
+import {
+  API_USERS_LOGOUT,
+  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
+} from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
 import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +25,10 @@ export function LoginOnlineAssistance() {
     const data = {
       refresh_token: refresh || '',
     };
-    await API_USERS_LOGOUT(data);
+
+    if (isAdminGroup) {
+      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
+    } else await API_USERS_LOGOUT(data);
   }
   const logout = () => {
     logoutFunction();
