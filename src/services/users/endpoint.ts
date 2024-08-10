@@ -45,6 +45,7 @@ export const E_ANALYZE_REPORTS = (start_date: string, end_date: string) =>
   `${E_ANALYZE_SCAN_STATS}?start_date=${start_date}&end_date=${end_date}`;
 
 export const E_USERS_DAAS_UPDATE_USAGE = 'users/daas/update_usage/';
+export const E_USERS_KEEPALIVE = 'users/keepalive_online_assistance/';
 
 export const E_USERS_PROFILE = 'users/profile/';
 export const E_USERS_LOGIN = '/users/login/';

@@ -102,7 +102,6 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     component: (props: any) => (
       <UsedTimeDass time={props.row.usage_in_minute} />
     ),
-
     class: 'w-32 ',
   },
 

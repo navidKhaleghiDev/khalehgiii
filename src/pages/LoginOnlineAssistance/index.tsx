@@ -24,6 +24,7 @@ export function LoginOnlineAssistance() {
     };
     await API_USERS_LOGOUT(data);
   }
+
   const logout = () => {
     logoutFunction();
     setUser(null);
@@ -32,7 +33,11 @@ export function LoginOnlineAssistance() {
   };
 
   useEffect(() => {
-    if (!isAdminGroup) navigate('/');
+    if (!isAdminGroup) {
+      navigate(ROUTES_PATH.dashboard);
+    } else {
+      navigate(ROUTES_PATH.loginAssistance);
+    }
   }, [isAdminGroup, navigate]);
 
   return (

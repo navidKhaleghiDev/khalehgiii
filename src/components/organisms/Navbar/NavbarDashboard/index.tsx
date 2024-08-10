@@ -27,7 +27,7 @@ import {
   EPermissionDaas,
   EPermissionMalwareConfig,
 } from '@src/types/permissions';
-// import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
+import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
@@ -126,7 +126,7 @@ export function NavbarDashboard() {
           ) : null}
         </div>
 
-        {/* <HeadOnlineAssistant /> don't remove */}
+        <HeadOnlineAssistant />
         <div className="flex">
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />

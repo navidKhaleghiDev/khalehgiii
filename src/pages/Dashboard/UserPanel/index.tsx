@@ -7,6 +7,13 @@ export function UserPanel({ user }: { user: IUser }) {
   const isSSlTrue = isSSl === 'true';
   const httpCondition = isSSlTrue ? 'https' : 'http';
   const changePort = isSSlTrue ? user?.https_port : user?.http_port;
+  const onlineAssistanceAddress = isSSlTrue
+    ? user.online_assistance?.user_https_address
+    : user.online_assistance?.user_http_address;
 
-  return <Daas src={`${httpCondition}://${user?.base_url}:${changePort}`} />;
+  const src = user.online_assistance
+    ? onlineAssistanceAddress
+    : `${httpCondition}://${user?.base_url}:${changePort}`;
+
+  return <Daas src={src} />;
 }

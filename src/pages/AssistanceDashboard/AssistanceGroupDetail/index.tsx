@@ -10,6 +10,9 @@ import { toast } from 'react-toastify';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TGroup } from '@src/services/users/types';
 import ToolTip from '@ui/atoms/Tooltip';
+import { useUserContext } from '@context/user/userContext';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
 
 type TAssistanceGroupDetailProps = {
   id: string;
@@ -23,6 +26,8 @@ export function AssistanceGroupDetail({
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [memberList, setMemberList] = useState<TGroup['users']>([]);
+  const { user, setUser } = useUserContext();
+  const navigate = useNavigate();
 
   const isValidData = memberList && !loading && id;
 
@@ -48,9 +53,21 @@ export function AssistanceGroupDetail({
       group: groupName,
     };
     setLoading(true);
+
     await API_ONLINE_ASSISTANCE(object)
       .then((data) => {
-        window.location.href = data?.data?.http;
+        console.log({ data });
+
+        setUser({
+          ...user,
+          online_assistance: {
+            user_http_address: data?.data?.http,
+            user_https_address: data?.data?.https,
+            user: 'useerrrr',
+            group_name: 'group nameeee',
+          },
+        });
+        navigate(ROUTES_PATH.dashboard);
       })
       .catch((err) => {
         toast.error(err.message);

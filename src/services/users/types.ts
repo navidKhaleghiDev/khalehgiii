@@ -62,8 +62,8 @@ export interface IResponseLogin {
 }
 
 export interface IUser {
-  id: 1;
-  user_permissions: IUserPermissions[];
+  id?: number;
+  user_permissions?: IUserPermissions[];
   password?: string;
   last_login?: string;
   is_superuser?: boolean;
@@ -73,10 +73,10 @@ export interface IUser {
   is_staff?: boolean;
   is_active?: boolean;
   date_joined?: string;
-  email: string;
-  is_meta_admin: boolean;
+  email?: string;
+  is_meta_admin?: boolean;
   // .....
-  exceeded_usage: boolean;
+  exceeded_usage?: boolean;
   base_url?: string;
   http_port?: number;
   https_port?: number;
@@ -90,8 +90,17 @@ export interface IUser {
   totp_enable?: boolean;
   secret?: string | undefined;
   totp_secret?: string | null;
-  admin_group_of: TNumberObjectArray;
+  admin_group_of?: TNumberObjectArray;
+  online_assistance: UserOnlineAssistance;
 }
+
+export type UserOnlineAssistance = {
+  admin?: string;
+  group_name: string;
+  user: string;
+  user_http_address: string;
+  user_https_address: string;
+};
 
 export type TGroup = {
   id?: string;
