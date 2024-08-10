@@ -22,16 +22,6 @@ import {
 import { Modal } from '@ui/molecules/Modal';
 import { regexPattern } from '@ui/atoms/Inputs';
 
-const getIds = (list: TGroupUpdate) => {
-  const users = list.users.map((item) => item.id);
-  const admins = list.admins.map((item) => item.id);
-  return {
-    name: list.name,
-    users,
-    admins,
-  };
-};
-
 export function GroupModal({
   handleClose,
   group,
@@ -65,6 +55,17 @@ export function GroupModal({
     formState: { isDirty },
   } = methods;
 
+  const buildFormData = (data: TGroupUpdate) => {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    if (data.image === '' || data.image instanceof Blob) {
+      formData.append('image', data?.image);
+    }
+    data.users.forEach((user) => formData.append('users', user.id));
+    data.admins.forEach((admin) => formData.append('admins', admin.id));
+    return formData;
+  };
+
   const createGroup = async (list: TGroup) => {
     setLoading(true);
     await API_USERS_GROUPS_CREATE(list)
@@ -80,10 +81,12 @@ export function GroupModal({
         handleClose();
       });
   };
+
   const updateGroup = async () => {
     if (!group?.id || !updatedData) return;
+
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(getIds(updatedData), group?.id)
+    await API_USERS_GROUPS_UPDATE(buildFormData(updatedData), group?.id)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         mutate();
@@ -100,42 +103,47 @@ export function GroupModal({
       });
   };
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
-    const formData = new FormData();
-    formData.append('name', listData.name);
-    if (listData.image) formData.append('image', listData?.image);
-    listData.users.map((item) => formData.append('users', item.id));
-    listData.admins.map((item) => formData.append('admins', item.id));
-    createGroup(formData as any);
+    createGroup(buildFormData(listData) as any);
   };
 
-  const handleAddNewMember = (isAdmin: boolean | undefined) => {
-    // when we wanted to update  the existed group
+  const handleAddNewMember = (isAdmin?: boolean) => {
     const userType = isAdmin ? 'admins' : 'users';
     const alternateUserType = !isAdmin ? 'admins' : 'users';
-    const dataValue = getValues(userType) || [];
-    const groupData = group ? group[userType] : [];
-    const alternateGroupData = group ? group[alternateUserType] : [];
 
-    const updatedList = [...groupData, ...dataValue];
+    const newMembers = [
+      ...(group?.[userType] || []),
+      ...(getValues(userType) || []),
+    ];
+    const existingMembers = group ? group[alternateUserType] : [];
+
     if (group) {
       setUpdatedData({
-        users: isAdmin ? alternateGroupData : updatedList,
-        admins: isAdmin ? updatedList : alternateGroupData,
-        name: watch('name') || group?.name,
+        users: isAdmin ? existingMembers : newMembers,
+        admins: isAdmin ? newMembers : existingMembers,
+        name: watch('name') || group.name,
+        image: getValues('image'),
       });
-
       setIsUpdatingGroupMember(false);
-    }
-    // when we create the new group
-    if (!group && !isAdmin) handleSubmit(onSubmit)();
-
-    if (!group && tabsRef.current) {
-      tabsRef.current.changeTab(1);
+    } else if (!isAdmin) {
+      handleSubmit(onSubmit)();
+      if (tabsRef.current) tabsRef.current.changeTab(1);
     }
   };
 
   const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
     setUpdatedData(updatedList as unknown as TGroupUpdate);
+  };
+
+  const updateGroupProperty = <K extends keyof TGroupUpdate>(
+    key: K,
+    value: TGroupUpdate[K]
+  ) => {
+    if (!updatedData && group) {
+      setUpdatedData({
+        ...group,
+        [key]: value,
+      });
+    }
   };
 
   return (
@@ -158,6 +166,7 @@ export function GroupModal({
         >
           <div className="flex gap-3 items-center  w-10/12 h-28 ">
             <BaseUploadInput
+              onClick={(value: any) => updateGroupProperty('image', value)}
               name="image"
               control={control}
               type={group ? 'edit' : 'add'}
@@ -167,6 +176,7 @@ export function GroupModal({
               rules={undefined}
             />
             <BaseInput
+              pureOnChange={(e) => updateGroupProperty('name', e.target.value)}
               className="h-11"
               name="name"
               size="lg"

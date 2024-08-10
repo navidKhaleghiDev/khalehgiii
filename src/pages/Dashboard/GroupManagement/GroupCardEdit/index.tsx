@@ -11,7 +11,7 @@ import { TGroup } from '@src/services/users/types';
 
 type GroupCardEditProps = {
   name: string;
-  image: string | undefined;
+  image: string | Blob | undefined;
   id?: string;
   onClickActions?: () => void;
   mutate: any;
@@ -70,7 +70,7 @@ export function GroupCardEdit({
       <div className="flex flex-col items-center">
         {image ? (
           <img
-            src={image}
+            src={image as string}
             alt={name}
             className="w-20 h-20 rounded-full flex justify-center items-center"
           />

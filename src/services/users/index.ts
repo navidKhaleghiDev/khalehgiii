@@ -46,7 +46,11 @@ export const API_USERS_GROUPS_CREATE = (body: TGroupListUpdate) =>
     },
   });
 export const API_USERS_GROUPS_UPDATE = (body: any, id: string) =>
-  http.patch<IAxiosResponse<TGroupListUpdate>>(USERS_GROUPS_GET(id), body);
+  http.patch<IAxiosResponse<TGroupListUpdate>>(USERS_GROUPS_GET(id), body, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
 export const API_USERS_GROUPS_GET = (id: string) =>
   http.get<IAxiosResponse<TGroup>>(USERS_GROUPS_GET(id));

@@ -34,6 +34,7 @@ export function BaseUploadInput({
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
       setValue(name, '');
+      onClick('');
       clearErrors(name);
     }
   };
