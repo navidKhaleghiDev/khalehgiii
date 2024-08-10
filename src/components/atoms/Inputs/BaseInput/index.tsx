@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { Controller } from 'react-hook-form';
 
 import { useLanguage } from '@context/settings/languageContext';
@@ -73,8 +74,10 @@ export function BaseInput(props: BaseInputProps<any>) {
               onChange={(e) => {
                 if (type !== 'file') {
                   field.onChange(e);
+                  pureOnChange && pureOnChange(e);
                 } else {
                   field.onChange(e.target.files);
+                  pureOnChange && pureOnChange(e);
                 }
               }}
               className={baseInputStyles({
