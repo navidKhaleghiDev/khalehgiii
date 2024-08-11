@@ -9,6 +9,7 @@ import {
 import {
   EPermissionConfig,
   EPermissionDaasMetaConfig,
+  EPermissionGroupManagement,
   EPermissionMalwareConfig,
   EPermissionWhiteListFiles,
 } from '@src/types/permissions';
@@ -39,13 +40,22 @@ export function AdminPanel({ userExist }: { userExist: boolean }) {
     EPermissionMalwareConfig.VIEW
   );
 
-  const dashboardCoditions =
-    SettingsConfigP || DaasConfigP || DlpConfigP || SettingsMalwareP;
+  const GroupManagementP = checkPermission(
+    userPermissions,
+    EPermissionGroupManagement.VIEW
+  );
+
+  const dashboardConditions =
+    SettingsConfigP ||
+    DaasConfigP ||
+    DlpConfigP ||
+    SettingsMalwareP ||
+    GroupManagementP;
 
   return (
     <ContainerDashboard>
       <DashboardCards permissions={userPermissions ?? []} />
-      {dashboardCoditions && (
+      {dashboardConditions && (
         <BaseTabs label={t('global.setting')}>
           {SettingsConfigP ? (
             <BaseTab label="application">
@@ -67,9 +77,11 @@ export function AdminPanel({ userExist }: { userExist: boolean }) {
               <SettingsMalwareCp userExist={userExist} />
             </BaseTab>
           ) : null}
-          <BaseTab label="groupManagement">
-            <GroupManagement />
-          </BaseTab>
+          {GroupManagementP ? (
+            <BaseTab label="groupManagement">
+              <GroupManagement />
+            </BaseTab>
+          ) : null}
         </BaseTabs>
       )}
     </ContainerDashboard>

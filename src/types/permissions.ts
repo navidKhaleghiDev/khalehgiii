@@ -104,6 +104,12 @@ export enum EPermissionMalwareConfig {
   VIEW = 'view_malware_config', // tab malware in dashboard,
   ADD = 'add_malware_config', // if log server and log server port is empty
 }
+export enum EPermissionGroupManagement {
+  CHANGE = 'change_customgroup',
+  DELETE = 'delete_customgroup',
+  VIEW = 'view_customgroup',
+  ADD = 'add_customgroup',
+}
 
 export type PermissionsCodeName =
   | EPermissionKeycloak
@@ -118,7 +124,8 @@ export type PermissionsCodeName =
   | EPermissionWhiteListFiles
   | EPermissionDaas
   | EPermissionMalwareConfig
-  | EPermissionUsers;
+  | EPermissionUsers
+  | EPermissionGroupManagement;
 
 type TContentTypePermission = {
   id: number;

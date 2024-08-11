@@ -6,6 +6,11 @@ import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import { TGroup } from '@src/services/users/types';
 import { IResponseData } from '@src/types/services';
+import { EPermissionGroupManagement } from '@src/types/permissions';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
 
 import { GroupModal } from './GroupModal';
 import { GroupCardEdit } from './GroupCardEdit';
@@ -15,9 +20,15 @@ export function GroupManagement() {
   const [openModal, setOpenModal] = useState(false);
   const [groupSelected, setGroupSelected] = useState<TGroup | undefined>();
 
+  const userPermissions = useUserPermission();
+
   const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
     E_USERS_GROUPS,
     http.fetcherSWR
+  );
+  const GroupManagementP = checkPermission(
+    userPermissions,
+    EPermissionGroupManagement.ADD
   );
 
   const groupData = data?.data ?? [];
@@ -56,7 +67,9 @@ export function GroupManagement() {
           />
         ))}
 
-        <GroupCardAdd onClickActions={handleOnClickAddCard} />
+        {GroupManagementP ? (
+          <GroupCardAdd onClickActions={handleOnClickAddCard} />
+        ) : null}
       </div>
       <Modal
         open={openModal}
