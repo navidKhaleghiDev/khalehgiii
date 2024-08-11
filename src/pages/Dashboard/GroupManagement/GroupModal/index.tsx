@@ -51,7 +51,6 @@ export function GroupModal({
     handleSubmit,
     setValue,
     getValues,
-    watch,
     formState: { isDirty },
   } = methods;
 
