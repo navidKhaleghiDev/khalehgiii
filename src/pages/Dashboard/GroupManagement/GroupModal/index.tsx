@@ -120,11 +120,11 @@ export function GroupModal({
       setUpdatedData({
         users: isAdmin ? existingMembers : newMembers,
         admins: isAdmin ? newMembers : existingMembers,
-        name: watch('name') || group.name,
+        name: getValues('name') || group.name,
         image: getValues('image'),
       });
       setIsUpdatingGroupMember(false);
-    } else if (!isAdmin) {
+    } else if (!group) {
       handleSubmit(onSubmit)();
       if (tabsRef.current) tabsRef.current.changeTab(1);
     }
@@ -138,7 +138,7 @@ export function GroupModal({
     key: K,
     value: TGroupUpdate[K]
   ) => {
-    if (!updatedData && group) {
+    if (group) {
       setUpdatedData({
         ...group,
         [key]: value,
