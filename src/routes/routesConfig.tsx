@@ -24,7 +24,7 @@ import {
 } from '@src/types/permissions';
 
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
-import { SessionRecording } from '@src/pages/SessionRecording/indexs';
+import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { OnlineAssistance } from '@src/pages/Dashboard/OnlineAssistance';
 
 import { ROUTES_PATH } from './routesConstants';
