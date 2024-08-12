@@ -14,7 +14,7 @@ export function OnlineAssistanceDetailModal({
   const { member_of: members, admin_group_of: admins } = daas;
 
   return (
-    <div className="w-full  grid grid-cols-2 gap-8 p-4 h-96 ">
+    <div className="w-full  grid grid-cols-2 gap-8 p-4 h-96 overflow-auto ">
       <OnlineAssistanceDetail
         title={t('onlineAssistance.admins')}
         data={admins}

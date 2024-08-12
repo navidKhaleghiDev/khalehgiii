@@ -38,6 +38,7 @@ export const E_KNOWLEDGE_MANAGEMENT = (id: string) =>
 
 export const E_USERS_DAAS_RESET_ALL_USAGE = '/users/reset_usage/';
 export const E_USERS_LOGOUT = `users/logout/`;
+export const E_USERS_LOGOUT_ONLINE_ASSISTANCE = `/users/logout_online_assistance/`;
 
 export const E_USERS_LICENSE = '/users/daas?is_recording=True';
 

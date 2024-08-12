@@ -18,7 +18,10 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { languageOptions } from '@src/constants/optios';
-import { API_USERS_LOGOUT } from '@src/services/users';
+import {
+  API_USERS_LOGOUT,
+  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
+} from '@src/services/users';
 import {
   checkPermission,
   useUserPermission,
@@ -39,6 +42,8 @@ export function NavbarDashboard() {
   const [openModal, setOpenModal] = useState(false);
   const { user, setUser } = useUserContext();
   const userPermissions = useUserPermission();
+  const isAdmin =
+    Array.isArray(user?.admin_group_of) && user?.admin_group_of?.length >= 1;
 
   const viewDaasPermission = checkPermission(
     userPermissions,
@@ -60,7 +65,10 @@ export function NavbarDashboard() {
     const data = {
       refresh_token: refresh || '',
     };
-    await API_USERS_LOGOUT(data);
+
+    if (isAdmin) {
+      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
+    } else await API_USERS_LOGOUT(data);
   }
 
   const logout = () => {

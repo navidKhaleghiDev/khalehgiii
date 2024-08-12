@@ -7,6 +7,7 @@ export type BaseUploadInputProps = {
   onClick?: any;
   setValue: (name: any, value: any) => void;
   clearErrors: (name: any) => void;
+  disabled?: boolean;
 };
 
 export type TFile = {

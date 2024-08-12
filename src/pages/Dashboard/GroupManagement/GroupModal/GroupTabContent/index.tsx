@@ -18,6 +18,7 @@ export type GroupTabContentProps = {
   onUpdateGroup: (updatedList: UpdateGroupPayload) => void;
   isUpdatingGroupMember: boolean;
   setIsUpdatingGroupMember: (data: boolean) => void;
+  permissions: boolean;
 };
 
 const PAGE_SIZE = 8;
@@ -33,6 +34,7 @@ export function GroupTabContent({
   activeTab,
   isUpdatingGroupMember,
   setIsUpdatingGroupMember,
+  permissions,
 }: GroupTabContentProps) {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
@@ -66,6 +68,7 @@ export function GroupTabContent({
         <LoadingSpinner />
       ) : !isUpdatingGroupMember && group ? (
         <EditGroupMembers
+          permissions={permissions}
           activeTab={activeTab}
           group={group}
           onUpdateGroup={onUpdateGroup}

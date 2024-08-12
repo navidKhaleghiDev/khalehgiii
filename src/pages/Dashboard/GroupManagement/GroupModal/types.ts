@@ -25,8 +25,18 @@ export type GroupTabsRefType = {
 };
 export type TGroupUpdate = {
   id?: string;
-  users: { id: string; email: string }[];
-  admins: { id: string; email: string }[];
+  users: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
+  admins: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
   name: string;
-  image?: string | undefined;
+  image?: string | Blob | undefined;
 };

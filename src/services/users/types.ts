@@ -119,7 +119,7 @@ export type TGroup = {
   name: string;
   created_at?: string;
   updated_at?: string;
-  image?: string | undefined;
+  image?: string | Blob | undefined;
 };
 
 export type UpdateGroupPayload = {

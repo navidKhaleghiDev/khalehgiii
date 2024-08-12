@@ -4,6 +4,7 @@ import {
   EPermissionDaasMetaConfig,
   EPermissionExtensions,
   EPermissionFileScan,
+  EPermissionGroupManagement,
   EPermissionInternetLogs,
   EPermissionKeycloak,
   EPermissionMalwareConfig,
@@ -45,4 +46,8 @@ export const permissionKeys = [
   EPermissionMalwareConfig.CHANGE,
   EPermissionMalwareConfig.VIEW,
   EPermissionMalwareConfig.ADD,
+  EPermissionGroupManagement.ADD,
+  EPermissionGroupManagement.CHANGE,
+  EPermissionGroupManagement.VIEW,
+  EPermissionGroupManagement.DELETE,
 ];

@@ -32,7 +32,7 @@ export default function OnlineAssistanceDetail({
                 border
                 borderColor="neutral"
                 shadow="sm"
-                className="h-19 flex justify-start items-center	p-4 border-2 rounded-2xl my-4"
+                className="h-19 flex justify-start items-center	p-4 border-2 rounded-xl my-4"
               >
                 <Typography variant="body2"> {Object.keys(item)}</Typography>
               </Card>

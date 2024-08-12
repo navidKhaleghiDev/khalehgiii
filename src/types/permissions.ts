@@ -18,6 +18,7 @@ export enum PermissionResource {
   SCAN_REPORTS = 'scan_reports',
   INTERNET_LOGS = 'internet_logs',
   SESSION_RECORDING = 'session_recording',
+  GROUP_MANAGEMENT = 'customgroup',
 }
 
 // export type PermissionsCodeName = `${PermissionAction}_${PermissionResource}`;
@@ -104,8 +105,15 @@ export enum EPermissionMalwareConfig {
   VIEW = 'view_malware_config', // tab malware in dashboard,
   ADD = 'add_malware_config', // if log server and log server port is empty
 }
+export enum EPermissionGroupManagement {
+  CHANGE = 'change_customgroup',
+  DELETE = 'delete_customgroup',
+  VIEW = 'view_customgroup',
+  ADD = 'add_customgroup',
+}
 
 export type PermissionsCodeName =
+  | EPermissionGroupManagement
   | EPermissionKeycloak
   | EPermissionFileScan
   | EPermissionExtensions

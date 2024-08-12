@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "format": "prettier --config .prettierrc.json --write src",
-    "build": "tsc && vite build",
+    "build": "npm run clean && tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "husky install",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@iconify-icons/ph": "^1.2.5",
