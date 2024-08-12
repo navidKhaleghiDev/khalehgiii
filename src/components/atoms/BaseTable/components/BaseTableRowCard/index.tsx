@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+import { useEffect, useState } from 'react';
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 
@@ -50,6 +51,22 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
 }
 
 export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
+  const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
+
+  const checkVerticalScroll = () => {
+    setHasVerticalScroll(
+      document.documentElement.scrollHeight > window.innerHeight
+    );
+  };
+
+  useEffect(() => {
+    checkVerticalScroll();
+    window.addEventListener('resize', checkVerticalScroll);
+    return () => {
+      window.removeEventListener('resize', checkVerticalScroll);
+    };
+  }, []);
+
   return (
     <tbody className="relative">
       <tr className="bg-neutral-100 dark:bg-slate-800 rounded-md flex h-14 items-center px-2 my-1 w-full text-neutral-600 dark:text-gray-300">
@@ -57,9 +74,11 @@ export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
           <td
             key={colIndex}
             className={baseTableRowCard({
-              fixed: header.fixed,
+              fixed: !hasVerticalScroll ? header.fixed : false,
               className: `${header.class} ${
-                header.fixed ? 'fixed z-50 rounded-md -mx-2' : ''
+                header.fixed && !hasVerticalScroll
+                  ? 'fixed z-50 rounded-md -mx-2'
+                  : ''
               }`,
             })}
             dir={header.dir || 'ltr'}
