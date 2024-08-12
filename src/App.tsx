@@ -1,5 +1,5 @@
 import { Suspense, useMemo, useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
@@ -7,7 +7,9 @@ import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { IUser } from './services/users/types';
 
-const router = createBrowserRouter(routesConfig);
+function generateRouter(user: any) {
+  return routesConfig(user);
+}
 
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
@@ -19,7 +21,7 @@ function App() {
     <UserContext.Provider value={userValue}>
       <div dir={dir} className={theme}>
         <Suspense>
-          <RouterProvider router={router} />
+          <RouterProvider router={generateRouter(user)} />
         </Suspense>
         <ToastContainer
           rtl={lang === 'fa'}
