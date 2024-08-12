@@ -105,7 +105,7 @@ export function GroupModalForm({
       >
         <div className="flex gap-3 items-center  w-10/12 h-28 ">
           <BaseUploadInput
-            disabled
+            disabled={!permissions}
             onClick={(value: any) => updateGroupProperty('image', value)}
             name="image"
             control={control}
