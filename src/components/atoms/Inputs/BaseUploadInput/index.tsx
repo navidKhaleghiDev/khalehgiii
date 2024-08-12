@@ -16,6 +16,7 @@ export function BaseUploadInput({
   onClick,
   setValue,
   clearErrors,
+  disabled = false,
 }: BaseUploadInputProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewLink, setPreviewLink] = useState<string | null>(null);
@@ -73,6 +74,7 @@ export function BaseUploadInput({
             />
             {!previewLink ? (
               <IconButton
+                disabled={disabled}
                 size="xxxl"
                 type="button"
                 color="neutralNoBg"
@@ -88,6 +90,7 @@ export function BaseUploadInput({
                   className={baseUploadInputImage()}
                 />
                 <IconButton
+                  disabled={disabled}
                   size="lg"
                   type="button"
                   color="default"
@@ -99,6 +102,7 @@ export function BaseUploadInput({
             )}
             {previewLink && (
               <IconButton
+                disabled={disabled}
                 size="lg"
                 type="button"
                 color="redNoBg"

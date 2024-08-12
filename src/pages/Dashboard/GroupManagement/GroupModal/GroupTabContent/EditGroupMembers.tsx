@@ -11,6 +11,7 @@ type EditGroupMembersProps = {
   activeTab?: number;
   onUpdateGroup: (updatedGroup: UpdateGroupPayload) => void;
   onClickAddNewAdmin: () => void;
+  permissions: boolean;
 };
 
 export function EditGroupMembers({
@@ -19,6 +20,7 @@ export function EditGroupMembers({
   isAdmins,
   onClickAddNewAdmin,
   activeTab,
+  permissions,
 }: EditGroupMembersProps) {
   const { watch } = useFormContext();
   const { t } = useTranslation();
@@ -46,24 +48,27 @@ export function EditGroupMembers({
       <div className="w-full space-y-4 h-72 overflow-auto">
         {list?.map((item) => (
           <EditCardList
+            permissions={permissions}
             onClick={() => handleRemoveItem(item.id)}
             item={item}
             key={item.id}
           />
         ))}
       </div>
-      <BaseButton
-        label={
-          activeTab === 0
-            ? t('groupManagement.newAdmin')
-            : t('groupManagement.newUser')
-        }
-        submit
-        size="md"
-        onClick={onClickAddNewAdmin}
-        className="mt-4"
-        endIcon="ph:plus"
-      />
+      {permissions ? (
+        <BaseButton
+          label={
+            activeTab === 0
+              ? t('groupManagement.newAdmin')
+              : t('groupManagement.newUser')
+          }
+          submit
+          size="md"
+          onClick={onClickAddNewAdmin}
+          className="mt-4"
+          endIcon="ph:plus"
+        />
+      ) : null}
     </div>
   );
 }

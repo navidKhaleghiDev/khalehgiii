@@ -8,6 +8,11 @@ import { useTranslation } from 'react-i18next';
 import { API_DELETE_GROUP } from '@src/services/users';
 import { Modal } from '@ui/molecules/Modal';
 import { TGroup } from '@src/services/users/types';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { EPermissionGroupManagement } from '@src/types/permissions';
 
 type GroupCardEditProps = {
   name: string;
@@ -27,6 +32,13 @@ export function GroupCardEdit({
   setGroupSelected,
 }: GroupCardEditProps) {
   const { t } = useTranslation();
+
+  const userPermissions = useUserPermission();
+  const GroupManagementDelete = checkPermission(
+    userPermissions,
+    EPermissionGroupManagement.DELETE
+  );
+
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -60,13 +72,15 @@ export function GroupCardEdit({
       className="relative w-36 p-3 flex justify-center items-center hover:bg-neutral-100 transition-colors duration-400 group"
       onClick={!loading && !openModal ? onClickActions : undefined}
     >
-      <IconButton
-        className=" absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-200 p-1 rounded  z-30 "
-        icon={xIcon}
-        color="redNoBg"
-        size="xl"
-        onClick={handleRemoveGroup as any}
-      />
+      {GroupManagementDelete ? (
+        <IconButton
+          className=" absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-200 p-1 rounded  z-30 "
+          icon={xIcon}
+          color="redNoBg"
+          size="xl"
+          onClick={handleRemoveGroup as any}
+        />
+      ) : null}
       <div className="flex flex-col items-center">
         {image ? (
           <img

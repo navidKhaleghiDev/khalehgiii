@@ -26,7 +26,7 @@ export function GroupManagement() {
     E_USERS_GROUPS,
     http.fetcherSWR
   );
-  const GroupManagementP = checkPermission(
+  const GroupManagementAdd = checkPermission(
     userPermissions,
     EPermissionGroupManagement.ADD
   );
@@ -67,7 +67,7 @@ export function GroupManagement() {
           />
         ))}
 
-        {GroupManagementP ? (
+        {GroupManagementAdd ? (
           <GroupCardAdd onClickActions={handleOnClickAddCard} />
         ) : null}
       </div>

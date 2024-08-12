@@ -21,6 +21,11 @@ import {
 } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { Modal } from '@ui/molecules/Modal';
 import { regexPattern } from '@ui/atoms/Inputs';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { EPermissionGroupManagement } from '@src/types/permissions';
 
 export function GroupModal({
   handleClose,
@@ -30,6 +35,8 @@ export function GroupModal({
   setGroupSelected,
 }: GroupModalProps) {
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
+
   const tabsRef = useRef<GroupTabsRefType>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -53,6 +60,11 @@ export function GroupModal({
     getValues,
     formState: { isDirty },
   } = methods;
+
+  const GroupManagementChange = checkPermission(
+    userPermissions,
+    EPermissionGroupManagement.CHANGE
+  );
 
   const buildFormData = (data: TGroupUpdate) => {
     const formData = new FormData();
@@ -83,7 +95,6 @@ export function GroupModal({
 
   const updateGroup = async () => {
     if (!group?.id || !updatedData) return;
-
     setLoading(true);
     await API_USERS_GROUPS_UPDATE(buildFormData(updatedData), group?.id)
       .then(() => {
@@ -165,6 +176,7 @@ export function GroupModal({
         >
           <div className="flex gap-3 items-center  w-10/12 h-28 ">
             <BaseUploadInput
+              disabled
               onClick={(value: any) => updateGroupProperty('image', value)}
               name="image"
               control={control}
@@ -187,6 +199,7 @@ export function GroupModal({
               rules={{
                 required: regexPattern.required,
               }}
+              disabled={!GroupManagementChange}
               fullWidth
             />
           </div>
@@ -195,6 +208,7 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'admins' : 'choiceAdmins'}`)}
             >
               <GroupTabContent
+                permissions={GroupManagementChange}
                 isUpdatingGroupMember={isUpdatingGroupMember}
                 setIsUpdatingGroupMember={setIsUpdatingGroupMember}
                 activeTab={0}
@@ -210,6 +224,7 @@ export function GroupModal({
               label={t(`groupManagement.${group ? 'users' : 'choiceUsers'}`)}
             >
               <GroupTabContent
+                permissions={GroupManagementChange}
                 isUpdatingGroupMember={isUpdatingGroupMember}
                 setIsUpdatingGroupMember={setIsUpdatingGroupMember}
                 activeTab={1}
@@ -227,7 +242,7 @@ export function GroupModal({
               size="md"
               onClick={() => setOpenModal(true)}
               className="mt-4"
-              disabled={!updatedData && !isDirty}
+              disabled={(!updatedData && !isDirty) || !GroupManagementChange}
             />
           )}
         </form>

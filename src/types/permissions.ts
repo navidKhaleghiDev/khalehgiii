@@ -18,6 +18,7 @@ export enum PermissionResource {
   SCAN_REPORTS = 'scan_reports',
   INTERNET_LOGS = 'internet_logs',
   SESSION_RECORDING = 'session_recording',
+  GROUP_MANAGEMENT = 'customgroup',
 }
 
 // export type PermissionsCodeName = `${PermissionAction}_${PermissionResource}`;
@@ -112,6 +113,7 @@ export enum EPermissionGroupManagement {
 }
 
 export type PermissionsCodeName =
+  | EPermissionGroupManagement
   | EPermissionKeycloak
   | EPermissionFileScan
   | EPermissionExtensions
@@ -124,8 +126,7 @@ export type PermissionsCodeName =
   | EPermissionWhiteListFiles
   | EPermissionDaas
   | EPermissionMalwareConfig
-  | EPermissionUsers
-  | EPermissionGroupManagement;
+  | EPermissionUsers;
 
 type TContentTypePermission = {
   id: number;
