@@ -19,6 +19,8 @@ function LayoutCp() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('aaaa');
+
     const getProfile = async () => {
       setLoading(true);
       await API_USERS_PROFILE()
@@ -27,6 +29,8 @@ function LayoutCp() {
             navigate(ROUTES_PATH.unauthorized);
             return;
           }
+          console.log({ data });
+
           setUser(data);
         })
         .catch(() => {

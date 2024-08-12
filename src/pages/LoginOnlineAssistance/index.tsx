@@ -13,6 +13,8 @@ export function LoginOnlineAssistance() {
   const navigate = useNavigate();
   const { user, setUser } = useUserContext();
 
+  console.log({ user });
+
   const isAdminGroup =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
@@ -33,6 +35,8 @@ export function LoginOnlineAssistance() {
   };
 
   useEffect(() => {
+    console.log('bbb');
+
     if (!isAdminGroup) {
       navigate(ROUTES_PATH.dashboard);
     } else {
