@@ -121,6 +121,7 @@
   },
   "global": {
     "userName": "نام کاربری",
+    "knowledgeManagement": "مدیریت دانش",
     "password": "گذرواژه",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",
@@ -198,6 +199,8 @@
     "activateOtp": "فعال کردن otp",
     "userInfo": "مشخصات کاربر",
     "accessList": "لیست دسترسی",
+    "videoDuration": "مدت زمان ویدیو",
+    "recordDate": "تاریخ ضبط",
     "onlineAssistance": "دستیار آنلاین",
     "onlineAssistanceDetail": "جزيات دستیار",
     "noData": "دیتایی موجود نیست"
@@ -205,6 +208,7 @@
   "groupManagement": {
     "person": "نفر",
     "label": "گروه بندی",
+    "group": "گروه",
     "createGroup": "ساخت گروه",
     "editGroup": "ویرایش گروه",
     "choiceAdmins": "انتخاب ادمین",

@@ -25,6 +25,8 @@ import {
 
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { SessionRecording } from '@src/pages/SessionRecording/indexs';
+import { OnlineAssistance } from '@src/pages/Dashboard/OnlineAssistance';
+
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
 import { AssistanceDashboard } from '../pages/AssistanceDashboard/index';
@@ -48,6 +50,10 @@ const routesConfig = [
       {
         path: ROUTES_PATH.dashboard,
         element: <DashboardPage />,
+      },
+      {
+        path: ROUTES_PATH.onlineAssistance,
+        element: <OnlineAssistance />,
       },
       {
         path: ROUTES_PATH.loginAssistance,

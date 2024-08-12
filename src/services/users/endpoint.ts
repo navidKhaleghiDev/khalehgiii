@@ -6,7 +6,7 @@ export const E_USERS = '/users/';
 export const E_USERS_OTP = '/users/otp_gen';
 export const E_USERS_DAAS = '/users/daas';
 export const E_USERS_GROUPS = '/users/groups/';
-export const E_USERS_ONLINE_ASSISTANSE = '/users/online_assistance/';
+export const E_USERS_ONLINE_ASSISTANCE = '/users/online_assistance/';
 
 export const USERS_GROUPS_GET = (id: string) => `${E_USERS_GROUPS}${id}/`;
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
@@ -29,8 +29,12 @@ export const E_USERS_DAAS_PAGINATION = ({
 
 export const E_USERS_DAAS_DELETE = (id: string) => `/users/daas/${id}/`;
 export const E_USERS_DAAS_UPDATE = (id: string) => `/users/daas/${id}/`;
+
 export const E_USERS_DAAS_RESET_USAGE = (id: string) =>
   `/users/reset_usage/${id}/`;
+
+export const E_KNOWLEDGE_MANAGEMENT = (id: string) =>
+  `/users/knowledge_management/?id=${id}`;
 
 export const E_USERS_DAAS_RESET_ALL_USAGE = '/users/reset_usage/';
 export const E_USERS_LOGOUT = `users/logout/`;

@@ -14,7 +14,10 @@ import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import {
+  ActionOnClickActionsType,
+  OnClickActionsType,
+} from '@ui/atoms/BaseTable/types';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
@@ -26,7 +29,6 @@ import {
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { SettingDaasModal } from './SettingDaasModal';
-import { ActionOnClickActionsType } from './DaAsCard/types';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
@@ -83,6 +85,7 @@ export function DaAsList() {
     currentPage,
     filterQuery,
   });
+
   const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR

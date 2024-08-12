@@ -118,6 +118,20 @@ export type UpdateGroupPayload = {
   admins: string[] | TGroup['admins'];
   name: string;
 };
+
+export type OnlineAssistanceUserModel = { id: string; email: string };
+
+export type OnlineAssistanceModel = {
+  id: number;
+  created_at: string;
+  admin_ip_addr: string | null;
+  in_use: boolean;
+  last_uptime: string;
+  duration_time: number;
+  knowledge_management_record_path: string;
+  admin: OnlineAssistanceUserModel;
+  user: OnlineAssistanceUserModel;
+};
 export interface IResponseAssistance {
   http: string;
   https: string;

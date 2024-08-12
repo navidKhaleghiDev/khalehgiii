@@ -119,6 +119,7 @@
     "infectedFile": "infected File"
   },
   "global": {
+    "knowledgeManagement": "Knowledge Management",
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",

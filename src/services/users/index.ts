@@ -27,8 +27,9 @@ import {
   E_USERS_OTP_LOGIN,
   E_USERS_GROUPS,
   USERS_GROUPS_GET,
-  E_USERS_ONLINE_ASSISTANSE as E_USERS_ONLINE_ASSISTANCE,
   E_USERS_LOGOUT_ONLINE_ASSISTANCE,
+  E_KNOWLEDGE_MANAGEMENT,
+  E_USERS_ONLINE_ASSISTANCE,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
 
@@ -112,6 +113,13 @@ export const API_MALWARE_ANTIVIRUS_UPDATE = (
     body
   );
 
+export const API_KNOWLEDGE_MANAGEMENT = (id: string) =>
+  http.get(E_KNOWLEDGE_MANAGEMENT(id), {
+    headers: {
+      'Content-Type': 'video/mp4',
+    },
+    responseType: 'blob',
+  });
 export const API_ONLINE_ASSISTANCE = (body: { id: string }) => {
   return http.post<IBodyAssistance, IServerResponse<IResponseAssistance>>(
     E_USERS_ONLINE_ASSISTANCE,
