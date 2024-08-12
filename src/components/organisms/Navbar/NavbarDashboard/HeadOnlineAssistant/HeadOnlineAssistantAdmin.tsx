@@ -11,8 +11,9 @@ import { E_USERS_KEEPALIVE } from '@src/services/users/endpoint';
 
 type Props = {
   onlineAssistance: UserOnlineAssistance;
+  logout: () => void;
 };
-export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
+export function HeadOnlineAssistantAdmin({ onlineAssistance, logout }: Props) {
   useSWR(E_USERS_KEEPALIVE, http.fetcherSWR, {
     refreshInterval: 60000,
   });
@@ -31,6 +32,7 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
       />
       <IconButton
         icon={signOutBoldIcon}
+        onClick={logout}
         size="md"
         color="red"
         type="button"

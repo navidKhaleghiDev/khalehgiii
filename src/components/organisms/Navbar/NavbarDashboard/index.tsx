@@ -134,7 +134,7 @@ export function NavbarDashboard() {
           ) : null}
         </div>
 
-        <HeadOnlineAssistant />
+        <HeadOnlineAssistant logout={logout} />
         <div className="flex">
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />
