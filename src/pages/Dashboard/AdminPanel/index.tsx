@@ -19,6 +19,7 @@ import { DaasConfigCp } from '../DaasConfig';
 import { SettingsMalwareCp } from '../SettingsMalware';
 import { SettingsKeycloakCp } from '../SettingsKeycloak';
 import { GroupManagement } from '../GroupManagement';
+import { LicenseCp } from '../License';
 
 export function AdminPanel({ userExist }: { userExist: boolean }) {
   const { t } = useTranslation();
@@ -75,6 +76,11 @@ export function AdminPanel({ userExist }: { userExist: boolean }) {
           {SettingsMalwareP ? (
             <BaseTab label="malware">
               <SettingsMalwareCp userExist={userExist} />
+            </BaseTab>
+          ) : null}
+          {SettingsMalwareP ? (
+            <BaseTab label="license">
+              <LicenseCp />
             </BaseTab>
           ) : null}
           {GroupManagementP ? (

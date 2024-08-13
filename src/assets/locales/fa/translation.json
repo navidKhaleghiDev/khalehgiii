@@ -229,6 +229,21 @@
     "onlineUser": "یوزر انلاین",
     "offlineUser": "یوزر افلاین"
   },
+  "license": {
+    "licenseId": "شناسه مجوز",
+    "licenseValidation": "اعتبارسنجی مجوز",
+    "licenseExpirationDate": "تاریخ انقضای مجوز",
+    "licenseCreationDate": "تاریخ ایجاد مجوز",
+    "recordLicenseNumber": "شماره مجوز ضبط",
+    "assistanceLicense": "مجوز پشتیبانی",
+    "assistanceLicenseNumber": "شماره مجوز پشتیبانی",
+    "totalUserLicense": "مجموع مجوز کاربران",
+    "concurrentUsersLicense": "مجوز کاربران همزمان",
+    "clipboardAccessLicense": "مجوز دسترسی به کلیپ بورد",
+    "clipboardAccessLicenseNumber": "شماره مجوز دسترسی به کلیپ بورد",
+    "chatRoomLicense": "مجوز اتاق گفتگو",
+    "chatroomLicenseNumber": "شماره مجوز اتاق گفتگو"
+  },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
     "systemAdminDescription2": "2- توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
