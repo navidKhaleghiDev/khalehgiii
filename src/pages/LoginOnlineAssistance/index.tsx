@@ -30,10 +30,11 @@ export function LoginOnlineAssistance() {
       await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
     } else await API_USERS_LOGOUT(data);
   }
+  const isInDaas = user?.online_assistance?.admin;
 
   const logout = () => {
     logoutFunction();
-    setUser(null);
+    setUser({ ...user, online_assistance: null });
     http.removeAuthHeader();
     navigate(ROUTES_PATH.login);
   };
@@ -41,10 +42,17 @@ export function LoginOnlineAssistance() {
   useEffect(() => {
     if (!isAdminGroup) {
       navigate(ROUTES_PATH.dashboard);
+    } else if (isInDaas) {
+      navigate(user.online_assistance.user_http_address);
     } else {
       navigate(ROUTES_PATH.loginAssistance);
     }
-  }, [isAdminGroup, navigate]);
+  }, [
+    isAdminGroup,
+    isInDaas,
+    navigate,
+    user?.online_assistance?.user_http_address,
+  ]);
 
   return (
     <div className="font-on bg-white dark:bg-slate-900 flex flex-col items-center justify-center min-h-screen ">
