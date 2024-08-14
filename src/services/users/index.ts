@@ -12,7 +12,6 @@ import {
   IBodyAssistance,
 } from './types';
 import {
-  E_MALWARE_ANTIVIRUS,
   E_USERS_DAAS_DELETE,
   E_USERS_DAAS_RESET_ALL_USAGE,
   E_USERS_DAAS_RESET_USAGE,
@@ -30,8 +29,10 @@ import {
   E_USERS_LOGOUT_ONLINE_ASSISTANCE,
   E_KNOWLEDGE_MANAGEMENT,
   E_USERS_ONLINE_ASSISTANCE,
+  E_GET_RECORDED_VIDEO,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
+import { E_MALWARE_ANTIVIRUS } from '../analyze/endpoint';
 
 export const API_UPDATE_USER = (
   body: Partial<IUser>,
@@ -131,3 +132,10 @@ export const API_DELETE_GROUP = (id: string) => {
     USERS_GROUPS_GET(id)
   );
 };
+export const API_GET_RECORDED_VIDEO = (body: any) =>
+  http.get(E_GET_RECORDED_VIDEO(body), {
+    headers: {
+      'Content-Type': 'video/mp4',
+    },
+    responseType: 'blob',
+  });

@@ -11,10 +11,10 @@ import { E_SESSION_RECORD_LIST_PAGINATION } from '@src/services/config/endpoint'
 import { SessionRecordingHeaderItem } from '@src/constants/tableHeaders/SessionRecordingHeaderItem';
 import { Modal } from '@ui/molecules/Modal';
 import { debounce } from 'lodash';
-import { API_GET_RECORDED_VIDEO } from '@src/services/config';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
+import { API_GET_RECORDED_VIDEO } from '@src/services/users';
 import { ISessionRecordList, TRecordData } from '../types';
 
 const PAGE_SIZE = 8;

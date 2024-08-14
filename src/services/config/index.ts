@@ -5,7 +5,6 @@ import { IAddConfig, IDaasConfig, IFileType } from './types';
 import {
   E_CONFIG,
   E_DAAS_CONFIGS,
-  E_GET_RECORDED_VIDEO,
   E_UPDATE_DELETE_CONFIG,
   E_WHITE_LIST_FILES,
 } from './endpoint';
@@ -38,11 +37,3 @@ export const API_CREATE_FILE_TYPE = (body: IFileType) =>
 
 export const API_UPDATE_DAAS_CONFIG = (body: IDaasConfig) =>
   http.patch<IAxiosResponse<any>>(`${E_DAAS_CONFIGS}${body.id}/`, body);
-
-export const API_GET_RECORDED_VIDEO = (body: any) =>
-  http.get(E_GET_RECORDED_VIDEO(body), {
-    headers: {
-      'Content-Type': 'video/mp4',
-    },
-    responseType: 'blob',
-  });

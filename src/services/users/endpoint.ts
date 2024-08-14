@@ -53,5 +53,5 @@ export const E_USERS_PROFILE = 'users/profile/';
 export const E_USERS_LOGIN = '/users/login/';
 export const E_USERS_OTP_LOGIN = '/users/otp_login/';
 
-export const E_MALWARE_ANTIVIRUS = (id: string) =>
-  `/analyze/scanners_config/${id}/`;
+export const E_GET_RECORDED_VIDEO = (body: any) =>
+  `users/record_file?record_name=${body}`;
