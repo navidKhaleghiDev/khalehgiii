@@ -1,11 +1,13 @@
-import { Suspense, useMemo, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
+import { LoadingSpinner } from '@ui/molecules/Loading';
 import { IUser } from './services/users/types';
+import { API_USERS_PROFILE } from './services/users';
 
 function generateRouter(user: any) {
   return routesConfig(user);
@@ -13,14 +15,36 @@ function generateRouter(user: any) {
 
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(true);
   const { dir, lang } = useLanguage();
   const { theme } = useTheme();
   const userValue = useMemo(() => ({ user, setUser }), [user]);
 
+  useEffect(() => {
+    API_USERS_PROFILE()
+      .then(({ data }) => {
+        if (data.exceeded_usage) {
+          setUser(null);
+        } else {
+          setUser(data);
+        }
+      })
+      .catch(() => {
+        setUser(null);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <UserContext.Provider value={userValue}>
       <div dir={dir} className={theme}>
-        <Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
           <RouterProvider router={generateRouter(user)} />
         </Suspense>
         <ToastContainer
