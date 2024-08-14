@@ -1,15 +1,10 @@
+import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 export const licenseHeaderItem: IHeaderTable[] = [
   {
     label: 'license.licenseId',
     id: 'license_id',
-    type: 'none',
-    class: 'w-32',
-  },
-  {
-    label: 'license.licenseValidation',
-    id: 'valid_license',
     type: 'none',
     class: 'w-32',
   },
@@ -34,8 +29,8 @@ export const licenseHeaderItem: IHeaderTable[] = [
   {
     label: 'license.assistanceLicense',
     id: 'assistance_license',
-    type: 'none',
-
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.assistance_license} />,
     class: 'w-32',
   },
   {
@@ -56,14 +51,15 @@ export const licenseHeaderItem: IHeaderTable[] = [
     label: 'license.concurrentUsersLicense',
     id: 'concurrent_users_license',
     type: 'none',
-
     class: 'w-32',
   },
   {
     label: 'license.clipboardAccessLicense',
-    id: 'clipboard-access_license',
-    type: 'none',
-
+    id: 'clipboard_access_license',
+    type: 'component',
+    component: (props: any) => (
+      <Circle id={props.row.clipboard_access_license} />
+    ),
     class: 'w-48',
   },
   {
@@ -76,8 +72,8 @@ export const licenseHeaderItem: IHeaderTable[] = [
   {
     label: 'license.chatRoomLicense',
     id: 'chatroom_license',
-    type: 'none',
-
+    type: 'component',
+    component: (props: any) => <Circle id={props.row.chatroom_license} />,
     class: 'w-32',
   },
   {

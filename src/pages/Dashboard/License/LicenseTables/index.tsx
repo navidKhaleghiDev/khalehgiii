@@ -28,7 +28,7 @@ export function LicenseTables() {
       <BaseTable
         loading={loading || isLoading}
         headers={checkPermissionHeaderItem(userPermissions, licenseHeaderItem)}
-        bodyList={[{ ...listDaas, ...listWhiteList }]}
+        bodyList={[{ ...listDaas, ...listWhiteList, id: listWhiteList?.id }]}
       />
     </div>
   );
