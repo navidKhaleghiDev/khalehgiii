@@ -1,7 +1,6 @@
 import UnauthorizedPage from '@src/pages/Unauthorized';
 import NotFoundPage from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
-import { DashboardPage } from '@src/pages/Dashboard';
 import { OnlineAssistance } from '@src/pages/Dashboard/OnlineAssistance';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
@@ -24,6 +23,7 @@ import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardMonitoring } from '@src/pages/DashboardMonitoring';
 import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
+import { DashboardPage } from '@src/pages/Dashboard';
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
 
