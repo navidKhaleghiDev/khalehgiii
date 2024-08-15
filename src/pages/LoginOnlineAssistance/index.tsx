@@ -34,7 +34,7 @@ export function LoginOnlineAssistance() {
 
   const logout = () => {
     logoutFunction();
-    setUser({ ...user, online_assistance: null });
+    setUser(null);
     http.removeAuthHeader();
     navigate(ROUTES_PATH.login);
   };
@@ -42,8 +42,8 @@ export function LoginOnlineAssistance() {
   useEffect(() => {
     if (!isAdminGroup) {
       navigate(ROUTES_PATH.dashboard);
-    } else if (isInDaas) {
-      navigate(user.online_assistance.user_http_address);
+    } else if (isInDaas && user?.online_assistance) {
+      navigate(user?.online_assistance?.user_http_address);
     } else {
       navigate(ROUTES_PATH.loginAssistance);
     }
