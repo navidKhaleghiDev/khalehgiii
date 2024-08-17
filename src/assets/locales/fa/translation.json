@@ -229,6 +229,24 @@
     "onlineUser": "یوزر انلاین",
     "offlineUser": "یوزر افلاین"
   },
+  "license": {
+    "licenseId": "شناسه لایسنس",
+    "licenseValidation": "اعتبارسنجی لایسنس",
+    "licenseExpirationDate": "تاریخ انقضای لایسنس",
+    "licenseCreationDate": "تاریخ ایجاد لایسنس",
+    "recordLicenseNumber": "شماره لایسنس ضبط",
+    "assistanceLicense": "لایسنس پشتیبانی",
+    "assistanceLicenseNumber": "شماره لایسنس پشتیبانی",
+    "totalUserLicense": "مجموع لایسنس کاربران",
+    "concurrentUsersLicense": "لایسنس کاربران همزمان",
+    "clipboardAccessLicense": "لایسنس دسترسی به کلیپ بورد",
+    "clipboardAccessLicenseNumber": "شماره لایسنس دسترسی به کلیپ بورد",
+    "chatRoomLicense": "لایسنس اتاق گفتگو",
+    "chatroomLicenseNumber": "شماره لایسنس اتاق گفتگو",
+    "licenseStatus": "وضعیت لایسنس",
+    "licenseNumbers": "تعداد لایسنس",
+    "activeNumbers": "تعداد فعال شده"
+  },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
     "systemAdminDescription2": "2- توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",

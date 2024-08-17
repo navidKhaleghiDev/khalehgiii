@@ -21,7 +21,7 @@ function NotFoundPage() {
   return (
     <div className="p-16 h-screen flex flex-col justify-center items-center font-on">
       <NoResult description={t('global.notFoundPage')} />
-      <Link to={ROUTES_PATH.home}>
+      <Link to={ROUTES_PATH.dashboard}>
         <BaseButton
           className="mt-6"
           label={t('global.goToHome')}

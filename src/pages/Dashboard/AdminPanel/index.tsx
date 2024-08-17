@@ -13,22 +13,17 @@ import {
   EPermissionMalwareConfig,
   EPermissionWhiteListFiles,
 } from '@src/types/permissions';
-import { useUserContext } from '@context/user/userContext';
-import { DashboardCards } from './DashboardCards';
-import { SettingsKeycloakCp } from './SettingsKeycloak';
-import { DaasConfigCp } from './DaasConfig';
-import { DlpConfigCp } from './DlpConfig';
-import { SettingsMalwareCp } from './SettingsMalware';
-import { GroupManagement } from './GroupManagement';
-import { LicenseCp } from './License';
+import { DashboardCards } from '../DashboardCards';
+import { DlpConfigCp } from '../DlpConfig';
+import { DaasConfigCp } from '../DaasConfig';
+import { SettingsMalwareCp } from '../SettingsMalware';
+import { SettingsKeycloakCp } from '../SettingsKeycloak';
+import { GroupManagement } from '../GroupManagement';
+import { LicenseCp } from '../License';
 
-export function DashboardPage() {
-  const { user } = useUserContext();
+export function AdminPanel({ userExist }: { userExist: boolean }) {
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
-
-  const userExist = user?.is_meta_admin || user?.is_superuser;
-
   const SettingsConfigP = checkPermission(
     userPermissions,
     EPermissionConfig.VIEW
@@ -83,9 +78,11 @@ export function DashboardPage() {
               <SettingsMalwareCp userExist={userExist} />
             </BaseTab>
           ) : null}
-          <BaseTab label="license">
-            <LicenseCp />
-          </BaseTab>
+          {SettingsMalwareP ? (
+            <BaseTab label="license">
+              <LicenseCp />
+            </BaseTab>
+          ) : null}
           {GroupManagementP ? (
             <BaseTab label="groupManagement">
               <GroupManagement />

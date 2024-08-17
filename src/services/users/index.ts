@@ -1,6 +1,8 @@
+import { AxiosResponse } from 'axios';
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { TGroupListUpdate } from '@src/pages/Dashboard/GroupManagement/type';
 import { IAxiosResponse, IServerResponse } from '@src/types/services';
+import { MalwareUpdateBody } from '@src/pages/Dashboard/SettingsMalware/type';
 import {
   IBodyUsersLogin,
   IResponseLogin,
@@ -12,7 +14,6 @@ import {
   IBodyAssistance,
 } from './types';
 import {
-  E_MALWARE_ANTIVIRUS,
   E_USERS_DAAS_DELETE,
   E_USERS_DAAS_RESET_ALL_USAGE,
   E_USERS_DAAS_RESET_USAGE,
@@ -30,8 +31,10 @@ import {
   E_USERS_LOGOUT_ONLINE_ASSISTANCE,
   E_KNOWLEDGE_MANAGEMENT,
   E_USERS_ONLINE_ASSISTANCE,
+  E_GET_RECORDED_VIDEO,
 } from './endpoint';
 import { IDaasConfig } from '../config/types';
+import { E_MALWARE_ANTIVIRUS } from '../analyze/endpoint';
 
 export const API_UPDATE_USER = (
   body: Partial<IUser>,
@@ -105,13 +108,11 @@ export const API_USERS_LICENSE_UPDATE = (body: any) =>
 export const STORAGE_KEY_USER = 'user';
 
 export const API_MALWARE_ANTIVIRUS_UPDATE = (
-  id: string,
-  body: Partial<IDaAsUpdated>
-) =>
-  HTTP_ANALYSES.patch<Partial<IDaAsUpdated>, IAxiosResponse<IDaAs[]>>(
-    E_MALWARE_ANTIVIRUS(id),
-    body
-  );
+  id: number,
+  body: MalwareUpdateBody
+): Promise<AxiosResponse<MalwareUpdateBody>> => {
+  return HTTP_ANALYSES.patch(E_MALWARE_ANTIVIRUS(id), body);
+};
 
 export const API_KNOWLEDGE_MANAGEMENT = (id: string) =>
   http.get(E_KNOWLEDGE_MANAGEMENT(id), {
@@ -131,3 +132,10 @@ export const API_DELETE_GROUP = (id: string) => {
     USERS_GROUPS_GET(id)
   );
 };
+export const API_GET_RECORDED_VIDEO = (body: any) =>
+  http.get(E_GET_RECORDED_VIDEO(body), {
+    headers: {
+      'Content-Type': 'video/mp4',
+    },
+    responseType: 'blob',
+  });

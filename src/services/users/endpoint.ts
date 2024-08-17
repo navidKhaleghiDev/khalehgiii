@@ -7,6 +7,7 @@ export const E_USERS_OTP = '/users/otp_gen';
 export const E_USERS_DAAS = '/users/daas';
 export const E_USERS_GROUPS = '/users/groups/';
 export const E_USERS_ONLINE_ASSISTANCE = '/users/online_assistance/';
+export const E_USERS_LICENSES = '/users/license/';
 
 export const USERS_GROUPS_GET = (id: string) => `${E_USERS_GROUPS}${id}/`;
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
@@ -52,5 +53,5 @@ export const E_USERS_PROFILE = 'users/profile/';
 export const E_USERS_LOGIN = '/users/login/';
 export const E_USERS_OTP_LOGIN = '/users/otp_login/';
 
-export const E_MALWARE_ANTIVIRUS = (id: string) =>
-  `/analyze/scanners_config/${id}/`;
+export const E_GET_RECORDED_VIDEO = (body: any) =>
+  `users/record_file?record_name=${body}`;

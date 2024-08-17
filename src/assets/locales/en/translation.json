@@ -225,6 +225,25 @@
     "onlineUser": "Active User",
     "offlineUser": "Offline User "
   },
+  "license": {
+    "licenseId": "license Id",
+    "licenseValidation": "License Validation",
+    "licenseExpirationDate": "license Expiration Date",
+    "licenseCreationDate": " License Creation date ",
+    "recordLicenseNumber": "Record License Number",
+    "assistanceLicense": " Assistance License",
+    "assistanceLicenseNumber": "Assistance License Number",
+    "totalUserLicense": " Total Users License",
+    "concurrentUsersLicense": "Concurrent Users License",
+    "clipboardAccessLicense": "clipboard Access License ",
+    "clipboardAccessLicenseNumber": "clipboard Access License Number",
+    "chatRoomLicense": " Chatroom License",
+    "chatroomLicenseNumber": "Chatroom License Number",
+    "licenseStatus": "License Status",
+    "licenseNumbers": "License Numbers",
+    "activeNumbers": "Active Numbers"
+  },
+
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
     "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
