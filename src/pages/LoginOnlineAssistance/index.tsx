@@ -61,7 +61,7 @@ export function LoginOnlineAssistance() {
         <div className=" relative w-full flex flex-col gap-7 justify-center h-80 ">
           <BaseButton
             label={t('onlineAssistance.internet')}
-            onClick={() => navigate('/')}
+            onClick={() => navigate(ROUTES_PATH.dashboard)}
           />
           <BaseButton
             onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
