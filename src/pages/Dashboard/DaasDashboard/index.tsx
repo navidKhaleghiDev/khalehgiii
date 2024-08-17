@@ -4,7 +4,6 @@ import { Daas } from '../Daas';
 export function DaasDashboard() {
   const { user } = useUserContext();
 
-  console.log(user);
   const isSSl = import.meta.env.VITE_IS_SSL;
   const isSSlTrue = isSSl === 'true';
   const httpCondition = isSSlTrue ? 'https' : 'http';
@@ -17,7 +16,6 @@ export function DaasDashboard() {
   const src = user?.online_assistance?.user_http_address
     ? onlineAssistanceAddress
     : `${httpCondition}://${user?.base_url}:${changePort}`;
-  console.log(src);
 
   return <Daas src={src as string} />;
 }
