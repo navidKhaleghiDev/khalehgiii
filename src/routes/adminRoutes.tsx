@@ -17,7 +17,7 @@ import {
 } from '@src/types/permissions';
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
-import { SessionRecording } from '@src/pages/SessionRecording/indexs';
+import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardMonitoring } from '@src/pages/DashboardMonitoring';
