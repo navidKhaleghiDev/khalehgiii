@@ -16,8 +16,6 @@ export function LoginOnlineAssistance() {
   const navigate = useNavigate();
   const { user, setUser } = useUserContext();
 
-  console.log({ user });
-
   const isAdminGroup =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
@@ -32,6 +30,7 @@ export function LoginOnlineAssistance() {
       await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
     } else await API_USERS_LOGOUT(data);
   }
+  const isInDaas = user?.online_assistance?.admin;
 
   const logout = () => {
     logoutFunction();
@@ -41,14 +40,14 @@ export function LoginOnlineAssistance() {
   };
 
   useEffect(() => {
-    console.log('bbb');
-
     if (!isAdminGroup) {
       navigate(ROUTES_PATH.dashboard);
+    } else if (isInDaas && user?.online_assistance) {
+      navigate(user?.online_assistance?.user_http_address);
     } else {
       navigate(ROUTES_PATH.loginAssistance);
     }
-  }, [isAdminGroup, navigate]);
+  }, [isAdminGroup, isInDaas, navigate, user?.online_assistance]);
 
   return (
     <div className="font-on bg-white dark:bg-slate-900 flex flex-col items-center justify-center min-h-screen ">

@@ -56,8 +56,6 @@ export function AssistanceGroupDetail({
 
     await API_ONLINE_ASSISTANCE(object)
       .then((data) => {
-        console.log({ data });
-
         setUser({
           ...user,
           online_assistance: {

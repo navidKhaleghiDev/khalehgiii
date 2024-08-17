@@ -91,7 +91,7 @@ export interface IUser {
   secret?: string | undefined;
   totp_secret?: string | null;
   admin_group_of?: TNumberObjectArray;
-  online_assistance: UserOnlineAssistance;
+  online_assistance: UserOnlineAssistance | null;
 }
 
 export type UserOnlineAssistance = {
