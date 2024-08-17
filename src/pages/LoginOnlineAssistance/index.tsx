@@ -47,12 +47,7 @@ export function LoginOnlineAssistance() {
     } else {
       navigate(ROUTES_PATH.loginAssistance);
     }
-  }, [
-    isAdminGroup,
-    isInDaas,
-    navigate,
-    user?.online_assistance?.user_http_address,
-  ]);
+  }, [isAdminGroup, isInDaas, navigate, user?.online_assistance]);
 
   return (
     <div className="font-on bg-white dark:bg-slate-900 flex flex-col items-center justify-center min-h-screen ">
