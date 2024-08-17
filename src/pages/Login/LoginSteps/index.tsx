@@ -40,13 +40,26 @@ export function LoginSteps() {
           return;
         }
         setUser(data);
-        if (!data.is_meta_admin && data.admin_group_of) {
-          navigate(ROUTES_PATH.loginAssistance);
-        } else {
-          toast.success(t('global.successfullyLogedIn'));
-          navigate(ROUTES_PATH.dashboard);
-          setIsOtpActive(true);
+        if (!data.is_meta_admin) {
+          if (
+            Array.isArray(data.admin_group_of) &&
+            data.admin_group_of.length !== 0
+          ) {
+            if (
+              data.online_assistance &&
+              Object.keys(data.online_assistance).length !== 0
+            ) {
+              navigate(ROUTES_PATH.dashboard);
+            } else {
+              navigate(ROUTES_PATH.loginAssistance);
+            }
+            return;
+          }
         }
+
+        toast.success(t('global.successfullyLogedIn'));
+        navigate(ROUTES_PATH.dashboard);
+        setIsOtpActive(true);
       })
       .catch((err) => {
         setError(err);

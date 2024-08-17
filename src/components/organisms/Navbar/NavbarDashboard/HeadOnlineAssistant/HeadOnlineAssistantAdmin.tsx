@@ -15,8 +15,6 @@ type Props = {
   onlineAssistance: UserOnlineAssistance;
 };
 export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
-  // const navigate = useNavigate();
-
   const { user, setUser } = useUserContext();
 
   useSWR(E_USERS_KEEPALIVE, http.fetcherSWR, {
