@@ -45,6 +45,8 @@ export function NavbarDashboard() {
   const isAdmin =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of?.length >= 1;
 
+  const isUser = user?.is_meta_admin || user?.is_superuser;
+
   const viewDaasPermission = checkPermission(
     userPermissions,
     EPermissionDaas.VIEW
@@ -134,7 +136,7 @@ export function NavbarDashboard() {
           ) : null}
         </div>
 
-        <HeadOnlineAssistant />
+        {!isUser && <HeadOnlineAssistant />}
         <div className="flex">
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />
