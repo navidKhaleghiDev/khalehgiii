@@ -1,8 +1,12 @@
 import { NoResult } from '@ui/molecules/NoResult';
 import { LicenseTableBody } from './LicenseTableBody';
 import { LicenseTableHeader } from './LicenseTableHeader';
+import { LicenseFileType } from '../../SettingsMalware/type';
 
-export function LicenseTables({ fileType }) {
+interface LicenseTablesProps {
+  fileType: LicenseFileType[];
+}
+export function LicenseTables({ fileType }: LicenseTablesProps) {
   return (
     <div>
       <LicenseTableHeader />

@@ -38,5 +38,5 @@ export const E_UBA_LIST_PAGINATION = ({
   `${E_UBA}${filter ? `?${filter}&` : '?'}page_size=${pageSize}&page=${page}`;
 
 export const E_ANALYZE_SCANNER = 'analyze/scanners_config/';
-export const E_MALWARE_ANTIVIRUS = (id: string) =>
+export const E_MALWARE_ANTIVIRUS = (id: number) =>
   `/analyze/scanners_config/${id}/`;

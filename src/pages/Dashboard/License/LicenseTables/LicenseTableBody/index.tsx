@@ -6,17 +6,26 @@ import PhCaretDownBold from '@iconify-icons/ph/caret-down-bold';
 import PhCaretUpBold from '@iconify-icons/ph/caret-up-bold';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import { SettingMalwareCard } from '@src/pages/Dashboard/SettingsMalware/SettingMalwareCard';
+import { LicenseFileType } from '@src/pages/Dashboard/SettingsMalware/type';
 
-export function LicenseTableBody({ item }) {
+interface LicenseTableBodyProps {
+  item: LicenseFileType;
+}
+
+type ComponentKey = 'none' | 'sandbox';
+
+type ComponentTypes = {
+  [key in ComponentKey]: JSX.Element;
+};
+export function LicenseTableBody({ item }: LicenseTableBodyProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const renderComponent = (item) => {
-    const components = {
-      none: <div>{item.name}</div>,
+  const renderComponent = (list: LicenseFileType) => {
+    const components: ComponentTypes = {
+      none: <div>{list.name}</div>,
       sandbox: <SettingMalwareCard />,
     };
-
-    return components[item.name ?? 'none'];
+    return components[list.name as ComponentKey] || components.none;
   };
 
   const toggleAccordion = () => {
@@ -62,7 +71,7 @@ export function LicenseTableBody({ item }) {
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
-          {item.activeNumbers}
+          {/* {item.activeNumbers} */}
         </Typography>
         <Typography
           variant="body3"
