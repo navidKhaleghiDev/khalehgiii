@@ -238,7 +238,10 @@
     "clipboardAccessLicense": "clipboard Access License ",
     "clipboardAccessLicenseNumber": "clipboard Access License Number",
     "chatRoomLicense": " Chatroom License",
-    "chatroomLicenseNumber": "Chatroom License Number"
+    "chatroomLicenseNumber": "Chatroom License Number",
+    "licenseStatus": "License Status",
+    "licenseNumbers": "License Numbers",
+    "activeNumbers": "Active Numbers"
   },
 
   "title": {
