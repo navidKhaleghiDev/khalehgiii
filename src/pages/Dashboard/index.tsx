@@ -20,6 +20,7 @@ import { DaasConfigCp } from './DaasConfig';
 import { DlpConfigCp } from './DlpConfig';
 import { SettingsMalwareCp } from './SettingsMalware';
 import { GroupManagement } from './GroupManagement';
+import { LicenseCp } from './License';
 
 export function DashboardPage() {
   const { user } = useUserContext();
@@ -82,6 +83,9 @@ export function DashboardPage() {
               <SettingsMalwareCp userExist={userExist} />
             </BaseTab>
           ) : null}
+          <BaseTab label="license">
+            <LicenseCp />
+          </BaseTab>
           {GroupManagementP ? (
             <BaseTab label="groupManagement">
               <GroupManagement />
