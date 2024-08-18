@@ -16,8 +16,6 @@ type Props = {
 };
 type IUserUpdate = Partial<IUser>;
 export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
-  // const navigate = useNavigate();
-
   const { user, setUser } = useUserContext();
 
   useSWR(E_USERS_KEEPALIVE, http.fetcherSWR, {

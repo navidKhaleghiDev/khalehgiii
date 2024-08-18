@@ -1,6 +1,15 @@
 import { OnlineAssistanceUserModel } from '@src/services/users/types';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
+function convertSecondsToTime(seconds: number) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = seconds % 60;
+
+  return `${hours}:${String(minutes).padStart(2, '0')}:${String(
+    remainingSeconds
+  ).padStart(2, '0')}`;
+}
 export const onlineAssistanceHeaderItem: IHeaderTable[] = [
   {
     label: 'header.admin',
@@ -27,7 +36,9 @@ export const onlineAssistanceHeaderItem: IHeaderTable[] = [
     id: 'duration_time',
     type: 'function',
     dir: 'rtl',
-    function: (duration_time: string) => <>‍‍‍‍‍{`${duration_time}`} دقیقه</>,
+    function: (duration_time: number) => (
+      <>‍‍‍‍‍{duration_time ? `${convertSecondsToTime(duration_time)}` : '0'}</>
+    ),
     class: 'px-3 w-2/12',
   },
   {

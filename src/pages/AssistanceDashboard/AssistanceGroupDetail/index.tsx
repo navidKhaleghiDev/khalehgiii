@@ -59,6 +59,7 @@ export function AssistanceGroupDetail({
         if (user) {
           setUser({
             ...user,
+            id: user.id, // Ensure this is of type `string | number`
             online_assistance: {
               user_http_address: data?.data?.http || '',
               user_https_address: data?.data?.https || '',

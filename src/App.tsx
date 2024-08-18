@@ -6,6 +6,7 @@ import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { LoadingSpinner } from '@ui/molecules/Loading';
+import { STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 import { IUser } from './services/users/types';
 import { API_USERS_PROFILE } from './services/users';
 
@@ -19,23 +20,28 @@ function App() {
   const { dir, lang } = useLanguage();
   const { theme } = useTheme();
   const userValue = useMemo(() => ({ user, setUser }), [user]);
+  const token = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
   useEffect(() => {
-    API_USERS_PROFILE()
-      .then(({ data }) => {
-        if (data.exceeded_usage) {
+    if (token) {
+      API_USERS_PROFILE()
+        .then(({ data }) => {
+          if (data.exceeded_usage) {
+            setUser(null);
+          } else {
+            setUser(data);
+          }
+        })
+        .catch(() => {
           setUser(null);
-        } else {
-          setUser(data);
-        }
-      })
-      .catch(() => {
-        setUser(null);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(false);
+    }
+  }, [token]);
 
   if (loading) {
     return <LoadingSpinner />;
