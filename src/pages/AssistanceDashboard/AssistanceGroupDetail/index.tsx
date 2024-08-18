@@ -46,7 +46,7 @@ export function AssistanceGroupDetail({
       });
   }, [id]);
 
-  const handleGoToUsersDesktop = async (memberId: string) => {
+  const handleGoToUsersDesktop = async (memberId: string, email: string) => {
     if (!memberId) return;
     const object = {
       id: memberId,
@@ -59,12 +59,11 @@ export function AssistanceGroupDetail({
         if (user) {
           setUser({
             ...user,
-            id: user.id, // Ensure this is of type `string | number`
             online_assistance: {
               user_http_address: data?.data?.http || '',
               user_https_address: data?.data?.https || '',
-              user: 'useerrrr',
-              group_name: 'group nameeee',
+              user: email,
+              group_name: object.group,
             },
           });
         }
@@ -106,7 +105,9 @@ export function AssistanceGroupDetail({
                   <BaseButton
                     disabled={!onlineUser || !isOnlineAssistance}
                     label={t('onlineAssistance.enterDesktop')}
-                    onClick={() => handleGoToUsersDesktop(member.id)}
+                    onClick={() =>
+                      handleGoToUsersDesktop(member.id, member?.email)
+                    }
                   />
                 </ToolTip>
                 <ToolTip
