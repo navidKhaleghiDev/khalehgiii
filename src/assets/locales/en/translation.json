@@ -241,7 +241,8 @@
     "chatroomLicenseNumber": "Chatroom License Number",
     "licenseStatus": "License Status",
     "licenseNumbers": "License Numbers",
-    "activeNumbers": "Active Numbers"
+    "activeNumbers": "Active Numbers",
+    "concurrentNumbers": "Concurrent Numbers"
   },
 
   "title": {

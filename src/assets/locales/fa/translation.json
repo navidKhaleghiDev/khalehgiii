@@ -245,7 +245,8 @@
     "chatroomLicenseNumber": "شماره لایسنس اتاق گفتگو",
     "licenseStatus": "وضعیت لایسنس",
     "licenseNumbers": "تعداد لایسنس",
-    "activeNumbers": "تعداد فعال شده"
+    "activeNumbers": "تعداد فعال شده",
+    "concurrentNumbers": "تعداد همزمان"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

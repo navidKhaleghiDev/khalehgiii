@@ -7,25 +7,60 @@ import PhCaretUpBold from '@iconify-icons/ph/caret-up-bold';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import { SettingMalwareCard } from '@src/pages/Dashboard/SettingsMalware/SettingMalwareCard';
 import { LicenseFileType } from '@src/pages/Dashboard/SettingsMalware/type';
+import { useTranslation } from 'react-i18next';
 
 interface LicenseTableBodyProps {
   item: LicenseFileType;
 }
 
-type ComponentKey = 'none' | 'sandbox';
+type ComponentKey = 'none' | 'sandbox' | 'users';
 
 type ComponentTypes = {
-  [key in ComponentKey]: JSX.Element;
+  [key in ComponentKey]: JSX.Element | null;
 };
 export function LicenseTableBody({ item }: LicenseTableBodyProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+
+  function isValidName(name: string): boolean {
+    return name === 'users' || name === 'sandbox';
+  }
 
   const renderComponent = (list: LicenseFileType) => {
     const components: ComponentTypes = {
-      none: <div>{list.name}</div>,
+      users: (
+        <div className="flex">
+          <div className="px-3 w-3/12 text-center break-words uppercase flex-col">
+            <Typography variant="body3" type="div">
+              {t('license.concurrentNumbers')}
+            </Typography>
+            <Typography variant="body3" type="div">
+              {list.concurrent}
+            </Typography>
+          </div>
+          <div className="px-3 w-3/12 text-center break-words uppercase flex-col">
+            {/* <Typography variant="body3" type="div">
+              {t('license.c')}
+            </Typography>
+            <Typography
+              variant="body3"
+              type="div"
+              className="px-3 w-3/12 text-center break-words uppercase"
+            >
+              {dateAndNumber(list?.created as string)}
+            </Typography> */}
+          </div>
+        </div>
+      ),
       sandbox: <SettingMalwareCard />,
+      none: null,
     };
-    return components[list.name as ComponentKey] || components.none;
+
+    if (isValidName(item.name)) {
+      return components[list.name as ComponentKey];
+    }
+
+    return null;
   };
 
   const toggleAccordion = () => {
@@ -78,10 +113,12 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase flex justify-center"
         >
-          <IconButton
-            icon={isOpen ? PhCaretUpBold : PhCaretDownBold}
-            onClick={toggleAccordion}
-          />
+          {isValidName(item.name) && (
+            <IconButton
+              icon={isOpen ? PhCaretUpBold : PhCaretDownBold}
+              onClick={toggleAccordion}
+            />
+          )}
         </Typography>
       </Card>
       {isOpen && (
