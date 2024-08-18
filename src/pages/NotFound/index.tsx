@@ -3,7 +3,6 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { NoResult } from '@ui/molecules/NoResult';
 import { Link, useNavigate } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useUserContext } from '@context/user/userContext';
 import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
