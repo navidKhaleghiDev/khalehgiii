@@ -62,7 +62,7 @@ export interface IResponseLogin {
 }
 
 export interface IUser {
-  id?: number;
+  id: number | string;
   user_permissions?: IUserPermissions[];
   password?: string;
   last_login?: string;

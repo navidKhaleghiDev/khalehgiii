@@ -1,7 +1,7 @@
 import usersThreeLight from '@iconify-icons/ph/users-three-light';
 import userIcon from '@iconify-icons/ph/user';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
-import { UserOnlineAssistance } from '@src/services/users/types';
+import { IUser, UserOnlineAssistance } from '@src/services/users/types';
 import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
@@ -14,6 +14,7 @@ import { useUserContext } from '@context/user/userContext';
 type Props = {
   onlineAssistance: UserOnlineAssistance;
 };
+type IUserUpdate = Partial<IUser>;
 export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
   const { user, setUser } = useUserContext();
 
@@ -33,7 +34,8 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
 
   const logout = () => {
     logoutFunction();
-    setUser({ ...user, online_assistance: null });
+    const updatedUser: IUserUpdate = { ...user, online_assistance: null };
+    setUser(updatedUser as IUser);
   };
 
   return (

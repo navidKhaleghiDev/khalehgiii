@@ -46,7 +46,7 @@ export function AssistanceGroupDetail({
       });
   }, [id]);
 
-  const handleGoToUsersDesktop = async (memberId: string, email: string) => {
+  const handleGoToUsersDesktop = async (memberId: string) => {
     if (!memberId) return;
     const object = {
       id: memberId,
@@ -56,15 +56,18 @@ export function AssistanceGroupDetail({
 
     await API_ONLINE_ASSISTANCE(object)
       .then((data) => {
-        setUser({
-          ...user,
-          online_assistance: {
-            user_http_address: data?.data?.http,
-            user_https_address: data?.data?.https,
-            user: email,
-            group_name: object.group,
-          },
-        });
+        if (user) {
+          setUser({
+            ...user,
+            id: user.id, // Ensure this is of type `string | number`
+            online_assistance: {
+              user_http_address: data?.data?.http || '',
+              user_https_address: data?.data?.https || '',
+              user: 'useerrrr',
+              group_name: 'group nameeee',
+            },
+          });
+        }
         navigate(ROUTES_PATH.dashboard);
       })
       .catch((err) => {
@@ -103,9 +106,7 @@ export function AssistanceGroupDetail({
                   <BaseButton
                     disabled={!onlineUser || !isOnlineAssistance}
                     label={t('onlineAssistance.enterDesktop')}
-                    onClick={() =>
-                      handleGoToUsersDesktop(member.id, member.email)
-                    }
+                    onClick={() => handleGoToUsersDesktop(member.id)}
                   />
                 </ToolTip>
                 <ToolTip
