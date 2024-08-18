@@ -242,7 +242,8 @@
     "licenseStatus": "License Status",
     "licenseNumbers": "License Numbers",
     "activeNumbers": "Active Numbers",
-    "concurrentNumbers": "Concurrent Numbers"
+    "concurrentNumbers": "Concurrent Numbers",
+    "wholeNumbers": "Whole Numbers"
   },
 
   "title": {

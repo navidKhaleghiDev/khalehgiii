@@ -246,7 +246,8 @@
     "licenseStatus": "وضعیت لایسنس",
     "licenseNumbers": "تعداد لایسنس",
     "activeNumbers": "تعداد فعال شده",
-    "concurrentNumbers": "تعداد همزمان"
+    "concurrentNumbers": "تعداد همزمان",
+    "wholeNumbers": "تعداد کل "
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

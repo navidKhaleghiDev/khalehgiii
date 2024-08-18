@@ -39,16 +39,12 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
             </Typography>
           </div>
           <div className="px-3 w-3/12 text-center break-words uppercase flex-col">
-            {/* <Typography variant="body3" type="div">
-              {t('license.c')}
+            <Typography variant="body3" type="div">
+              {t('license.wholeNumbers')}
             </Typography>
-            <Typography
-              variant="body3"
-              type="div"
-              className="px-3 w-3/12 text-center break-words uppercase"
-            >
-              {dateAndNumber(list?.created as string)}
-            </Typography> */}
+            <Typography variant="body3" type="div">
+              {list.number}
+            </Typography>
           </div>
         </div>
       ),
@@ -106,7 +102,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
-          {/* {item.activeNumbers} */}
+          {`${item.active}/${item.number}`}
         </Typography>
         <Typography
           variant="body3"
