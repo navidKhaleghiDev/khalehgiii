@@ -6,7 +6,7 @@ import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
+import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 import { IUser } from './services/users/types';
 import { API_USERS_PROFILE } from './services/users';
 
@@ -33,6 +33,7 @@ function App() {
           }
         })
         .catch(() => {
+          http.removeAuthHeader();
           setUser(null);
         })
         .finally(() => {

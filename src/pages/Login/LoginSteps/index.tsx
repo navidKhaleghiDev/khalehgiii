@@ -62,6 +62,8 @@ export function LoginSteps() {
         setIsOtpActive(true);
       })
       .catch((err) => {
+        setUser(null);
+        http.removeAuthHeader();
         setError(err);
       })
       .finally(() => {
