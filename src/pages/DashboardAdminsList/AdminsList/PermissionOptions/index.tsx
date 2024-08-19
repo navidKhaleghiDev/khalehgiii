@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { permissionKeys } from '@src/constants/permissionKeys';
+// import { permissionKeys } from '@src/constants/permissionKeys';
 import { Typography } from '@ui/atoms';
 import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 import { IUserPermissions } from '@src/types/permissions';
@@ -26,10 +26,10 @@ export function PermissionOptions({
 
   useEffect(() => {
     // Filter and merge permissions with selected switches
-    const filteredPermissions = permissions.filter((item) =>
-      permissionKeys.includes(item.codename)
-    );
-    const updatedPermissions = filteredPermissions.map((item) => ({
+    // const filteredPermissions = permissions.filter((item) =>
+    //   permissionKeys.includes(item.codename)
+    // );
+    const updatedPermissions = permissions.map((item) => ({
       ...item,
       selected: selectedSwitches.some((selected) => selected.id === item.id),
     }));
