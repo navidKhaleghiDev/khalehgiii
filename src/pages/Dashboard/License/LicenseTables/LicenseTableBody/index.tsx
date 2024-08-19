@@ -8,6 +8,11 @@ import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import { SettingMalwareCard } from '@src/pages/Dashboard/SettingsMalware/SettingMalwareCard';
 import { LicenseFileType } from '@src/pages/Dashboard/SettingsMalware/type';
 import { useTranslation } from 'react-i18next';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { EPermissionConfig } from '@src/types/permissions';
 
 interface LicenseTableBodyProps {
   item: LicenseFileType;
@@ -20,7 +25,10 @@ type ComponentTypes = {
 };
 export function LicenseTableBody({ item }: LicenseTableBodyProps) {
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
   const [isOpen, setIsOpen] = useState(false);
+
+  const viewSandBox = checkPermission(userPermissions, EPermissionConfig.VIEW);
 
   function isValidName(name: string): boolean {
     return name === 'users' || name === 'sandbox';
@@ -48,7 +56,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
           </div>
         </div>
       ),
-      sandbox: <SettingMalwareCard />,
+      sandbox: <div>{viewSandBox ? <SettingMalwareCard /> : null}</div>,
       none: null,
     };
 
