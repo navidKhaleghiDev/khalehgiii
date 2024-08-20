@@ -10,8 +10,10 @@ import { API_UPDATE_USER, API_CREATE_USER } from '@src/services/users';
 import { PasswordInput } from '@ui/atoms/Inputs/PasswordInput';
 import { useTranslation } from 'react-i18next';
 import BaseQrCode from '@ui/atoms/BaseQrCode';
-import { useUserContext } from '@context/user/userContext';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
+import useSWR from 'swr';
+import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
+import { http } from '@src/services/http';
 import { PermissionOptions } from '../PermissionOptions';
 
 type PropsType = {
@@ -20,12 +22,16 @@ type PropsType = {
 };
 
 export function UpdateAdminModal({ handleClose, admin }: PropsType) {
-  const { user } = useUserContext();
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [selectedSwitches, setSelectedSwitches] = useState(
     admin?.user_permissions || []
+  );
+
+  const { data: permissionData, isLoading } = useSWR(
+    E_USERS_PERMISSION,
+    http.fetcherSWR
   );
 
   const { control, handleSubmit } = useForm<IUser>({
@@ -41,7 +47,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     },
   });
 
-  const permissions = user?.user_permissions || [];
+  const permissions = permissionData?.data || [];
   const getSelectedIds = selectedSwitches.map((item) => item.id);
 
   const handleOnSubmit = async (data: IUser) => {
@@ -193,6 +199,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
         </BaseTab>
         <BaseTab label={t('global.accessList')}>
           <PermissionOptions
+            loading={isLoading}
             permissions={permissions}
             setSelectedSwitches={setSelectedSwitches}
             selectedSwitches={selectedSwitches as []}

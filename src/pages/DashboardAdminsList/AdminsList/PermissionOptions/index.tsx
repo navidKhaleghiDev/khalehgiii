@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 // import { permissionKeys } from '@src/constants/permissionKeys';
 import { Typography } from '@ui/atoms';
+import { LoadingSpinner } from '@ui/molecules/Loading';
 import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 import { IUserPermissions } from '@src/types/permissions';
 import { IPermissionOptionsProps } from './types';
 
 export function PermissionOptions({
+  loading,
   permissions,
   setSelectedSwitches,
   selectedSwitches,
@@ -39,20 +41,26 @@ export function PermissionOptions({
 
   return (
     <div className="px-2 flex flex-wrap max-h-[35rem] overflow-y-auto">
-      {mergedPermissions.map((item) => (
-        <div key={item.id} className="w-full flex-col ">
-          <div className=" mt-2 flex justify-between items-center border-b h-10">
-            <BaseSwitchWithState
-              pureOnChange={(isChecked) => handleSwitchChange(item, isChecked)}
-              pureValue={item.selected}
-              name={item.codename}
-            />
-            <Typography className="mb-1" type="h4" color="teal">
-              {item.name}
-            </Typography>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        mergedPermissions.map((item) => (
+          <div key={item.id} className="w-full flex-col ">
+            <div className=" mt-2 flex justify-between items-center border-b h-10">
+              <BaseSwitchWithState
+                pureOnChange={(isChecked) =>
+                  handleSwitchChange(item, isChecked)
+                }
+                pureValue={item.selected}
+                name={item.codename}
+              />
+              <Typography className="mb-1" type="h4" color="teal">
+                {item.name}
+              </Typography>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 }
