@@ -52,6 +52,7 @@ export function EditGroupMembers({
             onClick={() => handleRemoveItem(item.id)}
             item={item}
             key={item.id}
+            disabled={isAdmins && list.length <= 1}
           />
         ))}
       </div>

@@ -6,16 +6,21 @@ type TEditCardProps = {
   item: { id: string; email: string };
   onClick: (item: string) => void;
   permissions: boolean;
+  disabled?: boolean;
 };
 
-export function EditCardList({ item, onClick, permissions }: TEditCardProps) {
+export function EditCardList({
+  item,
+  onClick,
+  permissions,
+  disabled,
+}: TEditCardProps) {
   return (
     <div className="bg-neutral-100 rounded-lg p-2 flex  justify-between items-center mx-2">
       <Typography variant="body2" color="neutral">
         {item.email}
       </Typography>
-      {/* <Circle id className="mr-auto ml-2" /> */}
-      {permissions ? (
+      {permissions && !disabled ? (
         <IconButton
           icon="ph:trash"
           color="redNoBg"
