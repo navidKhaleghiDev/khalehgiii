@@ -41,7 +41,7 @@ export function GroupModalForm({
   const methods = useForm<TGroupUpdate>({
     mode: 'onChange',
     defaultValues: {
-      image: '',
+      image: group?.id ? group?.image : '',
       name: group?.id ? group.name : '',
     },
   });
@@ -62,7 +62,12 @@ export function GroupModalForm({
     key: K,
     value: TGroupUpdate[K]
   ) => {
-    if (group) {
+    if (updatedData) {
+      setUpdatedData({
+        ...updatedData,
+        [key]: value,
+      });
+    } else if (group) {
       setUpdatedData({
         ...group,
         [key]: value,
@@ -81,15 +86,28 @@ export function GroupModalForm({
       ...(group?.[userType] || []),
       ...(getValues(userType) || []),
     ];
+
+    const updatedAlternative = updatedData
+      ? updatedData[alternateUserType]
+      : false;
+
     const existingMembers = group ? group[alternateUserType] : [];
 
     if (group) {
-      setUpdatedData({
+      const updatedGroupData = {
         users: isAdmin ? existingMembers : newMembers,
         admins: isAdmin ? newMembers : existingMembers,
         name: getValues('name') || group.name,
         image: getValues('image'),
-      });
+      };
+      if (updatedAlternative) {
+        setUpdatedData({
+          ...updatedGroupData,
+          [alternateUserType]: updatedAlternative,
+        });
+      } else {
+        setUpdatedData(updatedGroupData);
+      }
       setIsUpdatingGroupMember(false);
     } else if (!group) {
       handleSubmit(onSubmit)();
@@ -112,7 +130,6 @@ export function GroupModalForm({
             type={group ? 'edit' : 'add'}
             setValue={setValue}
             clearErrors={clearErrors}
-            defaultValue={group?.id ? group?.image : ''}
             rules={undefined}
           />
           <BaseInput
