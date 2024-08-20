@@ -10,7 +10,7 @@ import axios, {
 import cookie from 'js-cookie';
 import { toast } from 'react-toastify';
 import { t } from 'i18next';
-import { E_USERS_REFRESH } from '../users/endpoint';
+// import { E_USERS_REFRESH } from '../users/endpoint';
 
 const lang = localStorage.getItem('lang');
 
@@ -28,7 +28,7 @@ enum StatusCode {
 export const STORAGE_KEY_TOKEN = 't';
 export const STORAGE_KEY_REFRESH_TOKEN = 'r';
 
-const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+// const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
 const headers: Readonly<Record<string, string | boolean>> = {
   Accept: 'application/json',
@@ -182,19 +182,21 @@ export class Http {
           }
           case StatusCode.Unauthorized: {
             // 401 - Handle Unauthorized
-            if (refresh) {
-              const refreshResponse = await this.http.post(
-                `${this.baseUrl}${E_USERS_REFRESH}`,
-                { refresh }
-              );
-              const accessToken = refreshResponse.data?.access;
-              if (accessToken) {
-                this.setAuthHeader(accessToken, refresh);
-              }
-            } else {
-              this.removeAuthHeader();
-              window.location.reload();
-            }
+            // if (refresh) {
+            //   // const refreshResponse = await this.http.post(
+            //   //   `${this.baseUrl}${E_USERS_REFRESH}`,
+            //   //   { refresh }
+            //   // );
+            //   // const accessToken = refreshResponse.data?.access;
+            //   // if (accessToken) {
+            //   //   this.setAuthHeader(accessToken, refresh);
+            //   // }
+            // } else {
+            //   this.removeAuthHeader();
+            //   window.location.reload();
+            // }
+            this.removeAuthHeader();
+            window.location.reload();
             break;
           }
           case StatusCode.Forbidden: {
