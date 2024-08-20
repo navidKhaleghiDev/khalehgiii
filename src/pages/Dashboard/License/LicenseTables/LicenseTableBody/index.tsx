@@ -27,6 +27,15 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
   const [isOpen, setIsOpen] = useState(false);
+  const validNumber = !item.number && item.license ? 1 : item.number;
+  const validActive =
+    item.active === null || item.active === undefined ? 0 : item.active;
+
+  function checkZeroOrNull(param1: number | null, param2: number | null) {
+    return param1 === 0 || param1 === null || param2 === 0 || param2 === null
+      ? 0
+      : `${param1}/${param2}`;
+  }
 
   const viewSandBox = checkPermission(userPermissions, EPermissionConfig.VIEW);
 
@@ -56,7 +65,13 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
           </div>
         </div>
       ),
-      sandbox: <div>{viewSandBox ? <SettingMalwareCard /> : null}</div>,
+      sandbox: (
+        <div>
+          {viewSandBox ? (
+            <SettingMalwareCard disabled={!item?.license} />
+          ) : null}
+        </div>
+      ),
       none: null,
     };
 
@@ -96,7 +111,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
-          {item.number}
+          {validNumber}
         </Typography>
         <Typography
           variant="body3"
@@ -110,7 +125,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
           type="div"
           className="px-3 w-3/12 text-center break-words uppercase"
         >
-          {`${item.active}/${item.number}`}
+          {checkZeroOrNull(validActive, validNumber)}
         </Typography>
         <Typography
           variant="body3"
