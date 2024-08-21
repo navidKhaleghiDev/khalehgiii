@@ -23,9 +23,9 @@ export interface IDaasConfig {
   webcam_privilege: boolean;
   microphone_privilege: boolean;
   is_recording: boolean;
-  has_evidence_gathering: boolean;
-  has_clipboard_access: boolean;
-  has_clipboard_log: boolean;
+  has_evidence_gathering?: boolean;
+  has_clipboard_access?: boolean;
+  has_clipboard_log?: boolean;
   time_limit_duration: ETimeLimitDuration;
   time_limit_value_in_hour: null | number;
   max_transmission_upload_size: number;
