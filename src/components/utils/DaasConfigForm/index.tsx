@@ -22,6 +22,7 @@ export function DaasConfigForm({
   isMetaConfig,
 }: PropsType) {
   const { t } = useTranslation();
+
   const hasChangePermission = checkPermission(
     userPermissions,
     EPermissionDaas.CHANGE
@@ -38,42 +39,48 @@ export function DaasConfigForm({
         <BaseSwitch control={control} name="can_upload_file" />
       </div>
 
-      {/* <div className="flex justify-between items-center px-2 col-span-3">
-        <BaseSwitch control={control} name="clipboard_down" />
-        <Typography className="mb-1">:Clipboard from Server</Typography>
-      </div> */}
-
-      {/* <div className="flex justify-between items-center px-2 col-span-3">
-				<BaseSwitch control={control} name="clipboard_up" />
-				<Typography className="mb-1">:Clipboard from Client</Typography>
-			</div> */}
       {!isMetaConfig && (
-        <div className="flex justify-between items-center px-2 col-span-3">
-          <Typography className="mb-1">{t('table.webcamPrivilege')}</Typography>
-          <BaseSwitch control={control} name="chatroom_privileged" />
-        </div>
-      )}
-      <div className="flex justify-between items-center px-2 col-span-3">
-        <Typography className="mb-1">{t('global.onlineAssistance')}</Typography>
-        <BaseSwitch control={control} name="has_online_assistance" />
-      </div>
-
-      {/* <div className="flex justify-between items-center px-2 col-span-3">
-        <Typography className="mb-1">
-          {t('table.microphonePrivilege')}
-        </Typography>
-        <BaseSwitch control={control} name="microphone_privilege" />
-      </div> */}
-      {isRecording && (
         <>
           <div className="flex justify-between items-center px-2 col-span-3">
             <Typography className="mb-1">
-              {t('table.sessionRecording')}
+              {t('table.AccessConference')}
             </Typography>
-            <BaseSwitch control={control} name="is_recording" />
+            <BaseSwitch control={control} name="chatroom_privileged" />
           </div>
-          <div className="flex justify-between items-center px-2 col-span-3" />
+
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">
+              {t('global.onlineAssistance')}
+            </Typography>
+            <BaseSwitch control={control} name="has_online_assistance" />
+          </div>
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">
+              {t('global.evidenceGathering')}
+            </Typography>
+            <BaseSwitch control={control} name="has_evidence_gathering" />
+          </div>
+
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">
+              {t('global.clipboardAccess')}
+            </Typography>
+            <BaseSwitch control={control} name="has_clipboard_access" />
+          </div>
+          <div className="flex justify-between items-center px-2 col-span-3">
+            <Typography className="mb-1">{t('global.clipboardLog')}</Typography>
+            <BaseSwitch control={control} name="has_clipboard_log" />
+          </div>
         </>
+      )}
+
+      {isRecording && (
+        <div className="flex justify-between items-center px-2 col-span-3">
+          <Typography className="mb-1">
+            {t('table.sessionRecording')}
+          </Typography>
+          <BaseSwitch control={control} name="is_recording" />
+        </div>
       )}
       <div className="px-2 col-span-3 ">
         <Typography className="mb-1">{t('table.timeLimitDuration')}</Typography>
@@ -100,7 +107,6 @@ export function DaasConfigForm({
         <BaseInput
           control={control}
           // size="xs"
-
           id="time_limit_value_in_hour"
           name="time_limit_value_in_hour"
           placeholder={t('global.selectHour')}

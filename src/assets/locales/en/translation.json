@@ -85,7 +85,7 @@
     "edit": "edit",
     "delete": "delete",
     "upload": "upload",
-    "webcamPrivilege": "Webcam Privilege",
+    "AccessConference": "Access conference",
     "conferencePrivilege": "Conference Privilege",
     "microphonePrivilege": "Microphone Privilege",
     "timeLimitDuration": "Time Limit Duration",
@@ -200,7 +200,10 @@
     "accessList": "Access list",
     "onlineAssistance": "Online Assistanse",
     "onlineAssistanceDetail": "online Assistance Detail",
-    "noData": "No Data"
+    "noData": "No Data",
+    "evidenceGathering": "Evidence Gathering",
+    "clipboardAccess": "Clipboard Access",
+    "clipboardLog": "Clipboard Log"
   },
   "groupManagement": {
     "person": "person",

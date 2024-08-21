@@ -81,7 +81,7 @@
     "edit": "ویرایش",
     "delete": "حذف",
     "upload": "آپلود",
-    "webcamPrivilege": "دسترسی کنفرانس",
+    "AccessConference": "دسترسی کنفرانس",
     "conferencePrivilege": "دسترسی وبکم",
     "microphonePrivilege": "دسترسی میکروفن",
     "timeLimitDuration": "محدود کردن براساس زمان",
@@ -203,7 +203,10 @@
     "recordDate": "تاریخ ضبط",
     "onlineAssistance": "دستیار آنلاین",
     "onlineAssistanceDetail": "جزيات دستیار",
-    "noData": "دیتایی موجود نیست"
+    "noData": "دیتایی موجود نیست",
+    "evidenceGathering": "دسترسی شواهد",
+    "clipboardAccess": "دسترسی کلیپ بورد",
+    "clipboardLog": "دسترسی لاگ کیلیپ بورد"
   },
   "groupManagement": {
     "person": "نفر",
