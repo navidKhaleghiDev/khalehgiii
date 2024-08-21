@@ -106,12 +106,6 @@ export function AdminsList() {
     if (action === 'edit') {
       setOpenUpdateModal(true);
     }
-
-    // if (daas !== undefined && typeof daas !== "string") {
-    //   setActionOnClick(action);
-    //   setActiveDaas(daas);
-    //   setDeleteModal(true);
-    // }
   };
 
   const handleCreateAdmin = () => {
