@@ -66,54 +66,56 @@ export function GroupCardEdit({
   };
 
   return (
-    <CardButton
-      shadow="lg"
-      rounded="xl"
-      className="relative w-36 p-3 flex justify-center items-center hover:bg-neutral-100 transition-colors duration-400 group"
-      onClick={!loading && !openModal ? onClickActions : undefined}
-    >
+    <div className="relative group">
       {GroupManagementDelete ? (
         <IconButton
-          className=" absolute top-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-200 p-1 rounded  z-30 "
+          className="absolute top-0 right-0 z-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-red-200 p-1 rounded "
           icon={xIcon}
           color="redNoBg"
           size="xl"
           onClick={handleRemoveGroup as any}
         />
       ) : null}
-      <div className="flex flex-col items-center">
-        {image ? (
-          <img
-            src={image as string}
-            alt={name}
-            className="w-20 h-20 rounded-full flex justify-center items-center"
-          />
-        ) : (
-          <div className="w-20 h-20 bg-neutral-100 rounded-full flex justify-center items-center group-hover:bg-neutral-200 transition-colors duration-400">
-            <BaseIcon icon="ph:users-three" size="xl" color="neutral" />
-          </div>
-        )}
+      <CardButton
+        shadow="lg"
+        rounded="xl"
+        className="relative w-36 p-3 flex justify-center items-center hover:bg-neutral-100 transition-colors duration-400 "
+        onClick={!loading && !openModal ? onClickActions : undefined}
+      >
+        <div className="flex flex-col items-center">
+          {image ? (
+            <img
+              src={image as string}
+              alt={name}
+              className="w-20 h-20 rounded-full flex justify-center items-center"
+            />
+          ) : (
+            <div className="w-20 h-20 bg-neutral-100 rounded-full flex justify-center items-center group-hover:bg-neutral-200 transition-colors duration-400">
+              <BaseIcon icon="ph:users-three" size="xl" color="neutral" />
+            </div>
+          )}
 
-        <Typography variant="body2" className="mt-3">
-          {name}
-        </Typography>
-      </div>
-      <Modal
-        open={openModal}
-        setOpen={setOpenModal}
-        type="error"
-        title={t('global.sureAboutThis')}
-        buttonOne={{
-          label: t('global.yes'),
-          onClick: updateGroup,
-          loading,
-        }}
-        buttonTow={{
-          label: t('global.no'),
-          onClick: () => setOpenModal(false),
-          color: 'red',
-        }}
-      />
-    </CardButton>
+          <Typography variant="body2" className="mt-3">
+            {name}
+          </Typography>
+        </div>
+        <Modal
+          open={openModal}
+          setOpen={setOpenModal}
+          type="error"
+          title={t('global.sureAboutThis')}
+          buttonOne={{
+            label: t('global.yes'),
+            onClick: updateGroup,
+            loading,
+          }}
+          buttonTow={{
+            label: t('global.no'),
+            onClick: () => setOpenModal(false),
+            color: 'red',
+          }}
+        />
+      </CardButton>
+    </div>
   );
 }
