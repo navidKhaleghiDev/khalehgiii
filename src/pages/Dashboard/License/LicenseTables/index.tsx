@@ -1,7 +1,7 @@
 import { NoResult } from '@ui/molecules/NoResult';
 import { LicenseTableBody } from './LicenseTableBody';
 import { LicenseTableHeader } from './LicenseTableHeader';
-import { LicenseFileType } from '../../SettingsMalware/type';
+import { LicenseFileType } from '../SettingMalwareCard/type';
 
 interface LicenseTablesProps {
   fileType: LicenseFileType[];

@@ -5,14 +5,14 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import PhCaretDownBold from '@iconify-icons/ph/caret-down-bold';
 import PhCaretUpBold from '@iconify-icons/ph/caret-up-bold';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { SettingMalwareCard } from '@src/pages/Dashboard/SettingsMalware/SettingMalwareCard';
-import { LicenseFileType } from '@src/pages/Dashboard/SettingsMalware/type';
+import { SettingMalwareCard } from '@src/pages/Dashboard/License/SettingMalwareCard';
 import { useTranslation } from 'react-i18next';
 import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { EPermissionConfig } from '@src/types/permissions';
+import { LicenseFileType } from '../../SettingMalwareCard/type';
 
 interface LicenseTableBodyProps {
   item: LicenseFileType;

@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { TGroupListUpdate } from '@src/pages/Dashboard/GroupManagement/type';
 import { IAxiosResponse, IServerResponse } from '@src/types/services';
-import { MalwareUpdateBody } from '@src/pages/Dashboard/SettingsMalware/type';
+import { MalwareUpdateBody } from '@src/pages/Dashboard/License/SettingMalwareCard/type';
 import {
   IBodyUsersLogin,
   IResponseLogin,

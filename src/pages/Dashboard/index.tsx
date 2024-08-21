@@ -10,7 +10,6 @@ import {
   EPermissionConfig,
   EPermissionDaasMetaConfig,
   EPermissionGroupManagement,
-  EPermissionMalwareConfig,
   EPermissionWhiteListFiles,
 } from '@src/types/permissions';
 import { useUserContext } from '@context/user/userContext';
@@ -18,7 +17,6 @@ import { DashboardCards } from './DashboardCards';
 import { SettingsKeycloakCp } from './SettingsKeycloak';
 import { DaasConfigCp } from './DaasConfig';
 import { DlpConfigCp } from './DlpConfig';
-import { SettingsMalwareCp } from './SettingsMalware';
 import { GroupManagement } from './GroupManagement';
 import { LicenseCp } from './License';
 
@@ -41,22 +39,13 @@ export function DashboardPage() {
     userPermissions,
     EPermissionWhiteListFiles.VIEW
   );
-  const SettingsMalwareP = checkPermission(
-    userPermissions,
-    EPermissionMalwareConfig.VIEW
-  );
-
   const GroupManagementP = checkPermission(
     userPermissions,
     EPermissionGroupManagement.VIEW
   );
 
   const dashboardConditions =
-    SettingsConfigP ||
-    DaasConfigP ||
-    DlpConfigP ||
-    SettingsMalwareP ||
-    GroupManagementP;
+    SettingsConfigP || DaasConfigP || DlpConfigP || GroupManagementP;
 
   return (
     <ContainerDashboard>
@@ -76,11 +65,6 @@ export function DashboardPage() {
           {DlpConfigP ? (
             <BaseTab label="DLP">
               <DlpConfigCp />
-            </BaseTab>
-          ) : null}
-          {SettingsMalwareP ? (
-            <BaseTab label="malware">
-              <SettingsMalwareCp userExist={userExist} />
             </BaseTab>
           ) : null}
           <BaseTab label="license">

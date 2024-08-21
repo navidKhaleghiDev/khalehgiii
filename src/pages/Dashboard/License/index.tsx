@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import { E_USERS_LICENSES } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { LicenseTables } from './LicenseTables';
-import { LicenseFileType } from '../SettingsMalware/type';
+import { LicenseFileType } from './SettingMalwareCard/type';
 
 export function LicenseCp() {
   const { data, isLoading } = useSWR(E_USERS_LICENSES, http.fetcherSWR);
