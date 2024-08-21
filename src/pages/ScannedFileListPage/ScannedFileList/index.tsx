@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { useCallback, useState, useRef } from 'react';
 import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { IScannedFile } from '@src/services/analyze/types';
@@ -30,6 +31,7 @@ export function ScannedFileList() {
   const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
   const downloadLinkRef = useRef(null);
   const { id } = useParams();
+  const { t } = useTranslation();
   const userPermissions = useUserPermission();
 
   const { data, isLoading } = useSWR<IResponsePagination<IScannedFile>>(
@@ -42,6 +44,11 @@ export function ScannedFileList() {
       : null,
     HTTP_ANALYSES.fetcherSWR
   );
+
+  const listDaas = data?.data?.results ?? [];
+  const countPage = data?.data?.count ?? 0;
+  const evidencePermissions =
+    listDaas[listDaas.length - 1]?.evidence_permission;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetFilterQuery = useCallback(
@@ -71,13 +78,14 @@ export function ScannedFileList() {
 
         window.URL.revokeObjectURL(url);
       })
-      .catch((err) => {
-        toast.error(err);
+      .catch(() => {
+        toast.error(
+          !evidencePermissions
+            ? t('global.dontHaveAccess')
+            : t('global.somethingWentWrong')
+        );
       });
   };
-
-  const listDaas = data?.data?.results ?? [];
-  const countPage = data?.data?.count ?? 0;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -116,7 +124,7 @@ export function ScannedFileList() {
         loading={isLoading}
         headers={checkPermissionHeaderItem(
           userPermissions,
-          scannedFileHeaderItem
+          scannedFileHeaderItem(evidencePermissions)
         )}
         bodyList={listDaas}
         onClick={handleOpenModal}

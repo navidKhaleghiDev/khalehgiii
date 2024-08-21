@@ -13,7 +13,7 @@ export type RowType<T> = T & {
 
 export type TIdItem = { id: string | number };
 
-type TTableType =
+export type TTableType =
   | 'action'
   | 'none'
   | 'component'
