@@ -13,6 +13,8 @@ import BaseQrCode from '@ui/atoms/BaseQrCode';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import useSWR from 'swr';
 import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
+import { IResponseData } from '@src/types/services';
+import { IUserPermissions } from '@src/types/permissions';
 import { http } from '@src/services/http';
 import { PermissionOptions } from '../PermissionOptions';
 
@@ -29,10 +31,9 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     admin?.user_permissions || []
   );
 
-  const { data: permissionData, isLoading } = useSWR(
-    E_USERS_PERMISSION,
-    http.fetcherSWR
-  );
+  const { data: permissionData, isLoading } = useSWR<
+    IResponseData<IUserPermissions[]>
+  >(E_USERS_PERMISSION, http.fetcherSWR);
 
   const { control, handleSubmit } = useForm<IUser>({
     mode: 'onChange',
