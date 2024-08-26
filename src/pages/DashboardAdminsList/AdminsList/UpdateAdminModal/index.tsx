@@ -122,7 +122,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               control={control}
               name="username"
               id="username"
-              placeholder="username"
+              placeholder={t('global.userName')}
               label={t('global.userName')}
               fullWidth
               maxLength={60}
@@ -136,7 +136,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                 label={t('global.password')}
                 name="password"
                 control={control}
-                placeholder={t('global.repeatNewPassword')}
+                placeholder={t('global.password')}
                 rules={{
                   pattern: regexPattern.enCharAndNumber,
                   required: regexPattern.required,

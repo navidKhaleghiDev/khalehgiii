@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
-import cookie from 'js-cookie';
 import usersThreeLight from '@iconify-icons/ph/users-three-light';
 import userIcon from '@iconify-icons/ph/user';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
@@ -12,22 +9,23 @@ import {
   STORAGE_KEY_REFRESH_TOKEN,
   STORAGE_KEY_TOKEN,
 } from '@src/services/http';
+
 import useSWR from 'swr';
 import { E_USERS_KEEPALIVE } from '@src/services/users/endpoint';
 import { API_USERS_LOGOUT_ONLINE_ASSISTANCE } from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
+import { useEffect, useState } from 'react';
+import cookie from 'js-cookie';
+import { io } from 'socket.io-client';
 
-const SOCKET_URL = 'ws://192.168.2.23:8009';
+const SOCKET_URL = 'http://192.168.2.23:8009';
 
 type Props = {
   onlineAssistance: UserOnlineAssistance;
 };
-
 type IUserUpdate = Partial<IUser>;
-
 export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
   const { user, setUser } = useUserContext();
-  const [socket, setSocket] = useState<Socket | null>(null);
 
   useSWR(E_USERS_KEEPALIVE, http.fetcherSWR, {
     refreshInterval: 60000,
@@ -35,12 +33,13 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
 
   const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
-  const logoutFunction = async () => {
+  async function logoutFunction() {
     const data = {
       refresh_token: refresh || '',
     };
+
     await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-  };
+  }
 
   const logout = () => {
     logoutFunction();
@@ -48,31 +47,31 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
     setUser(updatedUser as IUser);
   };
 
+  const [socket, setSocket] = useState(null);
   const token = cookie.get(STORAGE_KEY_TOKEN);
 
   useEffect(() => {
-    if (token) {
-      // Initialize socket connection
-      const newSocket = io(SOCKET_URL, {
-        transports: ['websocket'], // Use WebSocket transport
-        path: '/ws/online_assistance/', // Ensure correct path
-        reconnectionDelayMax: 10000,
-        auth: {
-          token, // Pass token here
-        },
-      });
+    // Initialize socket connection
+    const newSocket = io(SOCKET_URL, {
+      transports: ['websocket'], // Use WebSocket transport
+      path: '/ws/online_assistance/', // Ensure the correct path is used
+      auth: {
+        token: token, // Pass the token in the auth object
+      },
+    });
 
-      setSocket(newSocket);
+    // Save socket instance to state
+    setSocket(newSocket);
 
-      // Handle cleanup on component unmount
-      return () => {
-        newSocket.disconnect();
-      };
-    }
+    // Handle cleanup on component unmount
+    return () => {
+      newSocket.disconnect();
+    };
   }, [token]);
 
   useEffect(() => {
     if (socket) {
+      // Handle connection events
       socket.on('connect', () => {
         console.log('Connected to WebSocket server');
       });
