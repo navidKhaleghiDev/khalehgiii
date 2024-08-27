@@ -76,6 +76,7 @@ export function AssistanceGroupDetail({
         setLoading(false);
       });
   };
+  // const isOnlineAssistance = user?.daas_configs?.has_online_assistance;
 
   useEffect(() => {
     if (id) {

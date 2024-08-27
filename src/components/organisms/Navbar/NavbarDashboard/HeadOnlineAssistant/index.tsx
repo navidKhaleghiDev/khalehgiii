@@ -1,6 +1,6 @@
 import { useUserContext } from '@context/user/userContext';
 import { HeadOnlineAssistantAdmin } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/HeadOnlineAssistantAdmin';
-// import { HeadOnlineAssistantUser } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/HeadOnlineAssistantUser';
+import { HeadOnlineAssistantUser } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/HeadOnlineAssistantUser';
 
 export function HeadOnlineAssistant() {
   const { user } = useUserContext();
@@ -12,6 +12,7 @@ export function HeadOnlineAssistant() {
     Object.keys(user?.online_assistance).length > 0 &&
     isAdminGroup ? (
     <HeadOnlineAssistantAdmin onlineAssistance={user.online_assistance} />
-  ) : null;
-  // <HeadOnlineAssistantUser />
+  ) : (
+    <HeadOnlineAssistantUser />
+  );
 }
