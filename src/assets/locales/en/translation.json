@@ -203,7 +203,11 @@
     "noData": "No Data",
     "evidenceGathering": "Evidence Gathering",
     "clipboardAccess": "Clipboard Access",
-    "clipboardLog": "Clipboard Log"
+    "clipboardLog": "Clipboard Log",
+    "status": "Status",
+    "admin": "Admin",
+    "user": "User",
+    "group": "Group"
   },
   "groupManagement": {
     "person": "person",

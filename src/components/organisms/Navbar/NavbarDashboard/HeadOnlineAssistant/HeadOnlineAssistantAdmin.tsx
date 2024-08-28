@@ -9,6 +9,7 @@ import useSWR from 'swr';
 import { E_USERS_KEEPALIVE } from '@src/services/users/endpoint';
 import { API_USERS_LOGOUT_ONLINE_ASSISTANCE } from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   onlineAssistance: UserOnlineAssistance;
@@ -18,6 +19,7 @@ type IUserUpdate = Partial<IUser>;
 
 export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
   const { user, setUser } = useUserContext();
+  const { t } = useTranslation();
 
   useSWR(E_USERS_KEEPALIVE, http.fetcherSWR, {
     refreshInterval: 60000,
@@ -43,12 +45,12 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
       <div className="flex justify-between w-full items-center  h-7">
         <OnlineAssistantCard
           icon={userIcon}
-          title="کاربر"
+          title={t('global.user')}
           description={onlineAssistance.user}
         />
         <OnlineAssistantCard
           icon={usersThreeLight}
-          title="گروه"
+          title={t('global.group')}
           description={onlineAssistance.group_name}
         />
         <IconButton

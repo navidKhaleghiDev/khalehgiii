@@ -206,7 +206,11 @@
     "noData": "دیتایی موجود نیست",
     "evidenceGathering": "دسترسی شواهد",
     "clipboardAccess": "دسترسی کلیپ بورد",
-    "clipboardLog": "دسترسی لاگ کیلیپ بورد"
+    "clipboardLog": "دسترسی لاگ کیلیپ بورد",
+    "status": " وضعیت",
+    "admin": "ادمین",
+    "user": "یوزر",
+    "group": "گروه"
   },
   "groupManagement": {
     "person": "نفر",
