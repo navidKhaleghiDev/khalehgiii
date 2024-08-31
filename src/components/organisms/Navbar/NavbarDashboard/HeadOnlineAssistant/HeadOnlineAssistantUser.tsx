@@ -1,13 +1,14 @@
-import userGearIcon from '@iconify-icons/ph/user-gear';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import CryptoJS from 'crypto-js';
 import cookie from 'js-cookie';
-import PhRecordFill from '@iconify-icons/ph/record-fill';
-import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
-import { useEffect, useState } from 'react';
-import { STORAGE_KEY_TOKEN } from '@src/services/http';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-// import CryptoJS from 'crypto-js';
+import { STORAGE_KEY_TOKEN } from '@src/services/http';
+import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
+import userGearIcon from '@iconify-icons/ph/user-gear';
+import PhRecordFill from '@iconify-icons/ph/record-fill';
 
 interface ConnectionMessage {
   admin: string;
@@ -21,17 +22,14 @@ export function HeadOnlineAssistantUser() {
 
   const token = cookie.get(STORAGE_KEY_TOKEN);
 
-  // const SECRET_KEY = 'NETPARDAZ';
-  // const encryptedToken = CryptoJS.AES.encrypt(token || '', SECRET_KEY, {
-  //   mode: CryptoJS.mode.ECB,
-  //   padding: CryptoJS.pad.Pkcs7,
-  // }).toString();
+  const SECRET_KEY = CryptoJS.enc.Utf8.parse('F@#&C@)+*1!WRTGB');
 
-  // const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${encodeURIComponent(
-  //   encryptedToken
-  // )}`;
+  const encryptedToken = CryptoJS.AES.encrypt(token || '', SECRET_KEY, {
+    mode: CryptoJS.mode.ECB,
+    padding: CryptoJS.pad.Pkcs7,
+  }).toString();
 
-  const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${token}`;
+  const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${encryptedToken}`;
 
   const { lastMessage, readyState } = useWebSocket(socketUrl, {
     shouldReconnect: () => true,

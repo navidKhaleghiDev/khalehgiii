@@ -36,6 +36,7 @@
     "swr": "^2.1.5"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.202",
     "@types/moment-jalaali": "^0.7.9",
