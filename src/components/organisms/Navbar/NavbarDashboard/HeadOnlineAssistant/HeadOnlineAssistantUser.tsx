@@ -29,7 +29,9 @@ export function HeadOnlineAssistantUser() {
     padding: CryptoJS.pad.Pkcs7,
   }).toString();
 
-  const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${encryptedToken}`;
+  const encodedToken = encodeURIComponent(encryptedToken);
+
+  const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${encodedToken}`;
 
   const { lastMessage, readyState } = useWebSocket(socketUrl, {
     shouldReconnect: () => true,
