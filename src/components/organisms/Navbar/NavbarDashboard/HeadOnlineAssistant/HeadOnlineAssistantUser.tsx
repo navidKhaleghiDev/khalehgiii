@@ -30,6 +30,7 @@ export function HeadOnlineAssistantUser() {
   // const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${encodeURIComponent(
   //   encryptedToken
   // )}`;
+
   const socketUrl = `ws://192.168.2.23:8009/ws/online_assistance/?token=${token}`;
 
   const { lastMessage, readyState } = useWebSocket(socketUrl, {

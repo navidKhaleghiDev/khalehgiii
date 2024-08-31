@@ -144,7 +144,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
         <Card
           color="neutral"
           className={`transition duration-150 ease-in-out ${
-            isOpen ? 'max-h-40' : 'max-h-0'
+            isOpen ? 'max-h-100' : 'max-h-0'
           }`}
         >
           <Typography variant="body3" className="p-4">
