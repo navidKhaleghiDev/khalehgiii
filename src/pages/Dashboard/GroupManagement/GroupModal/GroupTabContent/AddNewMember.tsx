@@ -1,9 +1,9 @@
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 import { Control, useFormContext } from 'react-hook-form';
 import { AddCardList } from '@src/pages/Dashboard/GroupManagement/GroupModal/components/AddCardList';
 import { IDaAs, TGroup } from '@src/services/users/types';
-
 import { IResponsePagination } from '@src/types/services';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
@@ -11,7 +11,6 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
-import Pagination from '@ui/molecules/Pagination';
 
 function removeDuplicateObjectsWithId<
   TBaseList extends { id: string },
@@ -53,6 +52,9 @@ export function AddNewMember({
   const { t } = useTranslation();
   const { watch, setValue } = useFormContext();
 
+  const [loadedData, setLoadedData] = useState<IDaAs[]>([]);
+  const [isFetching, setIsFetching] = useState(false);
+
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
     pageSize,
@@ -65,27 +67,7 @@ export function AddNewMember({
     http.fetcherSWR
   );
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const listDaas: IDaAs[] = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
-
-  const filteredListCreate =
-    activeTab === 1
-      ? removeDuplicateObjectsWithId(
-          listDaas,
-          watch('admins') ? watch('admins') : []
-        )
-      : listDaas;
-  const filteredList =
-    group && isUpdatingGroupMember
-      ? removeDuplicateObjectsWithId<IDaAs, TUserList>(
-          listDaas,
-          isAdmins ? group?.admins ?? [] : group?.users ?? []
-        )
-      : filteredListCreate;
 
   const handleCheckboxChange = (item: IDaAs, isChecked: boolean) => {
     const currentItems = watch(name) || [];
@@ -99,16 +81,75 @@ export function AddNewMember({
     }
   };
 
+  // IntersectionObserver for infinite scroll
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastItemRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (isLoading || isFetching) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && currentPage * pageSize < countPage) {
+          setIsFetching(true);
+          setCurrentPage(currentPage + 1);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, isFetching, currentPage, pageSize, countPage, setCurrentPage]
+  );
+
+  const filteredListCreate =
+    activeTab === 1
+      ? removeDuplicateObjectsWithId(
+          loadedData,
+          watch('admins') ? watch('admins') : []
+        )
+      : loadedData;
+  const filteredList =
+    group && isUpdatingGroupMember
+      ? removeDuplicateObjectsWithId<IDaAs, TUserList>(
+          loadedData,
+          isAdmins ? group?.admins ?? [] : group?.users ?? []
+        )
+      : filteredListCreate;
+
+  useEffect(() => {
+    setLoadedData([]);
+    setCurrentPage(1);
+  }, [filterQuery, setCurrentPage]);
+
+  useEffect(() => {
+    if (data && data.data.results.length > 0) {
+      setLoadedData((prevData) => {
+        const existingIds = new Set(prevData.map((item) => item.id));
+        const newItems = data.data.results.filter(
+          (item) => !existingIds.has(item.id)
+        );
+        return [...prevData, ...newItems];
+      });
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setIsFetching(false);
+    }
+  }, [isLoading]);
+
   return (
-    <>
-      <div className="flex flex-col items-center ">
-        {isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <div className="w-full space-y-4 h-72 overflow-auto">
-            {filteredList.map((item: IDaAs) => (
+    <div className="flex flex-col items-center">
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <div className="w-full space-y-4 h-72 overflow-auto">
+          {filteredList.map((item: IDaAs, index) => (
+            <div
+              ref={index === filteredList.length - 1 ? lastItemRef : undefined}
+              key={item.id}
+            >
               <AddCardList
-                key={item.id}
                 id={item.id}
                 label={'email' in item ? item.email : ''}
                 onChangeCheckBox={(e) => {
@@ -117,42 +158,35 @@ export function AddNewMember({
                 name={name}
                 control={control}
               />
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
+      )}
 
-        <div className="w-full flex justify-between">
-          {isUpdatingGroupMember && (
-            <BaseButton
-              label={t('global.cancel')}
-              size="md"
-              onClick={onCancel}
-              type="secondary"
-              className="mt-4"
-              endIcon="pha:x"
-              disabled={isLoading}
-            />
-          )}
+      <div className="w-full flex justify-between">
+        {isUpdatingGroupMember && (
           <BaseButton
-            label={
-              isUpdatingGroupMember || activeTab === 1
-                ? t('global.confirm')
-                : t('groupManagement.next')
-            }
+            label={t('global.cancel')}
             size="md"
-            onClick={onClickMainButton}
+            onClick={onCancel}
+            type="secondary"
             className="mt-4"
+            endIcon="pha:x"
             disabled={isLoading}
           />
-        </div>
-      </div>
-      {!isLoading && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={Math.ceil(countPage / pageSize)}
-          onPageChange={handlePageChange}
+        )}
+        <BaseButton
+          label={
+            isUpdatingGroupMember || activeTab === 1
+              ? t('global.confirm')
+              : t('groupManagement.next')
+          }
+          size="md"
+          onClick={onClickMainButton}
+          className="mt-4"
+          disabled={isLoading}
         />
-      )}
-    </>
+      </div>
+    </div>
   );
 }
