@@ -1,4 +1,4 @@
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+// import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
 import { BaseCheckBoxProps } from '@ui/atoms/Inputs/BaseCheckBox/types';
 import { FieldValues } from 'react-hook-form';
@@ -36,7 +36,7 @@ export function AddCardList({
           control={control}
         />
       )}
-      <Circle id className="mr-auto" />
+      {/* <Circle id className="mr-auto" /> */}
     </div>
   );
 }

@@ -135,7 +135,7 @@ export function GroupModalForm({
   /**
    * Handles adding a new member to the group, either as a user or an admin.
    *
-   * @param {boolean} [isAdmin=false] - Whether the new member is an admin.
+   * @param {boolean} [isAdmin=false] - Whether the in user or admin tab
    */
   const handleAddNewMember = (isAdmin?: boolean) => {
     const userType = isAdmin ? 'admins' : 'users';
