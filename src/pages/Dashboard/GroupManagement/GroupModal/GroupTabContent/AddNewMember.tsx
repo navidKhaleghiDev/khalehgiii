@@ -12,6 +12,15 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
 
+/**
+ * Filters out duplicate objects from the provided lists based on the `id` property.
+ *
+ * @template TBaseList
+ * @template TList
+ * @param {TBaseList[]} baseList - The base list to filter.
+ * @param {...TList[]} lists - The lists to compare against the base list.
+ * @returns {TBaseList[]} The filtered list without duplicates.
+ */
 function removeDuplicateObjectsWithId<
   TBaseList extends { id: string },
   TList extends { id: string }[]
@@ -35,6 +44,45 @@ type AddNewMemberProps = {
   pageSize: number;
 };
 
+/**
+ * `AddNewMember` component allows users to add new members (admins or users) to a group.
+ * It supports infinite scrolling, filters out already added members, and updates the list
+ * of members based on user selection.
+ *
+ * @component
+ * @param {AddNewMemberProps} props - The properties required by the component.
+ *
+ * @param {Control<any>} props.control - React Hook Form control object for form management.
+ * @param {boolean} props.isUpdatingGroupMember - Flag indicating if group members are being updated.
+ * @param {() => void} props.onCancel - Function to handle cancellation of the member addition process.
+ * @param {() => void} props.onClickMainButton - Function to handle the main button click event.
+ * @param {TGroup} [props.group] - The group data, if editing an existing group.
+ * @param {boolean} [props.isAdmins] - Flag indicating if the members being added are admins.
+ * @param {number} [props.activeTab] - The currently active tab in the UI (0 for users, 1 for admins).
+ * @param {number} props.currentPage - The current page number for pagination.
+ * @param {any} props.filterQuery - Query object used to filter the data.
+ * @param {(number: number) => void} props.setCurrentPage - Function to update the current page number.
+ * @param {number} props.pageSize - The number of items per page for pagination.
+ *
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @example
+ * return (
+ *   <AddNewMember
+ *     control={control}
+ *     isUpdatingGroupMember={isUpdatingGroupMember}
+ *     onCancel={handleCancel}
+ *     onClickMainButton={handleMainButtonClick}
+ *     isAdmins={true}
+ *     group={groupData}
+ *     activeTab={1}
+ *     currentPage={1}
+ *     filterQuery={filterQuery}
+ *     setCurrentPage={setPage}
+ *     pageSize={10}
+ *   />
+ * );
+ */
 export function AddNewMember({
   control,
   isUpdatingGroupMember,
@@ -69,6 +117,12 @@ export function AddNewMember({
 
   const countPage = data?.data?.count || 0;
 
+  /**
+   * Handles the change in checkbox selection for each member.
+   *
+   * @param {IDaAs} item - The member item that was checked or unchecked.
+   * @param {boolean} isChecked - Indicates if the checkbox is checked or not.
+   */
   const handleCheckboxChange = (item: IDaAs, isChecked: boolean) => {
     const currentItems = watch(name) || [];
     if (isChecked) {

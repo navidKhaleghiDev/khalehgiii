@@ -20,6 +20,26 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { GroupModalForm } from './GroupModalForm';
 
+/**
+ * `GroupModal` component is used for creating or editing a user group. It includes a form
+ * and handles the submission logic for both creating a new group and updating an existing one.
+ *
+ * @component
+ * @param {GroupModalProps} props - The props for the component.
+ *
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @example
+ * return (
+ *   <GroupModal
+ *     handleClose={handleCloseFunction}
+ *     group={groupData}
+ *     mutate={mutateFunction}
+ *     loadingGroup={false}
+ *     setGroupSelected={setGroupSelectedFunction}
+ *   />
+ * );
+ */
 export function GroupModal({
   handleClose,
   group,
@@ -41,6 +61,12 @@ export function GroupModal({
     EPermissionGroupManagement.CHANGE
   );
 
+  /**
+   * Builds the `FormData` object from the provided group data, including the name, image, users, and admins.
+   *
+   * @param {TGroupUpdate} data - The data to be included in the form.
+   * @returns {FormData} The constructed `FormData` object.
+   */
   const buildFormData = (data: TGroupUpdate) => {
     const formData = new FormData();
     formData.append('name', data.name);
@@ -52,6 +78,11 @@ export function GroupModal({
     return formData;
   };
 
+  /**
+   * Creates a new group by calling the relevant API and then triggers a re-fetch of the group data.
+   *
+   * @param {TGroup} list - The group data to be created.
+   */
   const createGroup = async (list: TGroup) => {
     setLoading(true);
     await API_USERS_GROUPS_CREATE(list)
@@ -68,6 +99,9 @@ export function GroupModal({
       });
   };
 
+  /**
+   * Updates an existing group by calling the relevant API and then triggers a re-fetch of the group data.
+   */
   const updateGroup = async () => {
     if (!group?.id || !updatedData) return;
     setLoading(true);

@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useTranslation } from 'react-i18next';
-
 import { BaseButton, BaseInput } from '@ui/atoms';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
@@ -23,6 +22,42 @@ type TGroupModalFormProps = {
   setOpenModal: (open: boolean) => void;
 };
 
+/**
+ * `GroupModalForm` component provides a form interface for creating or updating a user group.
+ * It includes file upload, input fields for group name, and tabs for managing group members
+ * (admins and users). The form submission handles either creating a new group or updating
+ * an existing group, depending on the provided props.
+ *
+ * @component
+ * @param {TGroupModalFormProps} props - The properties required by the component.
+ *
+ * @param {TGroup | undefined} props.group - The existing group data, if editing.
+ * @param {boolean} props.permissions - User permissions for editing or creating a group.
+ * @param {TGroupUpdate | undefined} props.updatedData - The updated group data state.
+ * @param {function} props.setUpdatedData - Function to set the updated group data.
+ * @param {function} props.createGroup - Function to create a new group.
+ * @param {function} props.buildFormData - Function to build form data for API submission.
+ * @param {boolean} props.loading - Loading state for the form submission.
+ * @param {boolean | undefined} props.loadingGroup - Loading state for group data.
+ * @param {function} props.setOpenModal - Function to control the state of the modal.
+ *
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @example
+ * return (
+ *   <GroupModalForm
+ *     group={groupData}
+ *     permissions={userPermissions}
+ *     updatedData={updatedGroupData}
+ *     setUpdatedData={setUpdatedGroupData}
+ *     createGroup={createGroupFunction}
+ *     buildFormData={buildFormDataFunction}
+ *     loading={loadingState}
+ *     loadingGroup={loadingGroupState}
+ *     setOpenModal={setModalState}
+ *   />
+ * );
+ */
 export function GroupModalForm({
   group,
   permissions,
@@ -55,9 +90,22 @@ export function GroupModalForm({
     formState: { isDirty },
   } = methods;
 
+  /**
+   * Handles form submission to create or update a group.
+   *
+   * @param {TGroupUpdate} listData - The data to submit.
+   */
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
     createGroup(buildFormData(listData) as any);
   };
+
+  /**
+   * Updates a specific property of the group data being edited.
+   *
+   * @template K
+   * @param {K} key - The key of the property to update.
+   * @param {TGroupUpdate[K]} value - The new value for the property.
+   */
   const updateGroupProperty = <K extends keyof TGroupUpdate>(
     key: K,
     value: TGroupUpdate[K]
@@ -75,9 +123,20 @@ export function GroupModalForm({
     }
   };
 
+  /**
+   * Handles the update of the group's properties (like users or admins).
+   *
+   * @param {UpdateGroupPayload} updatedList - The updated list of group members.
+   */
   const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
     setUpdatedData(updatedList as unknown as TGroupUpdate);
   };
+
+  /**
+   * Handles adding a new member to the group, either as a user or an admin.
+   *
+   * @param {boolean} [isAdmin=false] - Whether the new member is an admin.
+   */
   const handleAddNewMember = (isAdmin?: boolean) => {
     const userType = isAdmin ? 'admins' : 'users';
     const alternateUserType = !isAdmin ? 'admins' : 'users';

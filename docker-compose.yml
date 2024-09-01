@@ -9,6 +9,7 @@ services:
       - VITE_KEY_CLOAK_ADMIN_PANEL=http://192.168.2.47:8080
       - VITE_ANALYSES_BASE_URL=http://192.168.2.23:8001
       - VITE_SARG_BASE_URL=http://192.168.2.47:8081
+      - VITE_WEB_SOCKET_URL=ws://daas.npd-co.com
       - VITE_IS_SSL=false
 
     command: sh -c "npm install && npm run build && npm run preview"
