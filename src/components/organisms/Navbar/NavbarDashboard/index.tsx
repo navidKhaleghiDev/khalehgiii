@@ -124,18 +124,15 @@ export function NavbarDashboard() {
           </div>
 
           {user && !user.is_superuser ? (
-            viewDaasPermission ? (
-              <div className={timeStyle}>
-                <AccessTime />
-              </div>
-            ) : null
+            <div className={timeStyle}>
+              <AccessTime />
+            </div>
           ) : viewMalwareConfigPermission || viewDaasPermission ? (
             <div className={timeStyle}>
               <HeadDescription />
             </div>
           ) : null}
         </div>
-
         {!isUser && <HeadOnlineAssistant />}
         <div className="flex">
           <Link to={ROUTES_PATH.dashboard}>
