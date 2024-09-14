@@ -60,7 +60,6 @@ export function DaasConfigForm({
             </Typography>
             <BaseSwitch control={control} name="has_evidence_gathering" />
           </div>
-
           <div className="flex justify-between items-center px-2 col-span-3">
             <Typography className="mb-1">
               {t('global.clipboardAccess')}
