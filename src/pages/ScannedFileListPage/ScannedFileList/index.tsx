@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/anchor-has-content */
-import { useCallback, useState, useRef, SetStateAction } from 'react';
+import { useCallback, useState, useRef } from 'react';
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 import { HTTP_ANALYSES } from '@src/services/http';
