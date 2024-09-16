@@ -1,6 +1,6 @@
 import PhDownloadSimpleFill from '@iconify-icons/ph/download-simple-bold';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
-import PhArrowCounterClockwiseBold from '@iconify-icons/ph/arrow-counter-clockwise-bold';
+// import PhArrowCounterClockwiseBold from '@iconify-icons/ph/arrow-counter-clockwise-bold';
 import { IHeaderTable, TTableType } from '@ui/atoms/BaseTable/types';
 import { CircleBorder } from '@ui/atoms/BaseTable/components/tableIcons/CircleBorder';
 import { EPermissionScanReports } from '@src/types/permissions';
@@ -73,20 +73,21 @@ export const scannedFileHeaderItem = (
       ),
       class: 'px-3 w-2/12',
     },
-    {
-      label: 'table.scanResult',
-      id: 'scan_result',
-      type: 'action' as TTableType,
-      action: [
-        {
-          action: 'edit',
-          icon: PhArrowCounterClockwiseBold,
-          color: 'neutralNoBg',
-        },
-      ],
-      // permission: EPermissionScanReports.CHANGE,
-      class: 'px-3 w-2/12',
-    },
+    /// we dont have api for this
+    // {
+    //   label: 'table.scanResult',
+    //   id: 'scan_result',
+    //   type: 'action' as TTableType,
+    //   action: [
+    //     {
+    //       action: 'edit',
+    //       icon: PhArrowCounterClockwiseBold,
+    //       color: 'neutralNoBg',
+    //     },
+    //   ],
+    //   // permission: EPermissionScanReports.CHANGE,
+    //   class: 'px-3 w-2/12',
+    // },
     {
       label: 'table.moreDetail',
       id: 'is_running',
