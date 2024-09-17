@@ -99,7 +99,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               fullWidth
               maxLength={60}
               rules={{
-                pattern: regexPattern.farsiLetter,
+                pattern: regexPattern.englishLetter,
                 required: regexPattern.required,
               }}
             />
@@ -112,7 +112,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               fullWidth
               maxLength={60}
               rules={{
-                pattern: regexPattern.farsiLetter,
+                pattern: regexPattern.englishLetter,
                 required: regexPattern.required,
               }}
             />

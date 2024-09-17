@@ -24,7 +24,7 @@ export function Daas({ src }: TDassProps) {
   return loading ? (
     <div className="w-full h-full flex flex-col justify-center items-center">
       <Typography variant="body3">
-        {t('dashboard.preparationTheDesktop')}
+        {t('dashboard.desktopThePreparation')}
       </Typography>
       <div className="w-1/2">
         <ProgressBar durationInSeconds={5} />

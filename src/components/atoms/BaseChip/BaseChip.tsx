@@ -8,7 +8,7 @@ export function BaseChip({ label, onClick }: PropsType) {
   return (
     <div className="h-6 bg-gray-200 rounded-md flex items-center">
       <div className="p-2">{label}</div>
-      {onClick ? (
+      {onClick && (
         <button
           type="button"
           className="p-2 select-none rounded-r-md cursor-pointer hover:bg-magma-orange-clear"
@@ -35,7 +35,7 @@ export function BaseChip({ label, onClick }: PropsType) {
             />
           </svg>
         </button>
-      ) : null}
+      )}
     </div>
   );
 }

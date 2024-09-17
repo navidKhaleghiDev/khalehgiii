@@ -202,6 +202,7 @@ export function GroupModalForm({
             placeholder=""
             type="text"
             rules={{
+              pattern: regexPattern.enCharAndNumber,
               required: regexPattern.required,
             }}
             disabled={!permissions}
