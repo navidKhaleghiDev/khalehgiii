@@ -126,7 +126,7 @@ export function DashboardCards({
             icon={PhGlobeHemisphereWest}
             title={t('global.knowledgeManagement')}
             description=""
-            onClick={() => navigate(ROUTES_PATH.onlineAssistance)}
+            onClick={() => navigate(ROUTES_PATH.knowledgeManagement)}
           />
         </div>
       )}

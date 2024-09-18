@@ -128,7 +128,7 @@ export type UpdateGroupPayload = {
   name: string;
 };
 
-export type OnlineAssistanceUserModel = { id: string; email: string };
+export type KnowledgeManagementUserModel = { id: string; email: string };
 
 export type OnlineAssistanceModel = {
   id: number;
@@ -138,8 +138,8 @@ export type OnlineAssistanceModel = {
   last_uptime: string;
   duration_time: number;
   knowledge_management_record_path: string;
-  admin: OnlineAssistanceUserModel;
-  user: OnlineAssistanceUserModel;
+  admin: KnowledgeManagementUserModel;
+  user: KnowledgeManagementUserModel;
 };
 export interface IResponseAssistance {
   http: string;

@@ -1,5 +1,4 @@
 export type RoutePathType =
-import { E_KNOWLEDGE_MANAGEMENT } from '../services/users/endpoint';
   | 'unauthorized'
   | 'login'
   | 'dashboard'
@@ -14,7 +13,7 @@ import { E_KNOWLEDGE_MANAGEMENT } from '../services/users/endpoint';
   | 'dashboardDesktopList'
   | 'dashboardSessionRecordingList'
   | 'dashboardSessionRecording'
-  | 'onlineAssistance'
+  | 'knowledgeManagement'
   | 'internetLog'
   | 'loginAssistance'
   | 'assistanceDashboard';
@@ -32,7 +31,7 @@ export const RoutesName = {
   REPORTS: 'reports',
   SESSIONRECORDING: 'session-recording',
   INTERNETLOG: 'internet-log',
-  KNOWLEDGE_MANAGEMENT: 'online-assistance',
+  KNOWLEDGE_MANAGEMENT: 'knowledge-management',
   LOGIN_ASSISTANCE: 'login-assistanse',
   ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
 };
@@ -43,7 +42,6 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
-  onlineAssistance: `/${RoutesName.DASHBOARD}/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
   knowledgeManagement: `/${RoutesName.DASHBOARD}/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
   dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
   dashboardSessionRecording: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,

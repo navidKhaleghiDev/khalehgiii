@@ -198,6 +198,8 @@
     "activateOtp": "activate Otp",
     "userInfo": "user Info",
     "accessList": "Access list",
+    "videoDuration": "time duration",
+    "recordDate": "record date",
     "onlineAssistance": "Online Assistance",
     "onlineAssistanceDetail": "online Assistance Detail",
     "noData": "No Data",
@@ -212,6 +214,7 @@
   "groupManagement": {
     "person": "person",
     "label": "Group Management",
+    "group": "Group",
     "createGroup": "Create Group",
     "editGroup": "Edit Group",
     "choiceAdmin": "Choice Admin",

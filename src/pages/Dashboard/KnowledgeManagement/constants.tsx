@@ -1,4 +1,4 @@
-import { OnlineAssistanceUserModel } from '@src/services/users/types';
+import { KnowledgeManagementUserModel } from '@src/services/users/types';
 import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 function convertSecondsToTime(seconds: number) {
@@ -10,19 +10,19 @@ function convertSecondsToTime(seconds: number) {
     remainingSeconds
   ).padStart(2, '0')}`;
 }
-export const onlineAssistanceHeaderItem: IHeaderTable[] = [
+export const KnowledgeManagementHeaderItem: IHeaderTable[] = [
   {
     label: 'header.admin',
     id: 'admin',
     type: 'function',
-    function: (admin: OnlineAssistanceUserModel) => admin?.email,
+    function: (admin: KnowledgeManagementUserModel) => admin?.email,
     class: 'px-3 w-4/12',
   },
   {
     label: 'header.user',
     id: 'user',
     type: 'function',
-    function: (user: OnlineAssistanceUserModel) => user?.email,
+    function: (user: KnowledgeManagementUserModel) => user?.email,
     class: 'px-3 w-2/12',
   },
   {
@@ -53,7 +53,7 @@ export const onlineAssistanceHeaderItem: IHeaderTable[] = [
     class: 'px-3 w-2/12',
     type: 'button',
     buttonProps: {
-      label: 'پخش ویدیو',
+      label: 'table.play',
       type: 'default',
       size: 'sm',
     },

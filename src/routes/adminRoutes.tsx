@@ -1,7 +1,7 @@
 import UnauthorizedPage from '@src/pages/Unauthorized';
 import NotFoundPage from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
-import { OnlineAssistance } from '@src/pages/Dashboard/OnlineAssistance';
+import { KnowledgeManagement } from '@src/pages/Dashboard/KnowledgeManagement';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
 import { Reports } from '@src/pages/Dashboard/Reports';
@@ -44,8 +44,8 @@ export const adminRoutes = [
         element: <DashboardPage />,
       },
       {
-        path: ROUTES_PATH.onlineAssistance,
-        element: <OnlineAssistance />,
+        path: ROUTES_PATH.knowledgeManagement,
+        element: <KnowledgeManagement />,
       },
       {
         path: ROUTES_PATH.loginAssistance,
