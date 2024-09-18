@@ -44,7 +44,7 @@ export const adminRoutes = [
         element: <DashboardPage />,
       },
       {
-        path: ROUTES_PATH.onlineAssistance,
+        path: ROUTES_PATH.knowledgeManagement,
         element: <OnlineAssistance />,
       },
       {
