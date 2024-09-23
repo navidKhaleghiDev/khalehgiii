@@ -3,8 +3,6 @@ export interface IBaseSwitchWithState<T> {
   defaultValue?: string;
   defaultChecked?: boolean;
   className?: string;
-  ltrLabel?: boolean;
-  label?: string;
   disabled?: boolean;
   pureOnChange?: (event: T) => void;
   pureValue?: boolean;

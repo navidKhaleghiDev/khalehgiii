@@ -4,9 +4,7 @@ import { Typography } from '@ui/atoms/Typography';
 import { IBaseSwitchWithState } from './types';
 
 export function BaseSwitchWithState({
-  label,
   name,
-  ltrLabel,
   pureOnChange,
   pureValue,
   defaultChecked,
@@ -29,18 +27,6 @@ export function BaseSwitchWithState({
 
   return (
     <div dir="ltr">
-      {label && (
-        <label
-          htmlFor={`${name}_input`}
-          className={`block mb-1 ${
-            ltrLabel ? 'text-left uppercase' : 'text-right'
-          }`}
-        >
-          <Typography color="teal" variant="h5">
-            {label}
-          </Typography>
-        </label>
-      )}
       <label
         htmlFor={`${name}_input`}
         className={`autoSaverSwitch relative inline-flex cursor-pointer select-none items-center ${

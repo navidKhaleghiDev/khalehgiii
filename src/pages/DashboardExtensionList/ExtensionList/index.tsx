@@ -7,7 +7,7 @@ import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { extensionListHeaderItem } from '@src/constants/tableHeaders/extensionListHeaderItem';
+import { extensionListHeaderItem } from '@src/pages/DashboardExtensionList/ExtensionList/constants/extensionListHeaderItem';
 import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';

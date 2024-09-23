@@ -25,20 +25,21 @@ export default function OnlineAssistanceDetail({
         </Typography>
       </Card>
       <div>
-        {Array.isArray(data) && data.length >= 1 ? (
+        {Array.isArray(data) &&
+          data.length > 0 &&
           data.map((item) => (
             <div key={Object.values(item).toString()}>
               <Card
                 border
                 borderColor="neutral"
                 shadow="sm"
-                className="h-19 flex justify-start items-center	p-4 border-2 rounded-xl my-4"
+                className="h-19 flex justify-start items-center p-4 border-2 rounded-xl my-4"
               >
-                <Typography variant="body2"> {Object.keys(item)}</Typography>
+                <Typography variant="body2">{Object.keys(item)}</Typography>
               </Card>
             </div>
-          ))
-        ) : (
+          ))}
+        {(!Array.isArray(data) || data.length === 0) && (
           <Typography className="p-6">{t('global.noData')}</Typography>
         )}
       </div>

@@ -19,7 +19,7 @@ import {
   OnClickActionsType,
 } from '@ui/atoms/BaseTable/types';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
+import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { EPermissionDaas } from '@src/types/permissions';
 import {

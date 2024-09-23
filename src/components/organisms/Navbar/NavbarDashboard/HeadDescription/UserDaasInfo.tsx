@@ -9,10 +9,10 @@ import { IDaAs } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { API_USERS_LICENSE_UPDATE } from '@src/services/users';
-import { licenseTrueStatusHeaderItem } from '@src/constants/tableHeaders/pamLicenseHeaderItem';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { licenseTrueStatusHeaderItem } from './constants/pamLicenseHeaderItem';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;

@@ -11,7 +11,6 @@ import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
@@ -21,6 +20,7 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { EPermissionUsers } from '@src/types/permissions';
 import { UpdateAdminModal } from './UpdateAdminModal';
+import { adminListHeaderItem } from './constants/ adminListHeaderItem';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;

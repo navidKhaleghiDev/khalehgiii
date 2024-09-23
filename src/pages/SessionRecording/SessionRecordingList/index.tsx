@@ -8,7 +8,6 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { useTranslation } from 'react-i18next';
 import { E_SESSION_RECORD_LIST_PAGINATION } from '@src/services/config/endpoint';
-import { SessionRecordingHeaderItem } from '@src/constants/tableHeaders/SessionRecordingHeaderItem';
 import { Modal } from '@ui/molecules/Modal';
 import { debounce } from 'lodash';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -16,6 +15,7 @@ import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/
 
 import { API_GET_RECORDED_VIDEO } from '@src/services/users';
 import { ISessionRecordList, TRecordData } from '../types';
+import { SessionRecordingHeaderItem } from './constants/SessionRecordingHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;

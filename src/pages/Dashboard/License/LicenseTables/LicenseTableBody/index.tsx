@@ -28,13 +28,13 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
   const userPermissions = useUserPermission();
   const [isOpen, setIsOpen] = useState(false);
   const validNumber = !item.number && item.license ? 1 : item.number;
-  const validActive =
-    item.active === null || item.active === undefined ? 0 : item.active;
+  const validActive = !!item.active === false ? 0 : item.active;
 
-  function checkZeroOrNull(param1: number | null, param2: number | null) {
-    return param1 === 0 || param1 === null || param2 === 0 || param2 === null
-      ? 0
-      : `${param1}/${param2}`;
+  function checkZeroOrNull(
+    param1: number | null,
+    param2: number | null
+  ): string | number {
+    return !!param1 === false || !!param2 === false ? 0 : `${param1}/${param2}`;
   }
 
   const viewSandBox = checkPermission(userPermissions, EPermissionConfig.VIEW);
@@ -75,11 +75,9 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
       none: null,
     };
 
-    if (isValidName(item.name)) {
-      return components[list.name as ComponentKey];
-    }
-
-    return null;
+    return isValidName(list.name)
+      ? components[list.name as ComponentKey]
+      : null;
   };
 
   const toggleAccordion = () => {

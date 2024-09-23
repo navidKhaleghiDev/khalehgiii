@@ -11,7 +11,7 @@ import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { Modal } from '@ui/molecules/Modal';
 import { debounce } from 'lodash';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { scannedFileHeaderItem } from '@src/constants/tableHeaders/scannedFileHeaderItem';
+import { scannedFileHeaderItem } from '@src/pages/ScannedFileListPage/ScannedFileList/constants/scannedFileHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import {

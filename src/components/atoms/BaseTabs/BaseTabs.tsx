@@ -17,8 +17,7 @@ const BaseTabs = forwardRef(
     const [activeTab, setActiveTab] = useState<number>(0);
     const { lang } = useLanguage();
 
-    const radiusIndexOne = lang === 'en' ? 'rounded-tl-md' : 'rounded-tr-md';
-    const radiusIndexLast = lang === 'fa' ? 'rounded-tl-md' : 'rounded-tr-md';
+    const rtlRadius = lang === 'en' ? 'rounded-tl-md' : 'rounded-tr-md';
 
     const validTabs = React.Children.toArray(children).filter(
       (child) => child !== null
@@ -54,9 +53,9 @@ const BaseTabs = forwardRef(
                 <button
                   type="button"
                   key={propsLabel}
-                  className={`uppercase px-4 py-2 ${
-                    index === 0 && radiusIndexOne
-                  } ${index === validTabs.length - 1 && radiusIndexLast} ${
+                  className={`uppercase px-4 py-2 ${index === 0 && rtlRadius} ${
+                    index === validTabs.length - 1 && rtlRadius
+                  } ${
                     index === activeTab
                       ? 'bg-teal-500 text-white dark:bg-cyan-900 dark:text-sky-500'
                       : 'bg-neutral-100 text-neutral-600 dark:bg-slate-800 dark:text-white'

@@ -11,7 +11,7 @@ import debounce from 'lodash/debounce';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { dlpConfigHeaderItem } from '@src/constants/tableHeaders/dlpConfigHeaderItem';
+import { dlpConfigHeaderItem } from '@src/pages/Dashboard/DlpConfig/constants/dlpConfigHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';

@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { TGroupListUpdate } from '@src/pages/Dashboard/GroupManagement/type';
 import { IAxiosResponse, IServerResponse } from '@src/types/services';
-import { MalwareUpdateBody } from '@src/pages/Dashboard/License/SettingMalwareCard/type';
+import { KeysType } from '@src/pages/Dashboard/License/SettingMalwareCard/type';
 import {
   IBodyUsersLogin,
   IResponseLogin,
@@ -109,8 +109,8 @@ export const STORAGE_KEY_USER = 'user';
 
 export const API_MALWARE_ANTIVIRUS_UPDATE = (
   id: number,
-  body: MalwareUpdateBody
-): Promise<AxiosResponse<MalwareUpdateBody>> => {
+  body: KeysType
+): Promise<AxiosResponse<KeysType>> => {
   return HTTP_ANALYSES.patch(E_MALWARE_ANTIVIRUS(id), body);
 };
 
