@@ -8,8 +8,8 @@ import { debounce } from 'lodash';
 import { useLanguage } from '@context/settings/languageContext';
 import { BaseTable } from '@ui/atoms/BaseTable';
 
-import { ubaHeaderItem } from '@src/constants/tableHeaders/ubaHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { ubaHeaderItem } from './constants/ubaHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;

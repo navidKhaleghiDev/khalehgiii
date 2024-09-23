@@ -9,13 +9,20 @@ import { DlpSettingsForm } from '@ui/utils/DlpSettingsForm';
 import { IDaasConfig } from '@src/services/config/types';
 import { ExtendTwoType } from '@src/types/global';
 import { useTranslation } from 'react-i18next';
+import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { checkPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   handleOnChange: (daas: IDaAs) => void;
   daas: IDaAs;
+  userPermissions: PermissionsCodeName[];
 };
 
-export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
+export function SettingDaasModal({
+  handleOnChange,
+  daas,
+  userPermissions,
+}: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { t } = useTranslation();
 
@@ -34,6 +41,8 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       webcam_privilege: daas.daas_configs.webcam_privilege,
       microphone_privilege: daas.daas_configs.microphone_privilege,
       is_recording: daas.daas_configs.is_recording,
+      has_evidence_gathering: daas.daas_configs.has_evidence_gathering,
+      has_online_assistance: daas.daas_configs.has_online_assistance,
       max_transmission_download_size:
         daas.daas_configs.max_transmission_download_size,
       max_transmission_upload_size:
@@ -44,6 +53,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       allowed_files_type_for_upload: daas.allowed_files_type_for_upload,
       extra_allowed_download_files: daas.extra_allowed_download_files,
       extra_allowed_upload_files: daas.extra_allowed_upload_files,
+      chatroom_privileged: daas.chatroom_privileged,
     },
   });
 
@@ -62,6 +72,11 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
     daas_configs,
     is_lock,
     is_recording,
+    chatroom_privileged,
+    has_online_assistance,
+    has_evidence_gathering,
+    has_clipboard_access,
+    has_clipboard_log,
     allowed_files_type_for_download,
     allowed_files_type_for_upload,
     forbidden_upload_files,
@@ -94,6 +109,10 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
         can_upload_file,
         can_download_file,
         is_recording,
+        has_evidence_gathering,
+        has_clipboard_access,
+        has_clipboard_log,
+        has_online_assistance,
         clipboard_up,
         clipboard_down,
         webcam_privilege,
@@ -111,6 +130,7 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
       forbidden_download_files,
       extra_allowed_download_files,
       extra_allowed_upload_files,
+      chatroom_privileged,
       ...data,
     };
     handleOnChange(updatedDaasData);
@@ -123,18 +143,37 @@ export function SettingDaasModal({ handleOnChange, daas }: PropsType) {
   const dlpDownloadList = watch('allowed_files_type_for_download') || [];
   const dlpUploadList = watch('allowed_files_type_for_upload') || [];
 
+  const hasViewDaasPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.VIEW
+  );
+
+  const hasViewDlpPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.VIEW
+  );
+
   return (
     <form
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
       dir="rtl"
     >
-      <DaasConfigForm isRecording control={control} />
-      <DlpSettingsForm
-        handleSetDlpValues={handleSetDlpValues}
-        dlpDownloadList={dlpDownloadList}
-        dlpUploadList={dlpUploadList}
-      />
+      {hasViewDaasPermission && (
+        <DaasConfigForm
+          userPermissions={userPermissions}
+          isRecording
+          control={control}
+        />
+      )}
+      {hasViewDlpPermission && (
+        <DlpSettingsForm
+          handleSetDlpValues={handleSetDlpValues}
+          dlpDownloadList={dlpDownloadList}
+          dlpUploadList={dlpUploadList}
+          userPermissions={userPermissions}
+        />
+      )}
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">

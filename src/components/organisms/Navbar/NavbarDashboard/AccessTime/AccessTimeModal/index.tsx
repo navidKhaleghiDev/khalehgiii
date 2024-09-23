@@ -137,12 +137,24 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
             contentDirection="ltr"
           />
           <AccessDlpModalCard
-            label={t('global.microphoneAccess')}
-            isAccess={daas?.daas_configs?.microphone_privilege}
+            label={t('table.AccessConference')}
+            isAccess={daas?.chatroom_privileged}
           />
           <AccessDlpModalCard
-            label={t('global.webcamAccess')}
-            isAccess={daas?.daas_configs?.webcam_privilege}
+            label={t('global.onlineAssistance')}
+            isAccess={daas?.daas_configs.has_online_assistance}
+          />
+          <AccessDlpModalCard
+            label={t('global.evidenceGathering')}
+            isAccess={daas?.daas_configs?.has_evidence_gathering}
+          />
+          <AccessDlpModalCard
+            label={t('global.clipboardAccess')}
+            isAccess={daas?.daas_configs?.has_clipboard_access}
+          />
+          <AccessDlpModalCard
+            label={t('global.clipboardLog')}
+            isAccess={daas?.daas_configs?.has_clipboard_log_access}
           />
           <AccessDlpModalCard
             label={t('global.uploadAccess')}

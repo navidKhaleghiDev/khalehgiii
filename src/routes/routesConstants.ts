@@ -12,7 +12,11 @@ export type RoutePathType =
   | 'reports'
   | 'dashboardDesktopList'
   | 'dashboardSessionRecordingList'
-  | 'internetLog';
+  | 'dashboardSessionRecording'
+  | 'knowledgeManagement'
+  | 'internetLog'
+  | 'loginAssistance'
+  | 'assistanceDashboard';
 
 export const RoutesName = {
   HOME: 'home',
@@ -27,6 +31,9 @@ export const RoutesName = {
   REPORTS: 'reports',
   SESSIONRECORDING: 'session-recording',
   INTERNETLOG: 'internet-log',
+  KNOWLEDGE_MANAGEMENT: 'online-assistance',
+  LOGIN_ASSISTANCE: 'login-assistanse',
+  ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -35,7 +42,9 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
+  knowledgeManagement: `/${RoutesName.DASHBOARD}/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
   dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
+  dashboardSessionRecording: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
   dashboardSessionRecordingList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}/:id`,
   dashboardAdminsList: `/${RoutesName.DASHBOARD}/${RoutesName.ADMINS_LIST}`,
   monitoringDetails: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}/:id`,
@@ -44,4 +53,6 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   internetLog: `/${RoutesName.DASHBOARD}/${RoutesName.INTERNETLOG}`,
   extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
+  loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
+  assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
 };

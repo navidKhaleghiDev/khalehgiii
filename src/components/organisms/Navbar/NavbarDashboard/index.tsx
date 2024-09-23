@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { Avatar } from '@ui/atoms/Avatar';
 import { Typography } from '@ui/atoms/Typography/Typography';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,10 +17,21 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
-// import { useTheme } from '@context/settings/themeContext';
 import { languageOptions } from '@src/constants/optios';
-// import { BaseSwitchOnClick } from '@ui/atoms/Inputs/BaseSwitchOnClick';
-import { API_USERS_LOGOUT } from '@src/services/users';
+import {
+  API_USERS_LOGOUT,
+  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
+} from '@src/services/users';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import {
+  EPermissionDaas,
+  EPermissionMalwareConfig,
+} from '@src/types/permissions';
+import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
+
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
@@ -29,17 +41,38 @@ export function NavbarDashboard() {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const { user, setUser } = useUserContext();
+  const userPermissions = useUserPermission();
+  const isAdmin =
+    Array.isArray(user?.admin_group_of) && user?.admin_group_of?.length >= 1;
+
+  const isUser = user?.is_meta_admin || user?.is_superuser;
+
+  const viewDaasPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.VIEW
+  );
+
+  const viewMalwareConfigPermission = checkPermission(
+    userPermissions,
+    EPermissionMalwareConfig.VIEW
+  );
+
   // const { toggleTheme, theme } = useTheme();
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
   const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+
   async function logoutFunction() {
     const data = {
       refresh_token: refresh || '',
     };
-    await API_USERS_LOGOUT(data);
+
+    if (isAdmin) {
+      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
+    } else await API_USERS_LOGOUT(data);
   }
+
   const logout = () => {
     logoutFunction();
     setUser(null);
@@ -94,13 +127,13 @@ export function NavbarDashboard() {
             <div className={timeStyle}>
               <AccessTime />
             </div>
-          ) : (
+          ) : viewMalwareConfigPermission || viewDaasPermission ? (
             <div className={timeStyle}>
               <HeadDescription />
             </div>
-          )}
+          ) : null}
         </div>
-
+        {!isUser && <HeadOnlineAssistant />}
         <div className="flex">
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />

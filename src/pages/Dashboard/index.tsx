@@ -1,44 +1,82 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
-import { useUserContext } from '@context/user/userContext';
 import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 import { useTranslation } from 'react-i18next';
-import { SettingsKeycloak } from './SettingsKeycloak';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+
+import {
+  EPermissionConfig,
+  EPermissionDaasMetaConfig,
+  EPermissionGroupManagement,
+  EPermissionWhiteListFiles,
+} from '@src/types/permissions';
+import { useUserContext } from '@context/user/userContext';
 import { DashboardCards } from './DashboardCards';
-import { Daas } from './Daas';
-import { DlpConfig } from './DlpConfig';
-import { DaasConfig } from './DaasConfig';
-import { SettingsMalware } from './SettingsMalware';
-// import { GroupManagement } from './GroupManagement';
+import { SettingsKeycloakCp } from './SettingsKeycloak';
+import { DaasConfigCp } from './DaasConfig';
+import { DlpConfigCp } from './DlpConfig';
+import { GroupManagement } from './GroupManagement';
+import { LicenseCp } from './License';
 
 export function DashboardPage() {
   const { user } = useUserContext();
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
 
-  const isSSl = import.meta.env.VITE_IS_SSL;
-  const isSSlTrue = isSSl === 'true';
+  const userExist = user?.is_meta_admin || user?.is_superuser;
 
-  const httpCondition = isSSlTrue ? 'https' : 'http';
-  const changePort = isSSlTrue ? user?.https_port : user?.http_port;
+  const SettingsConfigP = checkPermission(
+    userPermissions,
+    EPermissionConfig.VIEW
+  );
+  const DaasConfigP = checkPermission(
+    userPermissions,
+    EPermissionDaasMetaConfig.VIEW
+  );
+  const DlpConfigP = checkPermission(
+    userPermissions,
+    EPermissionWhiteListFiles.VIEW
+  );
+  const GroupManagementP = checkPermission(
+    userPermissions,
+    EPermissionGroupManagement.VIEW
+  );
 
-  return !user?.is_superuser ? (
-    <Daas src={`${httpCondition}://${user?.base_url}:${changePort}`} />
-  ) : (
+  const dashboardConditions =
+    SettingsConfigP || DaasConfigP || DlpConfigP || GroupManagementP;
+
+  return (
     <ContainerDashboard>
-      <DashboardCards />
-      <BaseTabs label={t('global.setting')}>
-        <BaseTab label="application">
-          <SettingsKeycloak user={user} />
-        </BaseTab>
-        <BaseTab label="Daas">
-          <DaasConfig />
-        </BaseTab>
-        <BaseTab label="DLP">
-          <DlpConfig />
-        </BaseTab>
-        <BaseTab label="license">
-          <SettingsMalware user={user} />
-        </BaseTab>
-      </BaseTabs>
+      <DashboardCards permissions={userPermissions ?? []} />
+      {dashboardConditions && (
+        <BaseTabs label={t('global.setting')}>
+          {SettingsConfigP ? (
+            <BaseTab label="application">
+              <SettingsKeycloakCp userExist={userExist} />
+            </BaseTab>
+          ) : null}
+          {DaasConfigP ? (
+            <BaseTab label="Daas">
+              <DaasConfigCp />
+            </BaseTab>
+          ) : null}
+          {DlpConfigP ? (
+            <BaseTab label="DLP">
+              <DlpConfigCp />
+            </BaseTab>
+          ) : null}
+          <BaseTab label="license">
+            <LicenseCp />
+          </BaseTab>
+          {GroupManagementP ? (
+            <BaseTab label="groupManagement">
+              <GroupManagement />
+            </BaseTab>
+          ) : null}
+        </BaseTabs>
+      )}
     </ContainerDashboard>
   );
 }

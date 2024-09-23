@@ -7,8 +7,13 @@ import {
   E_ANALYZE_LOG_UPDATE,
   E_ANALYZE_MIME_TYPE,
   E_ANALYZE_MIME_TYPE_DELETE,
+  E_ANALYZE_SCAN_STATUS_UPDATE,
 } from './endpoint';
-import { IAddConfigAnalyze, IAddConfigAnalyzeDownload } from './types';
+import {
+  IAddConfigAnalyze,
+  IAddConfigAnalyzeDownload,
+  IScannedFile,
+} from './types';
 
 export const API_ANALYZE_MIME_TYPE_DELETE = (id: number) =>
   HTTP_ANALYSES.delete<IAxiosResponse<any>>(E_ANALYZE_MIME_TYPE_DELETE(id));
@@ -34,6 +39,10 @@ export const API_ANALYZE_DOWNLOAD_FILE = (body: IAddConfigAnalyzeDownload) =>
       'Content-Type': body.file_content_type,
     },
     responseType: 'blob',
+  });
+export const API_ANALYZE_SCAN_STATUS_UPDATE = (body: IScannedFile) =>
+  HTTP_ANALYSES.patch(E_ANALYZE_SCAN_STATUS_UPDATE(body), {
+    body,
   });
 
 export const API_ANALYZE_LOG_CREATE = (body: IAddConfigAnalyze) =>

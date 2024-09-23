@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "format": "prettier --config .prettierrc.json --write src",
-    "build": "tsc && vite build",
+    "build": "npm run clean && tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "husky install",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@iconify-icons/ph": "^1.2.5",
@@ -28,12 +29,14 @@
     "react-hook-form": "^7.44.1",
     "react-i18next": "^14.0.0",
     "react-multi-date-picker": "^4.4.1",
-    "react-qr-code": "^2.0.13",
+    "react-qr-code": "^2.0.14",
     "react-router-dom": "^6.11.2",
     "react-toastify": "^9.1.3",
+    "react-use-websocket": "^4.8.1",
     "swr": "^2.1.5"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
     "@types/js-cookie": "^3.0.3",
     "@types/lodash": "^4.14.202",
     "@types/moment-jalaali": "^0.7.9",
@@ -44,6 +47,7 @@
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "crypto-js": "^4.2.0",
     "eslint": "^8.38.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",

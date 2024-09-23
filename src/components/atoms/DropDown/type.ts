@@ -27,6 +27,7 @@ export interface DropdownProps<T extends FieldValues>
   defaultValue?: any;
   label?: string;
   hiddenError?: boolean;
+  disabled?: boolean;
 }
 
 export type StateType = {

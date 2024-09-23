@@ -11,15 +11,18 @@ import debounce from 'lodash/debounce';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { dlpConfigHeaderItem } from '@src/constants/tableHeaders/dlpConfigHeaderItem';
+import { dlpConfigHeaderItem } from '@src/pages/Dashboard/DlpConfig/constants/dlpConfigHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+
 import { UpdateFileTypeModal } from './UpdateFileTypeModal';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
 
-export function DlpConfig() {
+export function DlpConfigCp() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
@@ -27,6 +30,7 @@ export function DlpConfig() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const { t } = useTranslation();
+  const userPermissions = useUserPermission();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_WHITE_LIST_FILES,
@@ -124,7 +128,10 @@ export function DlpConfig() {
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        headers={dlpConfigHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          dlpConfigHeaderItem
+        )}
         bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}

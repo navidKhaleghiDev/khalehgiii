@@ -3,6 +3,9 @@ import React, { createContext, useContext, useState, useMemo } from 'react';
 import i18next from 'i18next';
 
 const storedLang = localStorage.getItem('lang');
+if (!storedLang) {
+  localStorage.setItem('lang', 'fa');
+}
 
 interface LanguageContextProps {
   lang: string;

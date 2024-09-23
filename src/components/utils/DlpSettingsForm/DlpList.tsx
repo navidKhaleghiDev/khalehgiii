@@ -8,19 +8,41 @@ import { useState } from 'react';
 import { BaseChip } from '@ui/atoms/BaseChip';
 import { IDaAs } from '@src/services/users/types';
 import { regexPattern } from '@ui/atoms/Inputs';
+import {
+  EPermissionWhiteListFiles,
+  PermissionsCodeName,
+} from '@src/types/permissions';
+import { checkPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   name: keyof IDaAs;
   valueList: string[];
   label: string;
+  userPermissions: PermissionsCodeName[];
   onChange: (name: PropsType['name'], values: string[]) => void;
 };
 
-export function DlpList({ name, valueList, onChange, label }: PropsType) {
+export function DlpList({
+  name,
+  valueList,
+  onChange,
+  label,
+  userPermissions,
+}: PropsType) {
   const [displayInput, setDisplayInput] = useState(false);
   const [error, setError] = useState<string>();
-
   const [value, setValue] = useState<string>();
+
+  const hasAddPermission = checkPermission(
+    userPermissions,
+    EPermissionWhiteListFiles.ADD
+  );
+
+  const hasDeletePermission = checkPermission(
+    userPermissions,
+    EPermissionWhiteListFiles.DELETE
+  );
+
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -55,14 +77,16 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
   };
   return (
     <>
-      <div className="flex w-full justify-between items-center">
-        <IconButton
-          icon={displayInput ? minusIcon : plusIcon}
-          onClick={() => setDisplayInput((prev) => !prev)}
-          color="teal"
-        />
-        <Typography className="mb-1">{label}</Typography>
-      </div>
+      {hasAddPermission && (
+        <div className="flex w-full justify-between items-center">
+          <IconButton
+            icon={displayInput ? minusIcon : plusIcon}
+            onClick={() => setDisplayInput((prev) => !prev)}
+            color="teal"
+          />
+          <Typography className="mb-1">{label}</Typography>
+        </div>
+      )}
 
       {displayInput && (
         <BaseInput
@@ -90,7 +114,9 @@ export function DlpList({ name, valueList, onChange, label }: PropsType) {
               // eslint-disable-next-line react/no-array-index-key
               key={i}
               label={labelItem}
-              onClick={() => remove(labelItem)}
+              onClick={
+                hasDeletePermission ? () => remove(labelItem) : undefined
+              }
             />
           ))}
         </div>
