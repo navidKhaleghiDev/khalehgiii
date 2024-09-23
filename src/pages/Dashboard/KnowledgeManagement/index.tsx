@@ -1,13 +1,13 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
 import { BackButton } from '@ui/atoms/BackButton';
 
-import { OnlineAssistanceList } from './OnlineAssistanceList';
+import { KnowledgeManagementList } from './KnowledgeManagementList';
 
-export function OnlineAssistance() {
+export function KnowledgeManagement() {
   return (
     <ContainerDashboard>
       <BackButton withLabel className="absolute bottom-20 left-24" />
-      <OnlineAssistanceList />
+      <KnowledgeManagementList />
     </ContainerDashboard>
   );
 }

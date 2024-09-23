@@ -10,7 +10,7 @@ import { BaseTable } from '@ui/atoms/BaseTable';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { onlineAssistanceHeaderItem } from '@src/pages/Dashboard/OnlineAssistance/constants';
+import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { Modal } from '@ui/molecules/Modal';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
@@ -22,7 +22,7 @@ import { NoResult } from '@ui/molecules/NoResult';
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
-export function OnlineAssistanceList() {
+export function KnowledgeManagementList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [openModal, setOpenModal] = useState(false);
@@ -107,7 +107,7 @@ export function OnlineAssistanceList() {
         bodyList={listDaas}
         headers={checkPermissionHeaderItem(
           userPermissions,
-          onlineAssistanceHeaderItem
+          KnowledgeManagementHeaderItem
         )}
         onClick={handleOnClickRow}
         pagination={paginationProps}
