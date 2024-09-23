@@ -8,7 +8,7 @@ export function TooltipCell({ row, id, header }: IComponentTable) {
   const conditionType = title.length >= 12 || typeof title === 'object';
 
   const titleStyle = conditionType
-    ? 'group-hover:border  p-2 group-hover:bg-black group-hover:shadow-lg transition duration-400 group-hover:absolute group-hover:max-w-[30vw] group-hover:cursor-text group-hover:text-white rounded-md z-100'
+    ? 'max-w-[20vh] group-hover:border  p-2 group-hover:bg-black group-hover:shadow-lg transition duration-400 group-hover:absolute group-hover:max-w-full group-hover:cursor-text group-hover:text-white rounded-md z-100'
     : '';
 
   return (
