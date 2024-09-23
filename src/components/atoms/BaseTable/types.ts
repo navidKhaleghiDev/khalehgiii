@@ -1,8 +1,9 @@
 import { IconType, StringifyProperties } from '@src/types/global';
+import { PermissionsCodeName } from '@src/types/permissions';
 
 import { VariantProps } from 'class-variance-authority';
 import { IBaseIcon } from '../BaseIcon/types';
-import { IIconButton } from '../BaseButton';
+import { IBaseButton, IIconButton } from '../BaseButton';
 import { TSearchBar } from './components/BaseTableSearchBar/types';
 import { typographyStyles } from '../Typography/styles';
 
@@ -12,12 +13,14 @@ export type RowType<T> = T & {
 
 export type TIdItem = { id: string | number };
 
-type TTableType =
+export type TTableType =
   | 'action'
   | 'none'
   | 'component'
   | 'function'
   | 'user'
+  | 'button'
+  | 'date'
   | 'tooltip';
 
 export type ActionOnClickActionsType =
@@ -27,6 +30,7 @@ export type ActionOnClickActionsType =
   | 'mutate'
   | 'download'
   | 'more'
+  | 'button'
   | 'editLock';
 
 export type TTableIcon = {
@@ -41,7 +45,7 @@ export type TPagination = {
   onPageChange: (page: number) => void;
 };
 
-type TTableLabel = `table.${string}`;
+type TTableLabel = `table.${string}` | string;
 export interface IHeaderTable {
   action?: any;
   component?: any;
@@ -53,6 +57,8 @@ export interface IHeaderTable {
   type: TTableType;
   variant?: VariantProps<typeof typographyStyles>['variant'];
   fixed?: boolean;
+  permission?: PermissionsCodeName | PermissionsCodeName[];
+  buttonProps?: IBaseButton;
 }
 
 export interface IBaseTableProps<BodyType> {
@@ -66,7 +72,8 @@ export interface IBaseTableProps<BodyType> {
 
 export type OnClickActionsType<DataType> = (
   action: ActionOnClickActionsType,
-  typeFile?: StringifyProperties<DataType> | DataType
+  typeFile?: StringifyProperties<DataType> | DataType,
+  id?: IHeaderTable['id']
 ) => void;
 
 export interface IRowCellsComponent {
@@ -86,6 +93,7 @@ export interface IActionItem {
   color: IIconButton['color'];
   size: IIconButton['size'];
   tooltip: string;
+  permission?: PermissionsCodeName;
 }
 
 export interface IRowTableProps<BodyType> {
@@ -101,11 +109,6 @@ export interface ITableCell<BodyType> {
   onClick?: OnClickActionsType<BodyType>;
 }
 
-export interface IComponentsHeader {
-  none: JSX.Element;
-  component: JSX.Element;
-  function: JSX.Element;
-  action: JSX.Element;
-  user: JSX.Element;
-  tooltip: JSX.Element;
-}
+export type IComponentsHeader = {
+  [key in TTableType]: JSX.Element;
+};

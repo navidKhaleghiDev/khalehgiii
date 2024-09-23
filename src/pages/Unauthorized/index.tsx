@@ -4,12 +4,9 @@ import unauthorizedImage from '@src/assets/images/403.jpg';
 import { Typography } from '@ui/atoms';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 
-function UnauthorizedPage() {
+export function UnauthorizedComponent() {
   return (
-    <div
-      dir="ltr"
-      className="font-on p-16 h-screen flex flex-col justify-center items-center"
-    >
+    <>
       <div className="w-1/3">
         <img
           src={unauthorizedImage}
@@ -25,6 +22,16 @@ function UnauthorizedPage() {
       <Link to={ROUTES_PATH.home}>
         <BaseButton className="mt-6" label="برو صفحه اصلی" size="lg" />
       </Link>
+    </>
+  );
+}
+function UnauthorizedPage() {
+  return (
+    <div
+      dir="ltr"
+      className="font-on p-16 h-screen flex flex-col justify-center items-center"
+    >
+      <UnauthorizedComponent />
     </div>
   );
 }

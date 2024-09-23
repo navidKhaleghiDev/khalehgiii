@@ -1,3 +1,5 @@
+import { PermissionsCodeName } from '@src/types/permissions';
+
 export type TComponentType = 'actionAdd' | 'actionRefresh' | 'typography';
 
 export interface ITableSearchComponent {
@@ -5,6 +7,7 @@ export interface ITableSearchComponent {
   label?: string;
   onClick?: () => void;
   className?: string;
+  permission?: PermissionsCodeName;
 }
 
 export type TSearchBar = {

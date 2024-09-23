@@ -1,12 +1,5 @@
 import { IDaAs } from '@src/services/users/types';
-
-export type ActionOnClickActionsType =
-  | 'delete'
-  | 'edit'
-  | 'details'
-  | 'mutate'
-  | 'editLock'
-  | 'download';
+import { ActionOnClickActionsType } from '@ui/atoms/BaseTable/types';
 
 export type OnClickActionsType = (
   action: ActionOnClickActionsType,

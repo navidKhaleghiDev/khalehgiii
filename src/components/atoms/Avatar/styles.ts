@@ -12,6 +12,7 @@ export const avatarStyles = cva(
       size: {
         sm: 'w-8 h-8 border-1',
         md: 'w-20 h-20 border-2',
+        lmd: 'w-40 h-40 border-2',
         lg: 'w-48 h-48 border-4',
       },
     },
@@ -32,6 +33,7 @@ export const iconAvatarStyles = cva('absolute dark:text-white ', {
     size: {
       sm: 'w-6 h-6 ',
       md: 'w-16 h-16 ',
+      lmd: 'w-32 h-32',
       lg: 'w-36 h-36',
     },
   },

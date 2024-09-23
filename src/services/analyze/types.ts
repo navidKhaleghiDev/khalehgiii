@@ -26,6 +26,14 @@ export interface IScannedFile {
   antiviruses_error_message: string | null;
   clamav_error_message: string | null;
   created_at: string;
+  evidence_permission: boolean;
+  scan_result: string;
+  antiviruses_status_code: null;
+  downloadable_link: string;
+  file: string;
+  file_hash: string;
+  received_file_content_type: string;
+  transmission_type: string;
 }
 
 export interface IUba {

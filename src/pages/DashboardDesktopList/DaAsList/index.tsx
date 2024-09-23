@@ -14,12 +14,22 @@ import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import {
+  ActionOnClickActionsType,
+  OnClickActionsType,
+} from '@ui/atoms/BaseTable/types';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { desktopListHeaderItem } from '@src/constants/tableHeaders/desktopListHeaderItem';
+import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { EPermissionDaas } from '@src/types/permissions';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+
 import { SettingDaasModal } from './SettingDaasModal';
-import { ActionOnClickActionsType } from './DaAsCard/types';
+import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -58,15 +68,16 @@ export function DaAsList() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
   const [actionOnClick, setActionOnClick] =
     useState<ActionOnClickActionsType>();
-
   const [openModal, setOpenModal] = useState(false);
   const [openSettingModal, setOpenSettingModal] = useState(false);
-
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
+    useState(false);
+
+  const userPermissions = useUserPermission();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
@@ -74,6 +85,7 @@ export function DaAsList() {
     currentPage,
     filterQuery,
   });
+
   const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
@@ -107,6 +119,7 @@ export function DaAsList() {
     action,
     fileType
   ) => {
+    const id = fileType?.id;
     if (action === 'mutate') {
       mutate(
         (key) => typeof key === 'string' && key.startsWith('/users/daas'),
@@ -117,7 +130,8 @@ export function DaAsList() {
     }
     if (action === 'more') {
       // we neded to do somthing
-      navigate(`${ROUTES_PATH.dashboardSessionRecordingList}${fileType?.id} `);
+      navigate(`${ROUTES_PATH.dashboardSessionRecording}/${id}`);
+
       return;
     }
     if (action === 'edit') {
@@ -136,6 +150,10 @@ export function DaAsList() {
       setActionOnClick(action);
       setActiveDaas(fileType as IDaAs);
       setOpenModal(true);
+    }
+    if (action === 'details') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenOnlineAssistanceModal(true);
     }
   };
 
@@ -233,21 +251,30 @@ export function DaAsList() {
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
   };
+  const resetPermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.CHANGE
+  );
 
   const searchBarProps: TSearchBar = {
     name: 'search',
     value: filterQuery,
     handleSearchInput: handleFilterChange,
-    componentProps: {
-      type: 'actionRefresh',
-    },
+    componentProps: resetPermission
+      ? {
+          type: 'actionRefresh',
+        }
+      : undefined,
   };
 
   return (
     <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        headers={desktopListHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          desktopListHeaderItem
+        )}
         bodyList={listDaas}
         onClick={handleOnClickActions}
         pagination={paginationProps}
@@ -277,8 +304,15 @@ export function DaAsList() {
           <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
+            userPermissions={userPermissions}
           />
         }
+      />
+      <Modal
+        open={openOnlineAssistanceModal}
+        setOpen={setOpenOnlineAssistanceModal}
+        type="success"
+        content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
       />
     </div>
   );

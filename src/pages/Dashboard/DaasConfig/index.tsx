@@ -12,8 +12,9 @@ import { Modal } from '@ui/molecules/Modal';
 import { API_UPDATE_DAAS_CONFIG } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
 
-export function DaasConfig() {
+export function DaasConfigCp() {
   const { t } = useTranslation();
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -21,6 +22,7 @@ export function DaasConfig() {
     E_DAAS_CONFIGS,
     http.fetcherSWR
   );
+  const userPermissions = useUserPermission();
 
   const { control, handleSubmit, getValues, reset, formState } =
     useForm<IDaasConfig>({
@@ -77,7 +79,12 @@ export function DaasConfig() {
       className="w-full h-full grid grid-cols-6 gap-8 p-4"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <DaasConfigForm control={control} />
+      <DaasConfigForm
+        control={control}
+        userPermissions={userPermissions}
+        isMetaConfig
+      />
+
       <div className="flex justify-center col-span-6">
         <BaseButton
           label={t('dashboard.update')}

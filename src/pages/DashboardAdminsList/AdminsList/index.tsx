@@ -11,10 +11,16 @@ import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { adminListHeaderItem } from '@src/constants/tableHeaders/ adminListHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { EPermissionUsers } from '@src/types/permissions';
 import { UpdateAdminModal } from './UpdateAdminModal';
+import { adminListHeaderItem } from './constants/ adminListHeaderItem';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -27,6 +33,8 @@ export function AdminsList() {
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const userPermissions = useUserPermission();
+  const addPermission = checkPermission(userPermissions, EPermissionUsers.ADD);
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS,
@@ -98,12 +106,6 @@ export function AdminsList() {
     if (action === 'edit') {
       setOpenUpdateModal(true);
     }
-
-    // if (daas !== undefined && typeof daas !== "string") {
-    //   setActionOnClick(action);
-    //   setActiveDaas(daas);
-    //   setDeleteModal(true);
-    // }
   };
 
   const handleCreateAdmin = () => {
@@ -121,11 +123,13 @@ export function AdminsList() {
     name: 'search-admin-list',
     value: filterQuery,
     handleSearchInput: handleFilterChange,
-    componentProps: {
-      type: 'actionAdd',
-      label: 'table.addNewAdmin',
-      onClick: handleCreateAdmin,
-    },
+    componentProps: addPermission
+      ? {
+          type: 'actionAdd',
+          label: 'table.addNewAdmin',
+          onClick: handleCreateAdmin,
+        }
+      : undefined,
   };
 
   return (
@@ -133,7 +137,10 @@ export function AdminsList() {
       <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}
-        headers={adminListHeaderItem}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          adminListHeaderItem
+        )}
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}

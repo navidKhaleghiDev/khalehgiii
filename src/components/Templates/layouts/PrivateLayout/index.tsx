@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 
 function LayoutCp() {
   const { t } = useTranslation();
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
   const { user, setUser } = useUserContext();
 
   const navigate = useNavigate();
@@ -41,6 +41,8 @@ function LayoutCp() {
     const token = cookie.get(STORAGE_KEY_TOKEN);
     if (!user && token) {
       getProfile();
+    } else {
+      setLoading(false);
     }
   }, [navigate, setUser, user]);
 
