@@ -119,6 +119,10 @@
     "extensionList": "لیست extension ها",
     "infectedFile": "فایل آلوده"
   },
+  "admin": {
+    "adminUserName": "abc@abc.com",
+    "changePassword": "تغییر پسورد"
+  },
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",

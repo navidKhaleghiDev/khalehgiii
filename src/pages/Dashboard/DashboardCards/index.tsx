@@ -56,7 +56,7 @@ export function DashboardCards({
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
           <Card
             icon={keyIcon}
-            title={`${t('dashboard.adminPanel')} keycloak`}
+            title="SSO Administration"
             description=""
             onClick={() => {
               window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, '_blank');

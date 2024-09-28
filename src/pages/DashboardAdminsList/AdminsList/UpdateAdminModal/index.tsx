@@ -122,12 +122,12 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
               control={control}
               name="username"
               id="username"
-              placeholder={t('global.userName')}
+              placeholder={t('admin.adminUserName')}
               label={t('global.userName')}
               fullWidth
               maxLength={60}
               rules={{
-                pattern: regexPattern.enUsername,
+                pattern: regexPattern.email,
                 required: regexPattern.required,
               }}
             />
