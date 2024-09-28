@@ -10,6 +10,7 @@ import axios, {
 import cookie from 'js-cookie';
 import { toast } from 'react-toastify';
 import { t } from 'i18next';
+import { E_USERS_REFRESH } from '../users/endpoint';
 // import { E_USERS_REFRESH } from '../users/endpoint';
 
 const lang = localStorage.getItem('lang');
@@ -68,7 +69,10 @@ const injectToken = (
     const newConfig = config;
     if (token != null) {
       newConfig.headers.Authorization = `Bearer ${token}`;
+    } else {
+      newConfig.headers.Authorization = ``;
     }
+
     return newConfig;
   } catch (error: any) {
     throw new Error(error);
@@ -113,8 +117,9 @@ export class Http {
     return http;
   }
 
-  fetcherSWR = <Data>(url: string, config?: AxiosRequestConfig) =>
-    this.get<Data, AxiosResponse<Data>>(url, config);
+  fetcherSWR = <Data>(url: string, config?: AxiosRequestConfig) => {
+    return this.get<Data, AxiosResponse<Data>>(url, config);
+  };
 
   fetcher(url: string, config?: AxiosRequestConfig): FetcherResponse<Response> {
     return this.get(url, config);
@@ -163,7 +168,7 @@ export class Http {
   removeAuthHeader() {
     this.http.defaults.headers.common.Authorization = '';
     cookie.remove(STORAGE_KEY_TOKEN);
-    localStorage.removeItem(STORAGE_KEY_REFRESH_TOKEN);
+    localStorage.clear();
   }
 
   // private handleSuccess<T>(response: AxiosResponse<T>) {
@@ -181,22 +186,23 @@ export class Http {
             throw handleResponseError(data);
           }
           case StatusCode.Unauthorized: {
+            const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+
             // 401 - Handle Unauthorized
-            // if (refresh) {
-            //   // const refreshResponse = await this.http.post(
-            //   //   `${this.baseUrl}${E_USERS_REFRESH}`,
-            //   //   { refresh }
-            //   // );
-            //   // const accessToken = refreshResponse.data?.access;
-            //   // if (accessToken) {
-            //   //   this.setAuthHeader(accessToken, refresh);
-            //   // }
-            // } else {
-            //   this.removeAuthHeader();
-            //   window.location.reload();
-            // }
+            if (refresh) {
+              const refreshResponse = await this.http.post(
+                `${this.baseUrl}${E_USERS_REFRESH}`,
+                { refresh }
+              );
+
+              const accessToken = refreshResponse.data?.access;
+              if (accessToken) {
+                this.setAuthHeader(accessToken, refresh);
+                break;
+              }
+            }
             this.removeAuthHeader();
-            window.location.reload();
+            window.location.href = '/';
             break;
           }
           case StatusCode.Forbidden: {

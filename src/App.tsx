@@ -6,7 +6,8 @@ import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
+import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
+import cookie from 'js-cookie';
 import { IUser } from './services/users/types';
 import { API_USERS_PROFILE } from './services/users';
 
@@ -20,7 +21,7 @@ function App() {
   const { dir, lang } = useLanguage();
   const { theme } = useTheme();
   const userValue = useMemo(() => ({ user, setUser }), [user]);
-  const token = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+  const token = cookie.get(STORAGE_KEY_TOKEN);
 
   useEffect(() => {
     if (token) {
@@ -40,6 +41,8 @@ function App() {
           setLoading(false);
         });
     } else {
+      setUser(null);
+      http.removeAuthHeader();
       setLoading(false);
     }
   }, [token]);

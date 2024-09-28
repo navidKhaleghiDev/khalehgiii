@@ -31,7 +31,7 @@ export const RoutesName = {
   REPORTS: 'reports',
   SESSIONRECORDING: 'session-recording',
   INTERNETLOG: 'internet-log',
-  KNOWLEDGE_MANAGEMENT: 'online-assistance',
+  KNOWLEDGE_MANAGEMENT: 'knowledge-management',
   LOGIN_ASSISTANCE: 'login-assistanse',
   ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
 };

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { baseButtonStyles, iconInButtonStyles } from './styles';
 import { IBaseButton } from './types';
 import { BaseIcon } from '../BaseIcon';
@@ -16,6 +17,7 @@ export function BaseButton({
   type,
   loading,
 }: IBaseButton) {
+  const { t } = useTranslation();
   return (
     <button
       type={submit ? 'submit' : 'button'}
@@ -38,7 +40,7 @@ export function BaseButton({
           })}
         />
       )}
-      {loading ? <LoadingSvg /> : label}
+      {loading ? <LoadingSvg /> : t(label)}
       {endIcon && !loading && (
         <BaseIcon
           icon={endIcon}
