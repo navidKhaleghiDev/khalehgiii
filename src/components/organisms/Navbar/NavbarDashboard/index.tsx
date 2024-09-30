@@ -95,7 +95,7 @@ export function NavbarDashboard() {
           </ToolTip>
 
           {user?.is_superuser && (
-            <ToolTip tooltip={t('global.setting')} position="bottom">
+            <ToolTip tooltip={t('global.changePassword')} position="bottom">
               <IconButton
                 icon={gearIcon}
                 size="xl"

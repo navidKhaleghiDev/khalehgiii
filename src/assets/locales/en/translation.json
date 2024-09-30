@@ -118,6 +118,10 @@
     "extensionList": "Extension Lists",
     "infectedFile": "infected File"
   },
+  "admin": {
+    "adminUserName": "abc@abc.com",
+    "changePassword": "Change Password"
+  },
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "monitoring": "Monitoring",

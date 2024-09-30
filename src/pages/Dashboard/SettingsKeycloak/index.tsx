@@ -79,7 +79,6 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
 
   const handleOnSubmit = async (data: IAddConfig) => {
     setLoadingButton(true);
-
     if (data?.id) {
       // update
       await API_ADD_UPDATE(data)
@@ -112,7 +111,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
     >
       {SettingsKeycloakP ? (
         <>
-          <TitleSection label="keycloak" />
+          <TitleSection label="SSO" />
           <Divider />
           <div className="grid w-full grid-cols-12 gap-16 mt-4" dir="ltr">
             <div className="col-span-4">
@@ -124,7 +123,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
                   // pattern: regexPattern.url,
                 }}
                 control={control}
-                label="keycloak base url"
+                label="SSO base url"
                 placeholder="http://localhost"
                 ltrLabel
                 fullWidth
@@ -138,7 +137,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
                   required: regexPattern.required,
                 }}
                 control={control}
-                label="keycloak client id"
+                label="SSO client id"
                 placeholder="client id"
                 ltrLabel
                 fullWidth
@@ -152,7 +151,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
                   required: regexPattern.required,
                 }}
                 control={control}
-                label="keycloak realm"
+                label="SSO realm"
                 placeholder="realm"
                 ltrLabel
                 fullWidth
@@ -166,7 +165,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
                   required: regexPattern.required,
                 }}
                 control={control}
-                label="keycloak secret"
+                label="SSO secret"
                 placeholder="secret"
                 ltrLabel
                 fullWidth
@@ -196,7 +195,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
                   pattern: regexPattern.numbers,
                 }}
                 control={control}
-                label="keycloak port"
+                label="SSO port"
                 placeholder="8080"
                 ltrLabel
                 fullWidth
@@ -206,7 +205,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
               <BaseSwitch
                 name="keycloak_ssl"
                 control={control}
-                label="keycloak ssl"
+                label=" SSO_SSL"
               />
             </div>
           </div>

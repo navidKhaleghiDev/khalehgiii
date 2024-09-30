@@ -186,19 +186,21 @@ export class Http {
             throw handleResponseError(data);
           }
           case StatusCode.Unauthorized: {
-            const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-
             // 401 - Handle Unauthorized
+            const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
             if (refresh) {
-              const refreshResponse = await this.http.post(
-                `${this.baseUrl}${E_USERS_REFRESH}`,
-                { refresh }
-              );
-
-              const accessToken = refreshResponse.data?.access;
-              if (accessToken) {
-                this.setAuthHeader(accessToken, refresh);
-                break;
+              try {
+                const refreshResponse = await this.http.post(
+                  `${this.baseUrl}${E_USERS_REFRESH}`,
+                  { refresh }
+                );
+                const accessToken = refreshResponse.data?.access;
+                if (accessToken) {
+                  this.setAuthHeader(accessToken, refresh);
+                  break;
+                }
+              } catch (refreshError) {
+                throw handleResponseError(refreshError);
               }
             }
             this.removeAuthHeader();
