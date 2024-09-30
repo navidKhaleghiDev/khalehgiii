@@ -197,18 +197,14 @@ export class Http {
                 const accessToken = refreshResponse.data?.access;
                 if (accessToken) {
                   this.setAuthHeader(accessToken, refresh);
+                  break;
                 }
               } catch (refreshError) {
-                // If refresh fails, remove auth header and reload
-                this.removeAuthHeader();
-                window.location.href = '/';
                 throw handleResponseError(refreshError);
               }
-            } else {
-              // If no refresh token, just remove auth and reload
-              this.removeAuthHeader();
-              window.location.href = '/';
             }
+            this.removeAuthHeader();
+            window.location.href = '/';
             break;
           }
           case StatusCode.Forbidden: {
