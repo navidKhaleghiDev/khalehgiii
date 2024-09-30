@@ -120,6 +120,7 @@
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
+    "monitoring": "Monitoring",
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",

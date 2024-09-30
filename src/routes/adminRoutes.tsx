@@ -20,10 +20,12 @@ import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
-import { DashboardMonitoring } from '@src/pages/DashboardMonitoring';
+import { MonitoringPage } from '@src/pages/Monitoring';
 import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
+import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
+
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
 
@@ -96,7 +98,7 @@ export const adminRoutes = [
         ),
       },
       {
-        path: ROUTES_PATH.monitoringDetails,
+        path: ROUTES_PATH.reportsScanFileDetails,
         element: (
           <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
             <ScannedFileListPage />
@@ -104,10 +106,18 @@ export const adminRoutes = [
         ),
       },
       {
+        path: ROUTES_PATH.reportsScanFile,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+            <ReportFileScanPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: ROUTES_PATH.monitoring,
         element: (
           <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
-            <DashboardMonitoring />
+            <MonitoringPage />
           </ProtectedRoute>
         ),
       },

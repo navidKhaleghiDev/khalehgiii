@@ -71,7 +71,7 @@ export function DashboardCards({
             icon={shieldCheckIcon}
             title={t('dashboard.fileScanReports')}
             description=""
-            onClick={() => navigate(ROUTES_PATH.monitoring)}
+            onClick={() => navigate(ROUTES_PATH.reportsScanFile)}
           />
         </div>
       )}
@@ -127,6 +127,16 @@ export function DashboardCards({
             title={t('global.knowledgeManagement')}
             description=""
             onClick={() => navigate(ROUTES_PATH.knowledgeManagement)}
+          />
+        </div>
+      )}
+      {checkPermission(permissions, EPermissionFileScan.VIEW) && (
+        <div className="col-span-10 md:col-span-6 xl:col-span-3">
+          <Card
+            icon={desktopIcon}
+            title={t('global.monitoring')}
+            description=""
+            onClick={() => navigate(ROUTES_PATH.monitoring)}
           />
         </div>
       )}

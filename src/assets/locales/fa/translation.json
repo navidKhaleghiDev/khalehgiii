@@ -122,6 +122,7 @@
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
+    "monitoring": "نظارت",
     "password": "گذرواژه",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",
