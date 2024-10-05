@@ -1,5 +1,5 @@
-import { BaseIcon } from '@ui/atoms/BaseIcon';
-import { Typography } from '@ui/atoms/Typography';
+import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
+import { Typography } from '@redesignUi/atoms/Typography';
 import checkBold from '@iconify-icons/ph/check-bold';
 
 import { baseCheckBoxStyles } from './styles';

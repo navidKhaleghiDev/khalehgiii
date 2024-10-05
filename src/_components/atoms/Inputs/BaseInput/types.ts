@@ -8,7 +8,7 @@ import {
   UseFormSetError,
 } from 'react-hook-form';
 
-import { BaseIconProps } from '@ui/atoms/BaseIcon';
+import { BaseIconProps } from '@redesignUi/atoms/BaseIcon';
 
 import { baseInputStyles } from './styles';
 

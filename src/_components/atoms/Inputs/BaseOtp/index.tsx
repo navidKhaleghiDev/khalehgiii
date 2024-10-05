@@ -1,6 +1,6 @@
 import { Controller, FieldValues } from 'react-hook-form';
 
-import { Typography } from '@ui/atoms/Typography';
+import { Typography } from '@redesignUi/atoms/Typography';
 
 import { baseOtpStyles, otpTextStyles } from './styles';
 import { BaseOtpProp, HandleChange, HandleKeyDown } from './types';

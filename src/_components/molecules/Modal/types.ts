@@ -1,7 +1,7 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react';
 import { IconifyIcon } from '@iconify/react';
 import { VariantProps } from 'class-variance-authority';
-import { BaseButtonStyleProps } from '@ui/atoms/BaseButton';
+import { BaseButtonStyleProps } from '@redesignUi/atoms/BaseButton';
 
 import { headerStyles } from './styles';
 

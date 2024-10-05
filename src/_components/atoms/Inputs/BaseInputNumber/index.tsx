@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { IconButton } from '@ui/atoms/BaseButton';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 import PhPlus from '@iconify-icons/ph/plus';
 import PhMinus from '@iconify-icons/ph/minus';
 import PhUserLight from '@iconify-icons/ph/user-light';
-import { Typography } from '@ui/atoms/Typography';
+import { Typography } from '@redesignUi/atoms/Typography';
 import { IconInput } from '../IconInput';
 import { baseInputStyles } from '../styles';
 import { BaseInputNumberProps } from '../types';

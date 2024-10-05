@@ -1,4 +1,4 @@
-import { Typography } from '@ui/atoms/Typography';
+import { Typography } from '@redesignUi/atoms/Typography';
 
 import { BaseRadioButtonProps } from './types';
 import { inputRadioButtonStyles, labelRadioButtonStyles } from './styles';

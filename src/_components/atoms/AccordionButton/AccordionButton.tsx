@@ -1,4 +1,4 @@
-import { BaseIcon, Typography } from '@ui/atoms';
+import { BaseIcon, Typography } from '@redesignUi/atoms';
 import { AccordionButtonProps } from './types';
 import { titleStyles, contentStyles } from './styles';
 

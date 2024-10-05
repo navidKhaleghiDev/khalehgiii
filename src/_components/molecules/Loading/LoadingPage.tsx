@@ -1,4 +1,4 @@
-import { Typography } from '@ui/atoms';
+import { Typography } from '@redesignUi/atoms';
 
 type PropsType = { description?: string };
 export function LoadingPage({ description }: PropsType) {

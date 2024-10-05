@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 
 import { typographyStyles } from './styles';
-import { ITypography } from './types';
+import { TypographyProps } from './types';
 
 export function Typography({
   color,
@@ -9,14 +9,12 @@ export function Typography({
   children,
   className,
   type = 'p',
-  weight,
-}: ITypography) {
+}: TypographyProps) {
   return createElement(
     type,
     {
       className: typographyStyles({
         color,
-        weight,
         variant,
         className,
       }),

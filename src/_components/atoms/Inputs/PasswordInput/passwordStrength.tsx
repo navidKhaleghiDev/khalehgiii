@@ -1,4 +1,4 @@
-import { Typography } from '@ui/atoms/Typography';
+import { Typography } from '@redesignUi/atoms/Typography';
 import CircleFill from '@iconify-icons/ph/circle-fill';
 
 import {
@@ -7,7 +7,7 @@ import {
   EPasswordStrengthColor,
 } from '@src/helper/utils/getPasswordStrength';
 import { useEffect, useState } from 'react';
-import { BaseIcon } from '@ui/atoms/BaseIcon';
+import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
 
 export function PasswordStrength({ password }: { password?: string }) {
   const [colorStrength, setColorStrength] =

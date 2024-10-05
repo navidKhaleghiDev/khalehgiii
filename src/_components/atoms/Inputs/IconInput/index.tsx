@@ -1,6 +1,6 @@
 import { VariantProps } from 'class-variance-authority';
 import { IconType } from '@src/types/global';
-import { BaseIcon } from '@ui/atoms/BaseIcon';
+import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
 
 import { iconBaseInputStyles } from '../styles';
 import { ColorIndent } from '../types';

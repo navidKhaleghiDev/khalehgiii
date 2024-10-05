@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import { BaseIcon } from '@ui/atoms/BaseIcon';
+import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
 import { forwardRef } from 'react';
 import PhCaretDownBold from '@iconify-icons/ph/caret-down-bold';
 

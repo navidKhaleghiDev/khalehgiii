@@ -1,5 +1,5 @@
-import { BaseIcon } from '@ui/atoms/BaseIcon';
-import { LoadingSvg } from '@ui/atoms/Svgs';
+import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
+import { LoadingSvg } from '@redesignUi/atoms/Svgs';
 import { iconButtonStyles } from '../styles';
 import { IconButtonProps } from '../types';
 

@@ -1,6 +1,6 @@
 import { type Meta, type StoryFn, type StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { BaseDropdown } from '@ui/atoms/BaseDropdown';
+import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
 
 // Custom Types for storyBook
 

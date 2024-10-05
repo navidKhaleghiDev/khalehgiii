@@ -1,5 +1,5 @@
 import PhImage from '@iconify-icons/ph/image';
-import { BaseIcon, Card } from '@ui/atoms';
+import { BaseIcon, Card } from '@redesignUi/atoms';
 
 import { IBaseImage } from './types';
 import { ResponsiveImage } from './ResponsiveImage';

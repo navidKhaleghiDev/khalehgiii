@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { BaseButton } from '@ui/atoms';
+import { BaseButton } from '@redesignUi/atoms';
 import { BaseButtonProps } from '../BaseButton/types';
 
 interface LinkButtonProps extends BaseButtonProps {

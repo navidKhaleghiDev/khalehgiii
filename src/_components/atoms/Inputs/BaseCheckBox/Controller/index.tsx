@@ -1,6 +1,6 @@
 import { Controller, FieldValues } from 'react-hook-form';
 
-import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
+import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
 
 import { BaseCheckBoxControllerProps } from '../types';
 

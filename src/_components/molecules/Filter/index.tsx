@@ -1,5 +1,5 @@
-import { Card, Typography } from '@ui/atoms';
-import { BaseSelect } from '@ui/atoms/Inputs/BaseSelect';
+import { Card, Typography } from '@redesignUi/atoms';
+import { BaseSelect } from '@redesignUi/atoms/Inputs/BaseSelect';
 import { useForm } from 'react-hook-form';
 
 export function FilterServices() {

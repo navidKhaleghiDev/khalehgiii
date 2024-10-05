@@ -1,4 +1,4 @@
-import { Typography } from '@ui/atoms/Typography';
+import { Typography } from '@redesignUi/atoms/Typography';
 
 import { baseInputTextAreaStyles, baseTextareaStyles } from './styles';
 import { BaseTextareaProps } from './types';

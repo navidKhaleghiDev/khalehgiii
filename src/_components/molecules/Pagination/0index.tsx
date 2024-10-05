@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
-import { BaseIcon } from '@ui/atoms';
+import { BaseIcon } from '@redesignUi/atoms';
 
 const dataMock = [
   { id: '1', number: 1 },

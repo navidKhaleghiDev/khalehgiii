@@ -3,7 +3,7 @@ import Warning from '@iconify-icons/ph/warning';
 import Info from '@iconify-icons/ph/info';
 import X from '@iconify-icons/ph/x';
 
-import { BaseIcon } from '@ui/atoms';
+import { BaseIcon } from '@redesignUi/atoms';
 
 import {
   Flip,

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BaseIcon } from '@ui/atoms';
+import { BaseIcon } from '@redesignUi/atoms';
 import { AccordionProps } from './types';
 import { titleStyles, contentStyles } from './styles';
 

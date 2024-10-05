@@ -3,11 +3,11 @@ import { useRef, useState } from 'react';
 import PhCaretDown from '@iconify-icons/ph/caret-down';
 import PhCaretUp from '@iconify-icons/ph/caret-up';
 
-import { Typography } from '@ui/atoms/Typography';
-import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
-import { BaseIcon } from '@ui/atoms/BaseIcon';
-import { ChipButton } from '@ui/atoms/ChipButton';
-import { LoadingSvg } from '@ui/atoms/Svgs';
+import { Typography } from '@redesignUi/atoms/Typography';
+import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
+import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
+import { ChipButton } from '@redesignUi/atoms/ChipButton';
+import { LoadingSvg } from '@redesignUi/atoms/Svgs';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
 import { BaseDropdownProps, OptionSelect, StateType } from './type';

@@ -1,5 +1,5 @@
-import { Typography } from '@ui/atoms/Typography';
-import { IconButton } from '@ui/atoms/BaseButton';
+import { Typography } from '@redesignUi/atoms/Typography';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 import {
   baseInputStyles,

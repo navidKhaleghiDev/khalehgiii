@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
+      "@redesignUi/*": ["_components/*"],
       "@ui/*": ["components/*"],
       "@context/*": ["context/*"],
       "@src/*": ["*"]

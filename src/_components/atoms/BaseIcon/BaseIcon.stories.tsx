@@ -399,8 +399,7 @@ export function ListIcon({
   return (
     <>
       <Typography
-        variant="body3"
-        weight="bold"
+        variant="body3B"
         className="pb-6 mb-2 border-b border-b-gray-300"
       >
         Phosphore - regular
@@ -415,8 +414,7 @@ export function ListIcon({
       />
 
       <Typography
-        variant="body3"
-        weight="bold"
+        variant="body3B"
         className="pb-6 mb-2 border-b border-b-gray-300"
       >
         Phosphore - duotone
@@ -431,8 +429,7 @@ export function ListIcon({
       />
 
       <Typography
-        variant="body3"
-        weight="bold"
+        variant="body3B"
         className="pb-6 mb-2 border-b border-b-gray-300"
       >
         Material Line Icons

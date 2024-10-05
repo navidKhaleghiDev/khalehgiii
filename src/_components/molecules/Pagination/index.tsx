@@ -1,6 +1,6 @@
 import PhCaretLeft from '@iconify-icons/ph/caret-left';
 import PhCaretRight from '@iconify-icons/ph/caret-right';
-import { IconButton } from '@ui/atoms/BaseButton';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 /* eslint-disable no-plusplus */
 interface PaginationProps {

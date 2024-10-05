@@ -1,6 +1,6 @@
 import X from '@iconify-icons/ph/x';
 
-import { Typography } from '@ui/atoms';
+import { Typography } from '@redesignUi/atoms';
 import { chipButtonStyles } from './styles';
 import { BaseIcon } from '../BaseIcon';
 import { ChipButtonProps } from './types';

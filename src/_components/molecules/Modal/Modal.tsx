@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
-import { BaseIcon, Typography } from '@ui/atoms';
-import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
+import { BaseIcon, Typography } from '@redesignUi/atoms';
+import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
 import X from '@iconify-icons/ph/x';
 import Check from '@iconify-icons/ph/check';
 import TrashSimple from '@iconify-icons/ph/trash-simple';
@@ -117,7 +117,6 @@ export function Modal(props: ModalProps): JSX.Element | null {
                   <Typography
                     variant="body3"
                     color="neutralDark"
-                    weight="medium"
                     className="rtl:text-right ltr:text-left"
                   >
                     {title}
@@ -146,7 +145,6 @@ export function Modal(props: ModalProps): JSX.Element | null {
               <Typography
                 variant="body5"
                 color="neutral"
-                weight="normal"
                 className="rtl:text-right ltr:text-left leading-6"
               >
                 {description}
