@@ -1,20 +1,26 @@
-import PhCaretLeft from '@iconify-icons/ph/caret-left';
-import PhCaretRight from '@iconify-icons/ph/caret-right';
-import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { IconButton } from '@ui/atoms/BaseButton';
+import { Typography } from '@ui/atoms';
+import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
+import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 
 /* eslint-disable no-plusplus */
 interface PaginationProps {
   currentPage: number;
+  allItems: number;
+  itemsPer: number;
   totalPages: number;
+  paginationLabel: string;
   onPageChange: (page: number) => void;
 }
+
 const mClass =
-  'flex size-6 justify-center px-2 rounded items-center hover:bg-gray-100 text-base';
+  'flex size-7 justify-center px-1 rounded items-center hover:bg-gray-100 text-sm sm:text-base';
 
 const disableClass = 'bg-gray-300 cursor-not-allowed ';
 const activeClass =
-  'bg-gray-200 hover:bg-gray-200  rounded-lg items-center justify-center cursor-not-allowed';
-const arrowButtonClass = 'bg-teal-500 ';
+  'bg-gray-200 hover:bg-gray-200 rounded-lg items-center justify-center cursor-not-allowed';
+const arrowButtonClass =
+  'bg-white size-7 border rounded border-neutral-200 p-1.5 text-neutral-500';
 
 /**
  * Pagination component for navigating through pages.
@@ -31,7 +37,10 @@ const arrowButtonClass = 'bg-teal-500 ';
 
 export function Pagination({
   currentPage,
+  allItems = 120,
+  itemsPer = 8,
   totalPages,
+  paginationLabel = 'ادمین',
   onPageChange,
 }: PaginationProps) {
   const isFirstPage = currentPage === 1;
@@ -110,20 +119,33 @@ export function Pagination({
   }
 
   return (
-    <div className="flex justify-center items-center gap-4">
-      <IconButton
-        icon={PhCaretRight}
-        className={`${mClass} ${isFirstPage ? disableClass : arrowButtonClass}`}
-        color="neutralNoBg"
-        onClick={handlePreviousClick}
-      />
-      {renderPageNumbers()}
-      <IconButton
-        icon={PhCaretLeft}
-        className={`${mClass} ${isLastPage ? disableClass : arrowButtonClass}`}
-        color="neutralNoBg"
-        onClick={handleNextClick}
-      />
+    <div className="bg-white flex items-center justify-between font-kalameh max-w-[1100px] border rounded-lg p-2">
+      <div className="flex justify-center items-center gap-2">
+        <IconButton
+          icon={PhCaretDoubleLeft}
+          className={`${mClass} ${
+            isFirstPage ? disableClass : arrowButtonClass
+          }`}
+          color="neutralNoBg"
+          size="sm"
+          onClick={handlePreviousClick}
+          classNameIcon="text-sm sm:text-base"
+        />
+        {renderPageNumbers()}
+        <IconButton
+          icon={PhCaretDoubleRight}
+          className={`${mClass} ${
+            isLastPage ? disableClass : arrowButtonClass
+          }`}
+          color="neutralNoBg"
+          size="sm"
+          onClick={handleNextClick}
+          classNameIcon="text-sm sm:text-base"
+        />
+      </div>
+      <Typography color="neutral" className="text-sm sm:text-base">
+        {`نمایش ${itemsPer}  ${paginationLabel} از ${allItems}`}
+      </Typography>
     </div>
   );
 }
