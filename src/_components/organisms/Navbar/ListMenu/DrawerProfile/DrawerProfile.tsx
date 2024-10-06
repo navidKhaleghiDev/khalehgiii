@@ -23,12 +23,6 @@ export function DrawerProfile({ isOpen, setIsOpen }: DrawerProfileProps) {
             color="neutralNoBg"
             onClick={() => setIsOpen(false)}
           />
-          <IconButton
-            icon={x}
-            size="md"
-            color="neutralNoBg"
-            onClick={() => setIsOpen(false)}
-          />
         </div>
       </div>
     </div>

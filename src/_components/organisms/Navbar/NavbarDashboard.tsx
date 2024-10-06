@@ -72,7 +72,7 @@ export function NavbarDashboard({ darkMode }: Test): JSX.Element {
         {/* <Link to={ROUTES_PATH.home} className="hidden sm:flex"> */}
 
         <img
-          src={!darkMode ? 'logo.svg' : 'darkModeLogo.svg'}
+          src={darkMode ? 'logo.svg' : 'darkModeLogo.svg'}
           alt="NETSEP"
           className="left-[0.081px] top-[1.75px] w-14 h-[1.12rem] md:w-[5.43rem] md:h-[1.43rem] xl:w-[7.43rem] xl:h-8"
         />

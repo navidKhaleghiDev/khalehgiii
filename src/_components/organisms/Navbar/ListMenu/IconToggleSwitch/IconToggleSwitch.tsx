@@ -1,61 +1,52 @@
 import { useState } from 'react';
 
+import { BaseIcon } from '@redesignUi/atoms';
 import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
-import { BaseIcon } from '@redesignUi/atoms';
 
-interface ThemeSwitcherProps {
-  checked?: boolean;
-  onChange: (checked: boolean) => void;
-  disabled?: boolean;
-  id: string;
-  name: string;
-}
+import { IconToggleSwitchProps } from '../../type';
 
-export function IconToggleSwitch(props: ThemeSwitcherProps): JSX.Element {
-  const { id, name, checked, onChange, disabled = false } = props;
-  const [internalChecked, setInternalChecked] = useState(false);
-
-  const isChecked = checked !== undefined ? checked : internalChecked;
+export function IconToggleSwitch(props: IconToggleSwitchProps): JSX.Element {
+  const { id, name, onChange, disabled = false } = props;
+  const [switchChecked, setSwitchChecked] = useState(false);
 
   const handleToggle = () => {
     if (disabled) return;
 
+    const newCheckedState = !switchChecked;
+    setSwitchChecked(newCheckedState);
+
     if (onChange) {
-      onChange(!isChecked);
-    } else {
-      setInternalChecked(!isChecked);
+      onChange(newCheckedState);
     }
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center m-20">
       <label
         htmlFor={id}
         className={`relative inline-flex ${
           disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
         }`}
-        aria-label="none"
       >
         <input
+          type="checkbox"
           id={id}
           name={name}
-          type="checkbox"
           className="sr-only peer"
           onChange={handleToggle}
-          checked={isChecked}
+          checked={switchChecked}
           disabled={disabled}
         />
         <div
-          className={`relative rounded-full w-10 h-6
-          } translate duration-200 
-          ${isChecked ? 'bg-gray-600' : 'bg-gray-100'}`}
+          className={`relative rounded-full w-10 h-6 translate duration-200 
+          ${switchChecked ? 'bg-gray-600' : 'bg-gray-100'}`}
         >
           <span
             className={`absolute top-1 left-1 transition-transform duration-200
-            ${isChecked ? 'translate-x-4' : 'translate-x-0'}`}
+            ${switchChecked ? 'translate-x-4' : 'translate-x-0'}`}
           >
-            {isChecked ? (
+            {switchChecked ? (
               <BaseIcon icon={moonTwotoneAltLoop} className="text-gray-200" />
             ) : (
               <BaseIcon icon={sunRisingTwotoneLoop} className="text-gray-500" />
