@@ -36,7 +36,6 @@ export function DashboardCards({
             icon={usersThreeIcon}
             title={t('dashboard.adminLists')}
             onClick={() => navigate(ROUTES_PATH.dashboardAdminsList)}
-            count={40}
           />
         </div>
       )}

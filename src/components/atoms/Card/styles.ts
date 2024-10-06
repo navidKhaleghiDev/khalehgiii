@@ -1,14 +1,13 @@
-import { PALLET } from '@src/constants/theme';
 import { cva } from 'class-variance-authority';
 
 export const cardStyles = cva('', {
   variants: {
     color: {
-      neutral: `${PALLET.BG_COLOR.NEUTRAL} `,
-      teal: `${PALLET.BG_COLOR.TEAL} `,
-      tealDark: `${PALLET.BG_COLOR.TEAL_DARK} `,
-      yellow: `${PALLET.BG_COLOR.YELLOW} `,
-      red: `${PALLET.BG_COLOR.RED} `,
+      neutralLight: 'bg-gray-100 dark:bg-gray-300',
+      neutral: 'bg-gray-200',
+      teal: 'bg-teal-200 dark:bg-teal-300',
+      yellow: 'bg-yellow-100 dark:bg-yellow-300',
+      red: 'bg-red-400',
       white: `bg-white dark:bg-gray-600`,
       none: ``,
     },

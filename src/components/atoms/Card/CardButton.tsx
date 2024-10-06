@@ -10,7 +10,10 @@ export function CardButton({
   color,
   shadow,
   onClick,
+  disabled,
 }: CardButtonProps) {
+  console.log(disabled);
+
   return (
     <button
       className={cardStyles({
@@ -23,6 +26,7 @@ export function CardButton({
       })}
       type="button"
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
