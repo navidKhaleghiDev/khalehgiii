@@ -6,6 +6,7 @@ export const cardStyles = cva('', {
       neutralLight: 'bg-gray-100 dark:bg-gray-300',
       neutral: 'bg-gray-200',
       teal: 'bg-teal-200 dark:bg-teal-300',
+      tealDark: 'bg-teal-600 dark:bg-black',
       yellow: 'bg-yellow-100 dark:bg-yellow-300',
       red: 'bg-red-400',
       white: `bg-white dark:bg-gray-600`,
@@ -34,7 +35,7 @@ export const cardStyles = cva('', {
     },
   },
   defaultVariants: {
-    color: 'none',
+    color: 'white',
     rounded: 'md',
   },
 });
