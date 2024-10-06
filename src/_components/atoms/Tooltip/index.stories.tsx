@@ -34,6 +34,7 @@ const meta: Meta<typeof ToolTip> = {
         'bottomEnd',
       ],
     },
+    truncate: { control: { type: 'boolean' } },
   },
   decorators: [
     (Story): ReactElement => (
