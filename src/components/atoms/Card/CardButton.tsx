@@ -1,5 +1,5 @@
 import { cardStyles } from './styles';
-import { ICardButton } from './types';
+import { CardButtonProps } from './types';
 
 export function CardButton({
   children,
@@ -10,7 +10,7 @@ export function CardButton({
   color,
   shadow,
   onClick,
-}: ICardButton) {
+}: CardButtonProps) {
   return (
     <button
       className={cardStyles({

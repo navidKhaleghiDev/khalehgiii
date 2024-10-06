@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
 import keyIcon from '@iconify-icons/ph/key';
 import desktopIcon from '@iconify-icons/ph/desktop';
 import usersThreeIcon from '@iconify-icons/ph/users-three';
@@ -18,8 +19,7 @@ import {
   EPermissionUsers,
   PermissionsCodeName,
 } from '@src/types/permissions';
-
-import { Card } from './Card';
+import { DashboardCard } from '@ui/molecules/Cards/DashboardCard';
 
 export function DashboardCards({
   permissions,
@@ -32,21 +32,20 @@ export function DashboardCards({
     <div className="grid w-full grid-cols-12 gap-16 mb-16">
       {checkPermission(permissions, EPermissionUsers.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={usersThreeIcon}
             title={t('dashboard.adminLists')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.dashboardAdminsList)}
+            count={40}
           />
         </div>
       )}
 
       {checkPermission(permissions, EPermissionDaas.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={desktopIcon}
             title={t('dashboard.desktopLists')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.dashboardDesktopList)}
           />
         </div>
@@ -54,10 +53,9 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionKeycloak.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={keyIcon}
             title="SSO Administration"
-            description=""
             onClick={() => {
               window.open(import.meta.env.VITE_KEY_CLOAK_ADMIN_PANEL, '_blank');
             }}
@@ -67,10 +65,9 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionFileScan.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={shieldCheckIcon}
             title={t('dashboard.fileScanReports')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.reportsScanFile)}
           />
         </div>
@@ -78,10 +75,9 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionExtensions.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={shieldCheckIcon}
             title={t('dashboard.extensionList')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.extensionList)}
           />
         </div>
@@ -89,10 +85,9 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionUba.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={shieldCheckIcon}
             title="UBA"
-            description=""
             onClick={() => navigate(ROUTES_PATH.uba)}
           />
         </div>
@@ -100,10 +95,9 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionScanReports.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={shieldCheckIcon}
             title={t('global.reports')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.reports)}
           />
         </div>
@@ -111,10 +105,9 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionInternetLogs.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={PhGlobeHemisphereWest}
             title={t('global.internetLog')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.internetLog)}
           />
         </div>
@@ -122,20 +115,18 @@ export function DashboardCards({
 
       {checkPermission(permissions, EPermissionInternetLogs.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={PhGlobeHemisphereWest}
             title={t('global.knowledgeManagement')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.knowledgeManagement)}
           />
         </div>
       )}
       {checkPermission(permissions, EPermissionFileScan.VIEW) && (
         <div className="col-span-10 md:col-span-6 xl:col-span-3">
-          <Card
+          <DashboardCard
             icon={desktopIcon}
             title={t('global.monitoring')}
-            description=""
             onClick={() => navigate(ROUTES_PATH.monitoring)}
           />
         </div>

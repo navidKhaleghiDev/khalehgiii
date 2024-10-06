@@ -1,15 +1,9 @@
 import { cardStyles } from './styles';
-import { ICard } from './types';
+import type { CardProps } from './types';
 
-export function Card({
-  children,
-  className,
-  rounded,
-  borderColor,
-  border,
-  color,
-  shadow,
-}: ICard) {
+export function Card(props: CardProps) {
+  const { children, className, rounded, borderColor, border, color, shadow } =
+    props;
   return (
     <div
       className={cardStyles({
