@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const doughnutChartStyles = cva(
-  'absolute top-0 left-0 w-12 h-12 rounded-full flex items-center justify-center transform translate-x-1/4 translate-y-[35%] ',
+  'absolute top-0 left-0 w-14 h-14 rounded-full flex items-center justify-center transform translate-x-[21%] translate-y-[30%]',
   {
     variants: {
       color: {

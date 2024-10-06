@@ -14,7 +14,7 @@ import { doughnutChartStyles } from './styles';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ChartColors: { [key: string]: string } = {
-  blueLight: '#60A5FA dark:#EF4444',
+  blueLight: '#60A5FA',
   blue: '#1E40AF',
   red: '#EF4444',
   tealLight: '#2DD4BF',
@@ -59,7 +59,7 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
   };
 
   return (
-    <div className="relative w-[72px]">
+    <div className="relative w-20">
       <Pie data={data} options={options} />
 
       <div
