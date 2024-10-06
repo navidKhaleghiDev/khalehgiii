@@ -17,7 +17,7 @@ export function withNoAuth<T extends Partial<T>>(
       // eslint-disable-next-line react/jsx-props-no-spreading
       <WrappedComponent {...props} />
     ) : (
-      <Navigate replace to={ROUTES_PATH.dashboard} />
+      <Navigate replace to={ROUTES_PATH.home} />
     );
   }
 

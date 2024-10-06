@@ -135,7 +135,7 @@ export function NavbarDashboard() {
         </div>
         {!isUser && <HeadOnlineAssistant />}
         <div className="flex">
-          <Link to={ROUTES_PATH.dashboard}>
+          <Link to={ROUTES_PATH.home}>
             <img src="/logo.png" alt="logo" className="h-8" />
           </Link>
           {/* <BaseSwitchOnClick

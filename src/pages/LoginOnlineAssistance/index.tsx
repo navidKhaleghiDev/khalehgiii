@@ -41,7 +41,7 @@ export function LoginOnlineAssistance() {
 
   useEffect(() => {
     if (!isAdminGroup) {
-      navigate(ROUTES_PATH.dashboard);
+      navigate(ROUTES_PATH.home);
     } else if (isInDaas && user?.online_assistance) {
       navigate(user?.online_assistance?.user_http_address);
     } else {
@@ -61,7 +61,7 @@ export function LoginOnlineAssistance() {
         <div className=" relative w-full flex flex-col gap-7 justify-center h-80 ">
           <BaseButton
             label={t('onlineAssistance.internet')}
-            onClick={() => navigate(ROUTES_PATH.dashboard)}
+            onClick={() => navigate(ROUTES_PATH.home)}
           />
           <BaseButton
             onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
