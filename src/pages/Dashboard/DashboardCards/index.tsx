@@ -19,7 +19,7 @@ import {
   EPermissionUsers,
   PermissionsCodeName,
 } from '@src/types/permissions';
-import { DashboardCard } from '@ui/molecules/Cards/DashboardCard';
+import { DashboardCard } from '@redesignUi/molecules/Cards/DashboardCard';
 
 export function DashboardCards({
   permissions,

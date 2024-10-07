@@ -9,7 +9,24 @@ type CardProps = {
   count?: number;
 };
 
-export function DashboardCard({ icon, title, onClick, count }: CardProps) {
+/**
+ * DashboardCard Component
+ *
+ * A card component designed for a dashboard layout that displays an icon, a title, and an optional count.
+ * The card can be clickable if an `onClick` handler is provided. Otherwise, it is disabled.
+ *
+ * @component
+ *
+ * @param {Object} props - The props for the DashboardCard component.
+ * @param {IconType} props.icon - The icon to be displayed inside the card.
+ * @param {string} props.title - The title text displayed in the card.
+ * @param {Function} [props.onClick] - Optional callback function to handle the click event on the card.
+ * @param {number} [props.count] - Optional count to be displayed below the title.
+ *
+ * @returns {JSX.Element} Returns the rendered DashboardCard component.
+ */
+export function DashboardCard(props: CardProps): JSX.Element {
+  const { icon, title, onClick, count } = props;
   return (
     <CardButton
       border
