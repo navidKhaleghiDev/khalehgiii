@@ -10,7 +10,6 @@ export default {
         'sidebar-collapsed': '64px auto', //for collapsed sidebar layout
       },
     },
-    fontSize,
     fontFamily: {
       IRANSans: ['IRANSans', 'on'],
       kalameh: ['kalameh', 'sans-serif'],
