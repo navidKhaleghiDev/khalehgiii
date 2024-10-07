@@ -14,13 +14,13 @@ interface PaginationProps {
 }
 
 const mClass =
-  'flex size-7 text-gray-500 justify-center rounded items-center hover:bg-gray-100';
+  'flex size-7 text-gray-500 dark:text-gray-400 dark:bg-gray-600 justify-center rounded-lg items-center dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100';
 
 const disableClass = 'bg-gray-300 cursor-not-allowed hover:bg-gray-300';
 const activeClass =
-  'bg-gray-100 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
+  'bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
 const arrowButtonClass =
-  'bg-white border rounded border-neutral-200 text-neutral-500';
+  'bg-white border rounded border-neutral-200 dark:border-gray-500 text-neutral-500';
 
 /**
  * Pagination component for navigating through pages.
@@ -121,7 +121,7 @@ export function Pagination({
   }
 
   return (
-    <div className="bg-white flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5">
+    <div className="bg-white dark:bg-gray-600 flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5">
       <div className="flex justify-center items-center gap-2">
         <IconButton
           size="sm"
