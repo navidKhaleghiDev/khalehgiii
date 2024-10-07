@@ -28,7 +28,7 @@ export const typographyStyles = cva('', {
       body4B: 'text-base font-medium',
       body5: 'text-sm',
       body5B: 'text-sm font-medium',
-      body6: 'text-sx',
+      body6: 'text-xs',
       body6B: 'text-xs font-medium',
     },
   },
