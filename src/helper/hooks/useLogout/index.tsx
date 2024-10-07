@@ -1,6 +1,8 @@
 import { UserContext } from '@context/user/userContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
+import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
+import cookie from 'js-cookie';
+
 import {
   API_USERS_LOGOUT,
   API_USERS_LOGOUT_ONLINE_ASSISTANCE,
@@ -15,8 +17,9 @@ export const useLogout = () => {
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
   const logoutFunction = async () => {
-    const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-    const data = { refresh_token: refresh || '' };
+    const token = cookie.get(STORAGE_KEY_TOKEN);
+
+    const data = { token: token || '' };
 
     if (isAdminGroup) {
       await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);

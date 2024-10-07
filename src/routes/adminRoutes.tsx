@@ -42,7 +42,7 @@ export const adminRoutes = [
     element: <PrivateLayout />,
     children: [
       {
-        path: ROUTES_PATH.dashboard,
+        path: ROUTES_PATH.home,
         element: <DashboardPage />,
       },
       {
