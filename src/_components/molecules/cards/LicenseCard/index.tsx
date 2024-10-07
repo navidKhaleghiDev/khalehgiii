@@ -25,24 +25,24 @@ export function LicenseCard({
     <CardButton
       border
       borderColor="neutral"
-      className="w-full h-28 p-5 flex items-center outline-none text-right overflow-hidden"
+      className="w-64 h-28 p-5 flex items-center outline-none text-right overflow-hidden"
       color="white"
       onClick={onClick}
       shadow="sm"
     >
       <div className="w-full flex items-center">
-        <div className="flex flex-col justify-center gap-2 w-2/3 box-border leading-3">
-          <Typography variant="body6B" color="black">
-            {title}
-          </Typography>
-          <DateTitle color={color} date={date} />
-        </div>
-        <div className="w-1/3 ml-5">
+        <div className="w-1/3 rtl:ml-5 ltr:mr-5">
           <DoughnutChart
             subValue={subValue}
             totalValue={totalValue}
             color={color}
           />
+        </div>
+        <div className="flex flex-col items-start gap-2 w-2/3 box-border leading-3">
+          <Typography variant="body6B" color="black">
+            {title}
+          </Typography>
+          <DateTitle color={color} date={date} />
         </div>
       </div>
     </CardButton>

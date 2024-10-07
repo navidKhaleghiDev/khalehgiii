@@ -10,7 +10,7 @@ interface DateTitleProps extends VariantProps<typeof dateTitleStyle> {
 export function DateTitle({ date, color }: DateTitleProps) {
   return (
     <div
-      className={`${dateTitleStyle({
+      className={`flex gap-[0.18rem] ${dateTitleStyle({
         color,
       })} 
 `}
