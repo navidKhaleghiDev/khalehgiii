@@ -4,7 +4,9 @@ import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import { IUser, UserOnlineAssistance } from '@src/services/users/types';
 import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
 import { IconButton } from '@ui/atoms/BaseButton';
-import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
+import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
+import cookie from 'js-cookie';
+
 import useSWR from 'swr';
 import { E_USERS_KEEPALIVE } from '@src/services/users/endpoint';
 import { API_USERS_LOGOUT_ONLINE_ASSISTANCE } from '@src/services/users';
@@ -25,11 +27,11 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
     refreshInterval: 60000,
   });
 
-  const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-
   const logoutFunction = async () => {
+    const token = cookie.get(STORAGE_KEY_TOKEN);
+
     const data = {
-      refresh_token: refresh || '',
+      token: token || '',
     };
     await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
   };

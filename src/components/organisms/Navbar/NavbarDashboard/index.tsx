@@ -9,9 +9,10 @@ import userIcon from '@iconify-icons/ph/user';
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
+import cookie from 'js-cookie';
 
 import { useUserContext } from '@context/user/userContext';
-import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
+import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -61,11 +62,11 @@ export function NavbarDashboard() {
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
-  const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-
   async function logoutFunction() {
+    const token = cookie.get(STORAGE_KEY_TOKEN);
+
     const data = {
-      refresh_token: refresh || '',
+      token: token || '',
     };
 
     if (isAdmin) {
@@ -135,7 +136,7 @@ export function NavbarDashboard() {
         </div>
         {!isUser && <HeadOnlineAssistant />}
         <div className="flex">
-          <Link to={ROUTES_PATH.dashboard}>
+          <Link to={ROUTES_PATH.home}>
             <img src="/logo.png" alt="logo" className="h-8" />
           </Link>
           {/* <BaseSwitchOnClick

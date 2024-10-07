@@ -50,7 +50,7 @@ export interface IBodyUsersLogin {
   // is_admin: boolean;
 }
 export interface IBodyUsersLogout {
-  refresh_token: string;
+  token: string;
 }
 
 export interface IResponseLogin {
