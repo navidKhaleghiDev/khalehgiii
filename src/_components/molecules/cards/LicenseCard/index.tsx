@@ -5,15 +5,26 @@ import { CardButton } from '@ui/atoms/Card/CardButton';
 import { DateTitle } from './compnents/DateTitle';
 import { LicenseCardProps } from './types';
 
-export function LicenseCard({
-  subValue,
-  totalValue,
-  onClick,
-  color,
-  title,
-  date,
-  dark,
-}: LicenseCardProps) {
+/**
+ * The LicenseCard component displays a card with a title, date, and a doughnut chart.
+ * It supports customizable styles, click events
+ *
+ * @component
+ *
+ * @param {Object} props - The properties for the LicenseCard component.
+ * @param {string} props.title - The main title displayed on the card.
+ * @param {string} props.date - The date displayed on the card.
+ * @param {number} props.subValue - The current value for the doughnut chart (e.g., completed part).
+ * @param {number} props.totalValue - The total value for the doughnut chart (e.g., total capacity).
+ * @param {() => void} [props.onClick] - Click handler function for when the card is clicked.
+ * @param {string} [props.color] - The color for the doughnut chart and date text.
+ * @param {boolean} [props.dark] - If true, the card is displayed in dark mode.
+ *
+ * @returns {JSX.Element} The LicenseCard component.
+ */
+
+export function LicenseCard(props: LicenseCardProps): JSX.Element {
+  const { subValue, totalValue, onClick, color, title, date, dark } = props;
   return (
     <CardButton
       border
