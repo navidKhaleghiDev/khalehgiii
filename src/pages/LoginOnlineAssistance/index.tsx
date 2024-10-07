@@ -25,7 +25,7 @@ export function LoginOnlineAssistance() {
 
   async function logoutFunction() {
     const data = {
-      refresh_token: token || '',
+      token: token || '',
     };
 
     if (isAdminGroup) {

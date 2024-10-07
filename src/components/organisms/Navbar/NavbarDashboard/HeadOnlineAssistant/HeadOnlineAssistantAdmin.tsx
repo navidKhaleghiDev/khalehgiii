@@ -31,7 +31,7 @@ export function HeadOnlineAssistantAdmin({ onlineAssistance }: Props) {
     const token = cookie.get(STORAGE_KEY_TOKEN);
 
     const data = {
-      refresh_token: token || '',
+      token: token || '',
     };
     await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
   };

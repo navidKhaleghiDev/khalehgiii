@@ -19,7 +19,7 @@ export const useLogout = () => {
   const logoutFunction = async () => {
     const token = cookie.get(STORAGE_KEY_TOKEN);
 
-    const data = { refresh_token: token || '' };
+    const data = { token: token || '' };
 
     if (isAdminGroup) {
       await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);

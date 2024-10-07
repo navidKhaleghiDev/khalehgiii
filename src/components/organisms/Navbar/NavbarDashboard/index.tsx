@@ -66,7 +66,7 @@ export function NavbarDashboard() {
     const token = cookie.get(STORAGE_KEY_TOKEN);
 
     const data = {
-      refresh_token: token || '',
+      token: token || '',
     };
 
     if (isAdmin) {
