@@ -13,6 +13,7 @@ export default {
     fontSize,
     fontFamily: {
       IRANSans: ['IRANSans', 'on'],
+      kalameh: ['kalameh', 'sans-serif'],
       on: ['on', 'sans-serif'],
       sans: ['ui-sans-serif', 'system-ui'],
       serif: ['ui-serif', 'Georgia'],
