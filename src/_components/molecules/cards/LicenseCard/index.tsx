@@ -11,6 +11,7 @@ interface LicenseCardProps extends VariantProps<typeof dateTitleStyle> {
   onClick?: () => void;
   title: string;
   date: string;
+  dark?: boolean;
 }
 
 export function LicenseCard({
@@ -20,6 +21,7 @@ export function LicenseCard({
   color,
   title,
   date,
+  dark,
 }: LicenseCardProps) {
   return (
     <CardButton
@@ -30,19 +32,20 @@ export function LicenseCard({
       onClick={onClick}
       shadow="sm"
     >
-      <div className="w-full flex items-center">
-        <div className="w-1/3 rtl:ml-5 ltr:mr-5">
-          <DoughnutChart
-            subValue={subValue}
-            totalValue={totalValue}
-            color={color}
-          />
-        </div>
+      <div className="w-full flex items-center gap-5 flex-row-reverse">
         <div className="flex flex-col items-start gap-2 w-2/3 box-border leading-3">
           <Typography variant="body6B" color="black">
             {title}
           </Typography>
           <DateTitle color={color} date={date} />
+        </div>
+        <div className="w-1/3">
+          <DoughnutChart
+            subValue={subValue}
+            totalValue={totalValue}
+            color={color}
+            dark={dark}
+          />
         </div>
       </div>
     </CardButton>

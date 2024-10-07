@@ -5,4 +5,5 @@ export interface DoughnutChartProps
   extends VariantProps<typeof doughnutChartStyles> {
   totalValue: number;
   subValue: number;
+  dark?: boolean;
 }

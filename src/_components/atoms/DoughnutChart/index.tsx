@@ -13,26 +13,35 @@ import { doughnutChartStyles } from './styles';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ChartColors: { [key: string]: string } = {
-  blueLight: '#60A5FA',
-  blue: '#1E40AF',
-  red: '#EF4444',
-  tealLight: '#2DD4BF',
-  teal: '#0D9488',
-  yellow: '#EAB308',
-  purpleLight: '#D8B4FE',
-  purple: '#A855F7',
+const ChartColors: { [key: string]: { light: string; dark: string } } = {
+  blueLight: { light: '#60A5FA', dark: '#BFDBFE' },
+  blue: { light: '#1E40AF', dark: '#60A5FA' },
+  red: { light: '#EF4444', dark: '#FCA5A5' },
+  tealLight: { light: '#2DD4BF', dark: '#CCFBF1' },
+  teal: { light: '#0D9488', dark: '#2DD4BF' },
+  yellow: { light: '#EAB308', dark: '#FACC15' },
+  purpleLight: { light: '#D8B4FE', dark: '#E9D5FF' },
+  purple: { light: '#A855F7', dark: '#C084FC' },
+  gray: { light: '#E5E7EB', dark: '#4B5563' },
 };
-const getBackgroundColor = (colorKey: string): string => {
-  return ChartColors[colorKey] || '#E5E7EB';
+
+const getBackgroundColor = (
+  colorKey: string,
+  dark: boolean | undefined
+): string => {
+  const color = ChartColors[colorKey];
+  return dark ? color.dark : color.light;
 };
 
 export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
-  const { totalValue, subValue, color } = props;
+  const { totalValue, subValue, color, dark } = props;
 
   const defaultColor = color || 'blue';
-  const colorHex = getBackgroundColor(defaultColor);
-  const ChartColor = [colorHex, '#E5E7EB'];
+  const colorHex = getBackgroundColor(defaultColor, dark);
+
+  const backgroundColor = getBackgroundColor('gray', dark);
+
+  const ChartColor = [colorHex, backgroundColor];
 
   const data: ChartData<'pie', number[]> = {
     datasets: [
@@ -63,7 +72,6 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
       <Pie data={data} options={options} />
 
       <div
-        style={{ fontSize: '0.75rem' }}
         className={`${doughnutChartStyles({
           color,
         })} 
