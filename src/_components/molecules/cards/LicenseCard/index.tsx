@@ -1,18 +1,9 @@
 import { Typography } from '@redesignUi/atoms';
 import { DoughnutChart } from '@redesignUi/atoms/DoughnutChart';
 import { CardButton } from '@ui/atoms/Card/CardButton';
-import { VariantProps } from 'class-variance-authority';
-import { dateTitleStyle } from './compnents/styles';
-import { DateTitle } from './compnents/DateTitle';
 
-interface LicenseCardProps extends VariantProps<typeof dateTitleStyle> {
-  subValue: number;
-  totalValue: number;
-  onClick?: () => void;
-  title: string;
-  date: string;
-  dark?: boolean;
-}
+import { DateTitle } from './compnents/DateTitle';
+import { LicenseCardProps } from './types';
 
 export function LicenseCard({
   subValue,
@@ -28,7 +19,7 @@ export function LicenseCard({
       border
       borderColor="neutral"
       className="w-64 h-28 p-5 flex items-center outline-none text-right overflow-hidden"
-      color="white"
+      color="neutral"
       onClick={onClick}
       shadow="sm"
     >

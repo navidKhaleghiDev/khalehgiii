@@ -3,7 +3,7 @@ import { Typography } from '@redesignUi/atoms';
 
 import { dateTitleStyle } from './styles';
 
-interface DateTitleProps extends VariantProps<typeof dateTitleStyle> {
+export interface DateTitleProps extends VariantProps<typeof dateTitleStyle> {
   date: string;
 }
 
