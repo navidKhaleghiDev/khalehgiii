@@ -27,9 +27,11 @@ const arrowButtonClass =
  *
  * @component
  *
- * @param {Object} props - The properties for the Pagination component.
  * @param {number} props.currentPage - The current active page.
+ * @param {number} props.allItems - The total number of pages.
+ * @param {number} props.itemsPer - The total number of pages.
  * @param {number} props.totalPages - The total number of pages.
+ * @param {string} props.paginationLabel - The total number of pages.
  * @param {Function} props.onPageChange - Callback function called when the page changes.
  *
  * @returns {JSX.Element | null} The Pagination component.
