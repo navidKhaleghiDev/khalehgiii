@@ -1,7 +1,7 @@
-import { IconButton } from '@ui/atoms/BaseButton';
-import { Typography } from '@ui/atoms';
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { Typography } from '@redesignUi/atoms';
 
 /* eslint-disable no-plusplus */
 interface PaginationProps {
@@ -14,13 +14,13 @@ interface PaginationProps {
 }
 
 const mClass =
-  'flex size-7 justify-center px-1 rounded items-center hover:bg-gray-100 text-sm sm:text-base';
+  'flex size-7 text-gray-500 justify-center rounded items-center hover:bg-gray-100';
 
-const disableClass = 'bg-gray-300 cursor-not-allowed ';
+const disableClass = 'bg-gray-300 cursor-not-allowed hover:bg-gray-300';
 const activeClass =
-  'bg-gray-200 hover:bg-gray-200 rounded-lg items-center justify-center cursor-not-allowed';
+  'bg-gray-100 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
 const arrowButtonClass =
-  'bg-white size-7 border rounded border-neutral-200 p-1.5 text-neutral-500';
+  'bg-white border rounded border-neutral-200 text-neutral-500';
 
 /**
  * Pagination component for navigating through pages.
@@ -35,12 +35,14 @@ const arrowButtonClass =
  * @returns {JSX.Element | null} The Pagination component.
  */
 
+// Note: in iconButton we do not have rounded
+
 export function Pagination({
   currentPage,
-  allItems = 120,
-  itemsPer = 8,
+  allItems,
+  itemsPer,
   totalPages,
-  paginationLabel = 'ادمین',
+  paginationLabel,
   onPageChange,
 }: PaginationProps) {
   const isFirstPage = currentPage === 1;
@@ -119,32 +121,33 @@ export function Pagination({
   }
 
   return (
-    <div className="bg-white flex items-center justify-between font-kalameh max-w-[1100px] border rounded-lg p-2">
+    <div className="bg-white flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5">
       <div className="flex justify-center items-center gap-2">
         <IconButton
+          size="sm"
+          color="neutralNoBg"
           icon={PhCaretDoubleLeft}
           className={`${mClass} ${
             isFirstPage ? disableClass : arrowButtonClass
           }`}
-          color="neutralNoBg"
-          size="sm"
           onClick={handlePreviousClick}
-          classNameIcon="text-sm sm:text-base"
         />
         {renderPageNumbers()}
         <IconButton
+          size="sm"
+          color="neutralNoBg"
           icon={PhCaretDoubleRight}
           className={`${mClass} ${
             isLastPage ? disableClass : arrowButtonClass
           }`}
-          color="neutralNoBg"
-          size="sm"
           onClick={handleNextClick}
-          classNameIcon="text-sm sm:text-base"
         />
       </div>
-      <Typography color="neutral" className="text-sm sm:text-base">
+      <Typography color="neutralMiddle" className="hidden sm:block">
         {`نمایش ${itemsPer}  ${paginationLabel} از ${allItems}`}
+      </Typography>
+      <Typography color="neutralMiddle" className="block sm:hidden">
+        {allItems} of {itemsPer}
       </Typography>
     </div>
   );
