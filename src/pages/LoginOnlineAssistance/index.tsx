@@ -6,7 +6,9 @@ import {
   API_USERS_LOGOUT_ONLINE_ASSISTANCE,
 } from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
-import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
+import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
+import cookie from 'js-cookie';
+
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useEffect } from 'react';
@@ -19,11 +21,11 @@ export function LoginOnlineAssistance() {
   const isAdminGroup =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
-  const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+  const token = cookie.get(STORAGE_KEY_TOKEN);
 
   async function logoutFunction() {
     const data = {
-      refresh_token: refresh || '',
+      refresh_token: token || '',
     };
 
     if (isAdminGroup) {
