@@ -10,9 +10,10 @@ import languageIcon from '@iconify-icons/ph/globe-thin';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
 import cookie from 'js-cookie';
+import { toast } from 'react-toastify';
 
 import { useUserContext } from '@context/user/userContext';
-import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
+import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -36,6 +37,8 @@ import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOn
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
+
+let logoutApiService;
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
@@ -62,24 +65,24 @@ export function NavbarDashboard() {
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
-  async function logoutFunction() {
-    const token = cookie.get(STORAGE_KEY_TOKEN);
-
-    const data = {
-      token: token || '',
-    };
-
-    if (isAdmin) {
-      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-    } else await API_USERS_LOGOUT(data);
-  }
-
-  const logout = () => {
-    logoutFunction();
+  const logoutFunction = () => {
     setUser(null);
     http.removeAuthHeader();
     navigate(ROUTES_PATH.login);
   };
+  async function logout() {
+    const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+    const data = {
+      refresh_token: refresh || '',
+    };
+    if (isAdmin) {
+      logoutApiService = API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
+    } else logoutApiService = API_USERS_LOGOUT(data);
+
+    await logoutApiService
+      .then(() => logoutFunction())
+      .catch((err) => toast.error(err ?? t('global.somethingWentWrong')));
+  }
 
   return (
     <nav className="w-full bg-black dark:bg-slate-800 px-8 2xl:container h-12">
@@ -91,7 +94,7 @@ export function NavbarDashboard() {
               size="xl"
               className="ml-4 rounded-3xl"
               color="red"
-              onClick={logout}
+              onClick={() => logout()}
             />
           </ToolTip>
 
@@ -149,7 +152,7 @@ export function NavbarDashboard() {
         open={openModal}
         setOpen={setOpenModal}
         title={t('global.changeNameAndPassword')}
-        content={<ChangePasswordForm user={user} logout={logout} />}
+        content={<ChangePasswordForm user={user} logout={() => logout()} />}
         type="success"
       />
     </nav>

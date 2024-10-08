@@ -1,17 +1,24 @@
-import { Avatar, BaseButton, Card } from '@ui/atoms';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import userIcon from '@iconify-icons/ph/user';
+
+import { Avatar, BaseButton, Card } from '@ui/atoms';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
 import {
   API_USERS_LOGOUT,
   API_USERS_LOGOUT_ONLINE_ASSISTANCE,
 } from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
-import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
+import {
+  http,
+  STORAGE_KEY_REFRESH_TOKEN,
+  STORAGE_KEY_TOKEN,
+} from '@src/services/http';
 import cookie from 'js-cookie';
+import { toast } from 'react-toastify';
 
-import { useNavigate } from 'react-router-dom';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { useEffect } from 'react';
+let logoutApiService;
 
 export function LoginOnlineAssistance() {
   const { t } = useTranslation();
@@ -23,23 +30,25 @@ export function LoginOnlineAssistance() {
 
   const token = cookie.get(STORAGE_KEY_TOKEN);
 
-  async function logoutFunction() {
-    const data = {
-      token: token || '',
-    };
-
-    if (isAdminGroup) {
-      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-    } else await API_USERS_LOGOUT(data);
-  }
-  const isInDaas = user?.online_assistance?.admin;
-
-  const logout = () => {
-    logoutFunction();
+  const logoutFunction = () => {
     setUser(null);
     http.removeAuthHeader();
     navigate(ROUTES_PATH.login);
   };
+  async function logout() {
+    const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
+    const data = {
+      refresh_token: refresh || '',
+    };
+    if (isAdminGroup) {
+      logoutApiService = API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
+    } else logoutApiService = API_USERS_LOGOUT(data);
+
+    await logoutApiService
+      .then(() => logoutFunction())
+      .catch((err) => toast.error(err ?? t('global.somethingWentWrong')));
+  }
+  const isInDaas = user?.online_assistance?.admin;
 
   useEffect(() => {
     if (!isAdminGroup) {
@@ -70,7 +79,7 @@ export function LoginOnlineAssistance() {
             label={t('onlineAssistance.remote')}
           />
           <BaseButton
-            onClick={logout}
+            onClick={() => logout}
             type="redBorder"
             label={t('onlineAssistance.exitFromUserProfile')}
           />
