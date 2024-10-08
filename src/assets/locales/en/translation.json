@@ -3,7 +3,7 @@
     "loginTitle": "Enter username and password to login",
     "login": "Login",
     "otp": "Please enter the received code",
-    "forget": "Forgot password"
+    "forget": "Forgot password?"
   },
   "header": {
     "user": "User",
