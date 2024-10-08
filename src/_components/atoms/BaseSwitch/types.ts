@@ -30,3 +30,10 @@ export interface BaseSwitchControllerProps<T extends FieldValues>
   rules?: RegisterOptions<T>;
   defaultValue?: PathValue<T, Path<T>>;
 }
+export interface BaseSwitchWithIconProps {
+  checked?: boolean;
+  onChange: (checked: boolean) => void;
+  disabled?: boolean;
+  id: string;
+  name: string;
+}

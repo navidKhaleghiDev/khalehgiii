@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavbarDashboard } from '@ui/organisms/Navbar/NavbarDashboard';
+// import { NavbarDashboard } from '@ui/organisms/Navbar/NavbarDashboard';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { LoadingPage } from '@ui/molecules/Loading';
 import cookie from 'js-cookie';
@@ -10,6 +10,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
 import { useTranslation } from 'react-i18next';
+import { NavbarDashboard } from '@redesignUi/organisms/Navbar/NavbarDashboard';
 
 function LayoutCp() {
   const { t } = useTranslation();
@@ -48,8 +49,8 @@ function LayoutCp() {
 
   if (!loading) {
     return (
-      <div className="font-kalameh w-full min-h-screen bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
-        <div className="w-full bg-black flex flex-col justify-center items-center fixed top-0 z-10 dark:bg-slate-800 ">
+      <div className="font-on w-full min-h-screen flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
+        <div className="w-full h-16 bg-white dark:bg-gray-700 fixed top-0 z-10 shadow-md">
           <NavbarDashboard />
         </div>
         <div className="w-full h-full grid grid-cols-12 gap-1 flex-1 mt-12 ">
