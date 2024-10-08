@@ -5,49 +5,18 @@ import userIcon from '@iconify-icons/ph/user';
 
 import { Avatar, BaseButton, Card } from '@ui/atoms';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import {
-  API_USERS_LOGOUT,
-  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
-} from '@src/services/users';
 import { useUserContext } from '@context/user/userContext';
-import {
-  http,
-  STORAGE_KEY_REFRESH_TOKEN,
-  STORAGE_KEY_TOKEN,
-} from '@src/services/http';
-import cookie from 'js-cookie';
-import { toast } from 'react-toastify';
-
-let logoutApiService;
+import { useLogout } from '@src/helper/hooks/useLogout';
 
 export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
+  const logout = useLogout();
 
   const isAdminGroup =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
-  const token = cookie.get(STORAGE_KEY_TOKEN);
-
-  const logoutFunction = () => {
-    setUser(null);
-    http.removeAuthHeader();
-    navigate(ROUTES_PATH.login);
-  };
-  async function logout() {
-    const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-    const data = {
-      refresh_token: refresh || '',
-    };
-    if (isAdminGroup) {
-      logoutApiService = API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-    } else logoutApiService = API_USERS_LOGOUT(data);
-
-    await logoutApiService
-      .then(() => logoutFunction())
-      .catch((err) => toast.error(err ?? t('global.somethingWentWrong')));
-  }
   const isInDaas = user?.online_assistance?.admin;
 
   useEffect(() => {
@@ -79,7 +48,7 @@ export function LoginOnlineAssistance() {
             label={t('onlineAssistance.remote')}
           />
           <BaseButton
-            onClick={() => logout}
+            onClick={logout}
             type="redBorder"
             label={t('onlineAssistance.exitFromUserProfile')}
           />
