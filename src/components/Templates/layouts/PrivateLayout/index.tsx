@@ -48,7 +48,7 @@ function LayoutCp() {
 
   if (!loading) {
     return (
-      <div className="font-on w-full min-h-screen bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
+      <div className="font-kalameh w-full min-h-screen bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
         <div className="w-full bg-black flex flex-col justify-center items-center fixed top-0 z-10 dark:bg-slate-800 ">
           <NavbarDashboard />
         </div>
