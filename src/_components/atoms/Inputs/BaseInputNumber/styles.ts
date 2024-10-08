@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 export const baseInputNumberStyles = cva(
   ` min-h-10 peer border-gray-300 text-gray-400 hover:border-gray-400 focus:border-gray-900  focus:text-gray-900 flex text-sm rounded-lg outline-none border 
-    h-10 dark:text-gray-500 dark:border-gray-400 dark:bg-gray-600 dark:hover:border-gray-300  dark:hover:text-gray-300 dark:focus:border-white dark:focus:text-white dark:disabled:!border-gray-500 `,
+    h-10 dark:!text-gray-500 dark:border-gray-400 dark:bg-gray-600 dark:hover:border-gray-300  dark:hover:text-gray-300 dark:focus:border-white dark:focus:text-white dark:disabled:!border-gray-500 `,
   {
     variants: {
       intent: {
@@ -34,7 +34,7 @@ export const baseInputNumberStyles = cva(
 );
 
 export const iconBaseInputNumberButtonStyles = cva(
-  'max-h-10 border border-gray-300 hover:bg-white hover:!border  active:bg-white active:border dark:border-gray-400',
+  'max-h-10 border border-gray-300 hover:bg-white hover:!border active:bg-white active:border dark:!border-gray-500 dark:bg-gray-600 dark:active:bg-gray-600 ',
   {
     variants: {
       intent: {
