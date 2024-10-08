@@ -37,12 +37,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
       shadow="sm"
     >
       <div className={`bg-${iconColor}-100 p-2 rounded dark:bg-gray-700`}>
-        <BaseIcon
-          icon={icon}
-          color={iconColor}
-          size="md"
-          className="dark:text-gray-400"
-        />
+        <BaseIcon icon={icon} color={iconColor} size="md" />
       </div>
       <div className="w-full rtl:text-right ltr:text-left">
         <Typography color="neutralMiddle" variant="body3" className="leading-7">
