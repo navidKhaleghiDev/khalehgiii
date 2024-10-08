@@ -1,6 +1,6 @@
 import { IconType } from '@src/types/global';
 import { Typography, BaseIcon } from '@redesignUi/atoms';
-import { CardButton } from '@ui/atoms/Card/CardButton';
+import { CardButton } from '@redesignUi/atoms/Card/CardButton';
 
 type CardProps = {
   icon: IconType;
@@ -36,14 +36,13 @@ export function DashboardCard(props: CardProps): JSX.Element {
       onClick={onClick}
       disabled={!onClick}
       rounded="xxl"
-      shadow="sm"
+      shadow="base"
     >
-      <div className="bg-gray-100 p-2 rounded dark:bg-gray-700">
+      <div className="bg-gray-100 p-2 rounded-lg shadow-sm dark:bg-gray-700">
         <BaseIcon
           icon={icon}
-          color="neutral"
           size="md"
-          className="dark:text-gray-400"
+          className="text-gray-500 dark:text-gray-400"
         />
       </div>
       <div className="w-full rtl:text-right ltr:text-left">
