@@ -3,15 +3,14 @@ import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Typography } from '@redesignUi/atoms';
 
-/* eslint-disable no-plusplus */
-interface PaginationProps {
+type PaginationProps = {
   currentPage: number;
   allItems: number;
   itemsPer: number;
   totalPages: number;
   paginationLabel: string;
   onPageChange: (page: number) => void;
-}
+};
 
 const mClass =
   'flex size-7 text-gray-500 dark:text-gray-400 dark:bg-gray-600 justify-center rounded-lg items-center dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100';
@@ -39,14 +38,16 @@ const arrowButtonClass =
 
 // Note: in iconButton we do not have rounded
 
-export function Pagination({
-  currentPage,
-  allItems,
-  itemsPer,
-  totalPages,
-  paginationLabel,
-  onPageChange,
-}: PaginationProps) {
+export function Pagination(props: PaginationProps): JSX.Element | null {
+  const {
+    currentPage,
+    allItems,
+    itemsPer,
+    totalPages,
+    paginationLabel,
+    onPageChange,
+  } = props;
+
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
 
@@ -74,11 +75,11 @@ export function Pagination({
     const pageNumbers = [];
 
     if (totalPages <= 5) {
-      for (let i = 1; i <= totalPages; i++) {
+      for (let i = 1; i <= totalPages; i += 1) {
         pageNumbers.push(i);
       }
     } else if (currentPage <= 3) {
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 5; i += 1) {
         pageNumbers.push(i);
       }
       pageNumbers.push('...');
@@ -86,20 +87,20 @@ export function Pagination({
     } else if (currentPage >= totalPages - 2) {
       pageNumbers.push(1);
       pageNumbers.push('...');
-      for (let i = totalPages - 4; i <= totalPages; i++) {
+      for (let i = totalPages - 4; i <= totalPages; i += 1) {
         pageNumbers.push(i);
       }
     } else {
       pageNumbers.push(1);
       pageNumbers.push('...');
-      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+      for (let i = currentPage - 1; i <= currentPage + 1; i += 1) {
         pageNumbers.push(i);
       }
       pageNumbers.push('...');
       pageNumbers.push(totalPages);
     }
 
-    return pageNumbers.map((number) => {
+    return pageNumbers.map((number, index) => {
       const isEllipsis = number === '...';
 
       return (
@@ -109,7 +110,8 @@ export function Pagination({
             currentPage === number ? activeClass : 'bg-white text-gray-600'
           }`}
           disabled={isEllipsis}
-          key={number}
+          // eslint-disable-next-line react/no-array-index-key
+          key={`${number}${index}`}
           onClick={() => handlePageChange(number as number)}
         >
           {number}
@@ -118,12 +120,16 @@ export function Pagination({
     });
   };
 
+  console.log(renderPageNumbers());
+
   if (totalPages < 2) {
     return null;
   }
-
   return (
-    <div className="bg-white dark:bg-gray-600 flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5">
+    <div
+      dir="ltr"
+      className="bg-white dark:bg-gray-600 flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5"
+    >
       <div className="flex justify-center items-center gap-2">
         <IconButton
           size="sm"
