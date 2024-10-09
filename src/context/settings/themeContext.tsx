@@ -30,13 +30,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
   const isDark = localStorage.getItem('theme') === 'dark';
 
-  // const toggleTheme = useCallback(() => {
-  //   localStorage.setItem(
-  //     'theme',
-  //     localStorage.getItem('theme') === 'light' ? 'dark' : 'light'
-  //   );
-  //   setTheme(localStorage.getItem('theme') as string);
-  // }, []);
   const toggleTheme = useCallback(() => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     localStorage.setItem('theme', newTheme);
