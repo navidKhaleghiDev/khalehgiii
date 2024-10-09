@@ -49,7 +49,6 @@ export function ScannedFileList() {
       : null,
     HTTP_ANALYSES.fetcherSWR
   );
-
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count ?? 0;
   const evidencePermissions =
