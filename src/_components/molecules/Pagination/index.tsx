@@ -102,6 +102,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
 
     return pageNumbers.map((number, index) => {
       const isEllipsis = number === '...';
+      const keyItem = index;
 
       return (
         <button
@@ -110,8 +111,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
             currentPage === number ? activeClass : 'bg-white text-gray-600'
           }`}
           disabled={isEllipsis}
-          // eslint-disable-next-line react/no-array-index-key
-          key={`${number}${index}`}
+          key={keyItem}
           onClick={() => handlePageChange(number as number)}
         >
           {number}
@@ -119,8 +119,6 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
       );
     });
   };
-
-  console.log(renderPageNumbers());
 
   if (totalPages < 2) {
     return null;
