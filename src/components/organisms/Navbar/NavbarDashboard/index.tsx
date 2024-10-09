@@ -35,8 +35,6 @@ import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOn
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
-import { BaseSwitchOnClick } from '@ui/atoms/Inputs/BaseSwitchOnClick';
-import { useTheme } from '@context/settings/themeContext';
 
 export function NavbarDashboard() {
   const navigate = useNavigate();
@@ -59,7 +57,7 @@ export function NavbarDashboard() {
     EPermissionMalwareConfig.VIEW
   );
 
-  const { toggleTheme, theme } = useTheme();
+  // const { toggleTheme, theme } = useTheme();
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
 
@@ -140,10 +138,10 @@ export function NavbarDashboard() {
           <Link to={ROUTES_PATH.dashboard}>
             <img src="/logo.png" alt="logo" className="h-8" />
           </Link>
-          <BaseSwitchOnClick
+          {/* <BaseSwitchOnClick
             pureValue={theme === 'light'}
             pureOnChange={() => toggleTheme()}
-          />
+          /> */}
         </div>
       </div>
       <Modal
