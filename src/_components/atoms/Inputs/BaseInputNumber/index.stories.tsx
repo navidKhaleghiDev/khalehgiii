@@ -19,8 +19,7 @@ const meta: Meta<typeof BaseInputNumber> = {
   },
   tags: ['autodocs'],
   args: {
-    onClickIcon: fn(),
-    pureOnChange: fn(),
+    onChange: fn(),
     name: 'base input',
     intent: 'default',
     size: 'md',
@@ -38,7 +37,7 @@ const meta: Meta<typeof BaseInputNumber> = {
       control: {
         type: 'select',
       },
-      options: ['none', 'xs', 'sm', 'md', 'lg', 'xl', 'freeWidth'],
+      options: ['sm', 'md', 'xl'],
     },
     intent: {
       control: {
@@ -63,22 +62,13 @@ const meta: Meta<typeof BaseInputNumber> = {
       dir={args.dir}
       placeholder={args.placeholder}
       label={args.label}
-      intent={args.intent}
       max={args.max}
       min={args.min}
       size={args.size}
       className={args.className}
       defaultValue={args.defaultValue}
       fullWidth={args.fullWidth}
-      hiddenError={args.hiddenError}
-      iconButtonIcon={args.iconButtonIcon}
-      rules={args.rules}
-      control={args.control}
-      pureError={args.pureError}
-      pureValue={args.pureValue}
-      pureOnChange={args.pureOnChange}
-      onClickIcon={args.onClickIcon}
-      setError={args.setError}
+      onChange={args.onChange}
     />
   ),
 };
