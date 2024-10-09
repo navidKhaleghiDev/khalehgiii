@@ -7,7 +7,7 @@ import { Typography } from '@redesignUi/atoms/Typography';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
 
-import { ILoginFieldValues } from '../types';
+import { LoginFieldValues } from '../types';
 
 interface LoginFormProps<T extends FieldValues> {
   control: Control<T>;
@@ -17,7 +17,7 @@ interface LoginFormProps<T extends FieldValues> {
 export function LoginForm({
   control,
   error,
-}: LoginFormProps<ILoginFieldValues>) {
+}: LoginFormProps<LoginFieldValues>) {
   const { t } = useTranslation();
 
   return (

@@ -1,21 +1,21 @@
 import { useState, useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-
-import { Avatar, BaseButton } from '@redesignUi/atoms';
-import userIcon from '@iconify-icons/ph/user';
-import { API_USERS_LOGIN, API_USERS_PROFILE } from '@src/services/users';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useNavigate } from 'react-router-dom';
-import { useUserContext } from '@context/user/userContext';
-import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
-import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@context/settings/languageContext';
-import languageIcon from '@iconify-icons/ph/globe-thin';
-import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
-import { languageOptions } from '@src/constants/optios';
+import { toast } from 'react-toastify';
 
-import { ILoginFieldValues } from '../types';
+import userIcon from '@iconify-icons/ph/user';
+import languageIcon from '@iconify-icons/ph/globe-thin';
+import { Avatar, BaseButton } from '@redesignUi/atoms';
+import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
+import { API_USERS_LOGIN, API_USERS_PROFILE } from '@src/services/users';
+import { languageOptions } from '@src/constants/optios';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
+import { useLanguage } from '@context/settings/languageContext';
+import { useUserContext } from '@context/user/userContext';
+
+import { LoginFieldValues } from '../types';
 import { LoginForm } from '../LoginForm';
 
 export function LoginSteps() {
@@ -27,7 +27,7 @@ export function LoginSteps() {
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
 
-  const { control, handleSubmit } = useForm<ILoginFieldValues>({
+  const { control, handleSubmit } = useForm<LoginFieldValues>({
     mode: 'onChange',
     defaultValues: {},
   });
@@ -71,7 +71,7 @@ export function LoginSteps() {
   }, [navigate, setUser, t]);
 
   const handleSubmitForm = useCallback(
-    async ({ email, password }: ILoginFieldValues) => {
+    async ({ email, password }: LoginFieldValues) => {
       setLoadingButton(true);
       try {
         const response = await API_USERS_LOGIN({ email, password });
@@ -117,12 +117,6 @@ export function LoginSteps() {
           size="lg"
           type="teal"
           submit
-        />
-        <BaseButton
-          label={t('login.forget')}
-          className="mt-5 text-xs"
-          fullWidth
-          type="tertiary"
         />
       </form>
     </div>
