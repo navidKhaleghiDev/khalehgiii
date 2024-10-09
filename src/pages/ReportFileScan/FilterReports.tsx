@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Dropdown } from '@redesignUi/atoms';
 import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
-import PhFunnel from '@iconify-icons/ph/funnel';
+import PhFunnelSimple from '@iconify-icons/ph/funnel-simple';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
+
+// Note : The DropDownWithIcon has been added in another branch (pending)
 
 export default function FilterReports() {
   const [searchValue, setSearchValue] = useState('');
@@ -57,21 +59,23 @@ export default function FilterReports() {
         onChange={(value) => setSearchValue(value)}
         value={searchValue}
         placeholder="جستجوی ادمین"
-        fullWidth
+        hiddenError
       />
       <Dropdown
         name="domain"
         onChange={(data) => console.log(data)}
         options={domainOptions}
         placeHolder="انتخاب دامنه"
+        size="sm"
       />
       <Dropdown
         name="group"
         onChange={(data) => console.log(data)}
         options={groupOptions}
         placeHolder="گروه بندی"
+        size="sm"
       />
-      <DropDownWithIcon icon={PhFunnel} options={filterOptions} />
+      <DropDownWithIcon icon={PhFunnelSimple} options={filterOptions} />
     </div>
   );
 }

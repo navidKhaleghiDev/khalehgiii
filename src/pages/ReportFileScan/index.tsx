@@ -1,13 +1,12 @@
-import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
-
-import { BackButton } from '@ui/atoms/BackButton';
 import { UsersDaAsList } from './UsersDaAsList';
+import ReportsContainer from './ReportsContainer';
+
+// Note: Remember to add the i18 title
 
 export function ReportFileScanPage() {
   return (
-    <ContainerDashboard>
-      <BackButton withLabel className="absolute bottom-20 left-24" />
+    <ReportsContainer pageTitle="فایل های اسکن شده">
       <UsersDaAsList />
-    </ContainerDashboard>
+    </ReportsContainer>
   );
 }
