@@ -7,6 +7,7 @@ type CardProps = {
   title: string;
   onClick?: () => void;
   count?: number;
+  disabled?: boolean;
 };
 
 /**
@@ -21,20 +22,22 @@ type CardProps = {
  * @param {IconType} props.icon - The icon to be displayed inside the card.
  * @param {string} props.title - The title text displayed in the card.
  * @param {Function} [props.onClick] - Optional callback function to handle the click event on the card.
- * @param {number} [props.count] - Optional count to be displayed below the title.
+ * If not provided, the card will be disabled.
+ * @param {number} [props.count] - Optional count to be displayed below the title. If not provided, no count will be displayed.
+ * @param {boolean} [props.disabled] - If `true`, the card will be disabled regardless of the `onClick` handler.
  *
  * @returns {JSX.Element} Returns the rendered DashboardCard component.
  */
 export function DashboardCard(props: CardProps): JSX.Element {
-  const { icon, title, onClick, count } = props;
+  const { icon, title, onClick, count, disabled } = props;
   return (
     <CardButton
       border
       borderColor="neutral"
-      className="w-full h-20 px-5 py-4 flex items-center gap-2.5 outline-none text-right overflow-hidden"
+      className="max-w-[21.875rem] w-full h-20 px-5 py-4 flex items-center gap-2.5 outline-none text-right overflow-hidden"
       color="white"
       onClick={onClick}
-      disabled={!onClick}
+      disabled={!onClick || disabled}
       rounded="xxl"
       shadow="base"
     >

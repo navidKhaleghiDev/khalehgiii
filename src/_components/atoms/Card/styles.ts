@@ -43,8 +43,8 @@ export const cardStyles = cva('', {
 export const cardButtonStyles = cva('', {
   variants: {
     borderColor: {
-      neutral: `border border-white hover:border-gray-300 active:border-gray-400 focus:border-gray-400 disabled:border-white disabled:hover:bg-white disabled:hover:border-white dark:border-gray-600 dark:bg-gray-600 dark:hover:border-gray-500 dark:active:border-gray-300 dark:focus:border-gray-300`,
-      teal: `border-2 border-white active:border-teal-400 focus:border-teal-400 disabled:border-white disabled:hover:bg-white disabled:hover:border-white dark:border-teal-400 dark:bg-teal-400 dark:active:border-teal-400 dark:focus:border-teal-400`,
+      neutral: `border border-white hover:border-gray-300 active:border-gray-400 disabled:border-white dark:border-gray-600 dark:bg-gray-600 dark:hover:border-gray-500 dark:active:border-gray-300 dark:disabled:border-none`,
+      teal: `border-2 border-white active:border-teal-400 disabled:border-white disabled:hover:border-white dark:border-teal-400 dark:bg-teal-400 dark:active:border-teal-400`,
     },
   },
 });
