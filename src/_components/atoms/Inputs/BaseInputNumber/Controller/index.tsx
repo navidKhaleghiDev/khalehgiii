@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form'; // or import useForm
 
-import { BaseInputNumberControllerProps } from '../../types';
 import { BaseInputNumber } from '..';
+import { BaseInputNumberControllerProps } from '../types';
 
 /**
  * BaseInputNumber is a custom input component that allows users to increment and decrement

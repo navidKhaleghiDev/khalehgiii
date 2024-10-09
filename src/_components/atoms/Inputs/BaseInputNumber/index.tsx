@@ -6,7 +6,6 @@ import PhUserLight from '@iconify-icons/ph/user-light';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Typography } from '@redesignUi/atoms/Typography';
 import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
-import { BaseInput } from '@redesignUi/atoms/inputs/BaseInput';
 
 import {
   BaseIconInputNumberStyles,
@@ -41,6 +40,7 @@ import { BaseInputNumberProps } from './types';
  */
 export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
   const {
+    name,
     id,
     dir = 'rtl',
     size,
@@ -89,6 +89,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
       <div className="flex items-center w-full">
         <div dir={dir} className={`flex relative${fullWidth ? 'w-full' : ''}`}>
           <input
+            name={name}
             id={id}
             type="number"
             value={value === 0 ? '' : value}
