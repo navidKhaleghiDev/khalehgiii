@@ -22,10 +22,10 @@ export const useLogout = () => {
     const data = { refresh_token: token || '' };
 
     if (isAdminGroup) {
-      await API_USERS_LOGOUT_ONLINE_ASSISTANCE();
-    } else {
-      await API_USERS_LOGOUT(data);
+      return API_USERS_LOGOUT_ONLINE_ASSISTANCE();
     }
+
+    return API_USERS_LOGOUT(data);
   };
 
   const logout = () => {
