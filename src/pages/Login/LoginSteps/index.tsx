@@ -1,29 +1,29 @@
-import { useState, useCallback, useEffect } from 'react';
-import { Avatar, BaseButton } from '@ui/atoms';
+import { useState, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { Avatar, BaseButton } from '@redesignUi/atoms';
 import userIcon from '@iconify-icons/ph/user';
-import {
-  API_USERS_LOGIN,
-  API_USERS_LOGIN_OTP,
-  API_USERS_PROFILE,
-} from '@src/services/users';
+import { API_USERS_LOGIN, API_USERS_PROFILE } from '@src/services/users';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
-import signInBoldIcon from '@iconify-icons/ph/sign-in-bold';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import LogInOtpForm from '../LoginOtpForm';
-import { LoginForm } from '../LoginForm';
+import { useLanguage } from '@context/settings/languageContext';
+import languageIcon from '@iconify-icons/ph/globe-thin';
+import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
+import { languageOptions } from '@src/constants/optios';
+
 import { ILoginFieldValues } from '../types';
+import { LoginForm } from '../LoginForm';
 
 export function LoginSteps() {
   const { setUser } = useUserContext();
   const navigate = useNavigate();
+  const { changeLanguage } = useLanguage();
   const { t } = useTranslation();
 
-  const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
 
@@ -59,7 +59,6 @@ export function LoginSteps() {
 
         toast.success(t('global.successfullyLogedIn'));
         navigate(ROUTES_PATH.dashboard);
-        setIsOtpActive(true);
       })
       .catch((err) => {
         setUser(null);
@@ -72,62 +71,58 @@ export function LoginSteps() {
   }, [navigate, setUser, t]);
 
   const handleSubmitForm = useCallback(
-    async ({ email, password, totp }: ILoginFieldValues) => {
+    async ({ email, password }: ILoginFieldValues) => {
       setLoadingButton(true);
-
       try {
-        const response = isOtpActive
-          ? await API_USERS_LOGIN_OTP({ email, password, totp })
-          : await API_USERS_LOGIN({ email, password });
+        const response = await API_USERS_LOGIN({ email, password });
 
         const { data } = response;
-        const needOtp = data.info === 'ready to get totp to verify';
-        if (needOtp) {
-          setIsOtpActive(true);
-        } else {
-          localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
-          http.setAuthHeader(data.access_token, data.refresh_token);
-          handleGetProfile();
-        }
+
+        localStorage.setItem(STORAGE_KEY_REFRESH_TOKEN, data.refresh_token);
+        http.setAuthHeader(data.access_token, data.refresh_token);
+        handleGetProfile();
       } catch (err) {
         setError(err as string);
       } finally {
         setLoadingButton(false);
       }
     },
-    [handleGetProfile, isOtpActive]
+    [handleGetProfile]
   );
-
-  useEffect(() => {
-    setError(null);
-  }, [isOtpActive]);
 
   return (
     <div className="flex flex-col items-center w-full mt-auto">
+      <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
+        <DropDownWithIcon
+          icon={languageIcon}
+          size="xs"
+          onSelect={(v: string) => changeLanguage(v)}
+          options={languageOptions}
+        />
+      </div>
       <form
         onSubmit={handleSubmit(handleSubmitForm)}
-        className="flex flex-col items-center w-full"
+        className="flex flex-col items-center w-[21.8rem]"
       >
-        <div className="absolute top-[-6rem]">
-          <Avatar icon={userIcon} intent="grey" size="lg" />
+        <div>
+          <Avatar icon={userIcon} size="lg" className="mb-[0.81rem]" />
         </div>
-        {isOtpActive ? (
-          <LogInOtpForm
-            control={control}
-            setIsOtpActive={setIsOtpActive}
-            error={error}
-          />
-        ) : (
-          <LoginForm control={control} error={error} />
-        )}
+
+        <LoginForm control={control} error={error} />
+
         <BaseButton
           label={t('login.login')}
-          endIcon={signInBoldIcon}
           className="mt-8"
           loading={loadingButton}
-          size="md"
+          size="lg"
+          type="teal"
           submit
+        />
+        <BaseButton
+          label={t('login.forget')}
+          className="mt-5 text-xs"
           fullWidth
+          type="tertiary"
         />
       </form>
     </div>
