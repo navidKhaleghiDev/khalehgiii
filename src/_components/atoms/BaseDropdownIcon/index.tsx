@@ -7,19 +7,28 @@ import { DropdownProps, IOptionSelect, StateType } from './type';
 import { optionSelectStyles } from './styles';
 import { BaseButton, IconButton } from '../BaseButton';
 
+/**
+ * BaseDropdownIcon is a dropdown component
+ *
+ * @param {DropdownProps} props  The properties passed to the component.
+ * @param {IOptionSelect[]} props.options  Array of options to be displayed in the dropdown.
+ * @param {boolean} [props.fullWidth]  Optional. If true, the dropdown will take full width.
+ * @param {string} [props.size]  Optional. Defines the size of the dropdown and its options.
+ * @param {string} [props.containerClassName]  Optional. Additional class names for the dropdown container.
+ * @param {React.ReactNode} props.icon  The icon to be displayed in the button.
+ * @param {function(string): void} props.onSelect  Callback function that receives the selected option's ID.
+ *
+ * @returns {JSX.Element} The BaseDropdownIcon component.
+ */
+
 const initState = {
   activeOption: null,
   openOptions: false,
 };
 
-export function BaseDropdownIcon({
-  options,
-  fullWidth,
-  size,
-  containerClassName,
-  icon,
-  onSelect,
-}: DropdownProps) {
+export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
+  const { options, fullWidth, size, containerClassName, icon, onSelect } =
+    props;
   const ref = useRef(null);
   const { t } = useTranslation();
 

@@ -11,7 +11,7 @@ export interface DropdownProps extends VariantProps<typeof baseDropDownStyles> {
   options: IOptionSelect[];
   fullWidth?: boolean;
   containerClassName?: string;
-  defaultValue?: any;
+  // defaultValue?: any;
   label?: string;
   hiddenError?: boolean;
   icon?: any;

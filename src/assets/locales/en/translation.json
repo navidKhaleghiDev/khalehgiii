@@ -215,9 +215,7 @@
     "status": "Status",
     "admin": "Admin",
     "user": "User",
-    "group": "Group",
-    "fa": "Persian",
-    "en": "English"
+    "group": "Group"
   },
   "groupManagement": {
     "person": "person",

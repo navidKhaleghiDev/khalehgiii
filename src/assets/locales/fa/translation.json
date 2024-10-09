@@ -216,9 +216,7 @@
     "status": " وضعیت",
     "admin": "ادمین",
     "user": "یوزر",
-    "group": "گروه",
-    "fa": "فارسی",
-    "en": "انگلیسی"
+    "group": "گروه"
   },
   "groupManagement": {
     "person": "نفر",
