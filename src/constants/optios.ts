@@ -1,12 +1,14 @@
+import { t } from 'i18next';
+
 export const languageOptions = [
   {
     id: 'fa',
-    label: 'Persian',
+    label: t('global.fa'),
     value: 'Persian',
   },
   {
     id: 'en',
-    label: 'English',
+    label: t('global.en'),
     value: 'English',
   },
 ];

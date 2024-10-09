@@ -7,7 +7,6 @@ import { optionSelectStyles } from './styles';
 import { BaseButton, IconButton } from '../BaseButton';
 
 /**
- * BaseDropdownIcon is a dropdown component
  *
  * @param {DropdownProps} props  The properties passed to the component.
  * @param {IOptionSelect[]} props.options  Array of options to be displayed in the dropdown.
