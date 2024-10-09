@@ -35,8 +35,8 @@ export function NavbarDashboard(): JSX.Element {
             <IconButtonBadge icon={PhBellSimpleRinging} content={4} size="md" />
           </div>
           <BaseDropdownIcon
-            size="md"
             icon={PhGlobe}
+            size="sm"
             onSelect={(v: string) => changeLanguage(v)}
             options={languageOptions}
           />

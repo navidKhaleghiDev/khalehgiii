@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
@@ -30,7 +29,7 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
   const { options, fullWidth, size, containerClassName, icon, onSelect } =
     props;
   const ref = useRef(null);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const [state, setState] = useState<StateType>(initState);
 
@@ -75,7 +74,7 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
         {options.map((option: IOptionSelect) => (
           <BaseButton
             type="neutral"
-            label={t(option.label)}
+            label={option.label}
             key={option.id}
             size={size}
             className="w-full p-3 border-none dark:hover:!bg-gray-500 dark:hover:text-white"
