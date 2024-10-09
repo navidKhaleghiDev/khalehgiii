@@ -131,7 +131,7 @@ export function BaseDropdown(props: BaseDropdownProps): JSX.Element {
         ) : (
           <div className="flex w-full justify-between items-center ">
             <div
-              className={`flex gap-3 overflow-hidden ${
+              className={`flex items-center gap-3 overflow-hidden ${
                 error && 'text-gray-900 dark:text-white'
               }`}
             >
