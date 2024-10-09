@@ -1,7 +1,6 @@
 import { UserContext } from '@context/user/userContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
-import cookie from 'js-cookie';
+import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 
 import {
   API_USERS_LOGOUT,
@@ -9,6 +8,7 @@ import {
 } from '@src/services/users';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const useLogout = () => {
   const { setUser, user } = useContext(UserContext);
@@ -17,7 +17,7 @@ export const useLogout = () => {
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
   const logoutFunction = async () => {
-    const token = cookie.get(STORAGE_KEY_TOKEN);
+    const token = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
     const data = { refresh_token: token || '' };
 
@@ -29,11 +29,14 @@ export const useLogout = () => {
   };
 
   const logout = () => {
-    logoutFunction().finally(() => {
-      setUser(null);
-      http.removeAuthHeader();
-      navigate(ROUTES_PATH.login);
-    });
+    logoutFunction()
+      .then()
+      .catch((err) => toast.error(err))
+      .finally(() => {
+        setUser(null);
+        http.removeAuthHeader();
+        navigate(ROUTES_PATH.login);
+      });
   };
 
   return logout;

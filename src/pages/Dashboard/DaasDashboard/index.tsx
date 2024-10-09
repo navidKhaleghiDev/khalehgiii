@@ -7,10 +7,10 @@ export function DaasDashboard() {
   const isSSl = import.meta.env.VITE_IS_SSL;
   const isSSlTrue = isSSl === 'true';
   const httpCondition = isSSlTrue ? 'https' : 'http';
-  const changePort = isSSlTrue ? `1${user?.http_port}` : user?.http_port;
+  const changePort = isSSlTrue ? `${user?.http_port}` : user?.http_port;
 
   const onlineAssistanceAddress = isSSlTrue
-    ? `1${user?.online_assistance?.user_http_address}`
+    ? `${user?.online_assistance?.user_http_address}`
     : user?.online_assistance?.user_http_address;
 
   const src = user?.online_assistance?.user_http_address

@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import { Avatar } from '@ui/atoms/Avatar';
 import { Typography } from '@ui/atoms/Typography/Typography';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { IconButton } from '@ui/atoms/BaseButton';
 import ToolTip from '@ui/atoms/Tooltip';
@@ -9,21 +9,16 @@ import userIcon from '@iconify-icons/ph/user';
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import signOutBoldIcon from '@iconify-icons/ph/sign-out-bold';
 import gearIcon from '@iconify-icons/ph/gear';
-import cookie from 'js-cookie';
-import { toast } from 'react-toastify';
 
 import { useUserContext } from '@context/user/userContext';
-import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { languageOptions } from '@src/constants/optios';
-import {
-  API_USERS_LOGOUT,
-  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
-} from '@src/services/users';
+import { useLogout } from '@src/helper/hooks/useLogout';
+
 import {
   checkPermission,
   useUserPermission,
@@ -37,19 +32,15 @@ import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOn
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { AccessTime } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
-import { useLogout } from '@src/helper/hooks/useLogout';
 
 // let logoutApiService;
 
 export function NavbarDashboard() {
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
   const userPermissions = useUserPermission();
   const logout = useLogout();
-  const isAdmin =
-    Array.isArray(user?.admin_group_of) && user?.admin_group_of?.length >= 1;
 
   const isUser = user?.is_meta_admin || user?.is_superuser;
 
@@ -66,25 +57,6 @@ export function NavbarDashboard() {
   // const { toggleTheme, theme } = useTheme();
   const { changeLanguage, lang } = useLanguage();
   const timeStyle = lang === 'fa' ? 'mr-16' : 'ml-16';
-
-  // const logoutFunction = () => {
-  //   setUser(null);
-  //   http.removeAuthHeader();
-  //   navigate(ROUTES_PATH.login);
-  // };
-  // async function logout() {
-  //   const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-  //   const data = {
-  //     refresh_token: refresh || '',
-  //   };
-  //   if (isAdmin) {
-  //     logoutApiService = API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-  //   } else logoutApiService = API_USERS_LOGOUT(data);
-
-  //   await logoutApiService
-  //     .then(() => logoutFunction())
-  //     .catch((err) => toast.error(err ?? t('global.somethingWentWrong')));
-  // }
 
   return (
     <nav className="w-full bg-black dark:bg-slate-800 px-8 2xl:container h-12">
