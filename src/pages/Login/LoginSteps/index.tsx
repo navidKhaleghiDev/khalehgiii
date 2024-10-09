@@ -7,7 +7,8 @@ import { toast } from 'react-toastify';
 import userIcon from '@iconify-icons/ph/user';
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import { Avatar, BaseButton } from '@redesignUi/atoms';
-import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
+import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
+
 import {
   API_USERS_LOGIN,
   API_USERS_LOGIN_OTP,
@@ -112,9 +113,9 @@ export function LoginSteps() {
   return (
     <div className="flex flex-col items-center w-full mt-auto">
       <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
-        <DropDownWithIcon
+        <BaseDropdownIcon
           icon={languageIcon}
-          size="xs"
+          size="sm"
           onSelect={(v: string) => changeLanguage(v)}
           options={languageOptions}
         />

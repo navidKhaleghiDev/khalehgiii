@@ -1,4 +1,3 @@
-// import { Card } from '@ui/atoms/Card';
 import { withNoAuth } from '@src/helper/hoc/withNoAuth';
 import { LoginSteps } from './LoginSteps';
 
