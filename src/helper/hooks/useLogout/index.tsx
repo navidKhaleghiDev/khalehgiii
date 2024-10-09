@@ -30,13 +30,12 @@ export const useLogout = () => {
 
   const logout = () => {
     logoutFunction()
-      .then()
-      .catch((err) => toast.error(err))
-      .finally(() => {
+      .then(() => {
         setUser(null);
         http.removeAuthHeader();
         navigate(ROUTES_PATH.login);
-      });
+      })
+      .catch((err) => toast.error(err));
   };
 
   return logout;
