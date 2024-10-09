@@ -6,6 +6,7 @@ import PhUserLight from '@iconify-icons/ph/user-light';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Typography } from '@redesignUi/atoms/Typography';
 import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
+import { BaseInput } from '@redesignUi/atoms/inputs/BaseInput';
 
 import {
   BaseIconInputNumberStyles,

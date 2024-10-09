@@ -8,7 +8,6 @@ import { useLanguage } from '@context/settings/languageContext';
 import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import { languageOptions } from '@src/constants/optios';
-import { BaseInputNumber } from '@redesignUi/atoms/Inputs/BaseInputNumber';
 
 export function LoginForm({ control, error }: any) {
   const { changeLanguage } = useLanguage();
@@ -51,11 +50,6 @@ export function LoginForm({ control, error }: any) {
           name="password"
           control={control}
           placeholder={t('global.password')}
-        />
-        <BaseInputNumber
-          id="mahdi"
-          name="mahdi"
-          onChange={(c) => console.log(c)}
         />
       </div>
     </>

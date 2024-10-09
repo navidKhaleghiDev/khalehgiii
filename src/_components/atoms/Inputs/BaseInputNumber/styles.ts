@@ -2,12 +2,12 @@ import { cva } from 'class-variance-authority';
 
 export const baseInputNumberStyles = cva(
   ` min-h-10 peer border-gray-300 text-gray-400 hover:border-gray-400 focus:border-gray-900  focus:text-gray-900 flex text-sm rounded-lg outline-none border 
-    h-10 dark:!text-gray-500 dark:border-gray-400 dark:bg-gray-600 dark:hover:border-gray-300  dark:hover:text-gray-300 dark:focus:border-white dark:focus:text-white dark:disabled:!border-gray-500 `,
+    h-10 dark:!text-gray-500 dark:border-gray-400 dark:bg-gray-600 dark:hover:border-gray-300  dark:hover:!text-gray-100 dark:focus:border-white dark:focus:!text-white dark:disabled:!border-gray-500   `,
   {
     variants: {
       intent: {
         default: `bg-white border-gray-300 `,
-        error: `bg-white border-red-600  dark:border-red-600 text-gray-900  active:border-red-600 hover:border-red-600 focus:border-red-600 `,
+        error: `bg-white border-red-600  dark:border-red-600 text-gray-900  active:border-red-600 hover:!border-red-600 focus:!border-red-600 dark:!text-white `,
       },
       dir: {
         ltr: 'rounded-r-none pl-7',
@@ -17,7 +17,7 @@ export const baseInputNumberStyles = cva(
         true: 'w-full',
       },
       disabled: {
-        true: '!border-gray-200 active:border-gray-300 hover:border-gray-300 !text-gray-300 active:text-gray-300 opacity-40',
+        true: '!border-gray-200 active:border-gray-300 hover:border-gray-300 !text-gray-300 active:text-gray-300 opacity-80',
         false: '',
       },
       size: {
@@ -34,7 +34,7 @@ export const baseInputNumberStyles = cva(
 );
 
 export const iconBaseInputNumberButtonStyles = cva(
-  'max-h-10 border border-gray-300 hover:bg-white hover:!border active:bg-white active:border dark:!border-gray-500 dark:bg-gray-600 dark:active:bg-gray-600 ',
+  'max-h-10 border border-gray-300 hover:bg-white hover:!border active:bg-white active:border dark:!border-gray-500 dark:bg-gray-600 dark:active:!bg-gray-600 ',
   {
     variants: {
       intent: {
@@ -71,7 +71,7 @@ export const BaseIconInputNumberStyles = cva('absolute top-3', {
   variants: {
     intent: {
       default:
-        'text-gray-300 peer-hover:!text-gray-500 dark:peer-hover:!text-gray-300 peer-focus:!text-gray-900 dark:peer-focus:!text-white ',
+        '!text-gray-400 peer-hover:!text-gray-500 dark:peer-hover:!text-gray-100 peer-focus:!text-gray-900  dark:peer-focus:!text-white peer-disabled:!text-gray-300 dark:peer-disabled:!text-gray-500 ',
       error: '!text-red-600 peer-hover:!text-red-600',
     },
     dir: {

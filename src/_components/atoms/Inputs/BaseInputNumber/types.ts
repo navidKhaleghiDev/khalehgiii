@@ -22,6 +22,7 @@ export interface BaseInputNumberControllerProps<T extends FieldValues>
   max?: number;
   disabled?: boolean;
 }
+
 export interface BaseInputNumberProps
   extends VariantProps<typeof baseInputNumberStyles> {
   id: string;
