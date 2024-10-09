@@ -40,17 +40,7 @@ export function NavbarDashboard(): JSX.Element {
             onSelect={(v: string) => changeLanguage(v)}
             options={languageOptions}
           />
-          {/* <BaseDropdownIcon
-            size="md"
-            icon={PhGlobe}
-            onSelect={(v: string) => changeLanguage(v)}
-            options={languageOptions.map((option) => ({
-              ...option,
-              label: t(`global.${option.id}`),
-            }))}
-          /> */}
         </div>
-
         <Link to={ROUTES_PATH.home}>
           <img
             src={theme === 'light' ? 'logo.svg' : 'darkModeLogo.svg'}

@@ -41,11 +41,3 @@ export interface BaseSwitchWithIconProps {
   rightIcon: IconifyIcon;
   leftIcon: IconifyIcon;
 }
-
-export interface BaseSwitchWithIconControllerProps<T extends FieldValues>
-  extends Omit<BaseSwitchWithIconProps, 'disabled'> {
-  control: Control<T>;
-  name: FieldPath<T>;
-  rules?: RegisterOptions<T>;
-  defaultValue?: PathValue<T, Path<T>>;
-}
