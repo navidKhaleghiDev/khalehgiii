@@ -16,7 +16,7 @@ export function LoginForm({ control, error }: any) {
 
   return (
     <>
-      <div className="absolute top-[1rem] right-[1rem] ">
+      <div className="absolute top-[1rem] right-[1rem]  ">
         <DropDownWithIcon
           icon={languageIcon}
           size="xs"

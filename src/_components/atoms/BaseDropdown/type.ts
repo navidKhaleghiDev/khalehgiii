@@ -6,6 +6,7 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 import { baseDropDownStyles } from './styles';
+import { BaseInputProps } from '../Inputs/BaseInput/types';
 
 export interface OptionSelect {
   id: string | number;
@@ -15,26 +16,28 @@ export interface OptionSelect {
 
 export type ValueOnChange = (value: { [key: string]: any }) => void;
 
-export interface BaseDropdownCommonProps
-  extends VariantProps<typeof baseDropDownStyles> {
-  options: OptionSelect[];
-  placeHolder: string;
-  label?: string;
-  loading?: boolean;
-  multiple?: boolean;
-  disabled?: boolean;
-  fullWidth?: boolean;
-  dir?: 'rtl' | 'ltr';
-}
-
-export interface BaseDropdownProps extends BaseDropdownCommonProps {
-  name: string;
-  error?: string;
-  onChange: (value: OptionSelect | OptionSelect[] | null) => void;
-}
+export type BaseDropdownProps = Omit<
+  BaseInputProps,
+  | 'type'
+  | 'value'
+  | 'startIcon'
+  | 'endIcon'
+  | 'hiddenError'
+  | 'autoComplete'
+  | 'helpText'
+  | 'onChange'
+  | 'id'
+> &
+  VariantProps<typeof baseDropDownStyles> & {
+    options: OptionSelect[];
+    loading?: boolean;
+    multiple?: boolean;
+    onChange: (value: OptionSelect | OptionSelect[] | null) => void;
+    placeHolder?: string;
+  };
 
 export interface BaseDropdownControllerProps<T extends FieldValues>
-  extends BaseDropdownCommonProps {
+  extends Omit<BaseDropdownProps, 'onChange'> {
   control: Control<T>;
   name: FieldPath<T>;
   rules?: RegisterOptions<T>;
