@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import PhBellSimpleRinging from '@iconify-icons/ph/bell-simple-ringing';
 import PhGlobe from '@iconify-icons/ph/globe';
 import { IconButtonBadge } from '@redesignUi/atoms/IconButtonBadge';
 
 import { useTheme } from '@context/settings/themeContext';
-import { Link } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { languageOptions } from '@src/constants/optios';
-import { DropDownWithIcon } from '@redesignUi/atoms/DropDownWithIcon';
+// import { languageOptions } from '@src/constants/optios';
+import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
 
 import { ListMenu } from './ListMenu/ListMenu';
@@ -19,6 +21,20 @@ import { ListMenu } from './ListMenu/ListMenu';
 export function NavbarDashboard(): JSX.Element {
   const { theme } = useTheme();
   const { changeLanguage } = useLanguage();
+  const { t } = useTranslation();
+
+  const languageOptions = [
+    {
+      id: 'fa',
+      label: t('global.fa'),
+      value: 'Persian',
+    },
+    {
+      id: 'en',
+      label: t('global.en'),
+      value: 'English',
+    },
+  ];
 
   return (
     <div>
@@ -33,7 +49,7 @@ export function NavbarDashboard(): JSX.Element {
           <div className="hidden md:block">
             <IconButtonBadge icon={PhBellSimpleRinging} content={4} size="md" />
           </div>
-          <DropDownWithIcon
+          <BaseDropdownIcon
             size="md"
             icon={PhGlobe}
             onSelect={(v: string) => changeLanguage(v)}

@@ -6,6 +6,9 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
 
+import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
+import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
+
 type DrawerProfileProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +25,13 @@ export function DrawerProfile({ isOpen, setIsOpen }: DrawerProfileProps) {
     >
       <div className="flex w-[14.37rem] h-[25rem] mx-auto pt-5">
         <div className="flex justify-between items-center  w-full h-[3.75rem] border-b border-gray-300">
-          <BaseSwitchWithIcon id="1" name="dark" onChange={toggleTheme} />
+          <BaseSwitchWithIcon
+            id="1"
+            name="dark"
+            onChange={toggleTheme}
+            rightIcon={sunRisingTwotoneLoop}
+            leftIcon={moonTwotoneAltLoop}
+          />
           <IconButton
             icon={x}
             size="md"

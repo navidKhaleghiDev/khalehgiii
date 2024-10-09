@@ -8,6 +8,8 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 
+import { IconifyIcon } from '@iconify/react';
+
 import { baseSwitchStyles } from './styles';
 
 export interface BaseSwitchProps extends VariantProps<typeof baseSwitchStyles> {
@@ -36,4 +38,6 @@ export interface BaseSwitchWithIconProps {
   disabled?: boolean;
   id: string;
   name: string;
+  rightIcon: IconifyIcon;
+  leftIcon: IconifyIcon;
 }
