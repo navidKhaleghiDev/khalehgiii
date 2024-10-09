@@ -1,19 +1,27 @@
-import { Avatar, BaseButton, Card } from '@ui/atoms';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { BaseButton, Typography } from '@redesignUi/atoms';
+import { BackButton } from '@redesignUi/atoms/BackButton';
+import { DropDownWithIcon } from '@ui/atoms/DropDownWithIcon';
 import { useTranslation } from 'react-i18next';
-import userIcon from '@iconify-icons/ph/user';
 import {
   API_USERS_LOGOUT,
   API_USERS_LOGOUT_ONLINE_ASSISTANCE,
 } from '@src/services/users';
+import languageIcon from '@iconify-icons/ph/globe-thin';
+
 import { useUserContext } from '@context/user/userContext';
 import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
-import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { useEffect } from 'react';
+import { languageOptions } from '@src/constants/optios';
+import { useLanguage } from '@context/settings/languageContext';
 
 export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { changeLanguage } = useLanguage();
+
   const { user, setUser } = useUserContext();
 
   const isAdminGroup =
@@ -50,30 +58,50 @@ export function LoginOnlineAssistance() {
   }, [isAdminGroup, isInDaas, navigate, user?.online_assistance]);
 
   return (
-    <div className="font-on bg-white dark:bg-slate-900 flex flex-col items-center justify-center min-h-screen ">
-      <Card
-        color="neutral"
-        className="relative p-10 w-[24.375rem] h-[25rem] flex flex-col items-center "
-      >
-        <div className="absolute top-[-6rem]">
-          <Avatar icon={userIcon} intent="primary" size="lmd" />
+    <div className="font-kalameh bg-teal-500 flex h-screen ">
+      <div className="bg-white w-[52%] flex flex-col items-center rtl:rounded-l-3xl ltr:rounded-r-3xl">
+        <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
+          <div className="flex items-center gap-[0.62rem]">
+            <BackButton onClick={logout} />
+            <DropDownWithIcon
+              icon={languageIcon}
+              size="xs"
+              onSelect={(v: string) => changeLanguage(v)}
+              options={languageOptions}
+            />
+          </div>
         </div>
-        <div className=" relative w-full flex flex-col gap-7 justify-center h-80 ">
-          <BaseButton
-            label={t('onlineAssistance.internet')}
-            onClick={() => navigate(ROUTES_PATH.dashboard)}
-          />
-          <BaseButton
-            onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
-            label={t('onlineAssistance.remote')}
-          />
-          <BaseButton
-            onClick={logout}
-            type="redBorder"
-            label={t('onlineAssistance.exitFromUserProfile')}
-          />
+        <div className="w-full flex flex-col items-center h-full gap-12 justify-center">
+          <div className="items-center justify-center flex flex-col gap-1 p-5">
+            <Typography
+              variant="body1"
+              className="text-neutral-900 font-semibold"
+            >
+              نوع ورود
+            </Typography>
+            <Typography className="text-neutral-500" variant="body3">
+              برای ورود نوع فعالیت خود را مشخص کنید
+            </Typography>
+          </div>
+          <div className="flex py-5 gap-[1.87rem]">
+            <BaseButton
+              label={t('onlineAssistance.internet')}
+              onClick={() => navigate(ROUTES_PATH.dashboard)}
+            />
+            <BaseButton
+              onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
+              label={t('onlineAssistance.remote')}
+            />
+          </div>
         </div>
-      </Card>
+      </div>
+      <div className="h-full w-1/2 flex justify-center items-center">
+        <img
+          src="LoginOnlineAssistance.webp"
+          alt="LoginOnlineAssistance"
+          className="lg:block hidden object-fill"
+        />
+      </div>
     </div>
   );
 }
