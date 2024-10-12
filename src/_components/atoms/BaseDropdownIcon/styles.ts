@@ -6,9 +6,8 @@ export const baseDropDownStyles = cva(
     variants: {
       intent: {
         default:
-          'bg-neutral-100 text-neutral-500 border border-2 border-neutral-500 focus:border-teal-600 focus:text-teal-500 focus:placeholder-teal-500 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:shadow-none',
-        error:
-          'text-red-600 border border-2 border-red-600 placeholder-red-400',
+          'bg-neutral-100 text-neutral-500 border border-neutral-500 focus:border-teal-600 focus:text-teal-500 focus:placeholder-teal-500 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:shadow-none',
+        error: 'text-red-600 border border-red-600 placeholder-red-400',
       },
       fullWidth: {
         true: 'w-full',

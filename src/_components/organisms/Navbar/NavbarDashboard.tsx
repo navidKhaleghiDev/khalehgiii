@@ -23,10 +23,7 @@ export function NavbarDashboard(): JSX.Element {
 
   return (
     <div>
-      <div
-        dir="rtl"
-        className="flex h-16 items-center justify-between px-5 2xl:container 2xl:mx-auto relative bg-white dark:bg-gray-700"
-      >
+      <div className="flex h-16 items-center justify-between px-5 2xl:container 2xl:mx-auto relative bg-white dark:bg-gray-700">
         <div className="flex justify-between items-center pt-[0.93rem] pb-[0.56rem] gap-2.5 ">
           <div className="block xl:hidden">
             <ListMenu />

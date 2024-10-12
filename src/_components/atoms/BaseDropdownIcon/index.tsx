@@ -28,7 +28,6 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
   const { options, fullWidth, size, containerClassName, icon, onSelect } =
     props;
   const ref = useRef(null);
-  // const { t } = useTranslation();
 
   const [state, setState] = useState<StateType>(initState);
 
