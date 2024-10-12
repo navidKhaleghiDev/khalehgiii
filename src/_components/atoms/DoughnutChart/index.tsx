@@ -8,6 +8,8 @@ import {
   ChartOptions,
 } from 'chart.js';
 
+import { useTheme } from '@context/settings/themeContext';
+
 import { DoughnutChartProps } from './types';
 import { doughnutChartStyles } from './styles';
 
@@ -18,29 +20,27 @@ const ChartColors: { [key: string]: { light: string; dark: string } } = {
   blue: { light: '#1E40AF', dark: '#60A5FA' },
   red: { light: '#EF4444', dark: '#FCA5A5' },
   tealLight: { light: '#2DD4BF', dark: '#CCFBF1' },
-  teal: { light: '#0D9488', dark: '#2DD4BF' },
+  teal: { light: '#14B8A6', dark: '#2DD4BF' },
+  tealDark: { light: '#0D9488', dark: '#2DD4BF' },
   yellow: { light: '#EAB308', dark: '#FACC15' },
   purpleLight: { light: '#D8B4FE', dark: '#E9D5FF' },
   purple: { light: '#A855F7', dark: '#C084FC' },
-  gray: { light: '#E5E7EB', dark: '#4B5563' },
+  gray: { light: '#F3F4F6', dark: '#4B5563' },
 };
 
-const getBackgroundColor = (
-  colorKey: string,
-  dark: boolean | undefined
-): string => {
+const getBackgroundColor = (colorKey: string, theme: string): string => {
   const color = ChartColors[colorKey];
-  return dark ? color.dark : color.light;
+  return theme === 'dark' ? color.dark : color.light;
 };
 
 export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
-  const { totalValue, subValue, color, dark } = props;
+  const { totalValue = 10, subValue = 0, color, children, type } = props;
+  const { theme } = useTheme();
 
   const defaultColor = color || 'blue';
-  const colorHex = getBackgroundColor(defaultColor, dark);
+  const colorHex = getBackgroundColor(defaultColor, theme);
 
-  const backgroundColor = getBackgroundColor('gray', dark);
-
+  const backgroundColor = getBackgroundColor('gray', theme);
   const ChartColor = [colorHex, backgroundColor];
 
   const data: ChartData<'pie', number[]> = {
@@ -53,7 +53,7 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
       },
     ],
   };
-
+  const cutoutPercentage = type === 'license' ? '85%' : '80%';
   const options: ChartOptions<'pie'> = {
     responsive: true,
     plugins: {
@@ -61,23 +61,21 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
         enabled: false,
       },
     },
-    cutout: '85%',
+    cutout: cutoutPercentage,
     hover: {
       mode: undefined,
     },
   };
 
   return (
-    <div className="relative w-20">
+    <div className="relative w-20 font-kalameh">
       <Pie data={data} options={options} />
 
       <div
-        className={`${doughnutChartStyles({
-          color,
-        })} 
+        className={`${doughnutChartStyles({ type, color })} 
   `}
       >
-        {`${subValue}/${totalValue}`}
+        {children}
       </div>
     </div>
   );
