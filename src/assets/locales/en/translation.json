@@ -1,8 +1,9 @@
 {
   "login": {
-    "loginTitle": "Please enter your email and password",
-    "login": "Login to Your User Account",
-    "otp": "Please enter the received code "
+    "loginTitle": "Enter username and password to login",
+    "login": "Login",
+    "otp": "Please enter the received code",
+    "forget": "Forgot password?"
   },
   "header": {
     "user": "User",
@@ -214,7 +215,9 @@
     "status": "Status",
     "admin": "Admin",
     "user": "User",
-    "group": "Group"
+    "group": "Group",
+    "fa": "Persian",
+    "en": "English"
   },
   "groupManagement": {
     "person": "person",
