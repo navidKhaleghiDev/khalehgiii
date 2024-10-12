@@ -1,4 +1,3 @@
-import { useTheme } from '@context/settings/themeContext';
 import { BaseIcon } from '@ui/atoms';
 
 import { BaseSwitchWithIconProps } from '../BaseSwitch/types';
@@ -30,16 +29,6 @@ export function BaseSwitchWithIcon(
     rightIcon,
     leftIcon,
   } = props;
-  const { isDark, toggleTheme } = useTheme();
-  const handleToggle = () => {
-    if (disabled) return;
-
-    toggleTheme();
-
-    if (onChange) {
-      onChange(!isDark);
-    }
-  };
 
   return (
     <div className="flex items-center">
@@ -53,28 +42,28 @@ export function BaseSwitchWithIcon(
           type="checkbox"
           id={id}
           name={name}
-          className="sr-only peer"
-          onChange={handleToggle}
+          className="sr-only"
+          onChange={onChange}
           checked={checked}
           disabled={disabled}
         />
         <div
           className={`relative rounded-full w-10 h-6 translate duration-200 
-          ${!isDark && !checked ? 'bg-gray-200' : 'bg-gray-800'}`}
+          ${checked ? 'bg-gray-800' : 'bg-gray-200'}`}
         >
           <span
             className={`absolute top-1 left-1 transition-transform duration-200
-            ${!isDark && !checked ? 'translate-x-4' : 'translate-x-0'}`}
+            ${checked ? 'translate-x-4' : 'translate-x-0'}`}
           >
-            {!isDark && !checked ? (
-              <BaseIcon
-                icon={rightIcon}
-                className="text-gray-500 bg-white rounded-full"
-              />
-            ) : (
+            {checked ? (
               <BaseIcon
                 icon={leftIcon}
                 className="text-gray-200 bg-gray-600 rounded-full"
+              />
+            ) : (
+              <BaseIcon
+                icon={rightIcon}
+                className="text-gray-500 bg-white rounded-full"
               />
             )}
           </span>

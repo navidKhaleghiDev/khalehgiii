@@ -8,8 +8,7 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 
-import { IconifyIcon } from '@iconify/react';
-
+import { IconType } from '@src/types/global';
 import { baseSwitchStyles } from './styles';
 
 export interface BaseSwitchProps extends VariantProps<typeof baseSwitchStyles> {
@@ -34,10 +33,10 @@ export interface BaseSwitchControllerProps<T extends FieldValues>
 }
 export interface BaseSwitchWithIconProps {
   checked?: boolean;
-  onChange: (checked: boolean) => void;
+  onChange: (event: React.ChangeEvent) => void;
   disabled?: boolean;
   id: string;
   name: string;
-  rightIcon: IconifyIcon;
-  leftIcon: IconifyIcon;
+  rightIcon: IconType;
+  leftIcon: IconType;
 }

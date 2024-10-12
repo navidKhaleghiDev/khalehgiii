@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { NavbarDashboard } from '@ui/organisms/Navbar/NavbarDashboard';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { LoadingPage } from '@ui/molecules/Loading';
 import cookie from 'js-cookie';
