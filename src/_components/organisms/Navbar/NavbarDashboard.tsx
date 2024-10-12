@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import PhBellSimpleRinging from '@iconify-icons/ph/bell-simple-ringing';
 import PhGlobe from '@iconify-icons/ph/globe';
-import { IconButtonBadge } from '@redesignUi/atoms/IconButtonBadge';
-
 import { useTheme } from '@context/settings/themeContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
@@ -11,6 +8,7 @@ import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
 
 import { ListMenu } from './ListMenu/ListMenu';
+import { NotificationMenu } from './NotificationMenu';
 
 /**
  * @component
@@ -29,7 +27,7 @@ export function NavbarDashboard(): JSX.Element {
             <ListMenu />
           </div>
           <div className="hidden md:block">
-            <IconButtonBadge icon={PhBellSimpleRinging} content={4} size="md" />
+            <NotificationMenu />
           </div>
           <BaseDropdownIcon
             icon={PhGlobe}

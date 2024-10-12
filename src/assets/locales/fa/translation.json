@@ -103,7 +103,8 @@
     "activeDeactive": "فعال /غیرفعال",
     "activeQrcode": "Qrcode",
     "activeOtp": "Otp",
-    "isRecording": "در حال ضبط"
+    "isRecording": "در حال ضبط",
+    "yesterday":"دیروز"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
