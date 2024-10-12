@@ -18,7 +18,6 @@ import { LicenseCardProps } from './types';
  * @param {number} props.totalValue - The total value for the doughnut chart (e.g., total capacity).
  * @param {() => void} [props.onClick] - Click handler function for when the card is clicked.
  * @param {string} [props.color] - The color for the doughnut chart and date text.
- * @param {boolean} [props.dark] - If true, the card is displayed in dark mode.
  *
  * @returns {JSX.Element} The LicenseCard component.
  */
