@@ -1,13 +1,7 @@
 import { BaseIcon, Card, Typography } from '@redesignUi/atoms';
-import { BaseIconProps } from '@redesignUi/atoms/BaseIcon';
-import { IconType } from '@src/types/global';
 
-type UsersInfoCardProps = {
-  icon: IconType;
-  iconColor: BaseIconProps['color'];
-  title: string;
-  count?: number;
-};
+import { iconStyles } from './styles';
+import { UsersInfoCardProps } from './types';
 
 /**
  * UsersInfoCard Component
@@ -36,19 +30,21 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
       rounded="xxl"
       shadow="sm"
     >
-      <div className={`bg-${iconColor}-100 p-2 rounded dark:bg-gray-700`}>
-        <BaseIcon icon={icon} color={iconColor} size="md" />
+      <div className={iconStyles({ iconColor })}>
+        <BaseIcon icon={icon} size="md" />
       </div>
       <div className="w-full rtl:text-right ltr:text-left">
         <Typography color="neutralMiddle" variant="body3" className="leading-7">
           {title}
         </Typography>
-        <Typography
-          className="text-gray-900 dark:text-white font-semibold leading-7"
-          variant="body2"
-        >
-          {count}
-        </Typography>
+        {count && (
+          <Typography
+            className="text-gray-900 dark:text-white font-semibold leading-7"
+            variant="body2"
+          >
+            {count}
+          </Typography>
+        )}
       </div>
     </Card>
   );
