@@ -134,7 +134,7 @@ export function AdminsList() {
   };
 
   return (
-    <div className={`w-full p-4  bg-gray-200  ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full p-4  bg-gray-100  ${isLoading ? 'loading' : ''}`}>
       {/* <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}

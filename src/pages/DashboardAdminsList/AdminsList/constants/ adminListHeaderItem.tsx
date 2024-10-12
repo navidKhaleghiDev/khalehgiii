@@ -6,7 +6,7 @@ import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { EPermissionUsers } from '@src/types/permissions';
 
-export const adminListHeaderItem: IHeaderTable[] = [
+export const adminListHeaderItem = [
   // {
   //   id: 'id',
   //   type: 'action',
@@ -107,6 +107,14 @@ export const adminListHeaderItem: IHeaderTable[] = [
     label: 'table.email',
     id: 'email',
     type: 'none',
+
+    class: 'px-3 w-2/12',
+  },
+  {
+    label: '',
+    id: 'email',
+    type: 'drop',
+    component
 
     class: 'px-3 w-2/12',
   },

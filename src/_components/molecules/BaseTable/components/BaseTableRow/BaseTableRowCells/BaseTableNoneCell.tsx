@@ -1,7 +1,10 @@
 import { Typography } from '@ui/atoms/Typography';
 
 export function BaseTableNoneCell(props) {
-  const { row, id, header } = props;
+  const { row, header, id } = props;
+
+  console.log(id);
+  console.log(row);
 
   return (
     <div role="button" tabIndex={0} className=" flex cursor-text">

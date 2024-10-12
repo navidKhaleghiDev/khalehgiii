@@ -6,7 +6,7 @@ export function BaseTableRow(props) {
   const id = header?.id;
 
   const Components = {
-    none: <BaseTableNoneCell data={props} />,
+    none: <BaseTableNoneCell row={row} id={id} header={header} />,
   };
 
   return Components[header?.type ?? 'none'] || null;
