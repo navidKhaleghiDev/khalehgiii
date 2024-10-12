@@ -200,7 +200,8 @@ export class Http {
                   break;
                 }
               } catch (refreshError) {
-                throw handleResponseError(refreshError);
+                // eslint-disable-next-line no-console
+                console.error('refresh token error:', refreshError);
               }
             }
             this.removeAuthHeader();

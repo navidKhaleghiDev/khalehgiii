@@ -1,47 +1,27 @@
-import { Avatar, BaseButton, Card } from '@ui/atoms';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import userIcon from '@iconify-icons/ph/user';
-import {
-  API_USERS_LOGOUT,
-  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
-} from '@src/services/users';
-import { useUserContext } from '@context/user/userContext';
-import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
-import { useNavigate } from 'react-router-dom';
+
+import { Avatar, BaseButton, Card } from '@ui/atoms';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { useEffect } from 'react';
+import { useUserContext } from '@context/user/userContext';
+import { useLogout } from '@src/helper/hooks/useLogout';
 
 export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
+  const logout = useLogout();
 
   const isAdminGroup =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
-  const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-
-  async function logoutFunction() {
-    const data = {
-      refresh_token: refresh || '',
-    };
-
-    if (isAdminGroup) {
-      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-    } else await API_USERS_LOGOUT(data);
-  }
   const isInDaas = user?.online_assistance?.admin;
-
-  const logout = () => {
-    logoutFunction();
-    setUser(null);
-    http.removeAuthHeader();
-    navigate(ROUTES_PATH.login);
-  };
 
   useEffect(() => {
     if (!isAdminGroup) {
-      navigate(ROUTES_PATH.dashboard);
+      navigate(ROUTES_PATH.home);
     } else if (isInDaas && user?.online_assistance) {
       navigate(user?.online_assistance?.user_http_address);
     } else {
@@ -61,7 +41,7 @@ export function LoginOnlineAssistance() {
         <div className=" relative w-full flex flex-col gap-7 justify-center h-80 ">
           <BaseButton
             label={t('onlineAssistance.internet')}
-            onClick={() => navigate(ROUTES_PATH.dashboard)}
+            onClick={() => navigate(ROUTES_PATH.home)}
           />
           <BaseButton
             onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}

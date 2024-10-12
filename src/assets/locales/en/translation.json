@@ -217,7 +217,8 @@
     "user": "User",
     "group": "Group",
     "fa": "Persian",
-    "en": "English"
+    "en": "English",
+    "changePassword": "Change Password"
   },
   "groupManagement": {
     "person": "person",
