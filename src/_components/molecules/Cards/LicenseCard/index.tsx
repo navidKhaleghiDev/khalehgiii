@@ -1,8 +1,8 @@
 import { Typography } from '@redesignUi/atoms';
 import { DoughnutChart } from '@redesignUi/atoms/DoughnutChart';
-import { CardButton } from '@ui/atoms/Card/CardButton';
+import { CardButton } from '@redesignUi/atoms/Card/CardButton';
 
-import { DateTitle } from './compnents/DateTitle';
+import { DateTitle } from './DateTitle';
 import { LicenseCardProps } from './types';
 
 /**
@@ -24,15 +24,16 @@ import { LicenseCardProps } from './types';
  */
 
 export function LicenseCard(props: LicenseCardProps): JSX.Element {
-  const { subValue, totalValue, onClick, color, title, date, dark } = props;
+  const { subValue, totalValue, onClick, color, title, date } = props;
   return (
     <CardButton
       border
-      borderColor="neutral"
+      borderColor="neutralLight"
       className="w-64 h-28 p-5 flex items-center outline-none text-right overflow-hidden"
-      color="neutral"
+      color="neutralLight"
       onClick={onClick}
-      shadow="sm"
+      shadow="base"
+      rounded="xxl"
     >
       <div className="w-full flex items-center gap-5 flex-row-reverse">
         <div className="flex flex-col items-start gap-2 w-2/3 box-border leading-3">
@@ -46,8 +47,10 @@ export function LicenseCard(props: LicenseCardProps): JSX.Element {
             subValue={subValue}
             totalValue={totalValue}
             color={color}
-            dark={dark}
-          />
+            type="license"
+          >
+            {`${subValue}/${totalValue}`}
+          </DoughnutChart>
         </div>
       </div>
     </CardButton>
