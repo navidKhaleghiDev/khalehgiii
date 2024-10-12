@@ -10,7 +10,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
-import { BaseTable } from '@ui/atoms/BaseTable';
+// import { BaseTable } from '@ui/atoms/BaseTable';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
@@ -21,6 +21,7 @@ import {
 import { EPermissionUsers } from '@src/types/permissions';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -133,8 +134,8 @@ export function AdminsList() {
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
-      <BaseTable
+    <div className={`w-full p-4  bg-gray-200  ${isLoading ? 'loading' : ''}`}>
+      {/* <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}
         headers={checkPermissionHeaderItem(
@@ -144,7 +145,7 @@ export function AdminsList() {
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}
-      />
+      /> */}
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}
@@ -171,6 +172,11 @@ export function AdminsList() {
             admin={activeAdmin}
           />
         }
+      />
+      <BaseTable
+        header={adminListHeaderItem}
+        body={listWhiteList}
+        loading={false}
       />
     </div>
   );

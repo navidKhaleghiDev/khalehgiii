@@ -1,15 +1,19 @@
+import { BaseTableRow } from '../BaseTableRow';
+
 export function BaseTableBody(props) {
-  const { row, headers, onClick } = props;
+  const { row, header, onClick } = props;
+
   return (
-    <tbody>
+    <tbody className="h-16 bg-white border border-gray-200 ">
       <tr>
-        {headers.map((header) => (
-          <td>
-            {rowCellsComponent({
-              row,
-              header,
-              onClick,
-            })}
+        {header.map((hItem) => (
+          <td key={hItem.id}>
+            <BaseTableRow
+              row={row}
+              header={header}
+              onClick={onClick}
+              aria-label={`Row ${hItem.label}`}
+            />
           </td>
         ))}
       </tr>

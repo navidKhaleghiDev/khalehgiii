@@ -6,12 +6,12 @@ export function BaseTableHeader({ header }) {
   const { t } = useTranslation();
 
   return (
-    <thead className="flex items-center">
+    <thead className="w-full flex items-center rounded-lg h-8 bg-white ">
       {header.map((head) => {
         return (
-          <tr key={head.label} dir={!head.dir ? 'ltr' : head.dir}>
+          <tr key={head.label} className="px-5">
             <th>
-              <Typography variant="body4" type="div">
+              <Typography variant="body5" color="neutral" type="div">
                 {t(head.label)}
               </Typography>
             </th>

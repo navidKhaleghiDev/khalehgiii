@@ -1,11 +1,12 @@
 import { BaseTableNoneCell } from './BaseTableRowCells/BaseTableNoneCell';
-function BaseTableRow(props) {
+
+export function BaseTableRow(props) {
   const { row, header, onClick } = props;
 
   const id = header?.id;
 
   const Components = {
-    none: <BaseTableNoneCell Data={props} />,
+    none: <BaseTableNoneCell data={props} />,
   };
 
   return Components[header?.type ?? 'none'] || null;
