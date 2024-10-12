@@ -1,4 +1,4 @@
-import { cardStyles } from './styles';
+import { cardButtonStyles, cardStyles } from './styles';
 import { CardButtonProps } from './types';
 
 /**
@@ -22,7 +22,7 @@ import { CardButtonProps } from './types';
  *
  * @returns {JSX.Element} Returns the rendered CardButton component.
  */
-export function CardButton(props: CardButtonProps) {
+export function CardButton(props: CardButtonProps): JSX.Element {
   const {
     children,
     className,
@@ -36,14 +36,13 @@ export function CardButton(props: CardButtonProps) {
   } = props;
   return (
     <button
-      className={cardStyles({
+      className={`${cardStyles({
         color,
         shadow,
         className,
         rounded,
-        borderColor,
         border,
-      })}
+      })} ${cardButtonStyles({ borderColor })}`}
       type="button"
       onClick={onClick}
       disabled={disabled}
