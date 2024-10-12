@@ -215,7 +215,8 @@
     "status": " وضعیت",
     "admin": "ادمین",
     "user": "یوزر",
-    "group": "گروه"
+    "group": "گروه",
+    "changePassword": "تغییر پسورد"
   },
   "groupManagement": {
     "person": "نفر",
