@@ -261,7 +261,9 @@
     "licenseNumbers": "License Numbers",
     "activeNumbers": "Active Numbers",
     "concurrentNumbers": "Concurrent Numbers",
-    "wholeNumbers": "Whole Numbers"
+    "wholeNumbers": "Whole Numbers",
+    "expirationDate" :"Expiration date"
+
   },
 
   "title": {
