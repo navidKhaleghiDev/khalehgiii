@@ -1,33 +1,41 @@
 import { useState, useCallback, useEffect } from 'react';
-import { Avatar, BaseButton } from '@ui/atoms';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+
 import userIcon from '@iconify-icons/ph/user';
+import languageIcon from '@iconify-icons/ph/globe-thin';
+import { Avatar, BaseButton } from '@redesignUi/atoms';
+import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
+
 import {
   API_USERS_LOGIN,
   API_USERS_LOGIN_OTP,
   API_USERS_PROFILE,
 } from '@src/services/users';
+
+import { languageOptions } from '@src/constants/optios';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_REFRESH_TOKEN, http } from '@src/services/http';
-import signInBoldIcon from '@iconify-icons/ph/sign-in-bold';
-import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
-import LogInOtpForm from '../LoginOtpForm';
+import { useLanguage } from '@context/settings/languageContext';
+import { useUserContext } from '@context/user/userContext';
+
+import { LoginFieldValues } from '../types';
 import { LoginForm } from '../LoginForm';
-import { ILoginFieldValues } from '../types';
+import LogInOtpForm from '../LoginOtpForm';
 
 export function LoginSteps() {
   const { setUser } = useUserContext();
   const navigate = useNavigate();
+  const { changeLanguage } = useLanguage();
   const { t } = useTranslation();
 
-  const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
   const [loadingButton, setLoadingButton] = useState(false);
 
-  const { control, handleSubmit } = useForm<ILoginFieldValues>({
+  const { control, handleSubmit } = useForm<LoginFieldValues>({
     mode: 'onChange',
     defaultValues: {},
   });
@@ -72,7 +80,7 @@ export function LoginSteps() {
   }, [navigate, setUser, t]);
 
   const handleSubmitForm = useCallback(
-    async ({ email, password, totp }: ILoginFieldValues) => {
+    async ({ email, password, totp }: LoginFieldValues) => {
       setLoadingButton(true);
 
       try {
@@ -104,12 +112,20 @@ export function LoginSteps() {
 
   return (
     <div className="flex flex-col items-center w-full mt-auto">
+      <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
+        <BaseDropdownIcon
+          icon={languageIcon}
+          size="sm"
+          onSelect={(v: string) => changeLanguage(v)}
+          options={languageOptions}
+        />
+      </div>
       <form
         onSubmit={handleSubmit(handleSubmitForm)}
-        className="flex flex-col items-center w-full"
+        className="flex flex-col items-center w-[21.8rem]"
       >
-        <div className="absolute top-[-6rem]">
-          <Avatar icon={userIcon} intent="grey" size="lg" />
+        <div>
+          <Avatar icon={userIcon} size="lg" className="mb-[0.81rem]" />
         </div>
         {isOtpActive ? (
           <LogInOtpForm
@@ -120,14 +136,14 @@ export function LoginSteps() {
         ) : (
           <LoginForm control={control} error={error} />
         )}
+
         <BaseButton
           label={t('login.login')}
-          endIcon={signInBoldIcon}
           className="mt-8"
           loading={loadingButton}
-          size="md"
+          size="lg"
+          type="teal"
           submit
-          fullWidth
         />
       </form>
     </div>
