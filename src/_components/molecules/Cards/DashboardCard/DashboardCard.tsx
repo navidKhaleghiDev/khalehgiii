@@ -52,12 +52,14 @@ export function DashboardCard(props: CardProps): JSX.Element {
         <Typography color="neutralMiddle" variant="body3" className="leading-7">
           {title}
         </Typography>
-        <Typography
-          className="text-gray-900 dark:text-white font-semibold leading-7"
-          variant="body2"
-        >
-          {count}
-        </Typography>
+        {count && (
+          <Typography
+            className="text-gray-900 dark:text-white font-semibold leading-7"
+            variant="body2"
+          >
+            {count}
+          </Typography>
+        )}
       </div>
     </CardButton>
   );
