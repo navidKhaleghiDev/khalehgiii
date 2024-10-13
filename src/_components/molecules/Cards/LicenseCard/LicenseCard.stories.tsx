@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ThemeProvider } from '@context/settings/themeContext';
 
-import { LicenseCardProps } from './types';
 import { LicenseCard } from '.';
+import { LicenseCardProps } from './types';
 
 type StoryLicenseCard = StoryObj<typeof LicenseCard>;
 
@@ -31,7 +31,19 @@ const meta: Meta<typeof LicenseCard> = {
   ],
   argTypes: {
     color: {
-      control: 'color',
+      control: {
+        type: 'select',
+      },
+      options: [
+        'blueLight',
+        'blue',
+        'red',
+        'tealLight',
+        'teal',
+        'yellow',
+        'purpleLight',
+        'purple',
+      ],
     },
   },
 };

@@ -20,13 +20,18 @@ export function DateTitle({ date, color }: DateTitleProps) {
     >
       <div className="flex-col gap-1 flex leading-4">
         <Typography
-          variant="body6B"
+          variant="body6"
           color="neutralDark"
           className="ltr:text-left rtl:text-right"
         >
           {t('license.expirationDate')}
         </Typography>
-        <Typography variant="body6" color="neutralMiddle">
+
+        <Typography
+          variant="body6"
+          color="neutralMiddle"
+          className="ltr:text-left rtl:text-right"
+        >
           {date}
         </Typography>
       </div>
