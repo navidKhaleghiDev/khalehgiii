@@ -40,12 +40,14 @@ export function IconButtonBadge(props: IconButtonBadgeProps): JSX.Element {
   } = props;
   return (
     <div className={`relative w-fit ${className}`}>
-      <Badge
-        content={content}
-        disabled={disabled}
-        size="lg"
-        className="!-top-2 !-right-2"
-      />
+      {content && (
+        <Badge
+          content={content}
+          disabled={disabled}
+          size="lg"
+          className="!-top-2 !-right-2"
+        />
+      )}
       <IconButton
         icon={icon}
         classNameIcon={classNameIcon}
