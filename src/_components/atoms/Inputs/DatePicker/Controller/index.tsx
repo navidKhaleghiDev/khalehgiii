@@ -62,7 +62,7 @@ export function MultiDatePickerController({
               value={field.value}
               onOpen={() => setOpenData(!openDate)}
               format={format}
-              render={(value, openCalendar) => (
+              render={(_, openCalendar) => (
                 <BaseButton
                   label="انتخاب تاریخ"
                   onClick={openCalendar}
