@@ -1,7 +1,8 @@
-import { BaseOtp } from '@ui/atoms/BaseOtp';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '@ui/atoms/Typography/Typography';
-import { BackButton } from '@ui/atoms/BackButton';
+
+import { BackButton } from '@redesignUi/atoms/BackButton';
+import { Typography } from '@redesignUi/atoms';
+import { BaseOtp } from '@redesignUi/atoms/Inputs/BaseOtp';
 
 export default function LogInOtpForm({
   control,
@@ -13,11 +14,11 @@ export default function LogInOtpForm({
 
   return (
     <div>
-      <BackButton
-        className="absolute top-4  left-4"
-        onClick={() => setIsOtpActive(false)}
-      />
-      <Typography color="neutral" variant="h5" className="mb-8 text-center ">
+      <div className="absolute top-[1.87rem] rtl:right-20 ltr:left-20">
+        <BackButton onClick={() => setIsOtpActive(false)} />
+      </div>
+
+      <Typography color="neutral" variant="body4" className="mb-8 text-center ">
         {t('login.otp')}
       </Typography>
 
