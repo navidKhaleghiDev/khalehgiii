@@ -235,6 +235,8 @@
     "newUser": "کاربر جدید"
   },
   "onlineAssistance": {
+    "loginType":"نوع ورود",
+    "loginTypeChoose":"برای ورود نوع فعالیت خود را انتخاب کنید",
     "internet": "اینترنت",
     "remote": "دسترسی دستیار ",
     "exitFromUserProfile": "خروج از حساب کاربری",
