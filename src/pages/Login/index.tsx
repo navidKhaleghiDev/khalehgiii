@@ -31,7 +31,7 @@ export function LoginPageCp() {
   const { t } = useTranslation();
 
   const [error, setError] = useState<string | null>(null);
-  const [isOtpActive, setIsOtpActive] = useState<boolean>(true);
+  const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
   const [loadingButton, setLoadingButton] = useState(false);
 
   const { control, handleSubmit } = useForm<LoginFieldValues>({
@@ -110,7 +110,7 @@ export function LoginPageCp() {
 
   return (
     <div className="font-kalameh flex flex-row-reverse  h-screen w-full relative bg-teal-500">
-      <div className="lg:w-[52%] w-full h-full content-center absolute top-0 ltr:left-0 rtl:right-0  z-40 lg:rtl:rounded-l-3xl lg:ltr:rounded-r-3xl bg-white">
+      <div className="lg:w-[52%] w-full h-full content-center absolute top-0 ltr:left-0 rtl:right-0 z-40 lg:rtl:rounded-l-3xl lg:ltr:rounded-r-3xl bg-white">
         <div className="flex flex-col items-center w-full mt-auto">
           <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
             <BaseDropdownIcon
