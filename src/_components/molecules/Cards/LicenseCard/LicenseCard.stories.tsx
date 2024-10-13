@@ -7,7 +7,7 @@ import { LicenseCardProps } from './types';
 type StoryLicenseCard = StoryObj<typeof LicenseCard>;
 
 const meta: Meta<typeof LicenseCard> = {
-  title: 'atoms/LicenseCard',
+  title: 'molecules/LicenseCard',
   component: LicenseCard,
   parameters: {
     layout: 'centered',
