@@ -4,9 +4,11 @@ export interface Detail {
   number: number;
 }
 
+export type DetailWithoutID = Omit<Detail, 'id'>;
+
 export interface GroupCardProps {
   title: string;
-  onClick?: () => void;
+  onClick: () => void;
   disabled?: boolean;
   className?: string;
   avatarClassName?: string;

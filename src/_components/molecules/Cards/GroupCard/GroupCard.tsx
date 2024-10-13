@@ -54,13 +54,9 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
           icon={UsersThree}
           className={`mb-2.5 ${avatarClassName}`}
           iconClassName={iconClassName}
-          size="responsive"
+          size="lg"
         />
-        <Typography
-          variant="body4B"
-          color="neutralDark"
-          className="font-semibold"
-        >
+        <Typography variant="body4B" color="black" className="font-semibold">
           {title}
         </Typography>
         <div className="flex flex-row gap-2.5 mt-5">

@@ -1,6 +1,6 @@
 import { Typography } from '@redesignUi/atoms';
 
-import { Detail } from '../types';
+import { DetailWithoutID } from '../types';
 
 /**
  * TitleNumber Component
@@ -20,17 +20,17 @@ import { Detail } from '../types';
 export default function TitleNumber({
   title,
   number,
-}: Omit<Detail, 'id'>): JSX.Element {
+}: DetailWithoutID): JSX.Element {
   return (
     <div className="flex flex-col min-w-16">
       <Typography
         variant="body6"
         color="neutralMiddle"
-        className="whitespace-nowrap mb-2.5"
+        className="whitespace-nowrap mb-2.5 dark:text-gray-400"
       >
         {title}
       </Typography>
-      <Typography variant="body5B" color="neutralDark">
+      <Typography variant="body5B" color="black">
         {number}
       </Typography>
     </div>
