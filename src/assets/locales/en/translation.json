@@ -2,7 +2,8 @@
   "login": {
     "loginTitle": "Enter username and password to login",
     "login": "Login",
-    "otp": "Please enter the received code",
+    "otp": "Enter the code sent to your email",
+    "otpCode": "Enter code",
     "forget": "Forgot password?"
   },
   "header": {
