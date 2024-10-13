@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import PhBellSimpleRinging from '@iconify-icons/ph/bell-simple-ringing';
 import PhGlobe from '@iconify-icons/ph/globe';
 import { IconButtonBadge } from '@redesignUi/atoms/IconButtonBadge';
-
-import { useTheme } from '@context/settings/themeContext';
+import { LogoSvg } from '@redesignUi/atoms/Svgs/LogoSvg';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
@@ -18,7 +17,6 @@ import { ListMenu } from './ListMenu/ListMenu';
  */
 
 export function NavbarDashboard(): JSX.Element {
-  const { theme } = useTheme();
   const { changeLanguage } = useLanguage();
 
   return (
@@ -39,11 +37,7 @@ export function NavbarDashboard(): JSX.Element {
           />
         </div>
         <Link to={ROUTES_PATH.home}>
-          <img
-            src={theme === 'light' ? 'logo.svg' : 'darkModeLogo.svg'}
-            alt="NETSEP"
-            className="left-[0.081px] top-[1.75px] w-14 h-[1.12rem] md:w-[5.43rem] md:h-[1.43rem] xl:w-[7.43rem] xl:h-8"
-          />
+          <LogoSvg className="left-[0.081px] top-[1.75px] w-14 h-[1.12rem] md:w-[5.43rem] md:h-[1.43rem] xl:w-[7.43rem] xl:h-8" />
         </Link>
       </div>
     </div>
