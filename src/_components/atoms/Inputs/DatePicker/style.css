@@ -1,0 +1,49 @@
+.custom-calendar.rmdp-wrapper,
+.rmdp-container .custom-calendar.ep-arrow::after {
+  padding: 1rem 2rem;
+}
+
+.rmdp-week {
+  margin-bottom: 0.5rem;
+}
+
+.rmdp-week .rmdp-week-day {
+  color: black;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.rmdp-day:hover .sd:hover {
+  background-color: #14b8a6;
+  color: white;
+}
+
+.rmdp-day.rmdp-today .sd {
+  border-color: #14b8a6;
+  background-color: white;
+  color: black;
+  border-width: 1px;
+  border-radius: 100%;
+}
+
+.rmdp-range {
+  background-color: white !important;
+  box-shadow: none !important;
+  border-top: 1px solid #14b8a6;
+  border-bottom: 1px solid #14b8a6;
+}
+
+.rmdp-range:not(:is(.start, .end)) .sd {
+  background-color: white;
+  color: black;
+}
+
+.rmdp-header-values {
+  font-weight: 600;
+}
+
+.rmdp-range.start,
+.rmdp-range.end {
+  background-color: #14b8a6 !important;
+}

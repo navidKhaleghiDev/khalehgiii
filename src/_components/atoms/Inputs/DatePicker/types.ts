@@ -1,4 +1,4 @@
-import { DateObject } from 'react-multi-date-picker';
+import { DateObject, Value } from 'react-multi-date-picker';
 import { VariantProps } from 'class-variance-authority';
 import {
   Control,
@@ -61,7 +61,7 @@ export type TOnClickDate = (
   date: DateObject | [DateObject, DateObject]
 ) => void;
 
-export interface DatePickerProps extends BaseInputProps<any> {
+export interface DatePickerPropsController extends BaseInputProps<any> {
   minDate?: string | number | DateObject | Date;
   maxDate?: string | number | DateObject | Date;
   showTimePicker?: boolean;
@@ -69,4 +69,26 @@ export interface DatePickerProps extends BaseInputProps<any> {
   timeDuration?: TTimeDuration;
   submitButton?: boolean;
   onChange?: TOnClickDate;
+}
+
+export interface MultiDatePickerProps
+  extends Omit<BaseInputProps<any>, 'onChange' | 'rules'> {
+  minDate?: string | number | DateObject | Date;
+  maxDate?: string | number | DateObject | Date;
+  showTimePicker?: boolean;
+  format?: string;
+  timeDuration?: TTimeDuration;
+  submitButton?: boolean;
+  value?: Value[];
+  disabled?: boolean;
+  onChange?:
+    | ((
+        date: DateObject[],
+        options: {
+          validatedValue: string | string[];
+          input: HTMLElement;
+          isTyping: boolean;
+        }
+      ) => false | void)
+    | undefined;
 }
