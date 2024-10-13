@@ -6,7 +6,7 @@ import PhBellSimple from '@iconify-icons/ph/bell-simple';
 import { BaseDropdownMenu } from '@redesignUi/atoms/BaseDropdownMenu';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 
-import { NotificationMenuCountent } from './NotificationMenuCountent';
+import { NotificationMenuContent } from './NotificationMenuContent';
 
 export function NotificationMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +18,7 @@ export function NotificationMenu() {
   return (
     <div>
       <BaseDropdownMenu
-        content={<NotificationMenuCountent />}
+        content={<NotificationMenuContent />}
         buttonContent={
           isOpen ? (
             <IconButton
@@ -35,7 +35,6 @@ export function NotificationMenu() {
           ) : (
             <IconButtonBadge
               icon={PhBellSimpleRinging}
-              content={4}
               size="md"
               onClick={handleToggle}
             />
