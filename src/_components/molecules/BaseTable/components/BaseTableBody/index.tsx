@@ -1,9 +1,14 @@
-import { NoResult } from '@ui/molecules/NoResult';
-import { BaseTableRow } from '../BaseTableRow';
-import { Typography } from '@redesignUi/atoms/Typography/Typography';
+import { useState } from 'react';
 
-export function BaseTableBody(props) {
-  const { body, header, onClick } = props;
+import { NoResult } from '@redesignUi/molecules/NoResult';
+import { BaseTableRow } from '../BaseTableRow';
+
+export function BaseTableBody({ body, header, onClick }) {
+  const [openRowId, setOpenRowId] = useState(null);
+
+  const toggleRowOpen = (id) => {
+    setOpenRowId((prevId) => (prevId === id ? null : id));
+  };
 
   return (
     <tbody>
@@ -12,23 +17,27 @@ export function BaseTableBody(props) {
           const borderRadiusT = index === 0 ? 'rounded-t-2xl' : '';
           const borderRadiusB =
             index === body.length - 1 ? 'rounded-b-2xl' : '';
+          const isOpen = openRowId === bodyItem.id;
+
           return (
-            <div
-              key={bodyItem.id}
-              className={`h-16 bg-white border border-gray-200   ${borderRadiusT} ${borderRadiusB}`}
-            >
-              <tr>
+            <div key={bodyItem.id} className="w-full">
+              <div
+                className={`flex h-16 w-full border border-gray-200  ${
+                  openRowId === bodyItem?.id ? 'bg-gray-400' : 'bg-white'
+                } ${borderRadiusT} ${borderRadiusB}  `}
+              >
                 {header.map((headerItem) => (
-                  <td key={headerItem.id} className="px-5">
-                    <BaseTableRow
-                      row={bodyItem}
-                      header={headerItem}
-                      onClick={onClick}
-                      aria-label={`Row ${headerItem.label}`}
-                    />
-                  </td>
+                  <BaseTableRow
+                    key={headerItem.id}
+                    isOpen={isOpen}
+                    row={bodyItem}
+                    header={headerItem}
+                    onClick={onClick}
+                    toggleRowOpen={toggleRowOpen}
+                    aria-label={bodyItem.name}
+                  />
                 ))}
-              </tr>
+              </div>
             </div>
           );
         })
