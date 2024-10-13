@@ -54,5 +54,6 @@ export const Default: Story = {
         number: 7,
       },
     ],
+    onClick: () => {},
   },
 };
