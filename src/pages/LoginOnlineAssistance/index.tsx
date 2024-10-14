@@ -78,7 +78,7 @@ export function LoginOnlineAssistance() {
           <div className="items-center justify-center flex flex-col gap-1 p-5">
             <Typography
               variant="body1"
-              className="text-neutral-900 font-semibold leading-7"
+              className="text-neutral-900 font-semibold leading-8"
             >
               {t('onlineAssistance.loginType')}
             </Typography>
@@ -86,7 +86,7 @@ export function LoginOnlineAssistance() {
               {t('onlineAssistance.loginTypeChoose')}
             </Typography>
           </div>
-          <div className="sm:flex-row flex flex-col py-5 gap-[1.87rem] w-[15.12rem] sm:w-[21.87rem]">
+          <div className="sm:ltr:flex-row-reverse sm:rtl:flex-row flex flex-col py-5 gap-[1.87rem] w-[15.12rem] sm:w-[21.87rem]">
             <LoginCard
               icon={Monitor}
               title={t('onlineAssistance.remote')}
