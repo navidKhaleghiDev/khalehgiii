@@ -44,7 +44,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
       borderColor="neutral"
       color="white"
       onClick={onClick}
-      disabled={!onClick || disabled}
+      disabled={disabled}
       rounded="xxl"
       shadow="base"
       className={`w-min p-5 pt-12 ${className}`}

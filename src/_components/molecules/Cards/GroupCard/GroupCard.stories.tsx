@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import { Meta, StoryObj } from '@storybook/react';
 
 import { GroupCard } from './GroupCard';
@@ -28,6 +30,17 @@ const meta = {
       },
     },
   },
+  decorators: [
+    (Story): ReactElement => (
+      <div
+        style={{
+          fontFamily: 'font-kalameh',
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof GroupCard>;
 
 export default meta;
