@@ -73,7 +73,7 @@ export const licenseCard: StoryLicenseCard = {
   render: RenderLicenseCard,
   args: {
     title: 'مجوز هفتگی',
-    date: '2024-10-01',
+    date: '2024/10/01',
     subValue: 3,
     totalValue: 10,
     color: 'blueLight',
