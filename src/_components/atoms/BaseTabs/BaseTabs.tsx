@@ -1,58 +1,82 @@
-// Tabs.tsx
-import React, { useState } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useImperativeHandle,
+  forwardRef,
+} from 'react';
+import { BaseButton } from '@redesignUi/atoms';
+import { useLanguage } from '@context/settings/languageContext';
 import { IBaseTabProps, IBaseTabsProps } from './types';
-import { Typography } from '../Typography';
+import { Typography } from '../../../components/atoms/Typography';
 
-// eslint-disable-next-line react/function-component-definition
-export const BaseTab: React.FC<IBaseTabProps> = ({ children }) => {
-  // eslint-disable-next-line react/jsx-no-useless-fragment
-  return <>{children}</>;
-};
+export function BaseTab({ children, className }: IBaseTabProps): JSX.Element {
+  return <div className={className}>{children}</div>;
+}
 
-// eslint-disable-next-line react/function-component-definition
-export const BaseTabs: React.FC<IBaseTabsProps> = ({ children, label }) => {
-  const [activeTab, setActiveTab] = useState(0);
+const BaseTabs = forwardRef(
+  ({ children, label, className }: IBaseTabsProps, ref): JSX.Element => {
+    const [activeTab, setActiveTab] = useState<number>(0);
+    const { lang } = useLanguage();
 
-  const changeTab = (index: number) => {
-    setActiveTab(index);
-  };
+    const rtlRadius = lang === 'en' ? 'rounded-tl-md' : 'rounded-tr-md';
 
-  return (
-    <div className="flex flex-col w-full">
-      {label && (
-        <Typography color="teal" variant="h4">
-          {label}
-        </Typography>
-      )}
-      <div className="flex">
-        {React.Children.map(children, (child, index) => {
-          if (React.isValidElement<IBaseTabProps>(child)) {
-            const { label: labelTab } = child.props;
-            return (
-              <button
-                type="button"
-                className={`uppercase px-4 py-2 ${
-                  index === 0 && 'rounded-tr-md'
-                } ${
-                  index === React.Children.toArray(children).length - 1 &&
-                  'rounded-tl-md'
-                } ${
-                  index === activeTab
-                    ? 'bg-teal-500 text-white'
-                    : 'bg-gray-100 text-gray-600'
-                }`}
-                onClick={() => changeTab(index)}
-              >
-                <Typography variant="body3">{labelTab}</Typography>
-              </button>
-            );
-          }
-          return null;
-        })}
+    const validTabs = React.Children.toArray(children).filter(
+      (child) => child !== null
+    );
+
+    useEffect(() => {
+      if (activeTab >= validTabs.length) {
+        setActiveTab(0);
+      }
+    }, [activeTab, validTabs.length]);
+
+    useImperativeHandle(ref, () => ({
+      changeTab: (index: number) => {
+        if (index >= 0 && index < validTabs.length) {
+          setActiveTab(index);
+        }
+      },
+      getActiveTab: () => activeTab,
+    }));
+
+    return (
+      <div className={`flex flex-col w-full ${className}`}>
+        {label && (
+          <Typography color="teal" variant="h4">
+            {label}
+          </Typography>
+        )}
+        <div className="flex">
+          {validTabs.map((child, index) => {
+            if (React.isValidElement<IBaseTabProps>(child)) {
+              const { label: propsLabel } = child.props;
+              return (
+                <BaseButton
+                  className={`${index === 0 && rtlRadius} ${
+                    index === validTabs.length - 1 && rtlRadius
+                  } ${
+                    index === activeTab
+                      ? 'border-b-2 border-teal-500 text-teal-500 hover:text-teal-500 rounded-none'
+                      : ''
+                  }`}
+                  label={propsLabel}
+                  type="tertiary"
+                  key={propsLabel}
+                  onClick={() => setActiveTab(index)}
+                />
+              );
+            }
+            return null;
+          })}
+        </div>
+        <div className="w-full p-5 border-gray-200 border-t-[0.06rem]">
+          {validTabs[activeTab]}
+        </div>
       </div>
-      <div className="w-full p-4 border-gray-200 border-2 rounded-md rounded-tr-none">
-        {React.Children.toArray(children)[activeTab]}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+);
+
+BaseTabs.displayName = 'BaseTabs';
+
+export { BaseTabs };
