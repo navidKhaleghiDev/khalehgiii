@@ -67,6 +67,7 @@ export function Default({
   content,
   className,
   classNameIcon,
+  classNameIconButtonBadge,
   size,
   color,
   icon,
@@ -77,6 +78,7 @@ export function Default({
     <IconButtonBadge
       content={content}
       className={className}
+      classNameIconButtonBadge={classNameIconButtonBadge}
       classNameIcon={classNameIcon}
       size={size}
       color={color}
