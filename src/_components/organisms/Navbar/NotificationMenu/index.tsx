@@ -27,7 +27,7 @@ export function NotificationMenu() {
               size="md"
               onClick={handleToggle}
               color="neutral"
-              classNameIcon="!bg-gray-200 text-gray-900 dark:!bg-gray-800 dark:text-gray-100 dark:border-none"
+              className="!bg-gray-200 text-gray-900 dark:!bg-gray-800 dark:text-gray-100 dark:border-none"
             />
           ) : (
             <IconButtonBadge
@@ -35,7 +35,7 @@ export function NotificationMenu() {
               size="md"
               content={12}
               onClick={handleToggle}
-              classNameIcon="bg-gray-100 hover:bg-gray-300 transition-all duration-200 ease-linear"
+              className="bg-gray-100 hover:bg-gray-300 transition-all duration-200 ease-linear"
             />
           )
         }

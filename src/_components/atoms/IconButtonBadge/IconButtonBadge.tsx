@@ -12,6 +12,7 @@ import { IconButtonBadgeProps } from './types';
  * @param {Object} props - The props for the IconButtonBadge component.
  * @param {string | number} [props.content] - The content to display inside the badge. Typically used for numeric values or small text.
  * @param {JSX.Element} props.icon - The icon to display inside the button.
+ * @param {string} [props.classNameIconButtonBadge] - Additional custom className for the IconButtonBadge container.
  * @param {string} [props.className] - Additional custom className for the button container.
  * @param {string} [props.classNameIcon] - Additional custom className for the icon element.
  * @param {string} [props.color='neutral'] - The color of the icon button. Defaults to 'neutral'.
@@ -29,6 +30,7 @@ export function IconButtonBadge(props: IconButtonBadgeProps): JSX.Element {
   const {
     content,
     icon,
+    classNameIconButtonBadge,
     className,
     classNameIcon,
     color = 'neutral',
@@ -39,7 +41,7 @@ export function IconButtonBadge(props: IconButtonBadgeProps): JSX.Element {
     disabled,
   } = props;
   return (
-    <div className={`relative w-fit ${className}`}>
+    <div className={`relative w-fit ${classNameIconButtonBadge}`}>
       {content && (
         <Badge
           content={content}
@@ -50,6 +52,7 @@ export function IconButtonBadge(props: IconButtonBadgeProps): JSX.Element {
       )}
       <IconButton
         icon={icon}
+        className={className}
         classNameIcon={classNameIcon}
         color={color}
         loading={loading}
