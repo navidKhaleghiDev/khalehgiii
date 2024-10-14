@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const iconStyles = cva('p-2 rounded dark:bg-gray-700', {
+export const iconStyles = cva('p-2 rounded-lg dark:bg-gray-700', {
   variants: {
     iconColor: {
       blue: 'text-blue-500 bg-blue-100 dark:text-blue-300',

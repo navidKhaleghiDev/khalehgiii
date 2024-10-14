@@ -10,7 +10,6 @@ import { UsersInfoCardProps } from './types';
  * The card is customizable with various styles for the icon color and layout.
  *
  * @component
- *
  * @param {Object} props - The props for the UsersInfoCard component.
  * @param {IconType} props.icon - The icon to be displayed in the card.
  * @param {BaseIconProps['color']} props.iconColor - The color of the icon, used to style both the icon and the background.
@@ -25,16 +24,16 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
     <Card
       border
       borderColor="neutral"
-      className="w-full h-20 px-5 py-4 flex items-center gap-5 outline-none text-right overflow-hidden"
+      className="w-[21.87rem] h-20 p-5 flex items-center gap-5 outline-none overflow-hidden"
       color="white"
       rounded="xxl"
-      shadow="sm"
+      shadow="base"
     >
       <div className={iconStyles({ iconColor })}>
         <BaseIcon icon={icon} size="md" />
       </div>
-      <div className="w-full rtl:text-right ltr:text-left">
-        <Typography color="neutralMiddle" variant="body3" className="leading-7">
+      <div className="w-full">
+        <Typography color="neutralMiddle" variant="body3">
           {title}
         </Typography>
         {count && (
