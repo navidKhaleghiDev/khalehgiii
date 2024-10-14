@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
-import { Modal } from '@ui/molecules/Modal';
+
 import { toast } from 'react-toastify';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
@@ -14,6 +14,7 @@ import { BaseTable } from '@ui/atoms/BaseTable';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { Modal } from '@redesignUi/molecules/Modal';
 import {
   checkPermission,
   useUserPermission,
@@ -146,6 +147,7 @@ export function AdminsList() {
         searchBar={searchBarProps}
       />
       <Modal
+        size="md"
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
@@ -162,9 +164,12 @@ export function AdminsList() {
         }}
       />
       <Modal
+        size="lg"
+        type="content"
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
-        type="success"
+        // type="success"
+
         content={
           <UpdateAdminModal
             handleClose={handleCloseUpdateModal}
