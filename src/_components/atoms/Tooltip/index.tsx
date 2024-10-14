@@ -4,17 +4,14 @@ import { containerTooltipStyles, tooltipStyles } from './styles';
 import { ToolTipProps } from './types';
 
 /**
- * ToolTip component
  *
  * This component provides a tooltip that appears when the user hovers over the element.
  *
- * @component
- *
- * @param {ToolTipProps} props - The props for ToolTip component.
- * @param {PropsWithChildren} props.children - The child elements that trigger the tooltip on hover.
- * @param {string} props.tooltip - The content to be displayed inside the tooltip.
- * @param {'top'|'right'|'bottom'|'left'|'topStart'|'topEnd'|'bottomStart'|'bottomEnd'} props.position - The position of the tooltip relative to the child elements.
- * @param {boolean} props.truncate - If true, the tooltip text will be truncated with ellipsis if it exceeds the maximum width.
+ * @param {ToolTipProps} props The props for ToolTip component.
+ * @param {PropsWithChildren} props.children The child elements that trigger the tooltip on hover.
+ * @param {string} props.tooltip The content to be displayed inside the tooltip.
+ * @param {'top'|'right'|'bottom'|'left'|'topStart'|'topEnd'|'bottomStart'|'bottomEnd'} props.position The position of the tooltip relative to the child elements.
+ * @param {boolean} props.truncate If true, the tooltip text will be truncated with ellipsis if it exceeds the maximum width.
  * @returns {JSX.Element} The rendered ToolTip component.
  */
 
