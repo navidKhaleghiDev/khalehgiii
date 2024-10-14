@@ -32,7 +32,7 @@ export default function LogInOtpForm({
         <Typography
           color="black"
           variant="body1B"
-          className="text-center leading-8"
+          className="text-center leading-9"
         >
           {t('login.otpCode')}
         </Typography>
