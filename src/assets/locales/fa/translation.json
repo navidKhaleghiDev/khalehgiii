@@ -118,7 +118,8 @@
     "saveSettings": "ذخیره تنظیمات",
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
-    "infectedFile": "فایل آلوده"
+    "infectedFile": "فایل آلوده",
+    "days": "روز"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

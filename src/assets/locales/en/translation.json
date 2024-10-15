@@ -117,7 +117,8 @@
     "saveSettings": "Save Settings",
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
-    "infectedFile": "infected File"
+    "infectedFile": "infected File",
+    "days": "Days"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

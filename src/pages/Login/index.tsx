@@ -9,7 +9,7 @@ function LoginPageCp() {
       </div>
       <div className="h-full w-1/2 absolute top-0 ltr:right-0 rtl:left-0">
         <img
-          src="Login.jpg"
+          src="images/login/Login.webp"
           alt="login"
           className="w-full h-full lg:block hidden object-cover"
         />
