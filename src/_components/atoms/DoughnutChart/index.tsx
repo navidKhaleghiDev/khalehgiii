@@ -70,7 +70,7 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
   return (
     <div
       className={`relative font-kalameh ${
-        type === 'license' ? 'sm:w-20 sm:h-20 w-14 h-14' : 'w-20 h-20'
+        type === 'license' ? 'sm:w-20 sm:h-20 w-14 h-14' : 'w-[90px] h-[90px]'
       }`}
     >
       <Pie data={data} options={options} />

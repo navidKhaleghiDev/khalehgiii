@@ -19,7 +19,7 @@ export const doughnutChartStyles = cva(
         license:
           'sm:w-14 sm:h-14 w-9 h-9 text-xs text-gray-900 sm:translate-x-[21%] sm:translate-y-[30%] translate-x-[28%] translate-y-[41.5%] dark:bg-gray-600',
         expireService:
-          'w-11 h-11 shadow-md translate-x-[41%] translate-y-[52%] dark:bg-gray-600',
+          'w-14 h-14 shadow-md translate-x-[30%] translate-y-[39%] dark:bg-gray-600 ',
       },
     },
     defaultVariants: {
