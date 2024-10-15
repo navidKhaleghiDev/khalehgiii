@@ -23,13 +23,16 @@ import { LicenseCardProps } from './types';
  */
 
 export function LicenseCard(props: LicenseCardProps): JSX.Element {
-  const { subValue, totalValue, onClick, color, title, date } = props;
+  const { subValue, totalValue, onClick, color, title, date, className } =
+    props;
   return (
     <CardButton
       border
       borderColor="neutralLight"
-      className="w-64 h-28 p-5 flex items-center outline-none text-right overflow-hidden"
-      color="neutralLight"
+      className={`w-full sm:h-28 h-[5.62rem] p-5 flex items-center outline-none text-right overflow-hidden ${
+        className ?? ''
+      }`}
+      color="neutralDark"
       onClick={onClick}
       shadow="base"
       rounded="xxl"

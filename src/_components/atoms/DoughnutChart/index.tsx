@@ -25,7 +25,7 @@ const ChartColors: { [key: string]: { light: string; dark: string } } = {
   yellow: { light: '#EAB308', dark: '#FACC15' },
   purpleLight: { light: '#D8B4FE', dark: '#E9D5FF' },
   purple: { light: '#A855F7', dark: '#C084FC' },
-  gray: { light: '#F3F4F6', dark: '#4B5563' },
+  gray: { light: '#F3F4F6', dark: '#6B7280' },
 };
 
 const getBackgroundColor = (colorKey: string, theme: string): string => {
@@ -68,7 +68,11 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
   };
 
   return (
-    <div className="relative w-20 font-kalameh">
+    <div
+      className={`relative font-kalameh ${
+        type === 'license' ? 'sm:w-20 sm:h-20 w-14 h-14' : 'w-20 h-20'
+      }`}
+    >
       <Pie data={data} options={options} />
 
       <div

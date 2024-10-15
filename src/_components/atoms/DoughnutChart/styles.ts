@@ -7,7 +7,7 @@ export const doughnutChartStyles = cva(
       color: {
         blueLight: 'bg-blue-100',
         blue: 'bg-blue-100',
-        red: 'bg-red-100 ',
+        red: 'bg-red-100',
         tealLight: 'bg-teal-100',
         teal: 'bg-white dark:bg-gray-600',
         tealDark: 'bg-teal-100',
@@ -17,7 +17,7 @@ export const doughnutChartStyles = cva(
       },
       type: {
         license:
-          'w-14 h-14 text-xs text-gray-900 translate-x-[21%] translate-y-[30%] dark:bg-gray-600',
+          'sm:w-14 sm:h-14 w-9 h-9 text-xs text-gray-900 sm:translate-x-[21%] sm:translate-y-[30%] translate-x-[28%] translate-y-[41.5%] dark:bg-gray-600',
         expireService:
           'w-11 h-11 shadow-md translate-x-[41%] translate-y-[52%] dark:bg-gray-600',
       },

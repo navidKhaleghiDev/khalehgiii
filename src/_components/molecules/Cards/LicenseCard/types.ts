@@ -11,4 +11,5 @@ export interface LicenseCardProps extends VariantProps<typeof dateTitleStyle> {
   onClick?: () => void;
   title: string;
   date: DateTitleProps['date'];
+  className?: string;
 }
