@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import DatePicker from 'react-multi-date-picker';
+import { useState, useRef } from 'react';
+import DatePicker, { DatePickerRef } from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
 import gregorian from 'react-date-object/calendars/gregorian';
 import gregorian_en from 'react-date-object/locales/gregorian_en';
@@ -13,9 +13,6 @@ import { BaseButton } from '@redesignUi/atoms/BaseButton';
 import { MultiDatePickerProps } from './types';
 import './style.css';
 
-// Note:add i18 to the label of the component
-// Note: check the logic of the line 69
-
 export function MultiDatePicker({
   name,
   id,
@@ -24,26 +21,42 @@ export function MultiDatePicker({
   className,
   maxDate,
   minDate,
-  value,
+  value: initialValue,
   disabled,
   timeDuration,
   format = 'YYYY/MM/DD',
   onChange,
 }: MultiDatePickerProps) {
   const [openDate, setOpenData] = useState(false);
+  const [value, setValue] = useState(initialValue);
   const { lang } = useLanguage();
+  const datePickerRef = useRef<DatePickerRef>(null);
+
   const local = lang === 'fa' ? persian_fa : gregorian_en;
   const calendar = lang === 'fa' ? persian : gregorian;
 
-  console.log(openDate);
+  const clearDate = () => {
+    setValue(undefined); // Clears the date picker value
+    onChange(null); // Inform parent component that value is cleared
+  };
+
+  const handleSubmit = () => {
+    if (datePickerRef.current) {
+      datePickerRef.current.closeCalendar(); // Close the DatePicker modal
+    }
+  };
 
   return (
     <div className={`${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`}>
       <DatePicker
+        ref={datePickerRef}
         onlyMonthPicker={timeDuration?.montly}
         weekPicker={timeDuration?.weekly}
         id={id}
-        onChange={onChange}
+        onChange={(val) => {
+          setValue(val);
+          onChange(val);
+        }}
         weekDays={['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']}
         className="custom-calendar"
         arrow={false}
@@ -74,8 +87,13 @@ export function MultiDatePicker({
         maxDate={maxDate}
       >
         <div className="flex items-center justify-center gap-5">
-          <BaseButton label="لغو" size="sm" type="neutral" />
-          <BaseButton label="تایید " size="sm" />
+          <BaseButton
+            label="لغو"
+            size="sm"
+            type="neutral"
+            onClick={clearDate}
+          />
+          <BaseButton label="تایید " size="sm" onClick={handleSubmit} />
         </div>
       </DatePicker>
     </div>
