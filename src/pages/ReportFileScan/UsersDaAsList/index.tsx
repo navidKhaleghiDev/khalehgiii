@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { monitoringHeaderItem } from '@src/pages/ReportFileScan/UsersDaAsList/constants/monitoringHeaderItem';
+import { monitoringHeaderItem } from '@src/pages/ReportFileScan/constants/constants';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
