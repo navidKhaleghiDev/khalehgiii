@@ -7,7 +7,7 @@ export const badgeStyle = cva(
       size: {
         sm: 'size-2',
         md: 'size-3',
-        lg: 'size-[1.125rem]',
+        lg: 'size-5',
         responsive: 'size-2 md:size-3 lg:size-[1.12rem]',
       },
       color: {
