@@ -15,19 +15,38 @@ import { BaseButton } from '@redesignUi/atoms/BaseButton';
 import { MultiDatePickerProps } from './types';
 import './style.css';
 
-export function MultiDatePicker({
-  name,
-  id,
-  className,
-  maxDate,
-  size = 'md',
-  minDate,
-  timeDuration,
-  value: initialValue,
-  disabled,
-  format = 'YYYY/MM/DD',
-  onChange,
-}: MultiDatePickerProps) {
+/**
+ *
+ * @param {string} props.name - Name attribute for the date picker input.
+ * @param {string} props.id - ID attribute for the date picker input.
+ * @param {string} [props.className] - Additional CSS classes for the date picker container.
+ * @param {Date | string} [props.maxDate] - The maximum selectable date.
+ * @param {Date | string} [props.minDate] - The minimum selectable date.
+ * @param {sm | md} [props.size='md'] - The size of the button ('sm', 'md', 'lg').
+ * @param {boolean} [props.disabled=false] - Whether the date picker is disabled.
+ * @param {string} [props.format='YYYY/MM/DD'] - Date format string.
+ * @param {TimeDuration} [props.timeDuration] - Object specifying time duration modes like `weekly` or `monthly` selection.
+ * @param {Value[]} [props.initialValue] - The initial value for the date picker (either a single date or a range).
+ * @param {function} props.onChange - Callback function triggered when the date changes.
+ *
+ * @returns {JSX.Element} MultiDatePicker component.
+ */
+
+export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
+  const {
+    name,
+    id,
+    className,
+    maxDate,
+    size = 'md',
+    minDate,
+    timeDuration,
+    value: initialValue,
+    disabled,
+    format = 'YYYY/MM/DD',
+    onChange,
+  } = props;
+
   const [openDate, setOpenData] = useState(false);
   const [value, setValue] = useState(initialValue);
   const datePickerRef = useRef<DatePickerRef>(null);
