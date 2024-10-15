@@ -81,14 +81,12 @@ export interface MultiDatePickerProps
   submitButton?: boolean;
   value?: Value[];
   disabled?: boolean;
-  // onChange?:
-  //   | ((
-  //       date: DateObject[],
-  //       options: {
-  //         validatedValue: string | string[];
-  //         input: HTMLElement;
-  //         isTyping: boolean;
-  //       }
-  //     ) => false | void)
-  //   | undefined;
+  onChange: (
+    date: DateObject[],
+    options?: {
+      validatedValue?: string | string[];
+      input?: HTMLElement;
+      isTyping?: boolean;
+    }
+  ) => false | void;
 }

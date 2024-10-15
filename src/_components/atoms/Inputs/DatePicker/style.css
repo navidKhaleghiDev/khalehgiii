@@ -1,6 +1,12 @@
 .custom-calendar.rmdp-wrapper,
 .rmdp-container .custom-calendar.ep-arrow::after {
   padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .rmdp-week {
@@ -10,8 +16,7 @@
 .rmdp-week .rmdp-week-day {
   color: black;
   font-weight: 600;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .rmdp-day:hover .sd:hover {
@@ -19,12 +24,27 @@
   color: white;
 }
 
+.rmdp-header {
+  padding: 4px;
+  font-size: 1rem !important;
+  margin-bottom: 1.938rem;
+}
+
 .rmdp-day.rmdp-today .sd {
   border-color: #14b8a6;
   background-color: white;
-  color: black;
+  color: #6b7280;
   border-width: 1px;
   border-radius: 100%;
+}
+
+.rmdp-day {
+  width: 2.8rem !important;
+  height: 2.8rem !important;
+}
+.rmdp-day .sd {
+  font-size: 1rem !important;
+  color: #6b7280;
 }
 
 .rmdp-range {
@@ -46,4 +66,30 @@
 .rmdp-range.start,
 .rmdp-range.end {
   background-color: #14b8a6 !important;
+}
+
+.rmdp-range.start .sd,
+.rmdp-range.end .sd {
+  color: white;
+}
+
+.rmdp-arrow-container.rmdp-left,
+.rmdp-arrow-container.rmdp-right {
+  width: 16px;
+  height: 16px;
+}
+
+.rmdp-arrow-container:hover {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.rmdp-arrow {
+  border: solid #6b7280 !important;
+  border-width: 0 1px 1px 0 !important;
+  display: inline-block !important;
+  height: 10px !important;
+  margin-top: 5px !important;
+  padding: 2px !important;
+  width: 10px !important;
 }
