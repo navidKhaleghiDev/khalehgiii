@@ -5,6 +5,7 @@ export const cardStyles = cva('', {
     color: {
       neutralLight: 'bg-white dark:bg-gray-500',
       neutral: 'bg-gray-200',
+      neutralDark: 'bg-white dark:bg-gray-800',
       teal: 'bg-teal-200 dark:bg-teal-300',
       tealDark: 'bg-teal-600 dark:bg-black',
       yellow: 'bg-yellow-100 dark:bg-yellow-300',
