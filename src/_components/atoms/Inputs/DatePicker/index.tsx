@@ -4,6 +4,7 @@ import persian from 'react-date-object/calendars/persian';
 import gregorian from 'react-date-object/calendars/gregorian';
 import gregorian_en from 'react-date-object/locales/gregorian_en';
 import persian_fa from 'react-date-object/locales/persian_fa';
+import { useTranslation } from 'react-i18next';
 
 import phCaretDown from '@iconify-icons/ph/caret-down';
 import phCaretLeft from '@iconify-icons/ph/caret-left';
@@ -17,23 +18,24 @@ import './style.css';
 export function MultiDatePicker({
   name,
   id,
-  fullWidth = false,
   className,
   maxDate,
-  size,
+  size = 'md',
   minDate,
+  timeDuration,
   value: initialValue,
   disabled,
-  timeDuration,
   format = 'YYYY/MM/DD',
   onChange,
 }: MultiDatePickerProps) {
   const [openDate, setOpenData] = useState(false);
   const [value, setValue] = useState(initialValue);
   const datePickerRef = useRef<DatePickerRef>(null);
+  const { t } = useTranslation();
 
   const { theme } = useTheme();
   const { lang } = useLanguage();
+
   const farsi = lang === 'fa';
   const darkMode = theme === 'dark';
 
@@ -49,7 +51,7 @@ export function MultiDatePicker({
   };
 
   return (
-    <div className={`${fullWidth ? 'w-full' : 'w-80'} ${className || ''}`}>
+    <div className={`${className ?? ''}`}>
       <DatePicker
         ref={datePickerRef}
         onlyMonthPicker={timeDuration?.montly}
@@ -60,7 +62,7 @@ export function MultiDatePicker({
           onChange(val);
         }}
         weekDays={farsi ? ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'] : undefined}
-        className={darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
+        className={!darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
         arrow={false}
         value={value}
         name={name}
@@ -70,7 +72,7 @@ export function MultiDatePicker({
         format={format}
         render={(_, openCalendar) => (
           <BaseButton
-            label={size === 'md' ? 'انتخاب تاریخ' : 'تاریخ'}
+            label={size === 'md' ? 'انتخاب تاریخ' : t('table.date')}
             onClick={openCalendar}
             endIcon={openDate ? phCaretDown : phCaretLeft}
             type="neutral"
@@ -87,20 +89,23 @@ export function MultiDatePicker({
         range
         locale={farsi ? persian_fa : gregorian_en}
         calendarPosition="bottom-right"
-        containerClassName={`${fullWidth ? 'w-full' : 'w-36'} ${
-          className || ''
-        }`}
+        containerClassName={`${className ?? ''}`}
         minDate={minDate}
         maxDate={maxDate}
       >
         <div className="flex items-center justify-center gap-5">
           <BaseButton
-            label="لغو"
+            label={t('global.cancel')}
             size="sm"
             type="neutral"
             onClick={clearDate}
           />
-          <BaseButton label="تایید " size="sm" onClick={handleSubmit} />
+          <BaseButton
+            label={t('global.confirm')}
+            size="sm"
+            onClick={handleSubmit}
+            submit
+          />
         </div>
       </DatePicker>
     </div>
