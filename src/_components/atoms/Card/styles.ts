@@ -6,29 +6,29 @@ export const cardStyles = cva('', {
       neutralLight: 'bg-gray-100 dark:bg-gray-300',
       neutral: 'bg-gray-200',
       teal: 'bg-teal-200 dark:bg-teal-300',
+      tealDark: 'bg-teal-600 dark:bg-black',
       yellow: 'bg-yellow-100 dark:bg-yellow-300',
       red: 'bg-red-400',
-      white: `bg-white dark:bg-gray-300`,
+      white: `bg-white dark:bg-gray-600`,
+      none: ``,
     },
     borderColor: {
-      neutralLight: 'border-gray-200',
-      neutral:
-        'border-gray-300 hover:border-gray-400 active:border-gray-900 disabled:border-gray-300 dark:border-gray-400 dark:hover:border-white dark:disabled:border-gray-500',
-      teal: 'border-teal-500 dark:border-teal-500',
-      yellow: 'border-yellow-600 dark:border-yellow-600',
-      red: 'border-red-600 dark:border-red-500',
+      neutral: `border border-white dark:border-gray-600 dark:bg-gray-600`,
+      teal: `border-2 border-white dark:border-teal-400 dark:bg-teal-400`,
     },
     rounded: {
       sm: 'rounded-sm',
-      md: 'rounded-[20px]',
+      md: 'rounded-md',
       lg: 'rounded-lg',
       xl: 'rounded-xl',
+      xxl: 'rounded-2xl',
     },
     shadow: {
+      base: 'shadow',
       sm: 'shadow-sm',
-      md: 'shadow-md border border-gray-200',
-      lg: 'shadow-lg border border-gray-200',
-      xl: 'shadow-xl border border-gray-200',
+      md: 'shadow-md',
+      lg: 'shadow-lg',
+      xl: 'shadow-xl',
     },
     border: {
       true: 'border',
@@ -37,6 +37,14 @@ export const cardStyles = cva('', {
   defaultVariants: {
     color: 'white',
     rounded: 'md',
-    borderColor: 'neutralLight',
+  },
+});
+
+export const cardButtonStyles = cva('', {
+  variants: {
+    borderColor: {
+      neutral: `border border-white hover:border-gray-300 active:border-gray-400 disabled:border-white disabled:opacity-40 dark:border-gray-600 dark:bg-gray-600 dark:hover:border-gray-500 dark:active:border-gray-300 dark:disabled:border-none dark:disabled:opacity-40`,
+      teal: `border-2 border-white active:border-teal-400 disabled:border-white disabled:hover:border-white dark:border-teal-400 dark:bg-teal-400 dark:active:border-teal-400`,
+    },
   },
 });

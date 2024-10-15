@@ -1,7 +1,6 @@
 import { FieldValues } from 'react-hook-form';
 
-export interface ILoginFieldValues extends FieldValues {
+export interface LoginFieldValues extends FieldValues {
   email: string;
   password: string;
-  // is_admin: boolean;
 }
