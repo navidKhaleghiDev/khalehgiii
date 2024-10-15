@@ -1,7 +1,7 @@
 import { Typography } from '@redesignUi/atoms';
-import usersThreeIcon from '@iconify-icons/ph/users-three';
+// import usersThreeIcon from '@iconify-icons/ph/users-three';
 
-import { Card } from '../Dashboard/DashboardCards/Card';
+// import { Card } from '../Dashboard/DashboardCards/Card';
 import FilterReports from './FilterReports';
 
 type ReportsContainerProp = {
@@ -22,8 +22,8 @@ export default function ReportsContainer({
         {pageTitle}
       </Typography>
       <div className="flex items-center gap-[1.875] mt-9 max-w-[700px]">
-        <Card icon={usersThreeIcon} title="اسکن های امروز" description="" />
-        <Card icon={usersThreeIcon} title="کاربران آنلاین" description="" />
+        {/* <Card icon={usersThreeIcon} title="اسکن های امروز" description="" />
+        <Card icon={usersThreeIcon} title="کاربران آنلاین" description="" /> */}
       </div>
       <FilterReports />
       {children}
