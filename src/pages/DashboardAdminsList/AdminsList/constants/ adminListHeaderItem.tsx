@@ -36,7 +36,8 @@ export const adminListHeaderItem = [
   {
     label: 'table.email',
     id: 'email',
-    type: 'none',
+    type: 'collapse',
+    collapse: (props: any) => <Circle id={props.row.is_active} />,
     class: 'px-3 w-2/12',
   },
   {
@@ -83,12 +84,12 @@ export const adminListHeaderItem = [
     component: (props: any) => <Circle id={props.row.totp_secret} />,
     class: 'px-3 w-2/12',
   },
-  // {
-  //   label: 'table.lastLogin',
-  //   id: 'last_login',
-  //   type: 'function',
-  //   function: dateAndNumber,
-  //   dir: 'rtl',
-  //   class: 'px-3 w-2/12',
-  // },
+  {
+    label: 'table.lastLogin',
+    id: 'last_login',
+    type: 'function',
+    function: dateAndNumber,
+    dir: 'rtl',
+    class: 'px-3 w-2/12',
+  },
 ];

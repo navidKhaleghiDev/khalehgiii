@@ -5,8 +5,6 @@ import { BaseTableBody } from './components/BaseTableBody';
 export function BaseTable(props) {
   const { header, body, onClick, className, loading } = props;
 
-  console.log(body);
-
   return (
     <table className="w-full ">
       <BaseTableHeader header={header} />
