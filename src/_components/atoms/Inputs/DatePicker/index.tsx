@@ -91,7 +91,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
         format={format}
         render={(_, openCalendar) => (
           <BaseButton
-            label={size === 'md' ? 'انتخاب تاریخ' : t('table.date')}
+            label={size === 'md' ? t('global.selectDate') : t('table.date')}
             onClick={openCalendar}
             endIcon={openDate ? phCaretDown : phCaretLeft}
             type="neutral"
