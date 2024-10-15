@@ -8,6 +8,7 @@ import persian_fa from 'react-date-object/locales/persian_fa';
 import phCaretDown from '@iconify-icons/ph/caret-down';
 import phCaretLeft from '@iconify-icons/ph/caret-left';
 import { useLanguage } from '@context/settings/languageContext';
+import { useTheme } from '@context/settings/themeContext';
 import { BaseButton } from '@redesignUi/atoms/BaseButton';
 
 import { MultiDatePickerProps } from './types';
@@ -16,10 +17,10 @@ import './style.css';
 export function MultiDatePicker({
   name,
   id,
-  placeholder,
   fullWidth = false,
   className,
   maxDate,
+  size,
   minDate,
   value: initialValue,
   disabled,
@@ -29,25 +30,26 @@ export function MultiDatePicker({
 }: MultiDatePickerProps) {
   const [openDate, setOpenData] = useState(false);
   const [value, setValue] = useState(initialValue);
-  const { lang } = useLanguage();
   const datePickerRef = useRef<DatePickerRef>(null);
 
-  const local = lang === 'fa' ? persian_fa : gregorian_en;
-  const calendar = lang === 'fa' ? persian : gregorian;
+  const { theme } = useTheme();
+  const { lang } = useLanguage();
+  const farsi = lang === 'fa';
+  const darkMode = theme === 'dark';
 
   const clearDate = () => {
-    setValue(undefined); // Clears the date picker value
-    onChange(null); // Inform parent component that value is cleared
+    setValue(undefined);
+    onChange(undefined);
   };
 
   const handleSubmit = () => {
     if (datePickerRef.current) {
-      datePickerRef.current.closeCalendar(); // Close the DatePicker modal
+      datePickerRef.current.closeCalendar();
     }
   };
 
   return (
-    <div className={`${fullWidth ? 'w-full' : 'w-36'} ${className || ''}`}>
+    <div className={`${fullWidth ? 'w-full' : 'w-80'} ${className || ''}`}>
       <DatePicker
         ref={datePickerRef}
         onlyMonthPicker={timeDuration?.montly}
@@ -57,8 +59,8 @@ export function MultiDatePicker({
           setValue(val);
           onChange(val);
         }}
-        weekDays={['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']}
-        className="custom-calendar"
+        weekDays={farsi ? ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'] : undefined}
+        className={darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
         arrow={false}
         value={value}
         name={name}
@@ -68,17 +70,22 @@ export function MultiDatePicker({
         format={format}
         render={(_, openCalendar) => (
           <BaseButton
-            label="انتخاب تاریخ"
+            label={size === 'md' ? 'انتخاب تاریخ' : 'تاریخ'}
             onClick={openCalendar}
             endIcon={openDate ? phCaretDown : phCaretLeft}
             type="neutral"
-            className={openDate ? '!bg-neutral-200 hover:bg-neutral-200' : ''}
+            size={size}
+            disabled={disabled}
+            className={
+              openDate
+                ? '!bg-gray-200 hover:bg-gray-200 dark:!bg-gray-800 '
+                : ''
+            }
           />
         )}
-        calendar={calendar}
+        calendar={farsi ? persian : gregorian}
         range
-        locale={local}
-        placeholder={placeholder}
+        locale={farsi ? persian_fa : gregorian_en}
         calendarPosition="bottom-right"
         containerClassName={`${fullWidth ? 'w-full' : 'w-36'} ${
           className || ''

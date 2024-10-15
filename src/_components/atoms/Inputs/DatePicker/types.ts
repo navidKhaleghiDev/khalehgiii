@@ -71,18 +71,21 @@ export interface DatePickerPropsController extends BaseInputProps<any> {
   onChange?: TOnClickDate;
 }
 
-export interface MultiDatePickerProps
-  extends Omit<BaseInputProps<any>, 'onChange' | 'rules'> {
+export interface MultiDatePickerProps {
+  id: string;
+  name: string;
+  className?: string;
   minDate?: string | number | DateObject | Date;
   maxDate?: string | number | DateObject | Date;
-  showTimePicker?: boolean;
   format?: string;
   timeDuration?: TTimeDuration;
   submitButton?: boolean;
   value?: Value[];
+  fullWidth?: boolean;
   disabled?: boolean;
+  size?: 'sm' | 'md';
   onChange: (
-    date: DateObject[],
+    date: DateObject[] | undefined,
     options?: {
       validatedValue?: string | string[];
       input?: HTMLElement;
