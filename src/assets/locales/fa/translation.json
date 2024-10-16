@@ -118,7 +118,8 @@
     "saveSettings": "ذخیره تنظیمات",
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
-    "infectedFile": "فایل آلوده"
+    "infectedFile": "فایل آلوده",
+    "days": "روز"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -138,6 +139,7 @@
     "sucessfulyUpdated": "باموفقیت بروزرسانی شد.",
     "sureAboutThis": "از انجام این کار مطمئن هستید؟",
     "yes": "بله",
+    "selectDate": "انتخاب تاریخ",
     "no": "خیر",
     "sucessfylySaved": "باموفقیت ذخیره شد",
     "lastName": "نام خانوادگی",
