@@ -19,12 +19,12 @@ import { UsersInfoCardProps } from './types';
  * @returns {JSX.Element} Returns the rendered UsersInfoCard component.
  */
 export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
-  const { icon, iconColor, title, count } = props;
+  const { icon, iconColor, title, count, className } = props;
   return (
     <Card
       border
       borderColor="neutral"
-      className="w-[21.87rem] h-20 p-5 flex items-center gap-5 outline-none overflow-hidden"
+      className={`w-full h-20 p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"

@@ -8,4 +8,5 @@ export interface UsersInfoCardProps extends VariantProps<typeof iconStyles> {
   icon: IconType;
   title: string;
   count?: number;
+  className?: string;
 }
