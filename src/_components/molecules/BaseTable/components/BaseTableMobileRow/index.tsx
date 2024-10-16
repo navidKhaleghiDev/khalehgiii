@@ -6,6 +6,7 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import { useState } from 'react';
 import { BaseTableComponentCell } from '../BaseTableRowCells/BaseTableComponentCell';
 import { BaseTableNoneCell } from '../BaseTableRowCells/BaseTableNoneCell';
+import { BaseTableRenderComponent } from '../BaseTableRenderComponent';
 
 export function BaseTableMobileRow({ row, body, header, onClick, index }) {
   const [openRowId, setOpenRowId] = useState(null);
@@ -21,36 +22,6 @@ export function BaseTableMobileRow({ row, body, header, onClick, index }) {
     setOpenRowId((prevId) => (prevId === rowId ? null : rowId));
   };
 
-  const renderComponent = (headerList) => {
-    const id = headerList?.id;
-
-    console.log(headerList);
-
-    const Components = {
-      none: <BaseTableNoneCell row={row} id={id} header={headerList} />,
-      component: (
-        <BaseTableComponentCell
-          type="component"
-          row={row}
-          header={headerList}
-          id={id}
-          onClick={onClick}
-        />
-      ),
-      collapse: (
-        <BaseTableComponentCell
-          type="collapse"
-          row={row}
-          header={headerList}
-          id={id}
-          onClick={onClick}
-        />
-      ),
-    };
-
-    return Components[headerList.type ?? 'none'];
-  };
-
   return (
     <div>
       <div
@@ -59,7 +30,13 @@ export function BaseTableMobileRow({ row, body, header, onClick, index }) {
         } ${borderRadiusT} ${borderRadiusB}`}
       >
         <tr className={`${header.class}`}>
-          <td colSpan={header.length}>{renderComponent(collapseItem)}</td>
+          <td aria-label={header} colSpan={header.length}>
+            <BaseTableRenderComponent
+              row={row}
+              header={collapseItem}
+              onClick={onClick}
+            />
+          </td>
         </tr>
         <IconButton
           icon={isOpen ? PhCaretUpBold : PhCaretDownBold}
@@ -74,7 +51,13 @@ export function BaseTableMobileRow({ row, body, header, onClick, index }) {
               className="flex justify-between w-full h-10 bg-gray-100 last:border-b-0 first:border-t-0 border border-gray-300 border-x-0 "
             >
               <td>{t(headerList.label)}</td>
-              <td>{renderComponent(headerList)}</td>
+              <td aria-label={headerList}>
+                <BaseTableRenderComponent
+                  row={row}
+                  header={headerList}
+                  onClick={onClick}
+                />
+              </td>
             </tr>
           ))}
       </div>

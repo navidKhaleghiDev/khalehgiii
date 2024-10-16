@@ -12,7 +12,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { BaseTable } from '@ui/atoms/BaseTable';
+// import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
 import {
   ActionOnClickActionsType,
@@ -30,6 +30,7 @@ import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/
 
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -268,8 +269,8 @@ export function DaAsList() {
   };
 
   return (
-    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
-      <BaseTable
+    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}  bg-gray-200 `}>
+      {/* <BaseTable
         loading={isLoading}
         headers={checkPermissionHeaderItem(
           userPermissions,
@@ -279,6 +280,12 @@ export function DaAsList() {
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}
+      /> */}
+      <BaseTable
+        header={desktopListHeaderItem}
+        body={listDaas}
+        loading={false}
+        // isMobile
       />
       <Modal
         open={openModal}

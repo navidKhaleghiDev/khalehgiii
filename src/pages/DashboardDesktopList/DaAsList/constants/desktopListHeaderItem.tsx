@@ -4,7 +4,6 @@ import { SetAccessTime } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard
 import { UsedTimeDass } from '@src/pages/DashboardDesktopList/DaAsList/UsedTimeDass';
 import { ActionLockCell } from '@ui/atoms/BaseTable/components/CustomCell/ActionLockCell';
 
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
@@ -17,25 +16,26 @@ import {
 
 const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
 
-export const desktopListHeaderItem: IHeaderTable[] = [
+export const desktopListHeaderItem = [
   {
     label: 'table.email',
     id: 'email',
     type: 'none',
-    class: 'w-40',
-    fixed: true,
+    class: 'w/1/12',
   },
   {
     label: 'table.httpPort',
     id: 'http_port',
     type: 'none',
-    class: `w-32  ${style} `,
+    class: `w-2/12  ${style} `,
+    isCollapsed: true,
   },
   {
     label: 'table.httpsPort',
     id: 'https_port',
     type: 'none',
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isCollapsed: true,
   },
   {
     label: 'table.accessCapacity',
@@ -44,33 +44,37 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     component: (props: any) => (
       <Check id={!props.row.exceeded_usage} header={props.head} />
     ),
-
-    class: 'w-40 ',
+    class: 'w/1/12 ',
+    isCollapsed: true,
   },
   {
     label: 'table.containerId',
     id: 'container_id',
     type: 'tooltip',
-    class: 'w-40 ',
+    class: 'w/1/12 ',
+    isCollapsed: true,
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'tooltip',
-    class: ' w-40 ',
+    class: ' w/1/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.lastLoginIp',
     id: 'last_login_ip',
     type: 'none',
-    class: 'w-40 ',
+    class: 'w/1/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.status',
     id: 'is_running',
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
 
   {
@@ -85,14 +89,16 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       />
     ),
     permission: EPermissionDaas.CHANGE,
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
 
   {
     label: 'table.desktopV',
     id: 'daas_version',
     type: 'none',
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
 
   {
@@ -102,9 +108,9 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     component: (props: any) => (
       <UsedTimeDass time={props.row.usage_in_minute} />
     ),
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
-
   {
     label: 'table.accessSettingsTime',
     id: 'updated_at',
@@ -118,7 +124,8 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       />
     ),
     dir: 'rtl',
-    class: 'w-64 ',
+    class: 'w-3/12 ',
+    isMobileCollapsed: true,
     permission: EPermissionDaas.CHANGE,
   },
 
@@ -132,9 +139,9 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         header={props.head}
       />
     ),
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
-
   {
     label: 'table.recordingActivity',
     id: 'id',
@@ -148,7 +155,8 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       },
     ],
     permission: EPermissionSessionRecording.VIEW,
-    class: 'w-32',
+    class: 'w-2/12',
+    isMobileCollapsed: true,
   },
 
   {
@@ -172,7 +180,8 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       },
     ],
     permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'global.onlineAssistanceDetail',
@@ -186,6 +195,7 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         tooltip: 'global.onlineAssistanceDetail',
       },
     ],
-    class: 'w-32 ',
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
 ];

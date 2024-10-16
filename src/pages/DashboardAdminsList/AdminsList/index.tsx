@@ -18,10 +18,10 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
+import { BaseTable } from '@ui/atoms/BaseTable';
 import { EPermissionUsers } from '@src/types/permissions';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -134,8 +134,8 @@ export function AdminsList() {
   };
 
   return (
-    <div className={`w-full p-4  bg-gray-100  ${isLoading ? 'loading' : ''}`}>
-      {/* <BaseTable
+    <div className={`w-full ${isLoading ? 'loading' : ''}`}>
+      <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}
         headers={checkPermissionHeaderItem(
@@ -145,7 +145,7 @@ export function AdminsList() {
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}
-      /> */}
+      />
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}
@@ -172,11 +172,6 @@ export function AdminsList() {
             admin={activeAdmin}
           />
         }
-      />
-      <BaseTable
-        header={adminListHeaderItem}
-        body={listWhiteList}
-        loading={false}
       />
     </div>
   );
