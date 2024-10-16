@@ -8,12 +8,13 @@ import { useTranslation } from 'react-i18next';
 
 import phCaretDown from '@iconify-icons/ph/caret-down';
 import phCaretLeft from '@iconify-icons/ph/caret-left';
+import phCaretRight from '@iconify-icons/ph/caret-right';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { BaseButton } from '@redesignUi/atoms/BaseButton';
+import '@src/App.css';
 
 import { MultiDatePickerProps } from './types';
-import './style.css';
 
 /**
  *
@@ -57,10 +58,15 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
 
   const farsi = lang === 'fa';
   const darkMode = theme === 'dark';
+  const caretLeft = farsi ? phCaretLeft : phCaretRight;
 
   const clearDate = () => {
-    setValue(undefined);
-    onChange(undefined);
+    if (value) {
+      setValue(undefined);
+      onChange(undefined);
+    } else if (datePickerRef.current) {
+      datePickerRef.current.closeCalendar();
+    }
   };
 
   const handleSubmit = () => {
@@ -68,7 +74,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
       datePickerRef.current.closeCalendar();
     }
   };
-
+  console.log(value);
   return (
     <div className={`${className ?? ''}`}>
       <DatePicker
@@ -81,7 +87,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
           onChange(val);
         }}
         weekDays={farsi ? ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'] : undefined}
-        className={darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
+        className={!darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
         arrow={false}
         value={value}
         name={name}
@@ -93,7 +99,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
           <BaseButton
             label={size === 'md' ? t('global.selectDate') : t('table.date')}
             onClick={openCalendar}
-            endIcon={openDate ? phCaretDown : phCaretLeft}
+            endIcon={openDate ? phCaretDown : caretLeft}
             type="neutral"
             size={size}
             disabled={disabled}
@@ -124,6 +130,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
             size="sm"
             onClick={handleSubmit}
             submit
+            disabled={!value}
           />
         </div>
       </DatePicker>
