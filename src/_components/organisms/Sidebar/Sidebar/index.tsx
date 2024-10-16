@@ -1,0 +1,208 @@
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
+import { useLanguage } from '@context/settings/languageContext';
+
+import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { http } from '@src/services/http';
+import { useUserContext } from '@context/user/userContext';
+import ToolTip from '@redesignUi/atoms/Tooltip';
+import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
+import { Avatar, Typography } from '@redesignUi/atoms';
+import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
+import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
+import User from '@iconify-icons/ph/user';
+import PhSignOut from '@iconify-icons/ph/sign-out';
+
+import { MenuDropdown } from './MenuDropdown/MenuDropdown';
+import { MenuItem } from './MenuItem';
+import { navigationSideBar } from './navigation';
+import { NavigationProps } from './types';
+import { MenuItemAccordion } from './MenuItemAccordion';
+
+export function SideBar(): JSX.Element {
+  const { pathname } = useLocation();
+  const { user } = useUserContext();
+  const { setUser } = useUserContext();
+  const { lang } = useLanguage();
+
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [isDropdownVisible, setDropdownVisible] =
+    useState<NavigationProps | null>(null);
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+
+  const navigate = useNavigate();
+
+  const toggleSideBar = () => {
+    setToggleSidebar(!toggleSidebar);
+  };
+  const handleLogout = () => {
+    http.removeAuthHeader();
+    setUser(null);
+    navigate(ROUTES_PATH.login);
+  };
+  const enLanguageIcon = lang === 'en' ? PhCaretDoubleLeft : PhCaretDoubleRight;
+  const faLanguageIcon = lang === 'fa' ? PhCaretDoubleLeft : PhCaretDoubleRight;
+
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  return (
+    <div
+      className={`flex flex-col justify-between items-end h-full 
+        ${toggleSidebar ? 'w-64' : 'w-16'}
+        transition-all duration-500 ease-in-out dark:bg-gray-600`}
+    >
+      <div className="flex flex-col items-center w-full mt-5 px-6 relative">
+        {navigationSideBar.map((item: NavigationProps, index) => {
+          const shouldAddHR = [2].includes(index);
+
+          if (!item.items) {
+            return !toggleSidebar ? (
+              <ToolTip
+                position={lang === 'fa' ? 'left' : 'right'}
+                key={item.id}
+                tooltip={`${item.label}`}
+              >
+                <MenuItem
+                  item={item}
+                  pathname={pathname}
+                  collapsed={!toggleSidebar}
+                />
+                {shouldAddHR && (
+                  <hr className="w-full bg-white border border-gray-300 rounded" />
+                )}
+              </ToolTip>
+            ) : (
+              <div className="w-full" key={item.id}>
+                <MenuItem
+                  item={item}
+                  pathname={pathname}
+                  collapsed={!toggleSidebar}
+                />
+                {shouldAddHR && (
+                  <hr className="w-full bg-white border border-gray-300 rounded" />
+                )}
+              </div>
+            );
+          }
+
+          return toggleSidebar ? (
+            <div className="w-full" key={item.id}>
+              <MenuItemAccordion
+                open={openAccordion}
+                setOpen={setOpenAccordion}
+                index={index}
+                item={item}
+                pathname={pathname}
+                collapsed={!toggleSidebar}
+                icon={item.icon}
+              />
+              {shouldAddHR && (
+                <hr className="w-full bg-white border border-gray-300 rounded my-5" />
+              )}
+            </div>
+          ) : (
+            <div
+              key={item.id}
+              onPointerEnter={() => setDropdownVisible(item)}
+              className={`flex justify-center flex-col items-center bg-white dark:bg-gray-600 ${
+                toggleSidebar ? 'w-full' : null
+              }`}
+            >
+              <MenuItem
+                item={item}
+                pathname={pathname}
+                collapsed={!toggleSidebar}
+              />
+              {shouldAddHR && (
+                <hr className="w-full bg-white border border-gray-300 rounded my-2" />
+              )}
+              {isDropdownVisible?.id === item.id && !toggleSidebar && (
+                <MenuDropdown
+                  items={item.items}
+                  mouseHover={() => setDropdownVisible(null)}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <div
+        className={`flex flex-col ${
+          toggleSidebar ? 'items-start' : 'items-center'
+        } w-full mb-5 px-3`}
+      >
+        <div className="flex items-center">
+          <Avatar icon={User} size="md" className="my-2" />
+          {toggleSidebar && (
+            <div className="mx-2">
+              <span>
+                <Typography variant="body5" color="neutralDark">
+                  {`${user?.first_name} ${user?.last_name}`}
+                </Typography>
+              </span>
+              <span>
+                <Typography variant="body6" color="neutralMiddle">
+                  {user?.email}
+                </Typography>
+              </span>
+            </div>
+          )}
+        </div>
+        <div className="flex items-center">
+          <BaseButton
+            startIcon={PhSignOut}
+            label=" "
+            size="lg"
+            fullWidth
+            type="tertiary"
+            onClick={handleLogout}
+            className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
+          />
+          {toggleSidebar && (
+            <span
+              className="text-sm whitespace-nowrap text-red-500 dark:text-red-300"
+              role="button"
+              onClick={handleLogout}
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  handleLogout();
+                }
+              }}
+            >
+              {t('onlineAssistance.exitFromUserProfile')}
+            </span>
+          )}
+        </div>
+
+        <hr className="w-full bg-white border border-gray-300 rounded my-5" />
+        <IconButton
+          size="md"
+          color="neutral"
+          icon={toggleSidebar ? enLanguageIcon : faLanguageIcon}
+          onClick={toggleSideBar}
+        />
+      </div>
+      <div
+        className={`min-h-screen ${
+          darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
+        }`}
+        dir="lrt"
+      >
+        <button type="button" onClick={() => setDarkMode(!darkMode)}>
+          Toggle Dark Mode
+        </button>
+      </div>
+    </div>
+  );
+}

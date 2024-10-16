@@ -10,6 +10,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
 import { useTranslation } from 'react-i18next';
+import { SideBar } from '@redesignUi/organisms/Sidebar/Sidebar';
 
 function LayoutCp() {
   const { t } = useTranslation();
@@ -48,13 +49,37 @@ function LayoutCp() {
 
   if (!loading) {
     return (
-      <div className="font-kalameh w-full min-h-screen bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
-        <div className="w-full bg-black flex flex-col justify-center items-center fixed top-0 z-10 dark:bg-slate-800 ">
-          <NavbarDashboard />
-        </div>
-        <div className="w-full h-full grid grid-cols-12 gap-1 flex-1 mt-12 ">
-          <div className="bg-white w-full col-span-12 overflow-y-auto dark:bg-slate-900">
-            <Outlet />
+      // <div className="font-kalameh w-full min-h-screen bg-gray-200 flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
+      //   <div className="w-full bg-black flex flex-col justify-center items-center fixed top-0 z-10 dark:bg-slate-800 ">
+      //     <NavbarDashboard />
+      //   </div>
+      //   <div className="w-full h-full grid grid-cols-12 gap-1 flex-1 mt-12 ">
+      //     <div className="bg-white w-full col-span-12 overflow-y-auto dark:bg-slate-900">
+      //       <Outlet />
+      //     </div>
+      //   </div>
+      // </div>
+      <div className="flex h-screen bg-white font-kalameh">
+        <div className="flex flex-col flex-1 overflow-hidden">
+          <header className="sm:shadow-sm z-10 border-neutral-200">
+            <NavbarDashboard />
+          </header>
+          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 2xl:container 2xl:mx-auto 2xl:justify-center">
+            <nav className="flex mx-auto sm:h-full">
+              <div className="flex items-center justify-center w-full h-full shadow-md z-10 sm:w-fit rounded-2xl">
+                <SideBar />
+              </div>
+            </nav>
+            <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-white mb-9">
+              <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
+                <div className="flex flex-col gap-16 sm:h-full">
+                  <div className="pt-5 sm:pt-[3.12rem] px-3 sm:px-8 sm:h-full">
+                    <Outlet />
+                  </div>
+                  {/* <MenuMobile /> */}
+                </div>
+              </div>
+            </main>
           </div>
         </div>
       </div>

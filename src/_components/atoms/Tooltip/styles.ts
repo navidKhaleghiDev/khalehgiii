@@ -23,7 +23,6 @@ export const tooltipStyles = cva(
 
 export const containerTooltipStyles = cva(
   'absolute z-20 whitespace-nowrap rounded-lg bg-gray-400 dark:bg-gray-800 py-2 px-2 text-xs text-white leading-4',
-  // 'absolute z-20 whitespace-nowrap rounded bg-black py-[6px] px-4 text-sm font-semibold text-white opacity-0 group-hover:opacity-100',
   {
     variants: {
       position: {

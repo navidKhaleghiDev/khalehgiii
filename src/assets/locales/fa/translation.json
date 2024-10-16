@@ -28,7 +28,7 @@
     "desktop": "دسکتاپ",
     "desktopV": "نسخه دسکتاپ",
     "status": "وضعیت",
-    "defaultSetting": "تنظیمات پیشفرض",
+    "defaultSetting": "تنظیمات پیش فرض",
     "search": "جستجو کنید",
     "addNewAdmin": "اضافه کردن ادمین جدید",
     "nameOfTheUser": "نام کاربر",
@@ -108,6 +108,7 @@
   "dashboard": {
     "adminLists": "لیست ادمین ها",
     "desktopLists": "لیست دسکتاپ ها",
+    "usersLists": "لیست کاربران",
     "adminPanel": "ادمین پنل",
     "fileScanReports": "گزارش اسکن فایل ها",
     "numbersOfScans": "تعداد اسکن ها",
@@ -118,7 +119,9 @@
     "saveSettings": "ذخیره تنظیمات",
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
-    "infectedFile": "فایل آلوده"
+    "infectedFile": "فایل آلوده",
+    "uba": "رفتار شناسی کاربر",
+    "extentions": "فرمت ها"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -218,7 +221,12 @@
     "user": "یوزر",
     "group": "گروه",
     "fa": "فارسی",
-    "en": "انگلیسی"
+    "en": "انگلیسی",
+    "home": "خانه",
+    "userManagement": "مدیریت کاربران",
+    "reportsFile": "گزارشات",
+    "systemStrategy": "مدیریت راهبردی",
+    "progressingChart": "نمودار پیشرفت"
   },
   "groupManagement": {
     "person": "نفر",
@@ -246,6 +254,7 @@
   },
   "license": {
     "licenseId": "شناسه لایسنس",
+    "licenses": "لایسنس ها",
     "licenseValidation": "اعتبارسنجی لایسنس",
     "licenseExpirationDate": "تاریخ انقضای لایسنس",
     "licenseCreationDate": "تاریخ ایجاد لایسنس",
@@ -263,6 +272,10 @@
     "activeNumbers": "تعداد فعال شده",
     "concurrentNumbers": "تعداد همزمان",
     "wholeNumbers": "تعداد کل "
+  },
+  "setting": {
+    "application": "Application",
+    "dass": "DaaS"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

@@ -107,6 +107,7 @@
   "dashboard": {
     "adminLists": "Admin Lists",
     "desktopLists": "Desktop Lists",
+    "usersLists": "Users Lists",
     "adminPanel": "Admin Panel",
     "fileScanReports": "File Scan Reports",
     "numbersOfScans": "Number of Scans",
@@ -117,7 +118,9 @@
     "saveSettings": "Save Settings",
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
-    "infectedFile": "infected File"
+    "infectedFile": "infected File",
+    "uba": "UBA",
+    "extentions": "Extentions List"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -217,7 +220,12 @@
     "user": "User",
     "group": "Group",
     "fa": "Persian",
-    "en": "English"
+    "en": "English",
+    "userManagement": "User Management",
+    "reportsFile": "File Reports",
+    "systemStrategy": "System Strategy",
+    "progressingChart": "Progressing Chart",
+    "home": "Home"
   },
   "groupManagement": {
     "person": "person",
@@ -245,6 +253,7 @@
   },
   "license": {
     "licenseId": "license Id",
+    "licenses": "Licenses",
     "licenseValidation": "License Validation",
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreationDate": " License Creation date ",
@@ -262,6 +271,10 @@
     "activeNumbers": "Active Numbers",
     "concurrentNumbers": "Concurrent Numbers",
     "wholeNumbers": "Whole Numbers"
+  },
+  "setting": {
+    "application": "Application",
+    "dass": "DaaS"
   },
 
   "title": {

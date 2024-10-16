@@ -4,12 +4,7 @@ import { containerTooltipStyles, tooltipStyles } from './styles';
 import { ToolTipProps } from './types';
 
 /**
- * ToolTip component
- *
  * This component provides a tooltip that appears when the user hovers over the element.
- *
- * @component
- *
  * @param {ToolTipProps} props - The props for ToolTip component.
  * @param {React.ReactNode} props.children - The child elements that trigger the tooltip on hover.
  * @param {string} props.tooltip - The content to be displayed inside the tooltip.
