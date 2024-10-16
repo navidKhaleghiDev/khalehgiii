@@ -19,18 +19,16 @@ export function ServiceCard(props: ServiceCardProps): JSX.Element {
       rounded="xxl"
     >
       <div className="w-full lg:flex flex flex-col justify-center items-center lg:justify-between lg:items-center lg:flex-row">
-        <div className=" w-full lg:flex lg:flex-col lg:items-end gap- flex flex-row items-baseline box-border">
+        <div className=" w-full lg:flex lg:flex-col lg:items-end gap-2 flex flex-row items-baseline box-border">
           <Typography
-            variant="body5"
             color="black"
-            className="font-semibold rtl:text-right ltr:text-left whitespace-nowrap lg:w-full w-1/2"
+            className="font-semibold rtl:text-right ltr:text-left whitespace-nowrap lg:w-full  lg:text-base text-sm w-1/2"
           >
             {title}
           </Typography>
           <Typography
-            variant="body6"
             color="neutralMiddle"
-            className="rtl:text-right ltr:text-left lg:w-full w-1/2"
+            className="rtl:text-right ltr:text-left lg:w-full lg:text-sm text-xs w-1/2"
           >
             {date}
           </Typography>
