@@ -245,6 +245,14 @@
     "onlineUser": "Active User",
     "offlineUser": "Offline User "
   },
+  "fileScan": {
+    "choseDomain": "Domain",
+    "grouping": "Grouping",
+    "adminSearch": "Search",
+    "todayScans": "Today's scans",
+    "onlineUsers": "Online users",
+    "scannedFiles": "Scanned files"
+  },
   "license": {
     "licenseId": "license Id",
     "licenseValidation": "License Validation",
