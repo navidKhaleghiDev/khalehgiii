@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import useSWR from 'swr';
 
 import { Typography } from '@redesignUi/atoms/Typography';
@@ -12,7 +13,6 @@ import { IDaAs } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 
 import { UsersDaAsList } from './UsersDaAsList';
-import FilterReports from './FilterReports';
 
 // Note: Remember to add the i18 title
 
@@ -27,6 +27,15 @@ export function ReportFileScanPage() {
     http.fetcherSWR
   );
 
+  const todayScansCount = useMemo(
+    () => analyzeScan?.data?.info?.today_scans ?? 0,
+    [analyzeScan]
+  );
+  const onlineUsersCount = useMemo(
+    () => usersDaas?.data?.online_users ?? 0,
+    [usersDaas]
+  );
+
   return (
     <div className="bg-gray-100">
       <Typography color="black" variant="body2B">
@@ -36,17 +45,16 @@ export function ReportFileScanPage() {
         <DashboardCard
           icon={usersThreeIcon}
           title="اسکن های امروز"
-          count={analyzeScan?.data?.info?.today_scans ?? 0}
+          count={todayScansCount}
           onClick={() => console.log('click')}
         />
         <DashboardCard
           icon={WifiHighDuotone}
           title="کاربران آنلاین"
-          count={usersDaas?.data?.online_users ?? 0}
+          count={onlineUsersCount}
           onClick={() => console.log('click')}
         />
       </div>
-      <FilterReports />
       <UsersDaAsList />
     </div>
   );

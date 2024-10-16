@@ -1,44 +1,67 @@
-import { useState } from 'react';
+import useSWR from 'swr';
 
 import { Dropdown } from '@redesignUi/atoms';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import PhFunnelSimple from '@iconify-icons/ph/funnel-simple';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
+import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
+import { TGroup } from '@src/services/users/types';
+import { IResponseData } from '@src/types/services';
+import { E_USERS_GROUPS } from '@src/services/users/endpoint';
+import { http } from '@src/services/http';
+
 import {
   domainOptions,
   filterOptions,
   groupOptions,
 } from '../constants/constants';
 
-// Note : The DropDownWithIcon has been added in another branch (pending)
+type FilterReportsProps = {
+  searchQuery: string;
+  handelSearchQuery: (value: string) => void;
+  setFilterQuery: (value: OptionSelect | OptionSelect[] | null) => void;
+};
 
-export default function FilterReports() {
-  const [searchValue, setSearchValue] = useState('');
+export default function FilterReports({
+  searchQuery,
+  handelSearchQuery,
+  setFilterQuery,
+}: FilterReportsProps) {
+  const { data } = useSWR<IResponseData<TGroup[]>>(
+    E_USERS_GROUPS,
+    http.fetcherSWR
+  );
+  const groupOptionDas: OptionSelect[] | undefined = data?.data.map((item) => {
+    return {
+      id: String(item.id),
+      label: item.name,
+      value: item.name,
+    };
+  });
 
   return (
     <div className="flex items-center gap-[1.875rem] mt-[7.625rem]">
       <SearchInput
         id="adminSearch"
         name="adminSearch"
-        onChange={(value) => setSearchValue(value)}
-        value={searchValue}
+        onChange={handelSearchQuery}
+        value={searchQuery}
         placeholder="جستجوی ادمین"
         hiddenError
         className="top-[0.625rem]"
       />
-      {/* This feacher does not work */}
+      {/* This item does not work does not have service */}
       <Dropdown
         name="domain"
-        onChange={(data) => console.log(data)}
+        onChange={() => console.log('This functionality does not work know')}
         options={domainOptions}
         placeHolder="انتخاب دامنه"
         size="sm"
-        className="text-black "
       />
       <Dropdown
         name="group"
-        onChange={(data) => console.log(data)}
-        options={groupOptions}
+        onChange={setFilterQuery}
+        options={groupOptionDas ?? groupOptions}
         placeHolder="گروه بندی"
         size="sm"
       />
@@ -46,6 +69,7 @@ export default function FilterReports() {
         icon={PhFunnelSimple}
         options={filterOptions}
         containerClassName="text-sm"
+        onSelect={() => console.log('searchItem')}
       />
     </div>
   );
