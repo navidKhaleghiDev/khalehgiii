@@ -246,6 +246,14 @@
     "onlineUser": "یوزر انلاین",
     "offlineUser": "یوزر افلاین"
   },
+  "fileScan": {
+    "grouping": "گروهبندی",
+    "adminSearch": "جستجوی ادمین",
+    "choseDomain": "انتخاب دامنه",
+    "todayScans": "اسکن های امروز",
+    "onlineUsers": "کابران آنلاین",
+    "scannedFiles": "فایل های اسکن شده"
+  },
   "license": {
     "licenseId": "شناسه لایسنس",
     "licenseValidation": "اعتبارسنجی لایسنس",
