@@ -76,7 +76,7 @@ export function UsersDaAsList() {
       <FilterReports
         searchQuery={searchQuery}
         handelSearchQuery={handelSearchValue}
-        setFilterQuery={handelFilterQuery}
+        handelfilterList={handelFilterQuery}
       />
       <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
         <BaseTable
