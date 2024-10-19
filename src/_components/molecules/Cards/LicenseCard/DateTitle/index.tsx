@@ -18,7 +18,7 @@ export function DateTitle({ date, color }: DateTitleProps) {
       })} 
 `}
     >
-      <div className="flex-col gap-1 flex leading-4">
+      <div className="flex-col gap-1 flex">
         <Typography
           variant="body6"
           color="neutralDark"

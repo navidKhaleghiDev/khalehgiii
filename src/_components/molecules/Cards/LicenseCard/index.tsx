@@ -29,7 +29,7 @@ export function LicenseCard(props: LicenseCardProps): JSX.Element {
     <CardButton
       border
       borderColor="neutralLight"
-      className={`w-full sm:h-28 h-[5.62rem] p-5 flex items-center outline-none text-right overflow-hidden ${
+      className={`w-full max-w-[15.87rem] sm:h-28 h-[5.62rem] p-5 flex items-center outline-none text-right overflow-hidden ${
         className ?? ''
       }`}
       color="neutralDark"
@@ -37,14 +37,14 @@ export function LicenseCard(props: LicenseCardProps): JSX.Element {
       shadow="base"
       rounded="xxl"
     >
-      <div className="w-full flex items-center gap-5 flex-row-reverse">
-        <div className="flex flex-col items-start gap-2 w-2/3 box-border leading-3">
+      <div className="w-full flex items-center lg:gap-5 gap[0.62rem] flex-row-reverse">
+        <div className="flex flex-col items-start lg:gap-2  w-2/3 box-border">
           <Typography variant="body6B" color="black">
             {title}
           </Typography>
           <DateTitle color={color} date={date} />
         </div>
-        <div className="w-1/3">
+        <div className="lg:w-1/3">
           <DoughnutChart
             subValue={subValue}
             totalValue={totalValue}

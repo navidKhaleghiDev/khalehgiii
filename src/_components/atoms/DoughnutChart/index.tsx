@@ -69,8 +69,10 @@ export function DoughnutChart(props: DoughnutChartProps): JSX.Element {
 
   return (
     <div
-      className={`relative font-kalameh ${
-        type === 'license' ? 'sm:w-20 sm:h-20 w-14 h-14' : 'w-[90px] h-[90px]'
+      className={`relative ${
+        type === 'license'
+          ? 'sm:w-20 sm:h-20 w-14 h-14'
+          : 'w-[5.62rem] h-[5.62rem]'
       }`}
     >
       <Pie data={data} options={options} />
