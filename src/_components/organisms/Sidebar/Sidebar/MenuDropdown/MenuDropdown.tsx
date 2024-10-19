@@ -25,7 +25,7 @@ export function MenuDropdown({
 
   return (
     <div
-      className="absolute right-full ltr:left-full z-50 w-40 bg-white dark:bg-gray-600 shadow-md rounded-lg mt-16 mx-1 overflow-hidden"
+      className="absolute right-full ltr:left-full w-40 bg-white dark:bg-gray-600 shadow-md rounded-lg mt-16 mx-1 overflow-hidden"
       onPointerLeave={mouseHover}
     >
       {items.map((item) => (
@@ -36,7 +36,7 @@ export function MenuDropdown({
             tabIndex={0}
             className={`${menuItemStyles(
               {}
-            )} h-6 bg-gray-100 dark:hover:bg-gray-500 rounded-md`}
+            )} h-6 hover:bg-gray-100 dark:hover:bg-gray-500 rounded-md`}
             onPointerDown={() => navigate(item.path)}
           >
             {item.icon && <BaseIcon icon={item.icon} />}

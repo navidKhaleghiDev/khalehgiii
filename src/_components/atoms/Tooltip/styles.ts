@@ -26,22 +26,28 @@ export const containerTooltipStyles = cva(
   {
     variants: {
       position: {
-        left: 'right-full top-1/2  mr-3 -translate-y-1/2',
-        topStart: 'bottom-full left-0  mb-3 -translate-x-2/3',
-        top: 'bottom-full left-1/2  mb-3 -translate-x-1/2',
-        topEnd: 'bottom-full right-0  mb-3 translate-x-2/3',
-        right: 'left-full top-1/2  ml-3 -translate-y-1/2',
-        bottomStart: 'top-full left-0  mt-3 -translate-x-2/3',
-        bottom: 'top-full left-1/2  mt-3 -translate-x-1/2',
-        bottomEnd: 'top-full right-0  mt-3 translate-x-2/3',
+        left: 'right-full top-1/2 mr-3 -translate-y-1/2',
+        topStart: 'bottom-full left-0 mb-3 -translate-x-2/3',
+        top: 'bottom-full left-1/2 mb-3 -translate-x-1/2',
+        topEnd: 'bottom-full right-0 mb-3 translate-x-2/3',
+        right: 'left-full top-1/2 ml-3 -translate-y-1/2',
+        bottomStart: 'top-full left-0 mt-3 -translate-x-2/3',
+        bottom: 'top-full left-1/2 mt-3 -translate-x-1/2',
+        bottomEnd: 'top-full right-0 mt-3 translate-x-2/3',
       },
       show: {
         true: '',
         false: 'hidden',
       },
+      truncate: {
+        true: 'whitespace-nowrap max-w-xs text-ellipsis',
+        false: '',
+      },
     },
     defaultVariants: {
       position: 'bottom',
+      show: false,
+      truncate: false,
     },
   }
 );

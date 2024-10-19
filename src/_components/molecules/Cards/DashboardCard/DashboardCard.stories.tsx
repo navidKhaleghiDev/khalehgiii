@@ -47,7 +47,7 @@ const meta = {
           display: 'flex',
           width: '350px',
           direction: 'rtl',
-          fontFamily: 'font-kalameh',
+          fontFamily: 'kalameh',
         }}
       >
         <Story />

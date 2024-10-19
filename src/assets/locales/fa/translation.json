@@ -2,7 +2,8 @@
   "login": {
     "login": "ورود به سامانه",
     "loginTitle": "برای ورود نام کاربری و کلمه عبور را وارد کنید",
-    "otp": " لطفا کد دریافت شده را وارد کنید",
+    "otp": "کد ارسال شده به ایمیل‌تان را وارد کنید",
+    "otpCode": "واردکردن کد",
     "confirm": "تایید",
     "forget": "رمز عبور خود را فراموش کرده اید؟"
   },
@@ -103,7 +104,8 @@
     "activeDeactive": "فعال /غیرفعال",
     "activeQrcode": "Qrcode",
     "activeOtp": "Otp",
-    "isRecording": "در حال ضبط"
+    "isRecording": "در حال ضبط",
+    "yesterday": "دیروز"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -245,6 +247,8 @@
     "newUser": "کاربر جدید"
   },
   "onlineAssistance": {
+    "loginType": "نوع ورود",
+    "loginTypeChoose": "برای ورود نوع فعالیت خود را انتخاب کنید",
     "internet": "اینترنت",
     "remote": "دسترسی دستیار ",
     "exitFromUserProfile": "خروج از حساب کاربری",
@@ -281,7 +285,8 @@
     "licenseNumbers": "تعداد لایسنس",
     "activeNumbers": "تعداد فعال شده",
     "concurrentNumbers": "تعداد همزمان",
-    "wholeNumbers": "تعداد کل "
+    "wholeNumbers": "تعداد کل ",
+    "expirationDate": "تاریخ انقضا"
   },
   "setting": {
     "application": "Application",

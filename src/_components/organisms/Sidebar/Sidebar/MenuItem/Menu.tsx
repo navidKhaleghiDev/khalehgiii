@@ -38,7 +38,12 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
           target={item.isNewTab ? '_blank' : '_self'}
         >
           <div className={`flex items-center ${!collapsed && 'fixed'}`}>
-            {item?.icon && <BaseIcon icon={item.icon} className="w-6 h-6" />}
+            {item?.icon && (
+              <BaseIcon
+                icon={item.icon}
+                className="w-6 h-6 text-gray-500 dark:text-gray-300"
+              />
+            )}
             {!collapsed && (
               <Typography
                 className=" pt-1 px-2 hidden sm:block "
@@ -58,7 +63,14 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
           })}
         >
           <div className={`flex items-center  ${!collapsed && 'fixed'}`}>
-            {item?.icon && <BaseIcon icon={item.icon} className="w-6 h-6" />}
+            {item?.icon && (
+              <BaseIcon
+                icon={item.icon}
+                className="w-6 h-6"
+                text-gray-500
+                dark:text-gray-300
+              />
+            )}
             {!collapsed && (
               <Typography className="hidden sm:block " variant="body5">
                 {item.label}

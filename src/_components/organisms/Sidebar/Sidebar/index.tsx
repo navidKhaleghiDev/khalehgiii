@@ -13,6 +13,10 @@ import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import User from '@iconify-icons/ph/user';
 import PhSignOut from '@iconify-icons/ph/sign-out';
+import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
+import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
+import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
+import { useTheme } from '@context/settings/themeContext';
 
 import { MenuDropdown } from './MenuDropdown/MenuDropdown';
 import { MenuItem } from './MenuItem';
@@ -21,16 +25,15 @@ import { NavigationProps } from './types';
 import { MenuItemAccordion } from './MenuItemAccordion';
 
 export function SideBar(): JSX.Element {
-  const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
-  const { lang } = useLanguage();
-
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [isDropdownVisible, setDropdownVisible] =
     useState<NavigationProps | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
-
+  const { pathname } = useLocation();
+  const { user } = useUserContext();
+  const { setUser } = useUserContext();
+  const { lang } = useLanguage();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const toggleSideBar = () => {
@@ -46,11 +49,27 @@ export function SideBar(): JSX.Element {
 
   return (
     <div
-      className={`flex flex-col justify-between items-end h-full 
+      className={`relative z-30 hidden xl:flex xl:flex-col justify-between items-end h-full 
         ${toggleSidebar ? 'w-64' : 'w-16'}
-        transition-all duration-500 ease-in-out dark:bg-gray-600`}
+        transition-all duration-500 easet bg-white dark:bg-gray-600 rounded-lg`}
     >
-      <div className="flex flex-col items-center w-full mt-5 px-6 relative">
+      <div className="flex flex-col items-center w-full mt-5 px-3">
+        <div
+          className={`flex flex-col ${
+            toggleSidebar ? 'items-start' : 'items-center'
+          } w-full`}
+        >
+          <BaseSwitchWithIcon
+            id="1"
+            name="dark"
+            checked={isDark}
+            onChange={toggleTheme}
+            rightIcon={sunRisingTwotoneLoop}
+            leftIcon={moonTwotoneAltLoop}
+          />
+          <hr className="w-full bg-white border border-gray-300 rounded my-5" />
+        </div>
+
         {navigationSideBar.map((item: NavigationProps, index) => {
           const shouldAddHR = [2].includes(index);
 
@@ -66,9 +85,6 @@ export function SideBar(): JSX.Element {
                   pathname={pathname}
                   collapsed={!toggleSidebar}
                 />
-                {shouldAddHR && (
-                  <hr className="w-full bg-white border border-gray-300 rounded" />
-                )}
               </ToolTip>
             ) : (
               <div className="w-full" key={item.id}>
@@ -77,9 +93,6 @@ export function SideBar(): JSX.Element {
                   pathname={pathname}
                   collapsed={!toggleSidebar}
                 />
-                {shouldAddHR && (
-                  <hr className="w-full bg-white border border-gray-300 rounded" />
-                )}
               </div>
             );
           }
@@ -105,7 +118,7 @@ export function SideBar(): JSX.Element {
               onPointerEnter={() => {
                 setDropdownVisible(item);
               }}
-              className={`flex justify-center flex-col items-center bg-white dark:bg-gray-600 ${
+              className={`flex justify-center flex-col items-center${
                 toggleSidebar ? 'w-full' : null
               }`}
             >
@@ -115,7 +128,7 @@ export function SideBar(): JSX.Element {
                 collapsed={!toggleSidebar}
               />
               {shouldAddHR && (
-                <hr className="w-full bg-white border border-gray-300 rounded my-2" />
+                <hr className="w-10 bg-white border border-gray-300 rounded my-5" />
               )}
               {isDropdownVisible?.id === item.id && !toggleSidebar && (
                 <MenuDropdown

@@ -45,7 +45,7 @@ export function DropDownWithIcon({
         icon={icon}
         onClick={toggleOpen}
         size="xl"
-        className="ml-4 rounded-3xl"
+        className="rounded-3xl"
         color="teal"
       />
       <div

@@ -6,6 +6,7 @@ import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { Typography } from '@redesignUi/atoms/Typography';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
+import { Avatar } from '@redesignUi/atoms';
 
 import { LoginFieldValues } from '../types';
 
@@ -22,6 +23,9 @@ export function LoginForm({
 
   return (
     <>
+      <div>
+        <Avatar icon={userIcon} size="lg" className="mb-[0.81rem]" />
+      </div>
       <Typography color="neutral" variant="body3" className="mb-[4.75rem]">
         {t('login.loginTitle')}
       </Typography>
