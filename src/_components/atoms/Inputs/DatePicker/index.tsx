@@ -87,7 +87,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
           onChange(val);
         }}
         weekDays={farsi ? ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج'] : undefined}
-        className={!darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
+        className={darkMode ? 'custom-calendar-dark' : 'custom-calendar'}
         arrow={false}
         value={value}
         name={name}
