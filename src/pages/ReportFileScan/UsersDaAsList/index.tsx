@@ -105,6 +105,7 @@ export function UsersDaAsList() {
           open={open}
           setOpen={setOpen}
           type="content"
+          className="dark:bg-gray-700"
           content={
             <div className=" w-[20.875rem] sm:w-[39.68rem]">
               <div className="flex items-center gap-5">
