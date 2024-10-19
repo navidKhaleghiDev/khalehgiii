@@ -6,27 +6,22 @@ import { IconButton } from '@ui/atoms/BaseButton';
 export function BaseTableHeader({ header, onClick, collapse }) {
   const { t } = useTranslation();
 
-  console.log(collapse);
   return (
-    <thead className="w-full flex items-center justify-between rounded-lg h-8 bg-white mb-3">
+    <thead className="w-full px-3 flex items-center justify-between rounded-lg h-8 bg-white mb-3">
       {header.map((head, index) => (
-        <React.Fragment key={head.label}>
-          <tr className={`${head.class}`}>
-            <th
-              className="flex justify-center
+        <tr className={`${head.class}`} key={head.label}>
+          <th
+            className="flex justify-center
              "
-            >
-              <Typography variant="body5" color="neutral" type="p">
-                {t(head.label)}
-              </Typography>
-              {head.sort === 'sort' && (
-                <IconButton onClick={onClick} icon={icon} />
-              )}
-            </th>
-          </tr>
-        </React.Fragment>
+          >
+            <Typography variant="body5" color="neutral" type="p">
+              {t(head.label)}
+            </Typography>
+            {/* {head.sort === 'sort' && <IconButton onClick={onClick} />} */}
+          </th>
+        </tr>
       ))}
-      {collapse && <div className=" w-1/12 h-10 bg-red-500  " />}
+      {collapse && <tr className=" w-1/12  h-10 " />}
     </thead>
   );
 }

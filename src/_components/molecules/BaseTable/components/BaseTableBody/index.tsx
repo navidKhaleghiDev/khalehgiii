@@ -1,32 +1,28 @@
 import { NoResult } from '@redesignUi/molecules/NoResult';
-import { BaseTableDesktopRow } from '../BaseTableDesktopRow';
-import { BaseTableMobileRow } from '../BaseTableMobileRow';
+import { BaseTableRow } from '../BaseTableRow';
 
-export function BaseTableBody({ body, header, onClick, isMobile }) {
+export function BaseTableBody({
+  body,
+  header,
+  onClick,
+  isMobile,
+  collapseHeader,
+}) {
   return (
     <tbody>
       {body.length >= 1 ? (
         body.map((bodyItem, index) => {
           return (
-            <div key={bodyItem.id} className={`w-full ${header.class}`}>
-              {!isMobile ? (
-                <BaseTableDesktopRow
-                  body={body}
-                  row={bodyItem}
-                  header={header}
-                  onClick={onClick}
-                  index={index}
-                />
-              ) : (
-                <BaseTableMobileRow
-                  body={body}
-                  row={bodyItem}
-                  header={header}
-                  onClick={onClick}
-                  index={index}
-                />
-              )}
-            </div>
+            <BaseTableRow
+              key={bodyItem.id}
+              isMobile={isMobile}
+              collapseHeader={collapseHeader}
+              body={body}
+              row={bodyItem}
+              header={header}
+              onClick={onClick}
+              index={index}
+            />
           );
         })
       ) : (

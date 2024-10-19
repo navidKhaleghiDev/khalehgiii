@@ -12,13 +12,15 @@ export function BaseTable(props) {
     nonCollapsedDesktop: [],
   });
 
+  const isCollapse = headerCollapse.desktop.length >= 1;
+
   const updatedHeader = isMobile
     ? headerCollapse.nonCollapsedMobile
     : headerCollapse.nonCollapsedDesktop;
 
   const updatedHeaderForBody = isMobile
-    ? headerCollapse.nonCollapsedMobile
-    : headerCollapse.nonCollapsedDesktop;
+    ? headerCollapse.mobile
+    : headerCollapse.desktop;
 
   useEffect(() => {
     const categorizedData = header.reduce(
@@ -52,13 +54,14 @@ export function BaseTable(props) {
       <BaseTableHeader
         header={updatedHeader}
         onClick={onClick}
-        collapse={headerCollapse.desktop.length >= 1}
+        collapse={isCollapse}
       />
       {loading ? (
         <LoadingSpinner />
       ) : (
         <BaseTableBody
           body={body}
+          collapseHeader={updatedHeaderForBody}
           header={updatedHeader}
           onClick={onClick}
           isMobile={isMobile}

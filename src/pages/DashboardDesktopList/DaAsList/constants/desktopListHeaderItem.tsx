@@ -14,28 +14,24 @@ import {
   EPermissionSessionRecording,
 } from '@src/types/permissions';
 
-const style = localStorage.getItem('lang') === 'fa' ? 'mr-40' : 'ml-40';
-
 export const desktopListHeaderItem = [
   {
     label: 'table.email',
     id: 'email',
     type: 'none',
-    class: 'w/1/12',
+    class: 'w-2/12',
   },
   {
     label: 'table.httpPort',
     id: 'http_port',
     type: 'none',
-    class: `w-2/12  ${style} `,
-    isCollapsed: true,
+    class: `w-2/12  `,
   },
   {
     label: 'table.httpsPort',
     id: 'https_port',
     type: 'none',
     class: 'w-2/12 ',
-    isCollapsed: true,
   },
   {
     label: 'table.accessCapacity',
@@ -44,29 +40,26 @@ export const desktopListHeaderItem = [
     component: (props: any) => (
       <Check id={!props.row.exceeded_usage} header={props.head} />
     ),
-    class: 'w/1/12 ',
-    isCollapsed: true,
+    class: 'w-1/12 ',
   },
   {
     label: 'table.containerId',
     id: 'container_id',
     type: 'tooltip',
-    class: 'w/1/12 ',
-    isCollapsed: true,
+    class: 'w-1/12 ',
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'tooltip',
-    class: ' w/1/12 ',
-    isMobileCollapsed: true,
+    class: ' w-1/12 ',
   },
   {
     label: 'table.lastLoginIp',
     id: 'last_login_ip',
     type: 'none',
-    class: 'w/1/12 ',
-    isMobileCollapsed: true,
+    class: 'w-1/12 ',
+    isCollapsed: true,
   },
   {
     label: 'table.status',
@@ -74,60 +67,60 @@ export const desktopListHeaderItem = [
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
     class: 'w-2/12 ',
-    isMobileCollapsed: true,
+    isCollapsed: true,
   },
 
-  // {
-  //   label: 'table.desktop',
-  //   id: 'is_lock',
-  //   type: 'component',
-  //   component: (props: any) => (
-  //     <ActionLockCell
-  //       id={props.row.is_lock}
-  //       row={props.row}
-  //       onClick={props.onClick}
-  //     />
-  //   ),
-  //   permission: EPermissionDaas.CHANGE,
-  //   class: 'w-2/12 ',
-  //   isMobileCollapsed: true,
-  // },
+  {
+    label: 'table.desktop',
+    id: 'is_lock',
+    type: 'component',
+    component: (props: any) => (
+      <ActionLockCell
+        id={props.row.is_lock}
+        row={props.row}
+        onClick={props.onClick}
+      />
+    ),
+    permission: EPermissionDaas.CHANGE,
+    class: 'w-2/12 ',
+    isCollapsed: true,
+  },
 
-  // {
-  //   label: 'table.desktopV',
-  //   id: 'daas_version',
-  //   type: 'none',
-  //   class: 'w-2/12 ',
-  //   isMobileCollapsed: true,
-  // },
+  {
+    label: 'table.desktopV',
+    id: 'daas_version',
+    type: 'none',
+    class: 'w-2/12 ',
+    isCollapsed: true,
+  },
 
-  // {
-  //   label: 'table.usedTime',
-  //   id: 'usage_in_minute',
-  //   type: 'component',
-  //   component: (props: any) => (
-  //     <UsedTimeDass time={props.row.usage_in_minute} />
-  //   ),
-  //   class: 'w-2/12 ',
-  //   isMobileCollapsed: true,
-  // },
-  // {
-  //   label: 'table.accessSettingsTime',
-  //   id: 'updated_at',
-  //   type: 'component',
-  //   component: (props: any) => (
-  //     <SetAccessTime
-  //       id={props.row.id as string}
-  //       onClickActions={props.onClick}
-  //       timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
-  //       timeLimitDuration={props.row.daas_configs.time_limit_duration}
-  //     />
-  //   ),
-  //   dir: 'rtl',
-  //   class: 'w-3/12 ',
-  //   isMobileCollapsed: true,
-  //   permission: EPermissionDaas.CHANGE,
-  // },
+  {
+    label: 'table.usedTime',
+    id: 'usage_in_minute',
+    type: 'component',
+    component: (props: any) => (
+      <UsedTimeDass time={props.row.usage_in_minute} />
+    ),
+    class: 'w-2/12 ',
+    isCollapsed: true,
+  },
+  {
+    label: 'table.accessSettingsTime',
+    id: 'updated_at',
+    type: 'component',
+    component: (props: any) => (
+      <SetAccessTime
+        id={props.row.id as string}
+        onClickActions={props.onClick}
+        timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
+        timeLimitDuration={props.row.daas_configs.time_limit_duration}
+      />
+    ),
+    dir: 'rtl',
+    class: 'w-3/12 ',
+    isCollapsed: true,
+    permission: EPermissionDaas.CHANGE,
+  },
 
   // {
   //   label: 'table.defaultSetting',
@@ -140,7 +133,7 @@ export const desktopListHeaderItem = [
   //     />
   //   ),
   //   class: 'w-2/12 ',
-  //   isMobileCollapsed: true,
+  //   isCollapsed: true,
   // },
   // {
   //   label: 'table.recordingActivity',
@@ -156,7 +149,7 @@ export const desktopListHeaderItem = [
   //   ],
   //   permission: EPermissionSessionRecording.VIEW,
   //   class: 'w-2/12',
-  //   isMobileCollapsed: true,
+  //   isCollapsed: true,
   // },
 
   // {
