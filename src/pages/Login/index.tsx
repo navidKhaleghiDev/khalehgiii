@@ -32,7 +32,7 @@ export function LoginPageCp() {
   const { t } = useTranslation();
 
   const [error, setError] = useState<string | null>(null);
-  const [isOtpActive, setIsOtpActive] = useState<boolean>(true);
+  const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
   const [loadingButton, setLoadingButton] = useState(false);
 
   const { control, handleSubmit } = useForm<LoginFieldValues>({
