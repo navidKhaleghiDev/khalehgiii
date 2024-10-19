@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@redesignUi/atoms';
 import { BackButton } from '@redesignUi/atoms/BackButton';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
-import { useTranslation } from 'react-i18next';
 import {
   API_USERS_LOGOUT,
   API_USERS_LOGOUT_ONLINE_ASSISTANCE,
@@ -62,9 +62,9 @@ export function LoginOnlineAssistance() {
 
   return (
     <div className="font-kalameh bg-teal-500 flex h-screen ">
-      <div className="bg-white w-full lg:w-[52%] flex flex-col items-center lg:rtl:rounded-l-3xl lg:ltr:rounded-r-3xl ">
+      <div className="bg-gray-50 w-full lg:w-[52%] flex flex-col items-center lg:rtl:rounded-l-3xl lg:ltr:rounded-r-3xl ">
         <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
-          <div className="flex items-center gap-[0.62rem]">
+          <div className="flex items-center gap-2.5">
             <BackButton onClick={logout} dir={lang === 'fa' ? 'rtl' : 'ltr'} />
             <BaseDropdownIcon
               icon={languageIcon}
@@ -78,11 +78,11 @@ export function LoginOnlineAssistance() {
           <div className="items-center justify-center flex flex-col gap-1 p-5">
             <Typography
               variant="body1"
-              className="text-neutral-900 font-semibold leading-8"
+              className="text-neutral-900 font-semibold"
             >
               {t('onlineAssistance.loginType')}
             </Typography>
-            <Typography className="text-neutral-500 leading-7" variant="body3">
+            <Typography className="text-neutral-500" variant="body3">
               {t('onlineAssistance.loginTypeChoose')}
             </Typography>
           </div>
