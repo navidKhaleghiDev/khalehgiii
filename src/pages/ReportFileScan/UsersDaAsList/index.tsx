@@ -25,7 +25,7 @@ export function UsersDaAsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [modelId, setModelId] = useState('');
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [filterList, setFilterList] = useState<string | number>();
   const userPermissions = useUserPermission();
 

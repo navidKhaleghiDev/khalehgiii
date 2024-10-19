@@ -2,9 +2,9 @@ import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@redesignUi/atoms/Typography';
-import { DashboardCard } from '@redesignUi/molecules/Cards/DashboardCard';
 import usersThreeIcon from '@iconify-icons/ph/users-three';
 import WifiHighDuotone from '@iconify-icons/ph/wifi-high-duotone';
+import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 import { IResponsePagination, ISwrResponse } from '@src/types/services';
 import { http, HTTP_ANALYSES } from '@src/services/http';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
@@ -34,18 +34,17 @@ export function ReportFileScanPage() {
       <Typography color="black" variant="body2B">
         {t('fileScan.scannedFiles')}
       </Typography>
-      <div className="flex items-center gap-[1.875rem] mt-7">
-        <DashboardCard
+      <div className="flex items-center gap-[1.875rem] mt-7 max-w-[45.62rem]">
+        <UsersInfoCard
           icon={usersThreeIcon}
           title={t('fileScan.todayScans')}
+          iconColor="neutral"
           count={analyzeScan?.data?.info?.today_scans ?? 0}
-          onClick={() => console.log('click')}
         />
-        <DashboardCard
+        <UsersInfoCard
           icon={WifiHighDuotone}
           title={t('fileScan.onlineUsers')}
           count={usersDaas?.data?.online_users ?? 0}
-          onClick={() => console.log('click')}
         />
       </div>
       <UsersDaAsList />
