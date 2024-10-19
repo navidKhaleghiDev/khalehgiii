@@ -34,7 +34,7 @@ export function ReportFileScanPage() {
       <Typography color="black" variant="body2B">
         {t('fileScan.scannedFiles')}
       </Typography>
-      <div className="flex items-center gap-[1.875rem] mt-7 max-w-[45.62rem]">
+      <div className="flex items-center gap-[1.875rem] mt-7 max-w-[21.875rem] md:max-w-[45.62rem]">
         <UsersInfoCard
           icon={usersThreeIcon}
           title={t('fileScan.todayScans')}

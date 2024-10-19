@@ -51,17 +51,20 @@ export default function FilterReports({
 
   // Note: cause the dropdown has the service call for the groups it may have skelton
   return (
-    <div className="flex items-center gap-[1.875rem] mt-[7.625rem]">
-      <SearchInput
-        id="adminSearch"
-        name="adminSearch"
-        onChange={handelSearchQuery}
-        value={searchQuery}
-        placeholder={t('fileScan.adminSearch')}
-        hiddenError
-        dir={dir === 'rtl' ? 'rtl' : 'ltr'}
-        className="top-[0.625rem]"
-      />
+    <div className="flex items-center flex-wrap gap-[1.875rem] mt-[7.625rem]">
+      <div className="top-[0.625rem] w-40 md:w-[15.9rem]">
+        <SearchInput
+          id="adminSearch"
+          name="adminSearch"
+          onChange={handelSearchQuery}
+          value={searchQuery}
+          placeholder={t('fileScan.adminSearch')}
+          hiddenError
+          fullWidth
+          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          className="top-[0.625rem]"
+        />
+      </div>
       {/* This item does not work does not have service */}
       <Dropdown
         name="domain"
