@@ -1,5 +1,5 @@
 import { IconifyIcon } from '@iconify/react';
-import { RoutePathType } from '@src/routes/types';
+import { RoutePathType } from '@src/routes/routesConstants';
 
 export interface INavigation {
   id: string;

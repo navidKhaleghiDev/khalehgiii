@@ -22,8 +22,8 @@ function ToolTip({ children, tooltip, position }: ToolTipProps): JSX.Element {
         {tooltip}
       </div>
       <div
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
+        onPointerEnter={() => setShow(true)}
+        onPointerLeave={() => setShow(false)}
       >
         {children}
       </div>

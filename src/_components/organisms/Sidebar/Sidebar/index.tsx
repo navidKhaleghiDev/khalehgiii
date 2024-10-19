@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 import { useLanguage } from '@context/settings/languageContext';
@@ -43,16 +43,6 @@ export function SideBar(): JSX.Element {
   };
   const enLanguageIcon = lang === 'en' ? PhCaretDoubleLeft : PhCaretDoubleRight;
   const faLanguageIcon = lang === 'fa' ? PhCaretDoubleLeft : PhCaretDoubleRight;
-
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
 
   return (
     <div
@@ -112,7 +102,9 @@ export function SideBar(): JSX.Element {
           ) : (
             <div
               key={item.id}
-              onPointerEnter={() => setDropdownVisible(item)}
+              onPointerEnter={() => {
+                setDropdownVisible(item);
+              }}
               className={`flex justify-center flex-col items-center bg-white dark:bg-gray-600 ${
                 toggleSidebar ? 'w-full' : null
               }`}
@@ -192,16 +184,6 @@ export function SideBar(): JSX.Element {
           icon={toggleSidebar ? enLanguageIcon : faLanguageIcon}
           onClick={toggleSideBar}
         />
-      </div>
-      <div
-        className={`min-h-screen ${
-          darkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'
-        }`}
-        dir="lrt"
-      >
-        <button type="button" onClick={() => setDarkMode(!darkMode)}>
-          Toggle Dark Mode
-        </button>
       </div>
     </div>
   );
