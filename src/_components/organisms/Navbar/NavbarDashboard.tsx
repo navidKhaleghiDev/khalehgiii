@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import PhGlobe from '@iconify-icons/ph/globe';
-import { IconButtonBadge } from '@redesignUi/atoms/IconButtonBadge';
 import { LogoSvg } from '@redesignUi/atoms/Svgs/LogoSvg';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
