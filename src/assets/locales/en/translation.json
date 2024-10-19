@@ -120,7 +120,8 @@
     "extensionList": "Extension Lists",
     "infectedFile": "infected File",
     "uba": "UBA",
-    "extentions": "Extentions List"
+    "extentions": "Extentions List",
+    "days": "Days"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -141,6 +142,7 @@
     "sureAboutThis": "Are You Sure About This ?",
     "yes": "Yes",
     "no": "No",
+    "selectDate": "Select Date",
     "sucessfylySaved": "Successfully Saved",
     "lastName": "Last Name",
     "name": "Name",
@@ -250,6 +252,14 @@
     "members": "Member of Groups",
     "onlineUser": "Active User",
     "offlineUser": "Offline User "
+  },
+  "fileScan": {
+    "choseDomain": "Domain",
+    "grouping": "Grouping",
+    "adminSearch": "Search",
+    "todayScans": "Today's scans",
+    "onlineUsers": "Online users",
+    "scannedFiles": "Scanned files"
   },
   "license": {
     "licenseId": "license Id",

@@ -121,7 +121,8 @@
     "extensionList": "لیست extension ها",
     "infectedFile": "فایل آلوده",
     "uba": "رفتار شناسی کاربر",
-    "extentions": "فرمت ها"
+    "extentions": "فرمت ها",
+    "days": "روز"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -141,6 +142,7 @@
     "sucessfulyUpdated": "باموفقیت بروزرسانی شد.",
     "sureAboutThis": "از انجام این کار مطمئن هستید؟",
     "yes": "بله",
+    "selectDate": "انتخاب تاریخ",
     "no": "خیر",
     "sucessfylySaved": "باموفقیت ذخیره شد",
     "lastName": "نام خانوادگی",
@@ -251,6 +253,14 @@
     "members": "عضو گروه های",
     "onlineUser": "یوزر انلاین",
     "offlineUser": "یوزر افلاین"
+  },
+  "fileScan": {
+    "grouping": "گروهبندی",
+    "adminSearch": "جستجوی ادمین",
+    "choseDomain": "انتخاب دامنه",
+    "todayScans": "اسکن های امروز",
+    "onlineUsers": "کابران آنلاین",
+    "scannedFiles": "فایل های اسکن شده"
   },
   "license": {
     "licenseId": "شناسه لایسنس",
