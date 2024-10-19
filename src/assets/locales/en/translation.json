@@ -118,7 +118,8 @@
     "saveSettings": "Save Settings",
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
-    "infectedFile": "infected File"
+    "infectedFile": "infected File",
+    "days": "Days"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -139,6 +140,7 @@
     "sureAboutThis": "Are You Sure About This ?",
     "yes": "Yes",
     "no": "No",
+    "selectDate": "Select Date",
     "sucessfylySaved": "Successfully Saved",
     "lastName": "Last Name",
     "name": "Name",
@@ -244,6 +246,14 @@
     "onlineUser": "Active User",
     "offlineUser": "Offline User "
   },
+  "fileScan": {
+    "choseDomain": "Domain",
+    "grouping": "Grouping",
+    "adminSearch": "Search",
+    "todayScans": "Today's scans",
+    "onlineUsers": "Online users",
+    "scannedFiles": "Scanned files"
+  },
   "license": {
     "licenseId": "license Id",
     "licenseValidation": "License Validation",
@@ -262,7 +272,8 @@
     "licenseNumbers": "License Numbers",
     "activeNumbers": "Active Numbers",
     "concurrentNumbers": "Concurrent Numbers",
-    "wholeNumbers": "Whole Numbers"
+    "wholeNumbers": "Whole Numbers",
+    "expirationDate": "Expiration date"
   },
 
   "title": {

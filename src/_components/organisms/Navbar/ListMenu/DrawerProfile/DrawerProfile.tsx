@@ -15,7 +15,7 @@ type DrawerProfileProps = {
 };
 
 export function DrawerProfile({ isOpen, setIsOpen }: DrawerProfileProps) {
-  const { toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   return (
     <div
       className={`fixed top-0 left-full z-30 w-[17.12rem] lg:w-[19.18rem] h-[62.43rem] bg-white shadow-md flex justify-between xl:hidden transition-transform duration-500 delay-500 ${
@@ -27,6 +27,7 @@ export function DrawerProfile({ isOpen, setIsOpen }: DrawerProfileProps) {
           <BaseSwitchWithIcon
             id="1"
             name="dark"
+            checked={isDark}
             onChange={toggleTheme}
             rightIcon={sunRisingTwotoneLoop}
             leftIcon={moonTwotoneAltLoop}

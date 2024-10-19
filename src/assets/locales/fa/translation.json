@@ -119,7 +119,8 @@
     "saveSettings": "ذخیره تنظیمات",
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
-    "infectedFile": "فایل آلوده"
+    "infectedFile": "فایل آلوده",
+    "days": "روز"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -139,6 +140,7 @@
     "sucessfulyUpdated": "باموفقیت بروزرسانی شد.",
     "sureAboutThis": "از انجام این کار مطمئن هستید؟",
     "yes": "بله",
+    "selectDate": "انتخاب تاریخ",
     "no": "خیر",
     "sucessfylySaved": "باموفقیت ذخیره شد",
     "lastName": "نام خانوادگی",
@@ -245,6 +247,14 @@
     "onlineUser": "یوزر انلاین",
     "offlineUser": "یوزر افلاین"
   },
+  "fileScan": {
+    "grouping": "گروهبندی",
+    "adminSearch": "جستجوی ادمین",
+    "choseDomain": "انتخاب دامنه",
+    "todayScans": "اسکن های امروز",
+    "onlineUsers": "کابران آنلاین",
+    "scannedFiles": "فایل های اسکن شده"
+  },
   "license": {
     "licenseId": "شناسه لایسنس",
     "licenseValidation": "اعتبارسنجی لایسنس",
@@ -263,7 +273,8 @@
     "licenseNumbers": "تعداد لایسنس",
     "activeNumbers": "تعداد فعال شده",
     "concurrentNumbers": "تعداد همزمان",
-    "wholeNumbers": "تعداد کل "
+    "wholeNumbers": "تعداد کل ",
+    "expirationDate": "تاریخ انقضا"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
