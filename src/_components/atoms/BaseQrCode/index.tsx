@@ -29,17 +29,17 @@ export default function BaseQrCode({ email, defaultValue }: any) {
 
   return (
     <div
-      className={`relative flex flex-col items-center justify-center w-40 h-40 ${
+      className={`md:relative flex flex-col gap-2 items-center justify-center lg:w-40 lg:h-40 w-[7.5rem]${
         loading ? 'loading' : ''
       }    `}
     >
       <div className="flex items-center justify-center">
         {!loading ? (
-          <div className="relative h-[140px] w-[140px]">
-            <QrBorder className="absolute h-[140px] w-[140px]" />
+          <div className="relative sm:h-[8.75rem] sm:w-[8.75rem] h-20 w-20">
+            <QrBorder className="absolute sm:h-[8.75rem] sm:w-[8.75rem] h-20 w-20" />
             <QRCode
               value={`otpauth://totp/netsep?secret=${secret || defaultValue}`}
-              className=" w-[120px] h-[120px] z-10 absolute right-2.5 top-2.5"
+              className=" sm:w-[7.5rem] sm:h-[7.5rem] w-[3.75rem] h-[3.75rem] z-10 absolute right-2.5 top-2.5"
             />
           </div>
         ) : (
@@ -48,7 +48,7 @@ export default function BaseQrCode({ email, defaultValue }: any) {
       </div>
       <IconButton
         disabled={loading}
-        className="absolute  bottom-2 -right-10 z-50"
+        className="sm:absolute sm:bottom-2 sm:-right-10 "
         onClick={() => handleGenarateQrcode()}
         size="sm"
         icon={PhArrowsClockwise}
