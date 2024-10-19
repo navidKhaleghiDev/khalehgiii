@@ -58,7 +58,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
   },
 ];
 
-export const domainOptions: OptionSelect[] = [
+export const domainsMock: OptionSelect[] = [
   {
     id: 1,
     label: 'sep.npd-co.com',
@@ -75,23 +75,7 @@ export const domainOptions: OptionSelect[] = [
     value: 'stage.npd-co.com',
   },
 ];
-export const groupOptions: OptionSelect[] = [
-  {
-    id: 1,
-    label: 'Human Resource',
-    value: 'Human Resource',
-  },
-  {
-    id: 2,
-    label: 'commercial',
-    value: 'commercial',
-  },
-  {
-    id: 3,
-    label: 'media',
-    value: 'media',
-  },
-];
+
 export const filterOptions = [
   { id: '1', value: 'alphabtic', label: 'حروف الفبا' },
   { id: '2', value: 'date', label: 'تاریخ ایجاد' },

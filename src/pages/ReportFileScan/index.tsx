@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@redesignUi/atoms/Typography';
 import { DashboardCard } from '@redesignUi/molecules/Cards/DashboardCard';
@@ -14,44 +14,37 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 
 import { UsersDaAsList } from './UsersDaAsList';
 
-// Note: Remember to add the i18 title
-
 export function ReportFileScanPage() {
-  const { data: analyzeScan } = useSWR<ISwrResponse<IScanStats>>(
-    E_ANALYZE_SCAN_STATS,
-    HTTP_ANALYSES.fetcherSWR
-  );
+  const { t } = useTranslation();
 
-  const { data: usersDaas } = useSWR<IResponsePagination<IDaAs>>(
-    `${E_USERS_DAAS}/?is_recording=True `,
-    http.fetcherSWR
-  );
+  const { data: analyzeScan, isLoading: analyzeScanLoading } = useSWR<
+    ISwrResponse<IScanStats>
+  >(E_ANALYZE_SCAN_STATS, HTTP_ANALYSES.fetcherSWR);
+  const { data: usersDaas, isLoading: userDaasLoading } = useSWR<
+    IResponsePagination<IDaAs>
+  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR);
 
-  const todayScansCount = useMemo(
-    () => analyzeScan?.data?.info?.today_scans ?? 0,
-    [analyzeScan]
-  );
-  const onlineUsersCount = useMemo(
-    () => usersDaas?.data?.online_users ?? 0,
-    [usersDaas]
-  );
+  // Remember to add the skeleton for this element after adding the skeletons library
+  if (analyzeScanLoading || userDaasLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className="bg-gray-100">
       <Typography color="black" variant="body2B">
-        فایل های اسکن شده
+        {t('fileScan.scannedFiles')}
       </Typography>
       <div className="flex items-center gap-[1.875rem] mt-7">
         <DashboardCard
           icon={usersThreeIcon}
-          title="اسکن های امروز"
-          count={todayScansCount}
+          title={t('fileScan.todayScans')}
+          count={analyzeScan?.data?.info?.today_scans ?? 0}
           onClick={() => console.log('click')}
         />
         <DashboardCard
           icon={WifiHighDuotone}
-          title="کاربران آنلاین"
-          count={onlineUsersCount}
+          title={t('fileScan.onlineUsers')}
+          count={usersDaas?.data?.online_users ?? 0}
           onClick={() => console.log('click')}
         />
       </div>
