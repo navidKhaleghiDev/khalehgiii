@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const headerStyles = cva('rounded-full p-2 dark:bg-neutral-700', {
+export const headerStyles = cva('rounded-full p-2 dark:bg-red-700', {
   variants: {
     type: {
       error: 'bg-red-100',
