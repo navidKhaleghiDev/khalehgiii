@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import { BaseButton } from '@redesignUi/atoms';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
+import { BackButton } from '@redesignUi/atoms/BackButton';
 
 import {
   API_USERS_LOGIN,
@@ -31,7 +32,7 @@ export function LoginPageCp() {
   const { t } = useTranslation();
 
   const [error, setError] = useState<string | null>(null);
-  const [isOtpActive, setIsOtpActive] = useState<boolean>(false);
+  const [isOtpActive, setIsOtpActive] = useState<boolean>(true);
   const [loadingButton, setLoadingButton] = useState(false);
 
   const { control, handleSubmit } = useForm<LoginFieldValues>({
@@ -110,26 +111,27 @@ export function LoginPageCp() {
 
   return (
     <div className="font-kalameh flex flex-row-reverse  h-screen w-full relative bg-teal-500">
-      <div className="lg:w-[52%] w-full h-full content-center absolute top-0 ltr:left-0 rtl:right-0 z-40 lg:rtl:rounded-l-3xl lg:ltr:rounded-r-3xl bg-white">
+      <div className="lg:w-[52%] w-full h-full content-center absolute top-0 ltr:left-0 rtl:right-0 z-40 lg:rtl:rounded-l-3xl lg:ltr:rounded-r-3xl bg-gray-50">
         <div className="flex flex-col items-center w-full mt-auto">
           <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
-            <BaseDropdownIcon
-              icon={languageIcon}
-              size="sm"
-              onSelect={(v: string) => changeLanguage(v)}
-              options={languageOptions}
-            />
+            <div className="flex gap-[0.62rem]">
+              {isOtpActive && (
+                <BackButton onClick={() => setIsOtpActive(false)} />
+              )}
+              <BaseDropdownIcon
+                icon={languageIcon}
+                size="sm"
+                onSelect={(v: string) => changeLanguage(v)}
+                options={languageOptions}
+              />
+            </div>
           </div>
           <form
             onSubmit={handleSubmit(handleSubmitForm)}
             className="flex flex-col items-center w-[21.8rem]"
           >
             {isOtpActive ? (
-              <LogInOtpForm
-                control={control}
-                setIsOtpActive={setIsOtpActive}
-                error={error}
-              />
+              <LogInOtpForm control={control} error={error} />
             ) : (
               <LoginForm control={control} error={error} />
             )}
