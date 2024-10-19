@@ -8,6 +8,7 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 
+import { IconType } from '@src/types/global';
 import { baseSwitchStyles } from './styles';
 
 export interface BaseSwitchProps extends VariantProps<typeof baseSwitchStyles> {
@@ -29,4 +30,13 @@ export interface BaseSwitchControllerProps<T extends FieldValues>
   name: FieldPath<T>;
   rules?: RegisterOptions<T>;
   defaultValue?: PathValue<T, Path<T>>;
+}
+export interface BaseSwitchWithIconProps {
+  checked?: boolean;
+  onChange: (event: React.ChangeEvent) => void;
+  disabled?: boolean;
+  id: string;
+  name: string;
+  rightIcon: IconType;
+  leftIcon: IconType;
 }
