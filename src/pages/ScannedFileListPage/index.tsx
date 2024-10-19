@@ -7,7 +7,7 @@ export function ScannedFileListPage() {
   return (
     <ContainerDashboard>
       <BackButton withLabel className="absolute bottom-20 left-24" />
-      <ScannedFileList />
+      <ScannedFileList id="item" />
     </ContainerDashboard>
   );
 }

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import useSWR from 'swr';
-import { useNavigate } from 'react-router-dom';
 
 import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
+import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
+import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
+import { BaseIcon, Typography } from '@redesignUi/atoms';
+import { MultiDatePicker } from '@redesignUi/atoms/Inputs/DatePicker';
+import { ScannedFileList } from '@src/pages/ScannedFileListPage/ScannedFileList';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { monitoringHeaderItem } from '@src/pages/ReportFileScan/constants/constants';
@@ -18,14 +22,16 @@ const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function UsersDaAsList() {
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [modelId, setModelId] = useState('');
+  const [open, setOpen] = useState(true);
   const [filterList, setFilterList] = useState<string | number>();
   const userPermissions = useUserPermission();
 
-  const userHandler = (url: any, list: any) => {
-    return navigate(`${url}/${list.email}`);
+  const userHandler = (list: any) => {
+    setOpen(true);
+    setModelId(list.email);
   };
 
   const endpoint = createAPIEndpoint({
@@ -50,6 +56,7 @@ export function UsersDaAsList() {
     setFilterList(filter?.value);
   };
 
+  // Had to handel this locally cause we do not have any service call for this
   const listDaas = data?.data?.results ?? [];
   const filterListDass = filterList
     ? listDaas.filter((item) =>
@@ -71,12 +78,15 @@ export function UsersDaAsList() {
     onPageChange: handlePageChange,
   };
 
+  const handelListSort = () => console.log('value');
+
   return (
     <>
       <FilterReports
         searchQuery={searchQuery}
         handelSearchQuery={handelSearchValue}
-        handelfilterList={handelFilterQuery}
+        handelFilterList={handelFilterQuery}
+        handelListSort={handelListSort}
       />
       <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
         <BaseTable
@@ -88,6 +98,33 @@ export function UsersDaAsList() {
           )}
           onClick={userHandler}
           pagination={paginationProps}
+        />
+        <Modal
+          open={open}
+          setOpen={setOpen}
+          type="content"
+          content={
+            <div className=" w-[20.875rem] sm:w-[39.68rem]">
+              <div className="flex items-center gap-5">
+                <BaseIcon icon={PhPlayDuotone} size="lg" color="neutral" />
+                <div className="text-right">
+                  <Typography variant="body3B" color="neutralDark">
+                    فعالیت های ضبط شده
+                  </Typography>
+                  <Typography variant="body6" color="neutralLight">
+                    فعالیت های ضبط شده کاربر
+                  </Typography>
+                </div>
+              </div>
+              <MultiDatePicker
+                id="daasDatePicker"
+                name="daasDatePicker"
+                className="text-right mt-9 mb-5"
+                onChange={() => console.log('datePicker change')}
+              />
+              <ScannedFileList id={modelId} />
+            </div>
+          }
         />
       </div>
     </>

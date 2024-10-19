@@ -19,7 +19,7 @@ interface BaseModalProps extends VariantProps<typeof headerStyles> {
   description?: string;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  size: 'sm' | 'md' | 'responsive';
+  size?: 'sm' | 'md' | 'responsive';
   className?: string;
   buttonOne?: ModalButtonType;
   buttonTow?: ModalButtonType;

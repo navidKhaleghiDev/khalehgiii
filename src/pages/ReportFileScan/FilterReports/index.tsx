@@ -16,13 +16,15 @@ import { domainsMock, filterOptions } from '../constants/constants';
 type FilterReportsProps = {
   searchQuery: string;
   handelSearchQuery: (value: string) => void;
-  handelfilterList: (value: OptionSelect | OptionSelect[] | null) => void;
+  handelFilterList: (value: OptionSelect | OptionSelect[] | null) => void;
+  handelListSort: (value: string) => void;
 };
 
 export default function FilterReports({
   searchQuery,
   handelSearchQuery,
-  handelfilterList,
+  handelFilterList,
+  handelListSort,
 }: FilterReportsProps) {
   const { t } = useTranslation();
   const { data, isLoading } = useSWR<IResponseData<TGroup[]>>(
@@ -38,6 +40,7 @@ export default function FilterReports({
         };
       })
     : [];
+
   // Note: cause the dropdown has the service call for the groups it may have skelton
   return (
     <div className="flex items-center gap-[1.875rem] mt-[7.625rem]">
@@ -61,7 +64,7 @@ export default function FilterReports({
       />
       <Dropdown
         name="group"
-        onChange={handelfilterList}
+        onChange={handelFilterList}
         options={daasGroups}
         placeHolder={t('fileScan.grouping')}
         disabled={isLoading}
@@ -71,7 +74,7 @@ export default function FilterReports({
         icon={PhFunnelSimple}
         options={filterOptions}
         containerClassName="text-sm"
-        onSelect={() => console.log('searchItem')}
+        onSelect={handelListSort}
       />
     </div>
   );
