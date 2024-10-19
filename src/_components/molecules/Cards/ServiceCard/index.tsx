@@ -22,7 +22,7 @@ export function ServiceCard(props: ServiceCardProps): JSX.Element {
         <div className=" w-full lg:flex lg:flex-col lg:items-end gap-2 flex flex-row items-baseline box-border">
           <Typography
             color="black"
-            className="font-semibold rtl:text-right ltr:text-left whitespace-nowrap lg:w-full  lg:text-base text-sm w-1/2"
+            className="font-semibold rtl:text-right ltr:text-left whitespace-nowrap lg:w-full lg:text-base text-sm w-1/2"
           >
             {title}
           </Typography>
