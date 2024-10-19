@@ -2,7 +2,8 @@
   "login": {
     "loginTitle": "Enter username and password to login",
     "login": "Login",
-    "otp": "Please enter the received code",
+    "otp": "Enter the code sent to your email",
+    "otpCode": "Enter code",
     "forget": "Forgot password?"
   },
   "header": {
@@ -102,7 +103,8 @@
     "endDate": "end Date",
     "activeQrcode": " Qrcode ",
     "activeOtp": "  Otp ",
-    "isRecording": "Is Recording"
+    "isRecording": "Is Recording",
+    "yesterday": "Yesterday"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -236,6 +238,8 @@
     "newUser": "new user"
   },
   "onlineAssistance": {
+    "loginType": "Login type",
+    "loginTypeChoose": "Choose your login type",
     "internet": "internet",
     "remote": "Remote Assistance",
     "exitFromUserProfile": "Exit From User Profile",
@@ -271,7 +275,8 @@
     "licenseNumbers": "License Numbers",
     "activeNumbers": "Active Numbers",
     "concurrentNumbers": "Concurrent Numbers",
-    "wholeNumbers": "Whole Numbers"
+    "wholeNumbers": "Whole Numbers",
+    "expirationDate": "Expiration date"
   },
 
   "title": {
