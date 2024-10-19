@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import PhCaretRight from '@iconify-icons/ph/caret-right';
+import PhCaretLeft from '@iconify-icons/ph/caret-left';
 import PhArrowLineLeft from '@iconify-icons/ph/arrow-line-left';
 import { BaseButton, IconButton } from '../BaseButton';
 
@@ -8,6 +9,7 @@ export type BackButtonProps = {
   withLabel?: boolean;
   onClick?: () => void;
   backToReferrer?: boolean;
+  dir?: 'rtl' | 'ltr';
 };
 
 /**
@@ -26,7 +28,7 @@ export type BackButtonProps = {
  */
 
 export function BackButton(props: BackButtonProps): JSX.Element {
-  const { withLabel, onClick, backToReferrer } = props;
+  const { withLabel, onClick, backToReferrer, dir } = props;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -48,7 +50,7 @@ export function BackButton(props: BackButtonProps): JSX.Element {
   return !withLabel ? (
     <IconButton
       onClick={handleClick}
-      icon={PhCaretRight}
+      icon={dir === 'rtl' ? PhCaretRight : PhCaretLeft}
       size="md"
       type="button"
       color="neutral"
