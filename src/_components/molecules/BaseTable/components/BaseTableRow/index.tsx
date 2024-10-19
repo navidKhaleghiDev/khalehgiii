@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PhCaretDownBold from '@iconify-icons/ph/caret-down-bold';
 import PhCaretUpBold from '@iconify-icons/ph/caret-up-bold';
 
 import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseTableRenderComponent } from '../BaseTableRenderComponent';
 import { BaseTableCollapse } from '../BaseTableCollapse';
+import { BaseTableRowProps, IdItem } from '../../types';
 
-export function BaseTableRow({
-  row,
-  body,
-  header,
-  onClick,
-  index,
-  collapseHeader,
-  isMobile,
-}) {
-  const [openRowId, setOpenRowId] = useState(null);
+export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
+  const { row, body, header, onClick, index, collapseHeader, isMobile } = props;
+
+  const [openRowId, setOpenRowId] = useState<number | null>(null);
 
   const isCollapse = collapseHeader.length >= 1;
 
@@ -23,41 +18,42 @@ export function BaseTableRow({
   const borderRadiusB = index === body.length - 1 ? 'rounded-b-2xl' : '';
   const isOpen = openRowId === row.id;
 
-  const toggleRowOpen = (rowId) => {
-    setOpenRowId((prevId) => (prevId === rowId ? null : rowId));
+  const toggleRowOpen = (rowId: T['id']) => {
+    setOpenRowId((prevId) =>
+      prevId === rowId ? null : (rowId as number | null)
+    );
   };
 
   return (
     <>
-      <div
+      <tr
         className={` h-16 w-full flex items-center justify-between border border-gray-200 px-3 ${
           isOpen ? 'bg-gray-100 border-gray-400' : 'bg-white'
         } ${borderRadiusT} ${borderRadiusB}`}
       >
         {header.map((headerList) => (
-          <tr
-            key={headerList.id}
+          <td
+            aria-label="BaseTableRow"
+            key={+headerList.id}
             className={`${headerList.class} flex justify-center`}
           >
-            <td aria-label={headerList.id}>
-              <BaseTableRenderComponent
-                row={row}
-                header={headerList}
-                onClick={onClick}
-              />
-            </td>
-          </tr>
+            <BaseTableRenderComponent
+              row={row}
+              header={headerList}
+              onClick={onClick}
+            />
+          </td>
         ))}
         {isCollapse && (
-          <div className="w-1/12 flex justify-center">
+          <td aria-label="BaseTableRow" className="w-1/12 flex justify-center">
             <IconButton
               color="neutralNoBg"
               icon={isOpen ? PhCaretUpBold : PhCaretDownBold}
               onClick={() => toggleRowOpen(row.id)}
             />
-          </div>
+          </td>
         )}
-      </div>
+      </tr>
       {isOpen && (
         <BaseTableCollapse
           isMobile={isMobile}

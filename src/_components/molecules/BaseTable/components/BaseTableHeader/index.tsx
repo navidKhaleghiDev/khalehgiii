@@ -1,23 +1,18 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Typography } from '@redesignUi/atoms/Typography/Typography';
-import { IconButton } from '@ui/atoms/BaseButton';
+import { BaseTableHeaderProps } from '../../types';
 
-export function BaseTableHeader({ header, onClick, collapse }) {
+export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
   const { t } = useTranslation();
 
   return (
     <thead className="w-full px-3 flex items-center justify-between rounded-lg h-8 bg-white mb-3">
-      {header.map((head, index) => (
+      {header.map((head) => (
         <tr className={`${head.class}`} key={head.label}>
-          <th
-            className="flex justify-center
-             "
-          >
+          <th className="flex justify-center">
             <Typography variant="body5" color="neutral" type="p">
-              {t(head.label)}
+              {t(head.label as string)}
             </Typography>
-            {/* {head.sort === 'sort' && <IconButton onClick={onClick} />} */}
           </th>
         </tr>
       ))}

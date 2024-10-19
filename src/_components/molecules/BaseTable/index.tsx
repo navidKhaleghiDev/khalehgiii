@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { BaseTableHeader } from './components/BaseTableHeader';
 import { BaseTableBody } from './components/BaseTableBody';
+import { BaseTableProps, CategorizedData, IdItem } from './types';
 
-export function BaseTable(props) {
+export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   const { header, body, onClick, loading, isMobile = false } = props;
-  const [headerCollapse, setHeaderCollapse] = useState({
+  const [headerCollapse, setHeaderCollapse] = useState<CategorizedData>({
     mobile: [],
     desktop: [],
     nonCollapsedMobile: [],
@@ -23,7 +24,7 @@ export function BaseTable(props) {
     : headerCollapse.desktop;
 
   useEffect(() => {
-    const categorizedData = header.reduce(
+    const categorizedData = header.reduce<CategorizedData>(
       (acc, item) => {
         if (item.isCollapsed || item.isMobileCollapsed) {
           acc.mobile.push(item);
@@ -51,11 +52,7 @@ export function BaseTable(props) {
 
   return (
     <table className="w-full table-auto">
-      <BaseTableHeader
-        header={updatedHeader}
-        onClick={onClick}
-        collapse={isCollapse}
-      />
+      <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -63,7 +60,7 @@ export function BaseTable(props) {
           body={body}
           collapseHeader={updatedHeaderForBody}
           header={updatedHeader}
-          onClick={onClick}
+          onClick={onClick as BaseTableProps<IdItem>['onClick']}
           isMobile={isMobile}
         />
       )}

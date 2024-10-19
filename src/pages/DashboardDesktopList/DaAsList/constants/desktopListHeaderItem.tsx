@@ -13,8 +13,9 @@ import {
   EPermissionDaasMetaConfig,
   EPermissionSessionRecording,
 } from '@src/types/permissions';
+import { IHeaderTable } from '@redesignUi/molecules/BaseTable/types';
 
-export const desktopListHeaderItem = [
+export const desktopListHeaderItem: IHeaderTable[] = [
   {
     label: 'table.email',
     id: 'email',
@@ -45,13 +46,13 @@ export const desktopListHeaderItem = [
   {
     label: 'table.containerId',
     id: 'container_id',
-    type: 'tooltip',
+    type: 'none',
     class: 'w-1/12 ',
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
-    type: 'tooltip',
+    type: 'none',
     class: ' w-1/12 ',
   },
   {
@@ -116,7 +117,6 @@ export const desktopListHeaderItem = [
         timeLimitDuration={props.row.daas_configs.time_limit_duration}
       />
     ),
-    dir: 'rtl',
     class: 'w-3/12 ',
     isCollapsed: true,
     permission: EPermissionDaas.CHANGE,

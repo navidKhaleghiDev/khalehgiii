@@ -1,5 +1,6 @@
-import { NoResult } from '@redesignUi/molecules/NoResult';
 import { BaseTableRow } from '../BaseTableRow';
+import { BaseTableNoResult } from '../BaseTableNoResult';
+import { BaseTableBodyProps } from '../../types';
 
 export function BaseTableBody({
   body,
@@ -7,7 +8,7 @@ export function BaseTableBody({
   onClick,
   isMobile,
   collapseHeader,
-}) {
+}: BaseTableBodyProps) {
   return (
     <tbody>
       {body.length >= 1 ? (
@@ -26,7 +27,7 @@ export function BaseTableBody({
           );
         })
       ) : (
-        <NoResult />
+        <BaseTableNoResult />
       )}
     </tbody>
   );

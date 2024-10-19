@@ -13,7 +13,7 @@ export type RowType<T> = T & {
 
 export type TIdItem = { id: string | number };
 
-export type TTableType =
+export type TableType =
   | 'action'
   | 'none'
   | 'component'
@@ -54,7 +54,7 @@ export interface IHeaderTable {
   label?: TTableLabel;
   class?: string;
   dir?: string;
-  type: TTableType;
+  type: TableType;
   variant?: VariantProps<typeof typographyStyles>['variant'];
   fixed?: boolean;
   permission?: PermissionsCodeName | PermissionsCodeName[];
@@ -110,5 +110,5 @@ export interface ITableCell<BodyType> {
 }
 
 export type IComponentsHeader = {
-  [key in TTableType]: JSX.Element;
+  [key in TableType]: JSX.Element;
 };
