@@ -28,7 +28,6 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
   const { options, fullWidth, size, containerClassName, icon, onSelect } =
     props;
   const ref = useRef(null);
-  // const { t } = useTranslation();
 
   const [state, setState] = useState<StateType>(initState);
 
@@ -60,7 +59,7 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
         className={`${
           state.openOptions
             ? '!bg-gray-200 text-gray-900 dark:!bg-gray-800 dark:text-gray-100 dark:border-none'
-            : 'bg-gray-100 hover:bg-gray-300 transition-all duration-500 ease-linear'
+            : 'bg-gray-100 hover:bg-gray-300 transition-none duration-200 ease-linear'
         }`}
       />
       <div
