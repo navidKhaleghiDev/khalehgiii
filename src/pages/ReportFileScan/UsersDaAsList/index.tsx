@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
 import { IDaAs } from '@src/services/users/types';
@@ -25,6 +26,7 @@ export function UsersDaAsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [modelId, setModelId] = useState('');
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [filterList, setFilterList] = useState<string | number>();
   const userPermissions = useUserPermission();
@@ -109,10 +111,10 @@ export function UsersDaAsList() {
                 <BaseIcon icon={PhPlayDuotone} size="lg" color="neutral" />
                 <div className="text-right">
                   <Typography variant="body3B" color="neutralDark">
-                    فعالیت های ضبط شده
+                    {t('fileScan.recordedActivities')}
                   </Typography>
                   <Typography variant="body6" color="neutralLight">
-                    فعالیت های ضبط شده کاربر
+                    {t('fileScan.userRecordedActivities')}
                   </Typography>
                 </div>
               </div>

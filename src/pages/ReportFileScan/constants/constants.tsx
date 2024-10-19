@@ -75,9 +75,3 @@ export const domainsMock: OptionSelect[] = [
     value: 'stage.npd-co.com',
   },
 ];
-
-export const filterOptions = [
-  { id: '1', value: 'alphabtic', label: 'حروف الفبا' },
-  { id: '2', value: 'date', label: 'تاریخ ایجاد' },
-  { id: '3', value: 'newest', label: 'جدیدترین' },
-];

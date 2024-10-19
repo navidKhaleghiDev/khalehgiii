@@ -256,7 +256,12 @@
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
     "onlineUsers": "کابران آنلاین",
-    "scannedFiles": "فایل های اسکن شده"
+    "scannedFiles": "فایل های اسکن شده",
+    "alphabetic": "حرف الفبا",
+    "creationDate": "تاریخ ایجاد",
+    "Newest": "جدیدترین",
+    "recordedActivities": "فعالیت های ضبط شده",
+    "userRecordedActivities": "فعالیت های ضبط شده کاربر"
   },
   "license": {
     "licenseId": "شناسه لایسنس",
