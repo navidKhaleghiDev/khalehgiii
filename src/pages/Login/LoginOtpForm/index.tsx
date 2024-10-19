@@ -1,32 +1,45 @@
-import { BaseOtp } from '@ui/atoms/BaseOtp';
 import { useTranslation } from 'react-i18next';
-import { Typography } from '@ui/atoms/Typography/Typography';
-import { BackButton } from '@ui/atoms/BackButton';
+import { Control, FieldValues } from 'react-hook-form';
+
+import { Typography } from '@redesignUi/atoms';
+import { BaseOtp } from '@redesignUi/atoms/Inputs/BaseOtp';
+
+import { LoginFieldValues } from '../types';
+
+interface LoginOtpProps<T extends FieldValues> {
+  control: Control<T>;
+  error: string | null;
+}
 
 export default function LogInOtpForm({
   control,
-  setIsOtpActive,
   error,
-  name = 'totp',
-}: any) {
+}: LoginOtpProps<LoginFieldValues>) {
   const { t } = useTranslation();
 
   return (
     <div>
-      <BackButton
-        className="absolute top-4  left-4"
-        onClick={() => setIsOtpActive(false)}
-      />
-      <Typography color="neutral" variant="h5" className="mb-8 text-center ">
-        {t('login.otp')}
-      </Typography>
+      <div className="flex flex-col gap-1 p-5 mb-[5.12rem]">
+        <Typography
+          color="black"
+          variant="body1B"
+          className="text-center leading-9"
+        >
+          {t('login.otpCode')}
+        </Typography>
+        <Typography color="neutral" variant="body3" className="text-center">
+          {t('login.otp')}
+        </Typography>
+      </div>
 
       {error && (
         <Typography color="red" variant="body3" className="mb-2 text-center ">
           {error}
         </Typography>
       )}
-      <BaseOtp name={name} valueLength={6} control={control} size="md" />
+      <div className="mb-[12.8rem]">
+        <BaseOtp name="totp" valueLength={6} control={control} size="md" />
+      </div>
     </div>
   );
 }
