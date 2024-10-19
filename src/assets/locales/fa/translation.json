@@ -272,7 +272,8 @@
     "licenseNumbers": "تعداد لایسنس",
     "activeNumbers": "تعداد فعال شده",
     "concurrentNumbers": "تعداد همزمان",
-    "wholeNumbers": "تعداد کل "
+    "wholeNumbers": "تعداد کل ",
+    "expirationDate": "تاریخ انقضا"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
