@@ -5,30 +5,61 @@ import { BaseTableBody } from './components/BaseTableBody';
 
 export function BaseTable(props) {
   const { header, body, onClick, loading, isMobile = false } = props;
-  const [collapseItems, setCollapseItems] = useState({
+  const [headerCollapse, setHeaderCollapse] = useState({
     mobile: [],
     desktop: [],
+    nonCollapsedMobile: [],
+    nonCollapsedDesktop: [],
   });
 
-  const filterCollpsedDesktop = header.filter((item) => item.isCollapsed);
-  const filterCollpsedMobile = header.filter((item) => item.isCollapsed);
+  const updatedHeader = isMobile
+    ? headerCollapse.nonCollapsedMobile
+    : headerCollapse.nonCollapsedDesktop;
+
+  const updatedHeaderForBody = isMobile
+    ? headerCollapse.nonCollapsedMobile
+    : headerCollapse.nonCollapsedDesktop;
 
   useEffect(() => {
-    setCollapseItems({
-      mobile: filterCollpsedMobile,
-      desktop: filterCollpsedDesktop,
-    });
-  }, [filterCollpsedDesktop, filterCollpsedMobile]);
+    const categorizedData = header.reduce(
+      (acc, item) => {
+        if (item.isCollapsed || item.isMobileCollapsed) {
+          acc.mobile.push(item);
+        }
+        if (item.isCollapsed) {
+          acc.desktop.push(item);
+        }
+        if (!item.isCollapsed && !item.isMobileCollapsed) {
+          acc.nonCollapsedMobile.push(item);
+        }
+        if (!item.isCollapsed) {
+          acc.nonCollapsedDesktop.push(item);
+        }
+        return acc;
+      },
+      {
+        mobile: [],
+        desktop: [],
+        nonCollapsedMobile: [],
+        nonCollapsedDesktop: [],
+      }
+    );
+    setHeaderCollapse(categorizedData);
+  }, [header]);
 
   return (
     <table className="w-full table-auto">
-      <BaseTableHeader header={collapseItems} isMobile={isMobile} />
+      <BaseTableHeader
+        header={updatedHeader}
+        onClick={onClick}
+        collapse={headerCollapse.desktop.length >= 1}
+      />
       {loading ? (
         <LoadingSpinner />
       ) : (
         <BaseTableBody
           body={body}
-          header={header}
+          header={updatedHeader}
           onClick={onClick}
           isMobile={isMobile}
         />

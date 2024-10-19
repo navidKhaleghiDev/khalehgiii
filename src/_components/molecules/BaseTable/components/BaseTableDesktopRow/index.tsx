@@ -19,24 +19,23 @@ export function BaseTableDesktopRow({ row, body, header, onClick, index }) {
   };
 
   return (
-    <div className={header.class}>
-      <div
-        className={`flex justify-center items-center h-16 border border-gray-200  ${
-          isOpen ? 'bg-gray-100 border-gray-400' : 'bg-white'
-        } ${borderRadiusT} ${borderRadiusB}  `}
-      >
-        {header.map((headerList) => (
-          <React.Fragment key={header.id}>
-            <tr className={`${headerList.class}`}>
-              <td aria-label={headerList.id} className="flex justify-center">
-                <BaseTableRenderComponent
-                  row={row}
-                  header={headerList}
-                  onClick={onClick}
-                />
-              </td>
-            </tr>
-            {headerList.type === 'collapse' && (
+    <div
+      className={`flex items-center h-16 border border-gray-200  ${
+        isOpen ? 'bg-gray-100 border-gray-400' : 'bg-white'
+      } ${borderRadiusT} ${borderRadiusB}`}
+    >
+      {header.map((headerList) => (
+        <React.Fragment key={header.id}>
+          <tr className={`${headerList.class} bg-red-500 `}>
+            <td aria-label={headerList.id} className="flex justify-center">
+              <BaseTableRenderComponent
+                row={row}
+                header={headerList}
+                onClick={onClick}
+              />
+            </td>
+          </tr>
+          {/* {headerList.isCollapsed && (
               <div className="w-1/12">
                 <IconButton
                   color="neutralNoBg"
@@ -44,10 +43,9 @@ export function BaseTableDesktopRow({ row, body, header, onClick, index }) {
                   onClick={() => toggleRowOpen(row.id)}
                 />
               </div>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
+            )} */}
+        </React.Fragment>
+      ))}
       {isOpen && (
         <tr className="flex w-full h-16 bg-gray-100 border border-gray-400 border-t-0  transition duration-150 ease-in-out">
           <td aria-label={row} colSpan={header.length}>

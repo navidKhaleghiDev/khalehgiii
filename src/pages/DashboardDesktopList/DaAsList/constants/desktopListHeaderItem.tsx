@@ -77,125 +77,125 @@ export const desktopListHeaderItem = [
     isMobileCollapsed: true,
   },
 
-  {
-    label: 'table.desktop',
-    id: 'is_lock',
-    type: 'component',
-    component: (props: any) => (
-      <ActionLockCell
-        id={props.row.is_lock}
-        row={props.row}
-        onClick={props.onClick}
-      />
-    ),
-    permission: EPermissionDaas.CHANGE,
-    class: 'w-2/12 ',
-    isMobileCollapsed: true,
-  },
+  // {
+  //   label: 'table.desktop',
+  //   id: 'is_lock',
+  //   type: 'component',
+  //   component: (props: any) => (
+  //     <ActionLockCell
+  //       id={props.row.is_lock}
+  //       row={props.row}
+  //       onClick={props.onClick}
+  //     />
+  //   ),
+  //   permission: EPermissionDaas.CHANGE,
+  //   class: 'w-2/12 ',
+  //   isMobileCollapsed: true,
+  // },
 
-  {
-    label: 'table.desktopV',
-    id: 'daas_version',
-    type: 'none',
-    class: 'w-2/12 ',
-    isMobileCollapsed: true,
-  },
+  // {
+  //   label: 'table.desktopV',
+  //   id: 'daas_version',
+  //   type: 'none',
+  //   class: 'w-2/12 ',
+  //   isMobileCollapsed: true,
+  // },
 
-  {
-    label: 'table.usedTime',
-    id: 'usage_in_minute',
-    type: 'component',
-    component: (props: any) => (
-      <UsedTimeDass time={props.row.usage_in_minute} />
-    ),
-    class: 'w-2/12 ',
-    isMobileCollapsed: true,
-  },
-  {
-    label: 'table.accessSettingsTime',
-    id: 'updated_at',
-    type: 'component',
-    component: (props: any) => (
-      <SetAccessTime
-        id={props.row.id as string}
-        onClickActions={props.onClick}
-        timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
-        timeLimitDuration={props.row.daas_configs.time_limit_duration}
-      />
-    ),
-    dir: 'rtl',
-    class: 'w-3/12 ',
-    isMobileCollapsed: true,
-    permission: EPermissionDaas.CHANGE,
-  },
+  // {
+  //   label: 'table.usedTime',
+  //   id: 'usage_in_minute',
+  //   type: 'component',
+  //   component: (props: any) => (
+  //     <UsedTimeDass time={props.row.usage_in_minute} />
+  //   ),
+  //   class: 'w-2/12 ',
+  //   isMobileCollapsed: true,
+  // },
+  // {
+  //   label: 'table.accessSettingsTime',
+  //   id: 'updated_at',
+  //   type: 'component',
+  //   component: (props: any) => (
+  //     <SetAccessTime
+  //       id={props.row.id as string}
+  //       onClickActions={props.onClick}
+  //       timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
+  //       timeLimitDuration={props.row.daas_configs.time_limit_duration}
+  //     />
+  //   ),
+  //   dir: 'rtl',
+  //   class: 'w-3/12 ',
+  //   isMobileCollapsed: true,
+  //   permission: EPermissionDaas.CHANGE,
+  // },
 
-  {
-    label: 'table.defaultSetting',
-    id: 'daas_configs',
-    type: 'component',
-    component: (props: any) => (
-      <Check
-        id={props.row.daas_configs.is_globally_config}
-        header={props.head}
-      />
-    ),
-    class: 'w-2/12 ',
-    isMobileCollapsed: true,
-  },
-  {
-    label: 'table.recordingActivity',
-    id: 'id',
-    type: 'action',
-    action: [
-      {
-        action: 'more',
-        icon: PhListBulletsFill,
-        color: 'neutralNoBg',
-        tooltip: 'table.recordingActivity',
-      },
-    ],
-    permission: EPermissionSessionRecording.VIEW,
-    class: 'w-2/12',
-    isMobileCollapsed: true,
-  },
+  // {
+  //   label: 'table.defaultSetting',
+  //   id: 'daas_configs',
+  //   type: 'component',
+  //   component: (props: any) => (
+  //     <Check
+  //       id={props.row.daas_configs.is_globally_config}
+  //       header={props.head}
+  //     />
+  //   ),
+  //   class: 'w-2/12 ',
+  //   isMobileCollapsed: true,
+  // },
+  // {
+  //   label: 'table.recordingActivity',
+  //   id: 'id',
+  //   type: 'action',
+  //   action: [
+  //     {
+  //       action: 'more',
+  //       icon: PhListBulletsFill,
+  //       color: 'neutralNoBg',
+  //       tooltip: 'table.recordingActivity',
+  //     },
+  //   ],
+  //   permission: EPermissionSessionRecording.VIEW,
+  //   class: 'w-2/12',
+  //   isMobileCollapsed: true,
+  // },
 
-  {
-    label: 'table.accessSetting',
-    id: 'can_upload_file',
-    type: 'action',
-    action: [
-      {
-        action: 'delete',
-        icon: trashIcon,
-        color: 'redNoBg',
-        tooltip: 'table.delete',
-        permission: EPermissionDaas.DELETE,
-      },
-      {
-        action: 'edit',
-        icon: gear,
-        color: 'neutralNoBg',
-        tooltip: 'table.edit',
-        permission: EPermissionDaasMetaConfig.CHANGE,
-      },
-    ],
-    permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
-    class: 'w-2/12 ',
-    isMobileCollapsed: true,
-  },
-  {
-    label: 'global.onlineAssistanceDetail',
-    id: 'member_of',
-    type: 'action',
-    action: [
-      {
-        action: 'details',
-        icon: PhListMagnifyingGlassDuotone,
-        color: 'neutralNoBg',
-        tooltip: 'global.onlineAssistanceDetail',
-      },
-    ],
-    class: 'w-2/12 ',
-    isMobileCollapsed: true,
-  },
+  // {
+  //   label: 'table.accessSetting',
+  //   id: 'can_upload_file',
+  //   type: 'action',
+  //   action: [
+  //     {
+  //       action: 'delete',
+  //       icon: trashIcon,
+  //       color: 'redNoBg',
+  //       tooltip: 'table.delete',
+  //       permission: EPermissionDaas.DELETE,
+  //     },
+  //     {
+  //       action: 'edit',
+  //       icon: gear,
+  //       color: 'neutralNoBg',
+  //       tooltip: 'table.edit',
+  //       permission: EPermissionDaasMetaConfig.CHANGE,
+  //     },
+  //   ],
+  //   permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
+  //   class: 'w-2/12 ',
+  //   isMobileCollapsed: true,
+  // },
+  // {
+  //   label: 'global.onlineAssistanceDetail',
+  //   id: 'member_of',
+  //   type: 'action',
+  //   action: [
+  //     {
+  //       action: 'details',
+  //       icon: PhListMagnifyingGlassDuotone,
+  //       color: 'neutralNoBg',
+  //       tooltip: 'global.onlineAssistanceDetail',
+  //     },
+  //   ],
+  //   class: 'w-2/12 ',
+  //   isMobileCollapsed: true,
+  // },
 ];
