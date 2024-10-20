@@ -1,21 +1,26 @@
 import { useCallback, useState } from 'react';
+import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
+
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { Modal } from '@ui/molecules/Modal';
+import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { extensionListHeaderItem } from '@src/pages/DashboardExtensionList/ExtensionList/constants/extensionListHeaderItem';
-import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { EPermissionExtensions } from '@src/types/permissions';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
+import { BaseButton, Typography } from '@redesignUi/atoms';
+import PhPlus from '@iconify-icons/ph/plus-bold';
+
 import {
   checkPermission,
   useUserPermission,
@@ -147,7 +152,26 @@ export function ExtensionList() {
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full pt-10 px-5 ${isLoading ? 'loading' : ''}`}>
+      <Typography variant="body2B" color="neutralDark" className="mb-[6.25rem]">
+        {t('systemManagement.formatList')}
+      </Typography>
+      <div className="flex items-center justify-between mb-[1.875rem]">
+        <SearchInput
+          id="searchFormat"
+          name="searchFormat"
+          size="lg"
+          placeholder={t('systemManagement.search')}
+          onChange={() => console.log('you are searching')}
+          value={filterQuery}
+          className="top-3"
+        />
+        <BaseButton
+          label={t('systemManagement.newFormat')}
+          onClick={() => setOpenUpdateModal(true)}
+          startIcon={PhPlus}
+        />
+      </div>
       <BaseTable
         loading={isLoading}
         headers={checkPermissionHeaderItem(
@@ -164,6 +188,7 @@ export function ExtensionList() {
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
+        size="md"
         title={t('global.sureAboutThis')}
         buttonOne={{
           label: t('global.yes'),
@@ -179,7 +204,8 @@ export function ExtensionList() {
       <Modal
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
-        type="success"
+        type="content"
+        size="md"
         content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
       />
     </div>
