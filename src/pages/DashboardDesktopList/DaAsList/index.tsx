@@ -28,9 +28,9 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
 
 function compareExtensionLists(oldList?: string[], newList?: string[]) {
   const removedList: string[] = [];
@@ -269,7 +269,7 @@ export function DaAsList() {
   };
 
   return (
-    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}  bg-gray-200 `}>
+    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}  `}>
       {/* <BaseTable
         loading={isLoading}
         headers={checkPermissionHeaderItem(
@@ -284,8 +284,9 @@ export function DaAsList() {
       <BaseTable
         header={desktopListHeaderItem}
         body={listDaas}
-        loading={false}
-        // isMobile
+        loading={isLoading}
+        pagination={paginationProps}
+        isMobile
       />
       <Modal
         open={openModal}

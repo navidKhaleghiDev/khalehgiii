@@ -32,7 +32,7 @@ export function BaseTableActionCell<T extends IdItem>(
     header?.action && (
       <div className="flex">
         {header.action.map((action: ActionItem) => (
-          <div key={row.id}>
+          <div key={action.action}>
             {action.tooltip ? (
               <ToolTip tooltip={t(action.tooltip)}>
                 <ActionComponent action={action} />

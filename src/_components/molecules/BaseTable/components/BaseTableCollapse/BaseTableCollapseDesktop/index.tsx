@@ -4,6 +4,7 @@ import {
   BaseTableCollapseDesktopProps,
   IdItem,
 } from '@redesignUi/molecules/BaseTable/types';
+import { baseTableCollapseDesktop } from '@redesignUi/molecules/BaseTable/styles';
 import { BaseTableRenderComponent } from '../../BaseTableRenderComponent';
 
 export function BaseTableCollapseDesktop<T extends IdItem>(
@@ -13,13 +14,16 @@ export function BaseTableCollapseDesktop<T extends IdItem>(
   const { header, row, onClick } = props;
 
   return (
-    <tr className="flex justify-between h-16 bg-gray-100 border border-gray-400 border-t-0 transition duration-150 ease-in-out">
+    <tr className={baseTableCollapseDesktop()}>
       {header.map((headerList) => (
         <td
           key={headerList.label}
-          className="h-14 flex-col px-3 flex gap-2 justify-start"
+          className="h-12 flex-col px-3 gap-2  flex justify-start"
         >
-          <Typography color="neutral" variant="body6">
+          <Typography
+            className="text-gray-500 dark:text-gray-400"
+            variant="body6"
+          >
             {t(headerList.label as string)}
           </Typography>
           <BaseTableRenderComponent

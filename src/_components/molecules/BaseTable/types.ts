@@ -8,6 +8,7 @@ export type BaseTableProps<BodyType> = {
   loading: boolean;
   isMobile?: boolean;
   onClick?: OnClickActionsType<BodyType>;
+  pagination: Pagination;
 };
 
 export interface IHeaderTable {
@@ -93,6 +94,15 @@ export type CategorizedData = {
   nonCollapsedDesktop: IHeaderTable[];
 };
 
+export type Pagination = {
+  countPage: number;
+  currentPage: number;
+  totalPages: number;
+  paginationLabel: string;
+  allItems: number;
+  itemsPer: number;
+  onPageChange: (page: number) => void;
+};
 type TableLabel = `table.${string}` | string;
 
 export type IdItem = { id: string | number };

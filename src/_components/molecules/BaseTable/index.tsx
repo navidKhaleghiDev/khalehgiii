@@ -1,12 +1,29 @@
 import { useEffect, useState } from 'react';
-import { LoadingSpinner } from '@ui/molecules/Loading';
 
 import { BaseTableHeader } from './components/BaseTableHeader';
 import { BaseTableBody } from './components/BaseTableBody';
+
 import { BaseTableProps, CategorizedData, IdItem } from './types';
+import { Pagination } from '../Pagination';
 
 export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
-  const { header, body, onClick, loading, isMobile = false } = props;
+  const {
+    header,
+    body,
+    onClick,
+    loading,
+    isMobile = false,
+    pagination,
+  } = props;
+  const {
+    countPage,
+    currentPage,
+    totalPages,
+    onPageChange,
+    paginationLabel,
+    allItems,
+    itemsPer,
+  } = pagination;
   const [headerCollapse, setHeaderCollapse] = useState<CategorizedData>({
     mobile: [],
     desktop: [],
@@ -52,19 +69,35 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   }, [header]);
 
   return (
-    <table className="w-full table-auto">
-      <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
-      {loading ? (
-        <LoadingSpinner />
-      ) : (
-        <BaseTableBody
-          body={body}
-          collapseHeader={updatedHeaderForBody}
-          header={updatedHeader}
-          onClick={onClick as BaseTableProps<IdItem>['onClick']}
-          isMobile={isMobile}
-        />
-      )}
-    </table>
+    <div className="w-auto ">
+      <table className="w-full">
+        {!isMobile && (
+          <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
+        )}
+        {loading ? (
+          '...loading'
+        ) : (
+          <BaseTableBody
+            body={body}
+            collapseHeader={updatedHeaderForBody}
+            header={updatedHeader}
+            onClick={onClick as BaseTableProps<IdItem>['onClick']}
+            isMobile={isMobile}
+          />
+        )}
+      </table>
+      <div className="mt-5">
+        {!!countPage && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+            allItems={allItems}
+            itemsPer={itemsPer}
+            paginationLabel={paginationLabel}
+          />
+        )}
+      </div>
+    </div>
   );
 }

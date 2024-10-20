@@ -27,12 +27,14 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     id: 'http_port',
     type: 'none',
     class: `w-2/12  `,
+    isMobileCollapsed: true,
   },
   {
     label: 'table.httpsPort',
     id: 'https_port',
     type: 'none',
     class: 'w-2/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.accessCapacity',
@@ -42,18 +44,21 @@ export const desktopListHeaderItem: IHeaderTable[] = [
       <Check id={!props.row.exceeded_usage} header={props.head} />
     ),
     class: 'w-1/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.containerId',
     id: 'container_id',
     type: 'none',
     class: 'w-1/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'none',
     class: ' w-1/12 ',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.lastLoginIp',
@@ -86,7 +91,6 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     class: 'w-2/12 ',
     isCollapsed: true,
   },
-
   {
     label: 'table.desktopV',
     id: 'daas_version',
@@ -105,90 +109,90 @@ export const desktopListHeaderItem: IHeaderTable[] = [
     class: 'w-2/12 ',
     isCollapsed: true,
   },
-  {
-    label: 'table.accessSettingsTime',
-    id: 'updated_at',
-    type: 'component',
-    component: (props: any) => (
-      <SetAccessTime
-        id={props.row.id as string}
-        onClickActions={props.onClick}
-        timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
-        timeLimitDuration={props.row.daas_configs.time_limit_duration}
-      />
-    ),
-    class: 'w-3/12 ',
-    isCollapsed: true,
-    permission: EPermissionDaas.CHANGE,
-  },
-
   // {
-  //   label: 'table.defaultSetting',
-  //   id: 'daas_configs',
+  //   label: 'table.accessSettingsTime',
+  //   id: 'updated_at',
   //   type: 'component',
   //   component: (props: any) => (
-  //     <Check
-  //       id={props.row.daas_configs.is_globally_config}
-  //       header={props.head}
+  //     <SetAccessTime
+  //       id={props.row.id as string}
+  //       onClickActions={props.onClick}
+  //       timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
+  //       timeLimitDuration={props.row.daas_configs.time_limit_duration}
   //     />
   //   ),
-  //   class: 'w-2/12 ',
+  //   class: 'w-3/12 ',
   //   isCollapsed: true,
-  // },
-  // {
-  //   label: 'table.recordingActivity',
-  //   id: 'id',
-  //   type: 'action',
-  //   action: [
-  //     {
-  //       action: 'more',
-  //       icon: PhListBulletsFill,
-  //       color: 'neutralNoBg',
-  //       tooltip: 'table.recordingActivity',
-  //     },
-  //   ],
-  //   permission: EPermissionSessionRecording.VIEW,
-  //   class: 'w-2/12',
-  //   isCollapsed: true,
+  //   permission: EPermissionDaas.CHANGE,
   // },
 
-  // {
-  //   label: 'table.accessSetting',
-  //   id: 'can_upload_file',
-  //   type: 'action',
-  //   action: [
-  //     {
-  //       action: 'delete',
-  //       icon: trashIcon,
-  //       color: 'redNoBg',
-  //       tooltip: 'table.delete',
-  //       permission: EPermissionDaas.DELETE,
-  //     },
-  //     {
-  //       action: 'edit',
-  //       icon: gear,
-  //       color: 'neutralNoBg',
-  //       tooltip: 'table.edit',
-  //       permission: EPermissionDaasMetaConfig.CHANGE,
-  //     },
-  //   ],
-  //   permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
-  //   class: 'w-2/12 ',
-  //   isMobileCollapsed: true,
-  // },
-  // {
-  //   label: 'global.onlineAssistanceDetail',
-  //   id: 'member_of',
-  //   type: 'action',
-  //   action: [
-  //     {
-  //       action: 'details',
-  //       icon: PhListMagnifyingGlassDuotone,
-  //       color: 'neutralNoBg',
-  //       tooltip: 'global.onlineAssistanceDetail',
-  //     },
-  //   ],
-  //   class: 'w-2/12 ',
-  //   isMobileCollapsed: true,
-  // },
+  {
+    label: 'table.defaultSetting',
+    id: 'daas_configs',
+    type: 'component',
+    component: (props: any) => (
+      <Check
+        id={props.row.daas_configs.is_globally_config}
+        header={props.head}
+      />
+    ),
+    class: 'w-2/12 ',
+    isCollapsed: true,
+  },
+  {
+    label: 'table.recordingActivity',
+    id: 'id',
+    type: 'action',
+    action: [
+      {
+        action: 'more',
+        icon: PhListBulletsFill,
+        color: 'neutralNoBg',
+        tooltip: 'table.recordingActivity',
+      },
+    ],
+    permission: EPermissionSessionRecording.VIEW,
+    class: 'w-2/12',
+    isCollapsed: true,
+  },
+
+  {
+    label: 'table.accessSetting',
+    id: 'can_upload_file',
+    type: 'action',
+    action: [
+      {
+        action: 'delete',
+        icon: trashIcon,
+        color: 'redNoBg',
+        tooltip: 'table.delete',
+        permission: EPermissionDaas.DELETE,
+      },
+      {
+        action: 'edit',
+        icon: gear,
+        color: 'neutralNoBg',
+        tooltip: 'table.edit',
+        permission: EPermissionDaasMetaConfig.CHANGE,
+      },
+    ],
+    permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
+  },
+  {
+    label: 'global.onlineAssistanceDetail',
+    id: 'member_of',
+    type: 'action',
+    action: [
+      {
+        action: 'details',
+        icon: PhListMagnifyingGlassDuotone,
+        color: 'neutralNoBg',
+        tooltip: 'global.onlineAssistanceDetail',
+      },
+    ],
+    class: 'w-2/12 ',
+    isMobileCollapsed: true,
+  },
 ];

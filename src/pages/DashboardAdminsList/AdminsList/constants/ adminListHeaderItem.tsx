@@ -8,7 +8,7 @@ import { EPermissionUsers } from '@src/types/permissions';
 
 export const adminListHeaderItem: IHeaderTable[] = [
   {
-    id: 'id',
+    id: 'action',
     type: 'action',
     action: [
       {
