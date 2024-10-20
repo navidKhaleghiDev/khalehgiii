@@ -15,7 +15,7 @@ export const baseTableRowStyles = cva(
   {
     variants: {
       isOpen: {
-        true: 'bg-gray-100 border border-gray-400 dark:bg-gray-800 ',
+        true: 'bg-gray-100 border border-gray-400 dark:bg-gray-800',
         false:
           'bg-white border border-gray-200 dark:bg-gray-600 dark:border-gray-400',
       },
