@@ -16,6 +16,10 @@ export const daasRoutes = [
     element: <NotFoundPage />,
   },
   {
+    path: ROUTES_PATH.loginAssistance,
+    element: <LoginOnlineAssistance />,
+  },
+  {
     element: <PrivateLayout />,
     children: [
       {

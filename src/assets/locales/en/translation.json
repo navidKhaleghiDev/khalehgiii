@@ -2,7 +2,8 @@
   "login": {
     "loginTitle": "Enter username and password to login",
     "login": "Login",
-    "otp": "Please enter the received code",
+    "otp": "Enter the code sent to your email",
+    "otpCode": "Enter code",
     "forget": "Forgot password?"
   },
   "header": {
@@ -102,7 +103,8 @@
     "endDate": "end Date",
     "activeQrcode": " Qrcode ",
     "activeOtp": "  Otp ",
-    "isRecording": "Is Recording"
+    "isRecording": "Is Recording",
+    "yesterday": "Yesterday"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -117,7 +119,8 @@
     "saveSettings": "Save Settings",
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
-    "infectedFile": "infected File"
+    "infectedFile": "infected File",
+    "days": "Days"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -138,6 +141,7 @@
     "sureAboutThis": "Are You Sure About This ?",
     "yes": "Yes",
     "no": "No",
+    "selectDate": "Select Date",
     "sucessfylySaved": "Successfully Saved",
     "lastName": "Last Name",
     "name": "Name",
@@ -235,6 +239,8 @@
     "newUser": "new user"
   },
   "onlineAssistance": {
+    "loginType": "Login type",
+    "loginTypeChoose": "Choose your login type",
     "internet": "internet",
     "remote": "Remote Assistance",
     "exitFromUserProfile": "Exit From User Profile",
@@ -243,6 +249,14 @@
     "members": "Member of Groups",
     "onlineUser": "Active User",
     "offlineUser": "Offline User "
+  },
+  "fileScan": {
+    "choseDomain": "Domain",
+    "grouping": "Grouping",
+    "adminSearch": "Search",
+    "todayScans": "Today's scans",
+    "onlineUsers": "Online users",
+    "scannedFiles": "Scanned files"
   },
   "license": {
     "licenseId": "license Id",
@@ -262,7 +276,8 @@
     "licenseNumbers": "License Numbers",
     "activeNumbers": "Active Numbers",
     "concurrentNumbers": "Concurrent Numbers",
-    "wholeNumbers": "Whole Numbers"
+    "wholeNumbers": "Whole Numbers",
+    "expirationDate": "Expiration date"
   },
 
   "title": {

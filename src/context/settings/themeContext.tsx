@@ -27,15 +27,15 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState(
     themeMode === null || undefined || '' ? 'light' : themeMode
   );
+
   const isDark = localStorage.getItem('theme') === 'dark';
 
   const toggleTheme = useCallback(() => {
-    localStorage.setItem(
-      'theme',
-      localStorage.getItem('theme') === 'light' ? 'dark' : 'light'
-    );
-    setTheme(localStorage.getItem('theme') as string);
-  }, []);
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    setTheme(newTheme);
+  }, [theme]);
+
   const contextValue = useMemo(
     () => ({ theme, toggleTheme, isDark }),
     [theme, toggleTheme, isDark]

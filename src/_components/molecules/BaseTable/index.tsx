@@ -57,22 +57,13 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <>
-          <BaseTableBody
-            body={body}
-            collapseHeader={updatedHeaderForBody}
-            header={updatedHeader}
-            onClick={onClick as BaseTableProps<IdItem>['onClick']}
-            isMobile={isMobile}
-          />
-          {!!countPage && (
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={onPageChange}
-            />
-          )}
-        </>
+        <BaseTableBody
+          body={body}
+          collapseHeader={updatedHeaderForBody}
+          header={updatedHeader}
+          onClick={onClick as BaseTableProps<IdItem>['onClick']}
+          isMobile={isMobile}
+        />
       )}
     </table>
   );

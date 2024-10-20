@@ -1,8 +1,8 @@
 import { VariantProps } from 'class-variance-authority';
-import { ReactNode } from 'react';
-import { tooltipStyles } from './styles';
+import { containerTooltipStyles, tooltipStyles } from './styles';
 
-export interface ToolTipProps extends VariantProps<typeof tooltipStyles> {
-  children: ReactNode;
+export interface ToolTipProps
+  extends VariantProps<typeof tooltipStyles>,
+    VariantProps<typeof containerTooltipStyles> {
   tooltip: string;
 }

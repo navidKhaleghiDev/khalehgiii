@@ -1,8 +1,9 @@
 {
   "login": {
-    "loginTitle": "لطفا ایمیل و گذرواژه خود را وارد کنید",
-    "login": "ورود به حساب کاربری",
-    "otp": " لطفا کد دریافت شده را وارد کنید",
+    "login": "ورود به سامانه",
+    "loginTitle": "برای ورود نام کاربری و کلمه عبور را وارد کنید",
+    "otp": "کد ارسال شده به ایمیل‌تان را وارد کنید",
+    "otpCode": "واردکردن کد",
     "confirm": "تایید",
     "forget": "رمز عبور خود را فراموش کرده اید؟"
   },
@@ -103,7 +104,8 @@
     "activeDeactive": "فعال /غیرفعال",
     "activeQrcode": "Qrcode",
     "activeOtp": "Otp",
-    "isRecording": "در حال ضبط"
+    "isRecording": "در حال ضبط",
+    "yesterday": "دیروز"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -118,7 +120,8 @@
     "saveSettings": "ذخیره تنظیمات",
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
-    "infectedFile": "فایل آلوده"
+    "infectedFile": "فایل آلوده",
+    "days": "روز"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -138,6 +141,7 @@
     "sucessfulyUpdated": "باموفقیت بروزرسانی شد.",
     "sureAboutThis": "از انجام این کار مطمئن هستید؟",
     "yes": "بله",
+    "selectDate": "انتخاب تاریخ",
     "no": "خیر",
     "sucessfylySaved": "باموفقیت ذخیره شد",
     "lastName": "نام خانوادگی",
@@ -236,6 +240,8 @@
     "newUser": "کاربر جدید"
   },
   "onlineAssistance": {
+    "loginType": "نوع ورود",
+    "loginTypeChoose": "برای ورود نوع فعالیت خود را انتخاب کنید",
     "internet": "اینترنت",
     "remote": "دسترسی دستیار ",
     "exitFromUserProfile": "خروج از حساب کاربری",
@@ -244,6 +250,14 @@
     "members": "عضو گروه های",
     "onlineUser": "یوزر انلاین",
     "offlineUser": "یوزر افلاین"
+  },
+  "fileScan": {
+    "grouping": "گروهبندی",
+    "adminSearch": "جستجوی ادمین",
+    "choseDomain": "انتخاب دامنه",
+    "todayScans": "اسکن های امروز",
+    "onlineUsers": "کابران آنلاین",
+    "scannedFiles": "فایل های اسکن شده"
   },
   "license": {
     "licenseId": "شناسه لایسنس",
@@ -263,7 +277,8 @@
     "licenseNumbers": "تعداد لایسنس",
     "activeNumbers": "تعداد فعال شده",
     "concurrentNumbers": "تعداد همزمان",
-    "wholeNumbers": "تعداد کل "
+    "wholeNumbers": "تعداد کل ",
+    "expirationDate": "تاریخ انقضا"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
