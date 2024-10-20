@@ -278,7 +278,15 @@
     "wholeNumbers": "Whole Numbers",
     "expirationDate": "Expiration date"
   },
-
+  "systemManagement": {
+    "formatList": "Formats list",
+    "search": "Search",
+    "newFormat": "New format",
+    "uploadFile": "Upload and attach files",
+    "uploadFileText": "Upload and attach files to create a new format",
+    "uploadFileTextInputOne": "Click to upload ",
+    "uploadFileTextInputTwo": " or drag and drop your file."
+  },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
     "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",

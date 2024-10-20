@@ -279,6 +279,15 @@
     "wholeNumbers": "تعداد کل ",
     "expirationDate": "تاریخ انقضا"
   },
+  "systemManagement": {
+    "formatList": "لیست فرمت ها ",
+    "search": "جستحو",
+    "newFormat": "فرمت جدید",
+    "uploadFile": "آپلود فایل",
+    "uploadFileText": "برای ساخت فرمت جدید فایل مورد نظر را بارگذاری کنید.",
+    "uploadFileTextInputOne": "برای بارگذاری فایل کلیک کنید ",
+    "uploadFileTextInputTwo": "و یا فایل را در محیط بالا رها کنید"
+  },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",
     "systemAdminDescription2": "2- توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
