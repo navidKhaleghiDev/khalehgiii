@@ -2,6 +2,7 @@ import { BaseTableRenderComponentProps, IdItem, TableType } from '../../types';
 import { BaseTableActionCell } from '../BaseTableRowCells/BaseTableActionCell';
 import { BaseTableComponentCell } from '../BaseTableRowCells/BaseTableComponentCell';
 import { BaseTableNoneCell } from '../BaseTableRowCells/BaseTableNoneCell';
+import { BaseTableDateCell } from '../BaseTableRowCells/BaseTableDateCell';
 
 export function BaseTableRenderComponent<T extends IdItem>(
   props: BaseTableRenderComponentProps<T>
@@ -22,7 +23,7 @@ export function BaseTableRenderComponent<T extends IdItem>(
     ),
     action: <BaseTableActionCell row={row} header={header} onClick={onClick} />,
     button: <div />,
-    date: <div />,
+    date: <BaseTableDateCell row={row} id={id} />,
   };
 
   return Components[header.type ?? 'none'];

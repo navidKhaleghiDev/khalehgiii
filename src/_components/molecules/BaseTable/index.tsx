@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { LoadingSpinner } from '@ui/molecules/Loading';
+
 import { BaseTableHeader } from './components/BaseTableHeader';
 import { BaseTableBody } from './components/BaseTableBody';
 import { BaseTableProps, CategorizedData, IdItem } from './types';
@@ -56,13 +57,22 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <BaseTableBody
-          body={body}
-          collapseHeader={updatedHeaderForBody}
-          header={updatedHeader}
-          onClick={onClick as BaseTableProps<IdItem>['onClick']}
-          isMobile={isMobile}
-        />
+        <>
+          <BaseTableBody
+            body={body}
+            collapseHeader={updatedHeaderForBody}
+            header={updatedHeader}
+            onClick={onClick as BaseTableProps<IdItem>['onClick']}
+            isMobile={isMobile}
+          />
+          {!!countPage && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
+          )}
+        </>
       )}
     </table>
   );
