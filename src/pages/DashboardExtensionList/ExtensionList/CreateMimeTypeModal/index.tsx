@@ -7,7 +7,7 @@ import { Typography, BaseIcon, BaseButton } from '@redesignUi/atoms';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { API_ANALYZE_MIME_TYPE_CREATE } from '@src/services/analyze';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { FileInputController } from '@redesignUi/atoms/Inputs/FileInput/Controller';
 
 type PropsType = {
   handleClose: () => void;
@@ -70,13 +70,10 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
         onSubmit={handleSubmit(handleOnSubmit)}
       >
         <div className="px-2 col-span-6 flex justify-between items-start w-full gap-2">
-          <BaseInputController
+          <FileInputController
             control={control}
             name="file"
             id="file"
-            placeholder={t('global.select')}
-            type="file"
-            fullWidth
             rules={{
               required: regexPattern.required,
             }}

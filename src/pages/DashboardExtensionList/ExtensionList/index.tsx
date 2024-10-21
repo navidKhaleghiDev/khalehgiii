@@ -188,7 +188,6 @@ export function ExtensionList() {
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        size="md"
         title={t('global.sureAboutThis')}
         buttonOne={{
           label: t('global.yes'),
@@ -205,7 +204,6 @@ export function ExtensionList() {
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         type="content"
-        size="md"
         content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
       />
     </div>

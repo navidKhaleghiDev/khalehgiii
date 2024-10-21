@@ -1,22 +1,30 @@
-import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldPath,
+  FieldValues,
+  RegisterOptions,
+} from 'react-hook-form';
 
 import { FileInput, FileInputProps } from '..';
 
 interface FileInputControllerProps<T extends FieldValues>
-  extends FileInputProps {
+  extends Omit<FileInputProps, 'onChange'> {
   control: Control<T>;
   name: FieldPath<T>;
+  rules?: RegisterOptions<T>;
 }
 
 export function FileInputController<T extends FieldValues>(
   props: FileInputControllerProps<T>
 ) {
-  const { control, name, id, disabled, className } = props;
+  const { control, name, id, disabled, className, rules } = props;
 
   return (
     <Controller
       name={name}
       control={control}
+      rules={rules}
       disabled={disabled}
       render={({ field: { onChange } }) => (
         <FileInput

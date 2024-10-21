@@ -8,8 +8,8 @@ import { Typography } from '@redesignUi/atoms/Typography';
 export interface FileInputProps {
   name: string;
   id: string;
-  disabled: boolean;
-  className: string;
+  disabled?: boolean;
+  className?: string;
   onChange: (files: File[] | null) => void;
 }
 
