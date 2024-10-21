@@ -28,7 +28,7 @@ import { LoginForm } from './LoginForm';
 export function LoginPageCp() {
   const { setUser } = useUserContext();
   const navigate = useNavigate();
-  const { changeLanguage } = useLanguage();
+  const { changeLanguage, lang } = useLanguage();
   const { t } = useTranslation();
 
   const [error, setError] = useState<string | null>(null);
@@ -116,7 +116,10 @@ export function LoginPageCp() {
           <div className="absolute top-[1.87rem] rtl:right-5 ltr:left-5">
             <div className="flex gap-[0.62rem]">
               {isOtpActive && (
-                <BackButton onClick={() => setIsOtpActive(false)} />
+                <BackButton
+                  onClick={() => setIsOtpActive(false)}
+                  dir={lang === 'fa' ? 'rtl' : 'ltr'}
+                />
               )}
               <BaseDropdownIcon
                 icon={languageIcon}
