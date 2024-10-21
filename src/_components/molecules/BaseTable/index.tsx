@@ -5,6 +5,7 @@ import { BaseTableBody } from './components/BaseTableBody';
 
 import { BaseTableProps, CategorizedData, IdItem } from './types';
 import { Pagination } from '../Pagination';
+import { SkeletonTable } from './components/SkeletonLoading';
 
 export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   const {
@@ -75,7 +76,7 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
           <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
         )}
         {loading ? (
-          '...loading'
+          <SkeletonTable />
         ) : (
           <BaseTableBody
             body={body}
