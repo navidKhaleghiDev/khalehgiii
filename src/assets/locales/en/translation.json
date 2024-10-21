@@ -120,7 +120,12 @@
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
     "infectedFile": "infected File",
-    "days": "Days"
+    "days": "Days",
+    "progressChart": "Progress chart",
+    "activeLicenses": "Active licenses",
+    "onlineUsers": "Online users",
+    "netsep": "NetSep",
+    "scans": "Scans"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -221,7 +226,8 @@
     "user": "User",
     "group": "Group",
     "fa": "Persian",
-    "en": "English"
+    "en": "English",
+    "domain": "Domain"
   },
   "groupManagement": {
     "person": "person",

@@ -48,14 +48,17 @@ function LayoutCp() {
 
   if (!loading) {
     return (
-      <div className="font-kalameh w-full min-h-screen flex flex-col justify-center items-center 2xl:mx-auto overflow-y-hidden ">
-        <div className="w-full h-16 bg-white dark:bg-gray-700 fixed top-0 z-10 shadow-md">
+      <div className="font-kalameh w-full min-h-screen bg-gray-50 dark:bg-gray-700 flex flex-col justify-center items-center mx-auto overflow-y-hidden ">
+        <header className="w-full h-16 bg-white dark:bg-gray-700 fixed top-0 z-10 shadow-md">
           <NavbarDashboard />
-        </div>
-        <div className="w-full h-full grid grid-cols-12 gap-1 flex-1 mt-12 ">
-          <div className="bg-white w-full col-span-12 overflow-y-auto dark:bg-slate-900">
+        </header>
+
+        <div className="w-full h-full grid grid-cols-12 gap-[1.875rem] flex-1 mt-[5.5rem] container mx-auto sm:px-0 px-5">
+          <div className="w-full xl:col-span-1 xl:block hidden">sidebar</div>
+
+          <main className="w-full xl:col-span-11 col-span-12 grid-cols-12 overflow-y-auto">
             <Outlet />
-          </div>
+          </main>
         </div>
       </div>
     );

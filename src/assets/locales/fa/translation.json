@@ -121,7 +121,12 @@
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
     "infectedFile": "فایل آلوده",
-    "days": "روز"
+    "days": "روز",
+    "progressChart": "نمودار پیشرفت",
+    "activeLicenses": "لایسنس‌های فعال",
+    "onlineUsers": "کاربران آنلاین",
+    "netsep": "نت سپ",
+    "scans": "اسکن ها"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -222,7 +227,8 @@
     "user": "یوزر",
     "group": "گروه",
     "fa": "فارسی",
-    "en": "انگلیسی"
+    "en": "انگلیسی",
+    "domain": "دامنه"
   },
   "groupManagement": {
     "person": "نفر",
