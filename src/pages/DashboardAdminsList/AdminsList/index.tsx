@@ -153,16 +153,18 @@ export function AdminsList() {
         type="error"
         title={t('global.sureAboutThis')}
         buttonOne={{
-          label: t('global.yes'),
+          label: t('table.delete'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
-        }}
-        buttonTow={{
-          label: t('global.no'),
-          onClick: () => setDeleteModal(false),
           color: 'red',
         }}
+        buttonTow={{
+          label: t('global.cancel'),
+          onClick: () => setDeleteModal(false),
+          color: 'tertiary',
+        }}
       />
+
       <Modal
         size="lg"
         type="content"
