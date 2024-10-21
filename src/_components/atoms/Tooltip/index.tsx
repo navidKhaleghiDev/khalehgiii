@@ -29,7 +29,7 @@ function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
           }`}
         >
           {tooltip}
-        </div>{' '}
+        </div>
       </div>
       <div
         onPointerEnter={() => setShow(true)}

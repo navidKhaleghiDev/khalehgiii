@@ -55,8 +55,8 @@ function LayoutCp() {
             <NavbarDashboard />
           </header>
           <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center mt-1">
-            <nav className="flex mx-auto sm:h-full">
-              <div className="flex items-center justify-center w-full h-full shadow-md z-10 sm:w-fit rounded-2xl">
+            <nav className="flex mx-auto sm:h-full z-40">
+              <div className="flex items-center justify-center w-full h-full shadow-md sm:w-fit rounded-2xl">
                 <SideBar />
               </div>
             </nav>
@@ -66,7 +66,6 @@ function LayoutCp() {
                   <div className="pt-5 sm:pt-[3.12rem] px-3 sm:px-8 sm:h-full">
                     <Outlet />
                   </div>
-                  {/* <MenuMobile /> */}
                 </div>
               </div>
             </main>

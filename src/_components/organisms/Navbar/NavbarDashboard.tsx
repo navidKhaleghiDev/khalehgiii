@@ -7,7 +7,7 @@ import { languageOptions } from '@src/constants/optios';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
 
-import { ListMenu } from './ListMenu/ListMenu';
+import { ListMenu } from './ListMenu';
 import { NotificationMenu } from './NotificationMenu';
 
 /**
@@ -17,7 +17,6 @@ import { NotificationMenu } from './NotificationMenu';
 
 export function NavbarDashboard(): JSX.Element {
   const { changeLanguage } = useLanguage();
-
   return (
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base">

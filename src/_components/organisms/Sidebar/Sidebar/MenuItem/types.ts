@@ -1,4 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
+
 import { menuItemStyles } from './styles';
 import { NavigationProps } from '../types';
 

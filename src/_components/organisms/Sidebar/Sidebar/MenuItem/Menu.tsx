@@ -21,7 +21,7 @@ import { MenuItemProps } from './types';
 export function MenuItem(props: MenuItemProps): JSX.Element {
   const { item, pathname, isChildren, collapsed } = props;
   const isActive = pathname === item.path;
-  const hasSubMenu = item.items && item.items.length > 0;
+  const hasSubMenu = Array.isArray(item.items) && item.items.length > 0;
   const isInSubMenu =
     hasSubMenu && item.items?.some((subItem) => pathname === subItem.path);
 
@@ -32,7 +32,6 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
           className={menuItemStyles({
             active: isActive || isInSubMenu,
             isChildren,
-            isActiveChildren: isActive && isChildren,
           })}
           to={item.path}
           target={item.isNewTab ? '_blank' : '_self'}
@@ -45,10 +44,7 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
               />
             )}
             {!collapsed && (
-              <Typography
-                className=" pt-1 px-2 hidden sm:block "
-                variant="body5"
-              >
+              <Typography className="pt-1 px-2" variant="body5">
                 {item.label}
               </Typography>
             )}
@@ -59,20 +55,19 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
           className={menuItemStyles({
             active: isActive || isInSubMenu,
             isChildren,
-            isActiveChildren: isActive && isChildren,
           })}
         >
-          <div className={`flex items-center  ${!collapsed && 'fixed'}`}>
+          <div className={`flex items-center ${!collapsed && 'fixed'}`}>
             {item?.icon && (
               <BaseIcon
                 icon={item.icon}
-                className="w-6 h-6"
+                className="w-6 h-6 text-gray-500 dark:text-gray-300"
                 text-gray-500
                 dark:text-gray-300
               />
             )}
             {!collapsed && (
-              <Typography className="hidden sm:block " variant="body5">
+              <Typography className="pt-1 px-2" variant="body5">
                 {item.label}
               </Typography>
             )}

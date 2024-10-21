@@ -37,13 +37,17 @@ export function MenuItemAccordion(props: MenuItemAccordionProps): JSX.Element {
   const { lang } = useLanguage();
   const iconDirection = lang === 'fa' ? PhCaretLeft : PhCaretRight;
   const isParentPath = pathname.split('/')[1] || 'false';
+  const isActive = item.path === `/${isParentPath}`;
+  const hasSubMenu = Array.isArray(item.items) && item.items.length > 0;
+  const isInSubMenu =
+    hasSubMenu && item.items?.some((subItem) => pathname === subItem.path);
 
   return (
     <div>
       <button
         type="button"
         className={menuItemStyles({
-          active: item.path === `/${isParentPath}`,
+          active: isActive || isInSubMenu,
         })}
         onClick={() => setOpen(open === index ? null : index)}
       >
