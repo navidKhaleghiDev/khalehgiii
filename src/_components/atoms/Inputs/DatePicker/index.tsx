@@ -74,12 +74,11 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
       datePickerRef.current.closeCalendar();
     }
   };
-  console.log(value);
   return (
     <div className={`${className ?? ''}`}>
       <DatePicker
         ref={datePickerRef}
-        onlyMonthPicker={timeDuration?.montly}
+        onlyMonthPicker={timeDuration?.monthly}
         weekPicker={timeDuration?.weekly}
         id={id}
         onChange={(val) => {
