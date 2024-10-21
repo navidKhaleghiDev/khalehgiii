@@ -2,8 +2,11 @@ import moment from 'moment-jalaali';
 
 import { Typography } from '@redesignUi/atoms';
 import { useLanguage } from '@context/settings/languageContext';
+import { BaseTableDataCellProps, IdItem } from '../../types';
 
-export function BaseTableDateCell(props) {
+export function BaseTableDateCell<T extends IdItem>(
+  props: BaseTableDataCellProps<T>
+) {
   const { row, id } = props;
 
   const { lang } = useLanguage();
@@ -17,7 +20,7 @@ export function BaseTableDateCell(props) {
     day: 'numeric',
   };
 
-  function dateAndNumber(date?: string) {
+  function dateAndNumber(date?: Date) {
     // ۲۴ خرداد ۱۴۰۲
     const condition = isFarsi ? 'fa-IR' : 'en-US';
     if (date) {

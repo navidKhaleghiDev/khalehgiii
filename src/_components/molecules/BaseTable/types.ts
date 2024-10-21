@@ -87,6 +87,11 @@ export type BaseTableNoneCellProps<BodyType extends IdItem> = Pick<
   row: any;
 };
 
+export type BaseTableDataCellProps<BodyType extends IdItem> = Omit<
+  BaseTableNoneCellProps<BodyType>,
+  'onClick' | 'header'
+>;
+
 export type CategorizedData = {
   mobile: HeaderTable[];
   desktop: HeaderTable[];
