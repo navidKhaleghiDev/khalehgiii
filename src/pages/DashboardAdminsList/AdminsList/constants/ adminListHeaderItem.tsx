@@ -44,7 +44,7 @@ export const adminListHeaderItem: HeaderTable[] = [
     id: ['first_name', 'last_name'],
     type: 'none',
 
-    class: 'px-3 w-1/12',
+    class: 'px-3 w-2/12',
   },
   {
     label: 'table.active',

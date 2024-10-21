@@ -30,7 +30,11 @@ export function BaseTableDateCell(props) {
   }
 
   return (
-    <Typography variant="body6" type="p">
+    <Typography
+      variant="body6"
+      type="p"
+      className="text-gray-900 dark:text-white"
+    >
       {dateAndNumber(row[id])}
     </Typography>
   );

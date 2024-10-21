@@ -23,7 +23,6 @@ export function BaseTableRenderComponent<T extends IdItem>(
     ),
 
     action: <BaseTableActionCell row={row} header={header} onClick={onClick} />,
-    button: <div />,
     date: <BaseTableDateCell row={row} id={id} />,
   };
 

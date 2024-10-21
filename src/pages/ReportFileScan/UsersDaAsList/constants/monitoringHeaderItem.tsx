@@ -1,12 +1,11 @@
-import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { EPermissionFileScan } from '@src/types/permissions';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 
-export const monitoringHeaderItem: IHeaderTable[] = [
+export const monitoringHeaderItem: HeaderTable[] = [
   {
     label: 'table.userName',
     id: 'email',
@@ -18,8 +17,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
-    type: 'function',
-    function: dateAndNumber,
+    type: 'date',
 
     class: 'px-3 w-1/12',
   },

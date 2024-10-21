@@ -121,7 +121,7 @@ export interface ActionItem {
 }
 export type ActionCellFunction = { action: ActionItem };
 
-export type TableType = 'action' | 'none' | 'component' | 'button' | 'date';
+export type TableType = 'action' | 'none' | 'component' | 'date';
 
 export type ActionOnClickActionsType =
   | 'delete'
