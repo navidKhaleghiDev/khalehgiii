@@ -69,7 +69,7 @@ const BaseTabs = forwardRef(
             return null;
           })}
         </div>
-        <div className="w-full p-5 border-gray-200 border-t-[0.06rem]">
+        <div className="w-full py-5 border-gray-200 border-t-[0.06rem]">
           {validTabs[activeTab]}
         </div>
       </div>
