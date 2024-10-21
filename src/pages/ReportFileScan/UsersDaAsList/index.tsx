@@ -6,12 +6,13 @@ import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
-import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { monitoringHeaderItem } from '@src/pages/ReportFileScan/UsersDaAsList/constants/monitoringHeaderItem';
+
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -74,8 +75,8 @@ export function UsersDaAsList() {
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        bodyList={listDaas}
-        headers={checkPermissionHeaderItem(
+        body={listDaas}
+        header={checkPermissionHeaderItem(
           userPermissions,
           monitoringHeaderItem
         )}

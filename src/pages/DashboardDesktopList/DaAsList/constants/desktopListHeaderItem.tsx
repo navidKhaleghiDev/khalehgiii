@@ -13,9 +13,9 @@ import {
   EPermissionDaasMetaConfig,
   EPermissionSessionRecording,
 } from '@src/types/permissions';
-import { IHeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 
-export const desktopListHeaderItem: IHeaderTable[] = [
+export const desktopListHeaderItem: HeaderTable[] = [
   {
     label: 'table.email',
     id: 'email',

@@ -36,7 +36,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
           <td
             aria-label="BaseTableRow"
             key={`${headerList.label} BaseTableRow`}
-            className={`${headerList.class} flex justify-center`}
+            className={`${headerList.class} flex justify-start`}
           >
             <BaseTableRenderComponent
               row={row}
@@ -46,7 +46,10 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
           </td>
         ))}
         {isCollapse && (
-          <td aria-label="BaseTableRow" className="w-1/12 flex justify-center">
+          <td
+            aria-label="BaseTableRow"
+            className="w-1/12 flex justify-center mr-auto"
+          >
             <IconButton
               color="neutralNoBg"
               className="dark:text-gray-400"

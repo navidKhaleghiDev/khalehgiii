@@ -16,7 +16,7 @@ export function BaseTableNoneCell<T extends IdItem>(
         <Typography
           variant="body6"
           type="p"
-          className=" text-gray-900 dark:text-white text-center whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:translate-x-[50%] group-hover:duration-[1000ms]"
+          className=" text-gray-900 dark:text-white whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:translate-x-[50%] group-hover:duration-[1000ms]"
         >
           {cellLabel ?? '--'}
         </Typography>

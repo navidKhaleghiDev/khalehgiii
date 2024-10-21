@@ -9,8 +9,8 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
   return (
     <thead className={baseTableHeaderStyles()}>
       {header.map((head) => (
-        <tr className={`${head.class}`} key={head.id as string}>
-          <th className="flex justify-center">
+        <tr className={`${head.class} `} key={head.id as string}>
+          <th className={`flex justify-start `}>
             <Typography variant="body6" type="p">
               {t(head.label as string)}
             </Typography>

@@ -3,7 +3,7 @@ import { StringifyProperties } from '@src/types/global';
 import { IconButtonProps } from '@redesignUi/atoms/BaseButton';
 
 export type BaseTableProps<BodyType> = {
-  header: IHeaderTable[];
+  header: HeaderTable[];
   body: BodyType[];
   loading: boolean;
   isMobile?: boolean;
@@ -11,7 +11,7 @@ export type BaseTableProps<BodyType> = {
   pagination: Pagination;
 };
 
-export interface IHeaderTable {
+export interface HeaderTable {
   isCollapsed?: boolean;
   isMobileCollapsed?: boolean;
   action?: any;
@@ -32,14 +32,14 @@ export type BaseTableBodyProps = Pick<
   BaseTableProps<IdItem>,
   'header' | 'onClick' | 'body' | 'isMobile'
 > & {
-  collapseHeader: IHeaderTable[];
+  collapseHeader: HeaderTable[];
 };
 
 export type BaseTableRowProps<BodyType> = Pick<
   BaseTableProps<IdItem>,
   'header' | 'onClick' | 'body' | 'isMobile'
 > & {
-  collapseHeader: IHeaderTable[];
+  collapseHeader: HeaderTable[];
   row: BodyType;
   index: number;
 };
@@ -48,14 +48,14 @@ export type BaseTableRenderComponentProps<BodyType> = Pick<
   'onClick'
 > & {
   row: BodyType;
-  header: IHeaderTable;
+  header: HeaderTable;
 };
 
 export type BaseTableCollapseDesktopProps<BodyType> = Omit<
   BaseTableRenderComponentProps<BodyType>,
   'header'
 > & {
-  header: IHeaderTable[];
+  header: HeaderTable[];
 };
 export type BaseTableCollapseMobileProps<BodyType> =
   BaseTableCollapseDesktopProps<BodyType>;
@@ -73,8 +73,8 @@ export type BaseTableComponentCellProps<BodyType> = Pick<
   BaseTableRowProps<BodyType>,
   'row' | 'onClick'
 > & {
-  header: IHeaderTable;
-  id: IHeaderTable['id'];
+  header: HeaderTable;
+  id: HeaderTable['id'];
   row: BodyType;
 };
 
@@ -82,16 +82,16 @@ export type BaseTableNoneCellProps<BodyType extends IdItem> = Pick<
   BaseTableRowProps<BodyType>,
   'row' | 'onClick'
 > & {
-  header: IHeaderTable;
+  header: HeaderTable;
   id: any;
   row: any;
 };
 
 export type CategorizedData = {
-  mobile: IHeaderTable[];
-  desktop: IHeaderTable[];
-  nonCollapsedMobile: IHeaderTable[];
-  nonCollapsedDesktop: IHeaderTable[];
+  mobile: HeaderTable[];
+  desktop: HeaderTable[];
+  nonCollapsedMobile: HeaderTable[];
+  nonCollapsedDesktop: HeaderTable[];
 };
 
 export type Pagination = {
@@ -136,5 +136,5 @@ export type ActionOnClickActionsType =
 export type OnClickActionsType<DataType> = (
   action: ActionOnClickActionsType,
   typeFile?: StringifyProperties<DataType> | DataType,
-  id?: IHeaderTable['id']
+  id?: HeaderTable['id']
 ) => void;

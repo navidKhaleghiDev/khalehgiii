@@ -12,7 +12,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     id: 'email',
     type: 'none',
 
-    class: 'px-3 w-4/12',
+    class: 'px-3 w-1/12',
   },
 
   {
@@ -21,7 +21,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'function',
     function: dateAndNumber,
 
-    class: 'px-3 w-2/12',
+    class: 'px-3 w-1/12',
   },
   {
     label: 'table.numberOfScans',
@@ -29,7 +29,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'component',
     component: (props: any) => <UserScanCount email={props.row.email} />,
 
-    class: 'px-3 w-2/12',
+    class: 'px-3 w-1/12',
   },
   {
     label: 'table.userStatus',
@@ -37,7 +37,7 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
 
-    class: 'px-3 w-2/12',
+    class: 'px-3 w-1/12',
   },
   {
     label: 'table.observeUserBehavior',
@@ -53,6 +53,6 @@ export const monitoringHeaderItem: IHeaderTable[] = [
     ],
     permission: EPermissionFileScan.VIEW,
 
-    class: 'px-3 w-2/12',
+    class: 'px-3 w-1/12 flex justify-center  mr-auto ',
   },
 ];
