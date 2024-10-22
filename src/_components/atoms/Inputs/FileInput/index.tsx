@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 
 import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
 import X from '@iconify-icons/ph/x';
+import PhFile from '@iconify-icons/ph/file';
 import PhCloudArrowUp from '@iconify-icons/ph/cloud-arrow-up';
 import { Typography } from '@redesignUi/atoms/Typography';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
@@ -54,8 +55,8 @@ export function FileInput(props: FileInputProps) {
         className="hidden"
       />
       <button
-        className={`flex flex-col w-full dark:hover:bg-gray-50 gap-3 items-center border border-neutral-200 ${
-          files && ' border-2 border-teal-500'
+        className={`flex flex-col w-full dark:hover:bg-gray-600 gap-3 items-center border border-neutral-200 dark:border-gray-500 ${
+          files && ' border-2 border-teal-500 dark:border-teal-400'
         } px-6 py-4 dark:bg-gray-700 rounded-2xl`}
         type="button"
         onClick={handleClick}
@@ -71,26 +72,31 @@ export function FileInput(props: FileInputProps) {
           />
         </div>
 
-        <div className="flex">
-          <Typography color="neutralDark" variant="body5">
-            {t('systemManagement.uploadFileTextInputTwo')}
-          </Typography>
+        <div className="flex gap-1">
           <Typography color="teal" variant="body5B">
             {t('systemManagement.uploadFileTextInputOne')}
+          </Typography>
+          <Typography color="neutralDark" variant="body5">
+            {t('systemManagement.uploadFileTextInputTwo')}
           </Typography>
         </div>
       </button>
       {files && (
         <div className="mt-2">
-          <div className="text-start p-2 flex items-center justify-between rounded-lg bg-neutral-100">
-            <Typography variant="body5">
-              {files.map((file) => file.name).join(', ')}
-            </Typography>
+          <div className="text-start p-2 flex items-center justify-between rounded-lg dark:text-white bg-neutral-100 dark:bg-gray-800">
+            <div className="flex items-center gap-3">
+              <div className="border">
+                <BaseIcon icon={PhFile} color="neutral" size="md" />
+              </div>
+              <Typography variant="body5">
+                {files.map((file) => file.name).join(', ')}
+              </Typography>
+            </div>
             <IconButton
               icon={X}
               size="sm"
               color="neutralNoBg"
-              className="rounded-full p-1 box-content bg-gray-200"
+              className="rounded-full p-1 box-content bg-gray-200 dark:bg-gray-800"
               onClick={() => setFiles(null)}
             />
           </div>

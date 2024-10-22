@@ -92,12 +92,12 @@ export function Modal(props: ModalProps): JSX.Element | null {
     <div className="main-modal fixed w-full h-100 inset-0 z-50 animated fadeIn overflow-hidden flex justify-center items-center backdrop-blur-sm">
       <div
         ref={ref}
-        className={`rounded-[1.25rem] shadow-lg modal-container bg-white dark:bg-neutral-600 ${containerStyles(
+        className={`rounded-[1.25rem] shadow-lg modal-container bg-white dark:bg-gray-700 ${containerStyles(
           { size }
         )} mx-auto z-50 overflow-y-auto ${classContainer}`}
       >
         <div className="modal-content text-center min-h-[12rem]">
-          {!hiddenExitContent && (
+          {hiddenExitContent && (
             <div className="flex items-center justify-between h-12 box-content p-5 flex-row">
               {type !== 'content'
                 ? type !== 'noneIcon' && (
