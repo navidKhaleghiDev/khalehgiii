@@ -7,13 +7,7 @@ import PhCloudArrowUp from '@iconify-icons/ph/cloud-arrow-up';
 import { Typography } from '@redesignUi/atoms/Typography';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 
-export interface FileInputProps {
-  name: string;
-  id: string;
-  disabled?: boolean;
-  className?: string;
-  onChange: (files: File[] | null) => void;
-}
+import { FileInputProps } from './types';
 
 export function FileInput(props: FileInputProps) {
   const { name, id, onChange, disabled, className } = props;
@@ -62,7 +56,7 @@ export function FileInput(props: FileInputProps) {
       <button
         className={`flex flex-col w-full dark:hover:bg-gray-50 gap-3 items-center border border-neutral-200 ${
           files && ' border-2 border-teal-500'
-        } px-6 py-4 dark:bg-gray-700 rounded-2xl `}
+        } px-6 py-4 dark:bg-gray-700 rounded-2xl`}
         type="button"
         onClick={handleClick}
         onDrop={handleDrop}

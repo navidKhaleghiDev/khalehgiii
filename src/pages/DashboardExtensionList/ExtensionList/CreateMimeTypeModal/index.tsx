@@ -53,7 +53,7 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
   };
 
   return (
-    <div className=" w-[21.87rem] md:w-[40.313rem] pt-5">
+    <div className="w-[21.87rem] md:w-[40.313rem] pt-5">
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-[0.625rem]">
           <div className="border rounded-lg border-neutral-200 p-3">
