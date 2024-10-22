@@ -9,7 +9,6 @@ import { API_USERS_PROFILE } from '@src/services/users';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
-import { useTranslation } from 'react-i18next';
 import { SideBar } from '@redesignUi/organisms/Sidebar/Sidebar';
 import { NavbarDashboard } from '@redesignUi/organisms/Navbar/NavbarDashboard';
 
