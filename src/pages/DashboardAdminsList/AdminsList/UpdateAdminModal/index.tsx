@@ -1,51 +1,45 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { IUser } from '@src/services/users/types';
-import { API_UPDATE_USER, API_CREATE_USER } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
-
-import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
 import useSWR from 'swr';
-import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
-import { IResponseData } from '@src/types/services';
-import { IUserPermissions } from '@src/types/permissions';
-import { http } from '@src/services/http';
+
+import { useLanguage } from '@context/settings/languageContext';
 import PencilSimple from '@iconify-icons/ph/pencil-simple';
 import EnvelopeSimple from '@iconify-icons/ph/envelope-simple';
 import User from '@iconify-icons/ph/user';
+import { IUser } from '@src/services/users/types';
+import { API_UPDATE_USER, API_CREATE_USER } from '@src/services/users';
+import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
+import { http } from '@src/services/http';
+import { IResponseData } from '@src/types/services';
+import { IUserPermissions } from '@src/types/permissions';
+
+import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import BaseQrCode from '@redesignUi/atoms/BaseQrCode';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
-
 import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
-
 import { regexPattern } from '@redesignUi/atoms/Inputs';
-
 import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
-import { useLanguage } from '@context/settings/languageContext';
 
 import { PermissionOptions } from '../PermissionOptions';
+import { domainsMock } from './dataMock';
 
-export interface UserProps extends Omit<IUser, 'is_meta_admin'> {
+interface UserProps extends Omit<IUser, 'is_meta_admin'> {
   is_meta_admin?: string | boolean;
 }
-type PropsType = {
+type UpdateAdminModalProps = {
   handleClose: (isUpdated?: boolean) => void;
   admin?: Partial<IUser>;
 };
 
-const option = [
-  { id: '1', label: 'sep.npd/co.com' },
-  { id: '2', label: 'sep.npd/co.com' },
-  { id: '3', label: 'sep.npd/co.com' },
-  { id: '4', label: 'sep.npd/co.com' },
-  { id: '5', label: 'sep.npd/co.com' },
-];
-
-export function UpdateAdminModal({ handleClose, admin }: PropsType) {
+export function UpdateAdminModal({
+  handleClose,
+  admin,
+}: UpdateAdminModalProps) {
   const { t } = useTranslation();
   const { lang } = useLanguage();
   const [showConfirm, setShowConfirm] = useState(false);
@@ -79,7 +73,6 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
   const handleOnSubmit = async (data: UserProps) => {
     const updatedData = {
       user_permissions_ids: getSelectedIds,
-
       ...data,
     };
 
@@ -119,9 +112,9 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
     <form className="w-full" onSubmit={handleSubmit(handleOnSubmit)}>
       <BaseTabs>
         <BaseTab label={t('global.userInfo')}>
-          <div className="p-5 h-[486px] overflow-y-scroll">
+          <div className="p-5 h-[30.37rem] overflow-y-scroll">
             <div className="border-gray-300 border-b-[0.06rem]">
-              <div className="sm:flex-row flex flex-col sm:justify-between items-start  gap-5">
+              <div className="sm:flex-row flex flex-col sm:justify-between items-start gap-5">
                 <BaseInputController
                   dir={lang === 'fa' ? 'rtl' : 'ltr'}
                   fullWidth
@@ -206,9 +199,9 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                     <Typography
                       variant="body5B"
                       color="neutralDark"
-                      className="leading-5 text-right ltr:text-left"
+                      className="text-right ltr:text-left"
                     >
-                      نوع کاربری
+                      {t('global.userType')}
                     </Typography>
                     <Typography
                       variant="body6"
@@ -220,7 +213,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                   </div>
                   <div className="flex sm:gap-2.5 gap-10">
                     <BaseRadioButtonController
-                      className={`sm:w-40 sm:p-[0.62rem] flex flex-row-reverse sm:rounded-lg dark:bg-gray-600 sm:shadow ${
+                      className={`sm:w-40 sm:p-2.5 flex flex-row-reverse sm:rounded-lg dark:bg-gray-600 sm:shadow ${
                         isMetaAdmin === 'false'
                           ? 'sm:border sm:border-teal-500'
                           : ''
@@ -229,7 +222,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                       name="is_meta_admin"
                       value="false"
                       control={control}
-                      label="ادمین"
+                      label={t('header.admin')}
                     />
 
                     <BaseRadioButtonController
@@ -242,7 +235,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                       name="is_meta_admin"
                       value="true"
                       control={control}
-                      label="سوپرادمین"
+                      label={t('table.metaAdmin')}
                     />
                   </div>
                 </div>
@@ -252,21 +245,21 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                     <Typography
                       variant="body5B"
                       color="neutralDark"
-                      className="leading-5 text-right ltr:text-left"
+                      className="text-right ltr:text-left"
                     >
                       {t('fileScan.choseDomain')}
                     </Typography>
                     <div className="flex items-end gap-2.5 mt-5">
                       <BaseDropdown
                         name="domain"
-                        options={option}
+                        options={domainsMock}
                         placeHolder={t('fileScan.choseDomain')}
                         onChange={() =>
                           console.log(
                             'This dropDown functionality is not ready'
                           )
                         }
-                        label="دامنه"
+                        label={t('global.domain')}
                       />
                     </div>
                   </div>
@@ -279,7 +272,7 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                       color="neutralDark"
                       className="text-right ltr:text-left"
                     >
-                      {`${t('global.activateOtp')}:`}
+                      {`${t('global.activateOtp')}`}
                     </Typography>
                     <BaseSwitchController
                       control={control}
@@ -293,9 +286,9 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
                     className="text-right ltr:text-left hidden sm:block"
                     color="neutral"
                   >
-                    {t('title.systemAdminDescription2')}
+                    {t('title.systemAdminOtp')}
                   </Typography>
-                  <div className="bg-gray-100 dark:bg-gray-600 w-[7.62rem] sm:w-full sm:py-1 p-5 rounded-lg flex justify-center">
+                  <div className="bg-gray-100 dark:bg-gray-600 w-[7.62rem] sm:w-full sm:mt-5 sm:py-1 p-5 rounded-lg flex justify-center">
                     <BaseQrCode
                       email={admin?.email}
                       defaultValue={admin?.totp_secret}
@@ -315,10 +308,12 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
           />
         </BaseTab>
       </BaseTabs>
-      <div className="flex justify-center col-span-6 mt-4">
+      <div className="flex justify-center mt-4">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">
-            <Typography className="mx-2">{t('global.areYouSure')}</Typography>
+            <Typography className="mx-2 whitespace-nowrap">
+              {t('global.areYouSure')}
+            </Typography>
             <BaseButton
               label={t('global.yes')}
               size="sm"
@@ -338,15 +333,15 @@ export function UpdateAdminModal({ handleClose, admin }: PropsType) {
         {!showConfirm && (
           <div className="flex gap-2.5">
             <BaseButton
-              label={t('dashboard.saveSettings')}
-              className="sm:w-[190px] w-[95px]"
+              label={t('global.save')}
+              className="sm:w-[11.87rem] w-[5.93rem] whitespace-nowrap p-2"
               loading={loadingButtonModal}
               onClick={() => setShowConfirm(true)}
             />
             <BaseButton
               label={t('global.cancel')}
               type="neutral"
-              className="sm:w-[190px] w-[95px]"
+              className="sm:w-[11.87rem] w-[5.93rem]"
               onClick={() => handleClose(false)}
             />
           </div>
