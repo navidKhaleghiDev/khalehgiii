@@ -17,7 +17,9 @@ export type RoutePathType =
   | 'knowledgeManagement'
   | 'internetLog'
   | 'loginAssistance'
-  | 'assistanceDashboard';
+  | 'assistanceDashboard'
+  | 'setting'
+  | 'application';
 
 export const RoutesName = {
   HOME: 'home',
@@ -36,6 +38,8 @@ export const RoutesName = {
   KNOWLEDGE_MANAGEMENT: 'knowledge-management',
   LOGIN_ASSISTANCE: 'login-assistanse',
   ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
+  SETTING: 'setting',
+  APPLICATION: 'application',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -58,4 +62,6 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
   loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
+  setting: `/${RoutesName.SETTING}`,
+  application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
 };

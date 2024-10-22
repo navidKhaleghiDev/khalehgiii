@@ -120,7 +120,8 @@
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
     "infectedFile": "infected File",
-    "days": "Days"
+    "days": "Days",
+    "saveChanges": "Save Changes"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

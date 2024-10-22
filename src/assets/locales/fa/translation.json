@@ -121,7 +121,8 @@
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
     "infectedFile": "فایل آلوده",
-    "days": "روز"
+    "days": "روز",
+    "saveChanges": "ثبت تغییرات"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

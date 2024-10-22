@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { BaseButton, BaseInput, Typography } from '@ui/atoms';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+
 import { regexPattern } from '@ui/atoms/Inputs';
 import { IAddConfig } from '@src/services/config/types';
 import {
@@ -12,7 +14,6 @@ import {
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
 import { Divider } from '@ui/atoms/Divider';
-import { useTranslation } from 'react-i18next';
 import {
   checkPermission,
   useUserPermission,
