@@ -160,16 +160,19 @@ export function ExtensionList() {
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title={t('global.sureAboutThis')}
+        size="responsive"
+        title={t('systemManagement.deleteFormat')}
+        description={t('systemManagement.deleteFormatText')}
         buttonOne={{
-          label: t('global.yes'),
+          label: t('systemManagement.deleteFormat'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
+          color: 'red',
         }}
         buttonTow={{
-          label: t('global.no'),
+          label: t('global.cancel'),
           onClick: () => setDeleteModal(false),
-          color: 'red',
+          color: 'tertiary',
         }}
       />
       <Modal

@@ -286,7 +286,9 @@
     "uploadFile": "آپلود فایل",
     "uploadFileText": "برای ساخت فرمت جدید فایل مورد نظر را بارگذاری کنید.",
     "uploadFileTextInputOne": "برای بارگذاری فایل کلیک کنید ",
-    "uploadFileTextInputTwo": "و یا فایل را در محیط بالا رها کنید"
+    "uploadFileTextInputTwo": "و یا فایل را در محیط بالا رها کنید",
+    "deleteFormat": "حذف فرمت",
+    "deleteFormatText": "آیا از حذف این فرمت مطمعن هستید ؟‌"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

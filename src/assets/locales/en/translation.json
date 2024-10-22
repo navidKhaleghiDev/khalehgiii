@@ -285,7 +285,9 @@
     "uploadFile": "Upload and attach files",
     "uploadFileText": "Upload and attach files to create a new format",
     "uploadFileTextInputOne": "Click to upload ",
-    "uploadFileTextInputTwo": " or drag and drop your file."
+    "uploadFileTextInputTwo": " or drag and drop your file.",
+    "deleteFormat": "Delete format",
+    "deleteFormatText": "Are you sure to delete this format?"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
