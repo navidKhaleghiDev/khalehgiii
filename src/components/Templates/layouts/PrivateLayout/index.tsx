@@ -54,7 +54,7 @@ function LayoutCp() {
           <header className="z-50 border-neutral-200 shadow-lg">
             <NavbarDashboard />
           </header>
-          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center mt-1">
+          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center my-5">
             <nav className="flex mx-auto sm:h-full z-40">
               <div className="flex items-center justify-center w-full h-full shadow-md sm:w-fit rounded-2xl">
                 <SideBar />
