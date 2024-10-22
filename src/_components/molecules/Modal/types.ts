@@ -28,11 +28,13 @@ interface BaseModalProps extends VariantProps<typeof headerStyles> {
 interface ModalWithContent extends BaseModalProps {
   type: 'content';
   content: ReactElement;
+  hiddenExitContent?: boolean;
 }
 
 interface ModalWithoutContent extends BaseModalProps {
   type: 'error' | 'success' | 'info' | 'noneIcon';
   content?: never;
+  hiddenExitContent?: boolean;
 }
 
 export type ModalProps = ModalWithContent | ModalWithoutContent;

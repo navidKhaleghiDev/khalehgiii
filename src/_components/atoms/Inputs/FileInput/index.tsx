@@ -2,8 +2,10 @@ import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 
 import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
+import X from '@iconify-icons/ph/x';
 import PhCloudArrowUp from '@iconify-icons/ph/cloud-arrow-up';
 import { Typography } from '@redesignUi/atoms/Typography';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 export interface FileInputProps {
   name: string;
@@ -46,7 +48,7 @@ export function FileInput(props: FileInputProps) {
   };
 
   return (
-    <>
+    <div className={`flex-col w-full ${className ?? ''}`}>
       <input
         id={id}
         name={name}
@@ -58,11 +60,9 @@ export function FileInput(props: FileInputProps) {
         className="hidden"
       />
       <button
-        className={`flex flex-col w-full dark: hover:bg-gray-50 gap-3 items-center border border-neutral-200 ${
+        className={`flex flex-col w-full dark:hover:bg-gray-50 gap-3 items-center border border-neutral-200 ${
           files && ' border-2 border-teal-500'
-        } px-6 py-4 font-kalameh dark:bg-gray-700 rounded-2xl ${
-          className ?? ''
-        }`}
+        } px-6 py-4 dark:bg-gray-700 rounded-2xl `}
         type="button"
         onClick={handleClick}
         onDrop={handleDrop}
@@ -85,16 +85,23 @@ export function FileInput(props: FileInputProps) {
             {t('systemManagement.uploadFileTextInputOne')}
           </Typography>
         </div>
-        {files && (
-          <div className="mt-2">
-            <div>
-              <Typography variant="body5">
-                {files.map((file) => file.name).join(', ')}
-              </Typography>
-            </div>
-          </div>
-        )}
       </button>
-    </>
+      {files && (
+        <div className="mt-2">
+          <div className="text-start p-2 flex items-center justify-between rounded-lg bg-neutral-100">
+            <Typography variant="body5">
+              {files.map((file) => file.name).join(', ')}
+            </Typography>
+            <IconButton
+              icon={X}
+              size="sm"
+              color="neutralNoBg"
+              className="rounded-full p-1 box-content bg-gray-200"
+              onClick={() => setFiles(null)}
+            />
+          </div>
+        </div>
+      )}
+    </div>
   );
 }

@@ -81,6 +81,7 @@ export function Modal(props: ModalProps): JSX.Element | null {
     buttonTow,
     content,
     description,
+    hiddenExitContent = true,
     classContainer,
   } = props;
   const ref = useRef(null);
@@ -96,41 +97,43 @@ export function Modal(props: ModalProps): JSX.Element | null {
         )} mx-auto z-50 overflow-y-auto ${classContainer}`}
       >
         <div className="modal-content text-center min-h-[12rem]">
-          <div className="flex items-center justify-between h-12 box-content p-5 flex-row">
-            {type !== 'content'
-              ? type !== 'noneIcon' && (
-                  <div
-                    className={`${headerStyles({
-                      type,
-                    })}`}
-                  >
-                    <BaseIcon
-                      icon={iconHeader(type)?.icon}
-                      className={`rounded-full p-2 box-content ${
-                        iconHeader(type)?.color
-                      }`}
-                      size="md"
-                    />
-                  </div>
-                )
-              : title && (
-                  <Typography
-                    variant="body3"
-                    color="neutralDark"
-                    className="rtl:text-right ltr:text-left"
-                  >
-                    {title}
-                  </Typography>
-                )}
-            <div className="modal-close cursor-pointer z-50">
-              <IconButton
-                icon={X}
-                onClick={handleToggle}
-                classNameIcon="h-6 w-6 text-gray-500 dark:text-gray-300"
-                color="neutralNoBg"
-              />
+          {!hiddenExitContent && (
+            <div className="flex items-center justify-between h-12 box-content p-5 flex-row">
+              {type !== 'content'
+                ? type !== 'noneIcon' && (
+                    <div
+                      className={`${headerStyles({
+                        type,
+                      })}`}
+                    >
+                      <BaseIcon
+                        icon={iconHeader(type)?.icon}
+                        className={`rounded-full p-2 box-content ${
+                          iconHeader(type)?.color
+                        }`}
+                        size="md"
+                      />
+                    </div>
+                  )
+                : title && (
+                    <Typography
+                      variant="body3"
+                      color="neutralDark"
+                      className="rtl:text-right ltr:text-left"
+                    >
+                      {title}
+                    </Typography>
+                  )}
+              <div className="modal-close cursor-pointer z-50">
+                <IconButton
+                  icon={X}
+                  onClick={handleToggle}
+                  classNameIcon="h-6 w-6 text-gray-500 dark:text-gray-300"
+                  color="neutralNoBg"
+                />
+              </div>
             </div>
-          </div>
+          )}
           <div className="p-5 pt-0 m-auto sm:max-w-none">
             {title && type !== 'content' && (
               <Typography

@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import X from '@iconify-icons/ph/x';
 
 import { Typography, BaseIcon, BaseButton } from '@redesignUi/atoms';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { API_ANALYZE_MIME_TYPE_CREATE } from '@src/services/analyze';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import { FileInputController } from '@redesignUi/atoms/Inputs/FileInput/Controller';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 type PropsType = {
   handleClose: () => void;
@@ -51,19 +53,22 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
   };
 
   return (
-    <div className="w-[645px]">
-      <div className="flex items-center gap-[0.625rem]">
-        {/* <div className="border rounded-lg border-neutral-200"> */}
-        <BaseIcon icon={PhUploadSimple} color="neutral" size="lg" />
-        {/* </div> */}
-        <div className="text-start">
-          <Typography variant="body3B" color="neutralDark">
-            {t('systemManagement.uploadFile')}
-          </Typography>
-          <Typography variant="body5" color="neutralLight">
-            {t('systemManagement.uploadFileText')}
-          </Typography>
+    <div className=" w-[21.87rem] md:w-[40.313rem] pt-5">
+      <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center gap-[0.625rem]">
+          <div className="border rounded-lg border-neutral-200 p-3">
+            <BaseIcon icon={PhUploadSimple} color="neutral" size="md" />
+          </div>
+          <div className="text-start">
+            <Typography variant="body3B" color="neutralDark">
+              {t('systemManagement.uploadFile')}
+            </Typography>
+            <Typography variant="body5" color="neutralMiddle">
+              {t('systemManagement.uploadFileText')}
+            </Typography>
+          </div>
         </div>
+        <IconButton icon={X} onClick={handleClose} color="neutralNoBg" />
       </div>
       <form
         className="h-full grid grid-cols-6 gap-4 p-4"
@@ -77,6 +82,7 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
             rules={{
               required: regexPattern.required,
             }}
+            className="mb-20"
           />
         </div>
 

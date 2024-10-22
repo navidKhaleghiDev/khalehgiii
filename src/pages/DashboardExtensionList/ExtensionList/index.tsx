@@ -179,6 +179,7 @@ export function ExtensionList() {
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         type="content"
+        hiddenExitContent
         content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
       />
     </div>
