@@ -1,5 +1,4 @@
-import { useCallback, useState } from 'react';
-import { debounce } from 'lodash';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
@@ -15,7 +14,7 @@ import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { EPermissionExtensions } from '@src/types/permissions';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+// import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
 import { BaseButton, Typography } from '@redesignUi/atoms';
@@ -40,10 +39,10 @@ export function ExtensionList() {
     userPermissions,
     EPermissionExtensions.VIEW
   );
-  const addPermission = checkPermission(
-    userPermissions,
-    EPermissionExtensions.ADD
-  );
+  // const addPermission = checkPermission(
+  //   userPermissions,
+  //   EPermissionExtensions.ADD
+  // );
 
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
@@ -64,19 +63,12 @@ export function ExtensionList() {
     HTTP_ANALYSES.fetcherSWR
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 1000),
-    []
-  );
-
   if (!viewTablePermission) return <NoAccessCard />;
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
+  const handleFilterChange = (value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+    console.log(value);
   };
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -125,30 +117,11 @@ export function ExtensionList() {
     }
   };
 
-  const handleCreateAdmin = () => {
-    if (activeAdmin) setActiveAdmin(undefined);
-    setOpenUpdateModal(true);
-  };
-
   const paginationProps = {
     countPage,
     currentPage,
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
-  };
-
-  const searchBarProps: TSearchBar = {
-    name: 'search-extension',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-    componentProps: addPermission
-      ? {
-          type: 'actionAdd',
-          permission: EPermissionExtensions.ADD,
-          label: 'global.addNewFile',
-          onClick: handleCreateAdmin,
-        }
-      : undefined,
   };
 
   return (
@@ -162,7 +135,7 @@ export function ExtensionList() {
           name="searchFormat"
           size="lg"
           placeholder={t('systemManagement.search')}
-          onChange={() => console.log('you are searching')}
+          onChange={handleFilterChange}
           value={filterQuery}
           className="top-3"
         />
@@ -181,7 +154,6 @@ export function ExtensionList() {
         bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}
-        searchBar={searchBarProps}
       />
 
       <Modal
