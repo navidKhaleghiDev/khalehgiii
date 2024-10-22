@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { LoadingPage } from '@ui/molecules/Loading';
+import { useTranslation } from 'react-i18next';
 import cookie from 'js-cookie';
 
+import { LoadingPage } from '@ui/molecules/Loading';
 import { withAuth } from '@src/helper/hoc/withAuth';
 import { API_USERS_PROFILE } from '@src/services/users';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
