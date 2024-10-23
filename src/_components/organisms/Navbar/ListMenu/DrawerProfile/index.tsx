@@ -115,6 +115,7 @@ export function DrawerProfile() {
             icon={PhSignOut}
             size="md"
             onClick={handleLogout}
+            color="neutralNoBg"
             className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
           />
           <span

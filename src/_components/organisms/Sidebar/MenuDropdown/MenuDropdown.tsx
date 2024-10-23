@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { BaseIcon, Typography } from '@redesignUi/atoms';
 
-import { menuItemStyles } from '../MenuItem/styles';
 import { NavigationProps } from '../types';
 
 interface MenuDropdownProps {
