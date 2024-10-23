@@ -27,6 +27,7 @@ import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
 
 import { PermissionOptions } from '../PermissionOptions';
 import { domainsMock } from './dataMock';
+// import { PermissionContent } from '../PermissionOptions/PermissionContent';
 
 interface UserProps extends Omit<IUser, 'is_meta_admin'> {
   is_meta_admin?: string | boolean;
@@ -306,6 +307,8 @@ export function UpdateAdminModal({
             setSelectedSwitches={setSelectedSwitches}
             selectedSwitches={selectedSwitches as []}
           />
+
+          {/* <PermissionContent /> */}
         </BaseTab>
       </BaseTabs>
       <div className="flex justify-center mt-4">

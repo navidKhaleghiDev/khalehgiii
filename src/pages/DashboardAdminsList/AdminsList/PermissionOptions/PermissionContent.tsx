@@ -55,7 +55,7 @@ export function PermissionContent() {
   );
 
   return (
-    <div className="h-[26.62rem] overflow-y-auto">
+    <div className="h-[30.37rem] overflow-y-auto">
       <SearchInput
         id="search"
         name="search"
