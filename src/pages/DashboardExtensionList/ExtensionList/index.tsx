@@ -125,7 +125,7 @@ export function ExtensionList() {
   };
 
   return (
-    <div className={`w-full pt-10 px-5 ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full ${isLoading ? 'loading' : ''}`}>
       <Typography variant="body2B" color="neutralDark" className="mb-[6.25rem]">
         {t('systemManagement.formatList')}
       </Typography>
