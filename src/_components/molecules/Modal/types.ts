@@ -47,8 +47,8 @@ export interface ModelInfoProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   icon: BaseIconProps['icon'];
-  classContainer: string;
+  classContainer?: string;
   title: string;
-  description: string;
+  description?: string;
   content: React.ReactNode;
 }
