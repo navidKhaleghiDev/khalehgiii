@@ -116,7 +116,7 @@ export function SideBar(): JSX.Element {
           ) : (
             <div
               key={item.id}
-              onPointerDown={() => {
+              onPointerEnter={() => {
                 setDropdownVisible(item);
               }}
               onPointerLeave={() => setDropdownVisible(null)}
