@@ -9,6 +9,25 @@ import { BaseTableCollapse } from '../BaseTableCollapse';
 import { BaseTableRowProps, IdItem } from '../../types';
 import { baseTableRowStyles } from '../../styles';
 
+/**
+ * Renders a row in the `BaseTable` component, displaying data from a single item
+ * and allowing for collapsible details. Each row can be expanded or collapsed
+ * to show more information based on user interaction.
+ *
+ * @template T - The type of the row item extending from `IdItem`.
+ *
+ * @param {BaseTableRowProps<T>} props - The props object for the table row component.
+ * @param {T} props.row - The data for the current row.
+ * @param {BodyType[]} props.body - The array of all body data for the table.
+ * @param {HeaderTable[]} props.header - An array of objects representing the table headers.
+ * @param {OnClickActionsType<T>} [props.onClick] - Optional callback function for handling row click actions.
+ * @param {number} props.index - The index of the current row in the body array.
+ * @param {CategorizedData} props.collapseHeader - Data defining which headers are collapsible.
+ * @param {boolean} [props.isMobile] - Optional flag to determine if the table is rendered in mobile view.
+ *
+ * @returns {JSX.Element} The rendered table row component, which may include a collapsible section.
+ */
+
 export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
   const { lang } = useLanguage();
   const { row, body, header, onClick, index, collapseHeader, isMobile } = props;

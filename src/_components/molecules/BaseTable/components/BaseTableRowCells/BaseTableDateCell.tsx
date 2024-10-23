@@ -4,6 +4,18 @@ import { Typography } from '@redesignUi/atoms';
 import { useLanguage } from '@context/settings/languageContext';
 import { BaseTableDataCellProps, IdItem } from '../../types';
 
+/**
+ * Renders a table cell displaying a formatted date based on the user's language settings.
+ *
+ * @template T - The type of the row item extending from `IdItem`.
+ *
+ * @param {BaseTableDataCellProps<T>} props - The props object for the `BaseTableDateCell` component.
+ * @param {T} props.row - The data object for the current row containing the date to display.
+ * @param {string} props.id - The key in the row data that corresponds to the date value.
+ *
+ * @returns {JSX.Element} A `Typography` element displaying the formatted date.
+ */
+
 export function BaseTableDateCell<T extends IdItem>(
   props: BaseTableDataCellProps<T>
 ) {

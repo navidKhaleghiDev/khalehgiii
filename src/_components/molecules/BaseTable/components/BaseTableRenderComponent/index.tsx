@@ -5,6 +5,21 @@ import { BaseTableNoneCell } from '../BaseTableRowCells/BaseTableNoneCell';
 import { BaseTableDateCell } from '../BaseTableRowCells/BaseTableDateCell';
 import BaseTableAvatarCell from '../BaseTableRowCells/BaseTableAvatarCell';
 
+/**
+ * Renders the appropriate table cell component based on the type specified in the header.
+ * The component dynamically selects and renders one of several possible cell types
+ * (e.g., action, date, avatar) based on the provided header type.
+ *
+ * @template T - The type of the row item extending from `IdItem`.
+ *
+ * @param {BaseTableRenderComponentProps<T>} props - The props object for the table render component.
+ * @param {Object} props.header - The header configuration for the current cell, which includes type and id.
+ * @param {T} props.row - The data for the current row, containing the information to be displayed in the cell.
+ * @param {function} [props.onClick] - Optional callback function for handling click actions on the cell.
+ *
+ * @returns {JSX.Element} The rendered table cell component based on the header type.
+ */
+
 export function BaseTableRenderComponent<T extends IdItem>(
   props: BaseTableRenderComponentProps<T>
 ) {

@@ -5,6 +5,18 @@ import { Typography } from '@redesignUi/atoms/Typography/Typography';
 import { BaseTableHeaderProps } from '../../types';
 import { baseTableHeaderStyles } from '../../styles';
 
+/**
+ * Renders the table header for the `BaseTable` component, supporting dynamic language-based className changes
+ * and the ability to collapse certain columns.
+ *
+ * @param {BaseTableHeaderProps} props - The props object for the table header component.
+ * @param {HeaderTable[]} props.header - An array of header items defining the columns of the table.
+ * Each header item includes a label, class, and id.
+ * @param {boolean} props.collapse - A flag that determines if the table header has collapsed columns.
+ *
+ * @returns {JSX.Element} The rendered table header component.
+ */
+
 export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
   const { t } = useTranslation();
   const { lang } = useLanguage();

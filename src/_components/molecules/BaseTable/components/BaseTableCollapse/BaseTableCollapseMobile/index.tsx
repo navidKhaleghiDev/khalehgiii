@@ -7,6 +7,21 @@ import {
 import { baseTableCollapseMobile } from '@redesignUi/molecules/BaseTable/styles';
 import { BaseTableRenderComponent } from '../../BaseTableRenderComponent';
 
+/**
+ * Renders a mobile-friendly collapsible table row component.
+ * Each header cell displays the translated label along with a
+ * render component for the corresponding row data.
+ *
+ * @template T - The type of the row item extending from `IdItem`.
+ *
+ * @param {BaseTableCollapseMobileProps<T>} props - The props object for the mobile collapsible table component.
+ * @param {Array} props.header - An array of header definitions used to create the table header cells.
+ * @param {T} props.row - The data for the current row, containing the information to be displayed.
+ * @param {function} [props.onClick] - Optional callback function for handling click actions on the table cells.
+ *
+ * @returns {JSX.Element} The rendered mobile collapsible table row.
+ */
+
 export function BaseTableCollapseMobile<T extends IdItem>(
   props: BaseTableCollapseMobileProps<T>
 ) {

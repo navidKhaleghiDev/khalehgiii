@@ -7,6 +7,30 @@ import { BaseTableProps, CategorizedData, IdItem } from './types';
 import { Pagination } from '../Pagination';
 import { SkeletonTable } from './components/SkeletonLoading';
 
+/**
+ * A table component that displays data with customizable headers, body content,
+ * and pagination. The component supports collapsing columns for mobile and desktop views
+ * and handles both loading and non-loading states.
+ *
+ * @template T - A generic type representing the table body data, extending `IdItem`.
+ * @param {BaseTableProps<T>} props - The props object for the table component.
+ * @param {HeaderTable[]} props.header - An array of objects representing the table headers.
+ * @param {T[]} props.body - An array of objects representing the table body content.
+ * @param {boolean} props.loading - A flag to indicate whether the table is in a loading state.
+ * @param {boolean} [props.isMobile=false] - Optional flag to determine if the table is rendered in mobile view.
+ * @param {OnClickActionsType<T>} [props.onClick] - Optional callback function for handling row click actions.
+ * @param {Pagination} props.pagination - An object containing pagination details.
+ * @param {number} props.pagination.countPage - The total number of pages.
+ * @param {number} props.pagination.currentPage - The current page being displayed.
+ * @param {number} props.pagination.totalPages - The total number of pages available.
+ * @param {function} props.pagination.onPageChange - Function to handle page change events.
+ * @param {number} props.pagination.allItems - The total number of items.
+ * @param {number} props.pagination.itemsPer - The number of items displayed per page.
+ * @param {string} [props.pagination.paginationLabel] - Optional label for the pagination component.
+ *
+ * @returns {JSX.Element} The rendered table component.
+ */
+
 export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   const {
     header,

@@ -2,6 +2,22 @@ import { Avatar, Typography } from '@redesignUi/atoms';
 import userIcon from '@iconify-icons/ph/user';
 import { BaseTableAvatarCellProps, IdItem } from '../../types';
 
+/**
+ * Renders a table cell displaying an avatar and associated user information.
+ *
+ * @template T - The type of the row item extending from `IdItem`.
+ *
+ * @param {BaseTableAvatarCellProps<T>} props - The props object for the `BaseTableAvatarCell` component.
+ * @param {T} props.row - The data object for the current row containing user information.
+ * @param {string | string[]} props.id - The key(s) in the row data that correspond to the user's display label.
+ * @param {Object} props.header - The header configuration for the table.
+ * @param {string} props.header.type - The type of the header, which determines if the row should render an avatar.
+ * @param {string} [props.header.isActive] - The key in the row data indicating if the user is active.
+ * @param {string} [props.header.email] - The key in the row data for the user's email.
+ *
+ * @returns {JSX.Element} A `div` containing an `Avatar` component and two `Typography` elements displaying the user's name and email.
+ */
+
 export default function BaseTableAvatarCell<T extends IdItem>(
   props: BaseTableAvatarCellProps<T>
 ) {
