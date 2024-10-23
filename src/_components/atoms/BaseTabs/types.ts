@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
 
-export interface IBaseTabProps extends PropsWithChildren {
+export interface BaseTabProps extends PropsWithChildren {
   label: string;
   content?: React.ReactNode;
   className?: string;
 }
 
-export interface IBaseTabsProps extends PropsWithChildren {
+export interface BaseTabsProps extends PropsWithChildren {
   label?: string;
   className?: string;
 }

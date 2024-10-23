@@ -4,17 +4,18 @@ import React, {
   useImperativeHandle,
   forwardRef,
 } from 'react';
-import { BaseButton } from '@redesignUi/atoms';
-import { useLanguage } from '@context/settings/languageContext';
-import { IBaseTabProps, IBaseTabsProps } from './types';
-import { Typography } from '../../../components/atoms/Typography';
 
-export function BaseTab({ children, className }: IBaseTabProps): JSX.Element {
+import { BaseButton, Typography } from '@redesignUi/atoms';
+import { useLanguage } from '@context/settings/languageContext';
+
+import { BaseTabProps, BaseTabsProps } from './types';
+
+export function BaseTab({ children, className }: BaseTabProps): JSX.Element {
   return <div className={className}>{children}</div>;
 }
 
 const BaseTabs = forwardRef(
-  ({ children, label, className }: IBaseTabsProps, ref): JSX.Element => {
+  ({ children, label, className }: BaseTabsProps, ref): JSX.Element => {
     const [activeTab, setActiveTab] = useState<number>(0);
     const { lang } = useLanguage();
 
@@ -48,7 +49,7 @@ const BaseTabs = forwardRef(
         )}
         <div className="flex">
           {validTabs.map((child, index) => {
-            if (React.isValidElement<IBaseTabProps>(child)) {
+            if (React.isValidElement<BaseTabProps>(child)) {
               const { label: propsLabel } = child.props;
               return (
                 <BaseButton

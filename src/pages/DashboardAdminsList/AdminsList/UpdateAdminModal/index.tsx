@@ -112,7 +112,7 @@ export function UpdateAdminModal({
     <form className="w-full" onSubmit={handleSubmit(handleOnSubmit)}>
       <BaseTabs>
         <BaseTab label={t('global.userInfo')}>
-          <div className="p-5 h-[30.37rem] overflow-y-scroll">
+          <div className="p-5 pr-0 h-[30.37rem] overflow-y-scroll">
             <div className="border-gray-300 border-b-[0.06rem]">
               <div className="sm:flex-row flex flex-col sm:justify-between items-start gap-5">
                 <BaseInputController
