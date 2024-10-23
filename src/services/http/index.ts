@@ -200,7 +200,6 @@ export class Http {
                   break;
                 }
               } catch (refreshError) {
-                // eslint-disable-next-line no-console
                 console.error('refresh token error:', refreshError);
               }
             }

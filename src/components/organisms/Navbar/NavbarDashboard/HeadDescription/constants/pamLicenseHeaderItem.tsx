@@ -1,8 +1,8 @@
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { EPermissionDaas } from '@src/types/permissions';
 import { BaseTableSwitch } from '@ui/atoms/BaseTable/components/BaseTableSwitch';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const licenseTrueStatusHeaderItem: HeaderTable[] = [
+export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
   {
     label: 'table.nameOfTheUser',
     id: 'email',

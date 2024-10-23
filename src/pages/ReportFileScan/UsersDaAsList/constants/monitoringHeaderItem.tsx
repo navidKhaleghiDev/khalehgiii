@@ -3,9 +3,9 @@ import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { EPermissionFileScan } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const monitoringHeaderItem: HeaderTable[] = [
+export const monitoringHeaderItem: IHeaderTable[] = [
   {
     label: 'table.userName',
     id: 'email',

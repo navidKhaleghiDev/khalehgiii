@@ -3,9 +3,9 @@ import notePencilIcon from '@iconify-icons/ph/note-pencil';
 import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { EPermissionUsers } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const adminListHeaderItem: HeaderTable[] = [
+export const adminListHeaderItem: IHeaderTable[] = [
   {
     id: 'action',
     type: 'action',
@@ -36,14 +36,12 @@ export const adminListHeaderItem: HeaderTable[] = [
     label: 'table.email',
     id: 'email',
     type: 'none',
-
     class: 'px-3 w-1/12',
   },
   {
     label: 'table.firstNameLastName',
     id: ['first_name', 'last_name'],
-    type: 'none',
-
+    type: 'user',
     class: 'px-3 w-2/12',
   },
   {

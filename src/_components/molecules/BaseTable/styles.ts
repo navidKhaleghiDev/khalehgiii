@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const baseTableHeaderStyles = cva(
-  `w-full flex items-center px-3 justify-start rounded-xl h-8 bg-white mb-3 text-gray-500 dark:bg-gray-600 dark:text-gray-100`,
+  `w-full flex items-center px-3 justify-start rounded-xl h-8 bg-white mb-3 text-gray-500 dark:bg-gray-600 dark:text-gray-100 text-xs`,
   {
     variants: {},
     defaultVariants: {

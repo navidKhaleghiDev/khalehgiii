@@ -28,7 +28,7 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { BaseTable } from '@ui/atoms/BaseTable';
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 
@@ -270,7 +270,7 @@ export function DaAsList() {
 
   return (
     <div className={`w-full p-4 ${isLoading ? 'loading' : ''}  `}>
-      {/* <BaseTable
+      <BaseTable
         loading={isLoading}
         headers={checkPermissionHeaderItem(
           userPermissions,
@@ -280,13 +280,6 @@ export function DaAsList() {
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}
-      /> */}
-      <BaseTable
-        header={desktopListHeaderItem}
-        body={listDaas}
-        loading={isLoading}
-        pagination={paginationProps}
-        isMobile
       />
       <Modal
         open={openModal}

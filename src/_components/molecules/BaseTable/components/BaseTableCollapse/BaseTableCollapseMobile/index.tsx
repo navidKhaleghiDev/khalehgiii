@@ -20,7 +20,7 @@ export function BaseTableCollapseMobile<T extends IdItem>(
           key={headerList.label}
           className="w-full flex justify-between items-center border border-gray-300 h-10 px-2"
         >
-          <Typography color="neutral" variant="body6">
+          <Typography className="font-normal" color="neutral" variant="body6">
             {t(headerList.label as string)}
           </Typography>
           <div>

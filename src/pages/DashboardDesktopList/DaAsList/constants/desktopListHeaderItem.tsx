@@ -13,9 +13,9 @@ import {
   EPermissionDaasMetaConfig,
   EPermissionSessionRecording,
 } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const desktopListHeaderItem: HeaderTable[] = [
+export const desktopListHeaderItem: IHeaderTable[] = [
   {
     label: 'table.email',
     id: 'email',
@@ -26,15 +26,13 @@ export const desktopListHeaderItem: HeaderTable[] = [
     label: 'table.httpPort',
     id: 'http_port',
     type: 'none',
-    class: `w-2/12  `,
-    isMobileCollapsed: true,
+    class: `w-2/12`,
   },
   {
     label: 'table.httpsPort',
     id: 'https_port',
     type: 'none',
     class: 'w-2/12 ',
-    isMobileCollapsed: true,
   },
   {
     label: 'table.accessCapacity',
@@ -44,28 +42,24 @@ export const desktopListHeaderItem: HeaderTable[] = [
       <Check id={!props.row.exceeded_usage} header={props.head} />
     ),
     class: 'w-1/12 ',
-    isMobileCollapsed: true,
   },
   {
     label: 'table.containerId',
     id: 'container_id',
     type: 'none',
     class: 'w-1/12 ',
-    isMobileCollapsed: true,
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'none',
     class: ' w-1/12 ',
-    isMobileCollapsed: true,
   },
   {
     label: 'table.lastLoginIp',
     id: 'last_login_ip',
     type: 'none',
     class: 'w-1/12 ',
-    isCollapsed: true,
   },
   {
     label: 'table.status',
@@ -73,7 +67,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
     type: 'component',
     component: (props: any) => <Circle id={props.row.is_running} />,
     class: 'w-2/12 ',
-    isCollapsed: true,
   },
 
   {
@@ -89,14 +82,12 @@ export const desktopListHeaderItem: HeaderTable[] = [
     ),
     permission: EPermissionDaas.CHANGE,
     class: 'w-2/12 ',
-    isCollapsed: true,
   },
   {
     label: 'table.desktopV',
     id: 'daas_version',
     type: 'none',
     class: 'w-2/12 ',
-    isCollapsed: true,
   },
 
   {
@@ -107,24 +98,22 @@ export const desktopListHeaderItem: HeaderTable[] = [
       <UsedTimeDass time={props.row.usage_in_minute} />
     ),
     class: 'w-2/12 ',
-    isCollapsed: true,
   },
-  // {
-  //   label: 'table.accessSettingsTime',
-  //   id: 'updated_at',
-  //   type: 'component',
-  //   component: (props: any) => (
-  //     <SetAccessTime
-  //       id={props.row.id as string}
-  //       onClickActions={props.onClick}
-  //       timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
-  //       timeLimitDuration={props.row.daas_configs.time_limit_duration}
-  //     />
-  //   ),
-  //   class: 'w-3/12 ',
-  //   isCollapsed: true,
-  //   permission: EPermissionDaas.CHANGE,
-  // },
+  {
+    label: 'table.accessSettingsTime',
+    id: 'updated_at',
+    type: 'component',
+    component: (props: any) => (
+      <SetAccessTime
+        id={props.row.id as string}
+        onClickActions={props.onClick}
+        timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
+        timeLimitDuration={props.row.daas_configs.time_limit_duration}
+      />
+    ),
+    class: 'w-3/12 ',
+    permission: EPermissionDaas.CHANGE,
+  },
 
   {
     label: 'table.defaultSetting',
@@ -137,7 +126,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
       />
     ),
     class: 'w-2/12 ',
-    isCollapsed: true,
   },
   {
     label: 'table.recordingActivity',
@@ -153,7 +141,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
     ],
     permission: EPermissionSessionRecording.VIEW,
     class: 'w-2/12',
-    isCollapsed: true,
   },
 
   {
@@ -178,7 +165,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
     ],
     permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
     class: 'w-2/12 ',
-    isMobileCollapsed: true,
   },
   {
     label: 'global.onlineAssistanceDetail',
@@ -193,6 +179,5 @@ export const desktopListHeaderItem: HeaderTable[] = [
       },
     ],
     class: 'w-2/12 ',
-    isMobileCollapsed: true,
   },
 ];

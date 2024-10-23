@@ -29,7 +29,7 @@ export const scannedFileHeaderItem = (
       label: 'table.fileName',
       id: 'file_name',
       type: 'tooltip' as TableType, // Explicitly specify the type
-      class: 'px-3 w-2/12 font-bold',
+      class: 'px-3 w-2/12',
     },
     {
       label: 'table.type',

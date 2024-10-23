@@ -11,7 +11,7 @@ export type BaseTableProps<BodyType> = {
   pagination: Pagination;
 };
 
-export interface HeaderTable {
+interface HeaderTableBase {
   isCollapsed?: boolean;
   isMobileCollapsed?: boolean;
   action?: any;
@@ -23,6 +23,11 @@ export interface HeaderTable {
   type: TableType;
   permission?: PermissionsCodeName | PermissionsCodeName[];
 }
+export type HeaderTable = HeaderTableBase &
+  (
+    | { type: Exclude<TableType, 'avatar'> }
+    | { type: 'avatar'; isActive: string; email: string }
+  );
 
 export type BaseTableHeaderProps = Pick<BaseTableProps<IdItem>, 'header'> & {
   collapse?: boolean;
@@ -87,6 +92,9 @@ export type BaseTableNoneCellProps<BodyType extends IdItem> = Pick<
   row: any;
 };
 
+export type BaseTableAvatarCellProps<BodyType extends IdItem> =
+  BaseTableNoneCellProps<BodyType>;
+
 export type BaseTableDataCellProps<BodyType extends IdItem> = Omit<
   BaseTableNoneCellProps<BodyType>,
   'onClick' | 'header'
@@ -126,7 +134,7 @@ export interface ActionItem {
 }
 export type ActionCellFunction = { action: ActionItem };
 
-export type TableType = 'action' | 'none' | 'component' | 'date';
+export type TableType = 'action' | 'none' | 'component' | 'date' | 'avatar';
 
 export type ActionOnClickActionsType =
   | 'delete'

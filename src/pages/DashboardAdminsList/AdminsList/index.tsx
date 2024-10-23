@@ -18,7 +18,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { BaseTable } from '@ui/atoms/BaseTable';
 import { EPermissionUsers } from '@src/types/permissions';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
@@ -136,9 +136,12 @@ export function AdminsList() {
   return (
     <div className={`w-full ${isLoading ? 'loading' : ''}`}>
       <BaseTable
-        header={checkPermissionHeaderItem(userPermissions, adminListHeaderItem)}
+        headers={checkPermissionHeaderItem(
+          userPermissions,
+          adminListHeaderItem
+        )}
         loading={isLoading}
-        body={listWhiteList}
+        bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}

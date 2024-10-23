@@ -3,6 +3,7 @@ import { BaseTableActionCell } from '../BaseTableRowCells/BaseTableActionCell';
 import { BaseTableComponentCell } from '../BaseTableRowCells/BaseTableComponentCell';
 import { BaseTableNoneCell } from '../BaseTableRowCells/BaseTableNoneCell';
 import { BaseTableDateCell } from '../BaseTableRowCells/BaseTableDateCell';
+import BaseTableAvatarCell from '../BaseTableRowCells/BaseTableAvatarCell';
 
 export function BaseTableRenderComponent<T extends IdItem>(
   props: BaseTableRenderComponentProps<T>
@@ -24,6 +25,7 @@ export function BaseTableRenderComponent<T extends IdItem>(
 
     action: <BaseTableActionCell row={row} header={header} onClick={onClick} />,
     date: <BaseTableDateCell row={row} id={id} />,
+    avatar: <BaseTableAvatarCell row={row} id={id} header={header} />,
   };
   return Components[header.type ?? 'none'];
 }

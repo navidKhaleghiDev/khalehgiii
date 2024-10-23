@@ -11,8 +11,7 @@ import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/ty
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { monitoringHeaderItem } from '@src/pages/ReportFileScan/UsersDaAsList/constants/monitoringHeaderItem';
-
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { BaseTable } from '@ui/atoms/BaseTable';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -75,8 +74,8 @@ export function UsersDaAsList() {
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
-        body={listDaas}
-        header={checkPermissionHeaderItem(
+        bodyList={listDaas}
+        headers={checkPermissionHeaderItem(
           userPermissions,
           monitoringHeaderItem
         )}
