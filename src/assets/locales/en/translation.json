@@ -205,7 +205,7 @@
     "activeDeactive": "Active/Deceive",
     "somethingWentWrong": "Something Went Wrong",
     "genrateQrcode": "generate Qrcode",
-    "activateOtp": "activate Otp",
+    "activateOtp": "Activation OTP",
     "userInfo": "user Info",
     "accessList": "Access list",
     "videoDuration": "time duration",
@@ -222,7 +222,10 @@
     "group": "Group",
     "fa": "Persian",
     "en": "English",
-    "changePassword": "Change Password"
+    "changePassword": "Change Password",
+    "userType": "User type",
+    "domain": "Domain",
+    "save": "Save"
   },
   "groupManagement": {
     "person": "person",
@@ -282,8 +285,9 @@
 
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
-    "systemAdminDescription2": "2- Please note that a user recognized as a super admin has the capability to add and remove other admins.",
+    "systemAdminDescription2": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
     "acessTimeModalDescription1": "The access time for this user will be returned to the initial state. Are you sure you want to proceed with this action?",
-    "extensionListTitle": "To create a new file string and file extension, upload your associated file."
+    "extensionListTitle": "To create a new file string and file extension, upload your associated file.",
+    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
   }
 }
