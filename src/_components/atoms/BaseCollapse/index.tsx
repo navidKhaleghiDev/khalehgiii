@@ -40,11 +40,13 @@ export function BaseCollapse({ content, title, className }: TBaseCollapse) {
         />
       </div>
       <div
-        className={`transition-max-height duration-300 ease-out overflow-hidden border border-gray-100 bg-gray-100 px-5 rounded-lg ${
-          isOpen ? 'max-h-10 mt-[0.12rem]' : 'max-h-0'
+        className={`transition-max-height duration-75 ease-out overflow-hidden px-5 rounded-lg ${
+          isOpen
+            ? 'max-h-10 mt-[0.12rem]  border border-gray-100 bg-gray-100 '
+            : 'h-0'
         }`}
       >
-        {content && <div className="overflow-y-auto">{content}</div>}
+        {content && <div>{content}</div>}
       </div>
     </div>
   );
