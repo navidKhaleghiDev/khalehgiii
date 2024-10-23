@@ -33,7 +33,7 @@ export function BaseTableCollapseMobile<T extends IdItem>(
       {header.map((headerList) => (
         <th
           key={headerList.label}
-          className={`w-[90%] m-auto flex justify-between items-center border first:border-t-0 last:border-b-0  border-gray-300 border-x-0 h-10  `}
+          className={`w-[90%] m-auto flex justify-between items-center border first:border-t-0 last:border-b-0 border-gray-300 border-x-0 h-10 `}
         >
           <Typography className="font-normal" color="neutral" variant="body6">
             {t(headerList.label as string)}

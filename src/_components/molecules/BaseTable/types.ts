@@ -27,6 +27,17 @@ export type HeaderTable = HeaderTableBase &
   (
     | { type: Exclude<TableType, 'avatar'> }
     | { type: 'avatar'; isActive: string; email: string }
+  ) &
+  (
+    | { type: Exclude<TableType, 'none'> }
+    | {
+        type: 'none';
+        textTransform?:
+          | 'uppercase'
+          | 'lowercase'
+          | 'capitalize'
+          | 'normal-case';
+      }
   );
 
 export type BaseTableHeaderProps = Pick<BaseTableProps<IdItem>, 'header'> & {

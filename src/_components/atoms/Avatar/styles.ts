@@ -25,7 +25,7 @@ export const iconAvatarStyles = cva('absolute text-gray-400', {
       md: 'size-6',
       lg: 'size-[2.375rem]',
       responsive: 'size-4 md:size-6 lg:size-[2.375rem]',
-      table: 'size-4  sm:size-[2.375rem]',
+      table: 'size-4  sm:size-6',
     },
   },
 });

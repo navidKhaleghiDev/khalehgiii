@@ -11,6 +11,7 @@ interface LanguageContextProps {
   lang: string;
   changeLanguage: (lang: string) => void;
   dir: string | undefined;
+  isFarsi: boolean;
 }
 
 interface LanguageProviderProps {
@@ -38,10 +39,11 @@ export function LanguageProvider({
   );
 
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
+  const isFarsi = lang === 'fa';
 
   const contextValue = useMemo(
-    () => ({ lang, changeLanguage, dir }),
-    [lang, changeLanguage, dir]
+    () => ({ lang, changeLanguage, dir, isFarsi }),
+    [lang, changeLanguage, dir, isFarsi]
   );
 
   return (

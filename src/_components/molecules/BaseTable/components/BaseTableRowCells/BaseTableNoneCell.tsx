@@ -1,3 +1,5 @@
+import { useLanguage } from '@context/settings/languageContext';
+
 import { Typography } from '@redesignUi/atoms/Typography/Typography';
 import { BaseTableNoneCellProps, IdItem } from '../../types';
 
@@ -18,7 +20,12 @@ import { BaseTableNoneCellProps, IdItem } from '../../types';
 export function BaseTableNoneCell<T extends IdItem>(
   props: BaseTableNoneCellProps<T>
 ) {
-  const { row, id } = props;
+  const { row, id, header } = props;
+  const { isFarsi } = useLanguage();
+
+  const transitionDirection = !isFarsi ? '[50%]' : '[-50%]';
+
+  const textTransform = header.type === 'none' && header.textTransform;
 
   const cellLabel = Array.isArray(id)
     ? id.map((i: string) => `${row[i]} `)
@@ -30,7 +37,7 @@ export function BaseTableNoneCell<T extends IdItem>(
         <Typography
           variant="body6"
           type="p"
-          className=" text-gray-900 dark:text-white whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:translate-x-[50%] group-hover:duration-[1000ms] font-normal"
+          className={` text-gray-900 dark:text-white whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:translate-x-${transitionDirection} group-hover:duration-[1000ms] font-normal   ${textTransform} `}
         >
           {cellLabel ?? '--'}
         </Typography>
