@@ -34,7 +34,7 @@ export default function BaseTableAvatarCell<T extends IdItem>(
     'whitespace-nowrap text-ellipsis overflow-hidden hover:whitespace-nowrap hover:overflow-visible transition-transform duration-1000 ease-linear hover:translate-x-[50%] hover:duration-[1000ms]';
   return (
     <div className="flex ">
-      <Avatar icon={userIcon} isActive={isActive} size="md" />
+      <Avatar icon={userIcon} isActive={isActive} size="table" />
       <div className=" flex flex-col mt-1 justify-center mx-2  relative w-full max-w-[100px] overflow-hidden ">
         <Typography
           variant="body6"

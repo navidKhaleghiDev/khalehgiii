@@ -30,10 +30,10 @@ export function BaseTableCollapseMobile<T extends IdItem>(
 
   return (
     <tr className={baseTableCollapseMobile()}>
-      {header.map((headerList) => (
+      {header.map((headerList, index) => (
         <th
           key={headerList.label}
-          className="w-full flex justify-between items-center border border-gray-300 h-10 px-2"
+          className={`w-[90%] m-auto flex justify-between items-center border first:border-t-0 last:border-b-0  border-gray-300 border-x-0 h-10  `}
         >
           <Typography className="font-normal" color="neutral" variant="body6">
             {t(headerList.label as string)}
