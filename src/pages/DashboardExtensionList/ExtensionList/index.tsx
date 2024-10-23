@@ -19,12 +19,13 @@ import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import PhPlus from '@iconify-icons/ph/plus-bold';
-
+import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { ModalInfo } from '@redesignUi/molecules/ModalInfo';
 
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 
@@ -175,11 +176,12 @@ export function ExtensionList() {
           color: 'tertiary',
         }}
       />
-      <Modal
+      <ModalInfo
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
-        type="content"
-        hiddenExitContent={false}
+        icon={PhUploadSimple}
+        title={t('systemManagement.uploadFile')}
+        description={t('systemManagement.uploadFileText')}
         content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
       />
     </div>

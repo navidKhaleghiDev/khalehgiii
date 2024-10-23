@@ -18,7 +18,7 @@ export function ModalInfo(props: ModelInfoProps): JSX.Element | null {
     <div className="fixed w-full h-100 inset-0 z-50 animated fadeIn overflow-hidden flex justify-center items-center backdrop-blur-sm">
       <div
         ref={ref}
-        className={`rounded-[1.25rem] w-[334px] md:w-[634px] shadow-lg modal-container bg-white dark:bg-gray-700 mx-auto z-50 overflow-y-auto ${classContainer}`}
+        className={`rounded-[1.25rem] w-[350px] md:w-[634px] shadow-lg bg-white dark:bg-gray-700 mx-auto z-50 overflow-y-auto ${classContainer}`}
       >
         <div className="p-5">
           <div className="flex items-center justify-between">
