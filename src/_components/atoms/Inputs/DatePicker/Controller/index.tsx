@@ -1,7 +1,7 @@
 import { Controller, FieldValues } from 'react-hook-form';
 
 import { MultiDatePickerControllerProps } from '../types';
-import { MultiDatePicker } from '..';
+import { MultiDatePicker } from '../index';
 
 /**
  * @param {Path<T>} props.name - The name of the field being controlled. This connects the `MultiDatePicker` to the form state.

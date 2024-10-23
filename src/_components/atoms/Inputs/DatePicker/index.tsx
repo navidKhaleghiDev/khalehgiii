@@ -12,7 +12,7 @@ import phCaretRight from '@iconify-icons/ph/caret-right';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { BaseButton } from '@redesignUi/atoms/BaseButton';
-import '@src/App.css';
+import './index.css';
 
 import { MultiDatePickerProps } from './types';
 
@@ -74,12 +74,11 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
       datePickerRef.current.closeCalendar();
     }
   };
-  console.log(value);
   return (
     <div className={`${className ?? ''}`}>
       <DatePicker
         ref={datePickerRef}
-        onlyMonthPicker={timeDuration?.montly}
+        onlyMonthPicker={timeDuration?.monthly}
         weekPicker={timeDuration?.weekly}
         id={id}
         onChange={(val) => {

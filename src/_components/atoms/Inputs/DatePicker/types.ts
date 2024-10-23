@@ -3,12 +3,10 @@ import { DateObject, Value } from 'react-multi-date-picker';
 
 type TimeDuration = {
   weekly: boolean;
-  montly: boolean;
+  monthly: boolean;
 };
 
-export type TOnClickDate = (
-  date: DateObject | [DateObject, DateObject]
-) => void;
+export type OnClickDate = (date: DateObject | [DateObject, DateObject]) => void;
 
 export interface MultiDatePickerProps {
   id: string;
