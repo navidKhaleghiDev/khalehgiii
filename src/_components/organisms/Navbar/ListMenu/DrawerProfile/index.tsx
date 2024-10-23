@@ -4,22 +4,23 @@ import { t } from 'i18next';
 
 import { useTheme } from '@context/settings/themeContext';
 import x from '@iconify-icons/ph/x';
-import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
 import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
-import { navigationSideBar } from '@redesignUi/organisms/Sidebar/Sidebar/navigation';
-import { NavigationProps } from '@redesignUi/organisms/Sidebar/Sidebar/types';
-import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/Sidebar/MenuItemAccordion';
+
 import { Avatar, Typography } from '@redesignUi/atoms';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import { http } from '@src/services/http';
 import { useUserContext } from '@context/user/userContext';
 import User from '@iconify-icons/ph/user';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { MenuItem } from '@redesignUi/organisms/Sidebar/Sidebar/MenuItem';
 import { useLanguage } from '@context/settings/languageContext';
 import { useDrawerContext } from '@context/drawer/drawerContext';
+import { navigationSideBar } from '@redesignUi/organisms/Sidebar/navigation';
+import { NavigationProps } from '@redesignUi/organisms/Sidebar/types';
+import { MenuItem } from '@redesignUi/organisms/Sidebar/MenuItem';
+import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/MenuItemAccordion';
 
 export function DrawerProfile() {
   const { isOpen, setIsOpen } = useDrawerContext();
@@ -38,8 +39,6 @@ export function DrawerProfile() {
     setUser(null);
     navigate(ROUTES_PATH.login);
   };
-
-  console.log(isOpen, 'isopen');
 
   return (
     <div
@@ -112,12 +111,9 @@ export function DrawerProfile() {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <BaseButton
-            startIcon={PhSignOut}
-            label=" "
-            size="lg"
-            fullWidth
-            type="tertiary"
+          <IconButton
+            icon={PhSignOut}
+            size="md"
             onClick={handleLogout}
             className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
           />

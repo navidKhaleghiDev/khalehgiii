@@ -1,5 +1,5 @@
 import { DrawerProvider } from '@context/drawer/drawerContext';
-import { ListMenuContent } from './ListMenuContent/ListMenuContent';
+import { ListMenuContent } from './ListMenuContent';
 
 export function ListMenu() {
   return (

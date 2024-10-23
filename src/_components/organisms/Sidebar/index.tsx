@@ -7,7 +7,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { http } from '@src/services/http';
 import { useUserContext } from '@context/user/userContext';
 import ToolTip from '@redesignUi/atoms/Tooltip';
-import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
@@ -52,7 +52,7 @@ export function SideBar(): JSX.Element {
       className={`relative z-30 hidden xl:flex xl:flex-col justify-between items-end h-full
       ${
         toggleSidebar ? 'w-64' : 'w-16'
-      } transition-all duration-500 easet bg-white dark:bg-gray-600 rounded-lg`}
+      } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600 rounded-lg`}
     >
       <div className="flex flex-col items-center w-full mt-5 px-3">
         <div
@@ -116,9 +116,10 @@ export function SideBar(): JSX.Element {
           ) : (
             <div
               key={item.id}
-              onPointerEnter={() => {
+              onPointerDown={() => {
                 setDropdownVisible(item);
               }}
+              onPointerLeave={() => setDropdownVisible(null)}
               className={`flex justify-center flex-col items-center${
                 toggleSidebar ? 'w-full' : null
               }`}
@@ -148,12 +149,16 @@ export function SideBar(): JSX.Element {
         } w-full mb-5 px-3`}
       >
         <div className="flex items-center">
-          <ToolTip
-            tooltip={t('global.userName')}
-            position={lang === 'fa' ? 'left' : 'right'}
-          >
+          {!toggleSidebar ? (
+            <ToolTip
+              tooltip={t('global.userName')}
+              position={lang === 'fa' ? 'left' : 'right'}
+            >
+              <Avatar icon={User} size="md" className="my-2" />
+            </ToolTip>
+          ) : (
             <Avatar icon={User} size="md" className="my-2" />
-          </ToolTip>
+          )}
           {toggleSidebar && (
             <div className="mx-2">
               <span>
@@ -170,20 +175,28 @@ export function SideBar(): JSX.Element {
           )}
         </div>
         <div className="flex items-center">
-          <ToolTip
-            tooltip={t('onlineAssistance.exitFromUserProfile')}
-            position={lang === 'fa' ? 'left' : 'right'}
-          >
-            <BaseButton
-              startIcon={PhSignOut}
-              label=" "
-              size="lg"
-              fullWidth
-              type="tertiary"
+          {!toggleSidebar ? (
+            <ToolTip
+              tooltip={t('onlineAssistance.exitFromUserProfile')}
+              position={lang === 'fa' ? 'left' : 'right'}
+            >
+              <IconButton
+                icon={PhSignOut}
+                color="neutralNoBg"
+                size="md"
+                onClick={handleLogout}
+                className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg "
+              />
+            </ToolTip>
+          ) : (
+            <IconButton
+              icon={PhSignOut}
+              color="neutralNoBg"
+              size="md"
               onClick={handleLogout}
               className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
             />
-          </ToolTip>
+          )}
           {toggleSidebar && (
             <span
               className="text-sm whitespace-nowrap text-red-500 dark:text-red-300"

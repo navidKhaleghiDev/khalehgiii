@@ -52,7 +52,10 @@ export function MenuItemAccordion(props: MenuItemAccordionProps): JSX.Element {
         onClick={() => setOpen(open === index ? null : index)}
       >
         <div className="flex items-center">
-          <BaseIcon icon={icon} className="w-6 h-6" />
+          <BaseIcon
+            icon={icon}
+            className="w-6 h-6 text-gray-500 dark:text-gray-300"
+          />
           {!collapsed && (
             <Typography className="mx-2" variant="body5">
               {item.label}

@@ -62,8 +62,6 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
               <BaseIcon
                 icon={item.icon}
                 className="w-6 h-6 text-gray-500 dark:text-gray-300"
-                text-gray-500
-                dark:text-gray-300
               />
             )}
             {!collapsed && (
