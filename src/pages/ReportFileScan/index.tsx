@@ -30,7 +30,7 @@ export function ReportFileScanPage() {
   }
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-700 pt-10 px-2">
+    <div className="bg-gray-100 dark:bg-gray-700">
       <Typography color="black" variant="body2B">
         {t('fileScan.scannedFiles')}
       </Typography>

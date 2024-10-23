@@ -24,7 +24,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
     <Card
       border
       borderColor="neutral"
-      className={`w-full h-20 p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
+      className={`w-full h-14 md:h-20 p-2.5 md:p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"
