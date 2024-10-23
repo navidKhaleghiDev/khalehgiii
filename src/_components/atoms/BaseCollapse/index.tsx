@@ -40,7 +40,7 @@ export function BaseCollapse({ content, title, className }: TBaseCollapse) {
         />
       </div>
       <div
-        className={`transition-max-height duration-300 ease-out overflow-hidden border border-gray-100 bg-gray-100 rounded-lg ${
+        className={`transition-max-height duration-300 ease-out overflow-hidden border border-gray-100 bg-gray-100 px-5 rounded-lg ${
           isOpen ? 'max-h-10 mt-[0.12rem]' : 'max-h-0'
         }`}
       >
