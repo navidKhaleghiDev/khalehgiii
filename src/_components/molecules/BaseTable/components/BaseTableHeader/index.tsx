@@ -20,12 +20,13 @@ import { baseTableHeaderStyles } from '../../styles';
 export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
   const { t } = useTranslation();
   const { lang } = useLanguage();
+  const isFarsi = lang === 'fa';
 
   return (
     <thead className={baseTableHeaderStyles()}>
       {header.map((head) => {
         const className =
-          lang === 'en' && head?.class?.includes('mr-auto')
+          !isFarsi && head?.class?.includes('mr-auto')
             ? head.class.replace('mr-auto', 'ml-auto')
             : head?.class;
         return (
@@ -38,7 +39,9 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
           </tr>
         );
       })}
-      {collapse && <tr className="w-1/12 h-10" />}
+      {collapse && (
+        <tr className={` ${isFarsi ? 'mr-auto' : 'ml-auto'}  w-1/12 h-10  `} />
+      )}
     </thead>
   );
 }

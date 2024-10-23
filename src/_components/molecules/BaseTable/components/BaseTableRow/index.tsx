@@ -29,12 +29,14 @@ import { baseTableRowStyles } from '../../styles';
  */
 
 export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
-  const { lang } = useLanguage();
   const { row, body, header, onClick, index, collapseHeader, isMobile } = props;
 
+  const { lang } = useLanguage();
   const [openRowId, setOpenRowId] = useState<number | null>(null);
 
-  const isCollapse = collapseHeader.length >= 1;
+  const isFarsi = lang === 'fa';
+
+  const collapse = collapseHeader.length >= 1;
 
   const isOpen = openRowId === row.id;
 
@@ -55,7 +57,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
       >
         {header.map((headerList) => {
           const className =
-            lang === 'en' && headerList?.class?.includes('mr-auto')
+            !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
 
@@ -73,10 +75,12 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             </td>
           );
         })}
-        {isCollapse && (
+        {collapse && (
           <td
             aria-label="BaseTableRow"
-            className="w-1/12 flex justify-center mr-auto"
+            className={`w-1/12 flex justify-center ${
+              isFarsi ? 'mr-auto' : 'ml-auto'
+            }  `}
           >
             <IconButton
               color="neutralNoBg"
