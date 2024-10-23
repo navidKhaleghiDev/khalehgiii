@@ -50,7 +50,7 @@ export function BaseTableDateCell<T extends IdItem>(
       type="p"
       className="text-gray-900 dark:text-white"
     >
-      {dateAndNumber(row[id])}
+      {dateAndNumber(row[id as string])}
     </Typography>
   );
 }

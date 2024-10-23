@@ -88,8 +88,7 @@ export type BaseTableNoneCellProps<BodyType extends IdItem> = Pick<
   'row' | 'onClick'
 > & {
   header: HeaderTable;
-  id: any;
-  row: any;
+  id: HeaderTable['id'];
 };
 
 export type BaseTableAvatarCellProps<BodyType extends IdItem> =
@@ -118,7 +117,10 @@ export type Pagination = {
 };
 type TableLabel = `table.${string}` | string;
 
-export type IdItem = { id: string | number };
+export type IdItem = {
+  id: string | number;
+  [key: string]: any;
+};
 
 // export type IComponentsHeader = {
 //   [key in TTableType]: JSX.Element;
