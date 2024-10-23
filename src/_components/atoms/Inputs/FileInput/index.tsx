@@ -64,11 +64,11 @@ export function FileInput(props: FileInputProps) {
         onDragOver={(e) => e.preventDefault()}
         onDragEnter={(e) => e.preventDefault()}
       >
-        <div className="bg-gray-100 rounded-full p-1.5">
+        <div className="bg-gray-100 dark:bg-gray-600 rounded-full p-1.5">
           <BaseIcon
             icon={PhCloudArrowUp}
             size="md"
-            className="rounded-full p-1 box-content bg-gray-200"
+            className="rounded-full p-1 box-content dark:text-gray-400 dark:bg-gray-800 bg-gray-200"
           />
         </div>
 
@@ -82,11 +82,15 @@ export function FileInput(props: FileInputProps) {
         </div>
       </button>
       {files && (
-        <div className="mt-2">
+        <div className="mt-5">
           <div className="text-start p-2 flex items-center justify-between rounded-lg dark:text-white bg-neutral-100 dark:bg-gray-800">
             <div className="flex items-center gap-3">
-              <div className="border">
-                <BaseIcon icon={PhFile} color="neutral" size="md" />
+              <div className="border-2 bg-white dark:bg-gray-700 dark:border-gray-500 p-1 rounded-lg">
+                <BaseIcon
+                  icon={PhFile}
+                  size="md"
+                  className="text-gray-400 dark:text-gray-500"
+                />
               </div>
               <Typography variant="body5">
                 {files.map((file) => file.name).join(', ')}
