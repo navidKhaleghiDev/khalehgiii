@@ -23,8 +23,6 @@ export function BaseTableNoneCell<T extends IdItem>(
   const { row, id, header } = props;
   const { isFarsi } = useLanguage();
 
-  const transitionDirection = !isFarsi ? '[50%]' : '[-50%]';
-
   const textTransform = header.type === 'none' && header.textTransform;
 
   const cellLabel = Array.isArray(id)
@@ -37,7 +35,9 @@ export function BaseTableNoneCell<T extends IdItem>(
         <Typography
           variant="body6"
           type="p"
-          className={` text-gray-900 dark:text-white whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:translate-x-${transitionDirection} group-hover:duration-[1000ms] font-normal   ${textTransform} `}
+          className={` text-gray-900 dark:text-white whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:${
+            !isFarsi ? '-' : ''
+          }translate-x-[50%] group-hover:duration-[1000ms] font-normal ${textTransform} `}
         >
           {cellLabel ?? '--'}
         </Typography>
