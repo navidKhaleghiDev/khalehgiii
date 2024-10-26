@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import useSWR from 'swr';
 
 // import keyIcon from '@iconify-icons/ph/key';
 // import desktopIcon from '@iconify-icons/ph/desktop';
@@ -24,7 +25,6 @@ import Scan from '@iconify-icons/ph/scan';
 // } from '@src/types/permissions';
 import { DashboardCard } from '@redesignUi/molecules/Cards/DashboardCard';
 // import { Typography } from '@redesignUi/atoms';
-import useSWR from 'swr';
 import { ISwrResponse } from '@src/types/services';
 import { IScanStats } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
@@ -47,14 +47,14 @@ export function DashboardCards() {
         icon={FolderSimple}
         title={`${t('dashboard.infectedFile')}`}
         count={malwareFiles}
-        className="max-w-full xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
+        className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
         disabled
       />
       <DashboardCard
         icon={Scan}
         title={`${t('dashboard.scans')}`}
         count={todayScans}
-        className="max-w-full xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
+        className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
         onClick={() => navigate(ROUTES_PATH.reportsScanFile)}
       />
 

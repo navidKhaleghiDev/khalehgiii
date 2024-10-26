@@ -125,7 +125,8 @@
     "activeLicenses": "Active licenses",
     "onlineUsers": "Online users",
     "netsep": "NetSep",
-    "scans": "Scans"
+    "scans": "Scans",
+    "userBehavior": "User Behavior"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

@@ -126,7 +126,8 @@
     "activeLicenses": "لایسنس‌های فعال",
     "onlineUsers": "کاربران آنلاین",
     "netsep": "نت سپ",
-    "scans": "اسکن ها"
+    "scans": "اسکن ها",
+    "userBehavior": "رفتار شناسی کاربر"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

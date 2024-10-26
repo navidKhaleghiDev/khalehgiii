@@ -1,11 +1,16 @@
 import { Avatar, Typography } from '@redesignUi/atoms';
-
 import User from '@iconify-icons/ph/user';
 
 interface UserInfoProps {
   fullName: string;
   email: string;
 }
+
+/**
+ * This component should be deleted
+ * @param param0
+ * @returns
+ */
 
 export default function UserInfo({ fullName, email }: UserInfoProps) {
   return (

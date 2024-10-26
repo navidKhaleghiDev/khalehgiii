@@ -1,4 +1,4 @@
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   TimeScale,
@@ -22,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-interface LineChartProps {
+interface VerticalBarChartProps {
   datasets: {
     label: string;
     data: { x: string; y: number }[];
@@ -31,12 +31,12 @@ interface LineChartProps {
   }[];
 }
 
-export function TimeScaleChart({ datasets }: LineChartProps) {
+export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
   const data = {
     datasets,
   };
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions<'bar'> = {
     responsive: true,
     scales: {
       x: {
@@ -58,11 +58,12 @@ export function TimeScaleChart({ datasets }: LineChartProps) {
     },
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'right' as const,
         labels: {
           usePointStyle: true,
           pointStyle: 'circle',
         },
+        display: false,
       },
       title: {
         display: false,
@@ -71,8 +72,8 @@ export function TimeScaleChart({ datasets }: LineChartProps) {
   };
 
   return (
-    <div className="max-w-[580px] w-full flex [&>*:first-child]:self-center [&>*:first-child]:justify-self-center justify-center">
-      <Line data={data} options={options} />
+    <div className="max-w-[500px] w-full flex [&>*:first-child]:self-end [&>*:first-child]:justify-self-end justify-end">
+      <Bar data={data} options={options} />
     </div>
   );
 }
