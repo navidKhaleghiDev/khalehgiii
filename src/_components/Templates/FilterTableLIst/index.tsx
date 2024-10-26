@@ -12,34 +12,7 @@ import { IResponseData } from '@src/types/services';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 
-type FilterReportsProps = {
-  searchQuery: string;
-  buttonLabel: string;
-  handelSearchQuery: (value: string) => void;
-  handelFilterList: (value: OptionSelect | OptionSelect[] | null) => void;
-  handelListSort: (value: string) => void;
-  hiddenButton: boolean;
-  hiddenGroupe: boolean;
-  hiddenSort: boolean;
-};
-
-const domainsMock: OptionSelect[] = [
-  {
-    id: '1',
-    label: 'sep.npd-co.com',
-    value: 'sep.npd-co.com',
-  },
-  {
-    id: '1',
-    label: 'stage.npd-co.com',
-    value: 'stage.npd-co.com',
-  },
-  {
-    id: '1',
-    label: 'fence.npd-co.com',
-    value: 'fence.npd-co.com',
-  },
-];
+import { domainsMock, FilterReportsProps } from './types';
 
 export default function FilterTableList({
   searchQuery,
@@ -48,7 +21,6 @@ export default function FilterTableList({
   handelListSort,
   hiddenGroupe,
   hiddenSort,
-  hiddenButton,
   buttonLabel,
 }: FilterReportsProps) {
   const { t } = useTranslation();
@@ -63,6 +35,7 @@ export default function FilterTableList({
     { id: '2', value: 'date', label: t('fileScan.creationDate') },
     { id: '3', value: 'newest', label: t('fileScan.Newest') },
   ];
+
   const daasGroups: OptionSelect[] = data
     ? data.data.map((item) => {
         return {
@@ -75,8 +48,8 @@ export default function FilterTableList({
 
   // Note: cause the dropdown has the service call for the groups it may have skelton
   return (
-    <div className="flex items-center flex-wrap gap-[1.875rem] mt-[7.625rem]">
-      <div className="top-[0.625rem] w-40 md:w-[15.9rem]">
+    <div className="flex flex-row-reverse items-center flex-wrap gap-[1.875rem]">
+      <div className=" w-full sm:w-40 md:w-[15.9rem] order-last sm:order-first">
         <SearchInput
           id="adminSearch"
           name="adminSearch"
@@ -94,7 +67,7 @@ export default function FilterTableList({
         name="domain"
         onChange={() => console.log('This dropDown functionality is not ready')}
         options={domainsMock}
-        disabled // disable the functionality untie the service is ready
+        // disabled // disable the functionality untie the service is ready
         placeHolder={t('fileScan.choseDomain')}
         size="sm"
       />
@@ -117,7 +90,11 @@ export default function FilterTableList({
           onSelect={handelListSort}
         />
       )}
-      {!hiddenButton && <BaseButton label={buttonLabel} />}
+      {buttonLabel && (
+        <div className="">
+          <BaseButton label={buttonLabel} />
+        </div>
+      )}
     </div>
   );
 }
