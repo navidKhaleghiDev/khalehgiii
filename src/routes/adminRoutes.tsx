@@ -25,10 +25,11 @@ import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
-import { ApplicationSetting } from '@src/pages/Setting/ApplicationSetting/ApplicationSetting';
+import { ApplicationSetting } from '@src/pages/Setting/ApplicationSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
+import { DassSetting } from '@src/pages/Setting/DaasSetting';
 
 export const adminRoutes = [
   {
@@ -143,6 +144,14 @@ export const adminRoutes = [
         element: (
           <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
             <ApplicationSetting />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.daas,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
+            <DassSetting />
           </ProtectedRoute>
         ),
       },

@@ -19,7 +19,8 @@ export type RoutePathType =
   | 'loginAssistance'
   | 'assistanceDashboard'
   | 'setting'
-  | 'application';
+  | 'application'
+  | 'daas';
 
 export const RoutesName = {
   HOME: 'home',
@@ -40,6 +41,7 @@ export const RoutesName = {
   ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
   SETTING: 'setting',
   APPLICATION: 'application',
+  DAAS: 'daas',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -64,4 +66,5 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
   setting: `/${RoutesName.SETTING}`,
   application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
+  daas: `/${RoutesName.SETTING}/${RoutesName.DAAS}`,
 };
