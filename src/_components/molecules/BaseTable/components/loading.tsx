@@ -1,4 +1,4 @@
-export function SkeletonTable() {
+export function BaseTableSkeleton() {
   return (
     <tbody>
       <tr className="animate-pulse">

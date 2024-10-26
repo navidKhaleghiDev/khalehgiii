@@ -5,7 +5,7 @@ import { BaseTableBody } from './components/BaseTableBody';
 
 import { BaseTableProps, CategorizedData, IdItem } from './types';
 import { Pagination } from '../Pagination';
-import { SkeletonTable } from './components/SkeletonLoading';
+import { BaseTableSkeleton } from './components/loading';
 
 /**
  * A table component that displays data with customizable headers, body content,
@@ -100,7 +100,7 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
           <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
         )}
         {loading ? (
-          <SkeletonTable />
+          <BaseTableSkeleton />
         ) : (
           <BaseTableBody
             body={body}
