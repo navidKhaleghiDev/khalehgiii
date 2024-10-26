@@ -3,9 +3,11 @@ import { Card } from '@redesignUi/atoms';
 import { BaseMiniTableSkeleton } from './loading';
 import { BaseMiniTableNoResult } from './components/BaseMiniTableNoResult';
 import { BaseMiniTableProps, IdItem } from './types';
+import { Pagination } from '../Pagination';
 
 export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
-  const { header, body, loading } = props;
+  const { header, body, loading, pagination } = props;
+  const { countPage, currentPage, totalPages, onPageChange } = pagination;
 
   return (
     <Card
@@ -14,6 +16,12 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
       shadow="base"
       rounded="xl"
     >
+      <Pagination
+        currentPage={countPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+        headerPagination
+      />
       <div className="w-full p-6">
         <div className="w-full text-xs text-gray-500 ">
           <div className="flex">
