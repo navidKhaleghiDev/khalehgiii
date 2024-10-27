@@ -10,7 +10,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useTranslation } from 'react-i18next';
-import { BaseTable } from '@ui/atoms/BaseTable';
+// import { BaseTable } from '@ui/atoms/BaseTable';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
@@ -18,6 +18,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
+import { BaseTable } from '@ui/atoms/BaseTable';
 import { EPermissionUsers } from '@src/types/permissions';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
@@ -133,14 +134,14 @@ export function AdminsList() {
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full ${isLoading ? 'loading' : ''}`}>
       <BaseTable
-        loading={isLoading}
-        bodyList={listWhiteList}
         headers={checkPermissionHeaderItem(
           userPermissions,
           adminListHeaderItem
         )}
+        loading={isLoading}
+        bodyList={listWhiteList}
         onClick={handleOnClickActions}
         pagination={paginationProps}
         searchBar={searchBarProps}

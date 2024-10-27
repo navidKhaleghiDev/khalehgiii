@@ -200,7 +200,7 @@ export class Http {
                   break;
                 }
               } catch (refreshError) {
-                throw handleResponseError(refreshError);
+                console.error('refresh token error:', refreshError);
               }
             }
             this.removeAuthHeader();
