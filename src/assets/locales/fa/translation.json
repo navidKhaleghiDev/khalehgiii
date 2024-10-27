@@ -227,7 +227,8 @@
     "domain": "دامنه",
     "save": "ذخیره",
     "remove": "حذف مورد",
-    "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟"
+    "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
+    "all": "انتخاب همه"
   },
   "groupManagement": {
     "person": "نفر",
