@@ -1,15 +1,15 @@
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import useSWR from 'swr';
+
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
-
-import { toast } from 'react-toastify';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
-import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
@@ -20,6 +20,7 @@ import {
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { EPermissionUsers } from '@src/types/permissions';
+
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
 
@@ -134,7 +135,7 @@ export function AdminsList() {
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
       <BaseTable
         loading={isLoading}
         bodyList={listWhiteList}
@@ -151,7 +152,8 @@ export function AdminsList() {
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title={t('global.sureAboutThis')}
+        title={t('global.remove')}
+        description={t('global.sureAboutDeleteUser')}
         buttonOne={{
           label: t('table.delete'),
           onClick: handleOnDeleteFileType,
@@ -170,8 +172,6 @@ export function AdminsList() {
         type="content"
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
-        // type="success"
-
         content={
           <UpdateAdminModal
             handleClose={handleCloseUpdateModal}
