@@ -222,6 +222,7 @@
     "group": "Group",
     "fa": "Persian",
     "en": "English",
+    "changePassword": "Change Password",
     "userType": "User type",
     "domain": "Domain",
     "save": "Save",

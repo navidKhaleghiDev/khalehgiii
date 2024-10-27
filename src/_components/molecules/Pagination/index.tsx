@@ -130,7 +130,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   return !headerPagination ? (
     <div
       dir="ltr"
-      className="bg-white dark:bg-gray-600 flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5"
+      className="bg-white dark:bg-gray-600 flex items-center justify-between  rounded-lg p-1.5"
     >
       <div className="flex justify-center items-center gap-2">
         <IconButton

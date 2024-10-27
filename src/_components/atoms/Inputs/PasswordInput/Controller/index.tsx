@@ -57,7 +57,7 @@ export function PasswordInputController<T extends FieldValues>(
       control={control}
       rules={{
         required: regexPattern.required,
-        pattern: regexPattern.password,
+        // pattern: regexPattern.password,
         minLength: min,
         maxLength: max,
       }}
