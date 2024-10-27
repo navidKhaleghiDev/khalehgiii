@@ -127,7 +127,8 @@
     "onlineUsers": "کاربران آنلاین",
     "netsep": "نت سپ",
     "scans": "اسکن ها",
-    "userBehavior": "رفتار شناسی کاربر"
+    "userBehavior": "رفتار شناسی کاربر",
+    "adminLogin": "ورود و خروج ادمین‌ها"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

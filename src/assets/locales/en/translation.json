@@ -126,7 +126,8 @@
     "onlineUsers": "Online users",
     "netsep": "NetSep",
     "scans": "Scans",
-    "userBehavior": "User Behavior"
+    "userBehavior": "User Behavior",
+    "adminLogin": "Admin Login"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
