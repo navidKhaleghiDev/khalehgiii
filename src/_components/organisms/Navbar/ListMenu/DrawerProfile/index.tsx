@@ -44,7 +44,7 @@ export function DrawerProfile() {
     <div
       className={`fixed top-0 ${
         lang === 'fa' ? 'right-0' : 'left-0'
-      } z-50 w-[17.12rem] lg:w-[19.18rem] h-full bg-white dark:bg-gray-600 shadow-md flex flex-col justify-between xl:hidden transition-transform duration-500`}
+      } z-50 w-[17.12rem] lg:w-[19.18rem] h-full bg-white dark:bg-gray-600 shadow-md flex flex-col justify-between transition-transform duration-500`}
     >
       <div className="flex flex-col w-[14.37rem] h-[25rem] mx-auto pt-5">
         <div className="flex justify-between items-center  w-full h-[3.75rem]">

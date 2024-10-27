@@ -17,6 +17,7 @@ import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
 import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
 import { useTheme } from '@context/settings/themeContext';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 
 import { MenuDropdown } from './MenuDropdown/MenuDropdown';
 import { MenuItem } from './MenuItem';
@@ -25,6 +26,7 @@ import { NavigationProps } from './types';
 import { MenuItemAccordion } from './MenuItemAccordion';
 
 export function SideBar(): JSX.Element {
+  const windowDimensions = useWindowDimensions();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [isDropdownVisible, setDropdownVisible] =
     useState<NavigationProps | null>(null);
@@ -49,7 +51,11 @@ export function SideBar(): JSX.Element {
 
   return (
     <div
-      className={`relative z-30 hidden xl:flex xl:flex-col justify-between items-end h-full
+      className={`relative z-30 flex flex-col justify-between items-end h-full ${
+        windowDimensions.height <= 760 || windowDimensions.width <= 1280
+          ? 'hidden'
+          : ''
+      }
       ${
         toggleSidebar ? 'w-64' : 'w-16'
       } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600 rounded-lg`}
