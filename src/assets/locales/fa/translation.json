@@ -225,7 +225,9 @@
     "en": "انگلیسی",
     "userType": "نوع کاربری",
     "domain": "دامنه",
-    "save": "ذخیره"
+    "save": "ذخیره",
+    "remove": "حذف مورد",
+    "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟"
   },
   "groupManagement": {
     "person": "نفر",
