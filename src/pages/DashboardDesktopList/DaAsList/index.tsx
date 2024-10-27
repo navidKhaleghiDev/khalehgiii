@@ -12,7 +12,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 
 import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
-import { BaseTable } from '@ui/atoms/BaseTable';
+// import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
 import {
   ActionOnClickActionsType,
@@ -28,6 +28,7 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
+import { BaseTable } from '@ui/atoms/BaseTable';
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 
@@ -268,7 +269,7 @@ export function DaAsList() {
   };
 
   return (
-    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}  `}>
       <BaseTable
         loading={isLoading}
         headers={checkPermissionHeaderItem(

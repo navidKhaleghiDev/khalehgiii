@@ -228,9 +228,13 @@
     "group": "گروه",
     "fa": "فارسی",
     "en": "انگلیسی",
+    "changePassword": "تغییر پسورد",
     "userType": "نوع کاربری",
     "domain": "دامنه",
-    "save": "ذخیره"
+    "save": "ذخیره",
+    "remove": "حذف مورد",
+    "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
+    "all": "انتخاب همه"
   },
   "groupManagement": {
     "person": "نفر",
