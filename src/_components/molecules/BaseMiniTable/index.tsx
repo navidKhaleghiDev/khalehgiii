@@ -67,6 +67,7 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
                         className="group flex-1 px-4 py-2 text-gray-900 dark:text-gray-300 text-xs overflow-hidden"
                       >
                         <Typography
+                          type="div"
                           className={`!text-ellipsis whitespace-nowrap group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear ${directionStyle} group-hover:duration-[1000ms]`}
                         >
                           {isDateKey(key) ? (
