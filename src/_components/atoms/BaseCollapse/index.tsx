@@ -10,10 +10,16 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 type TBaseCollapse = {
   content: ReactElement;
   title?: string;
+  description?: string;
   className?: string;
 };
 
-export function BaseCollapse({ content, title, className }: TBaseCollapse) {
+export function BaseCollapse({
+  content,
+  title,
+  className,
+  description,
+}: TBaseCollapse) {
   const [isOpen, setIsOpen] = useState(false);
   const { lang } = useLanguage();
 
@@ -24,15 +30,25 @@ export function BaseCollapse({ content, title, className }: TBaseCollapse) {
   return (
     <div className={className ?? ''}>
       <div
-        className={`flex justify-between items-center border border-gray-100 hover:bg-gray-100 h-10 px-5 rounded-lg ${
-          isOpen && 'bg-gray-100'
+        className={`flex justify-between items-center border border-gray-100 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:bg-gray-600 h-10 px-5 rounded-lg ${
+          isOpen && 'bg-gray-100 dark:bg-gray-800 dark:border-gray-800'
         }`}
       >
-        {title && (
-          <Typography variant="body6" color="neutralDark">
-            {title}
-          </Typography>
-        )}
+        <div>
+          {title && (
+            <Typography variant="body6" color="neutralDark">
+              {title}
+            </Typography>
+          )}
+          {description && (
+            <Typography
+              className="text-[9px] ltr:text-left rtl:text-right"
+              color="neutralMiddle"
+            >
+              {description}
+            </Typography>
+          )}
+        </div>
         <IconButton
           color="neutralNoBg"
           icon={!isOpen ? dir : PhCaretDown}
@@ -40,10 +56,8 @@ export function BaseCollapse({ content, title, className }: TBaseCollapse) {
         />
       </div>
       <div
-        className={`transition-max-height duration-75 ease-out overflow-hidden px-5 rounded-lg ${
-          isOpen
-            ? 'max-h-10 mt-[0.12rem]  border border-gray-100 bg-gray-100 '
-            : 'h-0'
+        className={`transition-max-height duration-75 ease-out overflow-hidden sm:px-5 px-2 rounded-lg border border-gray-100 bg-gray-100 dark:bg-gray-800  ${
+          isOpen ? ' mt-[0.12rem]  dark:border-gray-800' : 'h-0 border-none'
         }`}
       >
         {content && <div>{content}</div>}
