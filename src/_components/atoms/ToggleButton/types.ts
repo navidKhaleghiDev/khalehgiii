@@ -4,6 +4,7 @@ import { toggleStyles } from './styles';
 export interface ButtonOption {
   id: string | number;
   label: string;
+  value: string;
   active?: boolean;
 }
 

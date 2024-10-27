@@ -1,18 +1,18 @@
-import { useCallback, useReducer, useState } from 'react';
-import { convertI2ToAD } from '@ui/atoms/Inputs/MultiDatePicker';
+import { useReducer, useState } from 'react';
 
 import 'chart.js/auto';
 
+import { convertI2ToAD } from '@ui/atoms/Inputs/MultiDatePicker';
 import { BaseIcon, Card, Typography } from '@ui/atoms';
 import { API_GET_REPORTS } from '@src/services/config';
-import { BackButton } from '@ui/atoms/BackButton';
 import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import { useTranslation } from 'react-i18next';
-import calendarBlankBuotone from '@iconify-icons/ph/calendar-blank-duotone';
+import calendarBlankDuotone from '@iconify-icons/ph/calendar-blank-duotone';
 import calendarXDuotone from '@iconify-icons/ph/calendar-x-duotone';
-import gregorian from 'react-date-object/calendars/gregorian';
-import persian from 'react-date-object/calendars/persian';
-import DateObject from 'react-date-object';
+import CaretLeft from '@iconify-icons/ph/caret-left';
+import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
+import { BaseButton } from '@redesignUi/atoms';
+
 import {
   IFormDateData,
   TDataType,
@@ -23,16 +23,13 @@ import {
 } from './types';
 import { ReportsChart } from './ReportChart';
 import { ReportForm } from './ReportForm';
-import { ReportOptions } from './ReportOptions';
-
-let convertedTimeTitle: any;
 
 const lang = localStorage.getItem('lang');
 const isFarsi = lang === 'fa';
 
 const HOURLY_FORMAT = 'HH:mm';
 const DAILY_FORMAT = 'dddd';
-const MONTLY_FORMAT = !isFarsi ? 'MMMM' : 'jMMMM';
+const MONTHLY_FORMAT = !isFarsi ? 'MMMM' : 'jMMMM';
 const NORMAL_FORMAT = !isFarsi ? 'YYYY-MM-DD' : 'jYYYY-jMM-jDD';
 
 const DIS_KEY_ISLOADING = 'LOADING_ON';
@@ -45,7 +42,7 @@ const DIS_KEY_REMOVEERROR = 'CLEARERROR';
 
 const initialState = {
   weekly: false,
-  montly: false,
+  monthly: false,
   year: false,
   loading: false,
   error: false,
@@ -56,7 +53,7 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
       return {
         ...state,
         weekly: true,
-        montly: false,
+        monthly: false,
         year: false,
       };
     }
@@ -64,7 +61,7 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
       return {
         ...state,
         weekly: false,
-        montly: true,
+        monthly: true,
         year: false,
       };
     }
@@ -127,76 +124,84 @@ export function Reports() {
     recordsData,
     HOURLY_FORMAT,
     DAILY_FORMAT,
-    MONTLY_FORMAT,
+    MONTHLY_FORMAT,
     NORMAL_FORMAT,
     isFarsi,
   };
 
-  const dispatchKeys = {
-    DIS_KEY_WEEK,
-    DIS_KEY_MONTH,
-    DIS_KEY_NORMAL,
+  const handleToggleButton = (data: any) => {
+    switch (data.value) {
+      case 'weekly':
+        dispatch({ type: DIS_KEY_WEEK });
+        break;
+      case 'monthly':
+        dispatch({ type: DIS_KEY_MONTH });
+        break;
+      default:
+        dispatch({ type: DIS_KEY_NORMAL });
+        break;
+    }
   };
 
-  const convertDate = (date: DateObject) =>
-    new DateObject({
-      date: date.toDate(),
-      calendar: isFarsi ? persian : gregorian,
-    }).format('DD-MM-YYYY');
-
-  const handleGetDate = useCallback((date: any) => {
-    if (date && date.length > 1) {
-      convertedTimeTitle = `${convertDate(date[0])}  ${t(
-        'global.to'
-      )}  ${convertDate(date[1])}`;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
-    <div className=" flex-wrap flex items-center justify-center px-2 mb-1 gap-5 mt-20">
-      <Card
-        shadow="xl"
-        color="white"
-        rounded="xl"
-        className={`w-9/12 flex items-center justify-between px-6 h-24 `}
-      >
-        <div className=" w-6/12 flex items-center justify-between px-6 gap-3">
-          <ReportOptions
-            state={state}
-            dispatch={dispatch}
-            keys={dispatchKeys}
-          />
+    <div className="flex-wrap flex mb-1 gap-5 pb-9">
+      <Card className="w-full flex sm:items-center items-start justify-between sm:flex-row flex-col">
+        <div className="flex items-center justify-between gap-3 order-2 sm:order-1">
+          <ReportForm handleOnSubmit={handleOnSubmit} state={state} />
         </div>
-        <div className="w-4/12 h-12">
-          <ReportForm
-            handleOnSubmit={handleOnSubmit}
-            state={state}
-            onChange={handleGetDate}
-          />
+        <div className="flex gap-2.5 items-end justify-end order-1 sm:order-2">
+          <div className="flex gap-2.5">
+            <BaseButton
+              label={t('global.domain')}
+              endIcon={CaretLeft}
+              size="sm"
+              type="neutral"
+            />
+            <ToggleButton
+              buttonOptions={[
+                {
+                  id: 1,
+                  label: t('table.monthly'),
+                  value: 'monthly',
+                },
+                {
+                  id: 2,
+                  label: t('table.weekly'),
+                  value: 'weekly',
+                },
+                {
+                  id: 3,
+                  label: t('table.daily'),
+                  value: 'daily',
+                  active: true,
+                },
+              ]}
+              onChange={handleToggleButton}
+            />
+          </div>
         </div>
       </Card>
       <Card
         shadow="xl"
         color="white"
         rounded="xl"
-        className={`w-9/12 flex justify-center items-center py-10 relative custom-height `}
+        className="w-full flex justify-center items-center py-10 relative custom-height"
       >
         <LoadingWrapper isLoading={state.loading}>
           {recordsData && !state.error ? (
-            <div className=" w-11/12 h-full flex justify-center items-center m-auto ">
+            <div className="w-full h-full flex justify-center items-center m-auto">
               <ReportsChart props={chartData} />
             </div>
           ) : (
             <Typography
-              className="text-center flex flex-col justify-center items-center gap-3 "
+              className="text-center flex flex-col justify-center items-center gap-3"
               variant="body1"
               type="div"
               color="neutral"
             >
               <span className="bg-gray-100 rounded-full p-5">
                 <BaseIcon
-                  icon={!state.error ? calendarBlankBuotone : calendarXDuotone}
+                  icon={!state.error ? calendarBlankDuotone : calendarXDuotone}
                   size="xxxl"
                   color={!state.error ? 'teal' : 'yellow'}
                 />
@@ -205,16 +210,7 @@ export function Reports() {
             </Typography>
           )}
         </LoadingWrapper>
-        {recordsData && !state.error && (
-          <Typography
-            color="neutral"
-            className="absolute bottom-3 right-4 "
-          >{`${t('global.reportsChart')}  ${t(
-            `global.${flag}Select`
-          )}  | ${convertedTimeTitle}  `}</Typography>
-        )}
       </Card>
-      <BackButton withLabel className="absolute bottom-20 left-24" />
     </div>
   );
 }

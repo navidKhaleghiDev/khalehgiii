@@ -70,9 +70,9 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
   };
 
   const handleSubmit = () => {
-    if (datePickerRef.current) {
-      datePickerRef.current.closeCalendar();
-    }
+    // if (datePickerRef.current) {
+    //   datePickerRef.current.closeCalendar();
+    // }
   };
   return (
     <div className={`${className ?? ''}`}>

@@ -10,7 +10,7 @@ import {
 } from '../types';
 
 let duplicates: number;
-// filter data for montly format
+// filter data for monthly format
 const filterByIndex = (data: string[] | number[], index: number) =>
   data.filter((_, i) => i !== index);
 const filterChartData = (label: string[], data: number[]) => {
@@ -31,7 +31,7 @@ export function ReportsChart({ props }: IReportChartType) {
   const { t } = useTranslation();
   const {
     HOURLY_FORMAT,
-    MONTLY_FORMAT,
+    MONTHLY_FORMAT,
     DAILY_FORMAT,
     NORMAL_FORMAT,
     flag,
@@ -40,7 +40,7 @@ export function ReportsChart({ props }: IReportChartType) {
   } = props;
   const formatData: TFormatData = {
     hourly: HOURLY_FORMAT,
-    monthly: MONTLY_FORMAT,
+    monthly: MONTHLY_FORMAT,
     daily: DAILY_FORMAT,
   };
 
@@ -50,7 +50,7 @@ export function ReportsChart({ props }: IReportChartType) {
 
   function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
     const isDaily = formatData[type] === DAILY_FORMAT;
-    const isMonthly = formatData[type] === MONTLY_FORMAT;
+    const isMonthly = formatData[type] === MONTHLY_FORMAT;
     const dataList: number[] | any = [];
     const labelList: string[] = [];
     const weeksKey: string[] = [];

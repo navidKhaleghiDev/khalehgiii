@@ -39,7 +39,7 @@ export interface IReportChartType {
 }
 export type TPropsChartType = {
   HOURLY_FORMAT: string;
-  MONTLY_FORMAT: string;
+  MONTHLY_FORMAT: string;
   DAILY_FORMAT: string;
   NORMAL_FORMAT: string;
   flag: string;
@@ -49,12 +49,12 @@ export type TPropsChartType = {
 export type IReportFormType = {
   handleOnSubmit: any;
   state: TReducerStateType;
-  onChange: TOnClickDate;
+  onChange?: TOnClickDate;
 };
 
 export type TReducerStateType = {
   weekly: boolean;
-  montly: boolean;
+  monthly: boolean;
   loading: boolean;
   error: boolean;
 };
