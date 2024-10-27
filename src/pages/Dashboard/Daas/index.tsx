@@ -36,7 +36,13 @@ export function Daas({ src }: TDassProps) {
         height: `${window.innerHeight - 50}px`,
       }}
     >
-      <iframe width="100%" height="100%" src={src} title="Desktop As Service" />
+      <iframe
+        width="100%"
+        height="100%"
+        src={src}
+        title="Desktop As Service"
+        allow="camera *;microphone *"
+      />
     </div>
   );
 }

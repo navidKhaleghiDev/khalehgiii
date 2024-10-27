@@ -6,12 +6,12 @@ import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
-import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { monitoringHeaderItem } from '@src/pages/ReportFileScan/UsersDaAsList/constants/monitoringHeaderItem';
+import { BaseTable } from '@ui/atoms/BaseTable';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -53,6 +53,8 @@ export function UsersDaAsList() {
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
+
+  console.log(listDaas);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
