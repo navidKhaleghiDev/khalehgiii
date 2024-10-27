@@ -4,6 +4,8 @@ export type BaseMiniTableProps<BodyType> = {
   loading: boolean;
   pagination: Pagination;
   title: string;
+  date?: string | string[];
+  className?: string;
 };
 
 export type IdItem = {
