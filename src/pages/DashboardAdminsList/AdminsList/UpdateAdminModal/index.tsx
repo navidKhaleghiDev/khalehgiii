@@ -25,9 +25,8 @@ import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
 
-import { PermissionOptions } from '../PermissionOptions';
 import { domainsMock } from './dataMock';
-// import { PermissionContent } from '../PermissionOptions/PermissionContent';
+import { PermissionOptions } from '../PermissionOptions';
 
 interface UserProps extends Omit<IUser, 'is_meta_admin'> {
   is_meta_admin?: string | boolean;
@@ -64,7 +63,7 @@ export function UpdateAdminModal({
       first_name: admin?.first_name ?? '',
       last_name: admin?.last_name ?? '',
       totp_enable: admin?.totp_enable,
-      is_meta_admin: admin?.id ? role : '',
+      is_meta_admin: admin?.id ? role : 'false',
     },
   });
   const isMetaAdmin = watch('is_meta_admin');
@@ -113,7 +112,7 @@ export function UpdateAdminModal({
     <form className="w-full" onSubmit={handleSubmit(handleOnSubmit)}>
       <BaseTabs>
         <BaseTab label={t('global.userInfo')}>
-          <div className="p-5 pr-0 h-[30.37rem] overflow-y-scroll">
+          <div className="p-5 rtl:pr-0 ltr:pl-0 h-[30.37rem] overflow-y-scroll">
             <div className="border-gray-300 border-b-[0.06rem]">
               <div className="sm:flex-row flex flex-col sm:justify-between items-start gap-5">
                 <BaseInputController
@@ -304,11 +303,9 @@ export function UpdateAdminModal({
           <PermissionOptions
             loading={isLoading}
             permissions={permissions}
-            setSelectedSwitches={setSelectedSwitches}
-            selectedSwitches={selectedSwitches as []}
+            selectedPermissions={selectedSwitches as []}
+            setSelectedPermissions={setSelectedSwitches}
           />
-
-          {/* <PermissionContent /> */}
         </BaseTab>
       </BaseTabs>
       <div className="flex justify-center mt-4">
