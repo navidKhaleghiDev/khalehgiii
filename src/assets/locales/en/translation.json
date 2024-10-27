@@ -226,7 +226,8 @@
     "domain": "Domain",
     "save": "Save",
     "remove": "Delete",
-    "sureAboutDeleteUser": "Are you sure want to delete the user?"
+    "sureAboutDeleteUser": "Are you sure want to delete the user?",
+    "all": "Select All"
   },
   "groupManagement": {
     "person": "person",
