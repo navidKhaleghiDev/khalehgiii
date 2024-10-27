@@ -18,7 +18,7 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
   return (
     <Card
       className="w-[445px] h-[280px]  flex-col justify-center items-center  p-5"
-      color="neutral"
+      color="white"
       shadow="base"
       rounded="xl"
     >
@@ -35,7 +35,7 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
       </div>
 
       <div className="w-full">
-        <div className="w-full text-xs text-gray-500 ">
+        <div className="w-full text-xs bg-white dark:bg-gray-500 text-gray-500  rounded-lg  dark:text-gray-200 ">
           <div className="flex">
             {Object.keys(header).map((key) => (
               <div key={key} className="flex-1 px-4 py-1 ">
@@ -53,13 +53,13 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
               body.map((item) => (
                 <div
                   key={item.id}
-                  className=" max-h-7 mt-1 bg-white rounded-lg border border-gray-100 "
+                  className=" max-h-7 mt-1 bg-white dark:bg-gray-600 rounded-lg border border-gray-100 "
                 >
                   <div className="flex">
                     {Object.keys(header).map((key) => (
                       <div
                         key={key}
-                        className="group flex-1 px-4 py-2 text-gray-900 text-xs overflow-hidden "
+                        className="group flex-1 px-4 py-2 text-gray-900 dark:text-gray-300 text-xs overflow-hidden "
                       >
                         <Typography
                           className={`!text-ellipsis whitespace-nowrap group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear ${directionStyle} group-hover:duration-[1000ms] `}

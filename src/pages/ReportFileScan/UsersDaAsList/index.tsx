@@ -14,7 +14,7 @@ import { monitoringHeaderItem } from '@src/pages/ReportFileScan/UsersDaAsList/co
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { BaseMiniTable } from '@redesignUi/molecules/BaseMiniTable';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 6;
 const PAGE = 1;
 
 export function UsersDaAsList() {
