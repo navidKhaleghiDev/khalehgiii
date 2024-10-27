@@ -1,4 +1,5 @@
-import { Card } from '@redesignUi/atoms';
+import { useLanguage } from '@context/settings/languageContext';
+import { Card, Typography } from '@redesignUi/atoms';
 
 import { BaseMiniTableSkeleton } from './loading';
 import { BaseMiniTableNoResult } from './components/BaseMiniTableNoResult';
@@ -6,27 +7,38 @@ import { BaseMiniTableProps, IdItem } from './types';
 import { Pagination } from '../Pagination';
 
 export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
-  const { header, body, loading, pagination } = props;
+  const { header, body, loading, pagination, title } = props;
   const { countPage, currentPage, totalPages, onPageChange } = pagination;
+
+  const { isFarsi } = useLanguage();
+  const directionStyle = isFarsi
+    ? 'group-hover:-translate-x-[50%]'
+    : 'group-hover:translate-x-[50%]';
 
   return (
     <Card
-      className="w-[445px] h-52 overflow-hidden "
-      color="white"
+      className="w-[445px] h-[280px]  flex-col justify-center items-center  p-5"
+      color="neutral"
       shadow="base"
       rounded="xl"
     >
-      <Pagination
-        currentPage={countPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-        headerPagination
-      />
-      <div className="w-full p-6">
+      <div className="flex justify-between mb-1 ">
+        <Typography variant="body5B" color="black">
+          ورود و خروج ادمین‌ها
+        </Typography>
+        <Pagination
+          currentPage={countPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+          headerPagination
+        />
+      </div>
+
+      <div className="w-full">
         <div className="w-full text-xs text-gray-500 ">
           <div className="flex">
             {Object.keys(header).map((key) => (
-              <div key={key} className="flex-1 px-4 py-2 ">
+              <div key={key} className="flex-1 px-4 py-1 ">
                 {header[key]}
               </div>
             ))}
@@ -36,20 +48,24 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
         {loading ? (
           <BaseMiniTableSkeleton />
         ) : (
-          <div className="w-full ">
+          <div className="w-full">
             {body.length >= 1 ? (
               body.map((item) => (
                 <div
                   key={item.id}
-                  className=" max-h-7 mt-1 bg-white rounded-lg border border-gray-100 overflow-hidden"
+                  className=" max-h-7 mt-1 bg-white rounded-lg border border-gray-100 "
                 >
                   <div className="flex">
                     {Object.keys(header).map((key) => (
                       <div
                         key={key}
-                        className="flex-1 px-4 py-2 text-gray-900 text-xs"
+                        className="group flex-1 px-4 py-2 text-gray-900 text-xs overflow-hidden "
                       >
-                        {item[key]}
+                        <Typography
+                          className={`!text-ellipsis whitespace-nowrap group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear ${directionStyle} group-hover:duration-[1000ms] `}
+                        >
+                          {item[key]}
+                        </Typography>
                       </div>
                     ))}
                   </div>
