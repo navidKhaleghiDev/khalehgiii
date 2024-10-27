@@ -225,7 +225,10 @@
     "changePassword": "Change Password",
     "userType": "User type",
     "domain": "Domain",
-    "save": "Save"
+    "save": "Save",
+    "remove": "Delete",
+    "sureAboutDeleteUser": "Are you sure want to delete the user?",
+    "all": "Select All"
   },
   "groupManagement": {
     "person": "person",
