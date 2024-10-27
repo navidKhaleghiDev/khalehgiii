@@ -8,7 +8,7 @@ import { Pagination } from '../Pagination';
 
 export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
   const { header, body, loading, pagination, title } = props;
-  const { countPage, currentPage, totalPages, onPageChange } = pagination;
+  const { currentPage, totalPages, onPageChange } = pagination;
 
   const { isFarsi } = useLanguage();
   const directionStyle = isFarsi
@@ -17,17 +17,17 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
 
   return (
     <Card
-      className="w-[445px] h-[280px]  flex-col justify-center items-center  p-5"
+      className="w-[445px] h-[280px] flex-col justify-center items-center  p-5"
       color="white"
       shadow="base"
       rounded="xl"
     >
       <div className="flex justify-between mb-1 ">
         <Typography variant="body5B" color="black">
-          ورود و خروج ادمین‌ها
+          {title}
         </Typography>
         <Pagination
-          currentPage={countPage}
+          currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={onPageChange}
           headerPagination

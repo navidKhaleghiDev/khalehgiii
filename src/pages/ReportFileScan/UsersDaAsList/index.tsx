@@ -12,9 +12,8 @@ import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { monitoringHeaderItem } from '@src/pages/ReportFileScan/UsersDaAsList/constants/monitoringHeaderItem';
 import { BaseTable } from '@ui/atoms/BaseTable';
-import { BaseMiniTable } from '@redesignUi/molecules/BaseMiniTable';
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function UsersDaAsList() {
@@ -75,19 +74,7 @@ export function UsersDaAsList() {
   };
   return (
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
-      <div>
-        <BaseMiniTable
-          header={{
-            id: 'id',
-            email: 'email',
-            http_port: 'http_port',
-          }}
-          pagination={paginationProps}
-          body={listDaas}
-          loading={isLoading}
-        />
-      </div>
-      {/* <BaseTable
+      <BaseTable
         loading={isLoading}
         bodyList={listDaas}
         headers={checkPermissionHeaderItem(
@@ -97,7 +84,7 @@ export function UsersDaAsList() {
         onClick={userHandler}
         pagination={paginationProps}
         searchBar={searchBarProps}
-      /> */}
+      />
     </div>
   );
 }
