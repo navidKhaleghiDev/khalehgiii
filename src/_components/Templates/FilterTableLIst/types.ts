@@ -1,14 +1,18 @@
+import { t } from 'i18next';
+
 import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
 
 export interface FilterReportsProps {
   searchQuery: string;
   handelSearchQuery: (value: string) => void;
-  handelFilterList: (value: OptionSelect | OptionSelect[] | null) => void;
+  handelGroupeFilter: (value: OptionSelect | OptionSelect[] | null) => void;
   handelListSort: (value: string) => void;
+  searchPlaceholder?: string;
+  onClickButton?: () => void;
   buttonLabel?: string;
-  hiddenButton?: boolean;
-  hiddenGroupe?: boolean;
-  hiddenSort?: boolean;
+  groupeFilter?: boolean;
+  sortFilter?: boolean;
+  domainFilter?: boolean;
 }
 
 export const domainsMock: OptionSelect[] = [
@@ -27,4 +31,10 @@ export const domainsMock: OptionSelect[] = [
     label: 'fence.npd-co.com',
     value: 'fence.npd-co.com',
   },
+];
+
+export const domainFilterOptions = [
+  { id: '1', value: 'alphabetic', label: t('global.alphabet') },
+  { id: '2', value: 'date', label: t('global.creationDate') },
+  { id: '3', value: 'newest', label: t('global.newest') },
 ];

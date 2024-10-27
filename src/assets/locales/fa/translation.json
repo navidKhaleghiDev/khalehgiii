@@ -130,6 +130,11 @@
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
+    "alphabet": "حروف الفبا",
+    "creationDate": "تاریخ ایجاد",
+    "newest": "جدیدترین",
+    "choseDomain": "انتخاب دامنه",
+    "grouping": "گروهبندی",
     "monitoring": "نظارت",
     "password": "گذرواژه",
     "requiredField": "درج این فیلد ضروریست.",

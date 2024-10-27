@@ -1,6 +1,8 @@
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 
+import pluse from '@iconify-icons/ph/plus-bold';
 import { BaseButton, Dropdown } from '@redesignUi/atoms';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import PhFunnelSimple from '@iconify-icons/ph/funnel-simple';
@@ -12,50 +14,53 @@ import { IResponseData } from '@src/types/services';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 
-import { domainsMock, FilterReportsProps } from './types';
+import { domainsMock, FilterReportsProps, domainFilterOptions } from './types';
 
-export default function FilterTableList({
-  searchQuery,
-  handelSearchQuery,
-  handelFilterList,
-  handelListSort,
-  hiddenGroupe,
-  hiddenSort,
-  buttonLabel,
-}: FilterReportsProps) {
+export default function FilterTableList(props: FilterReportsProps) {
+  const {
+    searchQuery,
+    searchPlaceholder,
+    domainFilter,
+    groupeFilter,
+    sortFilter,
+    buttonLabel,
+    handelSearchQuery,
+    handelGroupeFilter,
+    handelListSort,
+    onClickButton,
+  } = props;
+
   const { t } = useTranslation();
   const { dir } = useLanguage();
 
-  const { data, isLoading } = useSWR<IResponseData<TGroup[]>>(
+  const { data, isLoading, error } = useSWR<IResponseData<TGroup[]>>(
     E_USERS_GROUPS,
     http.fetcherSWR
   );
-  const filterOptions = [
-    { id: '1', value: 'alphabetic', label: t('fileScan.alphabetic') },
-    { id: '2', value: 'date', label: t('fileScan.creationDate') },
-    { id: '3', value: 'newest', label: t('fileScan.Newest') },
-  ];
 
-  const daasGroups: OptionSelect[] = data
-    ? data.data.map((item) => {
-        return {
-          id: String(item.id),
-          label: item.name,
-          value: item.name,
-        };
-      })
-    : [];
+  const daasGroups: OptionSelect[] = useMemo(
+    () =>
+      data?.data.map((item) => ({
+        id: String(item.id),
+        label: item.name,
+        value: item.name,
+      })) ?? [],
+    [data]
+  );
 
-  // Note: cause the dropdown has the service call for the groups it may have skelton
   return (
-    <div className="flex flex-row-reverse items-center flex-wrap gap-[1.875rem]">
-      <div className=" w-full sm:w-40 md:w-[15.9rem] order-last sm:order-first">
+    <div className="flex items-center justify-center sm:justify-start flex-wrap gap-[1.875rem]">
+      <div
+        className={`${sortFilter && buttonLabel ? 'w-40' : 'w-full'} ${
+          sortFilter ? 'sm:w-40' : 'sm:w-[15.9rem]'
+        } md:w-[15.9rem] order-3 sm:order-first`}
+      >
         <SearchInput
           id="adminSearch"
           name="adminSearch"
           onChange={handelSearchQuery}
           value={searchQuery}
-          placeholder={t('fileScan.adminSearch')}
+          placeholder={searchPlaceholder}
           hiddenError
           fullWidth
           dir={dir === 'rtl' ? 'rtl' : 'ltr'}
@@ -63,36 +68,45 @@ export default function FilterTableList({
         />
       </div>
       {/* This item does not work does not have service */}
-      <Dropdown
-        name="domain"
-        onChange={() => console.log('This dropDown functionality is not ready')}
-        options={domainsMock}
-        // disabled // disable the functionality untie the service is ready
-        placeHolder={t('fileScan.choseDomain')}
-        size="sm"
-      />
-      {!hiddenGroupe && (
+      {domainFilter && (
+        <Dropdown
+          name="domain"
+          onChange={() =>
+            console.log('This dropDown functionality is not ready')
+          }
+          options={domainsMock}
+          placeHolder={t('global.choseDomain')}
+          size="sm"
+        />
+      )}
+      {groupeFilter && (
         <Dropdown
           name="group"
-          onChange={handelFilterList}
+          onChange={handelGroupeFilter}
           options={daasGroups}
-          placeHolder={t('fileScan.grouping')}
-          disabled={isLoading}
+          placeHolder={t('global.grouping')}
+          disabled={isLoading || error}
           size="sm"
         />
       )}
 
-      {!hiddenSort && (
-        <BaseDropdownIcon
-          icon={PhFunnelSimple}
-          options={filterOptions}
-          containerClassName="text-sm"
-          onSelect={handelListSort}
-        />
+      {sortFilter && (
+        <div className="order-last sm:order-none">
+          <BaseDropdownIcon
+            icon={PhFunnelSimple}
+            options={domainFilterOptions}
+            containerClassName="text-sm"
+            onSelect={handelListSort}
+          />
+        </div>
       )}
       {buttonLabel && (
-        <div className="">
-          <BaseButton label={buttonLabel} />
+        <div className={dir === 'rtl' ? 'mr-auto' : 'ml-auto'}>
+          <BaseButton
+            label={buttonLabel}
+            onClick={onClickButton}
+            startIcon={pluse}
+          />
         </div>
       )}
     </div>
