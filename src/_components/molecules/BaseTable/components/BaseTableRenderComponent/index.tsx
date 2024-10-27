@@ -4,6 +4,7 @@ import { BaseTableComponentCell } from '../BaseTableRowCells/BaseTableComponentC
 import { BaseTableNoneCell } from '../BaseTableRowCells/BaseTableNoneCell';
 import { BaseTableDateCell } from '../BaseTableRowCells/BaseTableDateCell';
 import BaseTableAvatarCell from '../BaseTableRowCells/BaseTableAvatarCell';
+import { BaseTableMenuCell } from '../BaseTableRowCells/BaseTableMenuCell';
 
 /**
  * Renders the appropriate table cell component based on the type specified in the header.
@@ -23,7 +24,7 @@ import BaseTableAvatarCell from '../BaseTableRowCells/BaseTableAvatarCell';
 export function BaseTableRenderComponent<T extends IdItem>(
   props: BaseTableRenderComponentProps<T>
 ) {
-  const { header, row, onClick } = props;
+  const { header, row, onClick, open } = props;
 
   const id = header?.id;
 
@@ -41,6 +42,7 @@ export function BaseTableRenderComponent<T extends IdItem>(
     action: <BaseTableActionCell row={row} header={header} onClick={onClick} />,
     date: <BaseTableDateCell row={row} id={id} />,
     avatar: <BaseTableAvatarCell row={row} id={id} header={header} />,
+    menu: <BaseTableMenuCell row={row} id={id} header={header} open={open} />,
   };
   return Components[header.type ?? 'none'];
 }

@@ -62,31 +62,57 @@ export const adminListHeaderItem: IHeaderTable[] = [
 
     class: 'px-3 w-1/12',
   },
-  {
-    label: 'table.dateOfCreated',
-    id: 'created_at',
-    type: 'date',
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.activeOtp',
-    id: 'totp_enable',
-    type: 'component',
-    component: (props: any) => <Circle id={props.row.totp_enable} />,
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.activeQrcode',
-    id: 'totp_secret',
-    type: 'component',
-    component: (props: any) => <Circle id={props.row.totp_secret} />,
-    class: 'px-3 w-1/12',
-  },
+  // {
+  //   label: 'table.dateOfCreated',
+  //   id: 'created_at',
+  //   type: 'date',
+  //   class: 'px-3 w-1/12',
+  // },
+  // {
+  //   label: 'table.activeOtp',
+  //   id: 'totp_enable',
+  //   type: 'component',
+  //   component: (props: any) => <Circle id={props.row.totp_enable} />,
+  //   class: 'px-3 w-1/12',
+  // },
+  // {
+  //   label: 'table.activeQrcode',
+  //   id: 'totp_secret',
+  //   type: 'component',
+  //   component: (props: any) => <Circle id={props.row.totp_secret} />,
+  //   class: 'px-3 w-1/12',
+  // },
 
+  // {
+  //   label: 'table.lastLogin',
+  //   id: 'last_login',
+  //   type: 'date',
+  //   class: 'px-3 w-1/12',
+  // },
   {
-    label: 'table.lastLogin',
-    id: 'last_login',
-    type: 'date',
-    class: 'px-3 w-1/12',
+    id: 'menu',
+    type: 'menu',
+    menu: [
+      {
+        action: 'delete',
+        icon: trashIcon,
+        title: 'mahdiu',
+        color: 'redNoBg',
+      },
+      {
+        action: 'edit',
+        icon: notePencilIcon,
+        color: 'neutralNoBg',
+        title: 'ali',
+      },
+      {
+        action: 'edit',
+        icon: notePencilIcon,
+        color: 'neutralNoBg',
+        title: 'ali',
+      },
+    ],
+    permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
+    class: 'px-3 w-1/12 mr-auto',
   },
 ];
