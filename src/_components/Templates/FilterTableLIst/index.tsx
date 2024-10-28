@@ -68,7 +68,7 @@ export default function FilterTableList(props: FilterReportsProps) {
         />
       </div>
       {/* This item does not work does not have service */}
-      {domainFilter && (
+      {domainFilter ? (
         <Dropdown
           name="domain"
           onChange={() =>
@@ -78,8 +78,8 @@ export default function FilterTableList(props: FilterReportsProps) {
           placeHolder={t('global.choseDomain')}
           size="sm"
         />
-      )}
-      {handelGroupeFilter && (
+      ) : null}
+      {handelGroupeFilter ? (
         <Dropdown
           name="group"
           onChange={handelGroupeFilter}
@@ -88,9 +88,9 @@ export default function FilterTableList(props: FilterReportsProps) {
           disabled={isLoading || error}
           size="sm"
         />
-      )}
+      ) : null}
 
-      {sortFilter && (
+      {sortFilter ? (
         <div className="order-last sm:order-none">
           <BaseDropdownIcon
             icon={PhFunnelSimple}
@@ -99,8 +99,8 @@ export default function FilterTableList(props: FilterReportsProps) {
             onSelect={handelListSort}
           />
         </div>
-      )}
-      {buttonLabel && (
+      ) : null}
+      {buttonLabel ? (
         <div className={dir === 'rtl' ? 'mr-auto' : 'ml-auto'}>
           <BaseButton
             label={buttonLabel}
@@ -108,7 +108,7 @@ export default function FilterTableList(props: FilterReportsProps) {
             startIcon={pluse}
           />
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
