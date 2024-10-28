@@ -21,7 +21,6 @@ export default function FilterTableList(props: FilterReportsProps) {
     searchQuery,
     searchPlaceholder,
     domainFilter,
-    groupeFilter,
     sortFilter,
     buttonLabel,
     handelSearchQuery,
@@ -49,7 +48,7 @@ export default function FilterTableList(props: FilterReportsProps) {
   );
 
   return (
-    <div className="flex items-center justify-center sm:justify-start flex-wrap gap-[1.875rem]">
+    <div className="flex items-center justify-center sm:justify-start flex-wrap gap-y-2.5 gap-x-[1.875rem]">
       <div
         className={`${sortFilter && buttonLabel ? 'w-40' : 'w-full'} ${
           sortFilter ? 'sm:w-40' : 'sm:w-[15.9rem]'
@@ -79,7 +78,7 @@ export default function FilterTableList(props: FilterReportsProps) {
           size="sm"
         />
       )}
-      {groupeFilter && (
+      {handelGroupeFilter && (
         <Dropdown
           name="group"
           onChange={handelGroupeFilter}

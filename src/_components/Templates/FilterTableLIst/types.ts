@@ -5,12 +5,11 @@ import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
 export interface FilterReportsProps {
   searchQuery: string;
   handelSearchQuery: (value: string) => void;
-  handelGroupeFilter: (value: OptionSelect | OptionSelect[] | null) => void;
-  handelListSort: (value: string) => void;
+  handelGroupeFilter?: (value: OptionSelect | OptionSelect[] | null) => void;
+  handelListSort?: (value: string) => void;
   searchPlaceholder?: string;
   onClickButton?: () => void;
   buttonLabel?: string;
-  groupeFilter?: boolean;
   sortFilter?: boolean;
   domainFilter?: boolean;
 }
@@ -22,12 +21,12 @@ export const domainsMock: OptionSelect[] = [
     value: 'sep.npd-co.com',
   },
   {
-    id: '1',
+    id: '2',
     label: 'stage.npd-co.com',
     value: 'stage.npd-co.com',
   },
   {
-    id: '1',
+    id: '3',
     label: 'fence.npd-co.com',
     value: 'fence.npd-co.com',
   },
