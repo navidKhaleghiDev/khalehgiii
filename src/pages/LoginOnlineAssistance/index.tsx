@@ -5,54 +5,33 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '@redesignUi/atoms';
 import { BackButton } from '@redesignUi/atoms/BackButton';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
-import {
-  API_USERS_LOGOUT,
-  API_USERS_LOGOUT_ONLINE_ASSISTANCE,
-} from '@src/services/users';
+
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import Monitor from '@iconify-icons/ph/monitor';
 import WifiHigh from '@iconify-icons/ph/wifi-high';
 
 import { useUserContext } from '@context/user/userContext';
-import { http, STORAGE_KEY_REFRESH_TOKEN } from '@src/services/http';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
 import { useLanguage } from '@context/settings/languageContext';
 import { LoginCard } from '@redesignUi/molecules/Cards/LoginCard';
+import { useLogout } from '@src/helper/hooks/useLogout';
 
 export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { user } = useUserContext();
+  const logout = useLogout();
   const { changeLanguage, lang } = useLanguage();
-
-  const { user, setUser } = useUserContext();
 
   const isAdminGroup =
     Array.isArray(user?.admin_group_of) && user?.admin_group_of.length >= 1;
 
-  const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-
-  async function logoutFunction() {
-    const data = {
-      refresh_token: refresh || '',
-    };
-
-    if (isAdminGroup) {
-      await API_USERS_LOGOUT_ONLINE_ASSISTANCE(data);
-    } else await API_USERS_LOGOUT(data);
-  }
   const isInDaas = user?.online_assistance?.admin;
-
-  const logout = () => {
-    logoutFunction();
-    setUser(null);
-    http.removeAuthHeader();
-    navigate(ROUTES_PATH.login);
-  };
 
   useEffect(() => {
     if (!isAdminGroup) {
-      navigate(ROUTES_PATH.dashboard);
+      navigate(ROUTES_PATH.home);
     } else if (isInDaas && user?.online_assistance) {
       navigate(user?.online_assistance?.user_http_address);
     } else {

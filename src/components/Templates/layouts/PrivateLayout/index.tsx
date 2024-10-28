@@ -10,6 +10,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
 import { NavbarDashboard } from '@redesignUi/organisms/Navbar/NavbarDashboard';
+import { SideBar } from '@redesignUi/organisms/Sidebar';
 
 function LayoutCp() {
   const { t } = useTranslation();
@@ -50,17 +51,19 @@ function LayoutCp() {
     return (
       <div className="flex h-screen bg-gray-50 dark:bg-gray-700 font-kalameh">
         <div className="flex flex-col flex-1 overflow-hidden">
-          <header className="z-50 bg-white border-neutral-200 shadow-lg">
+          <header className="z-50 border-neutral-200 shadow-lg bg-gray-50 dark:bg-gray-700">
             <NavbarDashboard />
           </header>
-          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center  mb-5">
-            <nav className="hidden xl:flex mx-auto sm:h-full z-40 pl-5">
-              sidebar
+          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center my-5">
+            <nav className="flex mx-auto sm:h-full z-40">
+              <div className="flex items-center justify-center w-full h-full shadow-md sm:w-fit rounded-2xl">
+                <SideBar />
+              </div>
             </nav>
             <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 mb-9">
               <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
                 <div className="flex flex-col gap-16 sm:h-full">
-                  <div className="pt-5 sm:h-full">
+                  <div className="px-5 sm:h-full">
                     <Outlet />
                   </div>
                 </div>
