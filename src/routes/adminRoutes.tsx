@@ -26,7 +26,7 @@ import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
 import { ApplicationSetting } from '@src/pages/Setting/ApplicationSetting';
-// import { DaasSetting } from '@src/pages/Setting/DaasSetting';
+import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -151,7 +151,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.daas,
         element: (
           <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
-            {/* <DaasSetting /> */}
+            <DaasSetting />
           </ProtectedRoute>
         ),
       },

@@ -5,6 +5,7 @@ import {
   FieldValues,
   RegisterOptions,
 } from 'react-hook-form';
+import { IconType } from '@src/types/global';
 
 import { baseInputNumberStyles } from './styles';
 import { BaseInputProps } from '../BaseInput/types';
@@ -32,4 +33,5 @@ export type BaseInputNumberProps = Omit<
     min?: number;
     max?: number;
     onChange: (value: number) => void;
+    icon: IconType;
   };

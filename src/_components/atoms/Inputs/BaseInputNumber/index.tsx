@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import PhPlus from '@iconify-icons/ph/plus';
 import PhMinus from '@iconify-icons/ph/minus';
-import PhUserLight from '@iconify-icons/ph/user-light';
 
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Typography } from '@redesignUi/atoms/Typography';
@@ -54,6 +53,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     onChange,
     disabled,
     fullWidth,
+    icon,
   } = props;
 
   const rtl = dir === 'rtl';
@@ -77,11 +77,20 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
       {label && (
         <label
           htmlFor={id}
-          className={`block mb-1 h-8 ${
-            rtl ? 'text-left uppercase' : 'text-right'
-          }`}
+          className={`mb-[0.13rem] ${rtl ? 'text-right' : 'text-left'}`}
         >
-          <Typography color="neutralDark" variant="body4">
+          <Typography
+            variant="body6"
+            className={`${
+              error && !disabled
+                ? 'text-red-500 dark:text-red-500'
+                : 'text-gray-200'
+            }  ${
+              disabled
+                ? 'text-gray-200 dark:text-gray-800'
+                : 'text-gray-500 dark:text-white'
+            }`}
+          >
             {label}
           </Typography>
         </label>
@@ -116,7 +125,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
               dir,
               intent: error || isOutOfRange ? 'error' : 'default',
             })}
-            icon={PhUserLight}
+            icon={icon}
           />
         </div>
         <IconButton

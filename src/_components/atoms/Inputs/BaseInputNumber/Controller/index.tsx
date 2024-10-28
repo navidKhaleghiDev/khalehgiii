@@ -43,6 +43,7 @@ export function BaseInputNumberController(
     size,
     name,
     rules,
+    icon,
   } = props;
   return (
     <Controller
@@ -68,6 +69,7 @@ export function BaseInputNumberController(
           disabled={disabled}
           onChange={(e) => onChange(e)}
           id={id}
+          icon={icon}
         />
       )}
     />

@@ -1,165 +1,194 @@
 // import { useEffect, useState } from 'react';
-// import { Control, useForm } from 'react-hook-form';
+import { Control } from 'react-hook-form';
 // import { toast } from 'react-toastify';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-// import { regexPattern } from '@ui/atoms/Inputs';
+import { regexPattern } from '@ui/atoms/Inputs';
 // import { IAddConfig } from '@src/services/config/types';
 // import {
 //   API_ADD_CONFIG,
 //   API_ADD_UPDATE,
 //   API_CONFIG_LIST,
 // } from '@src/services/config';
-// import { Divider } from '@ui/atoms/Divider';
-// import {
-//   checkPermission,
-//   useUserPermission,
-// } from '@src/helper/hooks/usePermission';
-// import {
-//   EPermissionDaas,
-//   EPermissionKeycloak,
-//   PermissionsCodeName,
-// } from '@src/types/permissions';
-// import { Typography } from '@redesignUi/atoms';
+import { Divider } from '@ui/atoms/Divider';
+import { checkPermission } from '@src/helper/hooks/usePermission';
+import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { Card, Typography } from '@redesignUi/atoms';
 // import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 // import { useLanguage } from '@context/settings/languageContext';
 // import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 
-// import { TitleSection } from '@redesignUi/atoms/TitleSection';
-// import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
-// import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
+import { TitleSection } from '@redesignUi/atoms/TitleSection';
+import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
+import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
+import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
+import PhDownloadSimple from '@iconify-icons/ph/download-simple';
+import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+import PhTimer from '@iconify-icons/ph/timer';
 
-// type PropsType = {
-//   control: Control<any>;
-//   isRecording?: boolean;
-//   isMetaConfig?: boolean;
-//   userPermissions: PermissionsCodeName[];
-// };
-// // export enum ETimeLimitDuration {
-// //   DAILY = 'DAILY',
-// //   MONTHLY = 'MONTHLY',
-// //   WEEKLY = 'WEEKLY',
-// //   PERMANENTLY = 'PERMANENTLY',
-// //   TEMPORARY = 'TEMPORARY',
-// // }
+type PropsType = {
+  control: Control<any>;
+  // isRecording?: boolean;
+  // isMetaConfig?: boolean;
+  userPermissions: PermissionsCodeName[];
+};
 
-// export function DaasSettingForm({
-//   control,
-//   isRecording,
-//   userPermissions,
-//   isMetaConfig,
-// }: PropsType) {
-//   const { t } = useTranslation();
-//   const hasChangePermission = checkPermission(
-//     userPermissions,
-//     EPermissionDaas.CHANGE
-//   );
+export function DaasSettingForm({ control, userPermissions }: PropsType) {
+  const { t } = useTranslation();
+  const hasChangePermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.CHANGE
+  );
 
-//   return (
-//     <div className="mx-5 col-span-6">
-//       <div className="mb-[6.25rem]">
-//         <TitleSection label="Daas" />
-//       </div>
-//       <div className="w-full h-full flex flex-col justify-between">
-//         <Typography className="mb-1" color="black" variant="body4B">
-//           {t('table.downloadAndUploadPrivilege')}
-//         </Typography>
+  return (
+    <div className="col-span-6">
+      <div className="mb-[5.87rem]">
+        <TitleSection label="Daas" />
+      </div>
+      <div className="w-full h-full flex flex-col">
+        <Typography className="mb-1" color="black" variant="body4B">
+          {t('table.downloadAndUploadPrivilege')}
+        </Typography>
 
-//         <div className="grid mt-4">
-//           <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem]">
-//             <BaseCheckBoxController
-//               control={control}
-//               id="can_download_file"
-//               name="can_download_file"
-//               label={t('table.downloadPrivilege')}
-//             />
-//             <BaseCheckBoxController
-//               control={control}
-//               id="can_upload_file"
-//               name="can_upload_file"
-//               label={t('table.uploadPrivilege')}
-//             />
-//           </div>
-//         </div>
+        <div className="grid mt-5">
+          <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem]">
+            <BaseCheckBoxController
+              control={control}
+              id="can_download_file"
+              name="can_download_file"
+              label={t('table.downloadPrivilege')}
+            />
+            <BaseCheckBoxController
+              control={control}
+              id="can_upload_file"
+              name="can_upload_file"
+              label={t('table.uploadPrivilege')}
+            />
+          </div>
+        </div>
 
-//         <Divider />
+        <Divider />
 
-//         <TitleSection label={t('table.timeLimitDuration')} />
+        <Typography className="mb-1" color="black" variant="body4B">
+          {t('table.timeLimitDuration')}
+        </Typography>
+        <div className="grid w-full grid-cols-12">
+          <div className="flex col-span-6 lg:col-span-4 gap-5">
+            <Card
+              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
+              color="white"
+            >
+              <BaseRadioButtonController
+                control={control}
+                id="time_limit_duration"
+                name="time_limit_duration"
+                value="TEMPORARY"
+                label={t('table.temporary')}
+              />
+            </Card>
+            <Card
+              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
+              color="white"
+            >
+              <BaseRadioButtonController
+                control={control}
+                id="time_limit_duration"
+                name="time_limit_duration"
+                value="DAILY"
+                label={t('table.daily')}
+              />
+            </Card>
+            <Card
+              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
+              color="white"
+            >
+              <BaseRadioButtonController
+                control={control}
+                id="time_limit_duration"
+                name="time_limit_duration"
+                value="WEEKLY"
+                label={t('table.weekly')}
+              />
+            </Card>
+            <Card
+              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
+              color="white"
+            >
+              <BaseRadioButtonController
+                control={control}
+                id="time_limit_duration"
+                name="time_limit_duration"
+                value="MONTHLY"
+                label={t('table.monthly')}
+              />
+            </Card>
+            <Card
+              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
+              color="white"
+            >
+              <BaseRadioButtonController
+                control={control}
+                id="time_limit_duration"
+                name="time_limit_duration"
+                value="PERMANENTLY"
+                label={t('table.permanently')}
+              />
+            </Card>
+          </div>
+        </div>
+        <Divider />
 
-//         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-4">
-//           <div className="col-span-6 lg:col-span-4">
-//             <BaseRadioButtonController
-//               control={control}
-//               id="time_limit_duration"
-//               name="time_limit_duration"
-//               value="DAILY"
-//               label="روزانه "
-//             />
-//             <BaseRadioButtonController
-//               control={control}
-//               id="time_limit_duration"
-//               name="time_limit_duration"
-//               value="WEEKLY"
-//               label="هفتگی "
-//             />
-//             <BaseRadioButtonController
-//               control={control}
-//               id="time_limit_duration"
-//               name="time_limit_duration"
-//               value="ماهانه  "
-//             />
-
-//             <BaseRadioButtonController
-//               control={control}
-//               id="time_limit_duration"
-//               name="time_limit_duration"
-//               value="PERMANENTLY"
-//               label="دایمی"
-//             />
-//             <BaseRadioButtonController
-//               control={control}
-//               id="time_limit_duration"
-//               name="time_limit_duration"
-//               value="TEMPORARY"
-//               label="موقت "
-//             />
-//           </div>
-//           <div className="col-span-6 lg:col-span-4">
-//             <BaseInputController
-//               id="log_server_ip"
-//               name="log_server_ip"
-//               rules={{
-//                 required: regexPattern.required,
-//                 pattern: regexPattern.ip,
-//               }}
-//               control={control}
-//               label="Log Server IP"
-//               placeholder="192.168.1.1"
-//               fullWidth
-//             />
-//           </div>
-//         </div>
-//         <Divider />
-
-//         <TitleSection label="Manager" />
-
-//         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
-//           <div className="col-span-6 lg:col-span-4">
-//             <BaseInputController
-//               id="daas_provider_baseurl"
-//               name="daas_provider_baseurl"
-//               rules={{
-//                 required: regexPattern.required,
-//                 pattern: regexPattern.url,
-//               }}
-//               control={control}
-//               label="Daas provider baseURL"
-//               placeholder="sep.npd-co.com"
-//               fullWidth
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+        <Typography className="mb-1" color="black" variant="body4B">
+          {t('table.accessSetting')}
+        </Typography>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
+          <div className="col-span-6 lg:col-span-4 w-40 md:w-64 lg:w-rem[21.87] h-16">
+            <BaseInputNumberController
+              id="max_transmission_download_size"
+              name="max_transmission_download_size"
+              control={control}
+              label={t('table.maxDownloadSize')}
+              disabled={!hasChangePermission}
+              placeholder="50"
+              icon={PhDownloadSimple}
+              rules={{
+                required: regexPattern.required,
+                pattern: regexPattern.numbers,
+              }}
+            />
+          </div>
+          <div className="col-span-6 lg:col-span-4 w-40 md:w-64 lg:w-rem[21.87] h-16">
+            <BaseInputNumberController
+              id="max_transmission_upload_size"
+              name="max_transmission_upload_size"
+              control={control}
+              label={t('table.maxUploadSize')}
+              disabled={!hasChangePermission}
+              placeholder="500"
+              icon={PhUploadSimple}
+              rules={{
+                required: regexPattern.required,
+                pattern: regexPattern.numbers,
+              }}
+            />
+          </div>
+          <div className="col-span-6 lg:col-span-4 w-40 md:w-64 lg:w-rem[21.87] h-16">
+            <BaseInputNumberController
+              id="time_limit_value_in_hour"
+              name="time_limit_value_in_hour"
+              control={control}
+              label={t('table.timeLimitDuration')}
+              disabled={!hasChangePermission}
+              placeholder={t('global.selectHour')}
+              icon={PhTimer}
+              rules={{
+                required: regexPattern.required,
+                pattern: regexPattern.numbers,
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

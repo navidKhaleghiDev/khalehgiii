@@ -27,7 +27,7 @@ import { ApplicationSettingProp } from '../type';
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { lang } = useLanguage();
   const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
@@ -37,20 +37,19 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     EPermissionKeycloak.VIEW
   );
 
-  const { control, handleSubmit, reset, getValues } =
-    useForm<ApplicationSettingProp>({
-      mode: 'onChange',
-      defaultValues: {
-        id: null,
-        keycloak_base_url: '',
-        keycloak_port: '',
-        keycloak_ssl: false,
-        keycloak_client_id: '',
-        keycloak_secret: '',
-        keycloak_realm: '',
-        daas_provider_baseurl: '',
-      },
-    });
+  const { control, handleSubmit, reset } = useForm<ApplicationSettingProp>({
+    mode: 'onChange',
+    defaultValues: {
+      id: null,
+      keycloak_base_url: '',
+      keycloak_port: '',
+      keycloak_ssl: false,
+      keycloak_client_id: '',
+      keycloak_secret: '',
+      keycloak_realm: '',
+      daas_provider_baseurl: '',
+    },
+  });
 
   useEffect(() => {
     const getConfig = async () => {
@@ -246,14 +245,9 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
             />
           </div>
         </div>
-        <div className="mt-5 w-40 md:w-[11.88rem] h-10 ">
+        <div className="flex self-center sm:self-end mt-[10rem] w-40 sm:w-[11.88rem]">
           <BaseButton
-            label={
-              getValues('id')
-                ? t('dashboard.updateSetting')
-                : t('dashboard.saveChanges')
-            }
-            size="lg"
+            label={t('dashboard.saveChanges')}
             submit
             loading={loadingButton}
             fullWidth

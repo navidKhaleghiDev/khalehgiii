@@ -53,12 +53,14 @@ function LayoutCp() {
           <header className="z-50 bg-white border-neutral-200 shadow-lg">
             <NavbarDashboard />
           </header>
-          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center mb-5">
-            <nav className="flex mx-auto sm:h-full z-40">sidebar</nav>
+          <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center  mb-5">
+            <nav className="hidden xl:flex mx-auto sm:h-full z-40 pl-5">
+              sidebar
+            </nav>
             <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 mb-9">
               <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
                 <div className="flex flex-col gap-16 sm:h-full">
-                  <div className="pt-5 sm:pt-[3.12rem] px-3 sm:px-8 sm:h-full">
+                  <div className="pt-5 sm:h-full">
                     <Outlet />
                   </div>
                 </div>
