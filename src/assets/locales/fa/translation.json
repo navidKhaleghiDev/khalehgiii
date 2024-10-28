@@ -131,6 +131,7 @@
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
+    "onlineAdmin": "ادمین آنلاین",
     "alphabet": "حروف الفبا",
     "creationDate": "تاریخ ایجاد",
     "newest": "جدیدترین",
@@ -270,7 +271,7 @@
     "adminSearch": "جستجوی ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
-    "onlineUsers": "کابران آنلاین",
+    "onlineUsers": "کاربران آنلاین",
     "scannedFiles": "فایل های اسکن شده"
   },
   "license": {
