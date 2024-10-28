@@ -102,10 +102,11 @@
     "startDate": "تاریخ شروع",
     "endDate": "تاریخ اتمام",
     "activeDeactive": "فعال /غیرفعال",
-    "activeQrcode": "Qrcode",
-    "activeOtp": "Otp",
+    "activeQrcode": "QRcode",
+    "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
-    "yesterday": "دیروز"
+    "yesterday": "دیروز",
+    "access": "دسترسی"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

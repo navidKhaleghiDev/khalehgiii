@@ -101,10 +101,11 @@
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
-    "activeQrcode": " Qrcode ",
-    "activeOtp": "  Otp ",
+    "activeQrcode": " QRcode ",
+    "activeOtp": " OTP ",
     "isRecording": "Is Recording",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "access": "Access"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -243,7 +244,7 @@
     "editGroup": "Edit Group",
     "choiceAdmin": "Choice Admin",
     "choiceUsers": "Choice Users",
-    "newAdmins": "New Admins",
+    "newAdmin": "New Admins",
     "users": "Users",
     "admins": "Admins",
     "next": "Next",
