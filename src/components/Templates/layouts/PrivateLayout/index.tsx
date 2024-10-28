@@ -49,9 +49,9 @@ function LayoutCp() {
 
   if (!loading) {
     return (
-      <div className="flex h-screen bg-white dark:bg-gray-700 font-kalameh">
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-700 font-kalameh">
         <div className="flex flex-col flex-1 overflow-hidden">
-          <header className="z-50 border-neutral-200 shadow-lg">
+          <header className="z-50 border-neutral-200 shadow-lg bg-gray-50 dark:bg-gray-700">
             <NavbarDashboard />
           </header>
           <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center my-5">
@@ -60,7 +60,7 @@ function LayoutCp() {
                 <SideBar />
               </div>
             </nav>
-            <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-white dark:bg-gray-700 mb-9">
+            <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 mb-9">
               <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
                 <div className="flex flex-col gap-16 sm:h-full">
                   <div className="pt-5 sm:pt-[3.12rem] px-3 sm:px-8 sm:h-full">
