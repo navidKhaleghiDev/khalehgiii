@@ -94,6 +94,7 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
     "uploadPrivilege": "دسترسی آپلود",
+    "downloadAndUploadPrivilege":"دسترسی دانلود و آپلود ",
     "recordingActivity": "فعالیت های ضبط شده",
     "date": "تاریخ",
     "day": "روز",

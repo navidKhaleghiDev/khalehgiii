@@ -98,6 +98,7 @@
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
+    "downloadAndUploadPrivilege":"Download and Upload Access",
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",

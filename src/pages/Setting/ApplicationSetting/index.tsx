@@ -16,24 +16,14 @@ import {
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { EPermissionKeycloak } from '@src/types/permissions';
-import { BaseButton, Typography } from '@redesignUi/atoms';
+import { BaseButton } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { TitleSection } from '@redesignUi/atoms/TitleSection';
 
 import { ApplicationSettingProp } from '../type';
 
-function TitleSection({ label }: { label: string }) {
-  return (
-    <Typography
-      color="black"
-      variant="body4B"
-      className="w-full col-span-12 dark:text-white"
-    >
-      {label}
-    </Typography>
-  );
-}
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
