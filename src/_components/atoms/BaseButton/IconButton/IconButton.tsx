@@ -34,6 +34,7 @@ export function IconButton(props: IconButtonProps): JSX.Element {
     loading,
     disabled,
   } = props;
+
   return (
     <button
       type={type === 'submit' ? 'submit' : 'button'}

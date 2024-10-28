@@ -67,7 +67,7 @@ export function AssistanceGroupDetail({
             },
           });
         }
-        navigate(ROUTES_PATH.dashboard);
+        navigate(ROUTES_PATH.home);
       })
       .catch((err) => {
         toast.error(err.message);

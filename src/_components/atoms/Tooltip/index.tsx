@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { containerTooltipStyles, tooltipStyles } from './styles';
 import { ToolTipProps } from './types';
@@ -18,6 +18,16 @@ import { ToolTipProps } from './types';
 function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
   const { children, tooltip, position, truncate } = props;
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setShow(false);
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative inline-block group">
