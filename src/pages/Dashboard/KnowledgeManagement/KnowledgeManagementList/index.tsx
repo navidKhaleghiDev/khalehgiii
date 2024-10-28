@@ -6,7 +6,6 @@ import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
-import { BaseTable } from '@ui/atoms/BaseTable';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
@@ -18,6 +17,9 @@ import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { toast } from 'react-toastify';
 import { NoResult } from '@ui/molecules/NoResult';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { useTranslation } from 'react-i18next';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -30,6 +32,8 @@ export function KnowledgeManagementList() {
     loading?: boolean;
     file?: any;
   } | null>(null);
+
+  const { t } = useTranslation();
 
   const userPermissions = useUserPermission();
 
@@ -91,6 +95,9 @@ export function KnowledgeManagementList() {
     countPage,
     currentPage,
     totalPages: Math.ceil(countPage / PAGE_SIZE),
+    paginationLabel: t('header.admin'),
+    allItems: 50,
+    itemsPer: 5,
     onPageChange: handlePageChange,
   };
 
@@ -101,7 +108,13 @@ export function KnowledgeManagementList() {
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+    <>
+      <FilterTableList
+        handelSearchQuery={setFilterQuery}
+        searchQuery={filterQuery}
+        handelGroupeFilter={(value) => console.log(value)}
+        domainFilter
+      />
       <BaseTable
         loading={isLoading}
         bodyList={listDaas}
@@ -113,6 +126,16 @@ export function KnowledgeManagementList() {
         pagination={paginationProps}
         searchBar={searchBarProps}
       />
+      {/* <BaseTable
+        body={listDaas}
+        header={checkPermissionHeaderItem(
+          userPermissions,
+          KnowledgeManagementHeaderItem
+        )}
+        loading={isLoading}
+        pagination={paginationProps}
+        onClick={handleOnClickRow}
+      /> */}
       <Modal
         open={openModal}
         setOpen={setOpenModal}
@@ -139,6 +162,6 @@ export function KnowledgeManagementList() {
         }
         type="none"
       />
-    </div>
+    </>
   );
 }
