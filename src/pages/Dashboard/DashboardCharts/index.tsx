@@ -1,5 +1,4 @@
 import { Card } from '@redesignUi/atoms';
-
 import {
   EPermissionFileScan,
   EPermissionUba,

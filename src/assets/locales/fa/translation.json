@@ -105,7 +105,8 @@
     "activeQrcode": "Qrcode",
     "activeOtp": "Otp",
     "isRecording": "در حال ضبط",
-    "yesterday": "دیروز"
+    "yesterday": "دیروز",
+    "lastLogout": "آخرین خروج"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

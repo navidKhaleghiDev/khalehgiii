@@ -71,9 +71,5 @@ export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
     },
   };
 
-  return (
-    <div className="max-w-[500px] w-full flex [&>*:first-child]:self-end [&>*:first-child]:justify-self-end justify-end">
-      <Bar data={data} options={options} />
-    </div>
-  );
+  return <Bar data={data} options={options} />;
 }

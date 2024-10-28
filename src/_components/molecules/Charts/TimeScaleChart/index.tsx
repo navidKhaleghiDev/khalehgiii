@@ -71,9 +71,5 @@ export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
     },
   };
 
-  return (
-    <div className="max-w-[500px] w-full flex [&>*:first-child]:self-end [&>*:first-child]:justify-self-end justify-end">
-      <Line data={data} options={options} />
-    </div>
-  );
+  return <Line data={data} options={options} />;
 }

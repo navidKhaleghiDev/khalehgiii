@@ -2,9 +2,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 import { checkPermission } from '@src/helper/hooks/usePermission';
-// import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { createAPIEndpoint } from '@src/helper/utils';
-// import { adminListHeaderItem } from '@src/pages/DashboardAdminsList/AdminsList/constants/ adminListHeaderItem';
 import { http } from '@src/services/http';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
@@ -12,8 +10,6 @@ import { EPermissionUsers, PermissionsCodeName } from '@src/types/permissions';
 import { IResponsePagination } from '@src/types/services';
 import { BaseMiniTable } from '@redesignUi/molecules/BaseMiniTable';
 import { t } from 'i18next';
-// import { BaseTable } from '@ui/atoms/BaseTable';
-// import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 const PAGE_SIZE = 4;
 const PAGE = 1;
@@ -53,7 +49,7 @@ export function DashboardAdminLogs({
   const header = {
     email: t('table.userName'),
     last_login: t('table.lastLogin'),
-    last_logout: t('table.lastLogin'),
+    last_logout: t('table.lastLogout'),
   };
 
   return (

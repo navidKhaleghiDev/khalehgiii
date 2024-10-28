@@ -14,6 +14,7 @@ export default function DashboardProgressChart() {
   const [chartType, setChartType] = useState('line');
   const { t } = useTranslation();
 
+  // mock
   const datasets = [
     {
       label: 'فایل های اسکن شده',
@@ -90,21 +91,21 @@ export default function DashboardProgressChart() {
         <div className="flex sm:flex-col flex-row justify-between flex-wrap">
           <div className="flex flex-row sm:flex-col items-start justify-start gap-2.5 pt-5 shrink-0">
             <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row"
+              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
               variant="body6"
               color="neutral"
             >
               {t('fileScan.scannedFiles')}
             </Typography>
             <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row"
+              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
               variant="body6"
               color="neutral"
             >
               {t('dashboard.infectedFile')}
             </Typography>
             <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row"
+              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
               variant="body6"
               color="neutral"
             >
@@ -128,11 +129,13 @@ export default function DashboardProgressChart() {
             />
           </div>
         </div>
-        {chartType === 'line' ? (
-          <TimeScaleChart datasets={datasets} />
-        ) : (
-          <VerticalBarChart datasets={datasets} />
-        )}
+        <div className="max-w-[31.25rem] w-full h-[15.625rem] flex [&>*:first-child]:self-end [&>*:first-child]:justify-self-end justify-end">
+          {chartType === 'line' ? (
+            <TimeScaleChart datasets={datasets} />
+          ) : (
+            <VerticalBarChart datasets={datasets} />
+          )}
+        </div>
       </div>
     </>
   );

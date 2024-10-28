@@ -104,7 +104,8 @@
     "activeQrcode": " Qrcode ",
     "activeOtp": "  Otp ",
     "isRecording": "Is Recording",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "lastLogout" : "Last Logout"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

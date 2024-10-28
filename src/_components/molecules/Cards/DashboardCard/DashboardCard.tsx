@@ -53,12 +53,12 @@ export function DashboardCard(props: CardProps): JSX.Element {
         <Typography
           color="neutralMiddle"
           variant="body3"
-          className="leading-7 xl:text-lg text-sm"
+          className="xl:text-lg text-sm"
         >
           {title}
         </Typography>
         <Typography
-          className="text-gray-900 dark:text-white font-semibold leading-7"
+          className="text-gray-900 dark:text-white font-semibold"
           variant="body2"
         >
           {count ?? 0}

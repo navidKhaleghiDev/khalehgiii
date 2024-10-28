@@ -6,12 +6,6 @@ interface UserInfoProps {
   email: string;
 }
 
-/**
- * This component should be deleted
- * @param param0
- * @returns
- */
-
 export default function UserInfo({ fullName, email }: UserInfoProps) {
   return (
     <div className="flex gap-3 pb-5">
