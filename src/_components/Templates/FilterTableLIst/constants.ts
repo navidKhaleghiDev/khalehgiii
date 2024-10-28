@@ -1,4 +1,5 @@
 import { t } from 'i18next';
+
 import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
 
 export const domainsMock: OptionSelect[] = [
