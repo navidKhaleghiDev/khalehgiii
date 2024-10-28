@@ -33,11 +33,11 @@ export function ModalInfo(props: ModelInfoProps): JSX.Element | null {
                 </div>
               ) : null}
               <div className="flex flex-col text-start">
-                <Typography color="neutralDark" variant="body3B">
+                <Typography color="black" variant="body3B">
                   {title}
                 </Typography>
                 {description && (
-                  <Typography color="black" variant="body5">
+                  <Typography color="neutralDark" variant="body5">
                     {description}
                   </Typography>
                 )}
@@ -50,7 +50,7 @@ export function ModalInfo(props: ModelInfoProps): JSX.Element | null {
               size="md"
             />
           </div>
-          {content && <div>{content}</div>}
+          {content ? <div>{content}</div> : null}
         </div>
       </div>
     </div>
