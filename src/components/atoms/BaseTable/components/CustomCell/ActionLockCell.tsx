@@ -12,7 +12,7 @@ export function ActionLockCell({ row, id: key, onClick }: IComponentTable) {
   };
 
   return (
-    <div className="absolute">
+    <div>
       <IconButton
         tooltip={t('table.desktop')}
         tooltipPosition="top"
