@@ -14,7 +14,8 @@ import { IResponseData } from '@src/types/services';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 
-import { domainsMock, FilterReportsProps, domainFilterOptions } from './types';
+import { FilterReportsProps } from './types';
+import { domainFilterOptions, domainsMock } from './constants';
 
 export default function FilterTableList(props: FilterReportsProps) {
   const {
