@@ -46,9 +46,9 @@ export interface IconHeader {
 export interface ModelInfoProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  icon: BaseIconProps['icon'];
+  icon?: BaseIconProps['icon'];
   classContainer?: string;
-  title: string;
+  title?: string;
   description?: string;
   content: React.ReactNode;
 }

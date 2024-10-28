@@ -23,19 +23,21 @@ export function ModalInfo(props: ModelInfoProps): JSX.Element | null {
         <div className="p-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
-              <div className="border p-3 border-gray-200 dark:border-gray-500 rounded-lg shadow-sm">
-                <BaseIcon
-                  icon={icon}
-                  size="md"
-                  className="text-gray-500 dark:text-gray-400"
-                />
-              </div>
+              {icon ? (
+                <div className="border p-3 border-gray-200 dark:border-gray-500 rounded-lg shadow-sm">
+                  <BaseIcon
+                    icon={icon}
+                    size="md"
+                    className="text-gray-500 dark:text-gray-400"
+                  />
+                </div>
+              ) : null}
               <div className="flex flex-col text-start">
                 <Typography color="neutralDark" variant="body3B">
                   {title}
                 </Typography>
                 {description && (
-                  <Typography color="neutralMiddle" variant="body5">
+                  <Typography color="black" variant="body5">
                     {description}
                   </Typography>
                 )}
