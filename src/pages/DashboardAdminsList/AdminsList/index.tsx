@@ -1,25 +1,21 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import { Modal } from '@ui/molecules/Modal';
-import { toast } from 'react-toastify';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { debounce } from 'lodash';
 import { API_USERS_DELETE } from '@src/services/users';
-import { useTranslation } from 'react-i18next';
-// import { BaseTable } from '@ui/atoms/BaseTable';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
-import {
-  checkPermission,
-  useUserPermission,
-} from '@src/helper/hooks/usePermission';
-import { BaseTable } from '@ui/atoms/BaseTable';
-import { EPermissionUsers } from '@src/types/permissions';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
 
@@ -35,7 +31,7 @@ export function AdminsList() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const userPermissions = useUserPermission();
-  const addPermission = checkPermission(userPermissions, EPermissionUsers.ADD);
+  // const addPermission = checkPermission(userPermissions, EPermissionUsers.ADD);
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS,
@@ -49,20 +45,20 @@ export function AdminsList() {
     http.fetcherSWR
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 1000),
-    []
-  );
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
-  };
+  // const debouncedSetFilterQuery = useCallback(
+  //   debounce((query: string) => {
+  //     setCurrentPage(PAGE);
+  //     setFilterQuery(query);
+  //   }, 1000),
+  //   []
+  // );
+  // const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   debouncedSetFilterQuery(event.target.value);
+  // };
 
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
+  const AllItems = data?.data?.count ?? 0;
 
   const handleOnDeleteFileType = async () => {
     if (!activeAdmin) return;
@@ -116,35 +112,47 @@ export function AdminsList() {
   const paginationProps = {
     countPage,
     currentPage,
+    allItems: AllItems,
+    itemsPer: PAGE_SIZE,
+    paginationLabel: t('header.admin'),
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
   };
 
-  const searchBarProps: TSearchBar = {
-    name: 'search-admin-list',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-    componentProps: addPermission
-      ? {
-          type: 'actionAdd',
-          label: 'table.addNewAdmin',
-          onClick: handleCreateAdmin,
-        }
-      : undefined,
-  };
+  // const searchBarProps: TSearchBar = {
+  //   name: 'search-admin-list',
+  //   value: filterQuery,
+  //   handleSearchInput: handleFilterChange,
+  //   componentProps: addPermission
+  //     ? {
+  //         type: 'actionAdd',
+  //         label: 'table.addNewAdmin',
+  //         onClick: handleCreateAdmin,
+  //       }
+  //     : undefined,
+  // };
 
   return (
-    <div className={`w-full ${isLoading ? 'loading' : ''}`}>
+    <div
+      className={`w-full gap-[1.87rem] flex flex-col ${
+        isLoading ? 'loading' : ''
+      }`}
+    >
+      <FilterTableList
+        buttonLabel={t('groupManagement.newAdmin')}
+        onClickButton={handleCreateAdmin}
+        searchQuery={filterQuery}
+        searchPlaceholder={t('fileScan.adminSearch')}
+        handelSearchQuery={setFilterQuery}
+        domainFilter
+      />
+
       <BaseTable
-        headers={checkPermissionHeaderItem(
-          userPermissions,
-          adminListHeaderItem
-        )}
-        loading={isLoading}
-        bodyList={listWhiteList}
-        onClick={handleOnClickActions}
         pagination={paginationProps}
-        searchBar={searchBarProps}
+        header={checkPermissionHeaderItem(userPermissions, adminListHeaderItem)}
+        loading={isLoading}
+        body={listWhiteList}
+        onClick={handleOnClickActions}
       />
       <Modal
         open={deleteModal}
