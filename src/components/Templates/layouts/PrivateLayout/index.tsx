@@ -63,7 +63,7 @@ function LayoutCp() {
             <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 mb-9">
               <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
                 <div className="flex flex-col gap-16 sm:h-full">
-                  <div className="pt-5 sm:pt-[3.12rem] px-3 sm:px-8 sm:h-full">
+                  <div className="px-5 sm:h-full">
                     <Outlet />
                   </div>
                 </div>
