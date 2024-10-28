@@ -128,6 +128,11 @@
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
+    "alphabet": "Alphabet",
+    "creationDate": "Creation date",
+    "choseDomain": "Domain",
+    "newest": "Newest",
+    "grouping": "Grouping",
     "monitoring": "Monitoring",
     "userName": "Username",
     "password": "Password",
@@ -258,7 +263,6 @@
   },
   "fileScan": {
     "choseDomain": "Domain",
-    "grouping": "Grouping",
     "adminSearch": "Search",
     "todayScans": "Today's scans",
     "onlineUsers": "Online users",
