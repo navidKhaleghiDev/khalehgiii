@@ -110,6 +110,7 @@
   "dashboard": {
     "adminLists": "Admin Lists",
     "desktopLists": "Desktop Lists",
+    "usersLists": "Users Lists",
     "adminPanel": "Admin Panel",
     "fileScanReports": "File Scan Reports",
     "numbersOfScans": "Number of Scans",
@@ -121,6 +122,8 @@
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
     "infectedFile": "infected File",
+    "uba": "UBA",
+    "extentions": "Extentions List",
     "days": "Days"
   },
   "admin": {
@@ -231,6 +234,11 @@
     "group": "Group",
     "fa": "Persian",
     "en": "English",
+    "userManagement": "User Management",
+    "reportsFile": "File Reports",
+    "systemStrategy": "System Strategy",
+    "progressingChart": "Progressing Chart",
+    "home": "Home",
     "changePassword": "Change Password",
     "userType": "User type",
     "domain": "Domain",
@@ -258,7 +266,7 @@
     "loginTypeChoose": "Choose your login type",
     "internet": "internet",
     "remote": "Remote Assistance",
-    "exitFromUserProfile": "Exit From User Profile",
+    "exitFromUserProfile": "Log Out",
     "enterDesktop": "Enter Desktop",
     "admins": " Admins Of Groups",
     "members": "Member of Groups",
@@ -274,6 +282,7 @@
   },
   "license": {
     "licenseId": "license Id",
+    "licenses": "Licenses",
     "licenseValidation": "License Validation",
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreationDate": " License Creation date ",
@@ -293,6 +302,11 @@
     "wholeNumbers": "Whole Numbers",
     "expirationDate": "Expiration date"
   },
+  "setting": {
+    "application": "Application",
+    "dass": "DaaS"
+  },
+
   "regexPattern": {
     "value": "Please enter a valid link",
     "onlyEnglishNdOtherCharacters": "Please use only English letters",
