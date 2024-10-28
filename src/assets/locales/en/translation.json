@@ -129,6 +129,8 @@
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "monitoring": "Monitoring",
+    "show": "Show",
+    "of": "of",
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",
