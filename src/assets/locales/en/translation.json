@@ -101,10 +101,11 @@
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
-    "activeQrcode": " Qrcode ",
-    "activeOtp": "  Otp ",
+    "activeQrcode": " QRcode ",
+    "activeOtp": " OTP ",
     "isRecording": "Is Recording",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "access": "Access"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -128,6 +129,11 @@
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
+    "alphabet": "Alphabet",
+    "creationDate": "Creation date",
+    "choseDomain": "Domain",
+    "newest": "Newest",
+    "grouping": "Grouping",
     "monitoring": "Monitoring",
     "userName": "Username",
     "password": "Password",
@@ -238,7 +244,7 @@
     "editGroup": "Edit Group",
     "choiceAdmin": "Choice Admin",
     "choiceUsers": "Choice Users",
-    "newAdmins": "New Admins",
+    "newAdmin": "New Admins",
     "users": "Users",
     "admins": "Admins",
     "next": "Next",
@@ -258,7 +264,6 @@
   },
   "fileScan": {
     "choseDomain": "Domain",
-    "grouping": "Grouping",
     "adminSearch": "Search",
     "todayScans": "Today's scans",
     "onlineUsers": "Online users",

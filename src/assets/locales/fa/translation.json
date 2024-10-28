@@ -102,10 +102,11 @@
     "startDate": "تاریخ شروع",
     "endDate": "تاریخ اتمام",
     "activeDeactive": "فعال /غیرفعال",
-    "activeQrcode": "Qrcode",
-    "activeOtp": "Otp",
+    "activeQrcode": "QRcode",
+    "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
-    "yesterday": "دیروز"
+    "yesterday": "دیروز",
+    "access": "دسترسی"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -130,6 +131,11 @@
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
+    "alphabet": "حروف الفبا",
+    "creationDate": "تاریخ ایجاد",
+    "newest": "جدیدترین",
+    "choseDomain": "انتخاب دامنه",
+    "grouping": "گروهبندی",
     "monitoring": "نظارت",
     "password": "گذرواژه",
     "requiredField": "درج این فیلد ضروریست.",
