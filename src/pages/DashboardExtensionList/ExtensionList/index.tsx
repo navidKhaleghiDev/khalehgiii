@@ -6,7 +6,7 @@ import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@redesignUi/molecules/Modal';
-import { BaseTable } from '@ui/atoms/BaseTable';
+// import { BaseTable } from '@ui/atoms/BaseTable';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { extensionListHeaderItem } from '@src/pages/DashboardExtensionList/ExtensionList/constants/extensionListHeaderItem';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
@@ -17,6 +17,7 @@ import { EPermissionExtensions } from '@src/types/permissions';
 // import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import PhPlus from '@iconify-icons/ph/plus-bold';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
@@ -123,6 +124,9 @@ export function ExtensionList() {
     currentPage,
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
+    paginationLabel: t('global.format'),
+    allItems: 20,
+    itemsPer: PAGE_SIZE,
   };
 
   return (
@@ -147,16 +151,15 @@ export function ExtensionList() {
         />
       </div>
       <BaseTable
-        loading={isLoading}
-        headers={checkPermissionHeaderItem(
+        body={listWhiteList}
+        header={checkPermissionHeaderItem(
           userPermissions,
           extensionListHeaderItem
         )}
-        bodyList={listWhiteList}
-        onClick={handleOnClickActions}
+        loading={isLoading}
         pagination={paginationProps}
+        onClick={handleOnClickActions}
       />
-
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}

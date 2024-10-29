@@ -1,9 +1,9 @@
 import trashIcon from '@iconify-icons/ph/trash';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import { EPermissionExtensions } from '@src/types/permissions';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
-export const extensionListHeaderItem: IHeaderTable[] = [
+export const extensionListHeaderItem: HeaderTable[] = [
   {
     id: 'id',
     type: 'action',
@@ -21,7 +21,7 @@ export const extensionListHeaderItem: IHeaderTable[] = [
   {
     label: 'table.string',
     id: 'mimetype_list',
-    type: 'tooltip',
+    type: 'none',
 
     class: 'px-3 w-4/12',
   },
@@ -35,7 +35,7 @@ export const extensionListHeaderItem: IHeaderTable[] = [
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
-    type: 'function',
+    type: 'component',
     function: dateAndNumber,
 
     class: 'px-3 w-3/12',
