@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import Trash from '@iconify-icons/ph/trash';
-import NotePencil from '@iconify-icons/ph/note-pencil';
+import Trash from '@iconify-icons/ph/trash-simple';
+import NotePencil from '@iconify-icons/ph/pencil-simple';
 import { EPermissionUsers } from '@src/types/permissions';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { Typography } from '@redesignUi/atoms';
@@ -44,7 +44,7 @@ export const adminListHeaderItem: HeaderTable[] = [
     isMobileCollapsed: true,
   },
   {
-    label: 'global.userType',
+    label: 'table.userType',
     id: 'is_meta_admin',
     type: 'component',
     component: UserTypeComponent,
@@ -58,7 +58,7 @@ export const adminListHeaderItem: HeaderTable[] = [
     type: 'component',
     component: (props: any) => (
       <Typography variant="body6B" color="black">
-        {props.row.totp_enable ? 'MFA' : 'MFA'}
+        {props.row.totp_enable ? 'MFA' : '--'}
       </Typography>
     ),
     isMobileCollapsed: true,
@@ -68,20 +68,22 @@ export const adminListHeaderItem: HeaderTable[] = [
 
   {
     id: 'action',
-    type: 'action',
-
-    action: [
-      {
-        action: 'delete',
-        icon: Trash,
-        color: 'redNoBg',
-        permission: EPermissionUsers.DELETE,
-      },
+    type: 'menu',
+    tooltip: 'table.moreDetail',
+    menu: [
       {
         action: 'edit',
         icon: NotePencil,
         color: 'neutralNoBg',
         permission: EPermissionUsers.CHANGE,
+        title: 'table.editAdminInfo',
+      },
+      {
+        action: 'delete',
+        icon: Trash,
+        color: 'redNoBg',
+        permission: EPermissionUsers.DELETE,
+        title: 'table.deleteAdmin',
       },
     ],
     permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
