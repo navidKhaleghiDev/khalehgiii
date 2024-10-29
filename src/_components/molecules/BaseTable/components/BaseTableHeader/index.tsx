@@ -39,9 +39,7 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
           </tr>
         );
       })}
-      {collapse && (
-        <tr className={` ${isFarsi ? 'mr-auto' : 'ml-auto'}  w-1/12 h-10  `} />
-      )}
+      {collapse && <tr className="w-1/12 h-10 " />}
     </thead>
   );
 }
