@@ -60,12 +60,13 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
+          const menuStyle = headerList.type === 'menu' ? 'justify-end' : '';
 
           return (
             <td
               aria-label="BaseTableRow"
               key={`${headerList.label} BaseTableRow`}
-              className={`${className}  flex justify-start`}
+              className={`${className}  flex justify-start relative ${menuStyle} `}
             >
               <BaseTableRenderComponent
                 row={row}
