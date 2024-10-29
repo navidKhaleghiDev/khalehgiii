@@ -43,7 +43,7 @@ export const adminRoutes = [
     element: <PrivateLayout />,
     children: [
       {
-        path: ROUTES_PATH.dashboard,
+        path: ROUTES_PATH.home,
         element: <DashboardPage />,
       },
       {
@@ -57,14 +57,6 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.assistanceDashboard,
         element: <AssistanceDashboard />,
-      },
-      {
-        path: ROUTES_PATH.reports,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <Reports />
-          </ProtectedRoute>
-        ),
       },
       {
         path: ROUTES_PATH.internetLog,
@@ -139,10 +131,50 @@ export const adminRoutes = [
         ),
       },
       {
+        path: ROUTES_PATH.chart,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <Reports />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dashboardGroupManagement,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>GroupManagement Page</div>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.setting,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>Setting Page</div>
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: ROUTES_PATH.application,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
             <ApplicationSetting />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.daas,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>DaaS Page</div>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dlp,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>DLP Page</div>
           </ProtectedRoute>
         ),
       },

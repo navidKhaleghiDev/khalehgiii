@@ -1,15 +1,20 @@
+import { t } from 'i18next';
+
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
+import PhCaretRight from '@iconify-icons/ph/caret-right';
+import PhCaretLeft from '@iconify-icons/ph/caret-left';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Typography } from '@redesignUi/atoms';
 
 type PaginationProps = {
   currentPage: number;
-  allItems: number;
-  itemsPer: number;
+  allItems?: number;
+  itemsPer?: number;
   totalPages: number;
-  paginationLabel: string;
+  paginationLabel?: string;
   onPageChange: (page: number) => void;
+  headerPagination?: boolean;
 };
 
 const mClass =
@@ -45,6 +50,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
     itemsPer,
     totalPages,
     paginationLabel,
+    headerPagination,
     onPageChange,
   } = props;
 
@@ -123,10 +129,10 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   if (totalPages < 2) {
     return null;
   }
-  return (
+  return !headerPagination ? (
     <div
       dir="ltr"
-      className="bg-white dark:bg-gray-600 flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5"
+      className="bg-white dark:bg-gray-600 flex items-center justify-between  rounded-lg p-1.5"
     >
       <div className="flex justify-center items-center gap-2">
         <IconButton
@@ -150,13 +156,30 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
         />
       </div>
       <Typography color="neutralMiddle" className="hidden sm:block">
-        {`نمایش ${itemsPer}  ${paginationLabel} از ${allItems}`}
+        {`${t('global.show')} ${itemsPer}  ${paginationLabel} ${t(
+          'global.of'
+        )} ${allItems}`}
       </Typography>
       <Typography color="neutralMiddle" className="block sm:hidden">
         {allItems} of {itemsPer}
       </Typography>
     </div>
+  ) : (
+    <div className="flex gap-2.5" dir="ltr">
+      <IconButton
+        size="sm"
+        color="neutral"
+        icon={PhCaretLeft}
+        className={`${mClass} ${isFirstPage ? disableClass : arrowButtonClass}`}
+        onClick={handlePreviousClick}
+      />
+      <IconButton
+        size="sm"
+        color="neutral"
+        icon={PhCaretRight}
+        className={`${mClass} ${isLastPage ? disableClass : arrowButtonClass}`}
+        onClick={handleNextClick}
+      />
+    </div>
   );
 }
-
-export default Pagination;

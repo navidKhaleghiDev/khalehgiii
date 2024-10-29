@@ -97,7 +97,7 @@ export function DashboardCards({
           <DashboardCard
             icon={shieldCheckIcon}
             title={t('global.reports')}
-            onClick={() => navigate(ROUTES_PATH.reports)}
+            onClick={() => navigate(ROUTES_PATH.chart)}
           />
         </div>
       )}

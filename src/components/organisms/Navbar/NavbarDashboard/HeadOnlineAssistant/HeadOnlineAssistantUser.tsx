@@ -1,9 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import CryptoJS from 'crypto-js';
 import cookie from 'js-cookie';
-import useWebSocket, { ReadyState } from 'react-use-websocket';
+import useWebSocket from 'react-use-websocket';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { STORAGE_KEY_TOKEN } from '@src/services/http';
 import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
@@ -52,9 +51,7 @@ export function HeadOnlineAssistantUser() {
   const socketUrl = `${URL}/ws/online_assistance/?token=${encodedToken}`;
 
   // Establish WebSocket connection
-  const { lastMessage, readyState } = useWebSocket(socketUrl, {
-    shouldReconnect: () => true,
-  });
+  const { lastMessage } = useWebSocket(socketUrl);
 
   /**
    * Effect to handle incoming WebSocket messages.
@@ -68,16 +65,6 @@ export function HeadOnlineAssistantUser() {
 
     setMessageHistory(message);
   }, [lastMessage]);
-
-  /**
-   * Effect to handle WebSocket connection errors.
-   * Displays an error toast notification if the connection is closed unexpectedly.
-   */
-  useEffect(() => {
-    if (readyState === ReadyState.CLOSED) {
-      toast.error(t('global.somethingWentWrong'));
-    }
-  }, [readyState, t]);
 
   return (
     <div>
