@@ -42,7 +42,9 @@ export function BaseTableRenderComponent<T extends IdItem>(
     action: <BaseTableActionCell row={row} header={header} onClick={onClick} />,
     date: <BaseTableDateCell row={row} id={id} />,
     avatar: <BaseTableAvatarCell row={row} id={id} header={header} />,
-    menu: <BaseTableMenuCell row={row} id={id} header={header} />,
+    menu: (
+      <BaseTableMenuCell row={row} id={id} header={header} onClick={onClick} />
+    ),
   };
   return Components[header.type ?? 'none'];
 }
