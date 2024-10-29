@@ -46,7 +46,7 @@ export type TPagination = {
 };
 
 type TTableLabel = `table.${string}` | string;
-export interface HeaderTable {
+export interface IHeaderTable {
   action?: any;
   component?: any;
   function?: any;
@@ -62,7 +62,7 @@ export interface HeaderTable {
 }
 
 export interface IBaseTableProps<BodyType> {
-  headers: HeaderTable[];
+  headers: IHeaderTable[];
   bodyList: BodyType[];
   loading: boolean;
   onClick?: OnClickActionsType<BodyType>;
@@ -73,12 +73,12 @@ export interface IBaseTableProps<BodyType> {
 export type OnClickActionsType<DataType> = (
   action: ActionOnClickActionsType,
   typeFile?: StringifyProperties<DataType> | DataType,
-  id?: HeaderTable['id']
+  id?: IHeaderTable['id']
 ) => void;
 
 export interface IRowCellsComponent {
   row?: any;
-  header?: HeaderTable;
+  header?: IHeaderTable;
   onClick?: OnClickActionsType<any>;
 }
 
@@ -98,14 +98,14 @@ export interface IActionItem {
 
 export interface IRowTableProps<BodyType> {
   row: BodyType;
-  headers: HeaderTable[];
+  headers: IHeaderTable[];
   onClick?: OnClickActionsType<BodyType>;
 }
 
 export interface ITableCell<BodyType> {
   id?: string;
   row?: any;
-  head?: HeaderTable[];
+  head?: IHeaderTable[];
   onClick?: OnClickActionsType<BodyType>;
 }
 

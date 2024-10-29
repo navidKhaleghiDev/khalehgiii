@@ -11,7 +11,7 @@ import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { API_USERS_DELETE } from '@src/services/users';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { checkPermissionHeaderItemRedesign } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItemRedesign';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
@@ -151,7 +151,10 @@ export function AdminsList() {
 
       <BaseTable
         pagination={paginationProps}
-        header={checkPermissionHeaderItem(userPermissions, adminListHeaderItem)}
+        header={checkPermissionHeaderItemRedesign(
+          userPermissions,
+          adminListHeaderItem
+        )}
         loading={isLoading}
         body={listWhiteList}
         onClick={handleOnClickActions}

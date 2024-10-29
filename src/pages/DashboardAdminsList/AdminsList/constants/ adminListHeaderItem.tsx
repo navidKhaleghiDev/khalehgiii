@@ -33,14 +33,14 @@ export const adminListHeaderItem: HeaderTable[] = [
     label: 'table.lastLogin',
     id: 'last_login',
     type: 'date',
-    class: 'px-3 w-1/12',
+    class: 'px-3 lg:w-1/12 w-2/12',
     isMobileCollapsed: true,
   },
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
     type: 'date',
-    class: 'px-3 w-1/12',
+    class: 'px-3 lg:w-1/12 w-2/12',
     isMobileCollapsed: true,
   },
   {
