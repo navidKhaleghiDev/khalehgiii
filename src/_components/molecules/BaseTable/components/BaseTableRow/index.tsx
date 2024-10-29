@@ -66,7 +66,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             <td
               aria-label="BaseTableRow"
               key={`${headerList.label} BaseTableRow`}
-              className={`${className}  flex justify-start relative ${menuStyle} `}
+              className={`${className}  flex justify-start relative  ${menuStyle} `}
             >
               <BaseTableRenderComponent
                 row={row}
@@ -77,12 +77,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
           );
         })}
         {collapse && (
-          <td
-            aria-label="BaseTableRow"
-            className={`w-1/12 flex justify-center ${
-              isFarsi ? 'mr-auto' : 'ml-auto'
-            }  `}
-          >
+          <td aria-label="BaseTableRow" className="w-1/12 flex justify-center">
             <IconButton
               color="neutralNoBg"
               className="dark:text-gray-400"
@@ -104,3 +99,6 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
     </>
   );
 }
+// ${
+//   isFarsi ? 'mr-auto' : 'ml-auto'
+// }
