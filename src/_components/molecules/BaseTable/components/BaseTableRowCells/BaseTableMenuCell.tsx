@@ -1,22 +1,44 @@
+/**
+ * Imports React components, hooks, and utilities for the BaseTableMenuCell component.
+ *
+ * @module BaseTableMenuCell
+ */
+
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
 import ToolTip from '@redesignUi/atoms/Tooltip';
 import { useCallback, useState, useRef } from 'react';
-
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTranslation } from 'react-i18next';
-
 import moreIcon from '@iconify-icons/ph/dots-three-vertical-bold';
 import {
-  ActionCellFunction,
-  ActionItem,
-  BaseTableActionCellProps,
+  BaseTableMenuCellProps,
   IdItem,
+  MenuHeader,
+  MenuType,
 } from '../../types';
 import { baseTableMenuCell } from '../../styles';
 
+/**
+ * Defines menu properties.
+ *
+ * @typedef {Object} Menu
+ * @property {MenuHeader} menu - Contains menu header details.
+ */
+type Menu = {
+  menu: MenuHeader;
+};
+
+/**
+ * Renders a table cell with a dropdown menu for additional actions.
+ *
+ * @function BaseTableMenuCell
+ * @template T
+ * @param {BaseTableMenuCellProps<T>} props - Properties for the BaseTableMenuCell component.
+ * @returns {JSX.Element|null} The rendered BaseTableMenuCell component or null.
+ */
 export function BaseTableMenuCell<T extends IdItem>(
-  props: BaseTableActionCellProps<T>
+  props: BaseTableMenuCellProps<T>
 ) {
   const { row, header, onClick } = props;
   const [open, setOpen] = useState(false);
@@ -29,21 +51,27 @@ export function BaseTableMenuCell<T extends IdItem>(
 
   const menuStyle = isFarsi ? 'left-0' : 'right-0';
 
+  /**
+   * Renders an IconButton for the menu component.
+   *
+   * @function MenuComponent
+   * @param {Menu} param0 - Object containing menu data.
+   * @returns {JSX.Element} The rendered IconButton.
+   */
   const MenuComponent = useCallback(
-    ({ menu }: ActionCellFunction) => (
+    ({ menu }: Menu) => (
       <IconButton
         key={row.id}
         icon={menu.icon || moreIcon}
         color="neutralNoBg"
-        size={menu.size}
         onClick={() => setOpen((prev) => !prev)}
       />
     ),
-    [onClick, row]
+    [row.id]
   );
 
   return (
-    header?.menu && (
+    header.type === 'menu' && (
       <div ref={ref} className="flex">
         {header.tooltip ? (
           <ToolTip tooltip={t(header.tooltip)}>
@@ -52,23 +80,22 @@ export function BaseTableMenuCell<T extends IdItem>(
         ) : (
           <MenuComponent menu={header} />
         )}
-
         {open && (
           <div
-            className={` z-20 absolute top-7 ${menuStyle}  bg-white border border-gray-200 rounded-lg shadow w-[200px] flex-col `}
+            className={`z-20 absolute top-7 ${menuStyle} bg-white dark:bg-gray-600 border border-gray-200 rounded-lg shadow w-[200px] flex-col`}
           >
-            {header.menu.map((action: ActionItem) => (
-              <div className="mb-1" key={action.action}>
-                <div className="bg-white rounded-lg h-auto flex w-full ">
+            {header.menu.map((menu: MenuType) => (
+              <div className="mb-1" key={menu.action}>
+                <div className="rounded-lg h-auto flex w-full">
                   <BaseButton
                     className={baseTableMenuCell({
-                      color: action.color,
+                      color: menu.color,
                     })}
                     type="neutral"
-                    startIcon={action.icon}
-                    label={action.title}
+                    startIcon={menu.icon}
+                    label={menu.title}
                     onClick={
-                      onClick ? () => onClick(action.action, row) : undefined
+                      onClick ? () => onClick(menu.action, row) : undefined
                     }
                   />
                 </div>

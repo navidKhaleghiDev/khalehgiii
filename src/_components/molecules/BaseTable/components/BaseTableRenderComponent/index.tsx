@@ -24,7 +24,7 @@ import { BaseTableMenuCell } from '../BaseTableRowCells/BaseTableMenuCell';
 export function BaseTableRenderComponent<T extends IdItem>(
   props: BaseTableRenderComponentProps<T>
 ) {
-  const { header, row, onClick, open } = props;
+  const { header, row, onClick } = props;
 
   const id = header?.id;
 
@@ -42,7 +42,7 @@ export function BaseTableRenderComponent<T extends IdItem>(
     action: <BaseTableActionCell row={row} header={header} onClick={onClick} />,
     date: <BaseTableDateCell row={row} id={id} />,
     avatar: <BaseTableAvatarCell row={row} id={id} header={header} />,
-    menu: <BaseTableMenuCell row={row} id={id} header={header} open={open} />,
+    menu: <BaseTableMenuCell row={row} id={id} header={header} />,
   };
   return Components[header.type ?? 'none'];
 }
