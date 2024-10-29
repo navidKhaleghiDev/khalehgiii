@@ -109,7 +109,8 @@
     "access": "دسترسی",
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
-    "editAdminInfo": "ویرایش مشخصات"
+    "editAdminInfo": "ویرایش مشخصات",
+    "block": "مسدود"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

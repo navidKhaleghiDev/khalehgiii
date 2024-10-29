@@ -76,7 +76,7 @@
     "containerId": "container id",
     "lastUptime": "last uptime",
     "lastLoginIp": "last Login Ip",
-    "download": "download",
+    "download": "Download",
     "selectTimeFrame": "Select Time Frame",
     "sessionRecording": "Session Recording",
     "play": "play",
@@ -86,7 +86,7 @@
     "file": "File",
     "edit": "edit",
     "delete": "delete",
-    "upload": "upload",
+    "upload": "Upload",
     "AccessConference": "Access conference",
     "conferencePrivilege": "Conference Privilege",
     "microphonePrivilege": "Microphone Privilege",
@@ -108,7 +108,8 @@
     "access": "Access",
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
-    "editAdminInfo": "Edit Admin Info"
+    "editAdminInfo": "Edit Admin Info",
+    "block": "Block"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
