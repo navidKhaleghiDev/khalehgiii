@@ -34,7 +34,6 @@ export const extensionListHeaderItem: HeaderTable[] = [
       },
     ],
     permission: EPermissionExtensions.DELETE,
-    class: 'px-12 w-1/12 mr-auto',
-    isMobileCollapsed: true,
+    class: 'sm:px-12 w-1/12 mr-auto',
   },
 ];

@@ -132,23 +132,27 @@ export function ExtensionList() {
     itemsPer: PAGE_SIZE,
   };
 
-  // console.log(listWhiteList);
-
   return (
     <div className={`w-full ${isLoading ? 'loading' : ''}`}>
-      <Typography variant="body2B" color="neutralDark" className="mb-[6.25rem]">
+      <Typography
+        variant="body2B"
+        color="neutralDark"
+        className="mb-5 md:mb-[6.25rem]"
+      >
         {t('systemManagement.formatList')}
       </Typography>
       <div className="flex items-center justify-between mb-[1.875rem]">
-        <SearchInput
-          id="searchFormat"
-          name="searchFormat"
-          size="lg"
-          placeholder={t('systemManagement.search')}
-          onChange={handleFilterChange}
-          value={filterQuery}
-          className="top-3"
-        />
+        <div className=" w-[160px] sm:w-[350px]">
+          <SearchInput
+            id="searchFormat"
+            name="searchFormat"
+            fullWidth
+            placeholder={t('systemManagement.search')}
+            onChange={handleFilterChange}
+            value={filterQuery}
+            className="top-2.5"
+          />
+        </div>
         <BaseButton
           label={t('systemManagement.newFormat')}
           onClick={() => setOpenUpdateModal(true)}
