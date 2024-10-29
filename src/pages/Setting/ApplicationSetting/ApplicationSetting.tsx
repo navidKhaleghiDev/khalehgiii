@@ -37,7 +37,7 @@ function TitleSection({ label }: { label: string }) {
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const { lang } = useLanguage();
   const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
@@ -110,8 +110,8 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   return loading ? (
     <LoadingSpinner />
   ) : (
-    <div className="mx-5">
-      <div className="mb-10">
+    <div>
+      <div className="mb-[3.75rem]">
         <TitleSection label="Application" />
       </div>
       <form
@@ -121,7 +121,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         {SettingsKeycloakP ? (
           <>
             <TitleSection label="SSO" />
-            <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-4">
+            <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
               <div className="col-span-6 lg:col-span-4">
                 <BaseInputController
                   id="keycloak_base_url"
@@ -256,7 +256,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
             />
           </div>
         </div>
-        <div className="mt-5 w-40 md:w-[11.88rem] h-10 ">
+        <div className="flex self-end mt-8 lg:mt-[10rem] w-40 sm:w-[11.875rem]">
           <BaseButton
             label={
               getValues('id')
