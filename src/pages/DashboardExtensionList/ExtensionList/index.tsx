@@ -21,6 +21,7 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import PhPlus from '@iconify-icons/ph/plus-bold';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 import {
   checkPermission,
   useUserPermission,
@@ -28,6 +29,7 @@ import {
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { ModalInfo } from '@redesignUi/molecules/ModalInfo';
 
+// import { myMockito } from './constants/mockData';
 import { CreateMimeTypeModal } from './CreateMimeTypeModal';
 
 const PAGE_SIZE = 10;
@@ -50,6 +52,7 @@ export function ExtensionList() {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
   const [deleteModal, setDeleteModal] = useState(false);
+  const dimentions = useWindowDimensions();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
@@ -129,6 +132,8 @@ export function ExtensionList() {
     itemsPer: PAGE_SIZE,
   };
 
+  // console.log(listWhiteList);
+
   return (
     <div className={`w-full ${isLoading ? 'loading' : ''}`}>
       <Typography variant="body2B" color="neutralDark" className="mb-[6.25rem]">
@@ -159,6 +164,7 @@ export function ExtensionList() {
         loading={isLoading}
         pagination={paginationProps}
         onClick={handleOnClickActions}
+        isMobile={dimentions.width <= 765}
       />
       <Modal
         open={deleteModal}
