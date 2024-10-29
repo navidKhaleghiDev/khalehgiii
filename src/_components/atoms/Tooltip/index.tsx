@@ -39,11 +39,11 @@ function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
           }`}
         >
           {tooltip}
-        </div>{' '}
+        </div>
       </div>
       <div
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
+        onPointerEnter={() => setShow(true)}
+        onPointerLeave={() => setShow(false)}
       >
         {children}
       </div>

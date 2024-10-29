@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { containerTooltipStyles, tooltipStyles } from './styles';
-import { IToolTip } from './types';
+import { ToolTipProps } from './types';
 
 function ToolTip({
   children,
   tooltip,
   position,
   skip,
-}: IToolTip): JSX.Element | React.ReactNode {
+}: ToolTipProps): JSX.Element | React.ReactNode {
   const [show, setShow] = useState(false);
 
   useEffect(() => {

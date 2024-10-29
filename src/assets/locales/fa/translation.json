@@ -29,7 +29,7 @@
     "desktop": "دسکتاپ",
     "desktopV": "نسخه دسکتاپ",
     "status": "وضعیت",
-    "defaultSetting": "تنظیمات پیشفرض",
+    "defaultSetting": "تنظیمات پیش فرض",
     "search": "جستجو کنید",
     "addNewAdmin": "اضافه کردن ادمین جدید",
     "nameOfTheUser": "نام کاربر",
@@ -102,14 +102,16 @@
     "startDate": "تاریخ شروع",
     "endDate": "تاریخ اتمام",
     "activeDeactive": "فعال /غیرفعال",
-    "activeQrcode": "Qrcode",
-    "activeOtp": "Otp",
+    "activeQrcode": "QRcode",
+    "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
-    "yesterday": "دیروز"
+    "yesterday": "دیروز",
+    "access": "دسترسی"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
     "desktopLists": "لیست دسکتاپ ها",
+    "usersLists": "لیست کاربران",
     "adminPanel": "ادمین پنل",
     "fileScanReports": "گزارش اسکن فایل ها",
     "numbersOfScans": "تعداد اسکن ها",
@@ -121,6 +123,8 @@
     "desktopThePreparation": "در حال آماده‌سازی دسکتاپ",
     "extensionList": "لیست extension ها",
     "infectedFile": "فایل آلوده",
+    "uba": "رفتار شناسی کاربر",
+    "extentions": "فرمت ها",
     "days": "روز"
   },
   "admin": {
@@ -130,7 +134,15 @@
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
+    "onlineAdmin": "ادمین آنلاین",
+    "alphabet": "حروف الفبا",
+    "creationDate": "تاریخ ایجاد",
+    "newest": "جدیدترین",
+    "choseDomain": "انتخاب دامنه",
+    "grouping": "گروهبندی",
     "monitoring": "نظارت",
+    "show": "نمایش",
+    "of": "از",
     "password": "گذرواژه",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",
@@ -223,6 +235,11 @@
     "group": "گروه",
     "fa": "فارسی",
     "en": "انگلیسی",
+    "home": "خانه",
+    "userManagement": "مدیریت کاربران",
+    "reportsFile": "گزارشات",
+    "systemStrategy": "مدیریت راهبردی",
+    "progressingChart": "نمودار پیشرفت",
     "changePassword": "تغییر پسورد",
     "userType": "نوع کاربری",
     "domain": "دامنه",
@@ -262,11 +279,12 @@
     "adminSearch": "جستجوی ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
-    "onlineUsers": "کابران آنلاین",
+    "onlineUsers": "کاربران آنلاین",
     "scannedFiles": "فایل های اسکن شده"
   },
   "license": {
     "licenseId": "شناسه لایسنس",
+    "licenses": "لایسنس ها",
     "licenseValidation": "اعتبارسنجی لایسنس",
     "licenseExpirationDate": "تاریخ انقضای لایسنس",
     "licenseCreationDate": "تاریخ ایجاد لایسنس",
@@ -285,6 +303,10 @@
     "concurrentNumbers": "تعداد همزمان",
     "wholeNumbers": "تعداد کل ",
     "expirationDate": "تاریخ انقضا"
+  },
+  "setting": {
+    "application": "Application",
+    "dass": "DaaS"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
