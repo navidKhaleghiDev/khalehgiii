@@ -14,7 +14,6 @@ import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import { IResponseData } from '@src/types/services';
 import { IUserPermissions } from '@src/types/permissions';
-
 import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';

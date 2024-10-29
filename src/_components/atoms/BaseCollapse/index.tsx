@@ -7,7 +7,7 @@ import { Typography } from '@redesignUi/atoms';
 import { useLanguage } from '@context/settings/languageContext';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 
-type TBaseCollapse = {
+type BaseCollapseProps = {
   content: ReactElement;
   title?: string;
   description?: string;
@@ -19,7 +19,7 @@ export function BaseCollapse({
   title,
   className,
   description,
-}: TBaseCollapse) {
+}: BaseCollapseProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { lang } = useLanguage();
 
@@ -42,7 +42,7 @@ export function BaseCollapse({
           )}
           {description && (
             <Typography
-              className="text-[9px] ltr:text-left rtl:text-right"
+              className="text-[0.563rem] ltr:text-left rtl:text-right"
               color="neutralMiddle"
             >
               {description}
@@ -56,8 +56,8 @@ export function BaseCollapse({
         />
       </div>
       <div
-        className={`transition-max-height duration-75 ease-out overflow-hidden sm:px-5 px-2 rounded-lg border border-gray-100 bg-gray-100 dark:bg-gray-800  ${
-          isOpen ? ' mt-[0.12rem]  dark:border-gray-800' : 'h-0 border-none'
+        className={`transition-max-height duration-75 ease-out overflow-hidden sm:px-5 px-2 rounded-lg border border-gray-100 bg-gray-100 dark:bg-gray-800 ${
+          isOpen ? 'mt-[0.12rem] dark:border-gray-800' : 'h-0 border-none'
         }`}
       >
         {content && <div>{content}</div>}
