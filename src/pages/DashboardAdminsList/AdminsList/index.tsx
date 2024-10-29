@@ -15,6 +15,7 @@ import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
@@ -24,6 +25,7 @@ const PAGE = 1;
 
 export function AdminsList() {
   const { t } = useTranslation();
+  const windowsDimensions = useWindowDimensions();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IUser>>();
@@ -153,6 +155,7 @@ export function AdminsList() {
         loading={isLoading}
         body={listWhiteList}
         onClick={handleOnClickActions}
+        isMobile={windowsDimensions.width <= 768}
       />
       <Modal
         open={deleteModal}

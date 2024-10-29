@@ -15,7 +15,7 @@ interface UserTypeComponentProps {
 function UserTypeComponent({ row }: UserTypeComponentProps) {
   const { t } = useTranslation();
   return (
-    <Typography variant="body6" color="black">
+    <Typography variant="body6" color="black" className="whitespace-nowrap">
       {row.is_meta_admin ? t('table.metaAdmin') : t('header.admin')}
     </Typography>
   );
@@ -26,28 +26,30 @@ export const adminListHeaderItem: HeaderTable[] = [
     id: ['first_name', 'last_name'],
     type: 'avatar',
     email: 'email',
-
     isActive: 'is_active',
-    class: 'px-3 w-3/12',
+    class: 'px-3 w-4/12 lg:w-3/12',
   },
   {
     label: 'table.lastLogin',
     id: 'last_login',
     type: 'date',
     class: 'px-3 w-1/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
     type: 'date',
     class: 'px-3 w-1/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'global.userType',
     id: 'is_meta_admin',
     type: 'component',
     component: UserTypeComponent,
-    class: 'px-3 w-1/12',
+    class: 'px-3 lg:w-1/12 w-2/12',
+    isMobileCollapsed: true,
   },
 
   {
@@ -56,9 +58,10 @@ export const adminListHeaderItem: HeaderTable[] = [
     type: 'component',
     component: (props: any) => (
       <Typography variant="body6B" color="black">
-        {props.row.totp_enable ? 'MFA' : '-'}
+        {props.row.totp_enable ? 'MFA' : 'MFA'}
       </Typography>
     ),
+    isMobileCollapsed: true,
 
     class: 'px-3 w-1/12',
   },
@@ -66,6 +69,7 @@ export const adminListHeaderItem: HeaderTable[] = [
   {
     id: 'action',
     type: 'action',
+
     action: [
       {
         action: 'delete',
@@ -81,6 +85,6 @@ export const adminListHeaderItem: HeaderTable[] = [
       },
     ],
     permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
-    class: 'mr-auto w-1/12',
+    class: ' mr-auto w-2/12 lg:w-1/12',
   },
 ];
