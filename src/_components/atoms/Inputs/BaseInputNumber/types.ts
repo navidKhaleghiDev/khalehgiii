@@ -35,6 +35,6 @@ export type BaseInputNumberProps = Omit<
     min?: number;
     max?: number;
     onChange: (value: number) => void;
-    icon: IconType;
-    defaultValue?: number;
+    value?: number;
+    icon?: IconType;
   };

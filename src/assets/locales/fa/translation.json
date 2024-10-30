@@ -107,7 +107,10 @@
     "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
     "yesterday": "دیروز",
-    "access": "دسترسی"
+    "access": "دسترسی",
+    "userType": "نوع کاربری",
+    "deleteAdmin": "حذف ادمین",
+    "editAdminInfo": "ویرایش مشخصات"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

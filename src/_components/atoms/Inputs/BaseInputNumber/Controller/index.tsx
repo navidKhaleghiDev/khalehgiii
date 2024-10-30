@@ -52,7 +52,7 @@ export function BaseInputNumberController(
       rules={rules}
       render={({
         fieldState: { error },
-        field: { onChange, name: userName },
+        field: { onChange, name: userName, value },
       }) => {
         return (
           <BaseInputNumber
@@ -69,6 +69,7 @@ export function BaseInputNumberController(
             size={size}
             disabled={disabled}
             onChange={(e) => onChange(e)}
+            value={value}
             id={id}
             icon={icon}
           />

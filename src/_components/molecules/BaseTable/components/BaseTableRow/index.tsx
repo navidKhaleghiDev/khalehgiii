@@ -9,6 +9,8 @@ import { BaseTableCollapse } from '../BaseTableCollapse';
 import { BaseTableRowProps, IdItem } from '../../types';
 import { baseTableRowStyles } from '../../styles';
 
+let menu = false;
+
 /**
  * Renders a row in the `BaseTable` component, displaying data from a single item
  * and allowing for collapsible details. Each row can be expanded or collapsed
@@ -46,6 +48,8 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
     );
   };
 
+  const directionStyle = isFarsi ? 'mr-auto' : 'ml-auto';
+
   return (
     <>
       <tr
@@ -60,12 +64,14 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
+          const menuStyle = headerList.type === 'menu' ? 'justify-end' : '';
+          menu = headerList.type === 'menu';
 
           return (
             <td
               aria-label="BaseTableRow"
               key={`${headerList.label} BaseTableRow`}
-              className={`${className}  flex justify-start`}
+              className={`${className}  flex justify-start relative  ${menuStyle} `}
             >
               <BaseTableRenderComponent
                 row={row}
@@ -79,7 +85,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
           <td
             aria-label="BaseTableRow"
             className={`w-1/12 flex justify-center ${
-              isFarsi ? 'mr-auto' : 'ml-auto'
+              !menu ? directionStyle : ''
             }  `}
           >
             <IconButton
