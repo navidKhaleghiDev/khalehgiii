@@ -56,7 +56,7 @@ export function LoginPageCp() {
               data.online_assistance &&
               Object.keys(data.online_assistance).length !== 0
             ) {
-              navigate(ROUTES_PATH.dashboard);
+              navigate(ROUTES_PATH.home);
             } else {
               navigate(ROUTES_PATH.loginAssistance);
             }
@@ -65,7 +65,7 @@ export function LoginPageCp() {
         }
 
         toast.success(t('global.successfullyLogedIn'));
-        navigate(ROUTES_PATH.dashboard);
+        navigate(ROUTES_PATH.home);
         setIsOtpActive(true);
       })
       .catch((err) => {
