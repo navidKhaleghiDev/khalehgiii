@@ -25,6 +25,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
     userPermissions,
     EPermissionDaas.CHANGE
   );
+
   const inputStyle = 'col-span-6 lg:col-span-4 h-16';
   const cardStyles =
     'flex items-center w-40 sm:w-full h-10 shrink-0 pr-[0.62rem] ltr:pl-[0.62rem] col-span-6 md:col-span-3 lg:col-span-2';

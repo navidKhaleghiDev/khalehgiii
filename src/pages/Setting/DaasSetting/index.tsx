@@ -27,19 +27,20 @@ export function DaasSetting() {
   const myvalue = daasConfig?.data?.max_transmission_download_size;
   console.log(myvalue);
 
-  const { control, handleSubmit, getValues, reset } = useForm<DaasSettingProp>({
-    mode: 'onChange',
-    defaultValues: {
-      id: daasConfig?.data?.id,
-      can_upload_file: daasConfig?.data?.can_upload_file,
-      can_download_file: daasConfig?.data?.can_download_file,
-      max_transmission_download_size:
-        daasConfig?.data?.max_transmission_download_size,
-      max_transmission_upload_size:
-        daasConfig?.data?.max_transmission_upload_size,
-      time_limit_duration: daasConfig?.data?.time_limit_duration,
-    },
-  });
+  const { control, handleSubmit, getValues, reset, formState } =
+    useForm<DaasSettingProp>({
+      mode: 'onChange',
+      defaultValues: {
+        id: daasConfig?.data?.id,
+        can_upload_file: daasConfig?.data?.can_upload_file,
+        can_download_file: daasConfig?.data?.can_download_file,
+        max_transmission_download_size:
+          daasConfig?.data?.max_transmission_download_size,
+        max_transmission_upload_size:
+          daasConfig?.data?.max_transmission_upload_size,
+        time_limit_duration: daasConfig?.data?.time_limit_duration,
+      },
+    });
 
   // useEffect(() => {
   //   reset(daasConfig?.data);
@@ -86,6 +87,7 @@ export function DaasSetting() {
           label={t('dashboard.saveChanges')}
           loading={loadingButton}
           submit
+          disabled={!formState.isDirty}
           type="teal"
           className="mb-1"
         />
