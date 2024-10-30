@@ -1,16 +1,13 @@
-import {
-  checkPermission,
-  useUserPermission,
-} from '@src/helper/hooks/usePermission';
-import { EPermissionConfig } from '@src/types/permissions';
-import { ApplicationSetting } from './ApplicationSetting/Application';
+import { useUserContext } from '@context/user/userContext';
+import { ApplicationSetting } from './ApplicationSetting';
 
-export default function ApplicationSettingCP() {
-  const userPermissions = useUserPermission();
+export default function Application() {
+  const { user } = useUserContext();
 
-  const SettingsConfigP = checkPermission(
-    userPermissions,
-    EPermissionConfig.VIEW
+  const userExist = user?.is_meta_admin || user?.is_superuser;
+  return (
+    <div>
+      <ApplicationSetting userExist={userExist} />
+    </div>
   );
-  return <div>{SettingsConfigP ? <ApplicationSetting /> : null}</div>;
 }

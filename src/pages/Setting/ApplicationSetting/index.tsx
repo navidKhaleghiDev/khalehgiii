@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -25,7 +25,7 @@ import { ApplicationSettingProp } from '../type';
 
 function TitleSection({ label }: { label: string }) {
   return (
-    <Typography
+    <Typography  
       color="black"
       variant="body4B"
       className="w-full col-span-12 dark:text-white"
