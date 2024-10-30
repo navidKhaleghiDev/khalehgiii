@@ -134,7 +134,7 @@ type TContentTypePermission = {
   model: string;
 };
 
-export interface IUserPermissions {
+export interface UserPermissionsProps {
   selected: boolean;
   id: number;
   content_type: TContentTypePermission;
