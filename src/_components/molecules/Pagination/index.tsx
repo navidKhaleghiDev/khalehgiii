@@ -1,3 +1,5 @@
+import { t } from 'i18next';
+
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import PhCaretRight from '@iconify-icons/ph/caret-right';
@@ -154,7 +156,9 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
         />
       </div>
       <Typography color="neutralMiddle" className="hidden sm:block">
-        {`نمایش ${itemsPer}  ${paginationLabel} از ${allItems}`}
+        {`${t('global.show')} ${itemsPer}  ${paginationLabel} ${t(
+          'global.of'
+        )} ${allItems}`}
       </Typography>
       <Typography color="neutralMiddle" className="block sm:hidden">
         {allItems} of {itemsPer}

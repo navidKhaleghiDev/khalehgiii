@@ -9,7 +9,7 @@ export const badgeStyle = cva(
         md: 'size-3',
         lg: 'size-5',
         responsive: 'size-2 md:size-3 lg:size-[1.12rem]',
-        table: 'size-2 sm:size-3 ',
+        table: 'size-2 md:size-3 ',
       },
       color: {
         teal: 'bg-teal-500 dark:bg-teal-400',

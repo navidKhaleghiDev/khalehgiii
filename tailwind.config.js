@@ -9,6 +9,9 @@ export default {
         sidebar: '300px auto', //for sidebar layout
         'sidebar-collapsed': '64px auto', //for collapsed sidebar layout
       },
+      transitionProperty: {
+        width: 'width', //for collapsible sidebar,
+      },
     },
     fontFamily: {
       IRANSans: ['IRANSans', 'on'],

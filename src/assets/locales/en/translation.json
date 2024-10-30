@@ -101,14 +101,19 @@
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
-    "activeQrcode": " Qrcode ",
-    "activeOtp": "  Otp ",
+    "activeQrcode": " QRcode ",
+    "activeOtp": " OTP ",
     "isRecording": "Is Recording",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "access": "Access",
+    "userType": "User type",
+    "deleteAdmin": "Delete Admin",
+    "editAdminInfo": "Edit Admin Info"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
     "desktopLists": "Desktop Lists",
+    "usersLists": "Users Lists",
     "adminPanel": "Admin Panel",
     "fileScanReports": "File Scan Reports",
     "numbersOfScans": "Number of Scans",
@@ -120,6 +125,8 @@
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
     "infectedFile": "infected File",
+    "uba": "UBA",
+    "extentions": "Extentions List",
     "days": "Days"
   },
   "admin": {
@@ -128,7 +135,15 @@
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
+    "alphabet": "Alphabet",
+    "onlineAdmin": "Online admin",
+    "creationDate": "Creation date",
+    "choseDomain": "Domain",
+    "newest": "Newest",
+    "grouping": "Grouping",
     "monitoring": "Monitoring",
+    "show": "Show",
+    "of": "of",
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",
@@ -222,6 +237,11 @@
     "group": "Group",
     "fa": "Persian",
     "en": "English",
+    "userManagement": "User Management",
+    "reportsFile": "File Reports",
+    "systemStrategy": "System Strategy",
+    "progressingChart": "Progressing Chart",
+    "home": "Home",
     "changePassword": "Change Password",
     "userType": "User type",
     "domain": "Domain",
@@ -238,7 +258,7 @@
     "editGroup": "Edit Group",
     "choiceAdmin": "Choice Admin",
     "choiceUsers": "Choice Users",
-    "newAdmins": "New Admins",
+    "newAdmin": "New Admins",
     "users": "Users",
     "admins": "Admins",
     "next": "Next",
@@ -249,7 +269,7 @@
     "loginTypeChoose": "Choose your login type",
     "internet": "internet",
     "remote": "Remote Assistance",
-    "exitFromUserProfile": "Exit From User Profile",
+    "exitFromUserProfile": "Log Out",
     "enterDesktop": "Enter Desktop",
     "admins": " Admins Of Groups",
     "members": "Member of Groups",
@@ -258,7 +278,6 @@
   },
   "fileScan": {
     "choseDomain": "Domain",
-    "grouping": "Grouping",
     "adminSearch": "Search",
     "todayScans": "Today's scans",
     "onlineUsers": "Online users",
@@ -266,6 +285,7 @@
   },
   "license": {
     "licenseId": "license Id",
+    "licenses": "Licenses",
     "licenseValidation": "License Validation",
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreationDate": " License Creation date ",
@@ -285,6 +305,11 @@
     "wholeNumbers": "Whole Numbers",
     "expirationDate": "Expiration date"
   },
+  "setting": {
+    "application": "Application",
+    "dass": "DaaS"
+  },
+
   "regexPattern": {
     "value": "Please enter a valid link",
     "onlyEnglishNdOtherCharacters": "Please use only English letters",
