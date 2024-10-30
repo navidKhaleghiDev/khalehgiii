@@ -135,9 +135,7 @@ export function SetAccessTime({
     watch('time_limit_duration') === ETimeLimitDuration.PERMANENTLY;
 
   return (
-    <div
-      className={`  ${isEditable ? 'absolute' : ''} flex justify-center w-full`}
-    >
+    <div className="flex justify-center w-full">
       {!isEditable ? (
         <Card color="white" className="px-2 h-6 w-64 ">
           <div className="flex items-center justify-between  h-full">
