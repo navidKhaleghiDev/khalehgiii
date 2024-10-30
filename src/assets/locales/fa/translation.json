@@ -125,7 +125,8 @@
     "infectedFile": "فایل آلوده",
     "uba": "رفتار شناسی کاربر",
     "extentions": "فرمت ها",
-    "days": "روز"
+    "days": "روز",
+    "saveChanges":"ثبت تغییرات"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -306,7 +307,16 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "dass": "DaaS",
+    "ssoBaseURL":"SSO base URL",
+    "ssoClientID":"SSO client ID",
+    "ssoSecret":"SSO Secret",
+    "ssoPort":"SSO Port",
+    "ssoRealm":"SSO realm",
+    "logServer":"Log Server",
+    "logServerIP":"Log Server IP",
+    "logServerPort":"Log Server Port",
+    "daasProvider":"Daas provider baseURL"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
@@ -341,7 +351,8 @@
     "shebaNumber": "فقط از اعداد استفاده کنید",
     "cardBankNumber": "فقط از اعداد استفاده کنید",
     "price": "لطفا فقط از اعداد استفاده کنید",
-    "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234",
+    "ip":"لطفا فرمت صحیح آی پی را وارد نمایید"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

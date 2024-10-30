@@ -3,13 +3,6 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import { regexPattern } from '@ui/atoms/Inputs';
-import { IAddConfig } from '@src/services/config/types';
-import {
-  API_ADD_CONFIG,
-  API_ADD_UPDATE,
-  API_CONFIG_LIST,
-} from '@src/services/config';
 import { Divider } from '@ui/atoms/Divider';
 import {
   checkPermission,
@@ -20,6 +13,13 @@ import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
+import {
+  API_ADD_CONFIG,
+  API_ADD_UPDATE,
+  API_CONFIG_LIST,
+} from '@src/services/config';
 
 import { ApplicationSettingProp } from '../type';
 
@@ -47,7 +47,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     EPermissionKeycloak.VIEW
   );
 
-  const { control, handleSubmit, reset, getValues } =
+  const { control, handleSubmit, reset, getValues, formState } =
     useForm<ApplicationSettingProp>({
       mode: 'onChange',
       defaultValues: {
@@ -82,7 +82,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     }
   }, [reset, userExist]);
 
-  const handleOnSubmit = async (data: IAddConfig) => {
+  const handleOnSubmit = async (data: ApplicationSettingProp) => {
     setLoadingButton(true);
     if (data?.id) {
       // update
@@ -127,11 +127,11 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   id="keycloak_base_url"
                   name="keycloak_base_url"
                   rules={{
-                    required: regexPattern.required,
-                    pattern: regexPattern.url,
+                    required: inputRegexPattern.required,
+                    pattern: regexPattern.urlLink,
                   }}
                   control={control}
-                  label="SSO base URL"
+                  label={t('setting.ssoBaseURL')}
                   placeholder="http://localhost"
                   fullWidth
                   dir={direction}
@@ -145,7 +145,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                     required: regexPattern.required,
                   }}
                   control={control}
-                  label="SSO client ID"
+                  label={t('setting.ssoClientID')}
                   placeholder="client id"
                   fullWidth
                   dir={direction}
@@ -160,7 +160,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                     required: regexPattern.required,
                   }}
                   control={control}
-                  label="SSO Secret"
+                  label={t('setting.ssoSecret')}
                   placeholder="secret"
                   fullWidth
                   dir={direction}
@@ -176,7 +176,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                     pattern: regexPattern.numbers,
                   }}
                   control={control}
-                  label="SSO Port"
+                  label={t('setting.ssoPort')}
                   placeholder="8080"
                   fullWidth
                   dir={direction}
@@ -206,21 +206,6 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-4">
           <div className="col-span-6 lg:col-span-4">
             <BaseInputController
-              id="log_server_port"
-              name="log_server_port"
-              rules={{
-                required: regexPattern.required,
-                pattern: regexPattern.numbers,
-              }}
-              control={control}
-              label="Log Server Port"
-              placeholder="8000"
-              fullWidth
-              dir={direction}
-            />
-          </div>
-          <div className="col-span-6 lg:col-span-4">
-            <BaseInputController
               id="log_server_ip"
               name="log_server_ip"
               rules={{
@@ -228,8 +213,23 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                 pattern: regexPattern.ip,
               }}
               control={control}
-              label="Log Server IP"
+              label={t('setting.logServerIP')}
               placeholder="192.168.1.1"
+              fullWidth
+              dir={direction}
+            />
+          </div>
+          <div className="col-span-6 lg:col-span-4">
+            <BaseInputController
+              id="log_server_port"
+              name="log_server_port"
+              rules={{
+                required: regexPattern.required,
+                pattern: regexPattern.numbers,
+              }}
+              control={control}
+              label={t('setting.logServerPort')}
+              placeholder="8000"
               fullWidth
               dir={direction}
             />
@@ -246,10 +246,10 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               name="daas_provider_baseurl"
               rules={{
                 required: regexPattern.required,
-                pattern: regexPattern.url,
+                pattern: regexPattern.urlLink,
               }}
               control={control}
-              label="Daas provider baseURL"
+              label={t('setting.daasProvider')}
               placeholder="sep.npd-co.com"
               fullWidth
               dir={direction}
@@ -258,11 +258,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         </div>
         <div className="flex self-end mt-8 lg:mt-[10rem] w-40 sm:w-[11.875rem]">
           <BaseButton
+            // label={t('dashboard.saveChanges')}
             label={
               getValues('id')
                 ? t('dashboard.updateSetting')
-                : t('dashboard.saveChanges')
+                : t('dashboard.saveSettings')
             }
+            disabled={!formState.isDirty}
             size="lg"
             submit
             loading={loadingButton}
