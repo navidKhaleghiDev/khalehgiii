@@ -42,6 +42,7 @@ export function ReportsChart({ props }: IReportChartType) {
     hourly: HOURLY_FORMAT,
     monthly: MONTHLY_FORMAT,
     daily: DAILY_FORMAT,
+    weekly: NORMAL_FORMAT,
   };
 
   if (isFarsi) {

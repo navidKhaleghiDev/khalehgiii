@@ -2,8 +2,8 @@ import { Control, FieldValues, Path, PathValue } from 'react-hook-form';
 import { DateObject, Value } from 'react-multi-date-picker';
 
 type TimeDuration = {
-  weekly?: boolean;
-  monthly?: boolean;
+  weekly: boolean;
+  monthly: boolean;
 };
 
 export type OnClickDate = (date: DateObject | [DateObject, DateObject]) => void;
@@ -19,7 +19,6 @@ export interface MultiDatePickerProps {
   fullWidth?: boolean;
   disabled?: boolean;
   timeDuration?: TimeDuration;
-  size?: 'sm' | 'md';
   onChange: (
     date: DateObject[] | undefined,
     options?: {
