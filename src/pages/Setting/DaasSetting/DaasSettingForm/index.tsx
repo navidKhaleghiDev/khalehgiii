@@ -125,9 +125,10 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               control={control}
               label={t('table.maxDownloadSize')}
               disabled={!hasChangePermission}
-              placeholder="50"
+              placeholder="500"
               icon={PhDownloadSimple}
               dir={direction}
+              max={500}
               rules={{
                 required: regexPattern.required,
                 pattern: regexPattern.numbers,
@@ -142,10 +143,10 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               control={control}
               label={t('table.maxUploadSize')}
               disabled={!hasChangePermission}
-              placeholder="500"
+              placeholder="50"
               icon={PhUploadSimple}
               dir={direction}
-              max={500}
+              max={50}
               rules={{
                 required: regexPattern.required,
                 pattern: regexPattern.numbers,

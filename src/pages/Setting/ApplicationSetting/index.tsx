@@ -37,19 +37,20 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     EPermissionKeycloak.VIEW
   );
 
-  const { control, handleSubmit, reset } = useForm<ApplicationSettingProp>({
-    mode: 'onChange',
-    defaultValues: {
-      id: null,
-      keycloak_base_url: '',
-      keycloak_port: '',
-      keycloak_ssl: false,
-      keycloak_client_id: '',
-      keycloak_secret: '',
-      keycloak_realm: '',
-      daas_provider_baseurl: '',
-    },
-  });
+  const { control, handleSubmit, reset, formState } =
+    useForm<ApplicationSettingProp>({
+      mode: 'onChange',
+      defaultValues: {
+        id: null,
+        keycloak_base_url: '',
+        keycloak_port: '',
+        keycloak_ssl: false,
+        keycloak_client_id: '',
+        keycloak_secret: '',
+        keycloak_realm: '',
+        daas_provider_baseurl: '',
+      },
+    });
 
   useEffect(() => {
     const getConfig = async () => {
@@ -249,6 +250,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
           <BaseButton
             label={t('dashboard.saveChanges')}
             submit
+            disabled={!formState.isDirty}
             loading={loadingButton}
             fullWidth
           />
