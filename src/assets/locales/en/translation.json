@@ -98,7 +98,7 @@
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
-    "downloadAndUploadPrivilege":"Download and Upload Access",
+    "downloadAndUploadPrivilege": "Download and Upload Access",
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
@@ -129,7 +129,7 @@
     "uba": "UBA",
     "extentions": "Extentions List",
     "days": "Days",
-    "saveChanges":"Save Changes"
+    "saveChanges": "Save Changes"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

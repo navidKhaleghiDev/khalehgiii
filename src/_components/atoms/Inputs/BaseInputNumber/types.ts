@@ -3,8 +3,6 @@ import {
   Control,
   FieldPath,
   FieldValues,
-  Path,
-  PathValue,
   RegisterOptions,
 } from 'react-hook-form';
 import { IconType } from '@src/types/global';
@@ -13,11 +11,10 @@ import { baseInputNumberStyles } from './styles';
 import { BaseInputProps } from '../BaseInput/types';
 
 export interface BaseInputNumberControllerProps<T extends FieldValues>
-  extends Omit<BaseInputNumberProps, 'onChange' | 'defaultValue'> {
+  extends Omit<BaseInputNumberProps, 'onChange'> {
   control: Control<T>;
   name: FieldPath<T>;
   rules?: RegisterOptions<T>;
-  defaultValue?: PathValue<T, Path<T>>;
 }
 
 export type BaseInputNumberProps = Omit<
@@ -37,4 +34,5 @@ export type BaseInputNumberProps = Omit<
     onChange: (value: number) => void;
     value?: number;
     icon?: IconType;
+    defaultValue?: number | undefined;
   };

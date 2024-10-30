@@ -94,7 +94,7 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
     "uploadPrivilege": "دسترسی آپلود",
-    "downloadAndUploadPrivilege":"دسترسی دانلود و آپلود ",
+    "downloadAndUploadPrivilege": "دسترسی دانلود و آپلود ",
     "recordingActivity": "فعالیت های ضبط شده",
     "date": "تاریخ",
     "day": "روز",
@@ -130,7 +130,7 @@
     "uba": "رفتار شناسی کاربر",
     "extentions": "فرمت ها",
     "days": "روز",
-    "saveChanges":"ثبت تغییرات"
+    "saveChanges": "ثبت تغییرات"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
