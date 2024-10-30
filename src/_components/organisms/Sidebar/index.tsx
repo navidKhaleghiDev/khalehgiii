@@ -125,7 +125,7 @@ export function SideBar(): JSX.Element {
               onPointerEnter={() => {
                 setDropdownVisible(item);
               }}
-              onPointerLeave={() => setDropdownVisible(null)}
+              // onPointerLeave={() => setDropdownVisible(null)}
               className={`flex justify-center flex-col items-center${
                 toggleSidebar ? 'w-full' : null
               }`}

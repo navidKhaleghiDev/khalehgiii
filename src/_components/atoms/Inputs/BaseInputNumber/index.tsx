@@ -96,7 +96,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
         </label>
       )}
       <div className="flex items-center w-full">
-        <div dir={dir} className={`flex relative${fullWidth ? 'w-full' : ''}`}>
+        <div dir={dir} className={`flex relative ${fullWidth ? 'w-full' : ''}`}>
           <input
             name={name}
             id={id}
@@ -118,6 +118,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             disabled={disabled}
             placeholder={placeholder}
             min={min}
+            defaultValue={defaultValue}
             max={max}
           />
           <BaseIcon

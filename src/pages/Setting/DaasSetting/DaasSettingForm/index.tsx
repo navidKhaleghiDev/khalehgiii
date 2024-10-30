@@ -1,23 +1,10 @@
-// import { useEffect, useState } from 'react';
-import { Control } from 'react-hook-form';
-// import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 import { regexPattern } from '@ui/atoms/Inputs';
-// import { IAddConfig } from '@src/services/config/types';
-// import {
-//   API_ADD_CONFIG,
-//   API_ADD_UPDATE,
-//   API_CONFIG_LIST,
-// } from '@src/services/config';
 import { Divider } from '@ui/atoms/Divider';
 import { checkPermission } from '@src/helper/hooks/usePermission';
-import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { EPermissionDaas } from '@src/types/permissions';
 import { Card, Typography } from '@redesignUi/atoms';
-// import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-// import { useLanguage } from '@context/settings/languageContext';
-// import { LoadingSpinner } from '@redesignUi/molecules/Loading';
-
 import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
@@ -25,23 +12,25 @@ import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNum
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
+import { useLanguage } from '@context/settings/languageContext';
 
-type PropsType = {
-  control: Control<any>;
-  // isRecording?: boolean;
-  // isMetaConfig?: boolean;
-  userPermissions: PermissionsCodeName[];
-};
+import { PropsType } from '../../type';
 
 export function DaasSettingForm({ control, userPermissions }: PropsType) {
   const { t } = useTranslation();
+  const { lang } = useLanguage();
+  const direction = lang === 'fa' ? 'rtl' : 'ltr';
+
   const hasChangePermission = checkPermission(
     userPermissions,
     EPermissionDaas.CHANGE
   );
+  const inputStyle = 'col-span-6 lg:col-span-4 h-16';
+  const cardStyles =
+    'flex items-center w-40 sm:w-full h-10 shrink-0 pr-[0.62rem] ltr:pl-[0.62rem] col-span-6 md:col-span-3 lg:col-span-2';
 
   return (
-    <div className="col-span-6">
+    <div className="grid col-span-6">
       <div className="mb-[5.87rem]">
         <TitleSection label="Daas" />
       </div>
@@ -50,8 +39,8 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
           {t('table.downloadAndUploadPrivilege')}
         </Typography>
 
-        <div className="grid mt-5">
-          <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem]">
+        <div className="w-full grid mt-5">
+          <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem] mb-7">
             <BaseCheckBoxController
               control={control}
               id="can_download_file"
@@ -69,80 +58,66 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
         <Divider />
 
-        <Typography className="mb-1" color="black" variant="body4B">
+        <Typography className="mb-5 mt-7" color="black" variant="body4B">
           {t('table.timeLimitDuration')}
         </Typography>
-        <div className="grid w-full grid-cols-12">
-          <div className="flex col-span-6 lg:col-span-4 gap-5">
-            <Card
-              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
-              color="white"
-            >
+        <div className="w-full mb-7">
+          <div className="gap-5 grid-flow-row-dense grid grid-cols-12">
+            <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
-                id="time_limit_duration"
+                id="temporary"
                 name="time_limit_duration"
                 value="TEMPORARY"
                 label={t('table.temporary')}
               />
             </Card>
-            <Card
-              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
-              color="white"
-            >
+            <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
-                id="time_limit_duration"
+                id="daily"
                 name="time_limit_duration"
                 value="DAILY"
                 label={t('table.daily')}
               />
             </Card>
-            <Card
-              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
-              color="white"
-            >
+            <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
-                id="time_limit_duration"
+                id="weekly"
                 name="time_limit_duration"
                 value="WEEKLY"
                 label={t('table.weekly')}
               />
             </Card>
-            <Card
-              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
-              color="white"
-            >
+            <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
-                id="time_limit_duration"
+                id="monthly"
                 name="time_limit_duration"
                 value="MONTHLY"
                 label={t('table.monthly')}
               />
             </Card>
-            <Card
-              className="flex items-center w-40 h-10 shrink-0 pr-[0.62rem]"
-              color="white"
-            >
+            <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
-                id="time_limit_duration"
+                id="permanently"
                 name="time_limit_duration"
                 value="PERMANENTLY"
                 label={t('table.permanently')}
+                className="col--6 lg:col-span-4"
               />
             </Card>
           </div>
         </div>
         <Divider />
 
-        <Typography className="mb-1" color="black" variant="body4B">
+        <Typography className="mb-1 mt-7" color="black" variant="body4B">
           {t('table.accessSetting')}
         </Typography>
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
-          <div className="col-span-6 lg:col-span-4 w-40 md:w-64 lg:w-rem[21.87] h-16">
+          <div className={inputStyle}>
             <BaseInputNumberController
               id="max_transmission_download_size"
               name="max_transmission_download_size"
@@ -151,13 +126,15 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               disabled={!hasChangePermission}
               placeholder="50"
               icon={PhDownloadSimple}
+              dir={direction}
               rules={{
                 required: regexPattern.required,
                 pattern: regexPattern.numbers,
               }}
+              fullWidth
             />
           </div>
-          <div className="col-span-6 lg:col-span-4 w-40 md:w-64 lg:w-rem[21.87] h-16">
+          <div className={inputStyle}>
             <BaseInputNumberController
               id="max_transmission_upload_size"
               name="max_transmission_upload_size"
@@ -166,13 +143,16 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               disabled={!hasChangePermission}
               placeholder="500"
               icon={PhUploadSimple}
+              dir={direction}
+              max={500}
               rules={{
                 required: regexPattern.required,
                 pattern: regexPattern.numbers,
               }}
+              fullWidth
             />
           </div>
-          <div className="col-span-6 lg:col-span-4 w-40 md:w-64 lg:w-rem[21.87] h-16">
+          <div className={inputStyle}>
             <BaseInputNumberController
               id="time_limit_value_in_hour"
               name="time_limit_value_in_hour"
@@ -181,10 +161,12 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               disabled={!hasChangePermission}
               placeholder={t('global.selectHour')}
               icon={PhTimer}
+              dir={direction}
               rules={{
                 required: regexPattern.required,
                 pattern: regexPattern.numbers,
               }}
+              fullWidth
             />
           </div>
         </div>

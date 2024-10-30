@@ -1,4 +1,6 @@
 import { ETimeLimitDuration } from '@src/services/users/types';
+import { PermissionsCodeName } from '@src/types/permissions';
+import { Control } from 'react-hook-form';
 
 export interface ApplicationSettingProp {
   id?: number | null;
@@ -32,4 +34,10 @@ export interface DaasSettingProp {
   is_globally_config: boolean;
   has_online_assistance?: boolean;
   has_clipboard_log_access?: boolean;
+}
+
+export interface PropsType {
+  control: Control<any>;
+  userPermissions: PermissionsCodeName[];
+  dir?: 'rtl' | 'ltr';
 }

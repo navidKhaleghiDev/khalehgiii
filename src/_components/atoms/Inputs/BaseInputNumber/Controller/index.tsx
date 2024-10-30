@@ -53,25 +53,27 @@ export function BaseInputNumberController(
       render={({
         fieldState: { error },
         field: { onChange, name: userName },
-      }) => (
-        <BaseInputNumber
-          dir={dir}
-          name={userName}
-          placeholder={placeholder}
-          className={className}
-          intent={intent}
-          label={label}
-          min={min}
-          max={max}
-          error={error?.message}
-          fullWidth={fullWidth}
-          size={size}
-          disabled={disabled}
-          onChange={(e) => onChange(e)}
-          id={id}
-          icon={icon}
-        />
-      )}
+      }) => {
+        return (
+          <BaseInputNumber
+            dir={dir}
+            name={userName}
+            placeholder={placeholder}
+            className={className}
+            intent={intent}
+            label={label}
+            min={min}
+            max={max}
+            error={error?.message}
+            fullWidth={fullWidth}
+            size={size}
+            disabled={disabled}
+            onChange={(e) => onChange(e)}
+            id={id}
+            icon={icon}
+          />
+        );
+      }}
     />
   );
 }

@@ -37,7 +37,11 @@ export function MenuDropdown({
             onPointerDown={() => navigate(item.path)}
           >
             {item.icon && <BaseIcon icon={item.icon} />}
-            <Typography className="mr-3" variant="body5" color="neutralMiddle">
+            <Typography
+              className="mr-3 ltr:ml-3 whitespace-nowrap"
+              variant="body6"
+              color="neutralMiddle"
+            >
               {item.label}
             </Typography>
           </button>
