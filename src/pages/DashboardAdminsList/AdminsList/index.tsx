@@ -20,7 +20,7 @@ import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 7;
 const PAGE = 1;
 
 export function AdminsList() {
