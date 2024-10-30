@@ -1,9 +1,8 @@
-import { IUserPermissions } from '@src/types/permissions';
+import { UserPermissionsProps } from '@src/types/permissions';
 
-export interface IPermissionOptionsProps {
+export interface PermissionOptionsProps {
   loading: boolean;
-  permissions: IUserPermissions[];
-  // setSelectedSwitches: any;
-  selectedPermissions: IUserPermissions[];
-  setSelectedPermissions: (permissions: IUserPermissions[]) => void;
+  permissions: UserPermissionsProps[];
+  selectedPermissions: UserPermissionsProps[];
+  setSelectedPermissions: (permissions: UserPermissionsProps[]) => void;
 }
