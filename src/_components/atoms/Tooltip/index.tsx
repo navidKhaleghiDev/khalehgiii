@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 import { containerTooltipStyles, tooltipStyles } from './styles';
 import { ToolTipProps } from './types';
@@ -19,6 +19,16 @@ function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
   const { children, tooltip, position, truncate } = props;
   const [show, setShow] = useState(false);
 
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setShow(false);
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="relative inline-block group">
       <div className={containerTooltipStyles({ position, show, truncate })}>
@@ -29,11 +39,11 @@ function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
           }`}
         >
           {tooltip}
-        </div>{' '}
+        </div>
       </div>
       <div
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
+        onPointerEnter={() => setShow(true)}
+        onPointerLeave={() => setShow(false)}
       >
         {children}
       </div>

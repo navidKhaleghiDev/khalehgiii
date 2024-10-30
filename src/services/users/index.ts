@@ -84,8 +84,8 @@ export const API_DAAS_RESET_ALL_USAGE_DAAS = () =>
 export const API_USERS_LOGOUT = (body: IBodyUsersLogout) =>
   http.post(E_USERS_LOGOUT, body);
 
-export const API_USERS_LOGOUT_ONLINE_ASSISTANCE = (body: IBodyUsersLogout) =>
-  http.post(E_USERS_LOGOUT_ONLINE_ASSISTANCE, body);
+export const API_USERS_LOGOUT_ONLINE_ASSISTANCE = () =>
+  http.get(E_USERS_LOGOUT_ONLINE_ASSISTANCE);
 
 export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
   http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(

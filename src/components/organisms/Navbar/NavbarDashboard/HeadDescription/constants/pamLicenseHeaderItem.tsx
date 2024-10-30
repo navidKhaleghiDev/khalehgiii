@@ -1,6 +1,6 @@
 import { EPermissionDaas } from '@src/types/permissions';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 import { BaseTableSwitch } from '@ui/atoms/BaseTable/components/BaseTableSwitch';
+import { IHeaderTable } from '@ui/atoms/BaseTable/types';
 
 export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
   {

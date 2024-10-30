@@ -35,7 +35,7 @@ export function NotificationMenu() {
               size="md"
               content={12}
               onClick={handleToggle}
-              className="bg-gray-100 hover:bg-gray-300 transition-all duration-200 ease-linear"
+              className="bg-gray-100 hover:bg-gray-300 "
             />
           )
         }

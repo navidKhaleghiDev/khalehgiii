@@ -1,3 +1,5 @@
+import { t } from 'i18next';
+
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import PhCaretRight from '@iconify-icons/ph/caret-right';
@@ -130,7 +132,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   return !headerPagination ? (
     <div
       dir="ltr"
-      className="bg-white dark:bg-gray-600 flex items-center justify-between max-w-[68.75rem] rounded-lg p-1.5"
+      className="bg-white dark:bg-gray-600 flex items-center justify-between  rounded-lg p-1.5"
     >
       <div className="flex justify-center items-center gap-2">
         <IconButton
@@ -154,7 +156,9 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
         />
       </div>
       <Typography color="neutralMiddle" className="hidden sm:block">
-        {`نمایش ${itemsPer}  ${paginationLabel} از ${allItems}`}
+        {`${t('global.show')} ${itemsPer}  ${paginationLabel} ${t(
+          'global.of'
+        )} ${allItems}`}
       </Typography>
       <Typography color="neutralMiddle" className="block sm:hidden">
         {allItems} of {itemsPer}

@@ -23,7 +23,7 @@ export const daasRoutes = [
     element: <PrivateLayout />,
     children: [
       {
-        path: ROUTES_PATH.dashboard,
+        path: ROUTES_PATH.home,
         element: <DaasDashboard />,
       },
       {
