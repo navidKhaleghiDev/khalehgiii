@@ -35,19 +35,19 @@ export function BaseCollapse({
         }`}
       >
         <div>
-          {title && (
+          {title ? (
             <Typography variant="body6" color="neutralDark">
               {title}
             </Typography>
-          )}
-          {description && (
+          ) : null}
+          {description ? (
             <Typography
               className="text-[0.563rem] ltr:text-left rtl:text-right"
               color="neutralMiddle"
             >
               {description}
             </Typography>
-          )}
+          ) : null}
         </div>
         <IconButton
           color="neutralNoBg"
@@ -60,7 +60,7 @@ export function BaseCollapse({
           isOpen ? 'mt-[0.12rem] dark:border-gray-800' : 'h-0 border-none'
         }`}
       >
-        {content && <div>{content}</div>}
+        {content ? <div>{content}</div> : null}
       </div>
     </div>
   );

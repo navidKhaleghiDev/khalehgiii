@@ -31,7 +31,7 @@ export default function BaseQrCode({ email, defaultValue }: any) {
     <div
       className={`md:relative flex flex-col gap-2 items-center justify-center lg:w-40 lg:h-40 w-[7.5rem]${
         loading ? 'loading' : ''
-      }    `}
+      }`}
     >
       <div className="flex items-center justify-center">
         {!loading ? (
