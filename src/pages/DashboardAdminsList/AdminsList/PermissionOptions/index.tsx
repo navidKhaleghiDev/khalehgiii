@@ -5,12 +5,12 @@ import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
 import { BaseCollapse } from '@redesignUi/atoms/BaseCollapse';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
-import { IUserPermissions } from '@src/types/permissions';
+import { UserPermissionsProps } from '@src/types/permissions';
 
-import { IPermissionOptionsProps } from './types';
+import { PermissionOptionsProps } from './types';
 
 interface GroupedPermissions {
-  [groupTitle: string]: IUserPermissions[];
+  [groupTitle: string]: UserPermissionsProps[];
 }
 
 export function PermissionOptions({
@@ -18,11 +18,11 @@ export function PermissionOptions({
   permissions,
   setSelectedPermissions,
   selectedPermissions,
-}: IPermissionOptionsProps) {
+}: PermissionOptionsProps) {
   const { t } = useTranslation();
   const [searchItem, setSearchItem] = useState<string>('');
   const [localSelectedPermissions, setLocalSelectedPermissions] = useState<
-    IUserPermissions[]
+    UserPermissionsProps[]
   >([]);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export function PermissionOptions({
     setSelectedPermissions(updatedPermissions);
   };
 
-  const handleSelectPermission = (permission: IUserPermissions) => {
+  const handleSelectPermission = (permission: UserPermissionsProps) => {
     const updatedPermissions = localSelectedPermissions.some(
       (perm) => perm.id === permission.id
     )
@@ -82,7 +82,7 @@ export function PermissionOptions({
           <SearchInput
             id="search"
             name="search"
-            onChange={(e) => setSearchItem(e)}
+            onChange={(value) => setSearchItem(value)}
             value={searchItem}
             placeholder={t('table.search')}
           />

@@ -1,7 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ComponentType, useMemo, ReactNode } from 'react';
 import { useUserContext } from '@context/user/userContext';
-import { IUserPermissions, PermissionsCodeName } from '@src/types/permissions';
+import {
+  UserPermissionsProps,
+  PermissionsCodeName,
+} from '@src/types/permissions';
 import { UnauthorizedComponent } from '@src/pages/Unauthorized';
 
 import { checkPermission } from '../hooks/usePermission';
@@ -22,7 +25,7 @@ export const withPermission = (
     const userPermissions = useMemo(() => user?.user_permissions || [], [user]);
 
     const allUserPermissions = useMemo(
-      () => userPermissions.map((perm: IUserPermissions) => perm.codename),
+      () => userPermissions.map((perm: UserPermissionsProps) => perm.codename),
       [userPermissions]
     );
 
