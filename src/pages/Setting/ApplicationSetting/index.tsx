@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -25,7 +25,7 @@ import { ApplicationSettingProp } from '../type';
 
 function TitleSection({ label }: { label: string }) {
   return (
-    <Typography  
+    <Typography
       color="black"
       variant="body4B"
       className="w-full col-span-12 dark:text-white"
@@ -40,6 +40,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const [loading, setLoading] = useState(false);
   const { lang } = useLanguage();
   const direction = lang === 'fa' ? 'rtl' : 'ltr';
+  const inputStyles = 'col-span-6 lg:col-span-4';
 
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
@@ -47,7 +48,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     EPermissionKeycloak.VIEW
   );
 
-  const { control, handleSubmit, reset, getValues, formState } =
+  const { control, handleSubmit, reset, formState } =
     useForm<ApplicationSettingProp>({
       mode: 'onChange',
       defaultValues: {
@@ -122,7 +123,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
           <>
             <TitleSection label="SSO" />
             <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_base_url"
                   name="keycloak_base_url"
@@ -137,7 +138,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   dir={direction}
                 />
               </div>
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_client_id"
                   name="keycloak_client_id"
@@ -146,13 +147,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   }}
                   control={control}
                   label={t('setting.ssoClientID')}
-                  placeholder="client id"
+                  placeholder={t('setting.clientIDP')}
                   fullWidth
                   dir={direction}
                 />
               </div>
 
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_secret"
                   name="keycloak_secret"
@@ -161,13 +162,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   }}
                   control={control}
                   label={t('setting.ssoSecret')}
-                  placeholder="secret"
+                  placeholder={t('setting.secretP')}
                   fullWidth
                   dir={direction}
                 />
               </div>
 
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_port"
                   name="keycloak_port"
@@ -182,7 +183,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   dir={direction}
                 />
               </div>
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_realm"
                   name="keycloak_realm"
@@ -191,7 +192,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   }}
                   control={control}
                   label="SSO realm"
-                  placeholder="realm"
+                  placeholder={t('setting.realmP')}
                   fullWidth
                   dir={direction}
                 />
@@ -203,8 +204,8 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
 
         <TitleSection label="Log Server" />
 
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-4">
-          <div className="col-span-6 lg:col-span-4">
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
+          <div className={inputStyles}>
             <BaseInputController
               id="log_server_ip"
               name="log_server_ip"
@@ -219,7 +220,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               dir={direction}
             />
           </div>
-          <div className="col-span-6 lg:col-span-4">
+          <div className={inputStyles}>
             <BaseInputController
               id="log_server_port"
               name="log_server_port"
@@ -240,7 +241,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         <TitleSection label="Manager" />
 
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
-          <div className="col-span-6 lg:col-span-4">
+          <div className={inputStyles}>
             <BaseInputController
               id="daas_provider_baseurl"
               name="daas_provider_baseurl"
@@ -258,12 +259,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         </div>
         <div className="flex self-end mt-8 lg:mt-[10rem] w-40 sm:w-[11.875rem]">
           <BaseButton
-            // label={t('dashboard.saveChanges')}
-            label={
-              getValues('id')
-                ? t('dashboard.updateSetting')
-                : t('dashboard.saveSettings')
-            }
+            label={t('dashboard.saveChanges')}
             disabled={!formState.isDirty}
             size="lg"
             submit

@@ -312,7 +312,10 @@
     "logServer": "Log Server",
     "logServerIP": "Log Server IP",
     "logServerPort": "Log Server Port",
-    "daasProvider": "Daas provider baseURL"
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP":"clinet id",
+    "secretP":"secret",
+    "realmP":"realm"
   },
 
   "regexPattern": {
