@@ -24,7 +24,7 @@ export function DashboardCards() {
     <div className="flex flex-col gap-5">
       <DashboardCard
         icon={FolderSimple}
-        title={`${t('dashboard.infectedFile')}`}
+        title={`${t('dashboard.virusFiles')}`}
         count={malwareFiles}
         className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
         disabled

@@ -1,23 +1,24 @@
-import {
-  checkPermission,
-  useUserPermission,
-} from '@src/helper/hooks/usePermission';
+import { checkPermission } from '@src/helper/hooks/usePermission';
 import {
   EPermissionMalwareConfig,
   EPermissionUsers,
+  PermissionsCodeName,
 } from '@src/types/permissions';
 
 import { ServiceInfo } from './ServiceInfo';
 import { UserInfo } from '../UserInfo';
 
-export function DashboardAdminInfo() {
-  const userPermissions = useUserPermission();
+export function DashboardAdminInfo({
+  permissions,
+}: {
+  permissions: PermissionsCodeName[];
+}): JSX.Element {
   const viewMalwarePermission = checkPermission(
-    userPermissions,
+    permissions,
     EPermissionMalwareConfig.VIEW
   );
   const viewUsersPermission = checkPermission(
-    userPermissions,
+    permissions,
     EPermissionUsers.VIEW
   );
 
@@ -63,18 +64,14 @@ export function DashboardAdminInfo() {
       </div>
     );
   }
-  if (!viewMalwarePermission && !viewUsersPermission) {
-    return (
-      <div className="md:col-span-8 col-span-6 order-1">
-        <UserInfo
-          className="py-1.5 px-5 xl:pb-[3.375rem] xl:p-5 xl:h-[17.5rem] md:h-52 h-[8.25rem] relative"
-          curveTopSvgClassName="hidden"
-          userInfoClassName="md:w-[11.375rem] h-auto absolute bottom-5 rtl:left-8 ltr:right-8 rtl:scale-x-[1] ltr:scale-x-[-1] z-20"
-          curveBottomSvgClassName="lg:w-[34.75rem] md:w-80 h-auto sm:block hidden absolute bottom-0 rtl:left-0 ltr:right-0 rtl:scale-x-[1] ltr:scale-x-[-1] z-10"
-        />
-      </div>
-    );
-  }
-
-  return null;
+  return (
+    <div className="md:col-span-8 col-span-6 order-1">
+      <UserInfo
+        className="py-1.5 px-5 xl:pb-[3.375rem] xl:p-5 xl:h-[17.5rem] md:h-52 h-[8.25rem] relative"
+        curveTopSvgClassName="hidden"
+        userInfoClassName="md:w-[11.375rem] h-auto absolute bottom-5 rtl:left-8 ltr:right-8 rtl:scale-x-[1] ltr:scale-x-[-1] z-20"
+        curveBottomSvgClassName="lg:w-[34.75rem] md:w-80 h-auto sm:block hidden absolute bottom-0 rtl:left-0 ltr:right-0 rtl:scale-x-[1] ltr:scale-x-[-1] z-10"
+      />
+    </div>
+  );
 }

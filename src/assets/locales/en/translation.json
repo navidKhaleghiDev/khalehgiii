@@ -109,7 +109,8 @@
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
-    "lastLogout": "Last Logout"
+    "lastLogout": "Last Logout",
+    "adminUserName": "Name"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -135,7 +136,8 @@
     "netsep": "NetSep",
     "scans": "Scans",
     "userBehavior": "User Behavior",
-    "adminLogin": "Admin Login"
+    "adminLogin": "Admin Login",
+    "virusFiles": "Virus Files"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

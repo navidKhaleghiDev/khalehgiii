@@ -110,7 +110,8 @@
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
     "editAdminInfo": "ویرایش مشخصات",
-    "lastLogout": "آخرین خروج"
+    "lastLogout": "آخرین خروج",
+    "adminUserName": "نام ادمین"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -136,7 +137,8 @@
     "netsep": "نت سپ",
     "scans": "اسکن ها",
     "userBehavior": "رفتار شناسی کاربر",
-    "adminLogin": "ورود و خروج ادمین‌ها"
+    "adminLogin": "ورود و خروج ادمین‌ها",
+    "virusFiles": "فایل های آلوده"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

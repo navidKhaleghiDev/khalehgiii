@@ -7,10 +7,11 @@ import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
 import { IScanStats } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { ISwrResponse } from '@src/types/services';
+import { useLanguage } from '@context/settings/languageContext';
 
-export interface ServiceInfoProps {
+type ServiceInfoProps = {
   className?: string;
-}
+};
 
 export function ServiceInfo({ className }: ServiceInfoProps) {
   const { data } = useSWR<ISwrResponse<IScanStats>>(
@@ -18,8 +19,11 @@ export function ServiceInfo({ className }: ServiceInfoProps) {
     HTTP_ANALYSES.fetcherSWR
   );
   const { t } = useTranslation();
+  const { isFarsi } = useLanguage();
   const remainingDays = data?.data?.info?.remaining_days || ' 0';
-  const nowDate = moment().format('jYYYY/jMM/jDD');
+  const nowDate = isFarsi
+    ? moment().format('jYYYY/jMM/jDD')
+    : moment().format('YYYY/MM/DD');
 
   return (
     <ServiceCard

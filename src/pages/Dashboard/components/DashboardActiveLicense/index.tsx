@@ -4,11 +4,11 @@ import useSWR from 'swr';
 
 import { Typography } from '@redesignUi/atoms';
 import { LicenseCard } from '@redesignUi/molecules/Cards/LicenseCard';
-import { LoadingPage } from '@redesignUi/molecules/Loading';
 import { http } from '@src/services/http';
 import { E_USERS_LICENSES } from '@src/services/users/endpoint';
 import { LicenseCardProps } from '@redesignUi/molecules/Cards/LicenseCard/types';
 import { LicenseFileType } from '@src/pages/Dashboard/License/SettingMalwareCard/type';
+import { NoResult } from '@redesignUi/molecules/NoResult';
 
 type LicenseCardKeys =
   | 'sandbox'
@@ -33,20 +33,18 @@ const licenseCardsColor: Record<LicenseCardKeys, LicenseCardProps['color']> = {
 
 export default function DashboardActiveLicense() {
   const { t } = useTranslation();
-  const { data, isLoading, error } = useSWR(E_USERS_LICENSES, http.fetcherSWR);
-
-  if (isLoading) return <LoadingPage />;
+  const { data, error } = useSWR(E_USERS_LICENSES, http.fetcherSWR);
 
   const licensesList: LicenseFileType[] = Array.isArray(data?.data)
     ? data.data
     : [];
 
-  if (!error) {
-    return (
-      <>
-        <Typography color="black" variant="body4B">
-          {t('dashboard.activeLicenses')}
-        </Typography>
+  return (
+    <>
+      <Typography color="black" variant="body4B">
+        {t('dashboard.activeLicenses')}
+      </Typography>
+      {!error ? (
         <div className="flex w-full gap-2.5 overflow-x-auto py-5 px-1">
           {licensesList.map((license) => {
             const color = licenseCardsColor[license.name as LicenseCardKeys];
@@ -63,7 +61,9 @@ export default function DashboardActiveLicense() {
             );
           })}
         </div>
-      </>
-    );
-  }
+      ) : (
+        <NoResult />
+      )}
+    </>
+  );
 }

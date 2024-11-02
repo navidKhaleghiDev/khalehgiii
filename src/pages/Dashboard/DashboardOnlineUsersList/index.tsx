@@ -45,8 +45,12 @@ export function DashboardOnlineUsersList({
 
   return (
     checkPermission(permissions, EPermissionDaas.VIEW) && (
-      <Card rounded="xxl" shadow="base" className="p-5">
-        <div className="col-span-12 grid grid-cols-12 pb-5">
+      <Card
+        rounded="xxl"
+        shadow="base"
+        className=" w-full basis-full flex-grow p-5"
+      >
+        <div className="col-span-12 grid grid-cols-12 pb-9">
           <div className="col-span-6">
             <Typography color="black" variant="body4B">
               {t('dashboard.onlineUsers')}

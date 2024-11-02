@@ -17,9 +17,9 @@ export default function DashboardCharts({
   return (
     <Card rounded="xxl" shadow="base" className="p-5">
       {checkPermission(permissions, EPermissionFileScan.VIEW) &&
-        checkPermission(permissions, EPermissionUba.VIEW) && (
-          <DashboardProgressChart />
-        )}
+      checkPermission(permissions, EPermissionUba.VIEW) ? (
+        <DashboardProgressChart />
+      ) : null}
       <div>
         <DashboardActiveLicense />
       </div>

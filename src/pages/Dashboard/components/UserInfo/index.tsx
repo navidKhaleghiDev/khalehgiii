@@ -6,12 +6,12 @@ import { CurveBottomSvg } from '@redesignUi/atoms/Svgs/CurveBottomSvg';
 import { CurveTopSvg } from '@redesignUi/atoms/Svgs/CurveTopSvg';
 import { UserInfoSvg } from '@redesignUi/atoms/Svgs/UserInfoSvg';
 
-export interface UserInfoProps {
+type UserInfoProps = {
   userInfoClassName?: string;
   curveTopSvgClassName?: string;
   curveBottomSvgClassName?: string;
   className?: string;
-}
+};
 
 export function UserInfo({
   userInfoClassName,

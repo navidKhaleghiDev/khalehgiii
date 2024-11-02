@@ -19,18 +19,18 @@ export default function DashboardProgressChart() {
     {
       label: 'فایل های اسکن شده',
       data: [
-        { x: '2024-01-01', y: 65 }, // داده‌ها به شکل { x: 'تاریخ', y: مقدار }
+        { x: '2024-01-01', y: 65 },
         { x: '2024-02-01', y: 59 },
         { x: '2024-03-01', y: 80 },
         { x: '2024-04-01', y: 81 },
         { x: '2024-05-01', y: 56 },
         { x: '2024-06-01', y: 55 },
       ],
-      borderColor: 'rgb(59, 130, 246)', // رنگ خط
-      backgroundColor: 'rgba(59, 130, 246, 0.2)', // رنگ پس‌زمینه
+      borderColor: 'rgb(59, 130, 246)',
+      backgroundColor: 'rgba(59, 130, 246, 0.2)',
     },
     {
-      label: 'فایل‌های آلوده', // نام مجموعه داده
+      label: 'فایل‌های آلوده',
       data: [
         { x: '2024-03-01', y: 28 },
         { x: '2024-04-01', y: 48 },
@@ -40,7 +40,7 @@ export default function DashboardProgressChart() {
       backgroundColor: 'rgba(168, 85, 247, 0.2)',
     },
     {
-      label: 'رفتارشناسی کاربر', // نام مجموعه داده
+      label: 'رفتارشناسی کاربر',
       data: [
         { x: '2024-01-01', y: 38 },
         { x: '2024-02-01', y: 58 },
@@ -56,7 +56,7 @@ export default function DashboardProgressChart() {
 
   return (
     <>
-      <div className="w-full flex flex-col sm:flex-row pb-2.5 sm:pb-12">
+      <div className="w-full flex flex-col sm:flex-row pb-2.5 sm:pb-[3.125rem]">
         <div className="w-1/2">
           <Typography color="black" variant="body4B">
             {t('dashboard.progressChart')}
@@ -81,7 +81,7 @@ export default function DashboardProgressChart() {
                 { id: 2, label: t('table.weekly') },
                 { id: 3, label: t('table.daily'), active: true },
               ]}
-              onChange={() => console.log('first')}
+              onChange={() => {}}
               size="responsive"
             />
           </div>
@@ -102,7 +102,7 @@ export default function DashboardProgressChart() {
               variant="body6"
               color="neutral"
             >
-              {t('dashboard.infectedFile')}
+              {t('dashboard.virusFiles')}
             </Typography>
             <Typography
               className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"

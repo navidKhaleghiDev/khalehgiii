@@ -47,7 +47,7 @@ export function DashboardAdminLogs({
   const listWhiteList = data?.data?.results ?? [];
 
   const header = {
-    email: t('table.userName'),
+    email: t('table.adminUserName'),
     last_login: t('table.lastLogin'),
     last_logout: t('table.lastLogout'),
   };
