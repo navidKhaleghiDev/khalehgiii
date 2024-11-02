@@ -5,8 +5,9 @@ export const TextIconStyle = cva(
   {
     variants: {
       color: {
-        blue: 'bg-blue-100 text-blue-500',
-        purple: 'bg-purple-100 text-purple-500',
+        blue: 'bg-blue-100 text-blue-500 dark:bg-transparent dark:text-blue-300',
+        purple:
+          'bg-purple-100 text-purple-500 dark:bg-transparent dark:text-purple-400',
       },
     },
   }
