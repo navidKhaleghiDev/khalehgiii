@@ -25,6 +25,7 @@ import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
+import { DlpSetting } from '@src/pages/setting/DlpSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -173,7 +174,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.dlp,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>DLP Page</div>
+            <DlpSetting />
           </ProtectedRoute>
         ),
       },

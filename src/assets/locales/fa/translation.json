@@ -55,9 +55,10 @@
     "monthly": "ماهانه",
     "temporary": "موقت",
     "permanently": "دائمی",
-    "fileType": "تایپ فایل",
+    "fileType": "نوع فایل",
     "allowedForUpload": "مجاز برای آپلود",
     "allowedForDownload": "مجاز برای دانلود",
+    "permissions":"مجوزها",
     "thisWeek": "این هفته",
     "thisMonth": "این ماه",
     "accessSetting": "تنظیمات دسترسی",
@@ -109,7 +110,8 @@
     "access": "دسترسی",
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
-    "editAdminInfo": "ویرایش مشخصات"
+    "editAdminInfo": "ویرایش مشخصات",
+    "addNewFile":"فایل جدید"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -249,7 +251,8 @@
     "save": "ذخیره",
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
-    "all": "انتخاب همه"
+    "all": "انتخاب همه",
+    "deleteFile":"حذف فایل"
   },
   "groupManagement": {
     "person": "نفر",

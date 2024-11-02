@@ -31,7 +31,9 @@ import { BaseTableSkeleton } from './components/loading';
  * @returns {JSX.Element} The rendered table component.
  */
 
-export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
+export function BaseTable<T extends IdItem>(
+  props: BaseTableProps<T>
+): JSX.Element {
   const {
     header,
     body,

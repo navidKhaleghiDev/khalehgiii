@@ -1,72 +1,84 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import trashIcon from '@iconify-icons/ph/trash';
-import notePencilIcon from '@iconify-icons/ph/note-pencil';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
-import { booleanIcon } from '@src/pages/Dashboard/DlpConfig/utils';
-import { EPermissionWhiteListFiles } from '@src/types/permissions';
 
-export const dlpConfigHeaderItem: IHeaderTable[] = [
+import { booleanIcon } from '@src/pages/Dashboard/DlpConfig/utils';
+import {
+  EPermissionUsers,
+  EPermissionWhiteListFiles,
+} from '@src/types/permissions';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import Trash from '@iconify-icons/ph/trash-simple';
+import NotePencil from '@iconify-icons/ph/pencil-simple';
+
+export const dlpConfigHeaderItem: HeaderTable[] = [
   {
-    id: 'id',
-    type: 'action',
-    action: [
-      {
-        action: 'delete',
-        icon: trashIcon,
-        color: 'redNoBg',
-        permission: EPermissionWhiteListFiles.DELETE,
-      },
+    label: 'table.fileType',
+    id: 'file_type',
+    type: 'none',
+    class: 'px-3 w-3/12',
+  },
+  {
+    label: 'table.dateOfCreated',
+    id: 'created_at',
+    type: 'component',
+    isMobileCollapsed: true,
+    function: dateAndNumber,
+    class: 'px-3 md:w-2/12 w-1/12',
+  },
+
+  {
+    label: 'table.active',
+    id: 'is_active',
+    type: 'component',
+    isMobileCollapsed: true,
+    function: booleanIcon,
+
+    class: 'px-3 md:w-2/12 xl:w-1/12',
+  },
+  {
+    label: 'table.permissions',
+    id: ['allowed_for_download', 'allowed_for_upload'],
+    type: 'component',
+    isMobileCollapsed: true,
+    function: booleanIcon,
+    class: 'px-3 md:w-2/12 w-1/12',
+  },
+
+  // {
+  //   label: 'table.allowedForUpload',
+  //   id: 'allowed_for_upload',
+  //   type: 'component',
+  //   function: booleanIcon,
+
+  //   class: 'px-3 w-2/12',
+  // },
+
+  {
+    id: 'action',
+    type: 'menu',
+    isMobileCollapsed: true,
+    tooltip: 'table.moreDetail',
+    menu: [
       {
         action: 'edit',
-        icon: notePencilIcon,
+        icon: NotePencil,
         color: 'neutralNoBg',
-        permission: EPermissionWhiteListFiles.CHANGE,
+        permission: EPermissionUsers.CHANGE,
+        title: 'table.editAdminInfo',
+      },
+      {
+        action: 'delete',
+        icon: Trash,
+        color: 'redNoBg',
+        permission: EPermissionUsers.DELETE,
+        title: 'table.deleteAdmin',
       },
     ],
+
     permission: [
       EPermissionWhiteListFiles.CHANGE,
       EPermissionWhiteListFiles.DELETE,
     ],
 
-    class: 'px-3 w-2/12',
-  },
-  {
-    label: 'table.fileType',
-    id: 'file_type',
-    type: 'none',
-
-    class: 'px-3 w-4/12',
-  },
-  {
-    label: 'table.allowedForDownload',
-    id: 'allowed_for_download',
-    type: 'function',
-    function: booleanIcon,
-
-    class: 'px-3 w-2/12',
-  },
-  {
-    label: 'table.allowedForUpload',
-    id: 'allowed_for_upload',
-    type: 'function',
-    function: booleanIcon,
-
-    class: 'px-3 w-2/12',
-  },
-  {
-    label: 'table.active',
-    id: 'is_active',
-    type: 'function',
-    function: booleanIcon,
-
-    class: 'px-3 w-2/12',
-  },
-  {
-    label: 'table.dateOfCreated',
-    id: 'created_at',
-    type: 'function',
-    function: dateAndNumber,
-    dir: 'rtl',
-    class: 'px-3 w-2/12',
+    class: 'px-3 w-7/12',
   },
 ];

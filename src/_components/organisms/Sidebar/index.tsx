@@ -17,7 +17,7 @@ import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
 import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
 import { useTheme } from '@context/settings/themeContext';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { MenuDropdown } from './MenuDropdown/MenuDropdown';
 import { MenuItem } from './MenuItem';

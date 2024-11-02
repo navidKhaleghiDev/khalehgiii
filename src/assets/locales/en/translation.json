@@ -57,6 +57,7 @@
     "fileType": "File Type",
     "allowedForUpload": "Allowed For Upload",
     "allowedForDownload": "Allowed For Download",
+    "permissions":"Permissions",
     "thisWeek": " This Week",
     "thisMonth": "This Month",
     "accessSetting": "Access Setting",
@@ -108,7 +109,9 @@
     "access": "Access",
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
-    "editAdminInfo": "Edit Admin Info"
+    "editAdminInfo": "Edit Admin Info",
+    "addNewFile":"New File"
+
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -248,7 +251,9 @@
     "save": "Save",
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
-    "all": "Select All"
+    "all": "Select All",
+    "deleteFile":" Delete File"
+
   },
   "groupManagement": {
     "person": "person",
