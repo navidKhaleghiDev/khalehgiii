@@ -291,6 +291,15 @@
     "onlineUsers": "Online users",
     "scannedFiles": "Scanned files"
   },
+  "adminList": {
+    "userInfo": "user Info",
+    "userType": "User type",
+    "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
+    "admin": "Admin",
+    "metaAdmin": "Administrator",
+    "choseDomain": "Domain",
+    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+  },
   "license": {
     "licenseId": "license Id",
     "licenses": "Licenses",
