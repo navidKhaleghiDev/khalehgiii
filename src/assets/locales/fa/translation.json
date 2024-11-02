@@ -72,11 +72,11 @@
     "fileExtension": "پسوند فایل",
     "addNewType": "اضافه کردن تایپ جدید",
     "httpPort": "HTTP پورت",
-    "httpsPort": "HTTPS پورت",
+    "httpsPort": "پورت HTTPS",
     "accessCapacity": "شامل ظرفیت مجاز",
     "containerId": " کانتینر id",
     "lastUptime": "آخرین ورود",
-    "lastLoginIp": " آخرین ورود Ip",
+    "lastLoginIp": "Ip  آخرین ورود",
     "download": "دانلود",
     "file": "فایل",
     "sessionRecording": "ضبط دسکتاپ",
@@ -117,7 +117,9 @@
     "custom": "سفارشی",
     "block": "مسدود",
     "assistance": "دستیار",
-    "deleteUser": "حذف کاربر"
+    "deleteUser": "حذف کاربر",
+    "allowed": "مجاز",
+    "disallow": "غیر مجاز"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

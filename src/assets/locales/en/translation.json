@@ -116,7 +116,9 @@
     "custom": "Custom",
     "block": "Block",
     "assistance": "Assistance",
-    "deleteUser": "Delete User"
+    "deleteUser": "Delete User",
+    "allowed": "Allowed",
+    "disallow": "Disallow"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
