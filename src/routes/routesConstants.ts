@@ -71,7 +71,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
   chart: `/${RoutesName.CHART}`,
-  dashboardGroupManagement: `/${RoutesName.DASHBOARD}/${RoutesName.GROUP_MANAGEMENT}`,
+  dashboardGroupManagement: `/${RoutesName.GROUP_MANAGEMENT}`,
   setting: `/${RoutesName.SETTING}`,
   application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
   daas: `/${RoutesName.SETTING}/${RoutesName.DAAS}`,
