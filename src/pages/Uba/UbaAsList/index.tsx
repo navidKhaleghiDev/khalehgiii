@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
-import { HTTP_ANALYSES } from '@src/services/http';
+import { debounce } from 'lodash';
+import { useTranslation } from 'react-i18next';
+
 import { IResponsePagination } from '@src/types/services';
 import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
 import { IUba } from '@src/services/analyze/types';
-import { debounce } from 'lodash';
-
+import { HTTP_ANALYSES } from '@src/services/http';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import { useTranslation } from 'react-i18next';
 import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 
 import { ubaHeaderItem } from './constants/ubaHeaderItem';
