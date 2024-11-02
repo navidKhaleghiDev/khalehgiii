@@ -317,9 +317,9 @@
     "logServerIP": "Log Server IP",
     "logServerPort": "Log Server Port",
     "daasProvider": "Daas provider baseURL",
-    "clientIDP":"clinet id",
-    "secretP":"secret",
-    "realmP":"realm"
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
