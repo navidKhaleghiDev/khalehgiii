@@ -106,12 +106,12 @@
     "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
     "yesterday": "دیروز",
+    "adminUserName": "نام ادمین",
+    "lastLogout": "آخرین خروج",
     "access": "دسترسی",
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
-    "editAdminInfo": "ویرایش مشخصات",
-    "lastLogout": "آخرین خروج",
-    "adminUserName": "نام ادمین"
+    "editAdminInfo": "ویرایش مشخصات"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

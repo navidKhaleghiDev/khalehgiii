@@ -105,12 +105,12 @@
     "activeOtp": " OTP ",
     "isRecording": "Is Recording",
     "yesterday": "Yesterday",
+    "adminUserName": "Name",
+    "lastLogout": "Last Logout",
     "access": "Access",
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
-    "editAdminInfo": "Edit Admin Info",
-    "lastLogout": "Last Logout",
-    "adminUserName": "Name"
+    "editAdminInfo": "Edit Admin Info"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
