@@ -40,16 +40,16 @@ export default function BaseTableAvatarCell<T extends IdItem>(
   return (
     <div className="flex ">
       <Avatar icon={userIcon} isActive={isActive} size="table" />
-      <div className=" flex flex-col mt-1 justify-center mx-2  relative w-full max-w-[100px] overflow-hidden ">
+      <div className="flex flex-col mt-1 justify-center mx-2 w-full max-w-28 overflow-hidden ">
         <Typography
           variant="body6"
-          className={`${commonStyle} text-gray-900 dark:text-white`}
+          className={`${commonStyle} text-gray-900 dark:text-white md:block hidden`}
         >
           {cellLabel ?? '--'}
         </Typography>
         <Typography
           variant="body6"
-          className={`${commonStyle} text-gray-400 dark:text-gray-300`}
+          className={`${commonStyle} md:text-gray-400 md:dark:text-white dark:text-gray-300 text-gray-600`}
         >
           {email ?? '--'}
         </Typography>

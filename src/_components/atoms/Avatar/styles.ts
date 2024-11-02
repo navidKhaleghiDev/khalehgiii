@@ -9,7 +9,7 @@ export const avatarStyles = cva(
         md: 'size-10',
         lg: 'size-16',
         responsive: 'size-7 md:size-10 lg:size-16',
-        table: 'size-7 sm:size-10',
+        table: 'size-7 md:size-10',
       },
     },
     defaultVariants: {
@@ -25,7 +25,7 @@ export const iconAvatarStyles = cva('absolute text-gray-400', {
       md: 'size-6',
       lg: 'size-[2.375rem]',
       responsive: 'size-4 md:size-6 lg:size-[2.375rem]',
-      table: 'size-4  sm:size-6',
+      table: 'size-4 md:size-6',
     },
   },
 });

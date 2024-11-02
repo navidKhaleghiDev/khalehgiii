@@ -17,7 +17,13 @@ export type RoutePathType =
   | 'knowledgeManagement'
   | 'internetLog'
   | 'loginAssistance'
-  | 'assistanceDashboard';
+  | 'assistanceDashboard'
+  | 'chart'
+  | 'dashboardGroupManagement'
+  | 'setting'
+  | 'application'
+  | 'daas'
+  | 'dlp';
 
 export const RoutesName = {
   HOME: 'home',
@@ -36,6 +42,12 @@ export const RoutesName = {
   KNOWLEDGE_MANAGEMENT: 'knowledge-management',
   LOGIN_ASSISTANCE: 'login-assistanse',
   ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
+  CHART: 'chart',
+  GROUP_MANAGEMENT: 'group-management',
+  SETTING: 'setting',
+  APPLICATION: 'application',
+  DAAS: 'daas',
+  DLP: 'dlp',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -58,4 +70,10 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   adminKeycloakPage: `${RoutesName.ADMIN_KEYKLOAK}`,
   loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
+  chart: `/${RoutesName.CHART}`,
+  dashboardGroupManagement: `/${RoutesName.GROUP_MANAGEMENT}`,
+  setting: `/${RoutesName.SETTING}`,
+  application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
+  daas: `/${RoutesName.SETTING}/${RoutesName.DAAS}`,
+  dlp: `/${RoutesName.SETTING}/${RoutesName.DLP}`,
 };

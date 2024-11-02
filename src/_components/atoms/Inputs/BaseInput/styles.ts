@@ -26,27 +26,30 @@ export const baseInputStyles = cva(
     },
   }
 );
-export const baseInputTextStyles = cva(`px-1 text-gray-400 dark:text-white`, {
-  variants: {
-    fullWidth: {
-      true: 'w-full',
+export const baseInputTextStyles = cva(
+  `px-1 mt-[0.13rem] text-gray-400 dark:text-white`,
+  {
+    variants: {
+      fullWidth: {
+        true: 'w-full',
+      },
+      disabled: {
+        true: 'dark:peer-has-[:disabled]:text-gray-500 peer-has-[:disabled]:text-gray-300',
+        false:
+          'peer-has-[:hover]:text-gray-500 dark:peer-has-[:hover]:text-white',
+      },
+      size: {
+        sm: `w-40`,
+        md: `w-[15.94rem]`,
+        lg: `w-[21.88rem]`,
+      },
     },
-    disabled: {
-      true: 'dark:peer-has-[:disabled]:text-gray-500 peer-has-[:disabled]:text-gray-300',
-      false:
-        'peer-has-[:hover]:text-gray-500 dark:peer-has-[:hover]:text-white',
+    defaultVariants: {
+      size: 'md',
+      disabled: false,
     },
-    size: {
-      sm: `w-40`,
-      md: `w-[15.94rem]`,
-      lg: `w-[21.88rem]`,
-    },
-  },
-  defaultVariants: {
-    size: 'md',
-    disabled: false,
-  },
-});
+  }
+);
 export const baseInputWarperStyles = cva(``, {
   variants: {
     fullWidth: {
