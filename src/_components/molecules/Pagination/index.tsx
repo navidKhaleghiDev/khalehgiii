@@ -20,7 +20,8 @@ type PaginationProps = {
 const mClass =
   'flex size-7 text-gray-500 dark:text-gray-400 dark:bg-gray-600 justify-center rounded-lg items-center dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100';
 
-const disableClass = 'bg-gray-300 cursor-not-allowed hover:bg-gray-300';
+const disableClass =
+  'opacity-50 cursor-not-allowed hover:bg-white hover:text-gray-500 dark:hover:bg-transparent dark:hover:text-gray-400';
 const activeClass =
   'bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
 const arrowButtonClass =

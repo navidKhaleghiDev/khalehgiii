@@ -5,6 +5,8 @@ import { Typography } from '@redesignUi/atoms/Typography/Typography';
 import { BaseTableHeaderProps } from '../../types';
 import { baseTableHeaderStyles } from '../../styles';
 
+let menu = false;
+
 /**
  * Renders the table header for the `BaseTable` component, supporting dynamic language-based className changes
  * and the ability to collapse certain columns.
@@ -22,6 +24,8 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
   const { lang } = useLanguage();
   const isFarsi = lang === 'fa';
 
+  const directionStyle = isFarsi ? 'mr-auto' : 'ml-auto';
+
   return (
     <thead className={baseTableHeaderStyles()}>
       {header.map((head) => {
@@ -29,9 +33,10 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
           !isFarsi && head?.class?.includes('mr-auto')
             ? head.class.replace('mr-auto', 'ml-auto')
             : head?.class;
+        menu = head.type === 'menu';
         return (
           <tr className={className} key={head.id as string}>
-            <th className={`flex justify-start `}>
+            <th className="flex justify-start">
               <Typography type="p" className="font-normal">
                 {t(head.label as string)}
               </Typography>
@@ -40,7 +45,7 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
         );
       })}
       {collapse && (
-        <tr className={` ${isFarsi ? 'mr-auto' : 'ml-auto'}  w-1/12 h-10  `} />
+        <tr className={`w-1/12 h-10 ${!menu ? directionStyle : ''}`} />
       )}
     </thead>
   );

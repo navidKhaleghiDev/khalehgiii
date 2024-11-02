@@ -28,7 +28,7 @@
     "desktop": "Desktop",
     "desktopV": "Desktop Version",
     "status": "Status",
-    "defaultSetting": "Default Settings",
+    "defaultSetting": "Default",
     "search": "Search",
     "addNewAdmin": "Add New Admin",
     "nameOfTheUser": "User Name",
@@ -70,12 +70,12 @@
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreation": "license Creation",
     "validLicense": "valid License",
-    "httpPort": "http port",
-    "httpsPort": "https port",
+    "httpPort": "HTTP port",
+    "httpsPort": "HTTPS port",
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
     "lastUptime": "last uptime",
-    "lastLoginIp": "last Login Ip",
+    "lastLoginIp": "Last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
     "sessionRecording": "Session Recording",
@@ -105,7 +105,18 @@
     "activeOtp": " OTP ",
     "isRecording": "Is Recording",
     "yesterday": "Yesterday",
-    "access": "Access"
+    "access": "Access",
+    "userType": "User type",
+    "deleteAdmin": "Delete Admin",
+    "editAdminInfo": "Edit Admin Info",
+    "lastLogout": "Last Logout",
+    "setting": "Setting",
+    "timing": "Timing",
+    "connection": "Connection",
+    "custom": "Custom",
+    "block": "Block",
+    "assistance": "Assistance",
+    "deleteUser": "Delete User"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -122,8 +133,9 @@
     "desktopThePreparation": " Desktop Preparation",
     "extensionList": "Extension Lists",
     "infectedFile": "infected File",
-    "days": "Days",
-    "saveChanges": "Save Changes"
+    "uba": "UBA",
+    "extentions": "Extentions List",
+    "days": "Days"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -278,6 +290,15 @@
     "todayScans": "Today's scans",
     "onlineUsers": "Online users",
     "scannedFiles": "Scanned files"
+  },
+  "adminList": {
+    "userInfo": "user Info",
+    "userType": "User type",
+    "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
+    "admin": "Admin",
+    "metaAdmin": "Administrator",
+    "choseDomain": "Domain",
+    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
   },
   "license": {
     "licenseId": "license Id",

@@ -53,6 +53,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
     dir = 'rtl',
   } = props;
   const rtl = dir === 'rtl';
+  const inputTabIndex = 1;
   return (
     <div
       className={baseInputWarperStyles({
@@ -64,7 +65,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
       {label && (
         <label
           htmlFor={id}
-          className={`mb-[0.13rem] ${rtl ? 'text-right' : 'text-left'}`}
+          className={`mb-1 ${rtl ? 'text-right' : 'text-left'}`}
         >
           <Typography
             variant="body6"
@@ -111,6 +112,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
           autoComplete={autoComplete}
           onChange={onChange}
           placeholder={placeholder}
+          tabIndex={inputTabIndex}
           className={baseInputStyles({
             error: !!error,
             className: `${startIcon && `pr-8`} ${endIcon && 'pl-8'}`,
