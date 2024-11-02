@@ -109,7 +109,8 @@
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
-    "block": "Block"
+    "block": "Block",
+    "lastLogout": "Last Logout"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -128,7 +129,14 @@
     "infectedFile": "infected File",
     "uba": "UBA",
     "extentions": "Extentions List",
-    "days": "Days"
+    "days": "Days",
+    "progressChart": "Progress chart",
+    "activeLicenses": "Active licenses",
+    "onlineUsers": "Online users",
+    "netsep": "NetSep",
+    "scans": "Scans",
+    "userBehavior": "User Behavior",
+    "adminLogin": "Admin Login"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

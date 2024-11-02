@@ -110,7 +110,8 @@
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
     "editAdminInfo": "ویرایش مشخصات",
-    "block": "مسدود"
+    "block": "مسدود",
+    "lastLogout": "آخرین خروج"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -129,7 +130,14 @@
     "infectedFile": "فایل آلوده",
     "uba": "رفتار شناسی کاربر",
     "extentions": "فرمت ها",
-    "days": "روز"
+    "days": "روز",
+    "progressChart": "نمودار پیشرفت",
+    "activeLicenses": "لایسنس‌های فعال",
+    "onlineUsers": "کاربران آنلاین",
+    "netsep": "نت سپ",
+    "scans": "اسکن ها",
+    "userBehavior": "رفتار شناسی کاربر",
+    "adminLogin": "ورود و خروج ادمین‌ها"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
