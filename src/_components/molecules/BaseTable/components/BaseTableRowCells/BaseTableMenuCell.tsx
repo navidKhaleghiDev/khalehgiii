@@ -93,7 +93,7 @@ export function BaseTableMenuCell<T extends IdItem>(
                     })}
                     type="neutral"
                     startIcon={menu.icon}
-                    label={menu.title}
+                    label={t(menu.title)}
                     onClick={
                       onClick ? () => onClick(menu.action, row) : undefined
                     }
