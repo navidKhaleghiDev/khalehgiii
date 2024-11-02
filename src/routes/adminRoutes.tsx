@@ -25,6 +25,8 @@ import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
+import { GroupManagementEdit } from '@src/pages/GroupManagement/GroupManagementEdit';
+import { GroupManagement } from '@src/pages/GroupManagement';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -141,7 +143,15 @@ export const adminRoutes = [
         path: ROUTES_PATH.dashboardGroupManagement,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>GroupManagement Page</div>
+            <GroupManagement />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dashboardGroupManagementEdit,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <GroupManagementEdit />
           </ProtectedRoute>
         ),
       },

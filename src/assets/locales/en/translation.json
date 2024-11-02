@@ -261,8 +261,11 @@
     "newAdmin": "New Admins",
     "users": "Users",
     "admins": "Admins",
+    "admin": "Admin",
     "next": "Next",
-    "newUser": "new user"
+    "newUser": "new user",
+    "newGroup": "New Group",
+    "onlineUsers": "Online Users"
   },
   "onlineAssistance": {
     "loginType": "Login type",

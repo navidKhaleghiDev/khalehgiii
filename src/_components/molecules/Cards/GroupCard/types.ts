@@ -1,3 +1,5 @@
+import { TGroup } from '@src/services/users/types';
+
 export interface Detail {
   id: string | number;
   title: string;
@@ -7,11 +9,10 @@ export interface Detail {
 export type DetailWithoutID = Omit<Detail, 'id'>;
 
 export interface GroupCardProps {
-  title: string;
-  onClick: () => void;
+  onClick: (item: TGroup) => void;
   disabled?: boolean;
   className?: string;
   avatarClassName?: string;
   iconClassName?: string;
-  details: Detail[];
+  groupData: TGroup[];
 }

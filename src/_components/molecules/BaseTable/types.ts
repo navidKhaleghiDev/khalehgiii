@@ -8,7 +8,7 @@ export type BaseTableProps<BodyType> = {
   loading: boolean;
   isMobile?: boolean;
   onClick?: OnClickActionsType<BodyType>;
-  pagination: Pagination;
+  pagination?: Pagination;
 };
 
 interface HeaderTableBase {

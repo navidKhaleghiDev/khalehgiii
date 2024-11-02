@@ -23,7 +23,8 @@ export type RoutePathType =
   | 'setting'
   | 'application'
   | 'daas'
-  | 'dlp';
+  | 'dlp'
+  | 'dashboardGroupManagementEdit';
 
 export const RoutesName = {
   HOME: 'home',
@@ -72,6 +73,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
   chart: `/${RoutesName.CHART}`,
   dashboardGroupManagement: `/${RoutesName.DASHBOARD}/${RoutesName.GROUP_MANAGEMENT}`,
+  dashboardGroupManagementEdit: `/${RoutesName.DASHBOARD}/${RoutesName.GROUP_MANAGEMENT}/:id`,
   setting: `/${RoutesName.SETTING}`,
   application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
   daas: `/${RoutesName.SETTING}/${RoutesName.DAAS}`,

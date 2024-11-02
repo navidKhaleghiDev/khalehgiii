@@ -48,7 +48,8 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
     paginationLabel,
     allItems,
     itemsPer,
-  } = pagination;
+  } = pagination || {};
+
   const [headerCollapse, setHeaderCollapse] = useState<CategorizedData>({
     mobile: [],
     desktop: [],
@@ -112,7 +113,7 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
         )}
       </table>
       <div className="mt-5">
-        {!!countPage && (
+        {!!countPage && currentPage && totalPages && onPageChange && (
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

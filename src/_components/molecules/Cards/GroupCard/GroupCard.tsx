@@ -1,6 +1,8 @@
+import UsersThree from '@iconify-icons/ph/users-three';
+import { useTranslation } from 'react-i18next';
+
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { CardButton } from '@redesignUi/atoms/Card/CardButton';
-import UsersThree from '@iconify-icons/ph/users-three';
 
 import TitleNumber from './TitleNumber/TitleNumber';
 import { GroupCardProps } from './types';
@@ -30,46 +32,60 @@ import { GroupCardProps } from './types';
 
 export function GroupCard(props: GroupCardProps): JSX.Element {
   const {
-    title,
     onClick,
     disabled,
     className,
     avatarClassName,
     iconClassName,
-    details,
+    groupData,
   } = props;
+  const { t } = useTranslation();
   return (
-    <CardButton
-      border
-      borderColor="neutral"
-      color="white"
-      onClick={onClick}
-      disabled={disabled}
-      rounded="xxl"
-      shadow="base"
-      className={`w-min p-5 pt-12 ${className}`}
-    >
-      <div className="flex flex-col items-center">
-        <Avatar
-          icon={UsersThree}
-          className={`mb-2.5 ${avatarClassName}`}
-          iconClassName={iconClassName}
-          size="lg"
-        />
-        <Typography variant="body4B" color="black" className="font-semibold">
-          {title}
-        </Typography>
-        <div className="flex flex-row gap-2.5 mt-5">
-          {details &&
-            details.map((detail) => (
-              <TitleNumber
-                title={detail.title}
-                number={detail.number}
-                key={detail.id}
+    <div className="flex justify-between ">
+      {groupData.length >= 1 &&
+        groupData.map((group) => (
+          <CardButton
+            key={group.id}
+            border
+            borderColor="neutral"
+            color="white"
+            onClick={() => onClick(group)}
+            disabled={disabled}
+            rounded="xxl"
+            shadow="base"
+            className={`w-min p-5 pt-12 ${className}`}
+          >
+            <div className="flex flex-col items-center">
+              <Avatar
+                icon={UsersThree}
+                className={`mb-2.5 ${avatarClassName}`}
+                iconClassName={iconClassName}
+                size="lg"
               />
-            ))}
-        </div>
-      </div>
-    </CardButton>
+              <Typography
+                variant="body4B"
+                color="black"
+                className="font-semibold"
+              >
+                {group.name}
+              </Typography>
+              <div className="flex flex-row gap-2.5 mt-5">
+                <TitleNumber
+                  title={t('groupManagement.admin')}
+                  number={group.admins.length}
+                />
+                <TitleNumber
+                  title={t('groupManagement.users')}
+                  number={group.users.length}
+                />
+                <TitleNumber
+                  title={t('groupManagement.onlineUsers')}
+                  number={group.users.length}
+                />
+              </div>
+            </div>
+          </CardButton>
+        ))}
+    </div>
   );
 }

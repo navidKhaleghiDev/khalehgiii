@@ -262,8 +262,11 @@
     "newAdmin": "ادمین جدید",
     "users": "کاربران",
     "admins": "ادمین ها",
+    "admin": "ادمین",
     "next": "مرحله بعد",
-    "newUser": "کاربر جدید"
+    "newUser": "کاربر جدید",
+    "newGroup": "گروه جدید",
+    "onlineUsers": "کاربران آنلاین"
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",
