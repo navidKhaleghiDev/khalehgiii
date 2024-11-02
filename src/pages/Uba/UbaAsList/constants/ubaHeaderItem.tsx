@@ -1,8 +1,8 @@
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import DownloadSimple from '@iconify-icons/ph/download-simple';
 import UploadSimple from '@iconify-icons/ph/upload-simple';
-import { TextBG } from '@redesignUi/molecules/BaseTable/components/TableCellComponent/TextBG';
-import { TextIcon } from '@redesignUi/molecules/BaseTable/components/TableCellComponent/TextIcon';
+import { TextBG } from '@redesignUi/molecules/BaseTable/components/CustomCell/TextBG';
+import { TextIcon } from '@redesignUi/molecules/BaseTable/components/CustomCell/TextIcon';
 
 export const ubaHeaderItem: HeaderTable[] = [
   {
