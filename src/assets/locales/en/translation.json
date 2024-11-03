@@ -75,7 +75,7 @@
     "httpsPort": "HTTPS port",
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
-    "lastUptime": "last uptime",
+    "lastUptime": "Last uptime",
     "lastLoginIp": "Last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
@@ -119,7 +119,9 @@
     "custom": "Custom",
     "block": "Block",
     "assistance": "Assistance",
-    "deleteUser": "Delete User"
+    "deleteUser": "Delete User",
+    "allowed": "Allowed",
+    "disallow": "Disallow"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -311,6 +313,12 @@
     "metaAdmin": "Administrator",
     "choseDomain": "Domain",
     "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+  },
+  "userList": {
+    "onlineUsers": "Online Users",
+    "blockedUsers": "Blocked Users",
+    "searchUsers": "Search Users",
+    "usersList": "User List"
   },
   "license": {
     "licenseId": "license Id",
