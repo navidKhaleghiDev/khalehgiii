@@ -6,15 +6,15 @@ import phCaretRight from '@iconify-icons/ph/caret-right';
 import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
 import { ButtonOption } from '@redesignUi/atoms/ToggleButton/types';
 
-import { IFormDateData, TReducerStateType } from '../../types';
+import { FormDateData, ReducerStateType } from '../../types';
 import { ReportForm } from '../../ReportForm';
 
 type ReportFilterProps = {
   flag: string;
   isFarsi: boolean;
-  handleOnSubmit: (data: IFormDateData) => Promise<void>;
+  handleOnSubmit: (data: FormDateData) => Promise<void>;
   handleToggleButton: (selected: ButtonOption) => void;
-  state: TReducerStateType;
+  state: ReducerStateType;
 };
 
 export function ReportFilter({

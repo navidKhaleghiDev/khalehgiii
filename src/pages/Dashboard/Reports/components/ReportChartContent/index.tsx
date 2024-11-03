@@ -1,4 +1,4 @@
-import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
+import { LoadingWrapper } from '@redesignUi/molecules/Loading/LoadingWrapper';
 import { BaseIcon, Card, Typography } from '@redesignUi/atoms';
 import calendarBlankDuotone from '@iconify-icons/ph/calendar-blank-duotone';
 import calendarXDuotone from '@iconify-icons/ph/calendar-x-duotone';
@@ -25,11 +25,11 @@ export function ReportChartContent({
       shadow="xl"
       color="white"
       rounded="xl"
-      className="w-full flex justify-center items-center py-10 relative custom-height"
+      className="w-full flex justify-center items-center py-10 relative sm:h-[35rem] min-h-auto sm:max-h-[65vh] h-auto"
     >
       <LoadingWrapper isLoading={isLoading}>
         {recordsData && !error ? (
-          <div className="w-full h-full flex justify-center items-center m-auto">
+          <div className="w-full flex justify-center sm:items-center items-start m-auto xl:h-[450px] h-auto min-h-auto max-h-[65vh]">
             <ReportsChart props={chartData} />
           </div>
         ) : (

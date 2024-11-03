@@ -2,15 +2,15 @@ import { useReducer, useState } from 'react';
 import 'chart.js/auto';
 import { useTranslation } from 'react-i18next';
 
-import { convertI2ToAD } from '@ui/atoms/Inputs/MultiDatePicker';
+import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
 import { API_GET_REPORTS } from '@src/services/config';
 
 import {
-  IFormDateData,
-  TDataType,
-  TFormDate,
-  TRecords,
-  TReducerStateType,
+  FormDateData,
+  DataType,
+  FormDateTimeFrame,
+  Records,
+  ReducerStateType,
   TypeReducerActionType,
 } from './types';
 import { ReportHeader } from './components/ReportHeader';
@@ -42,7 +42,7 @@ const initialState = {
   error: false,
 };
 
-const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
+const reducer = (state: ReducerStateType, action: TypeReducerActionType) => {
   switch (action.type) {
     case DIS_KEY_WEEK:
       return { ...state, weekly: true, monthly: false, daily: false };
@@ -65,12 +65,12 @@ const reducer = (state: TReducerStateType, action: TypeReducerActionType) => {
 
 export function Reports() {
   const { t } = useTranslation();
-  const [recordsData, setRecordsData] = useState<TRecords | []>();
+  const [recordsData, setRecordsData] = useState<Records | []>();
 
-  const [flag, setFlag] = useState<TDataType>('daily');
+  const [flag, setFlag] = useState<DataType>('daily');
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handleOnSubmit = async (data: IFormDateData) => {
+  const handleOnSubmit = async (data: FormDateData) => {
     const updatedData = {
       start_date: convertI2ToAD(data.start_date[0]),
       end_date: convertI2ToAD(data.start_date[1]),
@@ -78,7 +78,7 @@ export function Reports() {
     if (updatedData.end_date) {
       dispatch({ type: DIS_KEY_ISLOADING });
       dispatch({ type: DIS_KEY_REMOVEERROR });
-      await API_GET_REPORTS(updatedData as TFormDate)
+      await API_GET_REPORTS(updatedData as FormDateTimeFrame)
         .then((res) => {
           const result = res.data;
           setRecordsData(result.records);

@@ -1,17 +1,20 @@
 import { useForm } from 'react-hook-form';
 
 import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
+import { useLanguage } from '@context/settings/languageContext';
 
-import { IFormDate, IReportFormType } from '../types';
+import { FormDate, ReportFormType } from '../types';
 
-export function ReportForm({ handleOnSubmit, state }: IReportFormType) {
-  const { control, handleSubmit } = useForm<IFormDate>({
+export function ReportForm({ handleOnSubmit, state }: ReportFormType) {
+  const { control, handleSubmit } = useForm<FormDate>({
     mode: 'onChange',
     defaultValues: {
       start_date: '',
       end_date: '',
     },
   });
+
+  const { isFarsi } = useLanguage();
 
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -23,6 +26,7 @@ export function ReportForm({ handleOnSubmit, state }: IReportFormType) {
         format="YYYY-MM-DD"
         maxDate={new Date()}
         fullWidth
+        calendarPosition={isFarsi ? 'bottom-right' : 'bottom-left'}
       />
     </form>
   );

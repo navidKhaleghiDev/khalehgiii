@@ -18,6 +18,7 @@ export interface MultiDatePickerProps {
   value?: Value[];
   fullWidth?: boolean;
   disabled?: boolean;
+  calendarPosition?: string;
   timeDuration?: TimeDuration;
   onChange: (
     date: DateObject[] | undefined,

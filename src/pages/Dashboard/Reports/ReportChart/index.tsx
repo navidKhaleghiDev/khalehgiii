@@ -1,12 +1,15 @@
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment-jalaali';
 import { useTranslation } from 'react-i18next';
+
+import { useTheme } from '@context/settings/themeContext';
+
 import {
-  IReportChartType,
-  TData,
-  TDataGeneratorReturn,
-  TDataType,
-  TFormatData,
+  ReportChartType,
+  Data,
+  DataGeneratorReturn,
+  DataType,
+  FormatData,
 } from '../types';
 
 let duplicates: number;
@@ -27,7 +30,7 @@ const filterChartData = (label: string[], data: number[]) => {
   return { dataList: removeDataList, labelList: removeList };
 };
 
-export function ReportsChart({ props }: IReportChartType) {
+export function ReportsChart({ props }: ReportChartType) {
   const { t } = useTranslation();
   const {
     HOURLY_FORMAT,
@@ -38,18 +41,20 @@ export function ReportsChart({ props }: IReportChartType) {
     recordsData,
     isFarsi,
   } = props;
-  const formatData: TFormatData = {
+  const formatData: FormatData = {
     hourly: HOURLY_FORMAT,
     monthly: MONTHLY_FORMAT,
     daily: DAILY_FORMAT,
     weekly: NORMAL_FORMAT,
   };
 
+  const { isDark } = useTheme();
+
   if (isFarsi) {
     moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
   }
 
-  function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
+  function dataGenerator(type: DataType, data: Data): DataGeneratorReturn {
     const isDaily = formatData[type] === DAILY_FORMAT;
     const isMonthly = formatData[type] === MONTHLY_FORMAT;
     const dataList: number[] | any = [];
@@ -138,6 +143,18 @@ export function ReportsChart({ props }: IReportChartType) {
       title: {
         display: false,
         text: 'Chart.js Bar Chart',
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: isDark ? 'rgb(255, 255, 255)' : 'rgb(104, 104, 104)',
+        },
+      },
+      y: {
+        ticks: {
+          color: isDark ? 'rgb(255, 255, 255)' : 'rgb(104, 104, 104)',
+        },
       },
     },
   };
