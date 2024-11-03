@@ -5,7 +5,7 @@ import { DashboardCards } from './DashboardCards';
 import { DashboardAdminLogs } from './DashboardAdminLogs';
 import { DashboardOnlineUsersList } from './DashboardOnlineUsersList';
 import { DashboardAdminInfo } from './components/DashboardAdminInfo';
-import DashboardCharts from './DashboardCharts';
+import { DashboardCharts } from './DashboardCharts';
 
 export function DashboardPage() {
   const userPermissions = useUserPermission();

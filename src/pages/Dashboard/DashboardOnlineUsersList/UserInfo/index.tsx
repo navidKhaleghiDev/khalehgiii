@@ -6,7 +6,7 @@ interface UserInfoProps {
   email: string;
 }
 
-export default function UserInfo({ fullName, email }: UserInfoProps) {
+export function UserInfo({ fullName, email }: UserInfoProps) {
   return (
     <div className="flex gap-3 pb-5">
       <Avatar icon={User} size="md" />

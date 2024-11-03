@@ -14,7 +14,7 @@ import { LoadingPage } from '@redesignUi/molecules/Loading';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 
-import UserInfo from './UserInfo';
+import { UserInfo } from './UserInfo';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;

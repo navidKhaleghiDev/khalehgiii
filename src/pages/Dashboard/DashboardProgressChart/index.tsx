@@ -10,7 +10,7 @@ import ChartLine from '@iconify-icons/ph/chart-line';
 import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
 import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
 
-export default function DashboardProgressChart() {
+export function DashboardProgressChart() {
   const [chartType, setChartType] = useState('line');
   const { t } = useTranslation();
 

@@ -31,7 +31,7 @@ const licenseCardsColor: Record<LicenseCardKeys, LicenseCardProps['color']> = {
   chatroom: 'blueLight',
 };
 
-export default function DashboardActiveLicense() {
+export function DashboardActiveLicense() {
   const { t } = useTranslation();
   const { data, error } = useSWR(E_USERS_LICENSES, http.fetcherSWR);
 

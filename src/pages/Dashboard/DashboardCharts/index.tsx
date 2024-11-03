@@ -6,18 +6,20 @@ import {
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 
-import DashboardProgressChart from '../DashboardProgressChart';
-import DashboardActiveLicense from '../components/DashboardActiveLicense';
+import { DashboardProgressChart } from '../DashboardProgressChart';
+import { DashboardActiveLicense } from '../components/DashboardActiveLicense';
 
-export default function DashboardCharts({
+export function DashboardCharts({
   permissions,
 }: {
   permissions: PermissionsCodeName[];
 }) {
   return (
     <Card rounded="xxl" shadow="base" className="p-5">
-      {checkPermission(permissions, EPermissionFileScan.VIEW) &&
-      checkPermission(permissions, EPermissionUba.VIEW) ? (
+      {checkPermission(permissions, [
+        EPermissionFileScan.VIEW,
+        EPermissionUba.VIEW,
+      ]) ? (
         <DashboardProgressChart />
       ) : null}
       <div>
