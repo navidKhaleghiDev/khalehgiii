@@ -131,8 +131,10 @@ export type BaseTableAvatarCellProps<BodyType extends IdItem> =
 
 export type BaseTableDataCellProps<BodyType extends IdItem> = Omit<
   BaseTableNoneCellProps<BodyType>,
-  'onClick'
->;
+  'onClick' | 'header'
+> & {
+  header?: HeaderTable;
+};
 
 export type CategorizedData = {
   mobile: HeaderTable[];

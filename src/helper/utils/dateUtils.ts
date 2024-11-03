@@ -64,7 +64,7 @@ export function persianDateNumber(date?: string) {
   return today.toLocaleDateString('fa-IR');
 }
 
-export function dateAndNumber(date?: Date) {
+export function dateAndNumber(date?: Date | string) {
   // ۲۴ خرداد ۱۴۰۲
   const condition = isFarsi ? 'fa-IR' : 'en-US';
   if (date) {

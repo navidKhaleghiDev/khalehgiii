@@ -27,7 +27,7 @@ export function BaseTableDateCell<T extends IdItem>(
   console.log(row[id as string]);
 
   const formatDate = (value: Date | string) => {
-    if (header.type === 'date') {
+    if (header?.type === 'date') {
       if (header?.render === 'day') return convertToDay(value as string);
       if (header?.render === 'hour')
         return convertToHourFormat(value as string);
