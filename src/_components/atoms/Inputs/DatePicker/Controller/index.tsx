@@ -14,6 +14,7 @@ import { MultiDatePicker } from '../index';
  * @param {TimeDuration} [props.timeDuration] - The duration or interval for selecting time, if applicable.
  * @param {sm | md} [props.size] - The size of the date picker (e.g., small, medium, large).
  * @param {boolean} [props.disabled=false] - Whether the date picker is disabled or not.
+ * @param {string} [props.calenderPosition=bottom-right] - Specifiers the calender position
  * @param {string} [props.format='YYYY/MM/DD'] - The format in which the date should be displayed.
  * @param {Control<T>} props.control - The control object from `react-hook-form`, used to manage the form's state.
  *
@@ -31,6 +32,7 @@ export function MultiDatePickerController<T extends FieldValues>(
     defaultValue,
     className,
     maxDate,
+    calendarPosition,
     minDate,
     timeDuration,
     size,
@@ -56,6 +58,7 @@ export function MultiDatePickerController<T extends FieldValues>(
           maxDate={maxDate}
           minDate={minDate}
           size={size}
+          calendarPosition={calendarPosition}
           value={field.value}
         />
       )}

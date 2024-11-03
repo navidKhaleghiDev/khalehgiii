@@ -305,6 +305,7 @@
   },
   "adminList": {
     "userInfo": "مشخصات کاربر",
+    "adminInfo": "مشخصات ادمین",
     "userType": "نوع کاربری",
     "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
     "admin": "ادمین",
@@ -315,7 +316,8 @@
   "userList": {
     "onlineUsers": "کاربران آنلاین",
     "blockedUsers": "کاربران مسدود شده",
-    "searchUsers": "جستجوی کاربر"
+    "searchUsers": "جستجوی کاربر",
+    "usersList": "لیست کاربران"
   },
 
   "license": {
