@@ -9,6 +9,21 @@
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
+.rmdp-ym .rmdp-day.rmdp-today.rmdp-selected span {
+  background-color: #14b8a6;
+}
+
+.rmdp-ym .rmdp-day.rmdp-selected span {
+  background-color: #14b8a6 !important;
+}
+.rmdp-ym .rmdp-day span:hover {
+  background-color: #2dd4bf !important;
+}
+.rmdp-ym .rmdp-day.rmdp-today span {
+  background-color: #14b8a6;
+  opacity: 0.4;
+}
+
 .custom-calendar .rmdp-week {
   margin-bottom: 0.875rem;
 }
@@ -211,6 +226,16 @@
 
 .custom-calendar-dark .rmdp-day.rmdp-disabled {
   color: #6b7280;
+}
+
+.custom-calendar-dark .rmdp-month-picker,
+.custom-calendar-dark .rmdp-year-picker {
+  background-color: #374151;
+}
+
+.custom-calendar-dark .rmdp-ym .rmdp-day span {
+  background-color: #374151;
+  color: white;
 }
 .custom-calendar .rmdp-range.start .sd {
   background-color: #14b8a6 !important;
