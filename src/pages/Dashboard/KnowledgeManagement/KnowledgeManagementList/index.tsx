@@ -1,12 +1,10 @@
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
-import { debounce } from 'lodash';
 import { OnlineAssistanceModel } from '@src/services/users/types';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
@@ -20,6 +18,7 @@ import { NoResult } from '@ui/molecules/NoResult';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useTranslation } from 'react-i18next';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -33,33 +32,11 @@ export function KnowledgeManagementList() {
     file?: any;
   } | null>(null);
 
+  const { width } = useWindowDimensions();
   const { t } = useTranslation();
-
   const userPermissions = useUserPermission();
 
-  const handleOnClickRow: OnClickActionsType<OnlineAssistanceModel> = async (
-    action,
-    row
-  ) => {
-    if (action === 'button') {
-      setOpenModal(true);
-      setVideoFile({ loading: true });
-
-      await API_KNOWLEDGE_MANAGEMENT(row?.id as string)
-        .then((res) => {
-          const blob = new Blob([res.data], { type: 'video/mp4' });
-          const videoURL = URL.createObjectURL(blob);
-          setVideoFile({ loading: false, file: videoURL });
-        })
-        .catch((err) => {
-          setOpenModal(false);
-          toast.error(
-            err.message ?? 'error on get video of knowledge management'
-          );
-        });
-    }
-  };
-
+  // Handel API request this does not work or ask what are u searching about it
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_ONLINE_ASSISTANCE,
     pageSize: PAGE_SIZE,
@@ -71,51 +48,52 @@ export function KnowledgeManagementList() {
     IResponsePagination<OnlineAssistanceModel>
   >(endpoint, http.fetcherSWR);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 1000),
-    []
-  );
+  const handleOnClickRow: OnClickActionsType<OnlineAssistanceModel> = async (
+    _,
+    row
+  ) => {
+    setOpenModal(true);
+    setVideoFile({ loading: true });
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
+    await API_KNOWLEDGE_MANAGEMENT(row?.id as string)
+      .then((res) => {
+        const blob = new Blob([res.data], { type: 'video/mp4' });
+        const videoURL = URL.createObjectURL(blob);
+        setVideoFile({ loading: false, file: videoURL });
+      })
+      .catch((err) => {
+        setOpenModal(false);
+        toast.error(
+          err.message ?? 'error on get video of knowledge management'
+        );
+      });
   };
+  const handelSearchQuery = useCallback((value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+  }, []);
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
 
   const paginationProps = {
     countPage,
     currentPage,
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     paginationLabel: t('header.admin'),
-    allItems: 50,
-    itemsPer: 5,
-    onPageChange: handlePageChange,
+    allItems: countPage,
+    itemsPer: listDaas.length,
+    onPageChange: (page: number) => setCurrentPage(page),
   };
-
-  const searchBarProps: TSearchBar = {
-    name: 'search-users-daas-list',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-  };
-
-  console.log(searchBarProps);
 
   return (
     <>
       <FilterTableList
-        handelSearchQuery={setFilterQuery}
+        handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
         handelGroupeFilter={(value) => console.log(value)}
         domainFilter
+        searchPlaceholder={t('fileScan.adminSearch')}
       />
       <BaseTable
         body={listDaas}
@@ -126,6 +104,7 @@ export function KnowledgeManagementList() {
         loading={isLoading}
         pagination={paginationProps}
         onClick={handleOnClickRow}
+        isMobile={width <= 760}
       />
       <Modal
         open={openModal}

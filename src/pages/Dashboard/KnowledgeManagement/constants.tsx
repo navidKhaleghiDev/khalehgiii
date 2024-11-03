@@ -1,27 +1,21 @@
+import phPlay from '@iconify-icons/ph/play';
+import userIcon from '@iconify-icons/ph/user';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import userIcon from '@iconify-icons/ph/user';
-import phPlay from '@iconify-icons/ph/play';
+import { convertSecondsToTime } from '@src/helper/utils/convertSecoundToTIme';
 
-function convertSecondsToTime(seconds: number) {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const remainingSeconds = seconds % 60;
-
-  return `${hours}:${String(minutes).padStart(2, '0')}:${String(
-    remainingSeconds
-  ).padStart(2, '0')}`;
-}
 export const KnowledgeManagementHeaderItem: HeaderTable[] = [
   {
     label: 'table.admin',
-    id: 'admin.id',
+    id: 'admim',
     type: 'component',
     component: (props: any) => {
       return (
         <div className="flex items-center justify-center gap-2">
           <Avatar icon={userIcon} size="table" />
-          <Typography variant="body6"> {props.row.admin.email}</Typography>
+          <Typography variant="body6" className="overflow-hidden ">
+            {props.row.admin.email}
+          </Typography>
         </div>
       );
     },
@@ -32,21 +26,26 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
     id: 'user',
     type: 'component',
     component: (props: any) => (
-      <Typography variant="body6"> {props.row.admin.email}</Typography>
+      <Typography variant="body6" className="overflow-hidden ">
+        {props.row.user.email}
+      </Typography>
     ),
     class: 'px-3 w-2/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.recordDate',
     id: 'created_at',
     type: 'date',
     class: 'px-3 w-2/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.group',
     id: 'group_name',
     type: 'none',
     class: 'px-3 w-2/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.videoDuration',
@@ -58,7 +57,8 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
         : '0';
       return <Typography>{myDuration}</Typography>;
     },
-    class: 'px-3 w-2/12',
+    class: 'px-3 w-2/12 ',
+    isMobileCollapsed: true,
   },
   {
     id: 'playVideo',
@@ -70,6 +70,6 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
         tooltip: 'table.play',
       },
     ],
-    class: 'w-2/12 sm:w-1/12 mr-auto ',
+    class: 'px-3 w-1/12 mr-auto',
   },
 ];
