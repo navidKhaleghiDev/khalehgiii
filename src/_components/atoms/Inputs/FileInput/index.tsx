@@ -86,7 +86,7 @@ export function FileInput(props: FileInputProps): JSX.Element {
           />
         </div>
 
-        <div className="flex gap-1">
+        <div className="flex flex-col md:flex-row gap-1">
           <Typography
             variant="body5B"
             className="text-teal-500 dark:text-teal-400"

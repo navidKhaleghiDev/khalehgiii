@@ -16,7 +16,7 @@ interface IFieldValues extends FieldValues {
   file: File[];
 }
 
-export function CreateMimeTypeModal({ handleClose }: PropsType) {
+export function UploadFileModal({ handleClose }: PropsType) {
   const { t } = useTranslation();
 
   const [showConfirm, setShowConfirm] = useState(false);
@@ -29,7 +29,6 @@ export function CreateMimeTypeModal({ handleClose }: PropsType) {
   const handleOnSubmit = async (data: IFieldValues) => {
     setLoadingButtonModal(true);
     const body = new FormData();
-
     if (data.file.length > 0) {
       body.append('file', data?.file[0]);
       await API_ANALYZE_MIME_TYPE_CREATE(body)

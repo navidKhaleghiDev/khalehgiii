@@ -19,8 +19,8 @@ import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
-import { CreateMimeTypeModal } from '../CreateMimeTypeModal';
 import { extensionListHeaderItem } from '../constants/extensionListHeaderItem';
+import { UploadFileModal } from '../UploadFileModal';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -118,7 +118,7 @@ export function ExtensionList() {
     itemsPer: listWhiteList.length,
   };
   return (
-    <div className={`${isLoading ? 'loading' : ''}`}>
+    <>
       <div className="mb-[1.875rem] px">
         <FilterTableList
           handelSearchQuery={handelSearchQuery}
@@ -164,8 +164,8 @@ export function ExtensionList() {
         icon={PhUploadSimple}
         title={t('systemManagement.uploadFile')}
         description={t('systemManagement.uploadFileText')}
-        content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
+        content={<UploadFileModal handleClose={handleCloseUpdateModal} />}
       />
-    </div>
+    </>
   );
 }
