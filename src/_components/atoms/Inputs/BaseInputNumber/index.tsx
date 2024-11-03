@@ -104,13 +104,15 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             defaultValue={defaultValue}
             max={max}
           />
-          <BaseIcon
-            className={BaseIconInputNumberStyles({
-              dir,
-              intent: error || isOutOfRange ? 'error' : 'default',
-            })}
-            icon={icon}
-          />
+          {icon ? (
+            <BaseIcon
+              className={BaseIconInputNumberStyles({
+                dir,
+                intent: error || isOutOfRange ? 'error' : 'default',
+              })}
+              icon={icon}
+            />
+          ) : null}
         </div>
         <IconButton
           disabled={disabled}
