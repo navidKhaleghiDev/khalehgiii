@@ -1,11 +1,10 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
-import { debounce } from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import { IResponsePagination } from '@src/types/services';
 import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
-import { IUba } from '@src/services/analyze/types';
+import { Uba } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
@@ -22,16 +21,12 @@ export function UbaAsList() {
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 100),
-    [setFilterQuery]
-  );
+  const handleFilterQuery = (value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+  };
 
-  const { data, isLoading } = useSWR<IResponsePagination<IUba>>(
+  const { data, isLoading } = useSWR<IResponsePagination<Uba>>(
     E_UBA_LIST_PAGINATION({
       page: currentPage,
       pageSize: PAGE_SIZE,
@@ -62,11 +57,11 @@ export function UbaAsList() {
   };
 
   return (
-    <div className={`w-full ${isLoading ? 'loading' : ''}`}>
+    <div className="w-full">
       <div className="mb-8">
         <FilterTableList
           searchQuery={filterQuery}
-          handelSearchQuery={debouncedSetFilterQuery}
+          handelSearchQuery={handleFilterQuery}
           domainFilter
           handelGroupeFilter={() => {
             console.log('first');

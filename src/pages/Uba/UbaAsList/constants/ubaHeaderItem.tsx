@@ -1,8 +1,12 @@
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import {
+  BaseTableComponentCellProps,
+  HeaderTable,
+} from '@redesignUi/molecules/BaseTable/types';
 import DownloadSimple from '@iconify-icons/ph/download-simple';
 import UploadSimple from '@iconify-icons/ph/upload-simple';
 import { TextBG } from '@redesignUi/molecules/BaseTable/components/CustomCell/TextBG';
 import { TextIcon } from '@redesignUi/molecules/BaseTable/components/CustomCell/TextIcon';
+import { Uba } from '@src/services/analyze/types';
 
 export const ubaHeaderItem: HeaderTable[] = [
   {
@@ -17,7 +21,7 @@ export const ubaHeaderItem: HeaderTable[] = [
     label: 'table.action',
     id: 'transmission_type',
     type: 'component',
-    component: (props: any) => (
+    component: (props: BaseTableComponentCellProps<Uba>) => (
       <TextIcon
         title={
           props.row.transmission_type === 'upload'
@@ -33,14 +37,14 @@ export const ubaHeaderItem: HeaderTable[] = [
         color={props.row.transmission_type === 'upload' ? 'purple' : 'blue'}
       />
     ),
-    class: 'px-3 lg:w-2/12 sm:w-[6.25rem]',
+    class: 'px-3 lg:w-1/12 sm:w-[6.25rem]',
     isMobileCollapsed: true,
   },
   {
     label: 'table.unauthorizedBehavior',
     id: 'malbehave_count',
     type: 'none',
-    class: 'px-3 lg:w-1/12 sm:w-[3.125rem]',
+    class: 'px-3 xl:w-1/12 lg:w-2/12 w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -61,7 +65,7 @@ export const ubaHeaderItem: HeaderTable[] = [
     label: 'table.status',
     id: 'is_ban',
     type: 'component',
-    component: (props: any) => (
+    component: (props: BaseTableComponentCellProps<Uba>) => (
       <TextBG
         title={props.row.is_ban ? 'table.block' : 'table.active'}
         translate
