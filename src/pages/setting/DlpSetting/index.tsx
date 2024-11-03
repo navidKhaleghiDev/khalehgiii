@@ -1,22 +1,24 @@
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
+
 import { IResponsePagination } from '@src/types/services';
-import { IFileType } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { useTranslation } from 'react-i18next';
 import { dlpConfigHeaderItem } from '@src/pages/Dashboard/DlpConfig/constants/dlpConfigHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { UpdateFileTypeModal } from '@src/pages/Dashboard/DlpConfig/UpdateFileTypeModal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
+
+import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
+import { FileTypeProp } from '../type';
 
 const PAGE_SIZE = 3;
 const PAGE = 1;
@@ -24,7 +26,7 @@ const PAGE = 1;
 export function DlpSetting() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
+  const [activeFileType, setActiveFileType] = useState<Partial<FileTypeProp>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -39,7 +41,7 @@ export function DlpSetting() {
     filterQuery,
   });
   const { data, error, isLoading, mutate } = useSWR<
-    IResponsePagination<IFileType>
+    IResponsePagination<FileTypeProp>
   >(endpoint, http.fetcherSWR);
 
   const handelSearchQuery = useCallback((searchValue: string) => {
@@ -81,11 +83,11 @@ export function DlpSetting() {
     setOpenUpdateModal(false);
   };
 
-  const handleOnClickActions: OnClickActionsType<IFileType> | undefined = (
+  const handleOnClickActions: OnClickActionsType<FileTypeProp> | undefined = (
     action,
     fileType
   ) => {
-    setActiveFileType(fileType as IFileType);
+    setActiveFileType(fileType as FileTypeProp);
     if (action === 'delete') {
       setDeleteModal(true);
       return;
@@ -153,6 +155,8 @@ export function DlpSetting() {
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         type="content"
+        // title={t('table.editFile')}
+        // description={t('table.chooseTypeFileAndLicenses')}
         content={
           <UpdateFileTypeModal
             handleClose={handleCloseUpdateModal}

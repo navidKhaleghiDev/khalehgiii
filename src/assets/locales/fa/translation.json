@@ -111,6 +111,8 @@
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
     "editAdminInfo": "ویرایش مشخصات",
+    "editFile":"ویرایش فایل",
+    "chooseTypeFileAndLicenses":"انتخاب نوع فایل و مجوزها ",
     "addNewFile":"فایل جدید",
     "lastLogout": "آخرین خروج",
     "setting": "تنظیمات",

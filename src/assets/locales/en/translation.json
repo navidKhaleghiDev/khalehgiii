@@ -111,7 +111,8 @@
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
     "addNewFile":"New File",
-
+    "editFile":"Edit File",
+    "chooseTypeFileAndLicenses":"Choose type file and licenses",
     "lastLogout": "Last Logout",
     "setting": "Setting",
     "timing": "Timing",
