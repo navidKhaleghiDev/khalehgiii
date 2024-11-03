@@ -1,14 +1,14 @@
-import Lock from '@iconify-icons/ph/lock-laminated';
-import Wifi from '@iconify-icons/ph/wifi-high-duotone';
-
-import { Typography } from '@redesignUi/atoms';
-import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
+
+import Lock from '@iconify-icons/ph/lock-laminated';
+import Wifi from '@iconify-icons/ph/wifi-high-duotone';
 import { IResponsePagination } from '@src/types/services';
 import { IDaAs } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
+import { Typography } from '@redesignUi/atoms';
+import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 
 import { DaAsList } from './DaAsList';
 
