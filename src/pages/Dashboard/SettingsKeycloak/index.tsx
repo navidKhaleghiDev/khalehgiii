@@ -41,7 +41,6 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
     userPermissions,
     EPermissionKeycloak.VIEW
   );
-
   const { control, handleSubmit, reset, getValues, formState } =
     useForm<IAddConfig>({
       mode: 'onChange',

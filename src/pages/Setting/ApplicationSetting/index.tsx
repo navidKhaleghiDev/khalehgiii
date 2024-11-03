@@ -3,33 +3,44 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import { regexPattern } from '@ui/atoms/Inputs';
-import { IAddConfig } from '@src/services/config/types';
-import {
-  API_ADD_CONFIG,
-  API_ADD_UPDATE,
-  API_CONFIG_LIST,
-} from '@src/services/config';
 import { Divider } from '@ui/atoms/Divider';
 import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { EPermissionKeycloak } from '@src/types/permissions';
-import { BaseButton } from '@redesignUi/atoms';
+import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
-import { TitleSection } from '@redesignUi/atoms/TitleSection';
+import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
+import {
+  API_ADD_CONFIG,
+  API_ADD_UPDATE,
+  API_CONFIG_LIST,
+} from '@src/services/config';
 
 import { ApplicationSettingProp } from '../type';
 
+function TitleSection({ label }: { label: string }) {
+  return (
+    <Typography
+      color="black"
+      variant="body4B"
+      className="w-full col-span-12 dark:text-white"
+    >
+      {label}
+    </Typography>
+  );
+}
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(false);
   const { lang } = useLanguage();
   const direction = lang === 'fa' ? 'rtl' : 'ltr';
+  const inputStyles = 'col-span-6 lg:col-span-4';
 
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
@@ -72,7 +83,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     }
   }, [reset, userExist]);
 
-  const handleOnSubmit = async (data: IAddConfig) => {
+  const handleOnSubmit = async (data: ApplicationSettingProp) => {
     setLoadingButton(true);
     if (data?.id) {
       // update
@@ -100,9 +111,15 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   return loading ? (
     <LoadingSpinner />
   ) : (
-    <div className="mx-5">
-      <div className="mb-10">
-        <TitleSection label="Application" />
+    <div>
+      <div className="mb-[3.75rem]">
+        <Typography
+          color="black"
+          variant="body2B"
+          className="w-full col-span-12 dark:text-white"
+        >
+          {t('setting.application')}
+        </Typography>
       </div>
       <form
         className="w-full h-full flex flex-col justify-between"
@@ -110,24 +127,24 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
       >
         {SettingsKeycloakP ? (
           <>
-            <TitleSection label="SSO" />
-            <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-4">
-              <div className="col-span-6 lg:col-span-4">
+            <TitleSection label={t('setting.sso')} />
+
+            <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_base_url"
                   name="keycloak_base_url"
                   rules={{
-                    required: regexPattern.required,
-                    pattern: regexPattern.url,
+                    required: inputRegexPattern.required,
                   }}
                   control={control}
-                  label="SSO base URL"
+                  label={t('setting.ssoBaseURL')}
                   placeholder="http://localhost"
                   fullWidth
                   dir={direction}
                 />
               </div>
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_client_id"
                   name="keycloak_client_id"
@@ -135,14 +152,14 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                     required: regexPattern.required,
                   }}
                   control={control}
-                  label="SSO client ID"
-                  placeholder="client id"
+                  label={t('setting.ssoClientID')}
+                  placeholder={t('setting.clientIDP')}
                   fullWidth
                   dir={direction}
                 />
               </div>
 
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_secret"
                   name="keycloak_secret"
@@ -150,14 +167,14 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                     required: regexPattern.required,
                   }}
                   control={control}
-                  label="SSO Secret"
-                  placeholder="secret"
+                  label={t('setting.ssoSecret')}
+                  placeholder={t('setting.secretP')}
                   fullWidth
                   dir={direction}
                 />
               </div>
 
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_port"
                   name="keycloak_port"
@@ -166,13 +183,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                     pattern: regexPattern.numbers,
                   }}
                   control={control}
-                  label="SSO Port"
+                  label={t('setting.ssoPort')}
                   placeholder="8080"
                   fullWidth
                   dir={direction}
                 />
               </div>
-              <div className="col-span-6 lg:col-span-4">
+              <div className={inputStyles}>
                 <BaseInputController
                   id="keycloak_realm"
                   name="keycloak_realm"
@@ -181,7 +198,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   }}
                   control={control}
                   label="SSO realm"
-                  placeholder="realm"
+                  placeholder={t('setting.realmP')}
                   fullWidth
                   dir={direction}
                 />
@@ -190,26 +207,10 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
           </>
         ) : null}
         <Divider />
+        <TitleSection label={t('setting.logServer')} />
 
-        <TitleSection label="Log Server" />
-
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-4">
-          <div className="col-span-6 lg:col-span-4">
-            <BaseInputController
-              id="log_server_port"
-              name="log_server_port"
-              rules={{
-                required: regexPattern.required,
-                pattern: regexPattern.numbers,
-              }}
-              control={control}
-              label="Log Server Port"
-              placeholder="8000"
-              fullWidth
-              dir={direction}
-            />
-          </div>
-          <div className="col-span-6 lg:col-span-4">
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
+          <div className={inputStyles}>
             <BaseInputController
               id="log_server_ip"
               name="log_server_ip"
@@ -218,37 +219,53 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                 pattern: regexPattern.ip,
               }}
               control={control}
-              label="Log Server IP"
+              label={t('setting.logServerIP')}
               placeholder="192.168.1.1"
+              fullWidth
+              dir={direction}
+            />
+          </div>
+          <div className={inputStyles}>
+            <BaseInputController
+              id="log_server_port"
+              name="log_server_port"
+              rules={{
+                required: regexPattern.required,
+                pattern: regexPattern.numbers,
+              }}
+              control={control}
+              label={t('setting.logServerPort')}
+              placeholder="8000"
               fullWidth
               dir={direction}
             />
           </div>
         </div>
         <Divider />
-
-        <TitleSection label="Manager" />
+        <TitleSection label={t('setting.manager')} />
 
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
-          <div className="col-span-6 lg:col-span-4">
+          <div className={inputStyles}>
             <BaseInputController
               id="daas_provider_baseurl"
               name="daas_provider_baseurl"
               rules={{
                 required: regexPattern.required,
-                pattern: regexPattern.url,
+                pattern: regexPattern.urlLink,
               }}
               control={control}
-              label="Daas provider baseURL"
+              label={t('setting.daasProvider')}
               placeholder="sep.npd-co.com"
               fullWidth
               dir={direction}
             />
           </div>
         </div>
-        <div className="flex self-center sm:self-end mt-[10rem] w-40 sm:w-[11.88rem]">
+        <div className="flex self-end mt-8 lg:mt-[10rem] w-40 sm:w-[11.875rem]">
           <BaseButton
             label={t('dashboard.saveChanges')}
+            disabled={!formState.isDirty}
+            size="lg"
             submit
             disabled={!formState.isDirty}
             loading={loadingButton}

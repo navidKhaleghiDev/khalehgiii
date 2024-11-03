@@ -74,7 +74,7 @@
     "httpsPort": "HTTPS port",
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
-    "lastUptime": "last uptime",
+    "lastUptime": "Last uptime",
     "lastLoginIp": "Last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
@@ -117,7 +117,9 @@
     "custom": "Custom",
     "block": "Block",
     "assistance": "Assistance",
-    "deleteUser": "Delete User"
+    "deleteUser": "Delete User",
+    "allowed": "Allowed",
+    "disallow": "Disallow"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -301,13 +303,20 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
-    "userInfo": "user Info",
+    "userInfo": "User Info",
+    "adminInfo": "Admin Info",
     "userType": "User type",
     "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
     "admin": "Admin",
     "metaAdmin": "Administrator",
     "choseDomain": "Domain",
     "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+  },
+  "userList": {
+    "onlineUsers": "Online Users",
+    "blockedUsers": "Blocked Users",
+    "searchUsers": "Search Users",
+    "usersList": "User List"
   },
   "license": {
     "licenseId": "license Id",
@@ -333,7 +342,21 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "dass": "DaaS",
+    "ssoBaseURL": "SSO base URL",
+    "ssoClientID": "SSO client ID",
+    "ssoSecret": "SSO Secret",
+    "ssoPort": "SSO Port",
+    "ssoRealm": "SSO realm",
+    "logServer": "Log Server",
+    "logServerIP": "Log Server IP",
+    "logServerPort": "Log Server Port",
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm",
+    "sso": "SSO",
+    "manager": "Manager"
   },
 
   "regexPattern": {
@@ -369,7 +392,8 @@
     "shebaNumber": "Use only numbers",
     "cardBankNumber": "Use only numbers",
     "price": "Please use only numbers",
-    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234",
+    "ip": "Please enter the correct IP format"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
