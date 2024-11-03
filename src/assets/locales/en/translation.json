@@ -301,7 +301,8 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
-    "userInfo": "user Info",
+    "userInfo": "User Info",
+    "adminInfo": "Admin Info",
     "userType": "User type",
     "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
     "admin": "Admin",
