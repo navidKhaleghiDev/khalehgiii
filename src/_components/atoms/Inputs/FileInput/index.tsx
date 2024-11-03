@@ -10,7 +10,21 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 import { FileInputProps } from './types';
 
-export function FileInput(props: FileInputProps) {
+/**
+ * `FileInput` component provides a user interface for selecting or dragging and dropping files.
+ *
+ * @param {FileInputProps} props - Properties passed to the component.
+ * @param {string} props.name - The name attribute for the input element.
+ * @param {string} props.id - The id attribute for the input element.
+ * @param {Function} props.onChange - Callback fired when file selection changes.
+ * @param {boolean} [props.disabled] - If true, disables the file input.
+ * @param {string} [props.className] - Additional CSS classes for styling.
+ *
+ * @returns {JSX.Element} A component that allows users to upload files either by clicking to open a file picker or by dragging and dropping files.
+ *
+ */
+
+export function FileInput(props: FileInputProps): JSX.Element {
   const { name, id, onChange, disabled, className } = props;
 
   const [files, setFiles] = useState<File[] | null>(null);
@@ -56,7 +70,7 @@ export function FileInput(props: FileInputProps) {
       />
       <button
         className={`flex flex-col w-full dark:hover:bg-gray-600 gap-3 items-center border border-neutral-200 dark:border-gray-500 ${
-          files && ' border-2 border-teal-500 dark:border-teal-400'
+          files?.length && ' border-2 border-teal-500 dark:border-teal-400'
         } px-6 py-4 dark:bg-gray-700 rounded-2xl`}
         type="button"
         onClick={handleClick}
@@ -73,7 +87,10 @@ export function FileInput(props: FileInputProps) {
         </div>
 
         <div className="flex gap-1">
-          <Typography color="teal" variant="body5B">
+          <Typography
+            variant="body5B"
+            className="text-teal-500 dark:text-teal-400"
+          >
             {t('systemManagement.uploadFileTextInputOne')}
           </Typography>
           <Typography color="neutralDark" variant="body5">
@@ -81,7 +98,7 @@ export function FileInput(props: FileInputProps) {
           </Typography>
         </div>
       </button>
-      {files && (
+      {files?.length ? (
         <div className="mt-5">
           <div className="text-start p-2 flex items-center justify-between rounded-lg dark:text-white bg-neutral-100 dark:bg-gray-800">
             <div className="flex items-center gap-3">
@@ -100,12 +117,12 @@ export function FileInput(props: FileInputProps) {
               icon={X}
               size="sm"
               color="neutralNoBg"
-              className="rounded-full p-1 box-content bg-gray-200 dark:bg-gray-800"
+              className="rounded-full p-1 box-content"
               onClick={() => setFiles(null)}
             />
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
