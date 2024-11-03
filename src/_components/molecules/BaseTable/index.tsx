@@ -113,16 +113,20 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
         )}
       </table>
       <div className="mt-5">
-        {!!countPage && currentPage && totalPages && onPageChange && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={onPageChange}
-            allItems={allItems}
-            itemsPer={itemsPer}
-            paginationLabel={paginationLabel}
-          />
-        )}
+        {!!countPage &&
+          currentPage &&
+          totalPages &&
+          onPageChange &&
+          !loading && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              allItems={allItems}
+              itemsPer={itemsPer}
+              paginationLabel={paginationLabel}
+            />
+          )}
       </div>
     </div>
   );

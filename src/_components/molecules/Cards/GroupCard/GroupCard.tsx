@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { CardButton } from '@redesignUi/atoms/Card/CardButton';
 
-import TitleNumber from './TitleNumber/TitleNumber';
+import { TitleNumber } from './TitleNumber/TitleNumber';
 import { GroupCardProps } from './types';
 
 /**

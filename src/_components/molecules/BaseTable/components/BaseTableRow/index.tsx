@@ -71,7 +71,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             <td
               aria-label="BaseTableRow"
               key={`${headerList.label} BaseTableRow`}
-              className={`${className}  flex justify-start relative  ${menuStyle} `}
+              className={`${className}   flex justify-start relative  ${menuStyle} `}
             >
               <BaseTableRenderComponent
                 row={row}

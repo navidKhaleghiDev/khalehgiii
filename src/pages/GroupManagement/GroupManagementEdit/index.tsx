@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { createAPIEndpoint } from '@src/helper/utils';
 import { http } from '@src/services/http';
 import { USERS_GROUPS_GET } from '@src/services/users/endpoint';
 import { TGroup } from '@src/services/users/types';
@@ -12,9 +11,30 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import useSWR from 'swr';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@redesignUi/atoms';
+import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 5;
 const PAGE = 1;
+
+const groupManagementHeaderItem: HeaderTable[] = [
+  {
+    label: 'table.recordingActivity',
+    id: 'userName',
+    type: 'avatar',
+    email: 'email',
+    isActive: 'isActive',
+    permission: EPermissionSessionRecording.VIEW,
+    class: 'w-8/12',
+  },
+  {
+    label: 'table.recordingActivity',
+    id: 'userName',
+    type: 'component',
+    component: (props) => <Drop />,
+    permission: EPermissionSessionRecording.VIEW,
+    class: 'w-8/12',
+  },
+];
 
 export function GroupManagementEdit() {
   const { id } = useParams();
@@ -23,52 +43,64 @@ export function GroupManagementEdit() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
 
-  const endpoint = createAPIEndpoint({
-    endPoint: id ? USERS_GROUPS_GET(id) : null,
-    pageSize: PAGE_SIZE,
-    currentPage,
-    filterQuery,
-  });
-
   const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
-    endpoint,
+    id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );
-
   const group = data?.data ?? [];
-  console.log(group);
+
+  const paginatedData = useCallback(
+    (key) => {
+      const fullData = group[key] || [];
+      const allFilteredData = fullData.filter((item) =>
+        item.email.toLowerCase().includes(filterQuery.toLowerCase())
+      );
+      const startIndex = (currentPage - 1) * PAGE_SIZE;
+      const endIndex = startIndex + PAGE_SIZE;
+
+      if (filterQuery) {
+        return allFilteredData.length > PAGE_SIZE
+          ? allFilteredData.slice(startIndex, endIndex)
+          : allFilteredData;
+      }
+      return fullData.slice(startIndex, endIndex);
+    },
+    [group, filterQuery, currentPage]
+  );
 
   return (
     <div>
       <div>
         <Typography>{t('groupManagement.editGroup')}</Typography>
       </div>
-
+      <SearchInput
+        onChange={(e) => setFilterQuery(e)}
+        value={filterQuery}
+        id="search"
+        name="search"
+      />
       <BaseTable
         header={groupManagementHeaderItem}
-        body={group.admins}
+        body={paginatedData('admins')}
         loading={isLoading}
         isMobile
       />
       <div className="border-t border-gray-200 my-4" />
       <BaseTable
         header={groupManagementHeaderItem}
-        body={group.users}
+        body={paginatedData('users')}
         loading={isLoading}
+        pagination={{
+          countPage: 1,
+          currentPage,
+          totalPages: group?.users?.length / 5,
+          allItems: group?.users?.length,
+          itemsPer: 5,
+          paginationLabel: 'یوزر',
+          onPageChange: (page) => setCurrentPage(page),
+        }}
         isMobile
       />
     </div>
   );
 }
-
-const groupManagementHeaderItem: HeaderTable[] = [
-  {
-    label: 'table.recordingActivity',
-    id: 'id',
-    type: 'avatar',
-    email: 'email',
-    isActive: 'isActive',
-    permission: EPermissionSessionRecording.VIEW,
-    class: 'w-2/12',
-  },
-];
