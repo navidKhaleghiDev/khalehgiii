@@ -65,6 +65,7 @@ export function UserInfoTab({
             control={control}
             name="username"
             id="username"
+            placeholder={t('global.userName')}
             label={t('global.userName')}
             rules={{
               pattern: regexPattern.englishLetter,

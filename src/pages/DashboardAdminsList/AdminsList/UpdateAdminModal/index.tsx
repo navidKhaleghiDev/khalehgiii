@@ -93,7 +93,7 @@ export function UpdateAdminModal({
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="w-full">
       <BaseTabs>
-        <BaseTab label={t('adminList.userInfo')}>
+        <BaseTab label={t('adminList.adminInfo')}>
           <UserInfoTab
             control={control}
             dir={dir}
