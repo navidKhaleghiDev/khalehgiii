@@ -1,76 +1,66 @@
-import gear from '@iconify-icons/ph/gear';
-import trashIcon from '@iconify-icons/ph/trash';
-import { SetAccessTime } from '@src/pages/DashboardDesktopList/DaAsList/DaAsCard/SetAccessTime';
-import { UsedTimeDass } from '@src/pages/DashboardDesktopList/DaAsList/UsedTimeDass';
-import { ActionLockCell } from '@ui/atoms/BaseTable/components/CustomCell/ActionLockCell';
-
-import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
-import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
-import PhListMagnifyingGlassDuotone from '@iconify-icons/ph/list-magnifying-glass-duotone';
+import UserFocus from '@iconify-icons/ph/user-focus';
+import Trash from '@iconify-icons/ph/trash-simple';
+import Play from '@iconify-icons/ph/queue';
+import UsersFour from '@iconify-icons/ph/users-four';
 import {
   EPermissionDaas,
   EPermissionDaasMetaConfig,
   EPermissionSessionRecording,
 } from '@src/types/permissions';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { TextCheck } from '@redesignUi/molecules/BaseTable/components/TableComponent/TextCheck';
+import { ActionLockCell } from '@redesignUi/molecules/BaseTable/components/TableComponent/ActionLockCell';
 
-export const desktopListHeaderItem: IHeaderTable[] = [
+import { AccessTime } from '../AccessTime';
+import { AccessTimeSetting } from '../DaAsCard/AccessTimeSetting';
+
+export const desktopListHeaderItem: HeaderTable[] = [
   {
     label: 'table.email',
     id: 'email',
-    type: 'none',
-    class: 'w-2/12',
-  },
-  {
-    label: 'table.httpPort',
-    id: 'http_port',
-    type: 'none',
-    class: `w-2/12`,
-  },
-  {
-    label: 'table.httpsPort',
-    id: 'https_port',
-    type: 'none',
-    class: 'w-2/12 ',
-  },
-  {
-    label: 'table.accessCapacity',
-    id: 'exceeded_usage',
-    type: 'component',
-    component: (props: any) => (
-      <Check id={!props.row.exceeded_usage} header={props.head} />
-    ),
-    class: 'w-1/12 ',
-  },
-  {
-    label: 'table.containerId',
-    id: 'container_id',
-    type: 'none',
-    class: 'w-1/12 ',
+    type: 'avatar',
+    email: 'email',
+    isActive: 'is_running',
+    class: 'w-3/12',
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
-    type: 'none',
-    class: ' w-1/12 ',
+    type: 'date',
+    class: 'w-1/12',
+    isMobileCollapsed: true,
   },
   {
-    label: 'table.lastLoginIp',
-    id: 'last_login_ip',
-    type: 'none',
-    class: 'w-1/12 ',
-  },
-  {
-    label: 'table.status',
-    id: 'is_running',
+    label: 'table.accessTime',
+    id: 'time_limit_value_in_hour',
     type: 'component',
-    component: (props: any) => <Circle id={props.row.is_running} />,
-    class: 'w-2/12 ',
+    isMobileCollapsed: true,
+    component: (props: any) => (
+      <AccessTime
+        time={props.row.daas_configs.time_limit_value_in_hour}
+        isPermanent={
+          props.row.daas_configs.time_limit_duration === 'PERMANENTLY'
+        }
+      />
+    ),
+    class: 'w-1/12',
   },
-
   {
-    label: 'table.desktop',
+    label: 'table.setting',
+    id: 'daas_configs',
+    type: 'component',
+    component: (props: any) => (
+      <TextCheck
+        id={props.row.daas_configs.is_globally_config}
+        firstCondition="table.defaultSetting"
+        secondCondition="table.custom"
+      />
+    ),
+    class: 'lg:w-1/12 w-2/12',
+    isMobileCollapsed: true,
+  },
+  {
+    label: 'table.userStatus',
     id: 'is_lock',
     type: 'component',
     component: (props: any) => (
@@ -78,106 +68,109 @@ export const desktopListHeaderItem: IHeaderTable[] = [
         id={props.row.is_lock}
         row={props.row}
         onClick={props.onClick}
+        firstCondition="table.block"
+        secondCondition="table.active"
       />
     ),
     permission: EPermissionDaas.CHANGE,
+    class: 'w-1/12 ',
+    isMobileCollapsed: true,
+  },
+  {
+    label: 'table.timing',
+    id: 'updated_at',
+    type: 'component',
+    component: (props: any) => (
+      <AccessTimeSetting
+        timeLimitDuration={props.row.daas_configs.time_limit_duration}
+      />
+    ),
     class: 'w-2/12 ',
+    permission: EPermissionDaas.CHANGE,
+    isMobileCollapsed: true,
+  },
+  {
+    label: 'table.connection',
+    id: 'exceeded_usage',
+    type: 'component',
+    isCollapsed: true,
+    component: (props: any) => (
+      <TextCheck
+        id={props.row.exceeded_usage}
+        firstCondition="table.allowed"
+        secondCondition="table.disallow"
+      />
+    ),
+    class: 'w-1/12 ',
+  },
+  {
+    label: 'table.httpsPort',
+    id: 'https_port',
+    type: 'none',
+    class: 'w-2/12',
+    isCollapsed: true,
+  },
+  {
+    label: 'table.lastLoginIp',
+    id: 'last_login_ip',
+    type: 'none',
+    class: 'w-1/12 ',
+    isCollapsed: true,
   },
   {
     label: 'table.desktopV',
     id: 'daas_version',
     type: 'none',
-    class: 'w-2/12 ',
+    class: 'w-2/12',
+    isCollapsed: true,
   },
 
   {
     label: 'table.usedTime',
-    id: 'usage_in_minute',
-    type: 'component',
-    component: (props: any) => (
-      <UsedTimeDass time={props.row.usage_in_minute} />
-    ),
-    class: 'w-2/12 ',
-  },
-  {
-    label: 'table.accessSettingsTime',
-    id: 'updated_at',
-    type: 'component',
-    component: (props: any) => (
-      <SetAccessTime
-        id={props.row.id as string}
-        onClickActions={props.onClick}
-        timeLimitValue={props.row.daas_configs.time_limit_value_in_hour || 0}
-        timeLimitDuration={props.row.daas_configs.time_limit_duration}
-      />
-    ),
-    class: 'w-3/12 ',
-    permission: EPermissionDaas.CHANGE,
+    id: 'container_id',
+    type: 'none',
+    class: 'w-2/12 mr-auto',
   },
 
   {
-    label: 'table.defaultSetting',
-    id: 'daas_configs',
-    type: 'component',
-    component: (props: any) => (
-      <Check
-        id={props.row.daas_configs.is_globally_config}
-        header={props.head}
-      />
-    ),
-    class: 'w-2/12 ',
-  },
-  {
-    label: 'table.recordingActivity',
-    id: 'id',
-    type: 'action',
-    action: [
-      {
-        action: 'more',
-        icon: PhListBulletsFill,
-        color: 'neutralNoBg',
-        tooltip: 'table.recordingActivity',
-      },
-    ],
-    permission: EPermissionSessionRecording.VIEW,
-    class: 'w-2/12',
-  },
-
-  {
-    label: 'table.accessSetting',
-    id: 'can_upload_file',
-    type: 'action',
-    action: [
-      {
-        action: 'delete',
-        icon: trashIcon,
-        color: 'redNoBg',
-        tooltip: 'table.delete',
-        permission: EPermissionDaas.DELETE,
-      },
+    id: 'action',
+    type: 'menu',
+    tooltip: 'table.moreDetail',
+    menu: [
       {
         action: 'edit',
-        icon: gear,
+        icon: UserFocus,
         color: 'neutralNoBg',
-        tooltip: 'table.edit',
         permission: EPermissionDaasMetaConfig.CHANGE,
+        title: 'table.accessSetting',
       },
-    ],
-    permission: [EPermissionDaasMetaConfig.CHANGE, EPermissionDaas.DELETE],
-    class: 'w-2/12 ',
-  },
-  {
-    label: 'global.onlineAssistanceDetail',
-    id: 'member_of',
-    type: 'action',
-    action: [
+      {
+        action: 'more',
+        icon: Play,
+        color: 'neutralNoBg',
+        permission: EPermissionSessionRecording.VIEW,
+        title: 'table.recordingActivity',
+      },
       {
         action: 'details',
-        icon: PhListMagnifyingGlassDuotone,
+        icon: UsersFour,
         color: 'neutralNoBg',
-        tooltip: 'global.onlineAssistanceDetail',
+        // permission: EPermissionUsers.CHANGE,
+        title: 'table.assistance',
+      },
+      {
+        action: 'delete',
+        icon: Trash,
+        color: 'redNoBg',
+        permission: EPermissionDaas.DELETE,
+        title: 'table.deleteUser',
       },
     ],
-    class: 'w-2/12 ',
+    permission: [
+      EPermissionDaasMetaConfig.CHANGE,
+      EPermissionDaas.DELETE,
+      EPermissionSessionRecording.VIEW,
+    ],
+    class: ' mr-auto w-2/12 lg:w-1/12',
   },
 ];
