@@ -23,17 +23,17 @@ import {
 
 import { ApplicationSettingProp } from '../type';
 
-// function TitleSection({ label }: { label: string }) {
-//   return (
-//     <Typography
-//       color="black"
-//       variant="body2B"
-//       className="w-full col-span-12 dark:text-white"
-//     >
-//       {label}
-//     </Typography>
-//   );
-// }
+function TitleSection({ label }: { label: string }) {
+  return (
+    <Typography
+      color="black"
+      variant="body4B"
+      className="w-full col-span-12 dark:text-white"
+    >
+      {label}
+    </Typography>
+  );
+}
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
@@ -127,13 +127,8 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
       >
         {SettingsKeycloakP ? (
           <>
-            <Typography
-              color="black"
-              variant="body4B"
-              className="w-full col-span-12 dark:text-white"
-            >
-              {t('setting.sso')}
-            </Typography>
+            <TitleSection label={t('setting.sso')} />
+
             <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
               <div className={inputStyles}>
                 <BaseInputController
@@ -212,14 +207,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
           </>
         ) : null}
         <Divider />
-
-        <Typography
-          color="black"
-          variant="body4B"
-          className="w-full col-span-12 dark:text-white"
-        >
-          {t('setting.logServer')}
-        </Typography>
+        <TitleSection label={t('setting.logServer')} />
 
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
           <div className={inputStyles}>
@@ -254,14 +242,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
           </div>
         </div>
         <Divider />
-
-        <Typography
-          color="black"
-          variant="body4B"
-          className="w-full col-span-12 dark:text-white"
-        >
-          {t('setting.manager')}
-        </Typography>
+        <TitleSection label={t('setting.manager')} />
 
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
           <div className={inputStyles}>

@@ -346,8 +346,8 @@
     "clientIDP": "clinet id",
     "secretP": "secret",
     "realmP": "realm",
-    "sso":"SSO",
-    "manager":"Manager"
+    "sso": "SSO",
+    "manager": "Manager"
   },
 
   "regexPattern": {
