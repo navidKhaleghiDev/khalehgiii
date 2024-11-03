@@ -18,10 +18,9 @@ const weekLabels = isFarsi
 function getLabelOfWeek(day: number) {
   return weekLabels[day];
 }
-
 const options: Intl.DateTimeFormatOptions = {
   year: 'numeric',
-  month: 'long',
+  month: 'numeric',
   day: 'numeric',
 };
 
@@ -65,7 +64,7 @@ export function persianDateNumber(date?: string) {
   return today.toLocaleDateString('fa-IR');
 }
 
-export function dateAndNumber(date?: string) {
+export function dateAndNumber(date?: Date) {
   // ۲۴ خرداد ۱۴۰۲
   const condition = isFarsi ? 'fa-IR' : 'en-US';
   if (date) {
@@ -76,6 +75,7 @@ export function dateAndNumber(date?: string) {
 if (isFarsi) {
   moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
 }
+
 export function convertToDay(date: string) {
   if (date) {
     const year = date.substring(0, 4);

@@ -39,7 +39,11 @@ export type HeaderTable = HeaderTableBase &
           | 'normal-case';
       }
   ) &
-  ({ type: Exclude<TableType, 'menu'> } | MenuHeader);
+  ({ type: Exclude<TableType, 'menu'> } | MenuHeader) &
+  (
+    | { type: Exclude<TableType, 'date'> }
+    | { type: 'date'; render: 'date' | 'day' | 'hour' }
+  );
 
 export type MenuHeader = {
   type: 'menu';
@@ -127,7 +131,7 @@ export type BaseTableAvatarCellProps<BodyType extends IdItem> =
 
 export type BaseTableDataCellProps<BodyType extends IdItem> = Omit<
   BaseTableNoneCellProps<BodyType>,
-  'onClick' | 'header'
+  'onClick'
 >;
 
 export type CategorizedData = {
