@@ -11,11 +11,17 @@
     "admin": "admin"
   },
   "table": {
+    "admin": "Administrator",
+    "user": "User",
+    "name": "Username",
+    "group": "Groupe",
+    "videoDuration": "Time",
     "accessTime": "Access Time",
     "hours": "Hours",
     "today": "Today",
     "usedTime": "Used Time",
     "leftTime": "Remaining Time",
+    "recordDate": "Record date",
     "extendTime": "Extend Time",
     "userName": "Username",
     "email": "Email",

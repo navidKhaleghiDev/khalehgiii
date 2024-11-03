@@ -12,9 +12,15 @@
     "admin": "ادمین"
   },
   "table": {
+    "admin": "ادمین",
+    "user": "کاربر",
+    "name": "نام",
+    "group": "گروه",
+    "videoDuration": "زمان ویدیو",
     "accessTime": "زمان دسترسی",
     "hours": "ساعت",
     "today": "امروز",
+    "recordDate": "تاریخ ضبط",
     "usedTime": "زمان استفاده شده",
     "leftTime": "زمان باقی مانده",
     "extendTime": "زمان تمدید",

@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react';
-import { OnlineAssistanceModel } from '@src/services/users/types';
 import useSWR from 'swr';
+import { debounce } from 'lodash';
+import { OnlineAssistanceModel } from '@src/services/users/types';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { debounce } from 'lodash';
 import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { Modal } from '@ui/molecules/Modal';
@@ -107,6 +107,8 @@ export function KnowledgeManagementList() {
     handleSearchInput: handleFilterChange,
   };
 
+  console.log(searchBarProps);
+
   return (
     <>
       <FilterTableList
@@ -116,17 +118,6 @@ export function KnowledgeManagementList() {
         domainFilter
       />
       <BaseTable
-        loading={isLoading}
-        bodyList={listDaas}
-        headers={checkPermissionHeaderItem(
-          userPermissions,
-          KnowledgeManagementHeaderItem
-        )}
-        onClick={handleOnClickRow}
-        pagination={paginationProps}
-        searchBar={searchBarProps}
-      />
-      {/* <BaseTable
         body={listDaas}
         header={checkPermissionHeaderItem(
           userPermissions,
@@ -135,7 +126,7 @@ export function KnowledgeManagementList() {
         loading={isLoading}
         pagination={paginationProps}
         onClick={handleOnClickRow}
-      /> */}
+      />
       <Modal
         open={openModal}
         setOpen={setOpenModal}
