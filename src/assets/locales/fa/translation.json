@@ -356,7 +356,9 @@
     "daasProvider": "Daas provider baseURL",
     "clientIDP": "clinet id",
     "secretP": "secret",
-    "realmP": "realm"
+    "realmP": "realm",
+    "sso":"SSO",
+    "manager":"Manager"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

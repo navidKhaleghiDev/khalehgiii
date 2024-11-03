@@ -23,17 +23,17 @@ import {
 
 import { ApplicationSettingProp } from '../type';
 
-function TitleSection({ label }: { label: string }) {
-  return (
-    <Typography
-      color="black"
-      variant="body4B"
-      className="w-full col-span-12 dark:text-white"
-    >
-      {label}
-    </Typography>
-  );
-}
+// function TitleSection({ label }: { label: string }) {
+//   return (
+//     <Typography
+//       color="black"
+//       variant="body2B"
+//       className="w-full col-span-12 dark:text-white"
+//     >
+//       {label}
+//     </Typography>
+//   );
+// }
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
@@ -113,7 +113,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   ) : (
     <div>
       <div className="mb-[3.75rem]">
-        <TitleSection label="Application" />
+        <Typography
+          color="black"
+          variant="body2B"
+          className="w-full col-span-12 dark:text-white"
+        >
+          {t('setting.application')}
+        </Typography>
       </div>
       <form
         className="w-full h-full flex flex-col justify-between"
@@ -121,7 +127,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
       >
         {SettingsKeycloakP ? (
           <>
-            <TitleSection label="SSO" />
+            <Typography
+              color="black"
+              variant="body4B"
+              className="w-full col-span-12 dark:text-white"
+            >
+              {t('setting.sso')}
+            </Typography>
             <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
               <div className={inputStyles}>
                 <BaseInputController
@@ -129,7 +141,6 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   name="keycloak_base_url"
                   rules={{
                     required: inputRegexPattern.required,
-                    pattern: regexPattern.urlLink,
                   }}
                   control={control}
                   label={t('setting.ssoBaseURL')}
@@ -202,7 +213,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         ) : null}
         <Divider />
 
-        <TitleSection label="Log Server" />
+        <Typography
+          color="black"
+          variant="body4B"
+          className="w-full col-span-12 dark:text-white"
+        >
+          {t('setting.logServer')}
+        </Typography>
 
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
           <div className={inputStyles}>
@@ -238,7 +255,13 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         </div>
         <Divider />
 
-        <TitleSection label="Manager" />
+        <Typography
+          color="black"
+          variant="body4B"
+          className="w-full col-span-12 dark:text-white"
+        >
+          {t('setting.manager')}
+        </Typography>
 
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
           <div className={inputStyles}>
