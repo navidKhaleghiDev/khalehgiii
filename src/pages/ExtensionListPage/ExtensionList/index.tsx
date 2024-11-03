@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
@@ -6,55 +6,46 @@ import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@redesignUi/molecules/Modal';
-// import { BaseTable } from '@ui/atoms/BaseTable';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { extensionListHeaderItem } from '@src/pages/DashboardExtensionList/ExtensionList/constants/extensionListHeaderItem';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { EPermissionExtensions } from '@src/types/permissions';
-// import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
-import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
-import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { BaseButton, Typography } from '@redesignUi/atoms';
-import PhPlus from '@iconify-icons/ph/plus-bold';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
-import {
-  checkPermission,
-  useUserPermission,
-} from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { ModalInfo } from '@redesignUi/molecules/ModalInfo';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
-// import { myMockito } from './constants/mockData';
-import { CreateMimeTypeModal } from './CreateMimeTypeModal';
+import { CreateMimeTypeModal } from '../CreateMimeTypeModal';
+import { extensionListHeaderItem } from '../constants/extensionListHeaderItem';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function ExtensionList() {
-  const { t } = useTranslation();
-  const userPermissions = useUserPermission();
-
-  const viewTablePermission = checkPermission(
-    userPermissions,
-    EPermissionExtensions.VIEW
-  );
-  // const addPermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionExtensions.ADD
-  // );
-
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
   const [deleteModal, setDeleteModal] = useState(false);
-  const dimentions = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+
+  const { t } = useTranslation();
+  const userPermissions = useUserPermission();
+
+  // check o tic about permissions
+  // const viewTablePermission = checkPermission(
+  //   userPermissions,
+  //   EPermissionExtensions.VIEW
+  // );
+  // const addPermission = checkPermission(
+  //   userPermissions,
+  //   EPermissionExtensions.ADD
+  // );
 
   const endpoint = createAPIEndpoint({
     endPoint: E_ANALYZE_MIME_TYPE,
@@ -62,22 +53,18 @@ export function ExtensionList() {
     currentPage,
     filterQuery,
   });
-
   const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
   );
 
-  if (!viewTablePermission) return <NoAccessCard />;
-
-  const handleFilterChange = (value: string) => {
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+  const handelSearchQuery = useCallback((value: string) => {
     setCurrentPage(PAGE);
     setFilterQuery(value);
-    console.log(value);
-  };
-  const listWhiteList = data?.data?.results ?? [];
-  const countPage = data?.data?.count || 0;
-
+  }, []);
   const handleOnDeleteFileType = async () => {
     if (!activeAdmin) return;
     setLoadingButtonModal(true);
@@ -96,9 +83,8 @@ export function ExtensionList() {
       });
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  const listWhiteList = data?.data?.results ?? [];
+  const countPage = data?.data?.count || 0;
 
   const handleCloseUpdateModal = (isMutate?: boolean) => {
     if (isMutate) {
@@ -128,35 +114,18 @@ export function ExtensionList() {
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
     paginationLabel: t('global.format'),
-    allItems: 20,
-    itemsPer: PAGE_SIZE,
+    allItems: countPage,
+    itemsPer: listWhiteList.length,
   };
-
   return (
-    <div className={`w-full ${isLoading ? 'loading' : ''}`}>
-      <Typography
-        variant="body2B"
-        color="neutralDark"
-        className="mb-5 md:mb-[6.25rem]"
-      >
-        {t('systemManagement.formatList')}
-      </Typography>
-      <div className="flex items-center justify-between mb-[1.875rem]">
-        <div className=" w-[160px] sm:w-[350px]">
-          <SearchInput
-            id="searchFormat"
-            name="searchFormat"
-            fullWidth
-            placeholder={t('systemManagement.search')}
-            onChange={handleFilterChange}
-            value={filterQuery}
-            className="top-2.5"
-          />
-        </div>
-        <BaseButton
-          label={t('systemManagement.newFormat')}
-          onClick={() => setOpenUpdateModal(true)}
-          startIcon={PhPlus}
+    <div className={`${isLoading ? 'loading' : ''}`}>
+      <div className="mb-[1.875rem] px">
+        <FilterTableList
+          handelSearchQuery={handelSearchQuery}
+          searchPlaceholder={t('systemManagement.search')}
+          searchQuery={filterQuery}
+          buttonLabel={t('systemManagement.newFormat')}
+          onClickButton={() => setOpenUpdateModal(true)}
         />
       </div>
       <BaseTable
@@ -168,7 +137,7 @@ export function ExtensionList() {
         loading={isLoading}
         pagination={paginationProps}
         onClick={handleOnClickActions}
-        isMobile={dimentions.width <= 765}
+        isMobile={width <= 765}
       />
       <Modal
         open={deleteModal}

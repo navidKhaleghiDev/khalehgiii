@@ -1,12 +1,16 @@
 import PhTrashSimple from '@iconify-icons/ph/trash-simple';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { EPermissionExtensions } from '@src/types/permissions';
+import { FileICon } from '../Components/FIleIcon';
 
 export const extensionListHeaderItem: HeaderTable[] = [
   {
     label: 'table.fileExtension',
     id: 'extension_list',
-    type: 'none',
+    type: 'component',
+    component: (props: any) => (
+      <FileICon fileType={props.row?.extension_list} />
+    ),
     class: 'px-3 w-3/12 lg:w-2/12',
   },
   {
