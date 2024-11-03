@@ -74,7 +74,7 @@
     "httpsPort": "HTTPS port",
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
-    "lastUptime": "last uptime",
+    "lastUptime": "Last uptime",
     "lastLoginIp": "Last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
@@ -116,7 +116,9 @@
     "custom": "Custom",
     "block": "Block",
     "assistance": "Assistance",
-    "deleteUser": "Delete User"
+    "deleteUser": "Delete User",
+    "allowed": "Allowed",
+    "disallow": "Disallow"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -292,13 +294,20 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
-    "userInfo": "user Info",
+    "userInfo": "User Info",
+    "adminInfo": "Admin Info",
     "userType": "User type",
     "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
     "admin": "Admin",
     "metaAdmin": "Administrator",
     "choseDomain": "Domain",
     "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+  },
+  "userList": {
+    "onlineUsers": "Online Users",
+    "blockedUsers": "Blocked Users",
+    "searchUsers": "Search Users",
+    "usersList": "User List"
   },
   "license": {
     "licenseId": "license Id",

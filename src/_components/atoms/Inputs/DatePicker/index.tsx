@@ -26,6 +26,7 @@ import { MultiDatePickerProps } from './types';
  * @param {sm | md} [props.size='md'] - The size of the button ('sm', 'md', 'lg').
  * @param {boolean} [props.disabled=false] - Whether the date picker is disabled.
  * @param {string} [props.format='YYYY/MM/DD'] - Date format string.
+ * @param {string} [props.calenderPosition=bottom-right] - Specifiers the calender position
  * @param {TimeDuration} [props.timeDuration] - Object specifying time duration modes like `weekly` or `monthly` selection.
  * @param {Value[]} [props.initialValue] - The initial value for the date picker (either a single date or a range).
  * @param {function} props.onChange - Callback function triggered when the date changes.
@@ -42,6 +43,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
     size = 'md',
     minDate,
     timeDuration,
+    calendarPosition = 'bottom-right',
     value: initialValue,
     disabled,
     format = 'YYYY/MM/DD',
@@ -112,7 +114,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
         calendar={farsi ? persian : gregorian}
         range
         locale={farsi ? persian_fa : gregorian_en}
-        calendarPosition="bottom-right"
+        calendarPosition={calendarPosition}
         containerClassName={`${className ?? ''}`}
         minDate={minDate}
         maxDate={maxDate}
