@@ -1,24 +1,24 @@
-import { useCallback, useState } from 'react';
 import useSWR from 'swr';
+import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+
+import { NoResult } from '@ui/molecules/NoResult';
 import { OnlineAssistanceModel } from '@src/services/users/types';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { Modal } from '@ui/molecules/Modal';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
-import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
-import { IconButton } from '@ui/atoms/BaseButton';
-import { toast } from 'react-toastify';
-import { NoResult } from '@ui/molecules/NoResult';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { useTranslation } from 'react-i18next';
 import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { Modal } from '@redesignUi/molecules/Modal';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -26,6 +26,9 @@ const PAGE = 1;
 export function KnowledgeManagementList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
+  // const [filterGroupe, setFilterGroupe] = useState<
+  //   OptionSelect | OptionSelect[] | null
+  // >();
   const [openModal, setOpenModal] = useState(false);
   const [videoFile, setVideoFile] = useState<{
     loading?: boolean;
@@ -85,13 +88,22 @@ export function KnowledgeManagementList() {
     itemsPer: listDaas.length,
     onPageChange: (page: number) => setCurrentPage(page),
   };
+  console.log(listDaas);
+
+  // const filterListDass = listDaas
+  //   ? listDaas.filter((item) =>
+  //       item.group_name?.some((itemMember) =>
+  //         Object.keys(itemMember).includes(filterList as string)
+  //       )
+  //     )
+  //   : listDaas;
 
   return (
     <>
       <FilterTableList
         handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
-        handelGroupeFilter={(value) => console.log(value)}
+        handelGroupeFilter={(option) => console.log(option)}
         domainFilter
         searchPlaceholder={t('fileScan.adminSearch')}
       />
@@ -109,15 +121,10 @@ export function KnowledgeManagementList() {
       <Modal
         open={openModal}
         setOpen={setOpenModal}
+        type="content"
         content={
           <LoadingWrapper isLoading={videoFile?.loading}>
             <div className="w-full">
-              <IconButton
-                icon="ph:x"
-                className="flex self-end"
-                size="xl"
-                onClick={() => setOpenModal(false)}
-              />
               {videoFile?.file ? (
                 <video width="750" height="500" controls>
                   <track kind="captions" />
@@ -130,7 +137,6 @@ export function KnowledgeManagementList() {
             </div>
           </LoadingWrapper>
         }
-        type="none"
       />
     </>
   );
