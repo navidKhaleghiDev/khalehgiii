@@ -264,7 +264,6 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         <div className="flex self-end mt-8 lg:mt-[10rem] w-40 sm:w-[11.875rem]">
           <BaseButton
             label={t('dashboard.saveChanges')}
-            disabled={!formState.isDirty}
             size="lg"
             submit
             disabled={!formState.isDirty}

@@ -24,9 +24,6 @@ export function DaasSetting() {
   );
   const userPermissions = useUserPermission();
 
-  const myvalue = daasConfig?.data?.max_transmission_download_size;
-  console.log(myvalue);
-
   const { control, handleSubmit, getValues, reset, formState } =
     useForm<DaasSettingProp>({
       mode: 'onChange',
@@ -41,11 +38,6 @@ export function DaasSetting() {
         time_limit_duration: daasConfig?.data?.time_limit_duration,
       },
     });
-
-  // useEffect(() => {
-  //   reset(daasConfig?.data);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [daasConfig]);
 
   useEffect(() => {
     if (daasConfig?.data) {

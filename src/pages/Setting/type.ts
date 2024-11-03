@@ -1,6 +1,7 @@
+import { Control } from 'react-hook-form';
+
 import { ETimeLimitDuration } from '@src/services/users/types';
 import { PermissionsCodeName } from '@src/types/permissions';
-import { Control } from 'react-hook-form';
 
 export interface ApplicationSettingProp {
   id?: number | null;

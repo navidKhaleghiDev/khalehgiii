@@ -31,7 +31,6 @@ import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
-import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 
 export const adminRoutes = [
   {

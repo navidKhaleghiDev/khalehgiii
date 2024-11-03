@@ -342,7 +342,7 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS",
+    "daas": "DaaS",
     "ssoBaseURL": "SSO base URL",
     "ssoClientID": "SSO client ID",
     "ssoSecret": "SSO Secret",

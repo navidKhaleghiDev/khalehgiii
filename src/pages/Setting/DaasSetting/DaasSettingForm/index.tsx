@@ -5,7 +5,6 @@ import { Divider } from '@ui/atoms/Divider';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas } from '@src/types/permissions';
 import { Card, Typography } from '@redesignUi/atoms';
-import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
@@ -32,8 +31,14 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
   return (
     <div className="grid col-span-6">
-      <div className="mb-[5.87rem]">
-        <TitleSection label="Daas" />
+      <div className="mb-[6.25rem]">
+        <Typography
+          color="black"
+          variant="body2B"
+          className="w-full col-span-12 dark:text-white"
+        >
+          {t('setting.daas')}
+        </Typography>
       </div>
       <div className="w-full h-full flex flex-col">
         <Typography className="mb-1" color="black" variant="body4B">
