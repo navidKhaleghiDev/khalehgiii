@@ -5,8 +5,6 @@ import { useMemo } from 'react';
 import pluse from '@iconify-icons/ph/plus-bold';
 import { BaseButton, Dropdown } from '@redesignUi/atoms';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
-import PhFunnelSimple from '@iconify-icons/ph/funnel-simple';
-import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
 import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
 import { TGroup } from '@src/services/users/types';
@@ -15,18 +13,16 @@ import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 
 import { FilterReportsProps } from './types';
-import { domainFilterOptions, domainsMock } from './constants';
+import { domainsMock } from './constants';
 
 export default function FilterTableList(props: FilterReportsProps) {
   const {
     searchQuery,
     searchPlaceholder,
     domainFilter,
-    sortFilter,
     buttonLabel,
     handelSearchQuery,
     handelGroupeFilter,
-    handelListSort,
     onClickButton,
   } = props;
 
@@ -49,11 +45,13 @@ export default function FilterTableList(props: FilterReportsProps) {
   );
 
   return (
-    <div className="flex items-center justify-center sm:justify-start flex-wrap gap-y-2.5 gap-x-[1.875rem]">
+    <div className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.875rem]">
       <div
-        className={`${sortFilter && buttonLabel ? 'w-40' : 'w-full'} ${
-          sortFilter ? 'sm:w-40' : 'sm:w-[15.9rem]'
-        } md:w-[15.9rem] order-3 sm:order-first`}
+        className={` ${
+          buttonLabel || handelGroupeFilter
+            ? 'max-w-[380px] '
+            : 'w-[160px] sm:w-[360px]'
+        } order-last sm:order-none`}
       >
         <SearchInput
           id="adminSearch"
@@ -64,7 +62,9 @@ export default function FilterTableList(props: FilterReportsProps) {
           hiddenError
           fullWidth
           dir={dir === 'rtl' ? 'rtl' : 'ltr'}
-          className="top-[0.625rem]"
+          className={`top-[0.625rem] ${
+            buttonLabel || handelGroupeFilter ? 'w-[350px]' : 'w-[160px]'
+          } sm:w-full`}
         />
       </div>
       {/* This item does not work does not have service */}
@@ -89,19 +89,8 @@ export default function FilterTableList(props: FilterReportsProps) {
           size="sm"
         />
       ) : null}
-
-      {sortFilter ? (
-        <div className="order-last sm:order-none">
-          <BaseDropdownIcon
-            icon={PhFunnelSimple}
-            options={domainFilterOptions}
-            containerClassName="text-sm"
-            onSelect={handelListSort}
-          />
-        </div>
-      ) : null}
       {buttonLabel ? (
-        <div className={dir === 'rtl' ? 'mr-auto' : 'ml-auto'}>
+        <div className={`${dir === 'rtl' ? 'mr-auto' : 'ml-auto'}`}>
           <BaseButton
             label={buttonLabel}
             onClick={onClickButton}
