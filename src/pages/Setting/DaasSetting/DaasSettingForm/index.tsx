@@ -14,6 +14,7 @@ import PhTimer from '@iconify-icons/ph/timer';
 import { useLanguage } from '@context/settings/languageContext';
 
 import { PropsType } from '../../type';
+import { TitleSection } from '../../component/TitleSection';
 
 export function DaasSettingForm({ control, userPermissions }: PropsType) {
   const { t } = useTranslation();
@@ -41,9 +42,9 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
         </Typography>
       </div>
       <div className="w-full h-full flex flex-col">
-        <Typography className="mb-1" color="black" variant="body4B">
-          {t('table.downloadAndUploadPrivilege')}
-        </Typography>
+        <div className="mb-5 mt-7">
+          <TitleSection label={t('table.downloadAndUploadPrivilege')} />
+        </div>
 
         <div className="w-full grid mt-5">
           <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem] mb-7">
@@ -63,10 +64,10 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
         </div>
 
         <Divider />
+        <div className="mb-5 mt-7">
+          <TitleSection label={t('table.timeLimitDuration')} />
+        </div>
 
-        <Typography className="mb-5 mt-7" color="black" variant="body4B">
-          {t('table.timeLimitDuration')}
-        </Typography>
         <div className="w-full mb-7">
           <div className="gap-5 grid-flow-row-dense grid grid-cols-12">
             <Card className={cardStyles} color="white">
@@ -118,10 +119,10 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
           </div>
         </div>
         <Divider />
+        <div className="mb-1 mt-7">
+          <TitleSection label={t('table.accessSetting')} />
+        </div>
 
-        <Typography className="mb-1 mt-7" color="black" variant="body4B">
-          {t('table.accessSetting')}
-        </Typography>
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
           <div className={inputStyle}>
             <BaseInputNumberController
