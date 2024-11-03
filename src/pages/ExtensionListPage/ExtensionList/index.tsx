@@ -17,7 +17,7 @@ import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import { ModalInfo } from '@redesignUi/molecules/ModalInfo';
 import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { extensionListHeaderItem } from '../constants/extensionListHeaderItem';
 import { UploadFileModal } from '../UploadFileModal';
