@@ -8,21 +8,23 @@ import {
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import Trash from '@iconify-icons/ph/trash-simple';
 import NotePencil from '@iconify-icons/ph/pencil-simple';
+import { IconFile } from '@src/pages/setting/DlpSetting/component/IconType';
 
 export const dlpConfigHeaderItem: HeaderTable[] = [
   {
     label: 'table.fileType',
     id: 'file_type',
-    type: 'none',
-    class: 'px-3 w-3/12',
+    component: (props: any) => <IconFile fileType={props.row.file_type} />,
+    type: 'component',
+    class: 'px-3 w-4/12 md:w-2/12',
   },
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
-    type: 'component',
+    type: 'date',
     isMobileCollapsed: true,
     function: dateAndNumber,
-    class: 'px-3 md:w-2/12 w-1/12',
+    class: 'px-3 md:w-2/12 xl:w-1/12',
   },
 
   {
@@ -40,7 +42,7 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
     type: 'component',
     isMobileCollapsed: true,
     function: booleanIcon,
-    class: 'px-3 md:w-2/12 w-1/12',
+    class: 'px-3 md:w-2/12 xl:w-1/12',
   },
 
   // {
@@ -55,7 +57,6 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
   {
     id: 'action',
     type: 'menu',
-    isMobileCollapsed: true,
     tooltip: 'table.moreDetail',
     menu: [
       {
