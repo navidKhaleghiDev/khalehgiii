@@ -314,7 +314,8 @@
   "userList": {
     "onlineUsers": "کاربران آنلاین",
     "blockedUsers": "کاربران مسدود شده",
-    "searchUsers": "جستجوی کاربر"
+    "searchUsers": "جستجوی کاربر",
+    "usersList": "لیست کاربران"
   },
 
   "license": {

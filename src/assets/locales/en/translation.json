@@ -312,7 +312,8 @@
   "userList": {
     "onlineUsers": "Online Users",
     "blockedUsers": "Blocked Users",
-    "searchUsers": "Search Users"
+    "searchUsers": "Search Users",
+    "usersList": "User List"
   },
   "license": {
     "licenseId": "license Id",
