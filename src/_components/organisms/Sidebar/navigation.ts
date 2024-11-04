@@ -95,7 +95,7 @@ export const navigationSideBar: NavigationProps[] = [
     items: [
       {
         id: '1',
-        label: t('setting.dass'),
+        label: t('setting.daas'),
         path: ROUTES_PATH.daas,
       },
       {
