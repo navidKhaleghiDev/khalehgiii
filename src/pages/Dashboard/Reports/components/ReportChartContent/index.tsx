@@ -33,12 +33,12 @@ export function ReportChartContent({
       </LoadingWrapper>
     </Card>
   ) : (
-    <Card className="w-full flex items-center justify-center bg-transparent dark:bg-gray-700">
+    <Card className="w-full flex items-center justify-center !bg-transparent dark:bg-gray-700">
       {error ? (
         <Typography
-          className="text-right flex flex-col justify-start items-start gap-3 w-full sm:text-2xl text-lg"
+          className="text-right flex flex-col justify-start items-start gap-3 w-full lg:text-xl sm:text-lg text-sm"
           type="div"
-          color="neutral"
+          color="red"
         >
           {message}
           <div className="self-center">
@@ -47,7 +47,7 @@ export function ReportChartContent({
         </Typography>
       ) : (
         <Typography
-          className="text-center flex flex-col justify-center items-center gap-3 sm:text-2xl text-lg"
+          className="text-center flex flex-col justify-center items-center gap-3 sm:text-2xl text-lg bg-transparent"
           type="div"
           color="neutral"
         >
