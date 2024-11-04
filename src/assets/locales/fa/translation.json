@@ -119,7 +119,8 @@
     "assistance": "دستیار",
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
-    "disallow": "غیر مجاز"
+    "disallow": "غیر مجاز",
+    "permanent": "دائم"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

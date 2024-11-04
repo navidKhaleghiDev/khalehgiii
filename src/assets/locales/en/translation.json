@@ -118,7 +118,8 @@
     "assistance": "Assistance",
     "deleteUser": "Delete User",
     "allowed": "Allowed",
-    "disallow": "Disallow"
+    "disallow": "Disallow",
+    "permanent": "Permanent"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
