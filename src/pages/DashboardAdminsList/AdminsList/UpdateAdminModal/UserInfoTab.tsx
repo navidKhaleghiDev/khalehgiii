@@ -22,6 +22,8 @@ export function UserInfoTab({
   isMetaAdmin,
 }: UserInfoTabProps) {
   const { t } = useTranslation();
+  const iconName = !admin?.id ? User : PencilSimple;
+  const iconEmail = !admin?.id ? EnvelopeSimple : PencilSimple;
   const radioClass =
     'sm:w-40 sm:p-2.5 flex flex-row-reverse sm:rounded-lg dark:bg-gray-600 sm:shadow';
 
@@ -41,7 +43,8 @@ export function UserInfoTab({
               pattern: regexPattern.englishLetter,
               required: regexPattern.required,
             }}
-            startIcon={!admin?.id ? User : PencilSimple}
+            endIcon={dir === 'rtl' ? iconName : undefined}
+            startIcon={dir === 'ltr' ? iconName : undefined}
           />
           <BaseInputController
             dir={dir}
@@ -55,7 +58,8 @@ export function UserInfoTab({
               pattern: regexPattern.englishLetter,
               required: regexPattern.required,
             }}
-            startIcon={!admin?.id ? User : PencilSimple}
+            endIcon={dir === 'rtl' ? iconName : undefined}
+            startIcon={dir === 'ltr' ? iconName : undefined}
           />
         </div>
         <div className="sm:flex-row flex flex-col sm:justify-between items-start w-full gap-5">
@@ -71,7 +75,8 @@ export function UserInfoTab({
               pattern: regexPattern.englishLetter,
               required: regexPattern.required,
             }}
-            startIcon={!admin?.id ? User : PencilSimple}
+            endIcon={dir === 'rtl' ? iconName : undefined}
+            startIcon={dir === 'ltr' ? iconName : undefined}
           />
           <BaseInputController
             dir={dir}
@@ -85,7 +90,8 @@ export function UserInfoTab({
               pattern: regexPattern.email,
               required: regexPattern.required,
             }}
-            startIcon={!admin?.id ? EnvelopeSimple : PencilSimple}
+            endIcon={dir === 'rtl' ? iconEmail : undefined}
+            startIcon={dir === 'ltr' ? iconEmail : undefined}
           />
         </div>
         {!admin?.id ? (
