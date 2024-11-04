@@ -33,7 +33,10 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
         <BaseIcon icon={icon} size="md" />
       </div>
       <div className="w-full">
-        <Typography color="neutralMiddle" className="lg:text-lg text-sm">
+        <Typography
+          color="neutralMiddle"
+          className="lg:text-lg text-sm whitespace-nowrap"
+        >
           {title}
         </Typography>
 

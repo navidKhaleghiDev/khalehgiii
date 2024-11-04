@@ -84,7 +84,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         timeLimitDuration={props.row.daas_configs.time_limit_duration}
       />
     ),
-    class: 'lg:w-1/12 w-2/12',
+    class: 'lg:w-1/12 w-3/12',
     permission: EPermissionDaas.CHANGE,
     isMobileCollapsed: true,
   },
@@ -137,7 +137,8 @@ export const desktopListHeaderItem: HeaderTable[] = [
         }
       />
     ),
-    class: 'w-1/12 mr-auto lg:mr-0',
+    class:
+      'w-1/12 mr-auto lg:mr-0 ltr:translate-x-6 rtl:-translate-x-6 sm:ltr:translate-x-0 sm:rtl:translate-x-0',
   },
 
   {
