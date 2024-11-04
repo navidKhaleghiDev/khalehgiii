@@ -5,10 +5,10 @@ export const baseSwitchStyles = cva(
   {
     variants: {
       size: {
-        sm: 'w-10 peer-checked:after:translate-x-4 peer-checked:after:rtl:-translate-x-4',
-        md: 'w-12 peer-checked:after:translate-x-6 peer-checked:after:rtl:-translate-x-6',
+        sm: 'w-10 peer-checked:after:translate-x-4',
+        md: 'w-12 peer-checked:after:translate-x-6',
         responsive:
-          'w-10 peer-checked:after:translate-x-4 peer-checked:after:rtl:-translate-x-4 sm:w-12 sm:peer-checked:after:translate-x-6 sm:peer-checked:after:rtl:-translate-x-6',
+          'w-10 peer-checked:after:translate-x-4 sm:w-12 sm:peer-checked:after:translate-x-6',
       },
     },
     defaultVariants: {
