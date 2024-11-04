@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import useSWR from 'swr';
 
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
