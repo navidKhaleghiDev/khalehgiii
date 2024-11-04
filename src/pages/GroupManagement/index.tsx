@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-// import { Modal } from '@ui/molecules/Modal';
 import useSWR from 'swr';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
@@ -17,7 +16,6 @@ import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 import UsersThree from '@iconify-icons/ph/users-three';
 import userIcon from '@iconify-icons/ph/user';
 import WifiHigh from '@iconify-icons/ph/wifi-high';
-// import { GroupModal } from '../Dashboard/GroupManagement/GroupModal';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -25,8 +23,6 @@ const PAGE = 1;
 export function GroupManagement() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [openModal, setOpenModal] = useState(false);
-  const [groupSelected, setGroupSelected] = useState<TGroup | undefined>();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const endpoint = createAPIEndpoint({
@@ -43,19 +39,6 @@ export function GroupManagement() {
 
   const groupData = data?.data ?? [];
   const countPage = 0;
-
-  const handleOnClickEditCard = (group: TGroup) => {
-    setOpenModal(true);
-    setGroupSelected(group);
-  };
-
-  // const handleToggleModal = () => {
-  //   setOpenModal(!openModal);
-  // };
-  // const handleCloseModal = () => {
-  //   setOpenModal(false);
-  //   setGroupSelected(undefined);
-  // };
 
   return isLoading ? (
     <LoadingSpinner />
@@ -81,7 +64,6 @@ export function GroupManagement() {
         buttonLabel={t('groupManagement.newGroup')}
         domainFilter
         searchQuery={filterQuery}
-        sortFilter
         handelSearchQuery={(v) => setFilterQuery(v)}
       />
       <GroupCard
@@ -93,20 +75,6 @@ export function GroupManagement() {
         totalPages={Math.ceil(countPage / PAGE_SIZE)}
         onPageChange={(page) => setCurrentPage(page)}
       />
-      {/* <Modal
-        open={openModal}
-        type="none"
-        setOpen={handleToggleModal}
-        content={
-          <GroupModal
-            setGroupSelected={setGroupSelected}
-            mutate={mutate}
-            handleClose={handleCloseModal}
-            group={groupSelected}
-            loadingGroup={isLoading}
-          />
-        }
-      /> */}
     </div>
   );
 }

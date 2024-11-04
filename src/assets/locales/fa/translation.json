@@ -283,7 +283,9 @@
     "next": "مرحله بعد",
     "newUser": "کاربر جدید",
     "newGroup": "گروه جدید",
-    "onlineUsers": "کاربران آنلاین"
+    "onlineUsers": "کاربران آنلاین",
+    "groupName": "نام گروه ",
+    "searchGroup": "جستجوی گروه"
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",

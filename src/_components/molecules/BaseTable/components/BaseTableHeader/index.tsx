@@ -37,7 +37,7 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
         return (
           <tr className={className} key={head.id as string}>
             <th className="flex justify-start">
-              <Typography type="p" className="font-normal">
+              <Typography type="p" className="font-normal ">
                 {t(head.label as string)}
               </Typography>
             </th>

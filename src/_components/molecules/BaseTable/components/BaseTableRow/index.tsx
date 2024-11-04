@@ -60,12 +60,13 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
         })}
       >
         {header.map((headerList) => {
+          menu = headerList.type === 'menu' || headerList.type === 'drop';
+
           const className =
             !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
-          const menuStyle = headerList.type === 'menu' ? 'justify-end' : '';
-          menu = headerList.type === 'menu';
+          const menuStyle = menu ? 'justify-end' : '';
 
           return (
             <td

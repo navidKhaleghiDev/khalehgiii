@@ -108,7 +108,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
           dir="auto"
           disabled={disabled}
           name={name}
-          value={value}
+          defaultValue={value}
           autoComplete={autoComplete}
           onChange={onChange}
           placeholder={placeholder}

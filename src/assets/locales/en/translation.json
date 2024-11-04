@@ -282,7 +282,9 @@
     "next": "Next",
     "newUser": "new user",
     "newGroup": "New Group",
-    "onlineUsers": "Online Users"
+    "onlineUsers": "Online Users",
+    "groupName": " Group Name",
+    "searchGroup": "Search Group"
   },
   "onlineAssistance": {
     "loginType": "Login type",
