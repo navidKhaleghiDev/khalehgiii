@@ -113,7 +113,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     <LoadingSpinner />
   ) : (
     <div>
-      <div className=" my-[2.87rem]">
+      <div className=" mb-[2.87rem] mt-5">
         <Typography
           color="black"
           variant="body2B"
@@ -262,7 +262,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
             />
           </div>
         </div>
-        <div className="flex self-start mt-8 lg:mt-[11.3rem] w-40 sm:w-[11.875rem]">
+        <div className="flex self-start mt-8 lg:mt-[13rem] w-40 sm:w-[11.875rem]">
           <BaseButton
             label={t('dashboard.saveChanges')}
             disabled={!formState.isDirty}
