@@ -57,7 +57,7 @@
     "fileType": "File Type",
     "allowedForUpload": "Allowed For Upload",
     "allowedForDownload": "Allowed For Download",
-    "permissions":"Permissions",
+    "permissions": "Permissions",
     "thisWeek": " This Week",
     "thisMonth": "This Month",
     "accessSetting": "Access Setting",
@@ -110,9 +110,9 @@
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
-    "addNewFile":"New File",
-    "editFile":"Edit File",
-    "chooseTypeFileAndLicenses":"Choose type file and licenses",
+    "addNewFile": "New File",
+    "editFile": "Edit File",
+    "chooseTypeFileAndLicenses": "Choose type file and licenses",
     "lastLogout": "Last Logout",
     "setting": "Setting",
     "timing": "Timing",
@@ -270,8 +270,7 @@
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
     "all": "Select All",
-    "deleteFile":" Delete File"
-
+    "deleteFile": " Delete File"
   },
   "groupManagement": {
     "person": "person",

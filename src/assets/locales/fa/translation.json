@@ -58,7 +58,7 @@
     "fileType": "نوع فایل",
     "allowedForUpload": "مجاز برای آپلود",
     "allowedForDownload": "مجاز برای دانلود",
-    "permissions":"مجوزها",
+    "permissions": "مجوزها",
     "thisWeek": "این هفته",
     "thisMonth": "این ماه",
     "accessSetting": "تنظیمات دسترسی",
@@ -111,9 +111,9 @@
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
     "editAdminInfo": "ویرایش مشخصات",
-    "editFile":"ویرایش فایل",
-    "chooseTypeFileAndLicenses":"انتخاب نوع فایل و مجوزها ",
-    "addNewFile":"فایل جدید",
+    "editFile": "ویرایش فایل",
+    "chooseTypeFileAndLicenses": "انتخاب نوع فایل و مجوزها ",
+    "addNewFile": "فایل جدید",
     "lastLogout": "آخرین خروج",
     "setting": "تنظیمات",
     "timing": "زمانبندی",
@@ -271,7 +271,7 @@
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
     "all": "انتخاب همه",
-    "deleteFile":"حذف فایل"
+    "deleteFile": "حذف فایل"
   },
   "groupManagement": {
     "person": "نفر",
