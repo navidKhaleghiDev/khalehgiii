@@ -8,9 +8,9 @@ import {
   EPermissionSessionRecording,
 } from '@src/types/permissions';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { TextCheck } from '@redesignUi/molecules/BaseTable/components/TableComponent/TextCheck';
-import { ActionLockCell } from '@redesignUi/molecules/BaseTable/components/TableComponent/ActionLockCell';
-import { ProgressBarHelperCell } from '@redesignUi/molecules/BaseTable/components/CustomCell/ProgressBarHelperCell';
+import { TextCheckHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TextCheckHelperCell';
+import { ActionLockHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ActionLockHelperCell';
+import { ProgressBarHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ProgressBarHelperCell';
 
 import { AccessTime } from '../AccessTime';
 import { AccessTimeSetting } from '../DaAsCard/AccessTimeSetting';
@@ -51,7 +51,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
     id: 'daas_configs',
     type: 'component',
     component: (props: any) => (
-      <TextCheck
+      <TextCheckHelperCell
         id={props.row.daas_configs.is_globally_config}
         firstCondition="table.defaultSetting"
         secondCondition="table.custom"
@@ -65,12 +65,10 @@ export const desktopListHeaderItem: HeaderTable[] = [
     id: 'is_lock',
     type: 'component',
     component: (props: any) => (
-      <ActionLockCell
+      <ActionLockHelperCell
         id={props.row.is_lock}
         row={props.row}
         onClick={props.onClick}
-        firstCondition="table.block"
-        secondCondition="table.active"
       />
     ),
     permission: EPermissionDaas.CHANGE,
@@ -96,7 +94,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
     type: 'component',
     isCollapsed: true,
     component: (props: any) => (
-      <TextCheck
+      <TextCheckHelperCell
         id={props.row.exceeded_usage}
         firstCondition="table.allowed"
         secondCondition="table.disallow"

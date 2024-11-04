@@ -7,7 +7,7 @@ interface TextCheckProp {
   secondCondition?: string;
 }
 
-export function TextCheck({
+export function TextCheckHelperCell({
   id,
   firstCondition,
   secondCondition,
