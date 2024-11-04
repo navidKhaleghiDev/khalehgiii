@@ -14,7 +14,6 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import { ModalInfo } from '@redesignUi/molecules/ModalInfo';
 import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
@@ -158,9 +157,10 @@ export function ExtensionList() {
           color: 'tertiary',
         }}
       />
-      <ModalInfo
+      <Modal
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
+        type="content"
         icon={PhUploadSimple}
         title={t('systemManagement.uploadFile')}
         description={t('systemManagement.uploadFileText')}
