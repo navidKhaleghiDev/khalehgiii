@@ -1,6 +1,9 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react';
-import { IconifyIcon } from '@iconify/react';
 import { VariantProps } from 'class-variance-authority';
+
+import { IconifyIcon } from '@iconify/react';
+import { BaseIconProps } from '@redesignUi/atoms/BaseIcon';
+import { IconType } from '@src/types/global';
 import { BaseButtonStyleProps } from '@redesignUi/atoms/BaseButton';
 
 import { headerStyles } from './styles';
@@ -19,10 +22,12 @@ interface BaseModalProps extends VariantProps<typeof headerStyles> {
   description?: string;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  size: 'sm' | 'md' | 'lg' | 'responsive';
+  size?: 'sm' | 'md' | 'lg' | 'responsive';
   className?: string;
   buttonOne?: ModalButtonType;
   buttonTow?: ModalButtonType;
+  descriptionInfo?: string;
+  icon?: IconType;
 }
 
 interface ModalWithContent extends BaseModalProps {
@@ -40,4 +45,14 @@ export type ModalProps = ModalWithContent | ModalWithoutContent;
 export interface IconHeader {
   icon: IconifyIcon;
   color: string;
+}
+
+export interface ModelInfoProps {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  icon?: BaseIconProps['icon'];
+  classContainer?: string;
+  title?: string;
+  description?: string;
+  content: React.ReactNode;
 }
