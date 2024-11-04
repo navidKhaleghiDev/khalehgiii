@@ -3,22 +3,22 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { NoResult } from '@ui/molecules/NoResult';
-import { OnlineAssistanceModel } from '@src/services/users/types';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { Modal } from '@redesignUi/molecules/Modal';
 import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { NoResult } from '@ui/molecules/NoResult';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
+import { OnlineAssistanceModel } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
 import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
-import { Modal } from '@redesignUi/molecules/Modal';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -26,6 +26,7 @@ const PAGE = 1;
 export function KnowledgeManagementList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
+  // This functionality is handling the groupe locally
   // const [filterGroupe, setFilterGroupe] = useState<
   //   OptionSelect | OptionSelect[] | null
   // >();
@@ -88,8 +89,8 @@ export function KnowledgeManagementList() {
     itemsPer: listDaas.length,
     onPageChange: (page: number) => setCurrentPage(page),
   };
-  console.log(listDaas);
 
+  // This functionality is handling the groupe locally
   // const filterListDass = listDaas
   //   ? listDaas.filter((item) =>
   //       item.group_name?.some((itemMember) =>
@@ -100,13 +101,15 @@ export function KnowledgeManagementList() {
 
   return (
     <>
-      <FilterTableList
-        handelSearchQuery={handelSearchQuery}
-        searchQuery={filterQuery}
-        handelGroupeFilter={(option) => console.log(option)}
-        domainFilter
-        searchPlaceholder={t('fileScan.adminSearch')}
-      />
+      <div className="mb-[1.875rem]">
+        <FilterTableList
+          handelSearchQuery={handelSearchQuery}
+          searchQuery={filterQuery}
+          handelGroupeFilter={(option) => console.log(option)}
+          domainFilter
+          searchPlaceholder={t('fileScan.adminSearch')}
+        />
+      </div>
       <BaseTable
         body={listDaas}
         header={checkPermissionHeaderItem(
