@@ -11,7 +11,7 @@ export const extensionListHeaderItem: HeaderTable[] = [
     component: (props: any) => (
       <FileICon fileType={props.row?.extension_list} />
     ),
-    class: 'px-3 w-3/12 lg:w-2/12',
+    class: 'px-3 w-10/12 md:w-3/12 lg:w-2/12',
   },
   {
     label: 'table.dateOfCreated',
@@ -38,6 +38,6 @@ export const extensionListHeaderItem: HeaderTable[] = [
       },
     ],
     permission: EPermissionExtensions.DELETE,
-    class: 'sm:px-12 w-1/12 mr-auto',
+    class: 'px-10 w-1/12 mr-auto',
   },
 ];

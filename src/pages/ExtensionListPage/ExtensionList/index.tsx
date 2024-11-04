@@ -118,7 +118,7 @@ export function ExtensionList() {
   };
   return (
     <>
-      <div className="mb-[1.875rem] px">
+      <div className="mb-[1.875rem]">
         <FilterTableList
           handelSearchQuery={handelSearchQuery}
           searchPlaceholder={t('systemManagement.search')}
@@ -163,8 +163,9 @@ export function ExtensionList() {
         type="content"
         icon={PhUploadSimple}
         title={t('systemManagement.uploadFile')}
-        description={t('systemManagement.uploadFileText')}
+        descriptionInfo={t('systemManagement.uploadFileText')}
         content={<UploadFileModal handleClose={handleCloseUpdateModal} />}
+        classContainer="w-[21.875rem] md:w-[39.68rem]"
       />
     </>
   );

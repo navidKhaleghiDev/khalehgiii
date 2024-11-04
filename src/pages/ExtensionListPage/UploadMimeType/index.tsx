@@ -49,7 +49,7 @@ export function UploadFileModal({ handleClose }: PropsType) {
   };
 
   return (
-    <div className="pt-5">
+    <div className="pt-5 w-full">
       <form
         className="h-full grid grid-cols-6 gap-4 p-4"
         onSubmit={handleSubmit(handleOnSubmit)}
