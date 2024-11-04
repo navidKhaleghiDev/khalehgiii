@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
 import { ISwrResponse } from '@src/types/services';
@@ -8,7 +9,6 @@ import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { API_UPDATE_DAAS_CONFIG } from '@src/services/config';
 import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { BaseButton } from '@redesignUi/atoms';
 
@@ -24,20 +24,19 @@ export function DaasSetting() {
   );
   const userPermissions = useUserPermission();
 
-  const { control, handleSubmit, getValues, reset, formState } =
-    useForm<DaasSettingProp>({
-      mode: 'onChange',
-      defaultValues: {
-        id: daasConfig?.data?.id,
-        can_upload_file: daasConfig?.data?.can_upload_file,
-        can_download_file: daasConfig?.data?.can_download_file,
-        max_transmission_download_size:
-          daasConfig?.data?.max_transmission_download_size,
-        max_transmission_upload_size:
-          daasConfig?.data?.max_transmission_upload_size,
-        time_limit_duration: daasConfig?.data?.time_limit_duration,
-      },
-    });
+  const { control, handleSubmit, reset, formState } = useForm<DaasSettingProp>({
+    mode: 'onChange',
+    defaultValues: {
+      id: daasConfig?.data?.id,
+      can_upload_file: daasConfig?.data?.can_upload_file,
+      can_download_file: daasConfig?.data?.can_download_file,
+      max_transmission_download_size:
+        daasConfig?.data?.max_transmission_download_size,
+      max_transmission_upload_size:
+        daasConfig?.data?.max_transmission_upload_size,
+      time_limit_duration: daasConfig?.data?.time_limit_duration,
+    },
+  });
 
   useEffect(() => {
     if (daasConfig?.data) {
@@ -45,12 +44,12 @@ export function DaasSetting() {
     }
   }, [daasConfig, reset]);
 
-  const handleOnUpdate = async () => {
-    const updatedDaasSetting = getValues();
-    setLoadingButton(false);
+  const handleOnUpdate = async (data: DaasSettingProp) => {
+    // const updatedDaasSetting = getValues();
+    setLoadingButton(true);
 
-    if (updatedDaasSetting.id) {
-      await API_UPDATE_DAAS_CONFIG(updatedDaasSetting)
+    if (data.id) {
+      await API_UPDATE_DAAS_CONFIG(data)
         .then(() => {
           toast.success(t('global.sucessfulyUpdated'));
         })
@@ -58,7 +57,7 @@ export function DaasSetting() {
           toast.error(err);
         })
         .finally(() => {
-          setLoadingButton(true);
+          setLoadingButton(false);
         });
     }
   };
@@ -74,7 +73,7 @@ export function DaasSetting() {
     >
       <DaasSettingForm control={control} userPermissions={userPermissions} />
 
-      <div className="flex self-end mt-8 lg:mt-[10rem]">
+      <div className="flex self-end mt-8 lg:mb-[1rem]">
         <BaseButton
           label={t('dashboard.saveChanges')}
           loading={loadingButton}

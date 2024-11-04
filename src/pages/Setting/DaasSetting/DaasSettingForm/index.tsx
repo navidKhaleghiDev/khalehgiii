@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next';
 
-import { regexPattern } from '@ui/atoms/Inputs';
-import { Divider } from '@ui/atoms/Divider';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas } from '@src/types/permissions';
 import { Card, Typography } from '@redesignUi/atoms';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
+import { useLanguage } from '@context/settings/languageContext';
+import { Divider } from '@redesignUi/atoms/Divider';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
-import { useLanguage } from '@context/settings/languageContext';
 
 import { PropsType } from '../../type';
 import { TitleSection } from '../../component/TitleSection';
@@ -32,7 +32,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
   return (
     <div className="grid col-span-6">
-      <div className="mb-[6.25rem]">
+      <div className="mb-[2.87rem] mt-5">
         <Typography
           color="black"
           variant="body2B"
@@ -42,7 +42,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
         </Typography>
       </div>
       <div className="w-full h-full flex flex-col">
-        <div className="mb-5 mt-7">
+        <div className="mb-5">
           <TitleSection label={t('table.downloadAndUploadPrivilege')} />
         </div>
 
@@ -70,7 +70,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
         <div className="w-full mb-7">
           <div className="gap-5 grid-flow-row-dense grid grid-cols-12">
-            <Card className={cardStyles} color="white">
+            {/* <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
                 id="temporary"
@@ -78,7 +78,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
                 value="TEMPORARY"
                 label={t('table.temporary')}
               />
-            </Card>
+            </Card> */}
             <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}
@@ -126,24 +126,6 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
           <div className={inputStyle}>
             <BaseInputNumberController
-              id="max_transmission_download_size"
-              name="max_transmission_download_size"
-              control={control}
-              label={t('table.maxDownloadSize')}
-              disabled={!hasChangePermission}
-              placeholder="500"
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              rules={{
-                required: regexPattern.required,
-                pattern: regexPattern.numbers,
-              }}
-              fullWidth
-            />
-          </div>
-          <div className={inputStyle}>
-            <BaseInputNumberController
               id="max_transmission_upload_size"
               name="max_transmission_upload_size"
               control={control}
@@ -155,11 +137,28 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               max={50}
               rules={{
                 required: regexPattern.required,
-                pattern: regexPattern.numbers,
               }}
               fullWidth
             />
           </div>
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id="max_transmission_download_size"
+              name="max_transmission_download_size"
+              control={control}
+              label={t('table.maxDownloadSize')}
+              disabled={!hasChangePermission}
+              placeholder="500"
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
+              rules={{
+                required: regexPattern.required,
+              }}
+              fullWidth
+            />
+          </div>
+
           <div className={inputStyle}>
             <BaseInputNumberController
               id="time_limit_value_in_hour"
@@ -172,7 +171,6 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               dir={direction}
               rules={{
                 required: regexPattern.required,
-                pattern: regexPattern.numbers,
               }}
               fullWidth
             />
