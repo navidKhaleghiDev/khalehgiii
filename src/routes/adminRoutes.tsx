@@ -25,6 +25,7 @@ import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
+import Application from '@src/pages/Setting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -157,7 +158,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.application,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>Application Page</div>
+            <Application />
           </ProtectedRoute>
         ),
       },

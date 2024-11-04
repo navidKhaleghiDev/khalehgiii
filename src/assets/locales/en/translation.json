@@ -138,14 +138,7 @@
     "infectedFile": "infected File",
     "uba": "UBA",
     "extentions": "Extentions List",
-    "days": "Days",
-    "progressChart": "Progress chart",
-    "activeLicenses": "Active licenses",
-    "onlineUsers": "Online users",
-    "netsep": "NetSep",
-    "scans": "Scans",
-    "userBehavior": "User Behavior",
-    "adminLogin": "Admin Login"
+    "days": "Days"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -342,7 +335,21 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "dass": "DaaS",
+    "ssoBaseURL": "SSO base URL",
+    "ssoClientID": "SSO client ID",
+    "ssoSecret": "SSO Secret",
+    "ssoPort": "SSO Port",
+    "ssoRealm": "SSO realm",
+    "logServer": "Log Server",
+    "logServerIP": "Log Server IP",
+    "logServerPort": "Log Server Port",
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm",
+    "sso": "SSO",
+    "manager": "Manager"
   },
 
   "regexPattern": {
@@ -378,7 +385,8 @@
     "shebaNumber": "Use only numbers",
     "cardBankNumber": "Use only numbers",
     "price": "Please use only numbers",
-    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234",
+    "ip": "Please enter the correct IP format"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",
