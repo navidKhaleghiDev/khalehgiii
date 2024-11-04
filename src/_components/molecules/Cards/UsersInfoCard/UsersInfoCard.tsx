@@ -24,7 +24,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
     <Card
       border
       borderColor="neutral"
-      className={`w-full h-20 p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
+      className={`w-full lg:h-20 h-[3.75rem] p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"
@@ -33,7 +33,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
         <BaseIcon icon={icon} size="md" />
       </div>
       <div className="w-full">
-        <Typography color="neutralMiddle" variant="body3">
+        <Typography color="neutralMiddle" className="lg:text-lg text-sm">
           {title}
         </Typography>
         {count && (
