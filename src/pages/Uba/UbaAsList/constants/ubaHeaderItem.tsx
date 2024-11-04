@@ -4,9 +4,8 @@ import {
 } from '@redesignUi/molecules/BaseTable/types';
 import DownloadSimple from '@iconify-icons/ph/download-simple';
 import UploadSimple from '@iconify-icons/ph/upload-simple';
-import { TextBG } from '@redesignUi/molecules/BaseTable/components/CustomCell/TextBG';
-import { TextIcon } from '@redesignUi/molecules/BaseTable/components/CustomCell/TextIcon';
 import { Uba } from '@src/services/analyze/types';
+import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
 
 export const ubaHeaderItem: HeaderTable[] = [
   {
@@ -15,14 +14,14 @@ export const ubaHeaderItem: HeaderTable[] = [
     id: 'username',
     isActive: 'true',
     label: 'table.nameOfTheUser',
-    class: 'px-3 lg:w-3/12 sm:w-4/12',
+    class: 'px-3 xl:w-2/12 lg:w-3/12 sm:w-4/12',
   },
   {
     label: 'table.action',
     id: 'transmission_type',
     type: 'component',
     component: (props: BaseTableComponentCellProps<Uba>) => (
-      <TextIcon
+      <TagHelperCell
         title={
           props.row.transmission_type === 'upload'
             ? 'table.upload'
@@ -37,7 +36,7 @@ export const ubaHeaderItem: HeaderTable[] = [
         color={props.row.transmission_type === 'upload' ? 'purple' : 'blue'}
       />
     ),
-    class: 'px-3 lg:w-1/12 sm:w-[6.25rem]',
+    class: 'px-3 lg:w-2/12 sm:w-[6.25rem]',
     isMobileCollapsed: true,
   },
   {
@@ -66,7 +65,7 @@ export const ubaHeaderItem: HeaderTable[] = [
     id: 'is_ban',
     type: 'component',
     component: (props: BaseTableComponentCellProps<Uba>) => (
-      <TextBG
+      <TagHelperCell
         title={props.row.is_ban ? 'table.block' : 'table.active'}
         translate
         color={props.row.is_ban ? 'yellow' : 'teal'}

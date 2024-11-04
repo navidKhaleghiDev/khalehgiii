@@ -4,24 +4,24 @@ import { useTranslation } from 'react-i18next';
 
 import { BaseIcon, Typography } from '@redesignUi/atoms';
 
-import { TextIconStyle } from './styles';
+import { TagHelperCellStyles } from './styles';
 
-interface TextIconProps extends VariantProps<typeof TextIconStyle> {
+interface TagHelperCellProps extends VariantProps<typeof TagHelperCellStyles> {
   title: string;
-  icon: IconType;
+  icon?: IconType;
   translate?: boolean;
 }
 
-export function TextIcon({
+export function TagHelperCell({
   title,
   icon,
   translate,
   color,
-}: TextIconProps): JSX.Element {
+}: TagHelperCellProps): JSX.Element {
   const { t } = useTranslation();
   return (
-    <div className={TextIconStyle({ color })}>
-      <BaseIcon icon={icon} size="xs" />
+    <div className={TagHelperCellStyles({ color })}>
+      {icon && <BaseIcon icon={icon} size="xs" />}
       <Typography variant="body5">
         {translate ? t(`${title}`) : title}
       </Typography>
