@@ -98,6 +98,7 @@
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
+    "downloadAndUploadPrivilege": "Download and Upload Access",
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
@@ -138,7 +139,15 @@
     "infectedFile": "infected File",
     "uba": "UBA",
     "extentions": "Extentions List",
-    "days": "Days"
+    "days": "Days",
+    "saveChanges": "Save Changes",
+    "progressChart": "Progress chart",
+    "activeLicenses": "Active licenses",
+    "onlineUsers": "Online users",
+    "netsep": "NetSep",
+    "scans": "Scans",
+    "userBehavior": "User Behavior",
+    "adminLogin": "Admin Login"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -335,7 +344,7 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS",
+    "daas": "DaaS",
     "ssoBaseURL": "SSO base URL",
     "ssoClientID": "SSO client ID",
     "ssoSecret": "SSO Secret",

@@ -43,6 +43,7 @@ export function BaseInputNumberController(
     size,
     name,
     rules,
+    icon,
   } = props;
   return (
     <Controller
@@ -70,6 +71,7 @@ export function BaseInputNumberController(
             onChange={(e) => onChange(e)}
             value={value}
             id={id}
+            icon={icon}
           />
         );
       }}

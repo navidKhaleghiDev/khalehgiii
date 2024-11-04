@@ -51,7 +51,7 @@ function LayoutCp() {
     return (
       <div className="flex h-screen bg-gray-50 dark:bg-gray-700 font-kalameh">
         <div className="flex flex-col flex-1 overflow-hidden">
-          <header className="z-50 border-neutral-200 shadow-md bg-gray-50 dark:bg-gray-700">
+          <header className="z-50 border-neutral-200 shadow-lg bg-gray-50 dark:bg-gray-700 px-5">
             <NavbarDashboard />
           </header>
           <div className="flex sm:flex-row h-full overflow-y-auto px-0.5 container mx-auto justify-center mb-5">
