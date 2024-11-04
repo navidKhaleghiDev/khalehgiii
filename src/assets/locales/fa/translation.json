@@ -95,6 +95,7 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
     "uploadPrivilege": "دسترسی آپلود",
+    "downloadAndUploadPrivilege": "دسترسی دانلود و آپلود ",
     "recordingActivity": "فعالیت های ضبط شده",
     "date": "تاریخ",
     "day": "روز",
@@ -123,7 +124,8 @@
     "assistance": "دستیار",
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
-    "disallow": "غیر مجاز"
+    "disallow": "غیر مجاز",
+    "permanent": "دائم"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -143,6 +145,7 @@
     "uba": "رفتار شناسی کاربر",
     "extentions": "فرمت ها",
     "days": "روز",
+    "saveChanges": "ثبت تغییرات",
     "progressChart": "نمودار پیشرفت",
     "activeLicenses": "لایسنس‌های فعال",
     "onlineUsers": "کاربران آنلاین",
@@ -242,7 +245,7 @@
     "usedPamLicense": "لایسنس PAM استفاده شده",
     "somethingWentWrong": "مشکلی پیش آمد",
     "genrateQrcode": "تولید Qrcode ",
-    "activateOtp": "فعالسازی otp",
+    "activateOtp": "فعالسازی OTP",
     "userInfo": "مشخصات کاربر",
     "accessList": "لیست دسترسی",
     "videoDuration": "مدت زمان ویدیو",
@@ -271,7 +274,8 @@
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
     "all": "انتخاب همه",
-    "deleteFile": "حذف فایل"
+    "deleteFile": "حذف فایل",
+    "deleteUser": "حذف کاربر"
   },
   "groupManagement": {
     "person": "نفر",
@@ -348,7 +352,21 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "daas": "DaaS",
+    "ssoBaseURL": "SSO base URL",
+    "ssoClientID": "SSO client ID",
+    "ssoSecret": "SSO Secret",
+    "ssoPort": "SSO Port",
+    "ssoRealm": "SSO realm",
+    "logServer": "Log Server",
+    "logServerIP": "Log Server IP",
+    "logServerPort": "Log Server Port",
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm",
+    "sso": "SSO",
+    "manager": "Manager"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
@@ -383,7 +401,8 @@
     "shebaNumber": "فقط از اعداد استفاده کنید",
     "cardBankNumber": "فقط از اعداد استفاده کنید",
     "price": "لطفا فقط از اعداد استفاده کنید",
-    "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234",
+    "ip": "لطفا فرمت صحیح آی پی را وارد نمایید"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

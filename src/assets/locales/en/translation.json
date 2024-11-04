@@ -8,7 +8,7 @@
   },
   "header": {
     "user": "User",
-    "admin": "admin"
+    "admin": "Admin"
   },
   "table": {
     "accessTime": "Access Time",
@@ -99,6 +99,7 @@
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
+    "downloadAndUploadPrivilege": "Download and Upload Access",
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
@@ -122,7 +123,8 @@
     "assistance": "Assistance",
     "deleteUser": "Delete User",
     "allowed": "Allowed",
-    "disallow": "Disallow"
+    "disallow": "Disallow",
+    "permanent": "Permanent"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -142,6 +144,7 @@
     "uba": "UBA",
     "extentions": "Extentions List",
     "days": "Days",
+    "saveChanges": "Save Changes",
     "progressChart": "Progress chart",
     "activeLicenses": "Active licenses",
     "onlineUsers": "Online users",
@@ -180,7 +183,7 @@
     "selectDate": "Select Date",
     "sucessfylySaved": "Successfully Saved",
     "lastName": "Last Name",
-    "name": "Name",
+    "name": "First Name",
     "repeatNewPassword": "Repeat New Password",
     "email": "Email",
     "metaAdmin": "Super Admin",
@@ -270,7 +273,8 @@
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
     "all": "Select All",
-    "deleteFile": " Delete File"
+    "deleteFile": " Delete File",
+    "deleteUser": "Delete User"
   },
   "groupManagement": {
     "person": "person",
@@ -345,7 +349,21 @@
   },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "daas": "DaaS",
+    "ssoBaseURL": "SSO base URL",
+    "ssoClientID": "SSO client ID",
+    "ssoSecret": "SSO Secret",
+    "ssoPort": "SSO Port",
+    "ssoRealm": "SSO realm",
+    "logServer": "Log Server",
+    "logServerIP": "Log Server IP",
+    "logServerPort": "Log Server Port",
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm",
+    "sso": "SSO",
+    "manager": "Manager"
   },
 
   "regexPattern": {
@@ -381,7 +399,8 @@
     "shebaNumber": "Use only numbers",
     "cardBankNumber": "Use only numbers",
     "price": "Please use only numbers",
-    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234",
+    "ip": "Please enter the correct IP format"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

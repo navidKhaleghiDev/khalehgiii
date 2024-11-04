@@ -122,11 +122,14 @@ export function SideBar(): JSX.Element {
           ) : (
             <div
               key={item.id}
-              onPointerEnter={() => {
-                setDropdownVisible(item);
+              onPointerUp={() => {
+                if (isDropdownVisible?.id === item.id) {
+                  setDropdownVisible(null);
+                } else {
+                  setDropdownVisible(item);
+                }
               }}
-              onPointerLeave={() => setDropdownVisible(null)}
-              className={`flex justify-center flex-col items-center${
+              className={`flex justify-center flex-col items-center cursor-pointer ${
                 toggleSidebar ? 'w-full' : null
               }`}
             >
@@ -165,7 +168,7 @@ export function SideBar(): JSX.Element {
           ) : (
             <Avatar icon={User} size="md" className="my-2" />
           )}
-          {toggleSidebar && (
+          {toggleSidebar ? (
             <div className="mx-2">
               <span>
                 <Typography variant="body5" color="neutralDark">
@@ -178,7 +181,7 @@ export function SideBar(): JSX.Element {
                 </Typography>
               </span>
             </div>
-          )}
+          ) : null}
         </div>
         <div className="flex items-center">
           {!toggleSidebar ? (
@@ -203,7 +206,7 @@ export function SideBar(): JSX.Element {
               className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
             />
           )}
-          {toggleSidebar && (
+          {toggleSidebar ? (
             <span
               className="text-sm whitespace-nowrap text-red-500 dark:text-red-300"
               role="button"
@@ -217,7 +220,7 @@ export function SideBar(): JSX.Element {
             >
               {t('onlineAssistance.exitFromUserProfile')}
             </span>
-          )}
+          ) : null}
         </div>
 
         <hr className="w-full bg-white border border-gray-300 rounded my-5" />
