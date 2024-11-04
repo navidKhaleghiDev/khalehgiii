@@ -119,7 +119,8 @@
     "assistance": "دستیار",
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
-    "disallow": "غیر مجاز"
+    "disallow": "غیر مجاز",
+    "permanent": "دائم"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -267,7 +268,8 @@
     "save": "ذخیره",
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
-    "all": "انتخاب همه"
+    "all": "انتخاب همه",
+    "deleteUser": "حذف کاربر"
   },
   "groupManagement": {
     "person": "نفر",
@@ -305,6 +307,7 @@
   },
   "adminList": {
     "userInfo": "مشخصات کاربر",
+    "adminInfo": "مشخصات ادمین",
     "userType": "نوع کاربری",
     "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
     "admin": "ادمین",
@@ -312,6 +315,13 @@
     "choseDomain": "انتخاب دامنه",
     "systemAdminOtp": "بعد از فعالسازی برای ورود به سامانه قسمت پایین را با تلفن همراه خود اسکن کنید."
   },
+  "userList": {
+    "onlineUsers": "کاربران آنلاین",
+    "blockedUsers": "کاربران مسدود شده",
+    "searchUsers": "جستجوی کاربر",
+    "usersList": "لیست کاربران"
+  },
+
   "license": {
     "licenseId": "شناسه لایسنس",
     "licenses": "لایسنس ها",
