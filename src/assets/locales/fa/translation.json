@@ -119,7 +119,8 @@
     "assistance": "دستیار",
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
-    "disallow": "غیر مجاز"
+    "disallow": "غیر مجاز",
+    "permanent": "دائم"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -304,6 +305,7 @@
   },
   "adminList": {
     "userInfo": "مشخصات کاربر",
+    "adminInfo": "مشخصات ادمین",
     "userType": "نوع کاربری",
     "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
     "admin": "ادمین",
