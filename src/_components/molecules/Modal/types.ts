@@ -1,7 +1,9 @@
 import { Dispatch, ReactElement, SetStateAction } from 'react';
-import { IconifyIcon } from '@iconify/react';
 import { VariantProps } from 'class-variance-authority';
+
+import { IconifyIcon } from '@iconify/react';
 import { BaseIconProps } from '@redesignUi/atoms/BaseIcon';
+import { IconType } from '@src/types/global';
 import { BaseButtonStyleProps } from '@redesignUi/atoms/BaseButton';
 
 import { headerStyles } from './styles';
@@ -20,22 +22,22 @@ interface BaseModalProps extends VariantProps<typeof headerStyles> {
   description?: string;
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  size?: 'sm' | 'md' | 'responsive';
+  size?: 'sm' | 'md' | 'lg' | 'responsive';
   className?: string;
   buttonOne?: ModalButtonType;
   buttonTow?: ModalButtonType;
+  descriptionInfo?: string;
+  icon?: IconType;
 }
 
 interface ModalWithContent extends BaseModalProps {
   type: 'content';
   content: ReactElement;
-  hiddenExitContent?: boolean;
 }
 
 interface ModalWithoutContent extends BaseModalProps {
   type: 'error' | 'success' | 'info' | 'noneIcon';
   content?: never;
-  hiddenExitContent?: boolean;
 }
 
 export type ModalProps = ModalWithContent | ModalWithoutContent;
@@ -48,9 +50,9 @@ export interface IconHeader {
 export interface ModelInfoProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-  icon: BaseIconProps['icon'];
+  icon?: BaseIconProps['icon'];
   classContainer?: string;
-  title: string;
+  title?: string;
   description?: string;
   content: React.ReactNode;
 }

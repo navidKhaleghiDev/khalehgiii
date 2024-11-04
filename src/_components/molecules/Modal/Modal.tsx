@@ -79,9 +79,10 @@ export function Modal(props: ModalProps): JSX.Element | null {
     title,
     buttonOne,
     buttonTow,
+    icon,
     content,
+    descriptionInfo,
     description,
-    hiddenExitContent = true,
     classContainer,
   } = props;
   const ref = useRef(null);
@@ -94,46 +95,62 @@ export function Modal(props: ModalProps): JSX.Element | null {
         ref={ref}
         className={`rounded-[1.25rem] shadow-lg modal-container bg-white dark:bg-gray-700 ${containerStyles(
           { size }
-        )} mx-auto z-50 overflow-y-auto ${classContainer}`}
+        )} mx-auto z-50 overflow-y-auto ${
+          icon && 'max-w-[39.688rem]'
+        } ${classContainer}`}
       >
         <div className="modal-content text-center min-h-[12rem]">
-          {hiddenExitContent && (
-            <div className="flex items-center justify-between h-12 box-content p-5 flex-row">
-              {type !== 'content'
-                ? type !== 'noneIcon' && (
-                    <div
-                      className={`${headerStyles({
-                        type,
-                      })}`}
-                    >
+          <div className="flex items-center justify-between h-12 box-content p-5 flex-row">
+            {type !== 'content'
+              ? type !== 'noneIcon' && (
+                  <div
+                    className={`${headerStyles({
+                      type,
+                    })}`}
+                  >
+                    <BaseIcon
+                      icon={iconHeader(type)?.icon}
+                      className={`rounded-full p-2 box-content ${
+                        iconHeader(type)?.color
+                      }`}
+                      size="md"
+                    />
+                  </div>
+                )
+              : icon && (
+                  <div className="flex items-center justify-center gap-2.5 sm:gap-5">
+                    <div className="border border-gray-200 dark:border-gray-500 flex items-center justify-center shadow-sm rounded-lg p-2 size-12">
                       <BaseIcon
-                        icon={iconHeader(type)?.icon}
-                        className={`rounded-full p-2 box-content ${
-                          iconHeader(type)?.color
-                        }`}
+                        icon={icon}
                         size="md"
+                        className="text-gray-500"
                       />
                     </div>
-                  )
-                : title && (
-                    <Typography
-                      variant="body3"
-                      color="neutralDark"
-                      className="rtl:text-right ltr:text-left"
-                    >
-                      {title}
-                    </Typography>
-                  )}
-              <div className="modal-close cursor-pointer z-50">
-                <IconButton
-                  icon={X}
-                  onClick={handleToggle}
-                  classNameIcon="h-6 w-6 text-gray-500 dark:text-gray-300"
-                  color="neutralNoBg"
-                />
-              </div>
+                    <div className="flex flex-col justify-center gap-1">
+                      <Typography
+                        variant="body3B"
+                        color="neutralDark"
+                        className="rtl:text-right ltr:text-left"
+                      >
+                        {title}
+                      </Typography>
+                      <div className="text-start">
+                        <Typography variant="body6" color="neutralMiddle">
+                          {descriptionInfo}
+                        </Typography>
+                      </div>
+                    </div>
+                  </div>
+                )}
+            <div className="modal-close cursor-pointer z-50">
+              <IconButton
+                icon={X}
+                onClick={handleToggle}
+                classNameIcon="h-6 w-6 text-gray-500 dark:text-gray-300"
+                color="neutralNoBg"
+              />
             </div>
-          )}
+          </div>
           <div className="p-5 pt-0 m-auto sm:max-w-none">
             {title && type !== 'content' && (
               <Typography
