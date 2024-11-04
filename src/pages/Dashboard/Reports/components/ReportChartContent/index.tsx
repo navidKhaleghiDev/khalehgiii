@@ -1,7 +1,6 @@
 import { LoadingWrapper } from '@redesignUi/molecules/Loading/LoadingWrapper';
-import { BaseIcon, Card, Typography } from '@redesignUi/atoms';
-import calendarBlankDuotone from '@iconify-icons/ph/calendar-blank-duotone';
-import calendarXDuotone from '@iconify-icons/ph/calendar-x-duotone';
+import { Card, Typography } from '@redesignUi/atoms';
+import { NoReportChart } from '@redesignUi/atoms/Svgs';
 
 import { ReportsChart } from '../../ReportChart';
 
@@ -20,7 +19,7 @@ export function ReportChartContent({
   error,
   message,
 }: ReportChartContentProps) {
-  return (
+  return recordsData && !error ? (
     <Card
       shadow="xl"
       color="white"
@@ -28,28 +27,36 @@ export function ReportChartContent({
       className="w-full flex justify-center items-center py-10 relative sm:h-[35rem] min-h-auto sm:max-h-[65vh] h-auto"
     >
       <LoadingWrapper isLoading={isLoading}>
-        {recordsData && !error ? (
-          <div className="w-full flex justify-center sm:items-center items-start m-auto xl:h-[450px] h-auto min-h-auto max-h-[65vh]">
-            <ReportsChart props={chartData} />
-          </div>
-        ) : (
-          <Typography
-            className="text-center flex flex-col justify-center items-center gap-3"
-            variant="body1"
-            type="div"
-            color="neutral"
-          >
-            <span className="bg-gray-100 rounded-full p-5">
-              <BaseIcon
-                icon={!error ? calendarBlankDuotone : calendarXDuotone}
-                size="responsive"
-                color={!error ? 'teal' : 'yellow'}
-              />
-            </span>
-            {message}
-          </Typography>
-        )}
+        <div className="w-full flex justify-center sm:items-center items-start m-auto xl:h-[450px] h-auto min-h-auto max-h-[65vh]">
+          <ReportsChart props={chartData} />
+        </div>
       </LoadingWrapper>
+    </Card>
+  ) : (
+    <Card className="w-full flex items-center justify-center bg-transparent dark:bg-gray-700">
+      {error ? (
+        <Typography
+          className="text-right flex flex-col justify-start items-start gap-3 w-full sm:text-2xl text-lg"
+          type="div"
+          color="neutral"
+        >
+          {message}
+          <div className="self-center">
+            <NoReportChart className="sm:w-auto w-[350px] sm:h-auto h-[200px]" />
+          </div>
+        </Typography>
+      ) : (
+        <Typography
+          className="text-center flex flex-col justify-center items-center gap-3 sm:text-2xl text-lg"
+          type="div"
+          color="neutral"
+        >
+          <div className="self-center">
+            <NoReportChart className="sm:w-auto w-[350px] sm:h-auto h-[200px]" />
+          </div>
+          {message}
+        </Typography>
+      )}
     </Card>
   );
 }

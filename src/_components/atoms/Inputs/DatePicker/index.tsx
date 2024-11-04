@@ -98,13 +98,13 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
         onClose={() => setOpenData(false)}
         format={format}
         render={(_, openCalendar) =>
-          width > 640 ? (
+          width > 639 ? (
             <BaseButton
-              label={width > 640 ? t('global.selectDate') : ''}
+              label={width > 639 ? t('global.selectDate') : ''}
               onClick={openCalendar}
               endIcon={openDate ? phCaretDown : caretLeft}
               type="neutral"
-              size={width > 640 ? 'md' : 'sm'}
+              size={width > 639 ? 'md' : 'sm'}
               disabled={disabled}
               className={
                 openDate
