@@ -10,24 +10,10 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 import { FileInputProps } from './types';
 
-/**
- * `FileInput` component provides a user interface for selecting or dragging and dropping files.
- *
- * @param {FileInputProps} props - Properties passed to the component.
- * @param {string} props.name - The name attribute for the input element.
- * @param {string} props.id - The id attribute for the input element.
- * @param {Function} props.onChange - Callback fired when file selection changes.
- * @param {boolean} [props.disabled] - If true, disables the file input.
- * @param {string} [props.className] - Additional CSS classes for styling.
- *
- * @returns {JSX.Element} A component that allows users to upload files either by clicking to open a file picker or by dragging and dropping files.
- *
- */
-
 export function FileInput(props: FileInputProps): JSX.Element {
   const { name, id, onChange, disabled, className } = props;
 
-  const [files, setFiles] = useState<File[] | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const { t } = useTranslation();
 
@@ -39,20 +25,28 @@ export function FileInput(props: FileInputProps): JSX.Element {
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement & { files: FileList };
-    if (target.files) {
-      const fileArray = Array.from(target.files);
-      setFiles(fileArray);
-      onChange(fileArray);
+    if (target.files && target.files.length > 0) {
+      const selectedFile = target.files[0];
+      setFile(selectedFile);
+      onChange([selectedFile]);
     }
+  };
+
+  const handleClearFile = () => {
+    setFile(null);
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+    onChange([]);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const droppedFiles = e.dataTransfer.files;
-    if (droppedFiles) {
-      const fileArray = Array.from(droppedFiles);
-      setFiles(fileArray);
-      onChange(fileArray);
+    if (droppedFiles && droppedFiles.length > 0) {
+      const droppedFile = droppedFiles[0];
+      setFile(droppedFile);
+      onChange([droppedFile]);
     }
   };
 
@@ -64,13 +58,12 @@ export function FileInput(props: FileInputProps): JSX.Element {
         ref={inputRef}
         type="file"
         onChange={handleOnChange}
-        multiple
         disabled={disabled}
         className="hidden"
       />
       <button
         className={`flex flex-col w-full dark:hover:bg-gray-600 gap-3 items-center border border-neutral-200 dark:border-gray-500 ${
-          files?.length && ' border-2 border-teal-500 dark:border-teal-400'
+          file && ' border-2 border-teal-500 dark:border-teal-400'
         } px-6 py-4 dark:bg-gray-700 rounded-2xl`}
         type="button"
         onClick={handleClick}
@@ -98,7 +91,7 @@ export function FileInput(props: FileInputProps): JSX.Element {
           </Typography>
         </div>
       </button>
-      {files?.length ? (
+      {file ? (
         <div className="mt-5">
           <div className="text-start p-2 flex items-center justify-between rounded-lg dark:text-white bg-neutral-100 dark:bg-gray-800">
             <div className="flex items-center gap-3">
@@ -109,16 +102,14 @@ export function FileInput(props: FileInputProps): JSX.Element {
                   className="text-gray-400 dark:text-gray-500"
                 />
               </div>
-              <Typography variant="body5">
-                {files.map((file) => file.name).join(', ')}
-              </Typography>
+              <Typography variant="body5">{file.name}</Typography>
             </div>
             <IconButton
               icon={X}
               size="sm"
               color="neutralNoBg"
               className="rounded-full p-1 box-content"
-              onClick={() => setFiles(null)}
+              onClick={handleClearFile}
             />
           </div>
         </div>
