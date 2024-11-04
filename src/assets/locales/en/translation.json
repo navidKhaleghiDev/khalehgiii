@@ -118,7 +118,8 @@
     "assistance": "Assistance",
     "deleteUser": "Delete User",
     "allowed": "Allowed",
-    "disallow": "Disallow"
+    "disallow": "Disallow",
+    "permanent": "Permanent"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -265,7 +266,8 @@
     "save": "Save",
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
-    "all": "Select All"
+    "all": "Select All",
+    "deleteUser": "Delete User"
   },
   "groupManagement": {
     "person": "person",
