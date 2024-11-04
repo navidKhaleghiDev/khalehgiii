@@ -18,5 +18,5 @@ export const inputRadioButtonStyles = cva(
 );
 
 export const labelRadioButtonStyles = cva(
-  `relative flex items-center rounded-full cursor-pointer text-neutral-400 peer-checked:text-neutral-900 dark:text-neutral-300 dark:peer-checked:text-white`
+  `relative flex items-center rounded-full cursor-pointer text-neutral-400 peer-checked:text-neutral-900 dark:text-gray-300 dark:peer-checked:text-white`
 );

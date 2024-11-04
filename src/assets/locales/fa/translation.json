@@ -120,7 +120,8 @@
     "assistance": "دستیار",
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
-    "disallow": "غیر مجاز"
+    "disallow": "غیر مجاز",
+    "permanent": "دائم"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -240,7 +241,7 @@
     "usedPamLicense": "لایسنس PAM استفاده شده",
     "somethingWentWrong": "مشکلی پیش آمد",
     "genrateQrcode": "تولید Qrcode ",
-    "activateOtp": "فعالسازی otp",
+    "activateOtp": "فعالسازی OTP",
     "userInfo": "مشخصات کاربر",
     "accessList": "لیست دسترسی",
     "videoDuration": "مدت زمان ویدیو",
@@ -268,7 +269,8 @@
     "save": "ذخیره",
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
-    "all": "انتخاب همه"
+    "all": "انتخاب همه",
+    "deleteUser": "حذف کاربر"
   },
   "groupManagement": {
     "person": "نفر",

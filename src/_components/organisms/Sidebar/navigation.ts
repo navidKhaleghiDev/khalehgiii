@@ -14,7 +14,7 @@ export const navigationSideBar: NavigationProps[] = [
   {
     id: '1',
     label: t('global.home'),
-    path: ROUTES_PATH.dashboard,
+    path: ROUTES_PATH.home,
     icon: PhHouseSimpleDuotone,
   },
   {

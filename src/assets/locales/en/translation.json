@@ -8,7 +8,7 @@
   },
   "header": {
     "user": "User",
-    "admin": "admin"
+    "admin": "Admin"
   },
   "table": {
     "accessTime": "Access Time",
@@ -119,7 +119,8 @@
     "assistance": "Assistance",
     "deleteUser": "Delete User",
     "allowed": "Allowed",
-    "disallow": "Disallow"
+    "disallow": "Disallow",
+    "permanent": "Permanent"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -178,7 +179,7 @@
     "selectDate": "Select Date",
     "sucessfylySaved": "Successfully Saved",
     "lastName": "Last Name",
-    "name": "Name",
+    "name": "First Name",
     "repeatNewPassword": "Repeat New Password",
     "email": "Email",
     "metaAdmin": "Super Admin",
@@ -267,7 +268,8 @@
     "save": "Save",
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
-    "all": "Select All"
+    "all": "Select All",
+    "deleteUser": "Delete User"
   },
   "groupManagement": {
     "person": "person",

@@ -1,5 +1,5 @@
 import { TNumberObjectArray } from '@src/types/global';
-import { IUserPermissions } from '@src/types/permissions';
+import { UserPermissionsProps } from '@src/types/permissions';
 // eslint-disable-next-line import/no-cycle
 import { IDaasConfig } from '../config/types';
 
@@ -63,7 +63,7 @@ export interface IResponseLogin {
 
 export interface IUser {
   id: number | string;
-  user_permissions?: IUserPermissions[];
+  user_permissions?: UserPermissionsProps[];
   password?: string;
   last_login?: string;
   is_superuser?: boolean;

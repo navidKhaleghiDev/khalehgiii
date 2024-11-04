@@ -1,31 +1,37 @@
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { BaseIcon, Typography } from '@redesignUi/atoms';
+import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
 import { NavigationProps } from '../types';
 
 interface MenuDropdownProps {
   items: NavigationProps[];
-  mouseHover: () => void;
+  mouseHover?: () => void;
 }
 
 /**
- * @component
- * @param {MenuDropdownProps}  props The props for MenuDropdown component
- * @param {NavigationProps}  props.item The navigation item data, including path, label, and icon
- * @param {NavigationProps}  props.mouseHover The props for handle mouseHover
- * @returns {JSX.Element} The render MenuDropdown component
- */
-export function MenuDropdown({
-  items,
-  mouseHover,
-}: MenuDropdownProps): JSX.Element {
-  const navigate = useNavigate();
 
-  return (
+@component
+@param {MenuDropdownProps} props The props for MenuDropdown component
+@param {NavigationProps} props.item The navigation item data, including path, label, and icon
+@param {NavigationProps} props.mouseHover The props for handle mouseHover
+*/
+export function MenuDropdown({ items, mouseHover }: MenuDropdownProps) {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(true);
+  const dropdownRef = useRef(null);
+  useClickOutside({
+    ref: dropdownRef,
+    setValue: setIsOpen,
+    value: isOpen,
+  });
+  return isOpen ? (
     <div
-      className="absolute right-full ltr:left-full w-40 h-20 bg-white dark:bg-gray-600 shadow-md rounded-lg mt-10 overflow-hidden"
-      onPointerLeave={mouseHover}
+      ref={dropdownRef}
+      className="absolute right-full ltr:left-full w-40 h-20 bg-white dark:bg-gray-600 shadow-md rounded-lg mt-10 overflow-hidden cursor-pointer"
+      onPointerDown={mouseHover}
     >
       {items.map((item) => (
         <div key={item.id} className="w-full flex">
@@ -48,5 +54,5 @@ export function MenuDropdown({
         </div>
       ))}
     </div>
-  );
+  ) : null;
 }
