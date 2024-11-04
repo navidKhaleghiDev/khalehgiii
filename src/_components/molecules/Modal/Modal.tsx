@@ -96,7 +96,7 @@ export function Modal(props: ModalProps): JSX.Element | null {
         className={`rounded-[1.25rem] shadow-lg modal-container bg-white dark:bg-gray-700 ${containerStyles(
           { size }
         )} mx-auto z-50 overflow-y-auto ${
-          icon && 'min-w-[20.875rem] max-w-[39.688rem]'
+          icon && 'max-w-[39.688rem]'
         } ${classContainer}`}
       >
         <div className="modal-content text-center min-h-[12rem]">
@@ -126,7 +126,7 @@ export function Modal(props: ModalProps): JSX.Element | null {
                         className="text-gray-500"
                       />
                     </div>
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col justify-center gap-1">
                       <Typography
                         variant="body3B"
                         color="neutralDark"
@@ -134,9 +134,11 @@ export function Modal(props: ModalProps): JSX.Element | null {
                       >
                         {title}
                       </Typography>
-                      <Typography variant="body6" color="neutralMiddle">
-                        {descriptionInfo}
-                      </Typography>
+                      <div className="text-start">
+                        <Typography variant="body6" color="neutralMiddle">
+                          {descriptionInfo}
+                        </Typography>
+                      </div>
                     </div>
                   </div>
                 )}
