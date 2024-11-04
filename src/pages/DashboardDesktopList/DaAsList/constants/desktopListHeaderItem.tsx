@@ -10,6 +10,7 @@ import {
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { TextCheck } from '@redesignUi/molecules/BaseTable/components/TableComponent/TextCheck';
 import { ActionLockCell } from '@redesignUi/molecules/BaseTable/components/TableComponent/ActionLockCell';
+import { ProgressBarHelperCell } from '@redesignUi/molecules/BaseTable/components/CustomCell/ProgressBarHelperCell';
 
 import { AccessTime } from '../AccessTime';
 import { AccessTimeSetting } from '../DaAsCard/AccessTimeSetting';
@@ -27,7 +28,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'date',
-    class: 'w-1/12',
+    class: 'lg:w-1/12 w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -43,7 +44,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         }
       />
     ),
-    class: 'w-1/12',
+    class: 'lg:w-1/12 w-2/12',
   },
   {
     label: 'table.setting',
@@ -73,7 +74,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
       />
     ),
     permission: EPermissionDaas.CHANGE,
-    class: 'w-1/12 ',
+    class: 'w-2/12 lg:w-1/12',
     isMobileCollapsed: true,
   },
   {
@@ -85,7 +86,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         timeLimitDuration={props.row.daas_configs.time_limit_duration}
       />
     ),
-    class: 'w-2/12 ',
+    class: 'lg:w-1/12 w-2/12',
     permission: EPermissionDaas.CHANGE,
     isMobileCollapsed: true,
   },
@@ -101,7 +102,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         secondCondition="table.disallow"
       />
     ),
-    class: 'w-1/12 ',
+    class: 'w-1/12',
   },
   {
     label: 'table.httpsPort',
@@ -114,7 +115,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
     label: 'table.lastLoginIp',
     id: 'last_login_ip',
     type: 'none',
-    class: 'w-1/12 ',
+    class: 'w-1/12',
     isCollapsed: true,
   },
   {
@@ -127,9 +128,18 @@ export const desktopListHeaderItem: HeaderTable[] = [
 
   {
     label: 'table.usedTime',
-    id: 'container_id',
-    type: 'none',
-    class: 'w-2/12 mr-auto',
+    id: 'usage_in_minute',
+    type: 'component',
+    component: (props: any) => (
+      <ProgressBarHelperCell
+        totalHours={props.row.daas_configs.time_limit_value_in_hour}
+        usedMinutes={props.row.usage_in_minute}
+        isPermanent={
+          props.row.daas_configs.time_limit_duration === 'PERMANENTLY'
+        }
+      />
+    ),
+    class: 'lg:w-1/12 w-3/12 mr-auto lg:mr-0',
   },
 
   {
@@ -171,6 +181,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
       EPermissionDaas.DELETE,
       EPermissionSessionRecording.VIEW,
     ],
-    class: ' mr-auto w-2/12 lg:w-1/12',
+    class: 'mr-auto w-2/12 lg:w-1/12',
   },
 ];
