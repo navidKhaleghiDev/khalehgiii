@@ -7,7 +7,6 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
-import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { NoResult } from '@ui/molecules/NoResult';
 import { http } from '@src/services/http';
@@ -19,6 +18,7 @@ import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
 import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { VideoLoadingSkelton } from '../Components/VideoLoadingSkelton';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -126,7 +126,7 @@ export function KnowledgeManagementList() {
         setOpen={setOpenModal}
         type="content"
         content={
-          <LoadingWrapper isLoading={videoFile?.loading}>
+          <VideoLoadingSkelton isLoading={videoFile?.loading}>
             <div className="w-full">
               {videoFile?.file ? (
                 <video width="750" height="500" controls>
@@ -138,7 +138,7 @@ export function KnowledgeManagementList() {
                 <NoResult />
               )}
             </div>
-          </LoadingWrapper>
+          </VideoLoadingSkelton>
         }
       />
     </>

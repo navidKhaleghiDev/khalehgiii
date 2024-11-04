@@ -2,7 +2,7 @@ import phPlay from '@iconify-icons/ph/play';
 import userIcon from '@iconify-icons/ph/user';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-// import { convertSecondsToTime } from '@src/helper/utils/convertSecoundToTIme';
+import { convertSecondsToTime } from '@src/helper/utils/convertSecoundToTIme';
 
 export const KnowledgeManagementHeaderItem: HeaderTable[] = [
   {
@@ -61,7 +61,7 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
     component: (props: any) => {
       return (
         <Typography className="dark:text-white">
-          {props.row.duration_time}m
+          {convertSecondsToTime(props.row.duration_time)}
         </Typography>
       );
     },
