@@ -161,6 +161,7 @@
     "choseDomain": "Domain",
     "newest": "Newest",
     "grouping": "Grouping",
+    "format": "format",
     "monitoring": "Monitoring",
     "show": "Show",
     "of": "of",
@@ -345,6 +346,17 @@
     "concurrentNumbers": "Concurrent Numbers",
     "wholeNumbers": "Whole Numbers",
     "expirationDate": "Expiration date"
+  },
+  "systemManagement": {
+    "formatList": "Formats list",
+    "search": "Search",
+    "newFormat": "New format",
+    "uploadFile": "Upload and attach files",
+    "uploadFileText": "Upload and attach files to create a new format",
+    "uploadFileTextInputOne": "Click to upload ",
+    "uploadFileTextInputTwo": " or drag and drop your file.",
+    "deleteFormat": "Delete format",
+    "deleteFormatText": "Are you sure to delete this format?"
   },
   "setting": {
     "application": "Application",

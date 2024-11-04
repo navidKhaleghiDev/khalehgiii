@@ -167,6 +167,7 @@
     "show": "نمایش",
     "of": "از",
     "password": "گذرواژه",
+    "format": "فرمت",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",
     "exit": "خروج",
@@ -348,6 +349,17 @@
     "concurrentNumbers": "تعداد همزمان",
     "wholeNumbers": "تعداد کل ",
     "expirationDate": "تاریخ انقضا"
+  },
+  "systemManagement": {
+    "formatList": "لیست فرمت ها ",
+    "search": "جستحو",
+    "newFormat": "فرمت جدید",
+    "uploadFile": "آپلود فایل",
+    "uploadFileText": "برای ساخت فرمت جدید فایل مورد نظر را بارگذاری کنید.",
+    "uploadFileTextInputOne": "برای بارگذاری فایل کلیک کنید ",
+    "uploadFileTextInputTwo": "و یا فایل را در محیط بالا رها کنید",
+    "deleteFormat": "حذف فرمت",
+    "deleteFormatText": "آیا از حذف این فرمت مطمعن هستید ؟‌"
   },
   "setting": {
     "application": "Application",

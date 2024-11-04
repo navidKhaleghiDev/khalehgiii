@@ -2,50 +2,49 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
+
 import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { Modal } from '@ui/molecules/Modal';
-import { BaseTable } from '@ui/atoms/BaseTable';
+import { Modal } from '@redesignUi/molecules/Modal';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { extensionListHeaderItem } from '@src/pages/DashboardExtensionList/ExtensionList/constants/extensionListHeaderItem';
-import { debounce } from 'lodash';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { EPermissionExtensions } from '@src/types/permissions';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
-import { NoAccessCard } from '@ui/atoms/NotificationCard/NoAccessCard';
-import {
-  checkPermission,
-  useUserPermission,
-} from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
-import { CreateMimeTypeModal } from './CreateMimeTypeModal';
+import { extensionListHeaderItem } from '../constants/extensionListHeaderItem';
+import { UploadFileModal } from '../UploadMimeType';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function ExtensionList() {
-  const { t } = useTranslation();
-  const userPermissions = useUserPermission();
-
-  const viewTablePermission = checkPermission(
-    userPermissions,
-    EPermissionExtensions.VIEW
-  );
-  const addPermission = checkPermission(
-    userPermissions,
-    EPermissionExtensions.ADD
-  );
-
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
   const [deleteModal, setDeleteModal] = useState(false);
+  const { width } = useWindowDimensions();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+
+  const { t } = useTranslation();
+  const userPermissions = useUserPermission();
+
+  // check o tic about permissions
+  // const viewTablePermission = checkPermission(
+  //   userPermissions,
+  //   EPermissionExtensions.VIEW
+  // );
+  // const addPermission = checkPermission(
+  //   userPermissions,
+  //   EPermissionExtensions.ADD
+  // );
 
   const endpoint = createAPIEndpoint({
     endPoint: E_ANALYZE_MIME_TYPE,
@@ -53,29 +52,18 @@ export function ExtensionList() {
     currentPage,
     filterQuery,
   });
-
   const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 1000),
-    []
-  );
-
-  if (!viewTablePermission) return <NoAccessCard />;
-
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
-  const listWhiteList = data?.data?.results ?? [];
-  const countPage = data?.data?.count || 0;
-
+  const handelSearchQuery = useCallback((value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+  }, []);
   const handleOnDeleteFileType = async () => {
     if (!activeAdmin) return;
     setLoadingButtonModal(true);
@@ -94,9 +82,8 @@ export function ExtensionList() {
       });
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  const listWhiteList = data?.data?.results ?? [];
+  const countPage = data?.data?.count || 0;
 
   const handleCloseUpdateModal = (isMutate?: boolean) => {
     if (isMutate) {
@@ -120,68 +107,65 @@ export function ExtensionList() {
     }
   };
 
-  const handleCreateAdmin = () => {
-    if (activeAdmin) setActiveAdmin(undefined);
-    setOpenUpdateModal(true);
-  };
-
   const paginationProps = {
     countPage,
     currentPage,
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
+    paginationLabel: t('global.format'),
+    allItems: countPage,
+    itemsPer: listWhiteList.length,
   };
-
-  const searchBarProps: TSearchBar = {
-    name: 'search-extension',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-    componentProps: addPermission
-      ? {
-          type: 'actionAdd',
-          permission: EPermissionExtensions.ADD,
-          label: 'global.addNewFile',
-          onClick: handleCreateAdmin,
-        }
-      : undefined,
-  };
-
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+    <>
+      <div className="mb-[1.875rem] px">
+        <FilterTableList
+          handelSearchQuery={handelSearchQuery}
+          searchPlaceholder={t('systemManagement.search')}
+          searchQuery={filterQuery}
+          buttonLabel={t('systemManagement.newFormat')}
+          onClickButton={() => setOpenUpdateModal(true)}
+        />
+      </div>
       <BaseTable
-        loading={isLoading}
-        headers={checkPermissionHeaderItem(
+        body={listWhiteList}
+        header={checkPermissionHeaderItem(
           userPermissions,
           extensionListHeaderItem
         )}
-        bodyList={listWhiteList}
-        onClick={handleOnClickActions}
+        loading={isLoading}
         pagination={paginationProps}
-        searchBar={searchBarProps}
+        onClick={handleOnClickActions}
+        isMobile={width <= 765}
       />
-
       <Modal
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title={t('global.sureAboutThis')}
+        size="responsive"
+        title={t('systemManagement.deleteFormat')}
+        description={t('systemManagement.deleteFormatText')}
         buttonOne={{
-          label: t('global.yes'),
+          label: t('systemManagement.deleteFormat'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
+          color: 'red',
         }}
         buttonTow={{
-          label: t('global.no'),
+          label: t('global.cancel'),
           onClick: () => setDeleteModal(false),
-          color: 'red',
+          color: 'tertiary',
         }}
       />
       <Modal
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
-        type="success"
-        content={<CreateMimeTypeModal handleClose={handleCloseUpdateModal} />}
+        type="content"
+        icon={PhUploadSimple}
+        title={t('systemManagement.uploadFile')}
+        description={t('systemManagement.uploadFileText')}
+        content={<UploadFileModal handleClose={handleCloseUpdateModal} />}
       />
-    </div>
+    </>
   );
 }
