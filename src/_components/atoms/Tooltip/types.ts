@@ -5,4 +5,5 @@ export interface ToolTipProps
   extends VariantProps<typeof tooltipStyles>,
     VariantProps<typeof containerTooltipStyles> {
   tooltip: string;
+  className?: string;
 }

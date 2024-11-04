@@ -38,7 +38,24 @@ export type HeaderTable = HeaderTableBase &
           | 'capitalize'
           | 'normal-case';
       }
-  );
+  ) &
+  ({ type: Exclude<TableType, 'menu'> } | MenuHeader);
+
+export type MenuHeader = {
+  type: 'menu';
+  menu: MenuType[];
+  tooltip: TableLabel;
+  icon?: IconButtonProps['icon'];
+};
+
+export type MenuType = {
+  action: ActionOnClickActionsType;
+  icon: IconButtonProps['icon'];
+  color?: IconButtonProps['color'];
+  title: TableLabel;
+  size?: IconButtonProps['size'];
+  permission?: PermissionsCodeName;
+};
 
 export type BaseTableHeaderProps = Pick<BaseTableProps<IdItem>, 'header'> & {
   collapse?: boolean;
@@ -85,6 +102,9 @@ export type BaseTableActionCellProps<BodyType> = Omit<
   'body' | 'isMobile'
 >;
 
+export type BaseTableMenuCellProps<BodyType extends IdItem> =
+  BaseTableNoneCellProps<BodyType>;
+
 export type BaseTableComponentCellProps<BodyType> = Pick<
   BaseTableRowProps<BodyType>,
   'row' | 'onClick'
@@ -126,7 +146,7 @@ export type Pagination = {
   itemsPer: number;
   onPageChange: (page: number) => void;
 };
-type TableLabel = `table.${string}` | string;
+type TableLabel = `table.${string}`;
 
 export type IdItem = {
   id: string | number;
@@ -147,7 +167,15 @@ export interface ActionItem {
 }
 export type ActionCellFunction = { action: ActionItem };
 
-export type TableType = 'action' | 'none' | 'component' | 'date' | 'avatar';
+export type MenuCellFunction = { menu: MenuType };
+
+export type TableType =
+  | 'action'
+  | 'none'
+  | 'component'
+  | 'date'
+  | 'avatar'
+  | 'menu';
 
 export type ActionOnClickActionsType =
   | 'delete'
