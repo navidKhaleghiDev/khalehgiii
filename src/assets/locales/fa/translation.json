@@ -119,7 +119,8 @@
     "assistance": "دستیار",
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
-    "disallow": "غیر مجاز"
+    "disallow": "غیر مجاز",
+    "permanent": "دائم"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -267,7 +268,8 @@
     "save": "ذخیره",
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
-    "all": "انتخاب همه"
+    "all": "انتخاب همه",
+    "deleteUser": "حذف کاربر"
   },
   "groupManagement": {
     "person": "نفر",
