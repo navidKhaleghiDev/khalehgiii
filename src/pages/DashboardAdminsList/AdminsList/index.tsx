@@ -5,12 +5,12 @@ import useSWR from 'swr';
 
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
-import { Modal } from '@ui/molecules/Modal';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
@@ -158,25 +158,30 @@ export function AdminsList() {
         isMobile={windowsDimensions.width <= 768}
       />
       <Modal
+        size="md"
         open={deleteModal}
         setOpen={setDeleteModal}
         type="error"
-        title={t('global.sureAboutThis')}
+        title={t('global.remove')}
+        description={t('global.sureAboutDeleteUser')}
         buttonOne={{
-          label: t('global.yes'),
+          label: t('table.delete'),
           onClick: handleOnDeleteFileType,
           loading: loadingButtonModal,
-        }}
-        buttonTow={{
-          label: t('global.no'),
-          onClick: () => setDeleteModal(false),
           color: 'red',
         }}
+        buttonTow={{
+          label: t('global.cancel'),
+          onClick: () => setDeleteModal(false),
+          color: 'tertiary',
+        }}
       />
+
       <Modal
+        size="lg"
+        type="content"
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
-        type="success"
         content={
           <UpdateAdminModal
             handleClose={handleCloseUpdateModal}
