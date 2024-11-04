@@ -270,7 +270,7 @@ export function DaAsList() {
     <div className={`w-full ${isLoading ? 'loading' : ''}  `}>
       <FilterTableList
         searchQuery={filterQuery}
-        searchPlaceholder={t('fileScan.adminSearch')}
+        searchPlaceholder={t('userList.searchUsers')}
         handelSearchQuery={setFilterQuery}
         domainFilter
       />
@@ -290,16 +290,18 @@ export function DaAsList() {
         open={openModal}
         setOpen={setOpenModal}
         type="error"
-        title={t('global.sureAboutThis')}
+        title={t('global.deleteUser')}
+        description={t('global.sureAboutDeleteUser')}
         buttonOne={{
-          label: t('global.yes'),
+          label: t('global.deleteUser'),
           onClick: handleOnRequests,
           loading: loadingButtonModal,
+          color: 'red',
         }}
         buttonTow={{
-          label: t('global.no'),
+          label: t('global.cancel'),
           onClick: () => setOpenModal(false),
-          color: 'red',
+          color: 'tertiary',
         }}
       />
       <Modal

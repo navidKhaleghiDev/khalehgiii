@@ -36,14 +36,13 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
         <Typography color="neutralMiddle" variant="body3">
           {title}
         </Typography>
-        {count && (
-          <Typography
-            className="text-gray-900 dark:text-white font-semibold leading-7"
-            variant="body2"
-          >
-            {count}
-          </Typography>
-        )}
+
+        <Typography
+          className="text-gray-900 dark:text-white font-semibold leading-7"
+          variant="body2"
+        >
+          {count ?? 0}
+        </Typography>
       </div>
     </Card>
   );
