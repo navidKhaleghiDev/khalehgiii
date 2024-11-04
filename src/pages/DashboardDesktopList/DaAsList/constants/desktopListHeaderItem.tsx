@@ -137,7 +137,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         }
       />
     ),
-    class: 'lg:w-1/12 w-3/12 mr-auto lg:mr-0',
+    class: 'w-1/12 mr-auto lg:mr-0',
   },
 
   {

@@ -33,8 +33,8 @@ export function ProgressBarHelperCell({
 
   return (
     <div dir="ltr" className="flex items-end gap-2">
-      <div className="flex flex-col gap-1">
-        <Typography variant="body6" className="lg:self-start self-center">
+      <div className="flex flex-col ">
+        <Typography variant="body6" className="self-start">
           <span
             className={`${
               isPermanent ? 'text-teal-500 dark:text-teal-400' : 'text-gray-400'

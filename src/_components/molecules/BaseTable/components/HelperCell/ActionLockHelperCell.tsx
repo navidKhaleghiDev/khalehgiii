@@ -23,9 +23,9 @@ export function ActionLockHelperCell({
         <IconButton
           size="md"
           icon={key ? lockKeyFillIcon : lockKeyOpenFillIcon}
-          className={`${
+          className={`!justify-end ${
             key
-              ? '!text-yellow-00 dark:!text-yellow-300'
+              ? '!text-yellow-600 dark:!text-yellow-300'
               : '!text-gray-500 dark:!text-gray-200'
           }`}
           classNameIcon=""

@@ -267,7 +267,7 @@ export function DaAsList() {
   // };
 
   return (
-    <div className={`w-full ${isLoading ? 'loading' : ''}  `}>
+    <div className={`w-full ${isLoading ? 'loading' : ''} flex flex-col gap-5`}>
       <FilterTableList
         searchQuery={filterQuery}
         searchPlaceholder={t('userList.searchUsers')}
