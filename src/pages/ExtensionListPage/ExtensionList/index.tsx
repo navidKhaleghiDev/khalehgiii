@@ -20,7 +20,7 @@ import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { extensionListHeaderItem } from '../constants/extensionListHeaderItem';
-import { UploadFileModal } from '../UploadFileModal';
+import { UploadFileModal } from '../UploadMimeType';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;

@@ -69,7 +69,9 @@ export function UploadFileModal({ handleClose }: PropsType) {
         <div className="flex justify-center col-span-6">
           {showConfirm && (
             <div className="flex justify-center items-center w-full">
-              <Typography className="mx-2">{t('global.areYouSure')}</Typography>
+              <Typography className="mx-2" color="neutralDark">
+                {t('global.areYouSure')}
+              </Typography>
               <BaseButton
                 label={t('global.yes')}
                 size="sm"
