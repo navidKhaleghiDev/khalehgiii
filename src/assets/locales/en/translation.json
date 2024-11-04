@@ -28,7 +28,7 @@
     "desktop": "Desktop",
     "desktopV": "Desktop Version",
     "status": "Status",
-    "defaultSetting": "Default Settings",
+    "defaultSetting": "Default",
     "search": "Search",
     "addNewAdmin": "Add New Admin",
     "nameOfTheUser": "User Name",
@@ -70,12 +70,12 @@
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreation": "license Creation",
     "validLicense": "valid License",
-    "httpPort": "http port",
-    "httpsPort": "https port",
+    "httpPort": "HTTP port",
+    "httpsPort": "HTTPS port",
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
-    "lastUptime": "last uptime",
-    "lastLoginIp": "last Login Ip",
+    "lastUptime": "Last uptime",
+    "lastLoginIp": "Last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
     "sessionRecording": "Session Recording",
@@ -108,7 +108,17 @@
     "access": "Access",
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
-    "editAdminInfo": "Edit Admin Info"
+    "editAdminInfo": "Edit Admin Info",
+    "lastLogout": "Last Logout",
+    "setting": "Setting",
+    "timing": "Timing",
+    "connection": "Connection",
+    "custom": "Custom",
+    "block": "Block",
+    "assistance": "Assistance",
+    "deleteUser": "Delete User",
+    "allowed": "Allowed",
+    "disallow": "Disallow"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -127,7 +137,14 @@
     "infectedFile": "infected File",
     "uba": "UBA",
     "extentions": "Extentions List",
-    "days": "Days"
+    "days": "Days",
+    "progressChart": "Progress chart",
+    "activeLicenses": "Active licenses",
+    "onlineUsers": "Online users",
+    "netsep": "NetSep",
+    "scans": "Scans",
+    "userBehavior": "User Behavior",
+    "adminLogin": "Admin Login"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -285,6 +302,22 @@
     "todayScans": "Today's scans",
     "onlineUsers": "Online users",
     "scannedFiles": "Scanned files"
+  },
+  "adminList": {
+    "userInfo": "User Info",
+    "adminInfo": "Admin Info",
+    "userType": "User type",
+    "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
+    "admin": "Admin",
+    "metaAdmin": "Administrator",
+    "choseDomain": "Domain",
+    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+  },
+  "userList": {
+    "onlineUsers": "Online Users",
+    "blockedUsers": "Blocked Users",
+    "searchUsers": "Search Users",
+    "usersList": "User List"
   },
   "license": {
     "licenseId": "license Id",

@@ -29,7 +29,7 @@
     "desktop": "دسکتاپ",
     "desktopV": "نسخه دسکتاپ",
     "status": "وضعیت",
-    "defaultSetting": "تنظیمات پیش فرض",
+    "defaultSetting": "پیش‌فرض",
     "search": "جستجو کنید",
     "addNewAdmin": "اضافه کردن ادمین جدید",
     "nameOfTheUser": "نام کاربر",
@@ -71,12 +71,12 @@
     "string": "رشته فایل",
     "fileExtension": "پسوند فایل",
     "addNewType": "اضافه کردن تایپ جدید",
-    "httpPort": "http پورت",
-    "httpsPort": "https پورت",
+    "httpPort": "HTTP پورت",
+    "httpsPort": "پورت HTTPS",
     "accessCapacity": "شامل ظرفیت مجاز",
     "containerId": " کانتینر id",
     "lastUptime": "آخرین ورود",
-    "lastLoginIp": "آخرین ورود ip",
+    "lastLoginIp": "Ip  آخرین ورود",
     "download": "دانلود",
     "file": "فایل",
     "sessionRecording": "ضبط دسکتاپ",
@@ -109,7 +109,17 @@
     "access": "دسترسی",
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
-    "editAdminInfo": "ویرایش مشخصات"
+    "editAdminInfo": "ویرایش مشخصات",
+    "lastLogout": "آخرین خروج",
+    "setting": "تنظیمات",
+    "timing": "زمانبندی",
+    "connection": "اتصال",
+    "custom": "سفارشی",
+    "block": "مسدود",
+    "assistance": "دستیار",
+    "deleteUser": "حذف کاربر",
+    "allowed": "مجاز",
+    "disallow": "غیر مجاز"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -128,7 +138,14 @@
     "infectedFile": "فایل آلوده",
     "uba": "رفتار شناسی کاربر",
     "extentions": "فرمت ها",
-    "days": "روز"
+    "days": "روز",
+    "progressChart": "نمودار پیشرفت",
+    "activeLicenses": "لایسنس‌های فعال",
+    "onlineUsers": "کاربران آنلاین",
+    "netsep": "نت سپ",
+    "scans": "اسکن ها",
+    "userBehavior": "رفتار شناسی کاربر",
+    "adminLogin": "ورود و خروج ادمین‌ها"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -288,6 +305,23 @@
     "onlineUsers": "کاربران آنلاین",
     "scannedFiles": "فایل های اسکن شده"
   },
+  "adminList": {
+    "userInfo": "مشخصات کاربر",
+    "adminInfo": "مشخصات ادمین",
+    "userType": "نوع کاربری",
+    "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
+    "admin": "ادمین",
+    "metaAdmin": "سوپر ادمین",
+    "choseDomain": "انتخاب دامنه",
+    "systemAdminOtp": "بعد از فعالسازی برای ورود به سامانه قسمت پایین را با تلفن همراه خود اسکن کنید."
+  },
+  "userList": {
+    "onlineUsers": "کاربران آنلاین",
+    "blockedUsers": "کاربران مسدود شده",
+    "searchUsers": "جستجوی کاربر",
+    "usersList": "لیست کاربران"
+  },
+
   "license": {
     "licenseId": "شناسه لایسنس",
     "licenses": "لایسنس ها",
