@@ -32,7 +32,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
   return (
     <div className="grid col-span-6">
-      <div className="mb-[2.87rem] mt-5">
+      <div className="mb-[2.87rem]">
         <Typography
           color="black"
           variant="body2B"
