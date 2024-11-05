@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 
@@ -21,9 +21,11 @@ import { navigationSideBar } from '@redesignUi/organisms/Sidebar/navigation';
 import { NavigationProps } from '@redesignUi/organisms/Sidebar/types';
 import { MenuItem } from '@redesignUi/organisms/Sidebar/MenuItem';
 import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/MenuItemAccordion';
+import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
 export function DrawerProfile() {
   const { isOpen, setIsOpen } = useDrawerContext();
+  const dropdownRef = useRef(null);
 
   const { isDark, toggleTheme } = useTheme();
   const { pathname } = useLocation();
@@ -31,6 +33,11 @@ export function DrawerProfile() {
   const { setUser } = useUserContext();
   const { lang } = useLanguage();
   const navigate = useNavigate();
+  useClickOutside({
+    ref: dropdownRef,
+    setValue: setIsOpen,
+    value: isOpen,
+  });
 
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -42,6 +49,7 @@ export function DrawerProfile() {
 
   return (
     <div
+      ref={dropdownRef}
       className={`fixed top-0 ${
         lang === 'fa' ? 'right-0' : 'left-0'
       } z-50 w-[17.12rem] lg:w-[19.18rem] h-full bg-white dark:bg-gray-600 shadow-md flex flex-col justify-between transition-transform duration-500`}
