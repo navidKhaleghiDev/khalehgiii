@@ -171,6 +171,7 @@
     "show": "نمایش",
     "of": "از",
     "password": "گذرواژه",
+    "format": "فرمت",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",
     "exit": "خروج",
@@ -315,6 +316,10 @@
     "userInfo": "مشخصات کاربر",
     "adminInfo": "مشخصات ادمین",
     "userType": "نوع کاربری",
+    "createNewAdmin": "ساخت ادمین جدید",
+    "createNewAdminText": "برای ساختن ادمین جدید مشخصات را وارد کنید و دسترسی های مورد نیاز را انتخاب کنید. ",
+    "editInformation": "ویرایش مشخصات ",
+    "editInformationText": "مشخصات و لیست دسترسی‌های ادمین.",
     "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
     "admin": "ادمین",
     "metaAdmin": "سوپر ادمین",
@@ -349,6 +354,17 @@
     "concurrentNumbers": "تعداد همزمان",
     "wholeNumbers": "تعداد کل ",
     "expirationDate": "تاریخ انقضا"
+  },
+  "systemManagement": {
+    "formatList": "لیست فرمت ها ",
+    "search": "جستحو",
+    "newFormat": "فرمت جدید",
+    "uploadFile": "آپلود فایل",
+    "uploadFileText": "برای ساخت فرمت جدید فایل مورد نظر را بارگذاری کنید.",
+    "uploadFileTextInputOne": "برای بارگذاری فایل کلیک کنید ",
+    "uploadFileTextInputTwo": "و یا فایل را در محیط بالا رها کنید",
+    "deleteFormat": "حذف فرمت",
+    "deleteFormatText": "آیا از حذف این فرمت مطمعن هستید ؟‌"
   },
   "setting": {
     "application": "Application",

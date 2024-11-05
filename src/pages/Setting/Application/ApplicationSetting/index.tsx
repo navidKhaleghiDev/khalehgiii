@@ -15,26 +15,15 @@ import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import {
   API_ADD_CONFIG,
   API_ADD_UPDATE,
   API_CONFIG_LIST,
 } from '@src/services/config';
 
-import { ApplicationSettingProp } from '../type';
-import { TitleSection } from '../component/TitleSection';
+import { ApplicationSettingProp } from '../../type';
 
-// function TitleSection({ label }: { label: string }) {
-//   return (
-//     <Typography
-//       color="black"
-//       variant="body4B"
-//       className="w-full col-span-12 dark:text-white"
-//     >
-//       {label}
-//     </Typography>
-//   );
-// }
 export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
@@ -113,7 +102,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     <LoadingSpinner />
   ) : (
     <div>
-      <div className=" mb-[2.87rem] mt-5">
+      <div className=" mb-[2.87rem]">
         <Typography
           color="black"
           variant="body2B"
@@ -262,7 +251,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
             />
           </div>
         </div>
-        <div className="flex self-start mt-8 lg:mt-[13rem] w-40 sm:w-[11.875rem]">
+        <div className="flex self-end mt-8 lg:mt-[10.5rem] w-40 sm:w-[11.875rem]">
           <BaseButton
             label={t('dashboard.saveChanges')}
             disabled={!formState.isDirty}

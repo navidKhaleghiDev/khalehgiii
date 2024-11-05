@@ -5,6 +5,8 @@ import useSWR from 'swr';
 
 import { IResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
+import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
+import PhPencilSimple from '@iconify-icons/ph/pencil-simple';
 import { E_USERS } from '@src/services/users/endpoint';
 import { IUser } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -180,7 +182,16 @@ export function AdminsList() {
       <Modal
         size="lg"
         type="content"
+        icon={activeAdmin ? PhPencilSimple : PhUserCirclePlus}
         open={openUpdateModal}
+        title={
+          activeAdmin ? t('adminList.adminInfo') : t('adminList.createNewAdmin')
+        }
+        descriptionInfo={
+          activeAdmin
+            ? t('adminList.editInformationText')
+            : t('adminList.createNewAdminText')
+        }
         setOpen={setOpenUpdateModal}
         content={
           <UpdateAdminModal

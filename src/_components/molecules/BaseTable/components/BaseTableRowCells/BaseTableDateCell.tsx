@@ -1,7 +1,10 @@
-import moment from 'moment-jalaali';
-
 import { Typography } from '@redesignUi/atoms';
-import { useLanguage } from '@context/settings/languageContext';
+import {
+  convertToDateFormat,
+  convertToDay,
+  convertToHourFormat,
+  dateAndNumber,
+} from '@src/helper/utils/dateUtils';
 import { BaseTableDataCellProps, IdItem } from '../../types';
 
 /**
@@ -19,30 +22,20 @@ import { BaseTableDataCellProps, IdItem } from '../../types';
 export function BaseTableDateCell<T extends IdItem>(
   props: BaseTableDataCellProps<T>
 ) {
-  const { row, id } = props;
+  const { row, id, header } = props;
 
-  const { lang } = useLanguage();
-  const isFarsi = lang === 'fa';
+  console.log(row[id as string]);
 
-  const now = new Date();
-
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  };
-
-  function dateAndNumber(date?: Date) {
-    // ۲۴ خرداد ۱۴۰۲
-    const condition = isFarsi ? 'fa-IR' : 'en-US';
-    if (date) {
-      return new Date(date).toLocaleDateString(condition, options);
+  const formatDate = (value: Date | string) => {
+    if (header?.type === 'date') {
+      if (header?.render === 'day') return convertToDay(value as string);
+      if (header?.render === 'hour')
+        return convertToHourFormat(value as string);
+      if (header?.render === 'date')
+        return convertToDateFormat(value as string);
     }
-    return now.toLocaleDateString(condition, options);
-  }
-  if (isFarsi) {
-    moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
-  }
+    return dateAndNumber(value as Date);
+  };
 
   return (
     <Typography
@@ -50,7 +43,7 @@ export function BaseTableDateCell<T extends IdItem>(
       type="p"
       className="text-gray-900 dark:text-white"
     >
-      {dateAndNumber(row[id as string])}
+      {formatDate(row[id as string])}
     </Typography>
   );
 }

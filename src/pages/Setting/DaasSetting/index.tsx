@@ -45,7 +45,6 @@ export function DaasSetting() {
   }, [daasConfig, reset]);
 
   const handleOnUpdate = async (data: DaasSettingProp) => {
-    // const updatedDaasSetting = getValues();
     setLoadingButton(true);
 
     if (data.id) {
@@ -61,6 +60,24 @@ export function DaasSetting() {
         });
     }
   };
+
+  // get datat with getValue useForm
+  // const handleOnUpdate = async () => {
+  //   const updatedDaasConfig = getValues();
+  //   setLoadingButton(true);
+  //   if (updatedDaasConfig.id) {
+  //     await API_UPDATE_DAAS_CONFIG(updatedDaasConfig)
+  //       .then(() => {
+  //         toast.success(t('global.sucessfulyUpdated'));
+  //       })
+  //       .catch((err) => {
+  //         toast.error(err);
+  //       })
+  //       .finally(() => {
+  //         setLoadingButton(false);
+  //       });
+  //   }
+  // };
 
   if (isLoading) {
     return <LoadingSpinner />;
