@@ -87,7 +87,7 @@
     "file": "File",
     "edit": "edit",
     "delete": "delete",
-    "upload": "upload",
+    "upload": "Upload",
     "AccessConference": "Access conference",
     "conferencePrivilege": "Conference Privilege",
     "microphonePrivilege": "Microphone Privilege",
@@ -275,7 +275,10 @@
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
     "all": "Select All",
     "deleteFile": " Delete File",
-    "deleteUser": "Delete User"
+    "deleteUser": "Delete User",
+    "download": "Download",
+    "upload": "upload",
+    "limitBySize": "Limit by size"
   },
   "groupManagement": {
     "person": "person",
@@ -328,7 +331,26 @@
     "onlineUsers": "Online Users",
     "blockedUsers": "Blocked Users",
     "searchUsers": "Search Users",
-    "usersList": "User List"
+    "usersList": "User List",
+    "userAccess": "User Access",
+    "changeUserProfileAndAccessList": "Change user profile and access list",
+    "byActivitingThisSectionyouAllowTheUserToDownloadFiles": "By activiting this section,you allow the user to download files.",
+    "byActivitingThisSectionYouAllowTheUserToUploadFiles": "By activiting this section,you allow the user to upload files.",
+    "timeOfUse": "Time of use",
+    "specifyTheTimeToUseTheSystem": "Specify the time to use the system. ",
+    "downloadApprovedFormats": "Download approved formats",
+    "uploadApprovedFormats": "Upload approved formats",
+    "sessionRecording": "Desktop recording",
+    "thePossibilityOfRecordingtheDesktopByTheUser": "The possibility of recording the desktop by the user",
+    "clipboard": "Clipboard",
+    "thePossibilityOfUsingTexts": "The possibility of using texts.",
+    "evidence": "Evidence",
+    "abilityToDownloadFilesUploadedOrDownloadedByTheUser": "Ability to download files uploaded or downloaded by the user",
+    "conference": "Conference",
+    "accessToWebcamAndMicrophone": "Access to webcam and microphone",
+    "accessToTheUsersDesktopOnline": "Access to the user's desktop online",
+    "clipboardLog": "Clipboard log",
+    "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard"
   },
   "license": {
     "licenseId": "license Id",
