@@ -20,7 +20,7 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
 import { FileTypeProp } from '../type';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function DlpSetting() {
@@ -107,7 +107,7 @@ export function DlpSetting() {
     currentPage,
     allItems: 10,
     itemsPer: PAGE_SIZE,
-    paginationLabel: t('header.user'),
+    paginationLabel: t('table.file'),
     totalPages: Math.ceil(countPage / PAGE_SIZE),
 
     onPageChange: handlePageChange,
@@ -118,7 +118,7 @@ export function DlpSetting() {
       <FilterTableList
         handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
-        searchPlaceholder={t('fileScan.adminSearch')}
+        searchPlaceholder={t('table.search')}
         onClickButton={handleCreateNewType}
         buttonLabel={t('table.addNewFile')}
       />

@@ -45,7 +45,7 @@ export default function FilterTableList(props: FilterReportsProps) {
   );
 
   return (
-    <div className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.875rem]">
+    <div className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.875rem] mb-5">
       <div
         className={` ${
           buttonLabel || handelGroupeFilter
