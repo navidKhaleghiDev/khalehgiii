@@ -121,7 +121,12 @@
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
     "disallow": "غیر مجاز",
-    "permanent": "دائم"
+    "permanent": "دائم",
+    "startTime": "زمان شروع",
+    "lastTime": "زمان پایان",
+    "recordDate": "تاریخ ضبط",
+    "duration": "مدت زمان",
+    "days": "روز های هفته"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

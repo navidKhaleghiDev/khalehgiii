@@ -120,7 +120,12 @@
     "deleteUser": "Delete User",
     "allowed": "Allowed",
     "disallow": "Disallow",
-    "permanent": "Permanent"
+    "permanent": "Permanent",
+    "startTime": "Start Time",
+    "lastTime": "Last Time",
+    "recordDate": "Record date",
+    "duration": "Duration",
+    "days": "Days"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
