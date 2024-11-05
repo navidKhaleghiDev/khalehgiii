@@ -17,7 +17,8 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
 import { VideoLoadingSkelton } from '../Components/VideoLoadingSkelton';
 
 const PAGE_SIZE = 8;
@@ -125,11 +126,14 @@ export function KnowledgeManagementList() {
         open={openModal}
         setOpen={setOpenModal}
         type="content"
+        icon={PhPlayDuotone}
+        title={t('knowledgeManagement.recoardeActivite')}
+        descriptionInfo={t('knowledgeManagement.recordedUserActivate')}
         content={
           <VideoLoadingSkelton isLoading={videoFile?.loading}>
             <div className="w-full">
               {videoFile?.file ? (
-                <video width="750" height="500" controls>
+                <video width="750" height="500" controls className="rounded-xl">
                   <track kind="captions" />
                   <source src={videoFile.file} type="video/mp4" />
                   Your browser does not support the video tag.

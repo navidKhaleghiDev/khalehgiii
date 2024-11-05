@@ -1,5 +1,8 @@
 import { PropsWithChildren } from 'react';
 
+import { BaseIcon } from '@redesignUi/atoms';
+import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
+
 type VideoLoadingSkeltonProps = PropsWithChildren<{ isLoading?: boolean }>;
 
 export function VideoLoadingSkelton({
@@ -9,7 +12,9 @@ export function VideoLoadingSkelton({
   if (isLoading) {
     return (
       <div className="animate-pulse">
-        <div className="w-[43rem] md:w-[46.8rem] h-[25rem] md:h-[31.25rem] bg-gray-500 rounded-t-2xl mb-1" />
+        <div className="w-[420px] h-[260px] flex items-center justify-center md:h-[380px] md:w-[590px] bg-gray-500 rounded-lg mb-1">
+          <BaseIcon icon={PhPlayDuotone} size="lg" />
+        </div>
       </div>
     );
   }

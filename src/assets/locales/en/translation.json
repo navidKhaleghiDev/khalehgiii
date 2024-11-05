@@ -159,6 +159,10 @@
     "adminUserName": "abc@abc.com",
     "changePassword": "Change Password"
   },
+  "knowledgeManagement": {
+    "recoardeActivite": "Recorded activities",
+    "recordedUserActivate": "Recorded user activities"
+  },
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "alphabet": "Alphabet",

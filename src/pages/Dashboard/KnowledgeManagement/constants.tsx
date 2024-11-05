@@ -22,7 +22,7 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
         </div>
       );
     },
-    class: 'px-3 w-5/12 lg:w-4/12 xl:w-3/12',
+    class: 'px-3 w-10/12 md:w-5/12 lg:w-4/12 xl:w-3/12',
   },
   {
     label: 'table.user',
@@ -65,7 +65,7 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
         </Typography>
       );
     },
-    class: 'px-3 w-1/12 ',
+    class: 'px-3 w-1/12',
     isMobileCollapsed: true,
   },
   {
@@ -78,6 +78,6 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
         tooltip: 'table.play',
       },
     ],
-    class: 'px-10 w-1/12 mr-auto',
+    class: '-px-3 sm:px-10 w-1/12 mr-auto',
   },
 ];

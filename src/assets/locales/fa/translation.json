@@ -160,6 +160,10 @@
     "adminUserName": "abc@abc.com",
     "changePassword": "تغییر پسورد"
   },
+  "knowledgeManagement": {
+    "recoardeActivite": "فعالیت‌های ضبط شده",
+    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر"
+  },
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
