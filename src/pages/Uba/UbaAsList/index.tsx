@@ -8,7 +8,7 @@ import { Uba } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { ubaHeaderItem } from './constants/ubaHeaderItem';
 

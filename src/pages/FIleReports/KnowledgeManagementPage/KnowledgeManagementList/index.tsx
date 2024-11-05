@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
+import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
@@ -15,11 +16,11 @@ import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { OnlineAssistanceModel } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { KnowledgeManagementHeaderItem } from '@src/pages/Dashboard/KnowledgeManagement/constants';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
-import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
+
 import { VideoLoadingSkelton } from '../Components/VideoLoadingSkelton';
+import { KnowledgeManagementHeaderItem } from '../constants';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -27,21 +28,20 @@ const PAGE = 1;
 export function KnowledgeManagementList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  // This functionality is handling the groupe locally
-  // const [filterGroupe, setFilterGroupe] = useState<
-  //   OptionSelect | OptionSelect[] | null
-  // >();
   const [openModal, setOpenModal] = useState(false);
   const [videoFile, setVideoFile] = useState<{
     loading?: boolean;
     file?: any;
   } | null>(null);
+  // This functionality is handling the groupe locally
+  // const [filterGroupe, setFilterGroupe] = useState<
+  //   OptionSelect | OptionSelect[] | null
+  // >();
 
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
 
-  // Handel API request this does not work or ask what are u searching about it
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_ONLINE_ASSISTANCE,
     pageSize: PAGE_SIZE,
@@ -100,6 +100,12 @@ export function KnowledgeManagementList() {
   //     )
   //   : listDaas;
 
+  const flattedListDass = listDaas?.map((item) => ({
+    ...item,
+    admin_email: item.admin.email,
+    user_email: item.user.email,
+  }));
+
   return (
     <>
       <div className="mb-[1.875rem]">
@@ -112,7 +118,7 @@ export function KnowledgeManagementList() {
         />
       </div>
       <BaseTable
-        body={listDaas}
+        body={flattedListDass}
         header={checkPermissionHeaderItem(
           userPermissions,
           KnowledgeManagementHeaderItem

@@ -4,7 +4,7 @@ import { Typography } from '@redesignUi/atoms';
 
 import { KnowledgeManagementList } from './KnowledgeManagementList';
 
-export function KnowledgeManagement() {
+export function KnowledgeManagementPage() {
   const { t } = useTranslation();
 
   return (
