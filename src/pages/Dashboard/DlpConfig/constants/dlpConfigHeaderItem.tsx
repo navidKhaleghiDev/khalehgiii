@@ -1,14 +1,20 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 
-import { booleanIcon } from '@src/pages/Dashboard/DlpConfig/utils';
 import {
   EPermissionUsers,
   EPermissionWhiteListFiles,
 } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import {
+  BaseTableComponentCellProps,
+  HeaderTable,
+} from '@redesignUi/molecules/BaseTable/types';
 import Trash from '@iconify-icons/ph/trash-simple';
 import NotePencil from '@iconify-icons/ph/pencil-simple';
 import { IconFile } from '@src/pages/Setting/DlpSetting/component/IconType';
+import { FileTypeProp } from '@src/pages/Setting/type';
+import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
+import DownloadSimple from '@iconify-icons/ph/download-simple';
+import UploadSimple from '@iconify-icons/ph/upload-simple';
 
 export const dlpConfigHeaderItem: HeaderTable[] = [
   {
@@ -31,8 +37,14 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
     label: 'table.active',
     id: 'is_active',
     type: 'component',
+    component: (props: BaseTableComponentCellProps<FileTypeProp>) => (
+      <TagHelperCell
+        title={props.row.is_active ? 'table.active' : 'table.block'}
+        translate
+        color={props.row.is_active ? 'teal' : 'yellow'}
+      />
+    ),
     isMobileCollapsed: true,
-    function: booleanIcon,
 
     class: 'px-3 md:w-2/12 xl:w-1/12',
   },
@@ -41,18 +53,28 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
     id: ['allowed_for_download', 'allowed_for_upload'],
     type: 'component',
     isMobileCollapsed: true,
-    function: booleanIcon,
+    component: (props: BaseTableComponentCellProps<FileTypeProp>) => (
+      <div className="flex gap-x-[0.81rem]">
+        {props.row.allowed_for_download ? (
+          <TagHelperCell
+            title="table.download"
+            icon={DownloadSimple}
+            translate
+            color="blue"
+          />
+        ) : null}
+        {props.row.allowed_for_upload ? (
+          <TagHelperCell
+            title="table.upload"
+            icon={UploadSimple}
+            translate
+            color="purple"
+          />
+        ) : null}
+      </div>
+    ),
     class: 'px-3 md:w-2/12 xl:w-1/12',
   },
-
-  // {
-  //   label: 'table.allowedForUpload',
-  //   id: 'allowed_for_upload',
-  //   type: 'component',
-  //   function: booleanIcon,
-
-  //   class: 'px-3 w-2/12',
-  // },
 
   {
     id: 'action',

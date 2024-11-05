@@ -388,6 +388,7 @@
   "setting": {
     "application": "Application",
     "daas": "DaaS",
+    "dlp":"DLP",
     "ssoBaseURL": "SSO base URL",
     "ssoClientID": "SSO client ID",
     "ssoSecret": "SSO Secret",

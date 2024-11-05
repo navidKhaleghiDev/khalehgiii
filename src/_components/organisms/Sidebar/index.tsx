@@ -32,8 +32,7 @@ export function SideBar(): JSX.Element {
     useState<NavigationProps | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();

@@ -16,8 +16,9 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
+import { UpdateFileTypeModal } from '@src/pages/Dashboard/DlpConfig/UpdateFileTypeModal';
+import { Typography } from '@redesignUi/atoms';
 
-import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
 import { FileTypeProp } from '../type';
 
 const PAGE_SIZE = 8;
@@ -115,6 +116,15 @@ export function DlpSetting() {
 
   return (
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+      <div className="mb-[2.87rem]">
+        <Typography
+          color="black"
+          variant="body2B"
+          className="w-full col-span-12 dark:text-white"
+        >
+          {t('setting.dlp')}
+        </Typography>
+      </div>
       <FilterTableList
         handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
