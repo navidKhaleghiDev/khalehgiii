@@ -8,11 +8,11 @@ import {
   API_CREATE_FILE_TYPE,
   API_UPDATE_FILE_TYPE,
 } from '@src/services/config';
-import { FileTypeProp } from '@src/pages/setting/type';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { BaseButton, Card, Typography } from '@redesignUi/atoms';
 import PhFile from '@iconify-icons/ph/file';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
+import { FileTypeProp } from '@src/pages/Setting/type';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;

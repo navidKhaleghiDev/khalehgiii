@@ -8,7 +8,7 @@ import {
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import Trash from '@iconify-icons/ph/trash-simple';
 import NotePencil from '@iconify-icons/ph/pencil-simple';
-import { IconFile } from '@src/pages/setting/DlpSetting/component/IconType';
+import { IconFile } from '@src/pages/Setting/DlpSetting/component/IconType';
 
 export const dlpConfigHeaderItem: HeaderTable[] = [
   {
