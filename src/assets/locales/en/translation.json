@@ -374,7 +374,13 @@
     "secretP": "secret",
     "realmP": "realm",
     "sso": "SSO",
-    "manager": "Manager"
+    "manager": "Manager",
+    "resourceLimitations":"Resource limitations",
+    "chrome":"Chrome",
+    "fireFox":"Firefox",
+    "cpu":"CPU (Core)",
+    "core":"Core",
+    "memory":"Memory(GB)"
   },
 
   "regexPattern": {

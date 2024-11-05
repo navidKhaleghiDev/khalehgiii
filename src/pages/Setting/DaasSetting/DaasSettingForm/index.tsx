@@ -12,6 +12,7 @@ import { Divider } from '@redesignUi/atoms/Divider';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
+import { ChromeSvg } from '@redesignUi/atoms/Svgs/ChromeSvg';
 
 import { PropsType } from '../../type';
 import { TitleSection } from '../../component/TitleSection';
@@ -26,7 +27,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
     EPermissionDaas.CHANGE
   );
 
-  const inputStyle = 'col-span-6 lg:col-span-4 h-16';
+  const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
   const cardStyles =
     'flex items-center w-40 sm:w-full h-10 shrink-0 pr-[0.62rem] ltr:pl-[0.62rem] col-span-6 md:col-span-3 lg:col-span-2';
 
@@ -42,12 +43,12 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
         </Typography>
       </div>
       <div className="w-full h-full flex flex-col">
-        <div className="mb-5">
+        <div className="mb-1">
           <TitleSection label={t('table.downloadAndUploadPrivilege')} />
         </div>
 
         <div className="w-full grid mt-5">
-          <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem] mb-7">
+          <div className="flex col-span-6 lg:col-span-4 gap-[9.18rem] mb-5">
             <BaseCheckBoxController
               control={control}
               id="can_download_file"
@@ -64,11 +65,11 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
         </div>
 
         <Divider />
-        <div className="mb-5 mt-7">
+        <div className="mb-5">
           <TitleSection label={t('table.timeLimitDuration')} />
         </div>
 
-        <div className="w-full mb-7">
+        <div className="w-full mb-5">
           <div className="gap-5 grid-flow-row-dense grid grid-cols-12">
             {/* <Card className={cardStyles} color="white">
               <BaseRadioButtonController
@@ -119,11 +120,11 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
           </div>
         </div>
         <Divider />
-        <div className="mb-1 mt-7">
+        <div>
           <TitleSection label={t('table.accessSetting')} />
         </div>
 
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5">
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5 mb-3">
           <div className={inputStyle}>
             <BaseInputNumberController
               id="max_transmission_upload_size"
@@ -169,6 +170,104 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               placeholder={t('global.selectHour')}
               icon={PhTimer}
               dir={direction}
+              rules={{
+                required: regexPattern.required,
+              }}
+              fullWidth
+            />
+          </div>
+        </div>
+        <Divider />
+        <div>
+          <TitleSection label={t('setting.resourceLimitations')} />
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
+          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+            <BaseCheckBoxController
+              control={control}
+              id=""
+              name=""
+              label={t('setting.chrome')}
+            />
+            <ChromeSvg />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mb-3">
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.memory')}
+              disabled={!hasChangePermission}
+              placeholder="0"
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={50}
+              rules={{
+                required: regexPattern.required,
+              }}
+              fullWidth
+            />
+          </div>
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.cpu')}
+              disabled={!hasChangePermission}
+              placeholder={t('setting.core')}
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
+              rules={{
+                required: regexPattern.required,
+              }}
+              fullWidth
+            />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
+          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+            <BaseCheckBoxController
+              control={control}
+              id=""
+              name=""
+              label={t('setting.fireFox')}
+            />
+            {/* <FirefoxSvg /> */}
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mb-3">
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.memory')}
+              disabled={!hasChangePermission}
+              placeholder="0"
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={50}
+              rules={{
+                required: regexPattern.required,
+              }}
+              fullWidth
+            />
+          </div>
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.cpu')}
+              disabled={!hasChangePermission}
+              placeholder={t('setting.core')}
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
               rules={{
                 required: regexPattern.required,
               }}
