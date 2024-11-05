@@ -239,7 +239,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
             {/* <FirefoxSvg /> */}
           </div>
         </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mb-3">
+        <div className="grid w-full grid-cols-12 gap-[1.87rem]">
           <div className={inputStyle}>
             <BaseInputNumberController
               id=""

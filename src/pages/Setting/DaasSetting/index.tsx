@@ -90,7 +90,7 @@ export function DaasSetting() {
     >
       <DaasSettingForm control={control} userPermissions={userPermissions} />
 
-      <div className="flex self-end mt-8 lg:mb-[1rem]">
+      <div className="flex self-end mt-8 lg:mb-[2.1rem]">
         <BaseButton
           label={t('dashboard.saveChanges')}
           loading={loadingButton}
