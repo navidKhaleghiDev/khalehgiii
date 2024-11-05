@@ -345,7 +345,9 @@
     "accessToWebcamAndMicrophone": "Access to webcam and microphone",
     "accessToTheUsersDesktopOnline": "Access to the user's desktop online",
     "clipboardLog": "Clipboard log",
-    "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard"
+    "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard",
+    "recordedActivities": "Recorded activities",
+    "recordedUserActivities": "Recorded user activities"
   },
   "license": {
     "licenseId": "license Id",

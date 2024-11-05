@@ -347,7 +347,9 @@
     "accessToWebcamAndMicrophone": "دسترسی به وب‌کم و میکروفون.",
     "accessToTheUsersDesktopOnline": "دسترسی به میز کار کاربر به صورت آنلاین.",
     "clipboardLog": "لاگ کلیپبورد",
-    "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد."
+    "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد.",
+    "recordedActivities": "فعالیت های ضبط شده",
+    "recordedUserActivities": "فعالیت های ضبط شده کاربر"
   },
 
   "license": {
