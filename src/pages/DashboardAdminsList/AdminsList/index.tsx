@@ -15,7 +15,7 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
