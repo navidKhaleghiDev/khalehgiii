@@ -146,6 +146,11 @@ export const regexPattern = {
     value: /^[۰-۹٠-٩0-9-,]+$/,
     message: t('regexPattern.price'),
   },
+  ip: {
+    value:
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/i,
+    message: t('regexPattern.ip'),
+  },
 };
 
 export function enCharNumberUnderline(label?: string) {

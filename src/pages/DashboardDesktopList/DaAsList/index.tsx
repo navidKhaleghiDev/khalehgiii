@@ -1,34 +1,28 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useCallback, useState } from 'react';
-import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
-import { IDaAs } from '@src/services/users/types';
-import { Modal } from '@ui/molecules/Modal';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useSWR, { useSWRConfig } from 'swr';
+
+import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
+import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
-
-import { debounce } from 'lodash';
-import { useTranslation } from 'react-i18next';
-// import { BaseTable } from '@ui/atoms/BaseTable';
-import { useNavigate } from 'react-router-dom';
+import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
+import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
 import {
   ActionOnClickActionsType,
   OnClickActionsType,
-} from '@ui/atoms/BaseTable/types';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
-import { EPermissionDaas } from '@src/types/permissions';
-import {
-  checkPermission,
-  useUserPermission,
-} from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+} from '@redesignUi/molecules/BaseTable/types';
+import { Modal } from '@redesignUi/molecules/Modal';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 
-import { BaseTable } from '@ui/atoms/BaseTable';
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 
@@ -60,7 +54,7 @@ function compareExtensionLists(oldList?: string[], newList?: string[]) {
   };
 }
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 5;
 const PAGE = 1;
 
 export function DaAsList() {
@@ -79,6 +73,7 @@ export function DaAsList() {
     useState(false);
 
   const userPermissions = useUserPermission();
+  const windowsDimensions = useWindowDimensions();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
@@ -91,7 +86,6 @@ export function DaAsList() {
     endpoint,
     http.fetcherSWR
   );
-
   const mutateConfigUserDass = useCallback(() => {
     mutate(
       (key) => typeof key === 'string' && key.startsWith(E_USERS_DAAS),
@@ -100,18 +94,18 @@ export function DaAsList() {
     );
   }, [mutate]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 2000),
-    []
-  );
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const debouncedSetFilterQuery = useCallback(
+  //   debounce((query: string) => {
+  //     setCurrentPage(PAGE);
+  //     setFilterQuery(query);
+  //   }, 2000),
+  //   []
+  // );
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
-  };
+  // const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   debouncedSetFilterQuery(event.target.value);
+  // };
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -156,32 +150,6 @@ export function DaAsList() {
       setActiveDaas(fileType as IDaAs);
       setOpenOnlineAssistanceModal(true);
     }
-  };
-
-  const handleOnRequests = async () => {
-    if (!activeDaas) return;
-
-    setLoadingButtonModal(true);
-    if (actionOnClick === 'delete') {
-      await API_DAAS_DELETE(activeDaas.id as string)
-        .then(() => {
-          toast.success(t('global.successfullyRemoved'));
-          setOpenModal(false);
-          mutateConfigUserDass();
-        })
-        .catch((err) => {
-          toast.error(err);
-        })
-        .finally(() => {
-          setLoadingButtonModal(false);
-        });
-    } else {
-      updateDaas(activeDaas);
-    }
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
   };
 
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
@@ -246,61 +214,101 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+  const handleOnRequests = async () => {
+    if (!activeDaas) return;
+
+    setLoadingButtonModal(true);
+    if (actionOnClick === 'delete') {
+      await API_DAAS_DELETE(activeDaas.id as string)
+        .then(() => {
+          toast.success(t('global.successfullyRemoved'));
+          setOpenModal(false);
+          mutateConfigUserDass();
+        })
+        .catch((err) => {
+          toast.error(err);
+        })
+        .finally(() => {
+          setLoadingButtonModal(false);
+        });
+    } else {
+      updateDaas(activeDaas);
+    }
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   const paginationProps = {
     countPage,
     currentPage,
+    allItems: 10,
+    itemsPer: PAGE_SIZE,
+    paginationLabel: t('header.user'),
     totalPages: Math.ceil(countPage / PAGE_SIZE),
+
     onPageChange: handlePageChange,
   };
-  const resetPermission = checkPermission(
-    userPermissions,
-    EPermissionDaas.CHANGE
-  );
+  // const resetPermission = checkPermission(
+  //   userPermissions,
+  //   EPermissionDaas.CHANGE
+  // );
 
-  const searchBarProps: TSearchBar = {
-    name: 'search',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-    componentProps: resetPermission
-      ? {
-          type: 'actionRefresh',
-        }
-      : undefined,
-  };
+  // const searchBarProps: TSearchBar = {
+  //   name: 'search',
+  //   value: filterQuery,
+  //   handleSearchInput: handleFilterChange,
+  //   componentProps: resetPermission
+  //     ? {
+  //         type: 'actionRefresh',
+  //       }
+  //     : undefined,
+  // };
 
   return (
-    <div className={`w-full p-4 ${isLoading ? 'loading' : ''}  `}>
+    <div className={`w-full ${isLoading ? 'loading' : ''} flex flex-col gap-5`}>
+      <FilterTableList
+        searchQuery={filterQuery}
+        searchPlaceholder={t('userList.searchUsers')}
+        handelSearchQuery={setFilterQuery}
+        domainFilter
+      />
       <BaseTable
         loading={isLoading}
-        headers={checkPermissionHeaderItem(
+        header={checkPermissionHeaderItem(
           userPermissions,
           desktopListHeaderItem
         )}
-        bodyList={listDaas}
+        body={listDaas}
         onClick={handleOnClickActions}
         pagination={paginationProps}
-        searchBar={searchBarProps}
+        isMobile={windowsDimensions.width <= 768}
       />
       <Modal
+        size="responsive"
         open={openModal}
         setOpen={setOpenModal}
         type="error"
-        title={t('global.sureAboutThis')}
+        title={t('global.deleteUser')}
+        description={t('global.sureAboutDeleteUser')}
         buttonOne={{
-          label: t('global.yes'),
+          label: t('global.deleteUser'),
           onClick: handleOnRequests,
           loading: loadingButtonModal,
+          color: 'red',
         }}
         buttonTow={{
-          label: t('global.no'),
+          label: t('global.cancel'),
           onClick: () => setOpenModal(false),
-          color: 'red',
+          color: 'tertiary',
         }}
       />
       <Modal
+        type="content"
+        size="responsive"
         open={openSettingModal}
         setOpen={setOpenSettingModal}
-        type="success"
         content={
           <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
@@ -310,9 +318,10 @@ export function DaAsList() {
         }
       />
       <Modal
+        size="responsive"
         open={openOnlineAssistanceModal}
         setOpen={setOpenOnlineAssistanceModal}
-        type="success"
+        type="content"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
       />
     </div>

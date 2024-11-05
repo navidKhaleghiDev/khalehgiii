@@ -20,13 +20,15 @@ import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
+import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
-import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
 import { GroupManagementEdit } from '@src/pages/GroupManagement/GroupManagementEdit';
 import { GroupManagement } from '@src/pages/GroupManagement';
+import Application from '@src/pages/Setting/Application';
+import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -167,7 +169,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.application,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>Application Page</div>
+            <Application />
           </ProtectedRoute>
         ),
       },
@@ -175,7 +177,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.daas,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>DaaS Page</div>
+            <DaasSetting />
           </ProtectedRoute>
         ),
       },

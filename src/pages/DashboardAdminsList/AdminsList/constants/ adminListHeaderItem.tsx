@@ -1,92 +1,92 @@
-import trashIcon from '@iconify-icons/ph/trash';
-import notePencilIcon from '@iconify-icons/ph/note-pencil';
-import { Check } from '@ui/atoms/BaseTable/components/tableIcons/Check';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
-import { EPermissionUsers } from '@src/types/permissions';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { useTranslation } from 'react-i18next';
 
-export const adminListHeaderItem: IHeaderTable[] = [
-  {
-    id: 'action',
-    type: 'action',
-    action: [
-      {
-        action: 'delete',
-        icon: trashIcon,
-        color: 'redNoBg',
-        permission: EPermissionUsers.DELETE,
-      },
-      {
-        action: 'edit',
-        icon: notePencilIcon,
-        color: 'neutralNoBg',
-        permission: EPermissionUsers.CHANGE,
-      },
-    ],
-    permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.userName',
-    id: 'username',
-    type: 'none',
-    class: 'px-3 w-1/12',
-  },
+import Trash from '@iconify-icons/ph/trash-simple';
+import NotePencil from '@iconify-icons/ph/pencil-simple';
+import { EPermissionUsers } from '@src/types/permissions';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { Typography } from '@redesignUi/atoms';
+
+interface UserTypeComponentProps {
+  row: {
+    is_meta_admin: boolean;
+  };
+}
+
+function UserTypeComponent({ row }: UserTypeComponentProps) {
+  const { t } = useTranslation();
+  return (
+    <Typography variant="body6" color="black" className="whitespace-nowrap">
+      {row.is_meta_admin ? t('table.metaAdmin') : t('header.admin')}
+    </Typography>
+  );
+}
+export const adminListHeaderItem: HeaderTable[] = [
   {
     label: 'table.email',
-    id: 'email',
-    type: 'none',
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.firstNameLastName',
     id: ['first_name', 'last_name'],
-    type: 'user',
-    class: 'px-3 w-2/12',
+    type: 'avatar',
+    email: 'email',
+    isActive: 'is_active',
+    class: 'px-3 w-4/12 lg:w-3/12',
   },
   {
-    label: 'table.active',
-    id: 'is_active',
-    type: 'component',
-    component: (props: any) => <Circle id={props.row.is_active} />,
-
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.metaAdmin',
-    id: 'is_meta_admin',
-    type: 'component',
-    component: (props: any) => (
-      <Check id={props.row.is_meta_admin} header={props.head} />
-    ),
-
-    class: 'px-3 w-1/12',
+    label: 'table.lastLogin',
+    id: 'last_login',
+    type: 'date',
+    class: 'px-3 lg:w-1/12 w-2/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
     type: 'date',
-    class: 'px-3 w-1/12',
+    class: 'px-3 lg:w-1/12 w-2/12',
+    isMobileCollapsed: true,
   },
   {
-    label: 'table.activeOtp',
+    label: 'table.userType',
+    id: 'is_meta_admin',
+    type: 'component',
+    component: UserTypeComponent,
+    class: 'px-3 lg:w-1/12 w-2/12',
+    isMobileCollapsed: true,
+  },
+
+  {
+    label: 'table.access',
     id: 'totp_enable',
     type: 'component',
-    component: (props: any) => <Circle id={props.row.totp_enable} />,
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.activeQrcode',
-    id: 'totp_secret',
-    type: 'component',
-    component: (props: any) => <Circle id={props.row.totp_secret} />,
+    component: (props: any) => (
+      <Typography variant="body6B" color="black">
+        {props.row.totp_enable ? 'MFA' : '--'}
+      </Typography>
+    ),
+    isMobileCollapsed: true,
+
     class: 'px-3 w-1/12',
   },
 
   {
-    label: 'table.lastLogin',
-    id: 'last_login',
-    type: 'date',
-    class: 'px-3 w-1/12',
+    id: 'action',
+    type: 'menu',
+    tooltip: 'table.moreDetail',
+    menu: [
+      {
+        action: 'edit',
+        icon: NotePencil,
+        color: 'neutralNoBg',
+        permission: EPermissionUsers.CHANGE,
+        title: 'table.editAdminInfo',
+      },
+      {
+        action: 'delete',
+        icon: Trash,
+        color: 'redNoBg',
+        permission: EPermissionUsers.DELETE,
+        title: 'table.deleteAdmin',
+      },
+    ],
+    permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
+    class: ' mr-auto w-2/12 lg:w-1/12',
   },
 ];
