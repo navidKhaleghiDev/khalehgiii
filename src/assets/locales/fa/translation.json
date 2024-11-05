@@ -290,7 +290,8 @@
     "newGroup": "گروه جدید",
     "onlineUsers": "کاربران آنلاین",
     "groupName": "نام گروه ",
-    "searchGroup": "جستجوی گروه"
+    "searchGroup": "جستجوی گروه",
+    "addMember": "عضو جدید"
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",

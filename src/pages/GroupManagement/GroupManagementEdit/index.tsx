@@ -14,9 +14,11 @@ import { BaseButton, BaseIcon, BaseInput, Typography } from '@redesignUi/atoms';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
 import { components } from 'storybook/internal/components';
-import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
 import pencilSimple from '@iconify-icons/ph/pencil-simple';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { FileInput } from '@redesignUi/atoms/Inputs/FileInput';
+import { BaseInputUploadImage } from '@redesignUi/atoms/BaseInputUploadImage';
+import pluse from '@iconify-icons/ph/plus-bold';
 
 const PAGE_SIZE = 5;
 const PAGE = 1;
@@ -58,6 +60,7 @@ export function GroupManagementEdit() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [updateGroup, setUpdateGroupData] = useState([]);
+  const [editMode, setEditMode] = useState(false);
 
   const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
     id ? USERS_GROUPS_GET(id) : null,
@@ -108,28 +111,64 @@ export function GroupManagementEdit() {
     });
   };
 
+  console.log(group?.users?.length);
+
   return (
-    <div>
-      <Typography>{t('groupManagement.editGroup')}</Typography>
-      <div className="flex justify-between">
-        <div className="w-full  ">
-          <Typography>{group?.name}</Typography>
-          <Typography variant="body6" color="neutral">
-            admins 10 | users 10
-          </Typography>
-          <div className="border-t border-gray-200 my-4" />
+    <div className="">
+      <Typography variant="body2" className="my-5">
+        {t('groupManagement.editGroup')}
+      </Typography>
+
+      <div className="flex justify-between border-b border-gray-200 my-6">
+        <div className="w-full flex my-4 ">
+          <BaseInputUploadImage
+            disabled={!editMode}
+            name="image"
+            defaultValue={group.image}
+            onClick={(f) => console.log(f)}
+          />
+          {!editMode ? (
+            <div className="flex flex-col justify-center px-6 my-5  ">
+              <Typography>{group?.name}</Typography>
+              <Typography
+                variant="body6"
+                color="neutral"
+                className="!text-gray-400"
+              >
+                admins 10 | users 10
+              </Typography>
+            </div>
+          ) : (
+            <div className="px-6  bg-red-300">
+              <BaseInput
+                label={t('groupManagement.groupName')}
+                id="name"
+                name="name"
+                value={group?.name}
+                onChange={(e) => console.log(e)}
+              />
+            </div>
+          )}
         </div>
-        <div>
-          <IconButton icon={pencilSimple} color="neutral" size="sm" />
-        </div>
+        <IconButton
+          className="self-center "
+          icon={pencilSimple}
+          color="neutral"
+          size="sm"
+          onClick={() => setEditMode((prev) => !prev)}
+        />
       </div>
-      <SearchInput
-        onChange={(e) => setFilterQuery(e)}
-        value={filterQuery}
-        id="search"
-        name="search"
-        placeholder={t('groupManagement.searchGroup')}
-      />
+      <div className="flex justify-between">
+        <SearchInput
+          onChange={(e) => setFilterQuery(e)}
+          value={filterQuery}
+          id="search"
+          name="search"
+          placeholder={t('groupManagement.searchGroup')}
+        />
+        <BaseButton label={t('groupManagement.addMember')} endIcon={pluse} />
+      </div>
+
       <BaseTable
         header={groupManagementHeaderItem}
         body={paginatedData('admins')}
