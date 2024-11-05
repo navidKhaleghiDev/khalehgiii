@@ -42,7 +42,7 @@ export type HeaderTable = HeaderTableBase &
   ({ type: Exclude<TableType, 'menu'> } | MenuHeader) &
   (
     | { type: Exclude<TableType, 'date'> }
-    | { type: 'date'; render: 'date' | 'day' | 'hour' }
+    | { type: 'date'; render?: 'date' | 'day' | 'hour' }
   );
 
 export type MenuHeader = {
