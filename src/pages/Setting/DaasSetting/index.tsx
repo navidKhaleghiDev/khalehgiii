@@ -24,20 +24,19 @@ export function DaasSetting() {
   );
   const userPermissions = useUserPermission();
 
-  const { control, handleSubmit, reset, formState, getValues } =
-    useForm<DaasSettingProp>({
-      mode: 'onChange',
-      defaultValues: {
-        id: daasConfig?.data?.id,
-        can_upload_file: daasConfig?.data?.can_upload_file,
-        can_download_file: daasConfig?.data?.can_download_file,
-        max_transmission_download_size:
-          daasConfig?.data?.max_transmission_download_size,
-        max_transmission_upload_size:
-          daasConfig?.data?.max_transmission_upload_size,
-        time_limit_duration: daasConfig?.data?.time_limit_duration,
-      },
-    });
+  const { control, handleSubmit, reset, formState } = useForm<DaasSettingProp>({
+    mode: 'onChange',
+    defaultValues: {
+      id: daasConfig?.data?.id,
+      can_upload_file: daasConfig?.data?.can_upload_file,
+      can_download_file: daasConfig?.data?.can_download_file,
+      max_transmission_download_size:
+        daasConfig?.data?.max_transmission_download_size,
+      max_transmission_upload_size:
+        daasConfig?.data?.max_transmission_upload_size,
+      time_limit_duration: daasConfig?.data?.time_limit_duration,
+    },
+  });
 
   useEffect(() => {
     if (daasConfig?.data) {
@@ -61,7 +60,8 @@ export function DaasSetting() {
         });
     }
   };
-//get datat with getValue useForm
+
+  // get datat with getValue useForm
   // const handleOnUpdate = async () => {
   //   const updatedDaasConfig = getValues();
   //   setLoadingButton(true);
