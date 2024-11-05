@@ -13,6 +13,7 @@ import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
 import { ChromeSvg } from '@redesignUi/atoms/Svgs/ChromeSvg';
+import { FirefoxSvg } from '@redesignUi/atoms/Svgs/FirefoxSvg';
 
 import { PropsType } from '../../type';
 import { TitleSection } from '../../component/TitleSection';
@@ -236,7 +237,7 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
               name=""
               label={t('setting.fireFox')}
             />
-            {/* <FirefoxSvg /> */}
+            <FirefoxSvg />
           </div>
         </div>
         <div className="grid w-full grid-cols-12 gap-[1.87rem]">
