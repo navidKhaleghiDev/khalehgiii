@@ -24,8 +24,6 @@ export function BaseTableDateCell<T extends IdItem>(
 ) {
   const { row, id, header } = props;
 
-  console.log(row[id as string]);
-
   const formatDate = (value: Date | string) => {
     if (header?.type === 'date') {
       if (header?.render === 'day') return convertToDay(value as string);

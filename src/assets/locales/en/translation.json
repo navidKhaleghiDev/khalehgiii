@@ -86,7 +86,7 @@
     "file": "File",
     "edit": "edit",
     "delete": "delete",
-    "upload": "upload",
+    "upload": "Upload",
     "AccessConference": "Access conference",
     "conferencePrivilege": "Conference Privilege",
     "microphonePrivilege": "Microphone Privilege",
@@ -120,7 +120,12 @@
     "deleteUser": "Delete User",
     "allowed": "Allowed",
     "disallow": "Disallow",
-    "permanent": "Permanent"
+    "permanent": "Permanent",
+    "startTime": "Start Time",
+    "lastTime": "Last Time",
+    "recordDate": "Record date",
+    "duration": "Duration",
+    "days": "Days"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -345,7 +350,9 @@
     "accessToWebcamAndMicrophone": "Access to webcam and microphone",
     "accessToTheUsersDesktopOnline": "Access to the user's desktop online",
     "clipboardLog": "Clipboard log",
-    "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard"
+    "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard",
+    "recordedActivities": "Recorded activities",
+    "recordedUserActivities": "Recorded user activities"
   },
   "license": {
     "licenseId": "license Id",
