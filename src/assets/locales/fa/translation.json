@@ -271,7 +271,10 @@
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
     "all": "انتخاب همه",
-    "deleteUser": "حذف کاربر"
+    "deleteUser": "حذف کاربر",
+    "download": "دانلود",
+    "upload": "آپلود",
+    "limitBySize": "محدود کردن بر اساس زمان"
   },
   "groupManagement": {
     "person": "نفر",
@@ -325,7 +328,26 @@
     "onlineUsers": "کاربران آنلاین",
     "blockedUsers": "کاربران مسدود شده",
     "searchUsers": "جستجوی کاربر",
-    "usersList": "لیست کاربران"
+    "usersList": "لیست کاربران",
+    "userAccess": "دسترسی های کاربر",
+    "changeUserProfileAndAccessList": "تغییر مشخصات و لیست دسترسی‌های کاربر.",
+    "byActivitingThisSectionyouAllowTheUserToDownloadFiles": "با فعال کردن این بخش به کاربر اجازه دانلود فایل‌هارا می‌دهید.",
+    "byActivitingThisSectionYouAllowTheUserToUploadFiles": "با فعال کردن این بخش به کاربر اجازه آپلود فایل‌هارا می‌دهید.",
+    "timeOfUse": "زمان استفاده",
+    "specifyTheTimeToUseTheSystem": "زمان استفاده از سامانه را مشخص کنید.",
+    "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
+    "trustedUploadFormat": "فرمت های مورد تایید آپلود",
+    "sessionRecording": "ضبط دسکتاپ",
+    "thePossibilityOfRecordingtheDesktopByTheUser": "امکان ضبط دسکتاپ توسط کاربر.",
+    "clipboard": "کلیپ‌بورد",
+    "thePossibilityOfUsingTexts": "امکان استفاده از متن‌ها.",
+    "evidence": "شواهد",
+    "abilityToDownloadFilesUploadedOrDownloadedByTheUser": "امکان دانلود فایل‌های آپلود شده یا دانلود شده توسط کاربر.",
+    "conference": "کنفرانس",
+    "accessToWebcamAndMicrophone": "دسترسی به وب‌کم و میکروفون.",
+    "accessToTheUsersDesktopOnline": "دسترسی به میز کار کاربر به صورت آنلاین.",
+    "clipboardLog": "لاگ کلیپبورد",
+    "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد."
   },
 
   "license": {
