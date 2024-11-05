@@ -173,7 +173,7 @@ export function SideBar(): JSX.Element {
             <div className="mx-2">
               <span>
                 <Typography variant="body5" color="neutralDark">
-                  {isUser ? user?.first_name && user.last_name : user?.email}
+                  {isUser ? user?.first_name && user.last_name : ''}
                 </Typography>
               </span>
               <span>

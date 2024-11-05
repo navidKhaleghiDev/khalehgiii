@@ -24,13 +24,12 @@ import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/MenuItemAccordi
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
 export function DrawerProfile() {
-  const { isOpen, setIsOpen } = useDrawerContext();
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const dropdownRef = useRef(null);
-
+  const { isOpen, setIsOpen } = useDrawerContext();
   const { isDark, toggleTheme } = useTheme();
   const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
   const navigate = useNavigate();
   useClickOutside({
@@ -39,7 +38,7 @@ export function DrawerProfile() {
     value: isOpen,
   });
 
-  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const isUser = user?.first_name && user?.last_name;
 
   const handleLogout = () => {
     http.removeAuthHeader();
@@ -108,7 +107,7 @@ export function DrawerProfile() {
           <div className="mx-2">
             <span>
               <Typography variant="body5" color="neutralDark">
-                {`${user?.first_name} ${user?.last_name}`}
+                {isUser ? user?.first_name && user.last_name : ''}
               </Typography>
             </span>
             <span>
