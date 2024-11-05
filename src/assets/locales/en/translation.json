@@ -8,7 +8,7 @@
   },
   "header": {
     "user": "User",
-    "admin": "admin"
+    "admin": "Admin"
   },
   "table": {
     "accessTime": "Access Time",
@@ -28,7 +28,7 @@
     "desktop": "Desktop",
     "desktopV": "Desktop Version",
     "status": "Status",
-    "defaultSetting": "Default Settings",
+    "defaultSetting": "Default",
     "search": "Search",
     "addNewAdmin": "Add New Admin",
     "nameOfTheUser": "User Name",
@@ -70,12 +70,12 @@
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreation": "license Creation",
     "validLicense": "valid License",
-    "httpPort": "http port",
-    "httpsPort": "https port",
+    "httpPort": "HTTP port",
+    "httpsPort": "HTTPS port",
     "accessCapacity": "authorized capacity",
     "containerId": "container id",
-    "lastUptime": "last uptime",
-    "lastLoginIp": "last Login Ip",
+    "lastUptime": "Last uptime",
+    "lastLoginIp": "Last Login Ip",
     "download": "download",
     "selectTimeFrame": "Select Time Frame",
     "sessionRecording": "Session Recording",
@@ -98,6 +98,7 @@
     "trustedUploadFormat": "Trusted Upload Format",
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
+    "downloadAndUploadPrivilege": "Download and Upload Access",
     "recordingActivity": "recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
@@ -109,7 +110,17 @@
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
-    "lastLogout": "Last Logout"
+    "lastLogout": "Last Logout",
+    "setting": "Setting",
+    "timing": "Timing",
+    "connection": "Connection",
+    "custom": "Custom",
+    "block": "Block",
+    "assistance": "Assistance",
+    "deleteUser": "Delete User",
+    "allowed": "Allowed",
+    "disallow": "Disallow",
+    "permanent": "Permanent"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -129,6 +140,7 @@
     "uba": "UBA",
     "extentions": "Extentions List",
     "days": "Days",
+    "saveChanges": "Save Changes",
     "progressChart": "Progress chart",
     "activeLicenses": "Active licenses",
     "onlineUsers": "Online users",
@@ -149,6 +161,7 @@
     "choseDomain": "Domain",
     "newest": "Newest",
     "grouping": "Grouping",
+    "format": "format",
     "monitoring": "Monitoring",
     "show": "Show",
     "of": "of",
@@ -167,7 +180,7 @@
     "selectDate": "Select Date",
     "sucessfylySaved": "Successfully Saved",
     "lastName": "Last Name",
-    "name": "Name",
+    "name": "First Name",
     "repeatNewPassword": "Repeat New Password",
     "email": "Email",
     "metaAdmin": "Super Admin",
@@ -256,7 +269,11 @@
     "save": "Save",
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
-    "all": "Select All"
+    "all": "Select All",
+    "deleteUser": "Delete User",
+    "download": "Download",
+    "upload": "upload",
+    "limitBySize": "Limit by size"
   },
   "groupManagement": {
     "person": "person",
@@ -292,13 +309,43 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
-    "userInfo": "user Info",
+    "userInfo": "User Info",
+    "adminInfo": "Admin Info",
     "userType": "User type",
+    "createNewAdmin": "Create new admin",
+    "createNewAdminText": "Enter the details to create a new admin and select the required permissions",
+    "editInformation": "Edit information",
+    "editInformationText": "Change the admin’s profile",
     "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
     "admin": "Admin",
     "metaAdmin": "Administrator",
     "choseDomain": "Domain",
     "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+  },
+  "userList": {
+    "onlineUsers": "Online Users",
+    "blockedUsers": "Blocked Users",
+    "searchUsers": "Search Users",
+    "usersList": "User List",
+    "userAccess": "User Access",
+    "changeUserProfileAndAccessList": "Change user profile and access list",
+    "byActivitingThisSectionyouAllowTheUserToDownloadFiles": "By activiting this section,you allow the user to download files.",
+    "byActivitingThisSectionYouAllowTheUserToUploadFiles": "By activiting this section,you allow the user to upload files.",
+    "timeOfUse": "Time of use",
+    "specifyTheTimeToUseTheSystem": "Specify the time to use the system. ",
+    "downloadApprovedFormats": "Download approved formats",
+    "uploadApprovedFormats": "Upload approved formats",
+    "sessionRecording": "Desktop recording",
+    "thePossibilityOfRecordingtheDesktopByTheUser": "The possibility of recording the desktop by the user",
+    "clipboard": "Clipboard",
+    "thePossibilityOfUsingTexts": "The possibility of using texts.",
+    "evidence": "Evidence",
+    "abilityToDownloadFilesUploadedOrDownloadedByTheUser": "Ability to download files uploaded or downloaded by the user",
+    "conference": "Conference",
+    "accessToWebcamAndMicrophone": "Access to webcam and microphone",
+    "accessToTheUsersDesktopOnline": "Access to the user's desktop online",
+    "clipboardLog": "Clipboard log",
+    "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard"
   },
   "license": {
     "licenseId": "license Id",
@@ -322,9 +369,34 @@
     "wholeNumbers": "Whole Numbers",
     "expirationDate": "Expiration date"
   },
+  "systemManagement": {
+    "formatList": "Formats list",
+    "search": "Search",
+    "newFormat": "New format",
+    "uploadFile": "Upload and attach files",
+    "uploadFileText": "Upload and attach files to create a new format",
+    "uploadFileTextInputOne": "Click to upload ",
+    "uploadFileTextInputTwo": " or drag and drop your file.",
+    "deleteFormat": "Delete format",
+    "deleteFormatText": "Are you sure to delete this format?"
+  },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "daas": "DaaS",
+    "ssoBaseURL": "SSO base URL",
+    "ssoClientID": "SSO client ID",
+    "ssoSecret": "SSO Secret",
+    "ssoPort": "SSO Port",
+    "ssoRealm": "SSO realm",
+    "logServer": "Log Server",
+    "logServerIP": "Log Server IP",
+    "logServerPort": "Log Server Port",
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm",
+    "sso": "SSO",
+    "manager": "Manager"
   },
 
   "regexPattern": {
@@ -360,7 +432,8 @@
     "shebaNumber": "Use only numbers",
     "cardBankNumber": "Use only numbers",
     "price": "Please use only numbers",
-    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234",
+    "ip": "Please enter the correct IP format"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

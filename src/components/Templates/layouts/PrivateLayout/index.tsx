@@ -17,7 +17,6 @@ function LayoutCp() {
   const [loading, setLoading] = React.useState(true);
   const { user, setUser } = useUserContext();
   const isUser = user?.is_meta_admin || user?.is_superuser;
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,14 +51,13 @@ function LayoutCp() {
     return (
       <div className="flex h-screen bg-gray-50 dark:bg-gray-700 font-kalameh">
         <div className="flex flex-col flex-1 overflow-hidden">
-          <header className="z-50 border-neutral-200 shadow-lg bg-gray-50 dark:bg-gray-700">
+          <header className="z-50 border-neutral-200 shadow-lg bg-gray-50 dark:bg-gray-700 px-5">
             <NavbarDashboard />
           </header>
-
           <div
-            className={`"flex sm:flex-row h-full overflow-y-auto ${
-              !isUser ? '' : 'px-0.5 container mx-auto justify-center'
-            } mb-5"`}
+            className={`flex sm:flex-row h-full overflow-y-auto ${
+              isUser ? 'px-0.5 container mx-auto justify-center' : ''
+            } mb-5`}
           >
             {isUser ? (
               <nav className="flex mx-auto sm:h-full z-40">
@@ -68,10 +66,10 @@ function LayoutCp() {
                 </div>
               </nav>
             ) : null}
-            <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700">
+            <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 mt-5">
               <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
                 <div className="flex flex-col gap-16 sm:h-full">
-                  <div className={`${isUser ? 'px-5' : 'px-0'} sm:h-full`}>
+                  <div className="px-5 sm:h-full">
                     <Outlet />
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
-import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
+import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
 import { useTranslation } from 'react-i18next';
 import {
   checkPermission,
