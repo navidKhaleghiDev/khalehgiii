@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useSWR, { useSWRConfig } from 'swr';
 
+import Play from '@iconify-icons/ph/play';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
 import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
@@ -11,8 +11,9 @@ import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { SessionRecordingList } from '@src/pages/SessionRecording/SessionRecordingList';
 import {
   ActionOnClickActionsType,
   OnClickActionsType,
@@ -21,7 +22,6 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
@@ -60,7 +60,6 @@ const PAGE = 1;
 export function DaAsList() {
   const { mutate } = useSWRConfig();
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
@@ -71,6 +70,9 @@ export function DaAsList() {
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
     useState(false);
+  const [openSessionRecording, setOpenSessionRecording] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string>('');
 
   const userPermissions = useUserPermission();
   const windowsDimensions = useWindowDimensions();
@@ -123,9 +125,12 @@ export function DaAsList() {
       );
       return;
     }
-    if (action === 'more') {
+    if (action === 'more' && id) {
       // we neded to do somthing
-      navigate(`${ROUTES_PATH.dashboardSessionRecording}/${id}`);
+      // navigate(`${ROUTES_PATH.dashboardSessionRecording}/${id}`);
+      setSelectedId(id);
+      setOpenSessionRecording(true);
+      setUserName(fileType.email);
 
       return;
     }
@@ -206,6 +211,7 @@ export function DaAsList() {
         toast.success(t('global.sucessfulyUpdated'));
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);
+        if (openSessionRecording) setOpenSessionRecording(false);
       })
       .catch((err) => {
         toast.error(err);
@@ -267,7 +273,7 @@ export function DaAsList() {
   // };
 
   return (
-    <div className={`w-full ${isLoading ? 'loading' : ''} flex flex-col gap-5`}>
+    <div className="w-full flex flex-col gap-5">
       <FilterTableList
         searchQuery={filterQuery}
         searchPlaceholder={t('userList.searchUsers')}
@@ -303,6 +309,17 @@ export function DaAsList() {
           onClick: () => setOpenModal(false),
           color: 'tertiary',
         }}
+      />
+      <Modal
+        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        size="lg"
+        open={openSessionRecording}
+        setOpen={setOpenSessionRecording}
+        type="content"
+        content={<SessionRecordingList id={selectedId} username={userName} />}
+        icon={Play}
+        title={t('userList.recordedActivities')}
+        descriptionInfo={`${t('userList.recordedUserActivities')} ${userName}`}
       />
       <Modal
         type="content"
