@@ -24,19 +24,20 @@ export function DaasSetting() {
   );
   const userPermissions = useUserPermission();
 
-  const { control, handleSubmit, reset, formState } = useForm<DaasSettingProp>({
-    mode: 'onChange',
-    defaultValues: {
-      id: daasConfig?.data?.id,
-      can_upload_file: daasConfig?.data?.can_upload_file,
-      can_download_file: daasConfig?.data?.can_download_file,
-      max_transmission_download_size:
-        daasConfig?.data?.max_transmission_download_size,
-      max_transmission_upload_size:
-        daasConfig?.data?.max_transmission_upload_size,
-      time_limit_duration: daasConfig?.data?.time_limit_duration,
-    },
-  });
+  const { control, handleSubmit, reset, formState, getValues } =
+    useForm<DaasSettingProp>({
+      mode: 'onChange',
+      defaultValues: {
+        id: daasConfig?.data?.id,
+        can_upload_file: daasConfig?.data?.can_upload_file,
+        can_download_file: daasConfig?.data?.can_download_file,
+        max_transmission_download_size:
+          daasConfig?.data?.max_transmission_download_size,
+        max_transmission_upload_size:
+          daasConfig?.data?.max_transmission_upload_size,
+        time_limit_duration: daasConfig?.data?.time_limit_duration,
+      },
+    });
 
   useEffect(() => {
     if (daasConfig?.data) {
@@ -45,7 +46,6 @@ export function DaasSetting() {
   }, [daasConfig, reset]);
 
   const handleOnUpdate = async (data: DaasSettingProp) => {
-    // const updatedDaasSetting = getValues();
     setLoadingButton(true);
 
     if (data.id) {
@@ -61,6 +61,23 @@ export function DaasSetting() {
         });
     }
   };
+//get datat with getValue useForm
+  // const handleOnUpdate = async () => {
+  //   const updatedDaasConfig = getValues();
+  //   setLoadingButton(true);
+  //   if (updatedDaasConfig.id) {
+  //     await API_UPDATE_DAAS_CONFIG(updatedDaasConfig)
+  //       .then(() => {
+  //         toast.success(t('global.sucessfulyUpdated'));
+  //       })
+  //       .catch((err) => {
+  //         toast.error(err);
+  //       })
+  //       .finally(() => {
+  //         setLoadingButton(false);
+  //       });
+  //   }
+  // };
 
   if (isLoading) {
     return <LoadingSpinner />;

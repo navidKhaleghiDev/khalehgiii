@@ -25,6 +25,7 @@ import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
+import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 
 import { ROUTES_PATH } from './routesConstants';
@@ -158,7 +159,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.application,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>Application Setting</div>
+            <Application />
           </ProtectedRoute>
         ),
       },
