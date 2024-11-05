@@ -109,8 +109,11 @@ export function BaseDropdown(props: BaseDropdownProps): JSX.Element {
   return (
     <div dir={dir} className="relative" ref={ref}>
       {label && (
-        <label htmlFor={name} className="block mb-1">
-          <Typography>{label}</Typography>
+        <label
+          htmlFor={name}
+          className="flex ltr:justify-end text-gray-500 mb-[0.12rem]"
+        >
+          <Typography variant="body6">{label}</Typography>
         </label>
       )}
       <div
@@ -129,7 +132,7 @@ export function BaseDropdown(props: BaseDropdownProps): JSX.Element {
             <LoadingSvg type="neutral" />
           </div>
         ) : (
-          <div className="flex w-full justify-between items-center ">
+          <div className="flex w-full justify-between ltr:flex-row-reverse items-center ">
             <div
               className={`flex items-center gap-3 overflow-hidden ${
                 error && 'text-gray-900 dark:text-white'
@@ -214,7 +217,7 @@ export function BaseDropdown(props: BaseDropdownProps): JSX.Element {
             ) : (
               <button
                 type="button"
-                className={`w-full ${!rtl ? 'text-left' : 'text-right'}`}
+                className="w-full text-right ltr:text-left"
                 onClick={() => handleOnChange(option)}
               >
                 {option.label}

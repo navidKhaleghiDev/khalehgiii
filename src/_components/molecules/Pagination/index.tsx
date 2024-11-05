@@ -81,12 +81,12 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
-    if (totalPages <= 5) {
+    if (totalPages <= 3) {
       for (let i = 1; i <= totalPages; i += 1) {
         pageNumbers.push(i);
       }
     } else if (currentPage <= 3) {
-      for (let i = 1; i <= 5; i += 1) {
+      for (let i = 1; i <= 3; i += 1) {
         pageNumbers.push(i);
       }
       pageNumbers.push('...');
