@@ -14,7 +14,14 @@ export const ubaHeaderItem: HeaderTable[] = [
     id: 'username',
     isActive: 'true',
     label: 'table.nameOfTheUser',
-    class: 'px-3 xl:w-2/12 lg:w-3/12 sm:w-4/12',
+    class: 'px-2 xl:w-2/12 lg:w-3/12 w-2/12',
+  },
+  {
+    label: 'table.unauthorizedBehavior',
+    id: 'malbehave_count',
+    type: 'none',
+    class: 'px-3 lg:w-1/12 w-2/12 rtl:text-right ltr:text-left lg:text-center',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.action',
@@ -36,28 +43,7 @@ export const ubaHeaderItem: HeaderTable[] = [
         color={props.row.transmission_type === 'upload' ? 'purple' : 'blue'}
       />
     ),
-    class: 'px-3 lg:w-2/12 sm:w-[6.25rem]',
-    isMobileCollapsed: true,
-  },
-  {
-    label: 'table.unauthorizedBehavior',
-    id: 'malbehave_count',
-    type: 'none',
-    class: 'px-3 xl:w-1/12 lg:w-2/12 w-2/12',
-    isMobileCollapsed: true,
-  },
-  {
-    label: 'table.realName',
-    id: 'original_file_name',
-    type: 'none',
-    class: 'px-3 lg:w-2/12 sm:w-[6.25rem]',
-    isMobileCollapsed: true,
-  },
-  {
-    label: 'table.updatedNames',
-    id: 'file_names',
-    type: 'none',
-    class: 'px-3 w-2/12 lg:max-w-full max-w-36',
+    class: 'px-3 xl:w-1/12 w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -71,7 +57,21 @@ export const ubaHeaderItem: HeaderTable[] = [
         color={props.row.is_ban ? 'yellow' : 'teal'}
       />
     ),
-    class: 'px-3 lg:w-2/12 sm:w-[6.25rem]',
+    class: 'px-3 w-1/12',
+    isMobileCollapsed: true,
+  },
+  {
+    label: 'table.realName',
+    id: 'original_file_name',
+    type: 'none',
+    class: 'px-3 lg:w-1/12 w-1/12',
+    isMobileCollapsed: true,
+  },
+  {
+    label: 'table.updatedNames',
+    id: 'file_names',
+    type: 'none',
+    class: 'px-3 lg:w-3/12 w-1/12',
     isMobileCollapsed: true,
   },
 ];

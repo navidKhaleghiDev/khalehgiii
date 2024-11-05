@@ -9,7 +9,7 @@ export function UbaPage() {
   return (
     <>
       <Typography
-        className="w-full justify-self-start xl:mb-[6.25rem] md:mb-10 mb-[1.875rem]"
+        className="w-full justify-self-start mb-[1.875rem]"
         variant="body2B"
         color="black"
       >

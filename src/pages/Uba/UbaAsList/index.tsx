@@ -58,24 +58,21 @@ export function UbaAsList() {
 
   return (
     <div className="w-full">
-      <div className="mb-8">
+      <div className="mb-5">
         <FilterTableList
           searchQuery={filterQuery}
           handelSearchQuery={handleFilterQuery}
           domainFilter
-          handelGroupeFilter={() => {
-            console.log('first');
-          }}
           searchPlaceholder={t('table.search')}
         />
       </div>
-      <div className="md:[&_tbody>*]:justify-start [&_tbody>*]:justify-between">
+      <div>
         <BaseTable
           loading={isLoading}
           body={listUba}
           header={ubaHeaderItem}
           pagination={paginationProps}
-          isMobile={width < 768}
+          isMobile={width < 1024}
         />
       </div>
     </div>
