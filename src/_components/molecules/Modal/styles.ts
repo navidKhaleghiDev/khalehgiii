@@ -17,6 +17,7 @@ export const containerStyles = cva('', {
     size: {
       sm: 'sm:w-[21.875rem] w-full',
       md: 'sm:w-[27.813rem] w-full',
+      lg: 'w-[20.87rem] sm:w-[33.43rem] lg:w-[39.68rem]',
       responsive: 'sm:w-[27.813rem] w-[21.875rem]',
     },
   },

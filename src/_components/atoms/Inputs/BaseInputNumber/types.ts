@@ -5,6 +5,7 @@ import {
   FieldValues,
   RegisterOptions,
 } from 'react-hook-form';
+import { IconType } from '@src/types/global';
 
 import { baseInputNumberStyles } from './styles';
 import { BaseInputProps } from '../BaseInput/types';
@@ -28,9 +29,10 @@ export type BaseInputNumberProps = Omit<
   | 'onChange'
 > &
   VariantProps<typeof baseInputNumberStyles> & {
-    defaultValue?: number;
     min?: number;
     max?: number;
     onChange: (value: number) => void;
     value?: number;
+    icon?: IconType;
+    defaultValue?: number | undefined;
   };

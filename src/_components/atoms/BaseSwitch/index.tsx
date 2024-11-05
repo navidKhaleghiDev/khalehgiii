@@ -30,13 +30,13 @@ export function BaseSwitch(props: BaseSwitchProps): JSX.Element {
     onChange,
     checked,
     error,
-    dir = 'rtl',
+    dir = 'ltr',
     disabled = false,
     hiddenError,
   } = props;
 
   return (
-    <div className="flex">
+    <div className="flex" dir={dir}>
       {label && (
         <label
           htmlFor={id}

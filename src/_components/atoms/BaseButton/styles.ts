@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const baseButtonStyles = cva(
-  `flex items-center justify-center transition duration-150 ease-in-out rounded-lg focus:outline-none p-2 font-semibold leading-6 gap-1`,
+  `flex items-center justify-center rounded-lg focus:outline-none p-2 font-semibold leading-6 gap-1`,
   {
     variants: {
       type: {
