@@ -11,13 +11,12 @@ import {
   EPermissionFileScan,
   EPermissionInternetLogs,
   EPermissionScanReports,
-  EPermissionSessionRecording,
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
-import { SessionRecording } from '@src/pages/SessionRecording/index';
+// import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
@@ -75,14 +74,14 @@ export const adminRoutes = [
           </ProtectedRoute>
         ),
       },
-      {
-        path: ROUTES_PATH.dashboardSessionRecordingList,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionSessionRecording.VIEW}>
-            <SessionRecording />
-          </ProtectedRoute>
-        ),
-      },
+      // {
+      //   path: ROUTES_PATH.dashboardSessionRecordingList,
+      //   element: (
+      //     <ProtectedRoute requiredPermission={EPermissionSessionRecording.VIEW}>
+      //       <SessionRecording />
+      //     </ProtectedRoute>
+      //   ),
+      // },
       {
         path: ROUTES_PATH.dashboardAdminsList,
         element: (
