@@ -26,10 +26,10 @@ import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
+import { DlpSetting } from '@src/pages/Setting/DlpSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
-import { DlpSetting } from '@src/pages/Setting/DlpSetting';
 
 export const adminRoutes = [
   {
@@ -175,7 +175,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.dlp,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <DlpSetting/>
+            <DlpSetting />
           </ProtectedRoute>
         ),
       },
