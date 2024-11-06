@@ -24,6 +24,7 @@ export const baseInputNumberStyles = cva(
         sm: 'w-[120px]',
         md: 'w-[175px]',
         xl: 'w-[270px]',
+        // responsive:'w-[7.5rem] md:w-[10.93rem] xl:w-[16.87rem]'
       },
     },
     defaultVariants: {

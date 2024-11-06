@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useTranslation } from 'react-i18next';
 import { BaseButton, BaseInput } from '@ui/atoms';
-import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
+import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
 import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
