@@ -1,55 +1,61 @@
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
-import {
-  convertToDateFormat,
-  convertToDay,
-  convertToHourFormat,
-} from '@src/helper/utils/dateUtils';
-import { EPermissionSessionRecording } from '@src/types/permissions';
-import { Recording } from '@src/pages/SessionRecording/SessionRecordingList/components';
+import Play from '@iconify-icons/ph/play';
 
-export const SessionRecordingHeaderItem: IHeaderTable[] = [
+import { EPermissionSessionRecording } from '@src/types/permissions';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { ConvertedSecondsHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ConvertedSecondsHelperCell';
+
+export const SessionRecordingHeaderItem: HeaderTable[] = [
   {
-    label: 'table.day',
+    label: 'table.days',
     id: 'recrod_date',
-    type: 'function',
-    function: convertToDay,
-    class: 'w-4/12',
+    type: 'date',
+    render: 'day',
+    class: 'lg:w-2/12 w-4/12',
   },
   {
-    label: 'table.date',
+    label: 'table.recordDate',
     id: 'recrod_date',
-    type: 'function',
-    function: convertToDateFormat,
-    class: 'w-4/12',
+    type: 'date',
+    render: 'date',
+    class: 'sm:w-2/12 w-4/12',
   },
   {
-    label: 'table.startDate',
+    label: 'table.startTime',
     id: 'start',
-    type: 'function',
-    function: convertToHourFormat,
-    class: 'w-4/12',
+    type: 'date',
+    render: 'hour',
+    class: 'w-2/12',
   },
   {
-    label: 'table.endDate',
+    label: 'table.lastTime',
     id: 'end',
-    type: 'function',
-    function: convertToHourFormat,
-    class: 'w-4/12',
+    type: 'date',
+    render: 'hour',
+    class: 'w-2/12',
+    isMobileCollapsed: true,
   },
   {
-    label: 'table.time',
+    label: 'table.duration',
     id: 'record_length',
-    type: 'none',
-    class: 'w-4/12',
-  },
-  {
-    label: 'table.play',
-    id: 'record_name',
     type: 'component',
     component: (props: any) => (
-      <Recording row={props.row} onClick={props.onClick} />
+      <ConvertedSecondsHelperCell time={props.row.record_length} />
     ),
-    permission: EPermissionSessionRecording.VIEW,
-    class: 'w-4/12',
+    class: 'w-2/12',
+  },
+
+  {
+    id: 'action',
+    type: 'action',
+    label: 'table.play',
+    action: [
+      {
+        action: 'more',
+        icon: Play,
+        color: 'neutralNoBg',
+        permission: EPermissionSessionRecording.VIEW,
+      },
+    ],
+    class: 'mr-auto w-1/12',
   },
 ];
