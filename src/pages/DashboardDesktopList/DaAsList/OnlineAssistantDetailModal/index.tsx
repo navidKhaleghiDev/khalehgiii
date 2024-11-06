@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
+
 import { IDaAs } from '@src/services/users/types';
 import { Divider } from '@redesignUi/atoms/Divider';
+import { NoResult } from '@redesignUi/molecules/NoResult';
 
 import OnlineAssistanceDetail from './OnlineAssistanceDetail';
 
@@ -15,14 +17,23 @@ export function OnlineAssistanceDetailModal({
 
   const { member_of: members, admin_group_of: admins } = daas;
 
+  if (!admins.length && !members.length) {
+    return (
+      <div className="flex flex-col items-center justify-center h-96">
+        <NoResult />
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full h-96 overflow-auto ">
+    <div className="w-full h-96 overflow-auto">
       <OnlineAssistanceDetail
         title={t('userList.groupAdmin')}
         description={t('userList.assistanceAdminTitle')}
         data={admins}
       />
-      {admins.length !== 0 && members.length > 0 && <Divider />}
+
+      {admins.length > 0 && members.length > 0 && <Divider />}
 
       <OnlineAssistanceDetail
         title={t('userList.groupMember')}

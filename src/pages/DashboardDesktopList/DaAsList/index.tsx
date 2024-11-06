@@ -15,10 +15,7 @@ import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { SessionRecordingList } from '@src/pages/SessionRecording/SessionRecordingList';
-import {
-  ActionOnClickActionsType,
-  OnClickActionsType,
-} from '@redesignUi/molecules/BaseTable/types';
+import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
@@ -64,9 +61,9 @@ export function DaAsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
-  const [actionOnClick, setActionOnClick] =
-    useState<ActionOnClickActionsType>();
   const [openModal, setOpenModal] = useState(false);
+  const [openBlockModal, setOpenBlockModal] = useState(false);
+
   const [openSettingModal, setOpenSettingModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
@@ -97,19 +94,6 @@ export function DaAsList() {
     );
   }, [mutate]);
 
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const debouncedSetFilterQuery = useCallback(
-  //   debounce((query: string) => {
-  //     setCurrentPage(PAGE);
-  //     setFilterQuery(query);
-  //   }, 2000),
-  //   []
-  // );
-
-  // const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   debouncedSetFilterQuery(event.target.value);
-  // };
-
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -118,46 +102,47 @@ export function DaAsList() {
     fileType
   ) => {
     const id = fileType?.id;
-    if (action === 'mutate') {
-      mutate(
-        (key) => typeof key === 'string' && key.startsWith('/users/daas'),
-        undefined,
-        { revalidate: true }
-      );
-      return;
-    }
-    if (action === 'more' && id) {
-      // we neded to do somthing
-      // navigate(`${ROUTES_PATH.dashboardSessionRecording}/${id}`);
-      setSelectedId(id);
-      setOpenSessionRecording(true);
-      setUserName(fileType.email);
 
-      return;
-    }
-    if (action === 'edit') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenSettingModal(true);
-      return;
-    }
+    switch (action) {
+      case 'mutate':
+        mutate(
+          (key) => typeof key === 'string' && key.startsWith('/users/daas'),
+          undefined,
+          { revalidate: true }
+        );
+        break;
 
-    if (action === 'editLock') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenModal(true);
-      return;
-    }
+      case 'more':
+        if (id) {
+          setSelectedId(id);
+          setOpenSessionRecording(true);
+          setUserName(fileType.email);
+        }
+        break;
 
-    if (fileType !== undefined && typeof fileType !== 'string') {
-      setActionOnClick(action);
-      setActiveDaas(fileType as IDaAs);
-      setOpenModal(true);
-    }
-    if (action === 'details') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenOnlineAssistanceModal(true);
+      case 'edit':
+        setActiveDaas(fileType as IDaAs);
+        setOpenSettingModal(true);
+        break;
+
+      case 'editLock':
+        setActiveDaas(fileType as IDaAs);
+        setOpenBlockModal(true);
+        break;
+
+      case 'details':
+        setActiveDaas(fileType as IDaAs);
+        setOpenOnlineAssistanceModal(true);
+        break;
+
+      default:
+        if (fileType !== undefined && typeof fileType !== 'string') {
+          setActiveDaas(fileType as IDaAs);
+          setOpenModal(true);
+        }
+        break;
     }
   };
-
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
     if (!daas) return;
     let daasUpdated = daas;
@@ -210,6 +195,7 @@ export function DaAsList() {
       .then(() => {
         mutateConfigUserDass();
         toast.success(t('global.sucessfulyUpdated'));
+        if (openBlockModal) setOpenBlockModal(false);
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);
         if (openSessionRecording) setOpenSessionRecording(false);
@@ -221,28 +207,30 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+
+  const handleOnBlock = () => {
+    if (!activeDaas) return;
+    setLoadingButtonModal(true);
+    updateDaas(activeDaas);
+    setOpenBlockModal(false);
+  };
   const handleOnRequests = async () => {
     if (!activeDaas) return;
-
     setLoadingButtonModal(true);
-    if (actionOnClick === 'delete') {
-      await API_DAAS_DELETE(activeDaas.id as string)
-        .then(() => {
-          toast.success(t('global.successfullyRemoved'));
-          setOpenModal(false);
-          mutateConfigUserDass();
-        })
-        .catch((err) => {
-          toast.error(err);
-        })
-        .finally(() => {
-          setLoadingButtonModal(false);
-        });
-    } else {
-      updateDaas(activeDaas);
-    }
-  };
 
+    await API_DAAS_DELETE(activeDaas.id as string)
+      .then(() => {
+        toast.success(t('global.successfullyRemoved'));
+        setOpenModal(false);
+        mutateConfigUserDass();
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoadingButtonModal(false);
+      });
+  };
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -257,28 +245,18 @@ export function DaAsList() {
 
     onPageChange: handlePageChange,
   };
-  // const resetPermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionDaas.CHANGE
-  // );
 
-  // const searchBarProps: TSearchBar = {
-  //   name: 'search',
-  //   value: filterQuery,
-  //   handleSearchInput: handleFilterChange,
-  //   componentProps: resetPermission
-  //     ? {
-  //         type: 'actionRefresh',
-  //       }
-  //     : undefined,
-  // };
+  const handelSearchQuery = useCallback((value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+  }, []);
 
   return (
     <div className="w-full flex flex-col gap-5">
       <FilterTableList
         searchQuery={filterQuery}
         searchPlaceholder={t('userList.searchUsers')}
-        handelSearchQuery={setFilterQuery}
+        handelSearchQuery={handelSearchQuery}
         domainFilter
       />
       <BaseTable
@@ -308,6 +286,29 @@ export function DaAsList() {
         buttonTow={{
           label: t('global.cancel'),
           onClick: () => setOpenModal(false),
+          color: 'tertiary',
+        }}
+      />
+      <Modal
+        size="responsive"
+        open={openBlockModal}
+        setOpen={setOpenBlockModal}
+        type="info"
+        title={t('table.userStatus')}
+        description={
+          activeDaas?.is_lock
+            ? t('userList.areYouSureBlock')
+            : t('userList.areYouSureUnBlock')
+        }
+        buttonOne={{
+          label: t('global.yes'),
+          onClick: handleOnBlock,
+          loading: loadingButtonModal,
+          color: 'teal',
+        }}
+        buttonTow={{
+          label: t('global.cancel'),
+          onClick: () => setOpenBlockModal(false),
           color: 'tertiary',
         }}
       />
