@@ -21,7 +21,7 @@
     "email": "Email",
     "firstNameLastName": "First and Last Name",
     "active": "Active",
-    "deactive":"Deactive",
+    "deactive": "Deactive",
     "metaAdmin": "Super Admin",
     "dateOfCreated": "Creation Date",
     "lastLogin": "Last Login",
@@ -114,7 +114,7 @@
     "editAdminInfo": "Edit Admin Info",
     "addNewFile": "New File",
     "editFile": "Edit File",
-    "addFile":"Add file",
+    "addFile": "Add file",
     "chooseTypeFileAndLicenses": "Choose type file and licenses",
     "lastLogout": "Last Logout",
     "setting": "Setting",
@@ -390,7 +390,7 @@
   "setting": {
     "application": "Application",
     "daas": "DaaS",
-    "dlp":"DLP",
+    "dlp": "DLP",
     "ssoBaseURL": "SSO base URL",
     "ssoClientID": "SSO client ID",
     "ssoSecret": "SSO Secret",
@@ -405,7 +405,7 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile":"Save File"
+    "saveFile": "Save File"
   },
 
   "regexPattern": {

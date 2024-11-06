@@ -22,7 +22,7 @@
     "email": "ایمیل",
     "firstNameLastName": "نام و نام خانوادگی",
     "active": "فعال",
-    "deactive":"غیرفعال",
+    "deactive": "غیرفعال",
     "metaAdmin": "سوپر ادمین",
     "dateOfCreated": "تاریخ ایجاد",
     "lastLogin": "آخرین ورود",
@@ -114,7 +114,7 @@
     "deleteAdmin": "حذف ادمین",
     "editAdminInfo": "ویرایش مشخصات",
     "editFile": "ویرایش فایل",
-    "addFile":" افزودن فایل جدید",
+    "addFile": " افزودن فایل جدید",
     "chooseTypeFileAndLicenses": "انتخاب نوع فایل و مجوزها ",
     "addNewFile": "فایل جدید",
     "lastLogout": "آخرین خروج",
@@ -393,7 +393,7 @@
   "setting": {
     "application": "Application",
     "daas": "DaaS",
-    "dlp":"DLP",
+    "dlp": "DLP",
     "ssoBaseURL": "SSO base URL",
     "ssoClientID": "SSO client ID",
     "ssoSecret": "SSO Secret",
@@ -408,7 +408,7 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile":"ذخیره فایل"
+    "saveFile": "ذخیره فایل"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
