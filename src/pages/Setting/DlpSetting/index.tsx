@@ -17,11 +17,11 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { Typography } from '@redesignUi/atoms';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import PhFilePlus from '@iconify-icons/ph/file-plus';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 
 import { FileTypeProp } from '../type';
 import { dlpConfigHeaderItem } from './constants/dlpConfigHeaderItem';
 import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
-import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
