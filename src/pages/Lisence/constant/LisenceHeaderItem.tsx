@@ -12,6 +12,7 @@ export const LisenceHeaderItem: HeaderTable[] = [
     type: 'none',
     class: 'px-3 w-6/12  md:w-3/12 xl:w-2/12',
   },
+  // need new api
   // {
   //   label: 'table.lisenceName',
   //   id: 'users',
@@ -40,6 +41,7 @@ export const LisenceHeaderItem: HeaderTable[] = [
     ),
     class: 'px-3 md:w-2/12 xl:w-1/12',
   },
+  // need new api
   //   {
   //     label: 'table.licenseCreationDate',
   //     id: 'license_creation',
@@ -61,6 +63,8 @@ export const LisenceHeaderItem: HeaderTable[] = [
     class: 'px-3 md:w-2/12 xl:w-1/12',
     isMobileCollapsed: true,
   },
+  // need new api
+
   // {
   //   label: 'table.totalUserLicense',
   //   id: 'total_users_license',

@@ -9,12 +9,13 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { IResponsePagination } from '@src/types/services';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { Typography } from '@redesignUi/atoms';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { LicenseFileType } from './type';
 import { LisenceHeaderItem } from './constant/LisenceHeaderItem';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 export function License() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
@@ -36,8 +37,8 @@ export function License() {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-  const listLicense = data?.data?.results ?? [];
-  const countPage = data?.data.count || 0;
+  const listLicense = data?.data ?? [];
+  const countPage = 0;
   const paginationProps = {
     countPage,
     currentPage,
@@ -59,18 +60,18 @@ export function License() {
           {t('setting.daas')}
         </Typography>
       </div>
-      {/* {!isLoading ? (
-        <LicenseTables fileType={listLicense as LicenseFileType[]} />
-        ) : (
-          <LoadingSpinner />
-          )} */}
-      <BaseTable
-        body={listLicense}
-        header={checkPermissionHeaderItem(userPermissions, LisenceHeaderItem)}
-        loading={isLoading}
-        pagination={paginationProps}
-        isMobile={dimensions.width <= 770}
-      />
+
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <BaseTable
+          body={listLicense as LicenseFileType[]}
+          header={checkPermissionHeaderItem(userPermissions, LisenceHeaderItem)}
+          loading={isLoading}
+          pagination={paginationProps}
+          isMobile={dimensions.width <= 770}
+        />
+      )}
     </div>
   );
 }
