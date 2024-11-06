@@ -11,13 +11,14 @@ export const monitoringHeaderItem: HeaderTable[] = [
     type: 'avatar',
     isActive: 'is_running',
     email: 'email',
-    class: ' w-3/12',
+    class: 'w-10/12 md:w-5/12 lg:w-3/12',
   },
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
     type: 'date',
-    class: 'w-1/12',
+    class: 'w-2/12 lg:w-1/12',
+    isMobileCollapsed: true,
   },
   {
     label: 'table.scans',
@@ -25,6 +26,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
     type: 'component',
     component: (props: any) => <UserScanCount email={props.row.email} />,
     class: 'w-1/12',
+    isMobileCollapsed: true,
   },
   {
     id: 'id',
@@ -38,7 +40,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
     ],
     permission: EPermissionFileScan.VIEW,
 
-    class: 'mr-auto ',
+    class: 'mr-auto',
   },
 ];
 

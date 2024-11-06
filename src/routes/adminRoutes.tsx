@@ -22,10 +22,10 @@ import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/Uba';
-import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
+import { ReportFileScanPage } from '@src/pages/FIleReports/ReportFileScanPage';
 import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
 
 import { ROUTES_PATH } from './routesConstants';

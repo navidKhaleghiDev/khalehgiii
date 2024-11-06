@@ -15,8 +15,10 @@ import { MultiDatePicker } from '@redesignUi/atoms/Inputs/DatePicker';
 import { ScannedFileList } from '@src/pages/ScannedFileListPage/ScannedFileList';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { monitoringHeaderItem } from '@src/pages/ReportFileScan/constants/constants';
+
+import { monitoringHeaderItem } from '../constants/constants';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -27,7 +29,9 @@ export function UsersDaAsList() {
   const [modelId, setModelId] = useState('');
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+
   const userPermissions = useUserPermission();
+  const { width } = useWindowDimensions();
 
   const userHandler = (list: any) => {
     setOpen(true);
@@ -88,6 +92,7 @@ export function UsersDaAsList() {
           )}
           onClick={userHandler}
           pagination={paginationProps}
+          isMobile={width <= 770}
         />
       </div>
 
