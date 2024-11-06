@@ -9,9 +9,7 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
-import { BaseIcon, Typography } from '@redesignUi/atoms';
-import { MultiDatePicker } from '@redesignUi/atoms/Inputs/DatePicker';
+import PhPlayDuotone from '@iconify-icons/ph/play';
 import { ScannedFileList } from '@src/pages/ScannedFileListPage/ScannedFileList';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -71,8 +69,6 @@ export function UsersDaAsList() {
     itemsPer: listDaAs.length,
   };
 
-  console.log(data);
-
   return (
     <div className="mt-[7.625rem]">
       <FilterTableList
@@ -95,35 +91,16 @@ export function UsersDaAsList() {
           isMobile={width <= 770}
         />
       </div>
-
-      {/* <Modal
-          open={open}
-          setOpen={setOpen}
-          type="content"
-          className="dark:bg-gray-700"
-          content={
-            <div className=" w-[20.875rem] sm:w-[39.68rem]">
-              <div className="flex items-center gap-5">
-                <BaseIcon icon={PhPlayDuotone} size="lg" color="neutral" />
-                <div className="text-right">
-                  <Typography variant="body3B" color="neutralDark">
-                    {t('fileScan.recordedActivities')}
-                  </Typography>
-                  <Typography variant="body6" color="neutralLight">
-                    {t('fileScan.userRecordedActivities')}
-                  </Typography>
-                </div>
-              </div>
-              <MultiDatePicker
-                id="daasDatePicker"
-                name="daasDatePicker"
-                className="text-right mt-9 mb-5"
-                onChange={() => console.log('datePicker change')}
-              />
-              <ScannedFileList id={modelId} />
-            </div>
-          }
-        /> */}
+      <Modal
+        open={open}
+        setOpen={setOpen}
+        type="content"
+        classContainer="w-[20.875rem] sm:w-[39.68rem]"
+        title={t('fileScan.recordedActivities')}
+        descriptionInfo={t('fileScan.userRecordedActivities')}
+        icon={PhPlayDuotone}
+        content={<ScannedFileList id={modelId} />}
+      />
     </div>
   );
 }
