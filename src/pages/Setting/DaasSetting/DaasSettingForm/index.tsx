@@ -72,15 +72,6 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
         <div className="w-full mb-5">
           <div className="gap-5 grid-flow-row-dense grid grid-cols-12">
-            {/* <Card className={cardStyles} color="white">
-              <BaseRadioButtonController
-                control={control}
-                id="temporary"
-                name="time_limit_duration"
-                value="TEMPORARY"
-                label={t('table.temporary')}
-              />
-            </Card> */}
             <Card className={cardStyles} color="white">
               <BaseRadioButtonController
                 control={control}

@@ -375,12 +375,12 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "resourceLimitations":"Resource limitations",
-    "chrome":"Chrome",
-    "fireFox":"Firefox",
-    "cpu":"CPU (Core)",
-    "core":"Core",
-    "memory":"Memory(GB)"
+    "resourceLimitations": "Resource limitations",
+    "chrome": "Chrome",
+    "fireFox": "Firefox",
+    "cpu": "CPU (Core)",
+    "core": "Core",
+    "memory": "Memory(GB)"
   },
 
   "regexPattern": {

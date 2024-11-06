@@ -378,13 +378,12 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "resourceLimitations":"محدودیت منابع",
-    "chrome":"Chrome",
-    "fireFox":"Firefox",
-    "cpu":"CPU (Core)",
-    "core":"Core",
-    "memory":"حافظه (GB)"
-
+    "resourceLimitations": "محدودیت منابع",
+    "chrome": "Chrome",
+    "fireFox": "Firefox",
+    "cpu": "CPU (Core)",
+    "core": "Core",
+    "memory": "حافظه (GB)"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
