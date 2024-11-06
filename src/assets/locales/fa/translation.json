@@ -154,7 +154,8 @@
     "netsep": "نت سپ",
     "scans": "اسکن ها",
     "userBehavior": "رفتار شناسی کاربر",
-    "adminLogin": "ورود و خروج ادمین‌ها"
+    "adminLogin": "ورود و خروج ادمین‌ها",
+    "virusFiles": "فایل های آلوده"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
