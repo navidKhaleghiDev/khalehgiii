@@ -5,7 +5,7 @@
  */
 
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
-import ToolTip from '@redesignUi/atoms/Tooltip';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { useCallback, useState, useRef } from 'react';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import { useLanguage } from '@context/settings/languageContext';
