@@ -8,7 +8,6 @@ import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { dlpConfigHeaderItem } from '@src/pages/Dashboard/DlpConfig/constants/dlpConfigHeaderItem';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -21,6 +20,7 @@ import PhFilePlus from '@iconify-icons/ph/file-plus';
 
 import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
 import { FileTypeProp } from '../type';
+import { dlpConfigHeaderItem } from './constants/dlpConfigHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
