@@ -15,14 +15,15 @@ import { toggleStyles } from './styles';
  *    It receives the currently selected button option(s) as an argument.
  * @param {'sm' | 'md' | 'responsive'} props.size - Defines the size of the switch.
  * @param {string} props.className - className for optional style
+ * @param {string} props.classNameButton - className for optional style at button
  * @returns {JSX.Element} The ToggleButton component.
  */
 
 export function ToggleButton(props: ToggleButtonProps): JSX.Element {
-  const { buttonOptions, onChange, className, size } = props;
+  const { buttonOptions, onChange, className, classNameButton, size } = props;
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full justify-end">
       <div
         className={`${toggleStyles({
           size,
@@ -36,7 +37,10 @@ export function ToggleButton(props: ToggleButtonProps): JSX.Element {
             autoFocus={item.active}
             key={item.id}
             onClick={() => onChange(item)}
-            className="flex items-center justify-center cursor-pointer rounded-[0.25rem] text-center w-16 mx-1 text-gray-400 focus:text-gray-900 focus:bg-white dark:focus:text-white dark:focus:bg-gray-600 focus:outline-none"
+            className={`flex items-center justify-center cursor-pointer rounded-[0.25rem] text-center w-16 mx-1 text-gray-400 ${
+              item.active &&
+              'text-gray-900 bg-white dark:text-white dark:bg-gray-600 outline-none'
+            } ${classNameButton}`}
           >
             {item.label}
           </button>

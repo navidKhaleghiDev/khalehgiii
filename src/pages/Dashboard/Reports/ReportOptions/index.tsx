@@ -9,7 +9,7 @@ export function ReportOptions({ state, dispatch, keys }: TypeReportOptions) {
       <BaseButton
         size="lg"
         label={t('global.arbitrary')}
-        type={!state.montly && !state.weekly ? 'default' : 'shadow'}
+        type={!state.monthly && !state.weekly ? 'default' : 'shadow'}
         onClick={() => dispatch({ type: keys.DIS_KEY_NORMAL })}
       />
       <BaseButton
@@ -21,7 +21,7 @@ export function ReportOptions({ state, dispatch, keys }: TypeReportOptions) {
       <BaseButton
         size="lg"
         label={t('global.monthlySelect')}
-        type={state.montly ? 'default' : 'shadow'}
+        type={state.monthly ? 'default' : 'shadow'}
         onClick={() => dispatch({ type: keys.DIS_KEY_MONTH })}
       />
     </>

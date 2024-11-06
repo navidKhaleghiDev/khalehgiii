@@ -27,8 +27,8 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
       shadow="base"
       rounded="xl"
     >
-      <div className="flex justify-between mb-1">
-        <Typography variant="body5B" color="black">
+      <div className="flex justify-between mb-2.5">
+        <Typography variant="body4B" color="black">
           {title}
         </Typography>
         <Pagination
