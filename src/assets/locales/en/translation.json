@@ -69,6 +69,7 @@
     "license_id": "license",
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreation": "license Creation",
+    "lisenceName":"License Name",
     "validLicense": "valid License",
     "httpPort": "HTTP port",
     "httpsPort": "HTTPS port",
@@ -126,7 +127,9 @@
     "lastTime": "Last Time",
     "recordDate": "Record date",
     "duration": "Duration",
-    "days": "Days"
+    "days": "Days",
+    "licenseStatus": "Status"
+
   },
   "dashboard": {
     "adminLists": "Admin Lists",
