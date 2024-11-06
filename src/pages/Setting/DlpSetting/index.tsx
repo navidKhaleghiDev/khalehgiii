@@ -14,11 +14,12 @@ import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
-import { UpdateFileTypeModal } from '@src/pages/Dashboard/DlpConfig/UpdateFileTypeModal';
 import { Typography } from '@redesignUi/atoms';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import PhFilePlus from '@iconify-icons/ph/file-plus';
 
+import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
 import { FileTypeProp } from '../type';
 
 const PAGE_SIZE = 8;
@@ -165,12 +166,15 @@ export function DlpSetting() {
         open={openUpdateModal}
         setOpen={setOpenUpdateModal}
         type="content"
-        // title={t('table.editFile')}
-        // description={t('table.chooseTypeFileAndLicenses')}
+        icon={PhFilePlus}
+        title={activeFileType ? t('table.editFile') : t('table.addFile')}
+        descriptionInfo={t('table.chooseTypeFileAndLicenses')}
+        classContainer="w-[20.87rem] sm:w-[39.68rem]"
         content={
           <UpdateFileTypeModal
             handleClose={handleCloseUpdateModal}
             fileType={activeFileType}
+            setOpenUpdateModal={setOpenUpdateModal}
           />
         }
       />

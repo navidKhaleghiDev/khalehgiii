@@ -9,25 +9,36 @@ import {
   API_UPDATE_FILE_TYPE,
 } from '@src/services/config';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { BaseButton, Card, Typography } from '@redesignUi/atoms';
+import { BaseButton, Typography } from '@redesignUi/atoms';
 import PhFile from '@iconify-icons/ph/file';
-import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
 import { FileTypeProp } from '@src/pages/Setting/type';
+import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
+import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
+// import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
+// import PhDownloadSimple from '@iconify-icons/ph/download-simple';
+// import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+// import { useLanguage } from '@context/settings/languageContext';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
   fileType?: Partial<FileTypeProp>;
+  setOpenUpdateModal: any;
 };
 
-export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
+export function UpdateFileTypeModal({
+  handleClose,
+  fileType,
+  setOpenUpdateModal,
+}: PropsType) {
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  // const { lang } = useLanguage();
 
-  const cardStyles =
-    'flex items-center w-40 sm:w-full h-10 shrink-0 pr-[0.62rem] ltr:pl-[0.62rem] col-span-1';
+  // const inputStyle = 'col-span-6 lg:col-span-4 h-16';
+  // const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
-  const { control, handleSubmit } = useForm<FileTypeProp>({
+  const { control, handleSubmit, watch } = useForm<FileTypeProp>({
     mode: 'onChange',
     defaultValues: {
       id: fileType?.id,
@@ -37,6 +48,8 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
       is_active: fileType?.is_active ?? false,
     },
   });
+
+  const access = watch('is_active');
 
   const handleOnSubmit = async (data: FileTypeProp) => {
     setLoadingButtonModal(true);
@@ -74,7 +87,7 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
       className="w-full h-full grid grid-cols-6 gap-x-8 gap-y-5"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
-      <div className="col-span-6 flex justify-between items-start">
+      <div className="col-span-6 flex flex-col-reverse sm:flex-row justify-between">
         <BaseInputController
           control={control}
           name="file_type"
@@ -83,60 +96,77 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
           label={t('table.fileType')}
           endIcon={PhFile}
           size="md"
-          fullWidth
           rules={{
             pattern: regexPattern.wordStartedWithPointAndEn,
             required: regexPattern.required,
           }}
         />
+        <div className="mb-5">
+          <BaseSwitchController
+            id="is_active"
+            name="is_active"
+            control={control}
+            label={access ? t('table.active') : t('table.deactive')}
+          />
+        </div>
       </div>
-      <div className="gap-8 grid-flow-row-dense grid col-span-6 sm:grid-cols-3 pb-5">
-        {/* <div className="w-1/3 flex justify-between items-center">
-          <BaseRadioButtonController
-            id="allowed_for_download"
-            value={'is_active'}
+      {access ? (
+        <div className="gap-8 grid-flow-row-dense grid col-span-6 sm:grid-cols-3 pb-5">
+          <BaseCheckBoxController
             control={control}
-            name="allowed_for_download"
-          />
-        </div> */}
-        <Card className={cardStyles} color="white" border>
-          <BaseRadioButtonController
-            control={control}
-            id="allowed_for_download"
-            name="allowed_for_download"
-            value="allowed_for_download"
-            label={t('table.active')}
-          />
-        </Card>
-        <Card className={cardStyles} color="white" border>
-          <BaseRadioButtonController
-            control={control}
-            id="allowed_for_download"
-            name="allowed_for_download"
-            value=""
-            label={t('table.allowedForDownload')}
-          />
-        </Card>
-        <Card className={cardStyles} color="white" border>
-          <BaseRadioButtonController
-            control={control}
-            id="allowed_for_download"
-            name="allowed_for_download"
-            value="DAILY"
+            id="allowed_for_upload"
+            name="allowed_for_upload"
             label={t('table.allowedForUpload')}
           />
-        </Card>
-
-        {/* <div className="w-1/3 flex justify-between items-center">
-          <BaseSwitch control={control} name="allowed_for_upload" />
-          <Typography className="mb-1">:Allowed For Upload</Typography>
-        </div> */}
-      </div>
+          <BaseCheckBoxController
+            control={control}
+            id="allowed_for_download"
+            name="allowed_for_download"
+            label={t('table.allowedForDownload')}
+          />
+        </div>
+      ) : /* It does not currently have an API
+      /* <div className="flex w-full gap-[1.87rem]">
+            <div className={inputStyle}>
+              <BaseInputNumberController
+                id="max_transmission_upload_size"
+                name="max_transmission_upload_size"
+                control={control}
+                label={t('table.maxUploadSize')}
+                // disabled={!hasChangePermission}
+                placeholder="50"
+                icon={PhUploadSimple}
+                dir={direction}
+                max={50}
+                rules={{
+                  required: regexPattern.required,
+                }}
+              />
+            </div>
+            <div className={inputStyle}>
+              <BaseInputNumberController
+                id="max_transmission_download_size"
+                name="max_transmission_download_size"
+                control={control}
+                label={t('table.maxDownloadSize')}
+                // disabled={!hasChangePermission}
+                placeholder="500"
+                icon={PhDownloadSimple}
+                dir={direction}
+                max={500}
+                rules={{
+                  required: regexPattern.required,
+                }}
+              />
+            </div>
+          </div> */
+      null}
 
       <div className="flex justify-center col-span-6">
         {showConfirm && (
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">{t('global.areYouSure')}</Typography>
+
             <BaseButton
               label={t('global.yes')}
               size="sm"
@@ -147,7 +177,7 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
             <BaseButton
               label={t('global.no')}
               size="sm"
-              type="red"
+              type="neutral"
               className="mx-2"
               onClick={() => setShowConfirm(false)}
             />
@@ -155,11 +185,19 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
         )}
 
         {!showConfirm && (
-          <BaseButton
-            label={t('global.confirm')}
-            size="md"
-            onClick={() => setShowConfirm(true)}
-          />
+          <div className="flex gap-2.5">
+            <BaseButton
+              label={t('global.confirm')}
+              size="md"
+              onClick={() => setShowConfirm(true)}
+            />
+            <BaseButton
+              label={t('global.cancel')}
+              size="md"
+              type="neutral"
+              onClick={() => setOpenUpdateModal(false)}
+            />
+          </div>
         )}
       </div>
     </form>
