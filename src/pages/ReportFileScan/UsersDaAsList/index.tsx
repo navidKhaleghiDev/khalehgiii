@@ -67,15 +67,7 @@ export function UsersDaAsList() {
     itemsPer: listDaAs.length,
   };
 
-<<<<<<< HEAD
   console.log(data);
-=======
-  const searchBarProps: TSearchBar = {
-    name: 'search-users-daas-list',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-  };
->>>>>>> 31f5618495b646e524a0ad7cf6c6774ca1abc6e5
 
   return (
     <div className="mt-[7.625rem]">
