@@ -270,7 +270,9 @@
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
     "all": "Select All",
-    "deleteUser": "Delete User"
+    "deleteUser": "Delete User",
+    "users": "User",
+    "admins": "Admin"
   },
   "groupManagement": {
     "person": "person",
@@ -290,7 +292,11 @@
     "onlineUsers": "Online Users",
     "groupName": " Group Name",
     "searchGroup": "Search Group",
-    "addMember": "Add Member"
+    "addMember": "Add Member",
+    "saveChanges": "Save Changes",
+    "deleteMember": "Delete Member",
+    "user": "user",
+    "groupLists": "Group Lists"
   },
   "onlineAssistance": {
     "loginType": "Login type",

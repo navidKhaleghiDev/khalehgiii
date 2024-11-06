@@ -1,14 +1,10 @@
 import { useRef, useState, useEffect, ChangeEvent } from 'react';
 import usersThreeLight from '@iconify-icons/ph/users-three-light';
-import cameraPlusLight from '@iconify-icons/ph/camera-plus-light';
-import pencilSimple from '@iconify-icons/ph/pencil-simple';
-import { IconButton } from '../BaseButton';
-import { BaseUploadInputProps } from '@ui/atoms/Inputs/BaseUploadInput/types';
-import {
-  baseUploadInput,
-  baseUploadInputImage,
-} from '@ui/atoms/Inputs/BaseUploadInput/styles';
 import trashSimple from '@iconify-icons/ph/trash-simple';
+import pencilSimple from '@iconify-icons/ph/pencil-simple';
+import { BaseUploadInputProps } from '@ui/atoms/Inputs/BaseUploadInput/types';
+import { IconButton } from '../BaseButton';
+
 interface BaseInputUploadImageProps
   extends Omit<
     BaseUploadInputProps,

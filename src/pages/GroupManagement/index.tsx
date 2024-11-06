@@ -15,7 +15,7 @@ import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 import UsersThree from '@iconify-icons/ph/users-three';
 import userIcon from '@iconify-icons/ph/user';
-import WifiHigh from '@iconify-icons/ph/wifi-high';
+import { Typography } from '@redesignUi/atoms';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
@@ -32,7 +32,7 @@ export function GroupManagement() {
     filterQuery,
   });
 
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
+  const { data, isLoading } = useSWR<IResponseData<TGroup[]>>(
     endpoint,
     http.fetcherSWR
   );
@@ -44,28 +44,30 @@ export function GroupManagement() {
     <LoadingSpinner />
   ) : (
     <div className="flex flex-col gap-6 mt-20">
-      <div className="flex gap-4 mb-20">
-        <UsersInfoCard
-          iconColor="neutral"
-          icon={UsersThree}
-          title={t('groupManagement.group')}
-        />
-        <UsersInfoCard
-          iconColor="blue"
-          icon={userIcon}
-          title={t('groupManagement.users')}
-        />
-        <UsersInfoCard
-          icon={WifiHigh}
-          title={t('groupManagement.onlineUsers')}
+      <div className="flex flex-col sm:gap-[1.87rem] gap-5 mt-5 ">
+        <Typography variant="body2B" color="black">
+          {t('groupManagement.groupLists')}
+        </Typography>
+        <div className="flex items-center sm:self-auto self-center gap-[1.87rem] lg:w-[45.62rem] sm:w-[33.75rem] w-full lg:mb-[5.62rem] mb-2.5 ">
+          <UsersInfoCard
+            iconColor="neutral"
+            icon={UsersThree}
+            title={t('groupManagement.group')}
+          />
+          <UsersInfoCard
+            iconColor="blue"
+            icon={userIcon}
+            title={t('groupManagement.users')}
+            className="whitespace-nowrap"
+          />
+        </div>
+        <FilterTableList
+          buttonLabel={t('groupManagement.newGroup')}
+          domainFilter
+          searchQuery={filterQuery}
+          handelSearchQuery={(v) => setFilterQuery(v)}
         />
       </div>
-      <FilterTableList
-        buttonLabel={t('groupManagement.newGroup')}
-        domainFilter
-        searchQuery={filterQuery}
-        handelSearchQuery={(v) => setFilterQuery(v)}
-      />
       <GroupCard
         onClick={(item: TGroup) => navigate(`${item.id}`)}
         groupData={groupData}

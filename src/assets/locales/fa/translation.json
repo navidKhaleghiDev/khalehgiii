@@ -271,7 +271,9 @@
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
     "all": "انتخاب همه",
-    "deleteUser": "حذف کاربر"
+    "deleteUser": "حذف کاربر",
+    "users": "کاربر",
+    "admins": "ادمین "
   },
   "groupManagement": {
     "person": "نفر",
@@ -291,7 +293,11 @@
     "onlineUsers": "کاربران آنلاین",
     "groupName": "نام گروه ",
     "searchGroup": "جستجوی گروه",
-    "addMember": "عضو جدید"
+    "addMember": "عضو جدید",
+    "saveChanges": "ذخیره تغییرات",
+    "deleteMember": "حذف کاربر",
+    "user": "کاربر",
+    "groupLists": "لیست گروه ها"
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",

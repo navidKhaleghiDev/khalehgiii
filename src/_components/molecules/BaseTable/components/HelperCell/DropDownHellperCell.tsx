@@ -33,12 +33,13 @@ function DropDownHelperCell({ onClick, options, defaultValue }) {
   return (
     <div ref={ref} className="relative">
       <BaseButton
-        size="sm"
+        className="w-full h-[22px] border-none sm:h-10 sm:border sm:border-gray-200"
         type="neutral"
         label={selected.label}
         onClick={toggleDropdown}
         endIcon={isOpen ? PhCaretUp : PhCaretDown}
       />
+
       {isOpen && (
         <div
           className={`z-20 absolute ${menuStyle}  bg-white dark:bg-gray-600 border border-gray-200 rounded-lg shadow w-[200px] flex-col`}

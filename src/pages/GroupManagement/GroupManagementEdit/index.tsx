@@ -1,57 +1,28 @@
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { http } from '@src/services/http';
 import { USERS_GROUPS_GET } from '@src/services/users/endpoint';
-import { TGroup } from '@src/services/users/types';
-import { EPermissionSessionRecording } from '@src/types/permissions';
+import { TGroup, TGroupMembers } from '@src/services/users/types';
 import { IResponseData } from '@src/types/services';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import useSWR from 'swr';
 import { useParams } from 'react-router-dom';
-import { BaseButton, BaseIcon, BaseInput, Typography } from '@redesignUi/atoms';
+import { BaseButton, BaseInput, Typography } from '@redesignUi/atoms';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
-import PhListBulletsFill from '@iconify-icons/ph/list-bullets-fill';
-import { components } from 'storybook/internal/components';
 import pencilSimple from '@iconify-icons/ph/pencil-simple';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
-import { FileInput } from '@redesignUi/atoms/Inputs/FileInput';
 import { BaseInputUploadImage } from '@redesignUi/atoms/BaseInputUploadImage';
 import pluse from '@iconify-icons/ph/plus-bold';
 
+import { Pagination } from '@redesignUi/molecules/Pagination';
+import {
+  groupManagementAdminHeaderItem,
+  groupManagementUserHeaderItem,
+} from './constants/groupManagmentHeaderItem';
+
 const PAGE_SIZE = 5;
 const PAGE = 1;
-
-const dropdownOptions: DropDownHelperCellOption[] = [
-  { id: 1, label: 'users' },
-  { id: 1, label: 'admins' },
-];
-
-const groupManagementHeaderItem: HeaderTable[] = [
-  {
-    label: 'table.recordingActivity',
-    id: 'userName',
-    type: 'avatar',
-    email: 'email',
-    isActive: 'isActive',
-    // permission: EPermissionSessionRecording.VIEW,
-    class: 'w-8/12',
-  },
-  {
-    label: 'table.recordingActivity',
-    id: 'userName',
-    type: 'drop',
-    drop: {
-      options: dropdownOptions,
-      label: 'my label',
-      defaultValueLabelKey: 'label',
-      defaultValueKey: 'id',
-    },
-    // permission: EPermissionSessionRecording.VIEW,
-    class: 'w-2/12 mr-auto',
-  },
-];
 
 export function GroupManagementEdit() {
   const { id } = useParams();
@@ -59,26 +30,25 @@ export function GroupManagementEdit() {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [updateGroup, setUpdateGroupData] = useState([]);
+  const [updateGroup, setUpdateGroup] = useState<TGroup[]>([]);
   const [editMode, setEditMode] = useState(false);
 
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
+  const { data, isLoading } = useSWR<IResponseData<TGroup[]>>(
     id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );
-  const group = data?.data ?? [];
+  const group = useMemo(() => data?.data ?? [], [data]);
 
   useEffect(() => {
-    if (group) setUpdateGroupData(group);
+    if (group) setUpdateGroup(group);
   }, [group]);
 
   const paginatedData = useCallback(
-    (key) => {
-      const fullData = updateGroup[key] || [];
+    (key: keyof TGroup) => {
+      const fullData: TGroupMembers[] = updateGroup[key] || [];
       const updatedDataByLabel = fullData.map((g) => {
-        return { ...g, label: key };
+        return { ...g, value: key };
       });
-
       const allFilteredData = updatedDataByLabel.filter((item) =>
         item.email.toLowerCase().includes(filterQuery.toLowerCase())
       );
@@ -95,27 +65,33 @@ export function GroupManagementEdit() {
     [updateGroup, filterQuery, currentPage]
   );
 
-  const hendleClickAction = (action, row) => {
-    const alternateAction = action === 'users' ? 'admins' : 'users';
+  const handleClickAction = useCallback(
+    (action, row) => {
+      const alternateAction = action === 'users' ? 'admins' : 'users';
 
-    if (!updateGroup) return;
+      if (!updateGroup) return;
 
-    const uData = updateGroup[alternateAction].filter((ug) => ug.id !== row.id);
+      const existsInAction = updateGroup[action].some((ug) => ug.id === row.id);
+      if (existsInAction) return;
 
-    setUpdateGroupData((prev) => {
-      return {
-        ...prev,
-        [alternateAction]: uData,
-        [action]: [...prev[action], row],
-      };
-    });
-  };
+      const uData = updateGroup[alternateAction].filter(
+        (ug) => ug.id !== row.id
+      );
 
-  console.log(group?.users?.length);
+      setUpdateGroup((prev) => {
+        return {
+          ...prev,
+          [alternateAction]: uData,
+          [action]: [row, ...prev[action]],
+        };
+      });
+    },
+    [updateGroup]
+  );
 
   return (
-    <div className="">
-      <Typography variant="body2" className="my-5">
+    <div>
+      <Typography variant="body2B" color="black" className="my-5">
         {t('groupManagement.editGroup')}
       </Typography>
 
@@ -125,7 +101,11 @@ export function GroupManagementEdit() {
             disabled={!editMode}
             name="image"
             defaultValue={group.image}
-            onClick={(f) => console.log(f)}
+            onClick={(value: any) =>
+              setUpdateGroup((prev) => {
+                return { ...prev, image: value };
+              })
+            }
           />
           {!editMode ? (
             <div className="flex flex-col justify-center px-6 my-5  ">
@@ -139,13 +119,17 @@ export function GroupManagementEdit() {
               </Typography>
             </div>
           ) : (
-            <div className="px-6  bg-red-300">
+            <div className="px-6 ">
               <BaseInput
                 label={t('groupManagement.groupName')}
                 id="name"
                 name="name"
-                value={group?.name}
-                onChange={(e) => console.log(e)}
+                value={updateGroup.name}
+                onChange={(e) => {
+                  return setUpdateGroup((prev) => {
+                    return { ...prev, name: e.target.value };
+                  });
+                }}
               />
             </div>
           )}
@@ -158,40 +142,48 @@ export function GroupManagementEdit() {
           onClick={() => setEditMode((prev) => !prev)}
         />
       </div>
-      <div className="flex justify-between">
+      <div className="flex  justify-between">
         <SearchInput
+          fullWidth
+          className="w-1/2 ml-4 sm:w-[255px]"
           onChange={(e) => setFilterQuery(e)}
           value={filterQuery}
           id="search"
           name="search"
           placeholder={t('groupManagement.searchGroup')}
         />
-        <BaseButton label={t('groupManagement.addMember')} endIcon={pluse} />
+        <BaseButton
+          className="w-1/2 ml-4 sm:w-40"
+          label={t('groupManagement.addMember')}
+          endIcon={pluse}
+        />
       </div>
 
       <BaseTable
-        header={groupManagementHeaderItem}
+        header={groupManagementAdminHeaderItem}
         body={paginatedData('admins')}
-        onClick={hendleClickAction}
+        onClick={handleClickAction}
         loading={isLoading}
         isMobile
       />
       <div className="border-t border-gray-200 my-4" />
       <BaseTable
-        header={groupManagementHeaderItem}
+        header={groupManagementUserHeaderItem}
         body={paginatedData('users')}
         loading={isLoading}
-        onClick={hendleClickAction}
-        pagination={{
-          countPage: 1,
-          currentPage,
-          totalPages: group?.users?.length / 5,
-          allItems: group?.users?.length,
-          itemsPer: 5,
-          paginationLabel: 'یوزر',
-          onPageChange: (page) => setCurrentPage(page),
-        }}
+        onClick={handleClickAction}
         isMobile
+      />
+      <div className="flex w-full justify-end mb-5 ">
+        <BaseButton label={t('groupManagement.saveChanges')} />
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={group?.users?.length / 5}
+        allItems={group?.users?.length}
+        itemsPer={5}
+        paginationLabel="یوزر"
+        onPageChange={(page) => setCurrentPage(page)}
       />
     </div>
   );
