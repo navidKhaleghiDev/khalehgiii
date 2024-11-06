@@ -138,7 +138,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
       />
     ),
     class:
-      'w-1/12 mr-auto lg:mr-0 ltr:translate-x-6 rtl:-translate-x-6 sm:ltr:translate-x-0 sm:rtl:translate-x-0',
+      'w-2/12 mr-auto ltr:translate-x-6 rtl:-translate-x-6 sm:ltr:translate-x-0 sm:rtl:translate-x-0',
   },
 
   {
@@ -180,6 +180,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
       EPermissionDaas.DELETE,
       EPermissionSessionRecording.VIEW,
     ],
-    class: 'mr-auto w-2/12 lg:w-1/12',
+    class: ' w-2/12 lg:w-1/12 lg:-mx-7  mr-auto',
   },
 ];
