@@ -367,7 +367,9 @@
     "groupAdmin": "Group admin",
     "groupMember": "Group member",
     "assistanceMemberTitle": "In this section, the groups that the user is a member of are specified.",
-    "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified."
+    "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified.",
+    "areYouSureBlock": "Are you sure you want to block this user?",
+    "areYouSureUnBlock": "Are you sure you want to unblock this user's access?"
   },
   "license": {
     "licenseId": "license Id",
