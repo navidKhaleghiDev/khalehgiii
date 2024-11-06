@@ -1,7 +1,6 @@
 import UnauthorizedPage from '@src/pages/Unauthorized';
 import NotFoundPage from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
-import { KnowledgeManagement } from '@src/pages/Dashboard/KnowledgeManagement';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
 import { Reports } from '@src/pages/Dashboard/Reports';
@@ -11,13 +10,11 @@ import {
   EPermissionFileScan,
   EPermissionInternetLogs,
   EPermissionScanReports,
-  EPermissionSessionRecording,
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
-import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
@@ -28,6 +25,7 @@ import { DashboardPage } from '@src/pages/Dashboard';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 import { DlpSetting } from '@src/pages/Setting/DlpSetting';
+import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -50,7 +48,7 @@ export const adminRoutes = [
       },
       {
         path: ROUTES_PATH.knowledgeManagement,
-        element: <KnowledgeManagement />,
+        element: <KnowledgeManagementPage />,
       },
       {
         path: ROUTES_PATH.loginAssistance,
@@ -73,14 +71,6 @@ export const adminRoutes = [
         element: (
           <ProtectedRoute requiredPermission={EPermissionDaas.VIEW}>
             <DashboardDesktopListPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: ROUTES_PATH.dashboardSessionRecordingList,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionSessionRecording.VIEW}>
-            <SessionRecording />
           </ProtectedRoute>
         ),
       },

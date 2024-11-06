@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useSWR, { useSWRConfig } from 'swr';
 
+import Play from '@iconify-icons/ph/play';
+import UsersThree from '@iconify-icons/ph/users-three';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
 import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
@@ -11,17 +12,15 @@ import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
-import {
-  ActionOnClickActionsType,
-  OnClickActionsType,
-} from '@redesignUi/molecules/BaseTable/types';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { SessionRecordingList } from '@src/pages/SessionRecording/SessionRecordingList';
+import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import userFocus from '@iconify-icons/ph/user-focus';
 
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
@@ -60,17 +59,19 @@ const PAGE = 1;
 export function DaAsList() {
   const { mutate } = useSWRConfig();
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
-  const [actionOnClick, setActionOnClick] =
-    useState<ActionOnClickActionsType>();
   const [openModal, setOpenModal] = useState(false);
+  const [openBlockModal, setOpenBlockModal] = useState(false);
+
   const [openSettingModal, setOpenSettingModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
     useState(false);
+  const [openSessionRecording, setOpenSessionRecording] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string>('');
 
   const userPermissions = useUserPermission();
   const windowsDimensions = useWindowDimensions();
@@ -94,19 +95,6 @@ export function DaAsList() {
     );
   }, [mutate]);
 
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const debouncedSetFilterQuery = useCallback(
-  //   debounce((query: string) => {
-  //     setCurrentPage(PAGE);
-  //     setFilterQuery(query);
-  //   }, 2000),
-  //   []
-  // );
-
-  // const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   debouncedSetFilterQuery(event.target.value);
-  // };
-
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -123,9 +111,10 @@ export function DaAsList() {
       );
       return;
     }
-    if (action === 'more') {
-      // we neded to do somthing
-      navigate(`${ROUTES_PATH.dashboardSessionRecording}/${id}`);
+    if (action === 'more' && id) {
+      setSelectedId(id);
+      setOpenSessionRecording(true);
+      setUserName(fileType.email);
 
       return;
     }
@@ -142,7 +131,6 @@ export function DaAsList() {
     }
 
     if (fileType !== undefined && typeof fileType !== 'string') {
-      setActionOnClick(action);
       setActiveDaas(fileType as IDaAs);
       setOpenModal(true);
     }
@@ -204,8 +192,10 @@ export function DaAsList() {
       .then(() => {
         mutateConfigUserDass();
         toast.success(t('global.sucessfulyUpdated'));
+        if (openBlockModal) setOpenBlockModal(false);
         if (openModal) setOpenModal(false);
         if (openSettingModal) setOpenSettingModal(false);
+        if (openSessionRecording) setOpenSessionRecording(false);
       })
       .catch((err) => {
         toast.error(err);
@@ -214,28 +204,29 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+
+  const handleOnBlock = () => {
+    setLoadingButtonModal(true);
+    updateDaas(activeDaas);
+    setOpenBlockModal(false);
+  };
   const handleOnRequests = async () => {
     if (!activeDaas) return;
-
     setLoadingButtonModal(true);
-    if (actionOnClick === 'delete') {
-      await API_DAAS_DELETE(activeDaas.id as string)
-        .then(() => {
-          toast.success(t('global.successfullyRemoved'));
-          setOpenModal(false);
-          mutateConfigUserDass();
-        })
-        .catch((err) => {
-          toast.error(err);
-        })
-        .finally(() => {
-          setLoadingButtonModal(false);
-        });
-    } else {
-      updateDaas(activeDaas);
-    }
-  };
 
+    await API_DAAS_DELETE(activeDaas.id as string)
+      .then(() => {
+        toast.success(t('global.successfullyRemoved'));
+        setOpenModal(false);
+        mutateConfigUserDass();
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoadingButtonModal(false);
+      });
+  };
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -250,28 +241,18 @@ export function DaAsList() {
 
     onPageChange: handlePageChange,
   };
-  // const resetPermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionDaas.CHANGE
-  // );
 
-  // const searchBarProps: TSearchBar = {
-  //   name: 'search',
-  //   value: filterQuery,
-  //   handleSearchInput: handleFilterChange,
-  //   componentProps: resetPermission
-  //     ? {
-  //         type: 'actionRefresh',
-  //       }
-  //     : undefined,
-  // };
+  const handelSearchQuery = useCallback((value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+  }, []);
 
   return (
-    <div className={`w-full ${isLoading ? 'loading' : ''} flex flex-col gap-5`}>
+    <div className="w-full flex flex-col gap-5">
       <FilterTableList
         searchQuery={filterQuery}
         searchPlaceholder={t('userList.searchUsers')}
-        handelSearchQuery={setFilterQuery}
+        handelSearchQuery={handelSearchQuery}
         domainFilter
       />
       <BaseTable
@@ -305,8 +286,44 @@ export function DaAsList() {
         }}
       />
       <Modal
-        type="content"
         size="responsive"
+        open={openBlockModal}
+        setOpen={setOpenBlockModal}
+        type="info"
+        title={t('table.userStatus')}
+        description={
+          activeDaas?.is_lock
+            ? t('userList.areYouSureBlock')
+            : t('userList.areYouSureUnBlock')
+        }
+        buttonOne={{
+          label: t('global.yes'),
+          onClick: handleOnBlock,
+          loading: loadingButtonModal,
+          color: 'teal',
+        }}
+        buttonTow={{
+          label: t('global.cancel'),
+          onClick: () => setOpenBlockModal(false),
+          color: 'tertiary',
+        }}
+      />
+      <Modal
+        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        size="lg"
+        open={openSessionRecording}
+        setOpen={setOpenSessionRecording}
+        type="content"
+        content={<SessionRecordingList id={selectedId} username={userName} />}
+        icon={Play}
+        title={t('userList.recordedActivities')}
+        descriptionInfo={`${t('userList.recordedUserActivities')} ${userName}`}
+      />
+      <Modal
+        type="content"
+        title={t('userList.userAccess')}
+        descriptionInfo={t('userList.changeUserProfileAndAccessList')}
+        icon={userFocus}
         open={openSettingModal}
         setOpen={setOpenSettingModal}
         content={
@@ -314,15 +331,19 @@ export function DaAsList() {
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
             userPermissions={userPermissions}
+            setOpenSettingModal={setOpenSettingModal}
           />
         }
       />
       <Modal
-        size="responsive"
+        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        size="lg"
         open={openOnlineAssistanceModal}
         setOpen={setOpenOnlineAssistanceModal}
         type="content"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
+        icon={UsersThree}
+        title={t('userList.assistance')}
       />
     </div>
   );

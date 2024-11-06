@@ -1,27 +1,28 @@
-import { IDaAs } from '@src/services/users/types';
-import { BaseButton } from '@ui/atoms/BaseButton';
-import { Typography } from '@ui/atoms';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
-import { DlpSettingsForm } from '@ui/utils/DlpSettingsForm';
+import { IDaAs } from '@src/services/users/types';
 import { IDaasConfig } from '@src/services/config/types';
 import { ExtendTwoType } from '@src/types/global';
-import { useTranslation } from 'react-i18next';
+import { BaseButton, Typography } from '@redesignUi/atoms';
 import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
+
+import { DaasModalContent } from '../DaasModalContent';
 
 type PropsType = {
   handleOnChange: (daas: IDaAs) => void;
   daas: IDaAs;
   userPermissions: PermissionsCodeName[];
+  setOpenSettingModal: (value: boolean) => void;
 };
 
 export function SettingDaasModal({
   handleOnChange,
   daas,
   userPermissions,
+  setOpenSettingModal,
 }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { t } = useTranslation();
@@ -85,26 +86,7 @@ export function SettingDaasModal({
     extra_allowed_upload_files,
     ...data
   }: ExtendTwoType<IDaAs, IDaasConfig>) => {
-    // id?: string;
-    // is_lock: boolean;
-    // daas_configs: IDaasConfig;
-    // allowed_files_type_for_download: string[] | null;
-    // allowed_files_type_for_upload: string[] | null;
-    // email: string;
-    // http_port: number | string;
-    // https_port: number | string;
-    // created_at: string;
-    // last_uptime: string;
-    // is_running?: boolean | string;
-    // usage_in_minute: number | string;
-    // forbidden_upload_files: string[] | null;
-    // forbidden_download_files: string[] | null;
-    // extra_allowed_download_files: string[] | null;
-    // extra_allowed_upload_files: string[] | null;
-    // daas_version: string;
-
     const updatedDaasData = {
-      // id: data.id,
       daas_configs: {
         can_upload_file,
         can_download_file,
@@ -142,36 +124,26 @@ export function SettingDaasModal({
 
   const dlpDownloadList = watch('allowed_files_type_for_download') || [];
   const dlpUploadList = watch('allowed_files_type_for_upload') || [];
+  const timeOfUse = watch('time_limit_duration') || [];
 
   const hasViewDaasPermission = checkPermission(
     userPermissions,
     EPermissionDaas.VIEW
   );
 
-  const hasViewDlpPermission = checkPermission(
-    userPermissions,
-    EPermissionDaas.VIEW
-  );
-
   return (
     <form
-      className="w-full h-full grid grid-cols-6 gap-8 p-4"
+      className="w-full h-full grid grid-cols-6 gap-x-8 gap-y-4"
       onSubmit={handleSubmit(handleOnSubmit)}
-      dir="rtl"
     >
       {hasViewDaasPermission && (
-        <DaasConfigForm
-          userPermissions={userPermissions}
-          isRecording
+        <DaasModalContent
           control={control}
-        />
-      )}
-      {hasViewDlpPermission && (
-        <DlpSettingsForm
+          userPermissions={userPermissions}
           handleSetDlpValues={handleSetDlpValues}
           dlpDownloadList={dlpDownloadList}
           dlpUploadList={dlpUploadList}
-          userPermissions={userPermissions}
+          timeOfUse={timeOfUse}
         />
       )}
       <div className="flex justify-center col-span-6">
@@ -187,7 +159,7 @@ export function SettingDaasModal({
             <BaseButton
               label={t('global.no')}
               size="sm"
-              type="red"
+              type="neutral"
               className="mx-2"
               onClick={() => setShowConfirm(false)}
             />
@@ -195,11 +167,20 @@ export function SettingDaasModal({
         )}
 
         {!showConfirm && (
-          <BaseButton
-            label={t('global.confirm')}
-            size="md"
-            onClick={() => setShowConfirm(true)}
-          />
+          <div className="flex gap-2.5">
+            <BaseButton
+              label={t('global.confirm')}
+              size="md"
+              onClick={() => setShowConfirm(true)}
+              type="teal"
+            />
+            <BaseButton
+              label={t('global.cancel')}
+              size="md"
+              onClick={() => setOpenSettingModal(false)}
+              type="neutral"
+            />
+          </div>
         )}
       </div>
     </form>
