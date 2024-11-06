@@ -1,8 +1,8 @@
-interface LoadingUpdateSvgProps {
+interface LogoSvgProps {
   className?: string;
 }
 
-export function LogoSvg({ className }: LoadingUpdateSvgProps) {
+export function LogoSvg({ className }: LogoSvgProps) {
   return (
     <svg
       width="119"
