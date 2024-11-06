@@ -10,8 +10,10 @@ import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_GET_RECORDED_VIDEO } from '@src/services/users';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
+import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+
 import { ISessionRecordList, TRecordData } from '../types';
 import { SessionRecordingHeaderItem } from './constants/SessionRecordingHeaderItem';
 
@@ -31,6 +33,8 @@ export function SessionRecordingList({
   const [openModal, setOpenModal] = useState(false);
   const [recordVideo, setRecordedVideo] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const tableClass =
+    '[&_thead]:bg-gray-100 [&_tbody_tr_td_*]:text-gray-500 dark:[&_tbody_tr_td_*]:text-gray-400 [&_thead_tr_*]:text-gray-500 dark:[&_thead_tr_*]:text-gray-400 [&_tbody_tr_td:nth-child(3)]:hidden md:[&_thead_tr:nth-child(3)]:table-cell [&_thead_tr:nth-child(4)]:hidden md:[&_thead_tr:nth-child(4)]:table-cell [&_thead_tr:nth-child(3)]:hidden md:[&_tbody_tr_td:nth-child(3)]:table-cell [&_tbody_tr_td:nth-child(4)]:hidden md:[&_tbody_tr_td:nth-child(4)]:table-cell';
 
   const userPermissions = useUserPermission();
 
@@ -51,11 +55,18 @@ export function SessionRecordingList({
   };
 
   const sessionListHistory = data?.data?.history ?? [];
+  const sessionListToday = data?.data?.today ?? [];
   const countPage = data?.data?.count ?? 0;
 
-  const dataTableHistory = Object.entries(sessionListHistory).flatMap(
-    ([date, records]) =>
-      records.map((record: TRecordData) => ({ recrod_date: date, ...record }))
+  const dataTableHistory = Object.entries(sessionListHistory).map((item) => {
+    const key = item[0];
+    const value = item[1] as any;
+
+    return { recrod_date: key, ...value[0] };
+  });
+  const dataTableToday = Object.entries(sessionListToday).flatMap(
+    ([key, value]) =>
+      value.map((item: TRecordData) => ({ recrod_date: key, ...item }))
   );
 
   const getVideoUrl = async (video: string) => {
@@ -98,18 +109,37 @@ export function SessionRecordingList({
         /> */}
         {/* این قسمت باید اضافه شود */}
       </div>
-      <div className="[&_thead]:bg-gray-100 [&_tbody_tr_td_*]:text-gray-500 dark:[&_tbody_tr_td_*]:text-gray-400 [&_thead_tr_*]:text-gray-500 dark:[&_thead_tr_*]:text-gray-400 [&_tbody_tr_td:nth-child(3)]:hidden md:[&_thead_tr:nth-child(3)]:table-cell [&_thead_tr:nth-child(4)]:hidden md:[&_thead_tr:nth-child(4)]:table-cell [&_thead_tr:nth-child(3)]:hidden md:[&_tbody_tr_td:nth-child(3)]:table-cell [&_tbody_tr_td:nth-child(4)]:hidden md:[&_tbody_tr_td:nth-child(4)]:table-cell">
-        <BaseTable
-          pagination={paginationProps}
-          loading={isLoading}
-          header={checkPermissionHeaderItem(
-            userPermissions,
-            SessionRecordingHeaderItem
-          )}
-          body={dataTableHistory}
-          onClick={handleOpenModal}
-        />
-      </div>
+      <BaseTabs>
+        <BaseTab label={t('global.wholeList')}>
+          <div className={tableClass}>
+            <BaseTable
+              pagination={paginationProps}
+              loading={isLoading}
+              header={checkPermissionHeaderItem(
+                userPermissions,
+                SessionRecordingHeaderItem
+              )}
+              body={dataTableHistory}
+              onClick={handleOpenModal}
+            />
+          </div>
+        </BaseTab>
+        <BaseTab label={t('global.todayList')}>
+          <div className={tableClass}>
+            <BaseTable
+              pagination={paginationProps}
+              loading={isLoading}
+              header={checkPermissionHeaderItem(
+                userPermissions,
+                SessionRecordingHeaderItem
+              )}
+              body={dataTableToday}
+              onClick={handleOpenModal}
+            />
+          </div>
+        </BaseTab>
+      </BaseTabs>
+
       <Modal
         open={openModal}
         setOpen={setOpenModal}
