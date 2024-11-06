@@ -7,11 +7,13 @@ import CaretLeft from '@iconify-icons/ph/caret-left';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import ChartBar from '@iconify-icons/ph/chart-bar-duotone';
 import ChartLine from '@iconify-icons/ph/chart-line';
+import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
 import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
 
 export function DashboardProgressChart() {
   const [chartType, setChartType] = useState('line');
+  const [timeFrame, setTimeFrame] = useState('daily');
   const { t } = useTranslation();
 
   // mock
@@ -66,22 +68,44 @@ export function DashboardProgressChart() {
           </Typography>
         </div>
         <div className="w-1/2 flex sm:justify-end gap-2.5">
-          <div className="col-span-6 justify-self-end sm:block hidden">
+          <div className="col-span-6 justify-self-end">
             <BaseButton
               label={t('global.domain')}
               endIcon={CaretLeft}
               size="sm"
               type="neutral"
+              className="sm:flex hidden"
+            />
+            <IconButton
+              icon={GlobeSimple}
+              color="neutral"
+              size="sm"
+              className="sm:hidden flex"
             />
           </div>
           <div className="max-w-max">
             <ToggleButton
               buttonOptions={[
-                { id: 1, label: t('table.monthly') },
-                { id: 2, label: t('table.weekly') },
-                { id: 3, label: t('table.daily'), active: true },
+                {
+                  id: 1,
+                  label: t('table.monthly'),
+                  value: 'monthly',
+                  active: timeFrame === 'monthly',
+                },
+                {
+                  id: 2,
+                  label: t('table.weekly'),
+                  value: 'weekly',
+                  active: timeFrame === 'weekly',
+                },
+                {
+                  id: 3,
+                  label: t('table.daily'),
+                  value: 'daily',
+                  active: timeFrame === 'daily',
+                },
               ]}
-              onChange={() => {}}
+              onChange={(data) => setTimeFrame(data?.value)}
               size="responsive"
             />
           </div>
