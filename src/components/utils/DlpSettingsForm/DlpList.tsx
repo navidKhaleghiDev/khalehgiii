@@ -1,18 +1,17 @@
-/* eslint-disable no-else-return */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { IconButton } from '@ui/atoms/BaseButton';
-import plusIcon from '@iconify-icons/ph/plus';
-import minusIcon from '@iconify-icons/ph/minus';
-import { BaseInput, Typography } from '@ui/atoms';
 import { useState } from 'react';
-import { BaseChip } from '@ui/atoms/BaseChip';
+import { useTranslation } from 'react-i18next';
+
 import { IDaAs } from '@src/services/users/types';
-import { regexPattern } from '@ui/atoms/Inputs';
 import {
   EPermissionWhiteListFiles,
   PermissionsCodeName,
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
+import { BaseInput, regexPattern } from '@redesignUi/atoms/Inputs';
+import { ChipButtonUserAccessModal } from '@src/pages/DashboardDesktopList/DaAsList/components/ChipButtonUserAccessModal';
+import X from '@iconify-icons/ph/x';
+import { useLanguage } from '@context/settings/languageContext';
 
 type PropsType = {
   name: keyof IDaAs;
@@ -29,14 +28,10 @@ export function DlpList({
   label,
   userPermissions,
 }: PropsType) {
-  const [displayInput, setDisplayInput] = useState(false);
+  const { t } = useTranslation();
+  const { dir } = useLanguage();
   const [error, setError] = useState<string>();
   const [value, setValue] = useState<string>();
-
-  const hasAddPermission = checkPermission(
-    userPermissions,
-    EPermissionWhiteListFiles.ADD
-  );
 
   const hasDeletePermission = checkPermission(
     userPermissions,
@@ -51,7 +46,6 @@ export function DlpList({
       const regex = regexPattern.wordStartedWithPointAndEn;
       if (!regex.value.test(mValue)) {
         setError(regex.message);
-        return;
       } else {
         error && setError(undefined);
       }
@@ -59,6 +53,10 @@ export function DlpList({
       if (!valueList.includes(mValue) && mValue !== '') {
         onChange(name, [...valueList, mValue]);
         setValue('');
+      }
+
+      if (valueList.includes(mValue)) {
+        setError(t('userList.theFormatIsRepetitive'));
       }
     }
   };
@@ -77,46 +75,29 @@ export function DlpList({
   };
   return (
     <>
-      {hasAddPermission && (
-        <div className="flex w-full justify-between items-center">
-          <IconButton
-            icon={displayInput ? minusIcon : plusIcon}
-            onClick={() => setDisplayInput((prev) => !prev)}
-            color="teal"
-          />
-          <Typography className="mb-1">{label}</Typography>
-        </div>
-      )}
-
-      {displayInput && (
-        <BaseInput
-          pureValue={value}
-          pureOnChange={handleOnChange}
-          name={name}
-          id={name}
-          pureError={error}
-          // rules={{
-          //   pattern: regexPattern.wordStartedWithPointAndEn,
-          // }}
-          onKeyDown={handleKeyPress}
-          placeholder=".text"
-          ltrLabel
-          fullWidth
-        />
-      )}
+      <BaseInput
+        value={value ?? ''}
+        onChange={handleOnChange}
+        name={name}
+        id={name}
+        error={error}
+        onKeyDown={handleKeyPress}
+        placeholder=".text"
+        label={label}
+        size="md"
+        dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+      />
       {Array.isArray(valueList) && (
-        <div
-          className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto h-20"
-          dir="ltr"
-        >
-          {valueList.map((labelItem, i) => (
-            <BaseChip
-              // eslint-disable-next-line react/no-array-index-key
-              key={i}
+        <div className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto max-h-20">
+          {valueList.map((labelItem) => (
+            <ChipButtonUserAccessModal
               label={labelItem}
+              color="neutral"
+              key={labelItem}
               onClick={
                 hasDeletePermission ? () => remove(labelItem) : undefined
               }
+              icon={X}
             />
           ))}
         </div>

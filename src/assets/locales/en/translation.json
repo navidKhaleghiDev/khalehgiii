@@ -11,6 +11,11 @@
     "admin": "Admin"
   },
   "table": {
+    "admin": "Administrator",
+    "user": "User",
+    "name": "Username",
+    "group": "Groupe",
+    "videoDuration": "Time",
     "accessTime": "Access Time",
     "hours": "Hours",
     "today": "Today",
@@ -159,6 +164,10 @@
   "admin": {
     "adminUserName": "abc@abc.com",
     "changePassword": "Change Password"
+  },
+  "knowledgeManagement": {
+    "recoardeActivite": "Recorded activities",
+    "recordedUserActivate": "Recorded user activities"
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
@@ -355,11 +364,14 @@
     "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard",
     "recordedActivities": "Recorded activities",
     "recordedUserActivities": "Recorded user activities",
+    "theFormatIsRepetitive": "The format is repetitive",
     "assistance": "Assistance",
     "groupAdmin": "Group admin",
     "groupMember": "Group member",
     "assistanceMemberTitle": "In this section, the groups that the user is a member of are specified.",
-    "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified."
+    "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified.",
+    "areYouSureBlock": "Are you sure you want to block this user?",
+    "areYouSureUnBlock": "Are you sure you want to unblock this user's access?"
   },
   "license": {
     "licenseId": "license Id",
@@ -447,7 +459,8 @@
     "cardBankNumber": "Use only numbers",
     "price": "Please use only numbers",
     "phoneNumberNoZeroAtStart": "Correct mobile format: 9xxxxx1234",
-    "ip": "Please enter the correct IP format"
+    "ip": "Please enter the correct IP format",
+    "moreThanTwoEnglishLettersAndStartWithADot": "More than 2 English letters and start with a dot (.)"
   },
   "title": {
     "systemAdminDescription1": "1- Any user added is recognized as a system admin and has access to system changes.",

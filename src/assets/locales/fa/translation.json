@@ -12,6 +12,11 @@
     "admin": "ادمین"
   },
   "table": {
+    "admin": "ادمین",
+    "user": "کاربر",
+    "name": "نام",
+    "group": "گروه",
+    "videoDuration": "زمان ویدیو",
     "accessTime": "زمان دسترسی",
     "hours": "ساعت",
     "today": "امروز",
@@ -160,6 +165,10 @@
   "admin": {
     "adminUserName": "abc@abc.com",
     "changePassword": "تغییر پسورد"
+  },
+  "knowledgeManagement": {
+    "recoardeActivite": "فعالیت‌های ضبط شده",
+    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر"
   },
   "global": {
     "userName": "نام کاربری",
@@ -311,7 +320,7 @@
   },
   "fileScan": {
     "grouping": "گروهبندی",
-    "adminSearch": "جستجوی ادمین",
+    "adminSearch": "جستجو ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
     "onlineUsers": "کاربران آنلاین",
@@ -357,11 +366,14 @@
     "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد.",
     "recordedActivities": "فعالیت های ضبط شده",
     "recordedUserActivities": "فعالیت های ضبط شده کاربر",
+    "theFormatIsRepetitive": "فرمت وارد شده تکراری است.",
     "assistance": "دستیار",
     "groupAdmin": "ادمین گروه‌ها",
     "groupMember": "عضویت در گروه‌ها",
     "assistanceMemberTitle": "در این بخش گروه هایی که کاربر عضو آن می‌باشد مشخص شده است.",
-    "assistanceAdminTitle": "در این بخش گروه هایی که کاربرادمین آن می‌باشد مشخص شده است."
+    "assistanceAdminTitle": "در این بخش گروه هایی که کاربرادمین آن می‌باشد مشخص شده است.",
+    "areYouSureBlock": "آیا از مسدود کردن این کاربر مطمئن هستید؟",
+    "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟"
   },
 
   "license": {
@@ -449,7 +461,8 @@
     "cardBankNumber": "فقط از اعداد استفاده کنید",
     "price": "لطفا فقط از اعداد استفاده کنید",
     "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234",
-    "ip": "لطفا فرمت صحیح آی پی را وارد نمایید"
+    "ip": "لطفا فرمت صحیح آی پی را وارد نمایید",
+    "moreThanTwoEnglishLettersAndStartWithADot": "بیشتر از 2 حرف انگلیسی و با نقطه (.) شروع شود."
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

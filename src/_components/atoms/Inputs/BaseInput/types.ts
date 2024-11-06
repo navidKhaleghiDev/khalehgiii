@@ -1,4 +1,4 @@
-import { HTMLInputAutoCompleteAttribute } from 'react';
+import { HTMLInputAutoCompleteAttribute, KeyboardEventHandler } from 'react';
 import { VariantProps } from 'class-variance-authority';
 import {
   Control,
@@ -41,6 +41,7 @@ export interface BaseInputProps
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   error?: string;
   disabled?: boolean;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   dir?: 'rtl' | 'ltr';
 }
 export interface BaseInputControllerProps<T extends FieldValues>

@@ -72,6 +72,7 @@ export function UsersDaAsList() {
     value: filterQuery,
     handleSearchInput: handleFilterChange,
   };
+
   return (
     <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
       <BaseTable
