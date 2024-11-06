@@ -34,7 +34,7 @@ export function BaseSwitchController<T extends FieldValues>(
     rules,
     defaultValue,
     disabled,
-    dir = 'rtl',
+    dir = 'ltr',
   } = props;
 
   return (

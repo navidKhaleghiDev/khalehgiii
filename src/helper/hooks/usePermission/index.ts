@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
 import { useUserContext } from '@context/user/userContext';
-import { IUserPermissions, PermissionsCodeName } from '@src/types/permissions';
+import {
+  UserPermissionsProps,
+  PermissionsCodeName,
+} from '@src/types/permissions';
 
 // type UsePermissionResult = {
 //   hasPermission?: boolean;
@@ -31,7 +34,7 @@ export const useUserPermission = (): PermissionsCodeName[] => {
     () => (user && user?.user_permissions) || [],
     [user]
   );
-  return userPermissions.map((userP: IUserPermissions) => userP.codename);
+  return userPermissions.map((userP: UserPermissionsProps) => userP.codename);
 };
 
 export const useHasPermission = (

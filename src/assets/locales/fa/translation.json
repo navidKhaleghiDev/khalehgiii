@@ -94,6 +94,7 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "downloadPrivilege": "دسترسی دانلود",
     "uploadPrivilege": "دسترسی آپلود",
+    "downloadAndUploadPrivilege": "دسترسی دانلود و آپلود ",
     "recordingActivity": "فعالیت های ضبط شده",
     "date": "تاریخ",
     "day": "روز",
@@ -120,7 +121,12 @@
     "deleteUser": "حذف کاربر",
     "allowed": "مجاز",
     "disallow": "غیر مجاز",
-    "permanent": "دائم"
+    "permanent": "دائم",
+    "startTime": "زمان شروع",
+    "lastTime": "زمان پایان",
+    "recordDate": "تاریخ ضبط",
+    "duration": "مدت زمان",
+    "days": "روز های هفته"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
@@ -140,6 +146,7 @@
     "uba": "رفتار شناسی کاربر",
     "extentions": "فرمت ها",
     "days": "روز",
+    "saveChanges": "ثبت تغییرات",
     "progressChart": "نمودار پیشرفت",
     "activeLicenses": "لایسنس‌های فعال",
     "onlineUsers": "کاربران آنلاین",
@@ -166,6 +173,7 @@
     "show": "نمایش",
     "of": "از",
     "password": "گذرواژه",
+    "format": "فرمت",
     "requiredField": "درج این فیلد ضروریست.",
     "successfullyLogedIn": "شما با موفقیت وارد شدید",
     "exit": "خروج",
@@ -240,7 +248,7 @@
     "usedPamLicense": "لایسنس PAM استفاده شده",
     "somethingWentWrong": "مشکلی پیش آمد",
     "genrateQrcode": "تولید Qrcode ",
-    "activateOtp": "فعالسازی otp",
+    "activateOtp": "فعالسازی OTP",
     "userInfo": "مشخصات کاربر",
     "accessList": "لیست دسترسی",
     "videoDuration": "مدت زمان ویدیو",
@@ -269,7 +277,10 @@
     "remove": "حذف مورد",
     "sureAboutDeleteUser": "آیا از حذف این کاربر مطمئن هستید؟",
     "all": "انتخاب همه",
-    "deleteUser": "حذف کاربر"
+    "deleteUser": "حذف کاربر",
+    "download": "دانلود",
+    "upload": "آپلود",
+    "limitBySize": "محدود کردن بر اساس زمان"
   },
   "groupManagement": {
     "person": "نفر",
@@ -309,6 +320,10 @@
     "userInfo": "مشخصات کاربر",
     "adminInfo": "مشخصات ادمین",
     "userType": "نوع کاربری",
+    "createNewAdmin": "ساخت ادمین جدید",
+    "createNewAdminText": "برای ساختن ادمین جدید مشخصات را وارد کنید و دسترسی های مورد نیاز را انتخاب کنید. ",
+    "editInformation": "ویرایش مشخصات ",
+    "editInformationText": "مشخصات و لیست دسترسی‌های ادمین.",
     "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
     "admin": "ادمین",
     "metaAdmin": "سوپر ادمین",
@@ -319,7 +334,28 @@
     "onlineUsers": "کاربران آنلاین",
     "blockedUsers": "کاربران مسدود شده",
     "searchUsers": "جستجوی کاربر",
-    "usersList": "لیست کاربران"
+    "usersList": "لیست کاربران",
+    "userAccess": "دسترسی های کاربر",
+    "changeUserProfileAndAccessList": "تغییر مشخصات و لیست دسترسی‌های کاربر.",
+    "byActivitingThisSectionyouAllowTheUserToDownloadFiles": "با فعال کردن این بخش به کاربر اجازه دانلود فایل‌هارا می‌دهید.",
+    "byActivitingThisSectionYouAllowTheUserToUploadFiles": "با فعال کردن این بخش به کاربر اجازه آپلود فایل‌هارا می‌دهید.",
+    "timeOfUse": "زمان استفاده",
+    "specifyTheTimeToUseTheSystem": "زمان استفاده از سامانه را مشخص کنید.",
+    "trustedDownloadFormat": "فرمت های مورد تایید دانلود",
+    "trustedUploadFormat": "فرمت های مورد تایید آپلود",
+    "sessionRecording": "ضبط دسکتاپ",
+    "thePossibilityOfRecordingtheDesktopByTheUser": "امکان ضبط دسکتاپ توسط کاربر.",
+    "clipboard": "کلیپ‌بورد",
+    "thePossibilityOfUsingTexts": "امکان استفاده از متن‌ها.",
+    "evidence": "شواهد",
+    "abilityToDownloadFilesUploadedOrDownloadedByTheUser": "امکان دانلود فایل‌های آپلود شده یا دانلود شده توسط کاربر.",
+    "conference": "کنفرانس",
+    "accessToWebcamAndMicrophone": "دسترسی به وب‌کم و میکروفون.",
+    "accessToTheUsersDesktopOnline": "دسترسی به میز کار کاربر به صورت آنلاین.",
+    "clipboardLog": "لاگ کلیپبورد",
+    "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد.",
+    "recordedActivities": "فعالیت های ضبط شده",
+    "recordedUserActivities": "فعالیت های ضبط شده کاربر"
   },
 
   "license": {
@@ -344,9 +380,34 @@
     "wholeNumbers": "تعداد کل ",
     "expirationDate": "تاریخ انقضا"
   },
+  "systemManagement": {
+    "formatList": "لیست فرمت ها ",
+    "search": "جستحو",
+    "newFormat": "فرمت جدید",
+    "uploadFile": "آپلود فایل",
+    "uploadFileText": "برای ساخت فرمت جدید فایل مورد نظر را بارگذاری کنید.",
+    "uploadFileTextInputOne": "برای بارگذاری فایل کلیک کنید ",
+    "uploadFileTextInputTwo": "و یا فایل را در محیط بالا رها کنید",
+    "deleteFormat": "حذف فرمت",
+    "deleteFormatText": "آیا از حذف این فرمت مطمعن هستید ؟‌"
+  },
   "setting": {
     "application": "Application",
-    "dass": "DaaS"
+    "daas": "DaaS",
+    "ssoBaseURL": "SSO base URL",
+    "ssoClientID": "SSO client ID",
+    "ssoSecret": "SSO Secret",
+    "ssoPort": "SSO Port",
+    "ssoRealm": "SSO realm",
+    "logServer": "Log Server",
+    "logServerIP": "Log Server IP",
+    "logServerPort": "Log Server Port",
+    "daasProvider": "Daas provider baseURL",
+    "clientIDP": "clinet id",
+    "secretP": "secret",
+    "realmP": "realm",
+    "sso": "SSO",
+    "manager": "Manager"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
@@ -381,7 +442,8 @@
     "shebaNumber": "فقط از اعداد استفاده کنید",
     "cardBankNumber": "فقط از اعداد استفاده کنید",
     "price": "لطفا فقط از اعداد استفاده کنید",
-    "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234"
+    "phoneNumberNoZeroAtStart": "فرمت صحیح موبایل: 9xxxxx1234",
+    "ip": "لطفا فرمت صحیح آی پی را وارد نمایید"
   },
   "title": {
     "systemAdminDescription1": "1- هرکاربری که اضافه میشود ، به عنوان ادمین سیستم شناخته و دسترسی برای تغییرات سامانه را دارد.",

@@ -6,7 +6,7 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { ListMenu } from './ListMenu';
 import { NotificationMenu } from './NotificationMenu';

@@ -14,7 +14,7 @@ export const navigationSideBar: NavigationProps[] = [
   {
     id: '1',
     label: t('global.home'),
-    path: ROUTES_PATH.dashboard,
+    path: ROUTES_PATH.home,
     icon: PhHouseSimpleDuotone,
   },
   {
@@ -95,7 +95,7 @@ export const navigationSideBar: NavigationProps[] = [
     items: [
       {
         id: '1',
-        label: t('setting.dass'),
+        label: t('setting.daas'),
         path: ROUTES_PATH.daas,
       },
       {

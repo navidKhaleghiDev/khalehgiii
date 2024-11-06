@@ -1,5 +1,5 @@
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { DashboardCards } from './DashboardCards';
 import { DashboardAdminLogs } from './DashboardAdminLogs';
