@@ -3,6 +3,8 @@ import { Control } from 'react-hook-form';
 import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
 import { PermissionsCodeName } from '@src/types/permissions';
 import { DlpSettingsForm } from '@ui/utils/DlpSettingsForm';
+import { ExtendTwoType } from '@src/types/global';
+import { IDaasConfig } from '@src/services/config/types';
 
 import { DownloadAndUploadAccess } from '../components/DownloadAndUploadAccess';
 import { TimeOfUseAccess } from '../components/TimeOfUseAccess';
@@ -10,13 +12,13 @@ import { MaxSizeAccess } from '../components/MaxSizeAccess';
 import { ItemsAccess } from '../components/ItemsAccess';
 
 type PropsType = {
-  control: Control<any>;
+  control: Control<ExtendTwoType<IDaAs, IDaasConfig>>;
   isRecording?: boolean;
   isMetaConfig?: boolean;
   userPermissions: PermissionsCodeName[];
   handleSetDlpValues: (name: keyof IDaAs, values: string[]) => void;
-  dlpDownloadList: any;
-  dlpUploadList: any;
+  dlpDownloadList: string[];
+  dlpUploadList: string[];
   timeOfUse: ETimeLimitDuration;
 };
 

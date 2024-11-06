@@ -50,7 +50,7 @@ export function DaasConfigForm({
         />
       </div>
 
-      {!isMetaConfig && (
+      {!isMetaConfig ? (
         <>
           <div className="flex justify-between items-center px-2 col-span-3">
             <Typography className="mb-1">
@@ -102,9 +102,9 @@ export function DaasConfigForm({
             />
           </div>
         </>
-      )}
+      ) : null}
 
-      {isRecording && (
+      {isRecording ? (
         <div className="flex justify-between items-center px-2 col-span-3">
           <Typography className="mb-1">
             {t('table.sessionRecording')}
@@ -115,7 +115,7 @@ export function DaasConfigForm({
             name="is_recording"
           />
         </div>
-      )}
+      ) : null}
       <div className="px-2 col-span-3 ">
         <Typography className="mb-1">{t('table.timeLimitDuration')}</Typography>
         <Dropdown
@@ -140,7 +140,6 @@ export function DaasConfigForm({
         </Typography>
         <BaseInputController
           control={control}
-          // size="xs"
           id="time_limit_value_in_hour"
           name="time_limit_value_in_hour"
           placeholder={t('global.selectHour')}

@@ -9,7 +9,7 @@ export const regexPattern = {
   },
   wordStartedWithPointAndEn: {
     value: /^\.[A-Za-z0-9]+$/,
-    message: 'بیشتر از 2 حرف انگلیسی و با نقطه (.) شروع شود.',
+    message: t('regexPattern.moreThanTwoEnglishLettersAndStartWithADot'),
   },
   onlyEnglishNdOtherCharacters: {
     value: /^(?!.*[\u0600-\u06E9\u200C])/,
