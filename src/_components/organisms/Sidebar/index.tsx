@@ -9,15 +9,15 @@ import { useUserContext } from '@context/user/userContext';
 import ToolTip from '@redesignUi/atoms/Tooltip';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Avatar, Typography } from '@redesignUi/atoms';
+import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
+import { useTheme } from '@context/settings/themeContext';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import User from '@iconify-icons/ph/user';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
-import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
-import { useTheme } from '@context/settings/themeContext';
-import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { MenuDropdown } from './MenuDropdown/MenuDropdown';
 import { MenuItem } from './MenuItem';
@@ -38,6 +38,8 @@ export function SideBar(): JSX.Element {
   const windowDimensions = useWindowDimensions();
 
   const isUser = user?.first_name && user?.last_name;
+  const logOutStyles =
+    'text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
   const toggleSideBar = () => {
     setToggleSidebar(!toggleSidebar);
@@ -195,7 +197,7 @@ export function SideBar(): JSX.Element {
                 color="neutralNoBg"
                 size="md"
                 onClick={handleLogout}
-                className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg "
+                className={logOutStyles}
               />
             </ToolTip>
           ) : (
@@ -204,7 +206,7 @@ export function SideBar(): JSX.Element {
               color="neutralNoBg"
               size="md"
               onClick={handleLogout}
-              className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
+              className={logOutStyles}
             />
           )}
           {toggleSidebar ? (
