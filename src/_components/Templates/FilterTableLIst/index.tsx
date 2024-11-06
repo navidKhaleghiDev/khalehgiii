@@ -44,8 +44,10 @@ export default function FilterTableList(props: FilterReportsProps) {
     [data]
   );
 
-  return (
-    <div className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.875rem] mb-5">
+  const conditionOne = buttonLabel && !handelGroupeFilter && !domainFilter;
+
+  return !conditionOne ? (
+    <div className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.45rem] sm:gap-x-[1.875rem]">
       <div
         className={` ${
           buttonLabel || handelGroupeFilter
@@ -62,7 +64,7 @@ export default function FilterTableList(props: FilterReportsProps) {
           hiddenError
           fullWidth
           dir={dir === 'rtl' ? 'rtl' : 'ltr'}
-          className={`top-[0.625rem] ${
+          className={`${
             buttonLabel || handelGroupeFilter ? 'w-[350px]' : 'w-[160px]'
           } sm:w-full`}
         />
@@ -98,6 +100,26 @@ export default function FilterTableList(props: FilterReportsProps) {
           />
         </div>
       ) : null}
+    </div>
+  ) : (
+    <div className="flex items-center justify-between">
+      <div className="w-40 sm:w-[21.87rem]">
+        <SearchInput
+          id="search"
+          name="search"
+          onChange={handelSearchQuery}
+          value={searchQuery}
+          placeholder={searchPlaceholder}
+          hiddenError
+          fullWidth
+          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+        />
+      </div>
+      <BaseButton
+        label={buttonLabel}
+        onClick={onClickButton}
+        startIcon={pluse}
+      />
     </div>
   );
 }
