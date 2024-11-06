@@ -39,6 +39,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
     fullWidth,
     helpText,
     label,
+    hiddenError,
     error,
     placeholder,
     size,
@@ -63,6 +64,7 @@ export function SearchInput(props: SearchInputProps): JSX.Element {
       dir={dir}
       helpText={helpText}
       disabled={disabled}
+      hiddenError={hiddenError}
       autoComplete="off"
       endIcon={!rtl ? PhMagnifyingGlass : ''}
       label={label}
