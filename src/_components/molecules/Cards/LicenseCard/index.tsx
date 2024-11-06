@@ -47,7 +47,7 @@ export function LicenseCard(props: LicenseCardProps): JSX.Element {
         <div className="lg:w-1/3">
           <DoughnutChart
             subValue={subValue}
-            totalValue={totalValue}
+            totalValue={totalValue === 0 ? 1 : totalValue}
             color={color}
             type="license"
           >
