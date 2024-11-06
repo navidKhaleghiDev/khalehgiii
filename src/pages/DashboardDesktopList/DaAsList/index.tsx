@@ -103,47 +103,43 @@ export function DaAsList() {
     fileType
   ) => {
     const id = fileType?.id;
+    if (action === 'mutate') {
+      mutate(
+        (key) => typeof key === 'string' && key.startsWith('/users/daas'),
+        undefined,
+        { revalidate: true }
+      );
+      return;
+    }
+    if (action === 'more' && id) {
+      setSelectedId(id);
+      setOpenSessionRecording(true);
+      setUserName(fileType.email);
 
-    switch (action) {
-      case 'mutate':
-        mutate(
-          (key) => typeof key === 'string' && key.startsWith('/users/daas'),
-          undefined,
-          { revalidate: true }
-        );
-        break;
+      return;
+    }
+    if (action === 'edit') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenSettingModal(true);
+      return;
+    }
 
-      case 'more':
-        if (id) {
-          setSelectedId(id);
-          setOpenSessionRecording(true);
-          setUserName(fileType.email);
-        }
-        break;
+    if (action === 'editLock') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenModal(true);
+      return;
+    }
 
-      case 'edit':
-        setActiveDaas(fileType as IDaAs);
-        setOpenSettingModal(true);
-        break;
-
-      case 'editLock':
-        setActiveDaas(fileType as IDaAs);
-        setOpenBlockModal(true);
-        break;
-
-      case 'details':
-        setActiveDaas(fileType as IDaAs);
-        setOpenOnlineAssistanceModal(true);
-        break;
-
-      default:
-        if (fileType !== undefined && typeof fileType !== 'string') {
-          setActiveDaas(fileType as IDaAs);
-          setOpenModal(true);
-        }
-        break;
+    if (fileType !== undefined && typeof fileType !== 'string') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenModal(true);
+    }
+    if (action === 'details') {
+      setActiveDaas(fileType as IDaAs);
+      setOpenOnlineAssistanceModal(true);
     }
   };
+
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
     if (!daas) return;
     let daasUpdated = daas;
@@ -210,7 +206,6 @@ export function DaAsList() {
   };
 
   const handleOnBlock = () => {
-    if (!activeDaas) return;
     setLoadingButtonModal(true);
     updateDaas(activeDaas);
     setOpenBlockModal(false);

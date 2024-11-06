@@ -14,10 +14,6 @@ export default function OnlineAssistanceDetail({
   title,
   description,
 }: TOnlineAssistanceDetailProps) {
-  if (data.length === 0) {
-    return null;
-  }
-
   return (
     <div className="flex flex-col p-[13px]">
       <div className="self-start">

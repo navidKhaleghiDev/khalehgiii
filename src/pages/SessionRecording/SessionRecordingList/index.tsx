@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
+import { toast } from 'react-toastify';
 
 import Play from '@iconify-icons/ph/play';
 import { http } from '@src/services/http';
@@ -77,7 +78,9 @@ export function SessionRecordingList({
         setRecordedVideo(videoURL);
         setOpenModal(true);
       })
-      .catch(() => {});
+      .catch((err) => {
+        toast.error(err);
+      });
   };
 
   const handleOpenModal: OnClickActionsType<TRecordData> = (action, item) => {
@@ -148,13 +151,13 @@ export function SessionRecordingList({
         descriptionInfo={`${t('userList.recordedUserActivities')} ${username}`}
         content={
           <div>
-            {recordVideo && (
+            {recordVideo ? (
               <video width="750" height="500" controls>
                 <track kind="captions" />
                 <source src={recordVideo} type="video/mp4" />
                 مرورگر شما این ویدئو را پشتیبانی نمی‌کند.
               </video>
-            )}
+            ) : null}
           </div>
         }
         type="content"

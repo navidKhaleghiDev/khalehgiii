@@ -17,7 +17,7 @@ export function OnlineAssistanceDetailModal({
 
   const { member_of: members, admin_group_of: admins } = daas;
 
-  if (!admins.length && !members.length) {
+  if (admins.length === 0 && members.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-96">
         <NoResult />
@@ -27,19 +27,22 @@ export function OnlineAssistanceDetailModal({
 
   return (
     <div className="w-full h-96 overflow-auto">
-      <OnlineAssistanceDetail
-        title={t('userList.groupAdmin')}
-        description={t('userList.assistanceAdminTitle')}
-        data={admins}
-      />
+      {admins.length !== 0 ? (
+        <OnlineAssistanceDetail
+          title={t('userList.groupAdmin')}
+          description={t('userList.assistanceAdminTitle')}
+          data={admins}
+        />
+      ) : null}
 
       {admins.length > 0 && members.length > 0 && <Divider />}
-
-      <OnlineAssistanceDetail
-        title={t('userList.groupMember')}
-        description={t('userList.assistanceMemberTitle')}
-        data={members}
-      />
+      {members.length !== 0 ? (
+        <OnlineAssistanceDetail
+          title={t('userList.groupMember')}
+          description={t('userList.assistanceMemberTitle')}
+          data={members}
+        />
+      ) : null}
     </div>
   );
 }
