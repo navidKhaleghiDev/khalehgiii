@@ -106,6 +106,7 @@
     "activeOtp": " OTP ",
     "isRecording": "Is Recording",
     "yesterday": "Yesterday",
+    "adminUserName": "Name",
     "access": "Access",
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
@@ -152,7 +153,8 @@
     "netsep": "NetSep",
     "scans": "Scans",
     "userBehavior": "User Behavior",
-    "adminLogin": "Admin Login"
+    "adminLogin": "Admin Login",
+    "virusFiles": "Virus Files"
   },
   "admin": {
     "adminUserName": "abc@abc.com",

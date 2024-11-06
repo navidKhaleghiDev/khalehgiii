@@ -107,6 +107,7 @@
     "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
     "yesterday": "دیروز",
+    "adminUserName": "نام ادمین",
     "access": "دسترسی",
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
@@ -153,7 +154,8 @@
     "netsep": "نت سپ",
     "scans": "اسکن ها",
     "userBehavior": "رفتار شناسی کاربر",
-    "adminLogin": "ورود و خروج ادمین‌ها"
+    "adminLogin": "ورود و خروج ادمین‌ها",
+    "virusFiles": "فایل های آلوده"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
