@@ -1,7 +1,6 @@
 import phPlay from '@iconify-icons/ph/play';
-import { Typography } from '@redesignUi/atoms';
+import { ConvertedSecondsHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ConvertedSecondsHelperCell';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { convertSecondsToTime } from '@src/helper/utils/convertSecoundToTIme';
 
 export const KnowledgeManagementHeaderItem: HeaderTable[] = [
   {
@@ -38,13 +37,9 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
     label: 'table.videoDuration',
     id: 'duration_time',
     type: 'component',
-    component: (props: any) => {
-      return (
-        <Typography color="neutralDark" variant="body6">
-          {convertSecondsToTime(props.row.duration_time)}
-        </Typography>
-      );
-    },
+    component: (props: any) => (
+      <ConvertedSecondsHelperCell time={props.row.duration_time} />
+    ),
     class: 'w-2/12 lg:w-1/12',
     isMobileCollapsed: true,
   },
