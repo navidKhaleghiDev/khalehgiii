@@ -7,6 +7,7 @@ type CardProps = {
   title: string;
   onClick?: () => void;
   count?: number;
+  className?: string;
   disabled?: boolean;
 };
 
@@ -29,15 +30,15 @@ type CardProps = {
  * @returns {JSX.Element} Returns the rendered DashboardCard component.
  */
 export function DashboardCard(props: CardProps): JSX.Element {
-  const { icon, title, onClick, count, disabled } = props;
+  const { icon, title, onClick, count, className, disabled } = props;
   return (
     <CardButton
       border
       borderColor="neutral"
-      className="max-w-[21.875rem] w-full h-20 px-5 py-4 flex items-center gap-2.5 outline-none text-right overflow-hidden"
+      className={`max-w-[21.875rem] xl:h-20 h-14 p-5 py-[1.125rem] flex items-center gap-2.5 outline-none text-right overflow-hidden ${className}`}
       color="white"
       onClick={onClick}
-      disabled={!onClick || disabled}
+      disabled={disabled}
       rounded="xxl"
       shadow="base"
     >
@@ -49,17 +50,19 @@ export function DashboardCard(props: CardProps): JSX.Element {
         />
       </div>
       <div className="w-full rtl:text-right ltr:text-left">
-        <Typography color="neutralMiddle" variant="body3" className="leading-7">
+        <Typography
+          color="neutralMiddle"
+          variant="body3"
+          className="xl:text-lg text-sm"
+        >
           {title}
         </Typography>
-        {count && (
-          <Typography
-            className="text-gray-900 dark:text-white font-semibold leading-7"
-            variant="body2"
-          >
-            {count}
-          </Typography>
-        )}
+        <Typography
+          className="text-gray-900 dark:text-white font-semibold"
+          variant="body2"
+        >
+          {count ?? 0}
+        </Typography>
       </div>
     </CardButton>
   );

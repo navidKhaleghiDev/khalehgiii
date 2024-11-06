@@ -118,8 +118,8 @@ export function Modal(props: ModalProps): JSX.Element | null {
                   </div>
                 )
               : icon && (
-                  <div className="flex items-center justify-center gap-2.5 sm:gap-5">
-                    <div className="border border-gray-200 dark:border-gray-500 flex items-center justify-center shadow-sm rounded-lg p-2 size-12">
+                  <div className="flex items-center justify-center gap-2.5 md:gap-5">
+                    <div className="border border-gray-200 dark:border-gray-500 flex items-center justify-center shadow-sm rounded-lg p-1.5 md:p-2 size-9 md:size-12">
                       <BaseIcon
                         icon={icon}
                         size="md"
@@ -128,14 +128,16 @@ export function Modal(props: ModalProps): JSX.Element | null {
                     </div>
                     <div className="flex flex-col justify-center gap-1">
                       <Typography
-                        variant="body3B"
                         color="neutralDark"
-                        className="rtl:text-right ltr:text-left"
+                        className="rtl:text-right ltr:text-left text-sm md:text-lg font-semibold"
                       >
                         {title}
                       </Typography>
                       <div className="text-start">
-                        <Typography variant="body6" color="neutralMiddle">
+                        <Typography
+                          color="neutralMiddle"
+                          className="text-xs md:text-sm"
+                        >
                           {descriptionInfo}
                         </Typography>
                       </div>

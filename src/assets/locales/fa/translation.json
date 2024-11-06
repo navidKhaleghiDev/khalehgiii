@@ -107,6 +107,7 @@
     "activeOtp": "OTP",
     "isRecording": "در حال ضبط",
     "yesterday": "دیروز",
+    "adminUserName": "نام ادمین",
     "access": "دسترسی",
     "userType": "نوع کاربری",
     "deleteAdmin": "حذف ادمین",
@@ -153,7 +154,8 @@
     "netsep": "نت سپ",
     "scans": "اسکن ها",
     "userBehavior": "رفتار شناسی کاربر",
-    "adminLogin": "ورود و خروج ادمین‌ها"
+    "adminLogin": "ورود و خروج ادمین‌ها",
+    "virusFiles": "فایل های آلوده"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -235,7 +237,7 @@
     "arbitrary": "دلخواه",
     "send": "ارسال",
     "selectTimeFrame": "بازه ای از زمان را انتخاب کنید",
-    "reportsChart": "نمودارگزارش",
+    "reportsChart": "نمودار گزارش",
     "internetLog": "لاگ های اینترنت",
     "wholeList": "لیست کلی",
     "todayList": "لیست امروز",
@@ -354,7 +356,12 @@
     "clipboardLog": "لاگ کلیپبورد",
     "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد.",
     "recordedActivities": "فعالیت های ضبط شده",
-    "recordedUserActivities": "فعالیت های ضبط شده کاربر"
+    "recordedUserActivities": "فعالیت های ضبط شده کاربر",
+    "assistance": "دستیار",
+    "groupAdmin": "ادمین گروه‌ها",
+    "groupMember": "عضویت در گروه‌ها",
+    "assistanceMemberTitle": "در این بخش گروه هایی که کاربر عضو آن می‌باشد مشخص شده است.",
+    "assistanceAdminTitle": "در این بخش گروه هایی که کاربرادمین آن می‌باشد مشخص شده است."
   },
 
   "license": {
