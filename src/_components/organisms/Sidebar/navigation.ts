@@ -82,7 +82,7 @@ export const navigationSideBar: NavigationProps[] = [
       {
         id: '3',
         label: t('license.licenses'),
-        path: ROUTES_PATH.dashboard,
+        path: ROUTES_PATH.licence,
       },
     ],
   },

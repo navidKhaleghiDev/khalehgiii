@@ -31,7 +31,9 @@ import { BaseTableSkeleton } from './components/loading';
  * @returns {JSX.Element} The rendered table component.
  */
 
-export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
+export function BaseTable<T extends IdItem>(
+  props: BaseTableProps<T>
+): JSX.Element {
   const {
     header,
     body,
@@ -94,7 +96,7 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   }, [header]);
 
   return (
-    <div className="w-auto ">
+    <div className="w-auto">
       <table className="w-full">
         {!isMobile && (
           <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
