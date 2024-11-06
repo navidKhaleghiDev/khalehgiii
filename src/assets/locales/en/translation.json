@@ -352,7 +352,8 @@
     "clipboardLog": "Clipboard log",
     "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard",
     "recordedActivities": "Recorded activities",
-    "recordedUserActivities": "Recorded user activities"
+    "recordedUserActivities": "Recorded user activities",
+    "theFormatIsRepetitive": "The format is repetitive"
   },
   "license": {
     "licenseId": "license Id",

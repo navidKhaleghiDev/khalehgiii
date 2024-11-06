@@ -13,7 +13,7 @@ import { ActionLockHelperCell } from '@redesignUi/molecules/BaseTable/components
 import { ProgressBarHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ProgressBarHelperCell';
 
 import { AccessTime } from '../AccessTime';
-import { AccessTimeSetting } from '../DaAsCard/AccessTimeSetting';
+import { AccessTimeSetting } from '../components/DaAsCard/AccessTimeSetting';
 
 export const desktopListHeaderItem: HeaderTable[] = [
   {
