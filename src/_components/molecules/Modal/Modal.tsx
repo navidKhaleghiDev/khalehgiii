@@ -123,7 +123,7 @@ export function Modal(props: ModalProps): JSX.Element | null {
                       <BaseIcon
                         icon={icon}
                         size="md"
-                        className="text-gray-500"
+                        className="text-gray-500 dark:text-gray-400"
                       />
                     </div>
                     <div className="flex flex-col justify-center gap-1">
