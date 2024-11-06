@@ -11,6 +11,7 @@ import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
 import { NavbarDashboard } from '@redesignUi/organisms/Navbar/NavbarDashboard';
 import { SideBar } from '@redesignUi/organisms/Sidebar';
+import { NavbarUser } from '@redesignUi/organisms/Navbar/NavbarUser/NavbarUser';
 
 function LayoutCp() {
   const { t } = useTranslation();
@@ -52,12 +53,12 @@ function LayoutCp() {
       <div className="flex h-screen bg-gray-50 dark:bg-gray-700 font-kalameh">
         <div className="flex flex-col flex-1 overflow-hidden">
           <header className="z-50 border-neutral-200 shadow-lg bg-gray-50 dark:bg-gray-700 px-5">
-            <NavbarDashboard />
+            {isUser ? <NavbarDashboard /> : <NavbarUser />}
           </header>
           <div
             className={`flex sm:flex-row h-full overflow-y-auto ${
-              isUser ? 'px-0.5 container mx-auto justify-center' : ''
-            } mb-5`}
+              isUser ? 'px-0.5 container mx-auto justify-center mb-5' : ''
+            }`}
           >
             {isUser ? (
               <nav className="flex mx-auto sm:h-full z-40">
@@ -66,10 +67,15 @@ function LayoutCp() {
                 </div>
               </nav>
             ) : null}
-            <main className="flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 mt-5">
+
+            <main
+              className={`flex flex-col w-full overflow-x-hidden overflow-y-auto bg-gray-50 dark:bg-gray-700 ${
+                isUser ? 'mt-5' : 'mt-0'
+              }`}
+            >
               <div className="relative flex flex-col w-full h-full gap-16 mx-auto">
                 <div className="flex flex-col gap-16 sm:h-full">
-                  <div className="px-5 sm:h-full">
+                  <div className={`${isUser ? 'px-5' : 'px-0'} sm:h-full`}>
                     <Outlet />
                   </div>
                 </div>
