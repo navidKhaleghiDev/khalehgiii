@@ -26,17 +26,18 @@ import { NavigationProps } from './types';
 import { MenuItemAccordion } from './MenuItemAccordion';
 
 export function SideBar(): JSX.Element {
-  const windowDimensions = useWindowDimensions();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [isDropdownVisible, setDropdownVisible] =
     useState<NavigationProps | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
-  const navigate = useNavigate();
+  const windowDimensions = useWindowDimensions();
+
+  const isUser = user?.first_name && user?.last_name;
 
   const toggleSideBar = () => {
     setToggleSidebar(!toggleSidebar);
@@ -172,7 +173,7 @@ export function SideBar(): JSX.Element {
             <div className="mx-2">
               <span>
                 <Typography variant="body5" color="neutralDark">
-                  {`${user?.first_name} ${user?.last_name}`}
+                  {isUser ? user?.first_name && user.last_name : ''}
                 </Typography>
               </span>
               <span>
