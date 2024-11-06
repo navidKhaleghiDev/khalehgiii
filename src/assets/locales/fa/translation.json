@@ -129,7 +129,9 @@
     "lastTime": "زمان پایان",
     "recordDate": "تاریخ ضبط",
     "duration": "مدت زمان",
-    "days": "روز های هفته"
+    "days": "روز های هفته",
+    "number":"تعداد",
+    "activeNumbers": "تعداد فعال شده"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",

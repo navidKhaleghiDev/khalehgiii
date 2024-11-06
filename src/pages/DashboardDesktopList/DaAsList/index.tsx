@@ -93,6 +93,7 @@ export function DaAsList() {
       { revalidate: true }
     );
   }, [mutate]);
+  console.log(data);
 
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // const debouncedSetFilterQuery = useCallback(

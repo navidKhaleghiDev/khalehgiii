@@ -128,7 +128,9 @@
     "recordDate": "Record date",
     "duration": "Duration",
     "days": "Days",
-    "licenseStatus": "Status"
+    "licenseStatus": "Status",
+    "number":"Number",
+    "activeNumbers":"Active Number"
 
   },
   "dashboard": {

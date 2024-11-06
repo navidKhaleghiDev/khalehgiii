@@ -1,4 +1,3 @@
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import {
   BaseTableComponentCellProps,
   HeaderTable,
@@ -9,19 +8,28 @@ import { LicenseFileType } from '../type';
 export const LisenceHeaderItem: HeaderTable[] = [
   {
     label: 'table.lisenceName',
-    id: 'license_id',
+    id: 'name',
     type: 'none',
-    class: 'px-3 md:w-2/12 xl:w-1/12',
+    class: 'px-3 w-6/12  md:w-3/12 xl:w-2/12',
   },
+  // {
+  //   label: 'table.lisenceName',
+  //   id: 'users',
+  //   type: 'none',
+  //   class: 'px-3 w-6/12  md:w-3/12 xl:w-2/12',
+  //   isCollapsed: true,
+  // },
   {
     label: 'table.licenseExpirationDate',
-    id: 'license_expiration_date',
+    id: 'expiry',
     type: 'date',
     class: 'px-3 md:w-2/12 xl:w-1/12',
+    isMobileCollapsed: true,
   },
+
   {
     label: 'table.licenseStatus',
-    id: '',
+    id: 'license',
     type: 'component',
     component: (props: BaseTableComponentCellProps<LicenseFileType>) => (
       <TagHelperCell
@@ -30,7 +38,7 @@ export const LisenceHeaderItem: HeaderTable[] = [
         color={props.row.active ? 'teal' : 'yellow'}
       />
     ),
-    class: 'w-32',
+    class: 'px-3 md:w-2/12 xl:w-1/12',
   },
   //   {
   //     label: 'table.licenseCreationDate',
@@ -39,38 +47,33 @@ export const LisenceHeaderItem: HeaderTable[] = [
   //     class: 'w-32',
   //   },
   {
-    label: 'table.recordLicenseNumber',
-    id: 'table.record_license_number',
+    label: 'table.number',
+    id: 'number',
     type: 'none',
     class: 'px-3 md:w-2/12 xl:w-1/12',
+    isMobileCollapsed: true,
   },
-  {
-    label: 'table.assistanceLicense',
-    id: 'assistance_license',
-    type: 'component',
-    component: (props: any) => <Circle id={props.row.assistance_license} />,
-    class: 'px-3 md:w-2/12 xl:w-1/12',
-  },
-  {
-    label: 'table.assistanceLicenseNumber',
-    id: 'assistance_license_number',
-    type: 'none',
 
-    class: 'px-3 md:w-2/12 xl:w-1/12',
-  },
   {
-    label: 'table.totalUserLicense',
-    id: 'total_users_license',
+    label: 'table.activeNumbers',
+    id: 'active',
     type: 'none',
+    class: 'px-3 md:w-2/12 xl:w-1/12',
+    isMobileCollapsed: true,
+  },
+  // {
+  //   label: 'table.totalUserLicense',
+  //   id: 'total_users_license',
+  //   type: 'none',
 
-    class: 'px-3 md:w-2/12 xl:w-1/12',
-  },
-  {
-    label: 'table.concurrentUsersLicense',
-    id: 'concurrent_users_license',
-    type: 'none',
-    class: 'px-3 md:w-2/12 xl:w-1/12',
-  },
+  //   class: 'px-3 md:w-2/12 xl:w-1/12',
+  // },
+  // {
+  //   label: 'table.concurrentUsersLicense',
+  //   id: 'concurrent_users_license',
+  //   type: 'none',
+  //   class: 'px-3 md:w-2/12 xl:w-1/12',
+  // },
   //   {
   //     label: 'table.clipboardAccessLicense',
   //     id: 'clipboard_access_license',
