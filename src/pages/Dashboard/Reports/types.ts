@@ -1,18 +1,18 @@
 import { TOnClickDate } from '@ui/atoms/Inputs';
 import { DateObject } from 'react-multi-date-picker';
 
-export interface IFormDate {
-  records: TRecords;
+export interface FormDate {
+  records: Records;
   type: string;
   start_date: string;
   end_date: string;
 }
-export interface IFormDateData {
+export interface FormDateData {
   start_date: [DateObject, DateObject];
   // data: RecordsData;
 }
-export type TFormDate = Pick<IFormDate, 'start_date' | 'end_date'>;
-export type TDataSet = {
+export type FormDateTimeFrame = Pick<FormDate, 'start_date' | 'end_date'>;
+export type DataSet = {
   label: string;
   data: string[];
   fill: boolean;
@@ -20,13 +20,13 @@ export type TDataSet = {
   borderColor: string;
 };
 
-export type TDataType = string;
-export type TFormatData = {
+export type DataType = string;
+export type FormatData = {
   [key: string]: string;
 };
 
-export type TData = Record<string, any>;
-export type TDataGeneratorReturn = {
+export type Data = Record<string, any>;
+export type DataGeneratorReturn = {
   labels: string[];
   datasets: Array<{
     label: string;
@@ -34,27 +34,27 @@ export type TDataGeneratorReturn = {
     fill: boolean;
   }>;
 };
-export interface IReportChartType {
-  props: TPropsChartType;
+export interface ReportChartType {
+  props: PropsChartType;
 }
-export type TPropsChartType = {
+export type PropsChartType = {
   HOURLY_FORMAT: string;
-  MONTLY_FORMAT: string;
+  MONTHLY_FORMAT: string;
   DAILY_FORMAT: string;
   NORMAL_FORMAT: string;
   flag: string;
   recordsData: any;
   isFarsi: boolean;
 };
-export type IReportFormType = {
+export type ReportFormType = {
   handleOnSubmit: any;
-  state: TReducerStateType;
-  onChange: TOnClickDate;
+  state: ReducerStateType;
+  onChange?: TOnClickDate;
 };
 
-export type TReducerStateType = {
+export type ReducerStateType = {
   weekly: boolean;
-  montly: boolean;
+  monthly: boolean;
   loading: boolean;
   error: boolean;
 };
@@ -70,16 +70,16 @@ export type TypeReducerActionType = {
 };
 
 export type TypeReportOptions = {
-  state: TReducerStateType;
+  state: ReducerStateType;
   dispatch: any;
   keys: { DIS_KEY_WEEK: string; DIS_KEY_MONTH: string; DIS_KEY_NORMAL: string };
 };
 
-export type TResultOfRecords = {
+export type ResultOfRecords = {
   type: string;
-  records: TRecords | [];
+  records: Records | [];
 };
 
-export type TRecords = {
+export type Records = {
   [date: string]: number | [];
 };

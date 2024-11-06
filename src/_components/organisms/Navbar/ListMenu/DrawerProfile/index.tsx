@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { t } from 'i18next';
 
@@ -21,18 +21,24 @@ import { navigationSideBar } from '@redesignUi/organisms/Sidebar/navigation';
 import { NavigationProps } from '@redesignUi/organisms/Sidebar/types';
 import { MenuItem } from '@redesignUi/organisms/Sidebar/MenuItem';
 import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/MenuItemAccordion';
+import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
 export function DrawerProfile() {
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const dropdownRef = useRef(null);
   const { isOpen, setIsOpen } = useDrawerContext();
-
   const { isDark, toggleTheme } = useTheme();
   const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
   const navigate = useNavigate();
+  useClickOutside({
+    ref: dropdownRef,
+    setValue: setIsOpen,
+    value: isOpen,
+  });
 
-  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const isUser = user?.first_name && user?.last_name;
 
   const handleLogout = () => {
     http.removeAuthHeader();
@@ -42,6 +48,7 @@ export function DrawerProfile() {
 
   return (
     <div
+      ref={dropdownRef}
       className={`fixed top-0 ${
         lang === 'fa' ? 'right-0' : 'left-0'
       } z-50 w-[17.12rem] lg:w-[19.18rem] h-full bg-white dark:bg-gray-600 shadow-md flex flex-col justify-between transition-transform duration-500`}
@@ -100,7 +107,7 @@ export function DrawerProfile() {
           <div className="mx-2">
             <span>
               <Typography variant="body5" color="neutralDark">
-                {`${user?.first_name} ${user?.last_name}`}
+                {isUser ? user?.first_name && user.last_name : ''}
               </Typography>
             </span>
             <span>
