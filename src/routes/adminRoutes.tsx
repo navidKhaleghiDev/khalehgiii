@@ -1,7 +1,6 @@
 import UnauthorizedPage from '@src/pages/Unauthorized';
 import NotFoundPage from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
-import { KnowledgeManagement } from '@src/pages/Dashboard/KnowledgeManagement';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
 import { Reports } from '@src/pages/Dashboard/Reports';
@@ -28,6 +27,7 @@ import { DashboardPage } from '@src/pages/Dashboard';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 import { License } from '@src/pages/Lisence';
+import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -50,7 +50,7 @@ export const adminRoutes = [
       },
       {
         path: ROUTES_PATH.knowledgeManagement,
-        element: <KnowledgeManagement />,
+        element: <KnowledgeManagementPage />,
       },
       {
         path: ROUTES_PATH.loginAssistance,

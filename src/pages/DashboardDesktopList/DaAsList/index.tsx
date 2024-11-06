@@ -22,6 +22,7 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import userFocus from '@iconify-icons/ph/user-focus';
 
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
@@ -307,7 +308,9 @@ export function DaAsList() {
       />
       <Modal
         type="content"
-        size="responsive"
+        title={t('userList.userAccess')}
+        descriptionInfo={t('userList.changeUserProfileAndAccessList')}
+        icon={userFocus}
         open={openSettingModal}
         setOpen={setOpenSettingModal}
         content={
@@ -315,6 +318,7 @@ export function DaAsList() {
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
             userPermissions={userPermissions}
+            setOpenSettingModal={setOpenSettingModal}
           />
         }
       />

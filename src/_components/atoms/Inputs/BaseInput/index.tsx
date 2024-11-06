@@ -44,6 +44,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
     size,
     type,
     helpText,
+    onKeyDown,
     autoComplete,
     label,
     hiddenError,
@@ -111,6 +112,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
           value={value}
           autoComplete={autoComplete}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
           tabIndex={inputTabIndex}
           className={baseInputStyles({
