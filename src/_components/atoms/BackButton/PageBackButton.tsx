@@ -1,4 +1,4 @@
-import ToolTip from '../Tooltip';
+import { ToolTip } from '../Tooltip';
 import { BackButton, BackButtonProps } from './BackButton';
 
 /**

@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
 
-import ToolTip from '.';
+import { ToolTip } from '.';
 
 const meta: Meta<typeof ToolTip> = {
   title: 'atoms/ToolTip',

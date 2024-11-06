@@ -70,9 +70,11 @@
     "clamav": "clamav",
     "yara": "yara",
     "license_id": "لایسنس",
-    "licenseExpirationDate": "تاریخ انقضالایسنس",
+    "licenseExpirationDate": "تاریخ انقضا",
+    "lisenceName": "نام لایسنس‌ها",
     "licenseCreation": "تاریخ ایجاد لایسنس",
     "validLicense": "اعتبارلایسنس",
+    "licenseStatus": "وضعیت ",
     "string": "رشته فایل",
     "fileExtension": "پسوند فایل",
     "addNewType": "اضافه کردن تایپ جدید",
@@ -132,7 +134,9 @@
     "lastTime": "زمان پایان",
     "recordDate": "تاریخ ضبط",
     "duration": "مدت زمان",
-    "days": "روز های هفته"
+    "days": "روز های هفته",
+    "number": "تعداد",
+    "activeNumbers": "تعداد فعال شده"
   },
   "dashboard": {
     "adminLists": "لیست ادمین ها",
