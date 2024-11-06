@@ -99,13 +99,14 @@
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
     "downloadAndUploadPrivilege": "Download and Upload Access",
-    "recordingActivity": "recording Activity",
+    "recordingActivity": "Recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
     "activeQrcode": " QRcode ",
     "activeOtp": " OTP ",
     "isRecording": "Is Recording",
     "yesterday": "Yesterday",
+    "adminUserName": "Name",
     "access": "Access",
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
@@ -152,7 +153,8 @@
     "netsep": "NetSep",
     "scans": "Scans",
     "userBehavior": "User Behavior",
-    "adminLogin": "Admin Login"
+    "adminLogin": "Admin Login",
+    "virusFiles": "Virus Files"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
@@ -353,7 +355,12 @@
     "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard",
     "recordedActivities": "Recorded activities",
     "recordedUserActivities": "Recorded user activities",
-    "theFormatIsRepetitive": "The format is repetitive"
+    "theFormatIsRepetitive": "The format is repetitive",
+    "assistance": "Assistance",
+    "groupAdmin": "Group admin",
+    "groupMember": "Group member",
+    "assistanceMemberTitle": "In this section, the groups that the user is a member of are specified.",
+    "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified."
   },
   "license": {
     "licenseId": "license Id",
