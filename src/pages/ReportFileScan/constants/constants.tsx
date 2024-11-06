@@ -1,58 +1,44 @@
 import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
-import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { EPermissionFileScan } from '@src/types/permissions';
+import PhQueue from '@iconify-icons/ph/queue';
 import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 
-export const monitoringHeaderItem: IHeaderTable[] = [
+export const monitoringHeaderItem: HeaderTable[] = [
   {
-    label: 'table.userName',
+    label: 'table.email',
     id: 'email',
-    type: 'none',
-
-    class: 'px-3 w-1/12',
+    type: 'avatar',
+    isActive: 'is_running',
+    email: 'email',
+    class: ' w-3/12',
   },
-
   {
     label: 'table.dateOfCreated',
     id: 'created_at',
     type: 'date',
-
-    class: 'px-3 w-1/12',
+    class: 'w-1/12',
   },
   {
-    label: 'table.numberOfScans',
+    label: 'table.scans',
     id: 'last_uptime',
     type: 'component',
     component: (props: any) => <UserScanCount email={props.row.email} />,
-
-    class: 'px-3 w-1/12',
+    class: 'w-1/12',
   },
   {
-    label: 'table.userStatus',
-    id: 'is_running',
-    type: 'component',
-    component: (props: any) => <Circle id={props.row.is_running} />,
-
-    class: 'px-3 w-1/12',
-  },
-  {
-    label: 'table.observeUserBehavior',
     id: 'id',
     type: 'action',
     action: [
       {
-        action: ROUTES_PATH.reportsScanFile,
-        icon: moreIcon,
+        icon: PhQueue,
         color: 'neutralNoBg',
         tooltip: 'table.observeUserBehavior',
       },
     ],
     permission: EPermissionFileScan.VIEW,
 
-    class: 'px-3 w-1/12 flex justify-center  mr-auto ',
+    class: 'mr-auto ',
   },
 ];
 

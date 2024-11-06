@@ -17,20 +17,17 @@ import { UsersDaAsList } from './UsersDaAsList';
 export function ReportFileScanPage() {
   const { t } = useTranslation();
 
-  const { data: analyzeScan, isLoading: analyzeScanLoading } = useSWR<
-    ISwrResponse<IScanStats>
-  >(E_ANALYZE_SCAN_STATS, HTTP_ANALYSES.fetcherSWR);
-  const { data: usersDaas, isLoading: userDaasLoading } = useSWR<
-    IResponsePagination<IDaAs>
-  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR);
-
-  // Remember to add the skeleton for this element after adding the skeletons library
-  if (analyzeScanLoading || userDaasLoading) {
-    return <div>Loading</div>;
-  }
+  const { data: analyzeScan } = useSWR<ISwrResponse<IScanStats>>(
+    E_ANALYZE_SCAN_STATS,
+    HTTP_ANALYSES.fetcherSWR
+  );
+  const { data: usersDaas } = useSWR<IResponsePagination<IDaAs>>(
+    `${E_USERS_DAAS}/?is_recording=True `,
+    http.fetcherSWR
+  );
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-700">
+    <div className="">
       <Typography color="black" variant="body2B">
         {t('fileScan.scannedFiles')}
       </Typography>

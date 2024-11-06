@@ -116,16 +116,19 @@ export function ExtensionList() {
     allItems: countPage,
     itemsPer: listWhiteList.length,
   };
+
+  console.log(data);
+
   return (
     <>
       <div className="mb-[1.875rem]">
-        <FilterTableList
+        {/* <FilterTableList
           handelSearchQuery={handelSearchQuery}
           searchPlaceholder={t('systemManagement.search')}
           searchQuery={filterQuery}
           buttonLabel={t('systemManagement.newFormat')}
           onClickButton={() => setOpenUpdateModal(true)}
-        />
+        /> */}
       </div>
       <BaseTable
         body={listWhiteList}
