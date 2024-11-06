@@ -57,22 +57,21 @@ export function KnowledgeManagementList() {
     _,
     row
   ) => {
-    setOpenModal(true);
     setVideoFile({ loading: true });
 
     await API_KNOWLEDGE_MANAGEMENT(row?.id as string)
       .then((res) => {
+        setOpenModal(true);
         const blob = new Blob([res.data], { type: 'video/mp4' });
         const videoURL = URL.createObjectURL(blob);
         setVideoFile({ loading: false, file: videoURL });
       })
       .catch((err) => {
-        setOpenModal(false);
         toast.error(
           err.message ?? 'error on get video of knowledge management'
         );
-      })
-      .finally(() => {});
+        setOpenModal(false);
+      });
   };
   const handelSearchQuery = useCallback((value: string) => {
     setCurrentPage(PAGE);
