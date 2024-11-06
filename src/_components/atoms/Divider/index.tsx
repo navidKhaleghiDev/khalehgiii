@@ -3,8 +3,10 @@ export function Divider() {
     <hr
       style={{
         width: '100%',
-        background: 'gray',
+        background: '',
         height: '4px',
+        marginBottom: '20px',
+        marginTop: '20px',
       }}
     />
   );

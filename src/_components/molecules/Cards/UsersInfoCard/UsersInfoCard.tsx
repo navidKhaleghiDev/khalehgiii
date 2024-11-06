@@ -24,7 +24,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
     <Card
       border
       borderColor="neutral"
-      className={`w-full h-14 md:h-20 p-2.5 md:p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
+      className={`w-full lg:h-20 h-[3.75rem] p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"
@@ -33,14 +33,19 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
         <BaseIcon icon={icon} size="md" />
       </div>
       <div className="w-full">
-        <Typography color="neutralMiddle" className="text-xs md:text-lg">
+        <Typography
+          color="neutralMiddle"
+          className="lg:text-lg text-sm whitespace-nowrap"
+        >
           {title}
         </Typography>
-        {count && (
-          <Typography className="text-gray-900 dark:text-white font-semibold leading-7 text-sm md:text-xl">
-            {count}
-          </Typography>
-        )}
+
+        <Typography
+          className="text-gray-900 dark:text-white font-semibold leading-7"
+          variant="body2"
+        >
+          {count ?? 0}
+        </Typography>
       </div>
     </Card>
   );

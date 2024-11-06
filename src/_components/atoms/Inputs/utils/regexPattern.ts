@@ -1,127 +1,155 @@
+import { t } from 'i18next';
+
 export const regexPattern = {
+  urlLink: {
+    value:
+      // eslint-disable-next-line no-useless-escape
+      /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
+    message: t('regexPattern.value'),
+  },
   onlyEnglishNdOtherCharacters: {
     value: /^(?!.*[\u0600-\u06E9\u200C])/,
-    message: 'لطفا فقط از حروف انگلیسی استفاده کنید',
+    message: t('regexPattern.onlyEnglishNdOtherCharacters'),
   },
-  uuid4: {
-    value:
-      /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi,
-    message: 'فرمت صحیح uuid4  وارد کنید',
+  lessThan50: {
+    value: /^[0-9][0-9]?$|^50$/,
+    message: t('regexPattern.lessThan50'),
+  },
+  lessThan100: {
+    value: /^[0-9][0-9]?$|^100$/,
+    message: t('regexPattern.lessThan100'),
   },
   lettersDashUnderLineSpace: {
     value: /^[a-zA-Z\-_]*$/i,
-    message: 'لطفاً فقط از حروف انگلیسی استفاده کنید(عدد مجاز نمی‌باشد)',
+    message: t('regexPattern.lettersDashUnderLineSpace'),
   },
   lettersDashSpace: {
     value: /^[a-zA-Z-/]*$/i,
-    message: 'لطفاً فقط از حروف انگلیسی استفاده کنید(عدد مجاز نمی‌باشد)',
+    message: t('regexPattern.lettersDashSpace'),
   },
   lettersEnglishSpace: {
     value: /^[a-zA-Z-_0-9]*$/i,
-    message:
-      'لطفاً فقط از حروف انگلیسی و اعداد استفاده کنید(کاراکتر های مجاز - و _)',
+    message: t('regexPattern.lettersEnglishSpace'),
   },
   enCharAndNumber: {
     value: /^[A-Za-z0-9]*$/,
-    message: 'فقط حروف انگلیسی و اعداد',
+    message: t('regexPattern.enCharAndNumber'),
   },
   lettersDashUnderLineNumbers: {
     value: /^[A-Za-z0-9-_]*[A-Za-z0-9][A-Za-z0-9-_]*$/,
-    message: 'فقط حروف انگلیسی و - و _ و اعداد',
+    message: t('regexPattern.lettersDashUnderLineNumbers'),
+  },
+  gitUrl: {
+    value:
+      // eslint-disable-next-line no-useless-escape
+      /^(([A-Za-z0-9]+@|http(|s)\:\/\/)|(http(|s)\:\/\/[A-Za-z0-9]+@))([A-Za-z0-9.]+(:\d+)?)(?::|\/)([\d\/\w.-]+?)(\.git){1}$/i,
+    message: t('regexPattern.gitUrl'),
+  },
+  smallLettersThenNumbers: {
+    value: /^[a-z][a-z0-9-_ ]*$/gm,
+    message: t('regexPattern.smallLettersThenNumbers'),
   },
   farsiLetters: {
     value: /[ا-ی]/gi,
-    message: 'نام و نام‌خانوادگی خود را به فارسی وارد کنید',
+    message: t('regexPattern.farsiLetters'),
+  },
+  accountNumber: {
+    value: /[0-9-]{9,16}/,
+    message: t('regexPattern.accountNumber'),
   },
   farsiLettersAndSpace: {
     value: /^[ آابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهیئ\u200c\s]+$/,
-    message: 'باید فارسی باشد',
+    message: t('regexPattern.farsiLettersAndSpace'),
   },
   email: {
     value:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    message: 'فرمت ایمیل را به درستی و کامل وارد کنید',
+    message: t('regexPattern.email'),
   },
   emailAndPhoneNumber: {
     value:
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))|[09|۰۹][0-9|۰۱۲۳۴۵۶۷۸۹]{10}$/,
-    message: '',
+    message: t('regexPattern.emailAndPhoneNumber'),
   },
   // ۰۱۲۳۴۵۶۷۸۹ mac persian number
   // ۰۱۲۳۴۵۶۷۸۹ windows persian number
   phoneNumber: {
     value: /^[09|۰۹][0-9|۰۱۲۳۴۵۶۷۸۹]{10}$/,
-    message: 'فرمت صحیح موبایل: 09xxxxx1234',
+    message: t('regexPattern.phoneNumber'),
   },
   phoneNumber2: {
     value: /^09[0-3][0-9]-?[0-9]{3}-?[0-9]{4}$/,
-    message: 'فرمت صحیح موبایل: 09xxxxx1234',
+    message: t('regexPattern.phoneNumber2'),
   },
   phoneNumberNoZeroAtStart: {
     value: /^[9|۹][0-9|۰۱۲۳۴۵۶۷۸۹]{9}$/,
-    message: 'فرمت صحیح موبایل: 9xxxxx1234',
+    message: t('regexPattern.phoneNumberNoZeroAtStart'),
   },
   englishLetter: {
     value: /^[a-zA-Z]+$/,
-    message: 'لطفا فقط از حروف انگلیسی استفاده کنید',
+    message: t('regexPattern.englishLetter'),
   },
   farsiLetter: {
     value: /^[\u0600-\u06E9\u200C]+$/,
-    message: 'لطفا فقط از حروف فارسی استفاده کنید',
+    message: t('regexPattern.farsiLetter'),
   },
   numbers: {
     value: /^[۰-۹٠-٩0-9]+$/,
-    message: 'لطفا فقط از اعداد استفاده کنید',
+    message: t('regexPattern.numbers'),
   },
   en_spc: {
     value: /^[a-zA-Z\s]+$/,
-    message: 'لطفا فقط از حروف انگلیسی و فاصله استفاده کنید',
+    message: t('regexPattern.en_spc'),
   },
   fa_spc: {
     value: /^[\u0600-\u06FF\s\u200C]+$/,
-    message: 'لطفا فقط از حروف فارسی و فاصله استفاده کنید',
+    message: t('regexPattern.fa_spc'),
   },
   lettersLenght3: {
     value: /[A-Za-z]{3}/,
-    message: 'checkpatern',
+    message: t('regexPattern.lettersLenght3'),
   },
-  eightChar_number_lower_uppercase: {
+  eightchar_number_lower_uppercase: {
     value:
       /(?=^.{8,64}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
-    message: 'باید حداقل 8 کاراکتر و حاوی حروف بزرگ و کوچک لاتین باشد.',
+    message: t('regexPattern.eightchar_number_lower_uppercase'),
   },
   password: {
     value: /(?=^.{8,64}$)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
-    message: 'گذرواژه باید حداقل 8 کاراکتر و حاوی حروف بزرگ و کوچک لاتین باشد.',
+    message: t('regexPattern.password'),
   },
   required: {
     value: true,
-    message: 'درج این فیلد ضروریست.',
+    message: t('regexPattern.required'),
+  },
+  jsonValidate: {
+    value: /[^\0-9]/,
+    message: t('regexPattern.jsonValidate'),
   },
   spaceFarstCharacter: {
     value: /^[^\s].*/,
-    message: 'فاصله مجاز نیست.',
+    message: t('regexPattern.spaceFarstCharacter'),
   },
   cardNumber: {
     value: /^[۰-۹0-9--]+$/,
-    message: 'فقط از اعداد استفاده کنید',
+    message: t('regexPattern.cardNumber'),
   },
   shebaNumber: {
     value: /IR[۰-۹0-9]{24}/,
-    message: 'فقط از اعداد استفاده کنید',
+    message: t('regexPattern.shebaNumber'),
   },
   cardBankNumber: {
     value: /[۶۵65](?:[۰-۹0-9]{19}|[۰-۹0-9]{15})/,
-    message: 'فقط از اعداد استفاده کنید',
+    message: t('regexPattern.cardBankNumber'),
   },
   price: {
     value: /^[۰-۹٠-٩0-9-,]+$/,
-    message: 'لطفا فقط از اعداد استفاده کنید',
+    message: t('regexPattern.price'),
   },
   ip: {
     value:
       /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/i,
-    message: 'لطفا فرمت صحیح آی پی را وارد نماپید',
+    message: t('regexPattern.ip'),
   },
 };
 

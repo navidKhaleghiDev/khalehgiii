@@ -1,6 +1,9 @@
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { IAxiosResponse } from '@src/types/services';
-import { IFormDate, TFormDate } from '@src/pages/Dashboard/Reports/types';
+import {
+  FormDate,
+  FormDateTimeFrame,
+} from '@src/pages/Dashboard/Reports/types';
 import { IAddConfig, IDaasConfig, IFileType } from './types';
 import {
   E_CONFIG,
@@ -19,8 +22,8 @@ export const API_ADD_UPDATE = (body: IAddConfig) =>
     body
   );
 
-export const API_GET_REPORTS = (body: TFormDate) =>
-  HTTP_ANALYSES.get<IFormDate>(
+export const API_GET_REPORTS = (body: FormDateTimeFrame) =>
+  HTTP_ANALYSES.get<FormDate>(
     `${E_ANALYZE_REPORTS(body.start_date, body.end_date)}`
   );
 export const API_CONFIG_LIST = () =>

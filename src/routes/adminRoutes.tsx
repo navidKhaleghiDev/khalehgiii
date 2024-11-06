@@ -20,11 +20,13 @@ import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
+import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
-import { DashboardExtensionListPage } from '@src/pages/DashboardExtensionList';
 import { UbaPage } from '@src/pages/Uba';
 import { ReportFileScanPage } from '@src/pages/ReportFileScan';
 import { DashboardPage } from '@src/pages/Dashboard';
+import Application from '@src/pages/Setting/Application';
+import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -42,7 +44,7 @@ export const adminRoutes = [
     element: <PrivateLayout />,
     children: [
       {
-        path: ROUTES_PATH.dashboard,
+        path: ROUTES_PATH.home,
         element: <DashboardPage />,
       },
       {
@@ -56,14 +58,6 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.assistanceDashboard,
         element: <AssistanceDashboard />,
-      },
-      {
-        path: ROUTES_PATH.reports,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <Reports />
-          </ProtectedRoute>
-        ),
       },
       {
         path: ROUTES_PATH.internetLog,
@@ -134,6 +128,54 @@ export const adminRoutes = [
         element: (
           <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
             <UbaPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.chart,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <Reports />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dashboardGroupManagement,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>GroupManagement Page</div>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.setting,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>Setting Page</div>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.application,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <Application />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.daas,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <DaasSetting />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dlp,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <div>DLP Page</div>
           </ProtectedRoute>
         ),
       },

@@ -17,7 +17,13 @@ export type RoutePathType =
   | 'knowledgeManagement'
   | 'internetLog'
   | 'loginAssistance'
-  | 'assistanceDashboard';
+  | 'assistanceDashboard'
+  | 'chart'
+  | 'dashboardGroupManagement'
+  | 'setting'
+  | 'application'
+  | 'daas'
+  | 'dlp';
 
 export const RoutesName = {
   HOME: 'home',
@@ -36,6 +42,12 @@ export const RoutesName = {
   KNOWLEDGE_MANAGEMENT: 'knowledge-management',
   LOGIN_ASSISTANCE: 'login-assistanse',
   ASSISTANCE_DASHBOARD: 'assistanse-dashboard',
+  CHART: 'chart',
+  GROUP_MANAGEMENT: 'group-management',
+  SETTING: 'setting',
+  APPLICATION: 'application',
+  DAAS: 'daas',
+  DLP: 'dlp',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -43,19 +55,25 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   unauthorized: `/${RoutesName.UNAUTHORIZED}`,
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
-  uba: `/${RoutesName.DASHBOARD}/${RoutesName.UBA}`,
-  knowledgeManagement: `/${RoutesName.DASHBOARD}/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
-  dashboardDesktopList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}`,
-  dashboardSessionRecording: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
-  dashboardSessionRecordingList: `/${RoutesName.DASHBOARD}/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}/:id`,
-  dashboardAdminsList: `/${RoutesName.DASHBOARD}/${RoutesName.ADMINS_LIST}`,
-  monitoring: `/${RoutesName.DASHBOARD}/${RoutesName.MONITORING}`,
-  reportsScanFileDetails: `/${RoutesName.DASHBOARD}/${RoutesName.REPORT_SCAN_FILE}/:id`,
-  reportsScanFile: `/${RoutesName.DASHBOARD}/${RoutesName.REPORT_SCAN_FILE}`,
-  reports: `/${RoutesName.DASHBOARD}/${RoutesName.REPORTS}`,
-  internetLog: `/${RoutesName.DASHBOARD}/${RoutesName.INTERNETLOG}`,
-  extensionList: `/${RoutesName.DASHBOARD}/${RoutesName.EXTENSION_LIST}`,
-  adminKeycloakPage: `/${RoutesName.DASHBOARD}/${RoutesName.ADMIN_KEYKLOAK}`,
+  uba: `/${RoutesName.UBA}`,
+  knowledgeManagement: `/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
+  dashboardDesktopList: `/${RoutesName.DESKTOP_LIST}`,
+  dashboardSessionRecording: `/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
+  dashboardSessionRecordingList: `/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}/:id`,
+  dashboardAdminsList: `/${RoutesName.ADMINS_LIST}`,
+  monitoring: `/${RoutesName.MONITORING}`,
+  reportsScanFileDetails: `/${RoutesName.REPORT_SCAN_FILE}/:id`,
+  reportsScanFile: `/${RoutesName.REPORT_SCAN_FILE}`,
+  reports: `/${RoutesName.REPORTS}`,
+  internetLog: `/${RoutesName.INTERNETLOG}`,
+  extensionList: `/${RoutesName.EXTENSION_LIST}`,
+  adminKeycloakPage: `${RoutesName.ADMIN_KEYKLOAK}`,
   loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
+  chart: `/${RoutesName.CHART}`,
+  dashboardGroupManagement: `/${RoutesName.GROUP_MANAGEMENT}`,
+  setting: `/${RoutesName.SETTING}`,
+  application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
+  daas: `/${RoutesName.SETTING}/${RoutesName.DAAS}`,
+  dlp: `/${RoutesName.SETTING}/${RoutesName.DLP}`,
 };

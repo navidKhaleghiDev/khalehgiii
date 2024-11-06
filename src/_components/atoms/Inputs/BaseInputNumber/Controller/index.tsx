@@ -43,6 +43,7 @@ export function BaseInputNumberController(
     size,
     name,
     rules,
+    icon,
   } = props;
   return (
     <Controller
@@ -51,25 +52,29 @@ export function BaseInputNumberController(
       rules={rules}
       render={({
         fieldState: { error },
-        field: { onChange, name: userName },
-      }) => (
-        <BaseInputNumber
-          dir={dir}
-          name={userName}
-          placeholder={placeholder}
-          className={className}
-          intent={intent}
-          label={label}
-          min={min}
-          max={max}
-          error={error?.message}
-          fullWidth={fullWidth}
-          size={size}
-          disabled={disabled}
-          onChange={(e) => onChange(e)}
-          id={id}
-        />
-      )}
+        field: { onChange, name: userName, value },
+      }) => {
+        return (
+          <BaseInputNumber
+            dir={dir}
+            name={userName}
+            placeholder={placeholder}
+            className={className}
+            intent={intent}
+            label={label}
+            min={min}
+            max={max}
+            error={error?.message}
+            fullWidth={fullWidth}
+            size={size}
+            disabled={disabled}
+            onChange={(e) => onChange(e)}
+            value={value}
+            id={id}
+            icon={icon}
+          />
+        );
+      }}
     />
   );
 }

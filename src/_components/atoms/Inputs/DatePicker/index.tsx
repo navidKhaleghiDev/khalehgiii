@@ -9,11 +9,13 @@ import { useTranslation } from 'react-i18next';
 import phCaretDown from '@iconify-icons/ph/caret-down';
 import phCaretLeft from '@iconify-icons/ph/caret-left';
 import phCaretRight from '@iconify-icons/ph/caret-right';
+import pHCalendarBlank from '@iconify-icons/ph/calendar-blank';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
-import { BaseButton } from '@redesignUi/atoms/BaseButton';
-import './index.css';
+import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
+import './index.css';
 import { MultiDatePickerProps } from './types';
 
 /**
@@ -23,9 +25,9 @@ import { MultiDatePickerProps } from './types';
  * @param {string} [props.className] - Additional CSS classes for the date picker container.
  * @param {Date | string} [props.maxDate] - The maximum selectable date.
  * @param {Date | string} [props.minDate] - The minimum selectable date.
- * @param {sm | md} [props.size='md'] - The size of the button ('sm', 'md', 'lg').
  * @param {boolean} [props.disabled=false] - Whether the date picker is disabled.
  * @param {string} [props.format='YYYY/MM/DD'] - Date format string.
+ * @param {string} [props.calenderPosition=bottom-right] - Specifiers the calender position
  * @param {TimeDuration} [props.timeDuration] - Object specifying time duration modes like `weekly` or `monthly` selection.
  * @param {Value[]} [props.initialValue] - The initial value for the date picker (either a single date or a range).
  * @param {function} props.onChange - Callback function triggered when the date changes.
@@ -39,9 +41,9 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
     id,
     className,
     maxDate,
-    size = 'md',
     minDate,
     timeDuration,
+    calendarPosition = 'bottom-right',
     value: initialValue,
     disabled,
     format = 'YYYY/MM/DD',
@@ -55,6 +57,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
 
   const { theme } = useTheme();
   const { lang } = useLanguage();
+  const { width } = useWindowDimensions();
 
   const farsi = lang === 'fa';
   const darkMode = theme === 'dark';
@@ -70,9 +73,9 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
   };
 
   const handleSubmit = () => {
-    if (datePickerRef.current) {
-      datePickerRef.current.closeCalendar();
-    }
+    // if (datePickerRef.current) {
+    //   datePickerRef.current.closeCalendar();
+    // }
   };
   return (
     <div className={`${className ?? ''}`}>
@@ -94,25 +97,35 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
         onOpen={() => setOpenData(true)}
         onClose={() => setOpenData(false)}
         format={format}
-        render={(_, openCalendar) => (
-          <BaseButton
-            label={size === 'md' ? t('global.selectDate') : t('table.date')}
-            onClick={openCalendar}
-            endIcon={openDate ? phCaretDown : caretLeft}
-            type="neutral"
-            size={size}
-            disabled={disabled}
-            className={
-              openDate
-                ? '!bg-gray-200 hover:bg-gray-200 dark:!bg-gray-800 '
-                : ''
-            }
-          />
-        )}
+        render={(_, openCalendar) =>
+          width > 639 ? (
+            <BaseButton
+              label={width > 639 ? t('global.selectDate') : ''}
+              onClick={openCalendar}
+              endIcon={openDate ? phCaretDown : caretLeft}
+              type="neutral"
+              size={width > 639 ? 'md' : 'sm'}
+              disabled={disabled}
+              className={
+                openDate
+                  ? '!bg-gray-200 hover:bg-gray-200 dark:!bg-gray-800 '
+                  : ''
+              }
+            />
+          ) : (
+            <IconButton
+              icon={pHCalendarBlank}
+              color="neutral"
+              size="sm"
+              onClick={openCalendar}
+              disabled={disabled}
+            />
+          )
+        }
         calendar={farsi ? persian : gregorian}
         range
         locale={farsi ? persian_fa : gregorian_en}
-        calendarPosition="bottom-right"
+        calendarPosition={calendarPosition}
         containerClassName={`${className ?? ''}`}
         minDate={minDate}
         maxDate={maxDate}

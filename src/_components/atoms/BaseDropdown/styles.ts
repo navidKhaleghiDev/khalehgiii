@@ -18,7 +18,7 @@ export const baseDropDownStyles = cva(
       size: {
         sm: 'w-[160px]',
         md: 'w-[255px]',
-        xl: 'w-[350px]',
+        lg: 'w-[350px]',
       },
       fullWidth: {
         true: '!w-full',
@@ -35,7 +35,7 @@ export const baseDropDownStyles = cva(
 );
 
 export const optionSelectStyles = cva(
-  `absolute max-h-24 text-lg  text-sm block bg-white rounded-lg  text-gray-400  shadow-sm text-left mt-[7px] border overflow-y-auto z-10 dark:bg-gray-600 dark:text-gray-500 dark:border-gray-400 dark:active:text-white dark:active:bg-gray-500 `,
+  `absolute max-h-24  text-sm block bg-white rounded-lg  text-gray-400  shadow-sm text-left mt-[7px] border overflow-y-auto z-10 dark:bg-gray-600 dark:text-gray-500 dark:border-gray-400 dark:active:text-white dark:active:bg-gray-500 `,
   {
     variants: {
       isShow: {
@@ -44,7 +44,7 @@ export const optionSelectStyles = cva(
       size: {
         sm: 'w-[160px]',
         md: 'w-[255px]',
-        xl: 'w-[352px]',
+        lg: 'w-[352px]',
       },
       fullWidth: {
         true: 'w-full',

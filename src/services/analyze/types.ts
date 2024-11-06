@@ -36,7 +36,7 @@ export interface IScannedFile {
   transmission_type: string;
 }
 
-export interface IUba {
+export interface Uba {
   id: number;
   created_at: string;
   updated_at: string; // تاریخ بروز رسانی
