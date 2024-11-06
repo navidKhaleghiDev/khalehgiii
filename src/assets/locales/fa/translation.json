@@ -66,7 +66,7 @@
     "yara": "yara",
     "license_id": "لایسنس",
     "licenseExpirationDate": "تاریخ انقضا",
-    "lisenceName":"نام لایسنس‌ها",
+    "lisenceName": "نام لایسنس‌ها",
     "licenseCreation": "تاریخ ایجاد لایسنس",
     "validLicense": "اعتبارلایسنس",
     "licenseStatus": "وضعیت ",
@@ -130,7 +130,7 @@
     "recordDate": "تاریخ ضبط",
     "duration": "مدت زمان",
     "days": "روز های هفته",
-    "number":"تعداد",
+    "number": "تعداد",
     "activeNumbers": "تعداد فعال شده"
   },
   "dashboard": {
