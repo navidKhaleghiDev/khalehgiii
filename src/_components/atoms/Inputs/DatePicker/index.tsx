@@ -13,7 +13,7 @@ import pHCalendarBlank from '@iconify-icons/ph/calendar-blank';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTheme } from '@context/settings/themeContext';
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import './index.css';
 import { MultiDatePickerProps } from './types';
