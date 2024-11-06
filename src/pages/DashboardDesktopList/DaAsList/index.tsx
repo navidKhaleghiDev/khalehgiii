@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import useSWR, { useSWRConfig } from 'swr';
 
 import Play from '@iconify-icons/ph/play';
+import UsersThree from '@iconify-icons/ph/users-three';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
 import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
@@ -335,11 +336,14 @@ export function DaAsList() {
         }
       />
       <Modal
-        size="responsive"
+        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        size="lg"
         open={openOnlineAssistanceModal}
         setOpen={setOpenOnlineAssistanceModal}
         type="content"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
+        icon={UsersThree}
+        title={t('userList.assistance')}
       />
     </div>
   );
