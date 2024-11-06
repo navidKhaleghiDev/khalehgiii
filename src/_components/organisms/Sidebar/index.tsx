@@ -6,7 +6,7 @@ import { useLanguage } from '@context/settings/languageContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { http } from '@src/services/http';
 import { useUserContext } from '@context/user/userContext';
-import ToolTip from '@redesignUi/atoms/Tooltip';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
