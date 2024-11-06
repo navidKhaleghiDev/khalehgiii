@@ -111,6 +111,7 @@
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
+    "lastLogout": "Last Logout",
     "setting": "Setting",
     "timing": "Timing",
     "connection": "Connection",
@@ -152,8 +153,7 @@
     "netsep": "NetSep",
     "scans": "Scans",
     "userBehavior": "User Behavior",
-    "adminLogin": "Admin Login",
-    "virusFiles": "Virus Files"
+    "adminLogin": "Admin Login"
   },
   "admin": {
     "adminUserName": "abc@abc.com",
