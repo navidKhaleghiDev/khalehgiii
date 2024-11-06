@@ -21,6 +21,7 @@ import PhFilePlus from '@iconify-icons/ph/file-plus';
 import { FileTypeProp } from '../type';
 import { dlpConfigHeaderItem } from './constants/dlpConfigHeaderItem';
 import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -55,7 +56,7 @@ export function DlpSetting() {
     setCurrentPage(newPage);
   };
 
-  if (error) return <div>Failed to load data.</div>;
+  if (error) return <LoadingSpinner />;
 
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;

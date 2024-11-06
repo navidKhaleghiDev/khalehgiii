@@ -33,8 +33,9 @@ export function UpdateFileTypeModal({
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  
+  // need new api
   // const { lang } = useLanguage();
-
   // const inputStyle = 'col-span-6 lg:col-span-4 h-16';
   // const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
