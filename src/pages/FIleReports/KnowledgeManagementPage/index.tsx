@@ -10,7 +10,7 @@ export function KnowledgeManagementPage() {
   return (
     <>
       <Typography
-        color="neutralDark"
+        color="black"
         className="text-sm sm:text-xl font-semibold mb-[1.875rem] sm:mb-10 lg:mb-[6.25rem]"
       >
         {t('global.knowledgeManagement')}

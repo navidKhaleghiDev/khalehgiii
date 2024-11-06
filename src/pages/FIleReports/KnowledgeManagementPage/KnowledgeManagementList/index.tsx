@@ -31,7 +31,7 @@ export function KnowledgeManagementList() {
   const [openModal, setOpenModal] = useState(false);
   const [videoFile, setVideoFile] = useState<{
     loading?: boolean;
-    file?: any;
+    file?: string;
   } | null>(null);
   // This functionality is handling the groupe locally
   // const [filterGroupe, setFilterGroupe] = useState<
@@ -71,7 +71,8 @@ export function KnowledgeManagementList() {
         toast.error(
           err.message ?? 'error on get video of knowledge management'
         );
-      });
+      })
+      .finally(() => {});
   };
   const handelSearchQuery = useCallback((value: string) => {
     setCurrentPage(PAGE);
@@ -108,15 +109,13 @@ export function KnowledgeManagementList() {
 
   return (
     <>
-      <div className="mb-[1.875rem]">
-        <FilterTableList
-          handelSearchQuery={handelSearchQuery}
-          searchQuery={filterQuery}
-          handelGroupeFilter={(option) => console.log(option)}
-          domainFilter
-          searchPlaceholder={t('fileScan.adminSearch')}
-        />
-      </div>
+      <FilterTableList
+        handelSearchQuery={handelSearchQuery}
+        searchQuery={filterQuery}
+        handelGroupeFilter={(option) => console.log(option)}
+        domainFilter
+        searchPlaceholder={t('fileScan.adminSearch')}
+      />
       <BaseTable
         body={flattedListDass}
         header={checkPermissionHeaderItem(
@@ -137,9 +136,9 @@ export function KnowledgeManagementList() {
         descriptionInfo={t('knowledgeManagement.recordedUserActivate')}
         content={
           <VideoLoadingSkelton isLoading={videoFile?.loading}>
-            <div className="w-full">
+            <div className="w-[21.25rem] sm:w-full">
               {videoFile?.file ? (
-                <video width="750" height="500" controls className="rounded-xl">
+                <video width="750" height="500" controls>
                   <track kind="captions" />
                   <source src={videoFile.file} type="video/mp4" />
                   Your browser does not support the video tag.

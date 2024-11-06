@@ -1,6 +1,6 @@
-import phPlay from '@iconify-icons/ph/play';
 import { ConvertedSecondsHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ConvertedSecondsHelperCell';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import phPlay from '@iconify-icons/ph/play';
 
 export const KnowledgeManagementHeaderItem: HeaderTable[] = [
   {

@@ -20,7 +20,6 @@
     "accessTime": "زمان دسترسی",
     "hours": "ساعت",
     "today": "امروز",
-    "recordDate": "تاریخ ضبط",
     "usedTime": "زمان استفاده شده",
     "leftTime": "زمان باقی مانده",
     "extendTime": "زمان تمدید",
@@ -321,7 +320,7 @@
   },
   "fileScan": {
     "grouping": "گروهبندی",
-    "adminSearch": "جستجوی ادمین",
+    "adminSearch": "جستجو ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
     "onlineUsers": "کاربران آنلاین",
