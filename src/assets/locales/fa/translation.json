@@ -12,6 +12,11 @@
     "admin": "ادمین"
   },
   "table": {
+    "admin": "ادمین",
+    "user": "کاربر",
+    "name": "نام",
+    "group": "گروه",
+    "videoDuration": "زمان ویدیو",
     "accessTime": "زمان دسترسی",
     "hours": "ساعت",
     "today": "امروز",
@@ -160,6 +165,10 @@
   "admin": {
     "adminUserName": "abc@abc.com",
     "changePassword": "تغییر پسورد"
+  },
+  "knowledgeManagement": {
+    "recoardeActivite": "فعالیت‌های ضبط شده",
+    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر"
   },
   "global": {
     "userName": "نام کاربری",
@@ -311,7 +320,7 @@
   },
   "fileScan": {
     "grouping": "گروهبندی",
-    "adminSearch": "جستجوی ادمین",
+    "adminSearch": "جستجو ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
     "onlineUsers": "کاربران آنلاین",
