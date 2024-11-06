@@ -6,7 +6,7 @@ import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
 import X from '@iconify-icons/ph/x';
 import Check from '@iconify-icons/ph/check';
 import TrashSimple from '@iconify-icons/ph/trash-simple';
-import FloppyDisk from '@iconify-icons/ph/floppy-disk';
+import LockLaminated from '@iconify-icons/ph/lock-laminated';
 import Home from '@iconify-icons/ph/house';
 
 import { containerStyles, headerStyles } from './styles';
@@ -32,7 +32,7 @@ function iconHeader(type: ModalProps['type']): IconHeader {
       };
     case 'info':
       return {
-        icon: FloppyDisk,
+        icon: LockLaminated,
         color: 'text-gray-500 bg-gray-200 dark:text-gray-400 dark:bg-gray-800',
       };
     default:
