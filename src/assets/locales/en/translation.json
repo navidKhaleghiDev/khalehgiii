@@ -99,7 +99,7 @@
     "downloadPrivilege": "Download Privilege",
     "uploadPrivilege": "upload Privilege",
     "downloadAndUploadPrivilege": "Download and Upload Access",
-    "recordingActivity": "recording Activity",
+    "recordingActivity": "Recording Activity",
     "startDate": "start Date",
     "endDate": "end Date",
     "activeQrcode": " QRcode ",
@@ -354,7 +354,12 @@
     "clipboardLog": "Clipboard log",
     "reportOfTextTransferredViaClipboard": "Report of text transferred via clipboard",
     "recordedActivities": "Recorded activities",
-    "recordedUserActivities": "Recorded user activities"
+    "recordedUserActivities": "Recorded user activities",
+    "assistance": "Assistance",
+    "groupAdmin": "Group admin",
+    "groupMember": "Group member",
+    "assistanceMemberTitle": "In this section, the groups that the user is a member of are specified.",
+    "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified."
   },
   "license": {
     "licenseId": "license Id",
