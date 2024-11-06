@@ -115,17 +115,19 @@ export function KnowledgeManagementList() {
         domainFilter
         searchPlaceholder={t('fileScan.adminSearch')}
       />
-      <BaseTable
-        body={flattedListDass}
-        header={checkPermissionHeaderItem(
-          userPermissions,
-          KnowledgeManagementHeaderItem
-        )}
-        loading={isLoading}
-        pagination={paginationProps}
-        onClick={handleOnClickRow}
-        isMobile={width <= 760}
-      />
+      <div className="mt-[1.875rem]">
+        <BaseTable
+          body={flattedListDass}
+          header={checkPermissionHeaderItem(
+            userPermissions,
+            KnowledgeManagementHeaderItem
+          )}
+          loading={isLoading}
+          pagination={paginationProps}
+          onClick={handleOnClickRow}
+          isMobile={width <= 760}
+        />
+      </div>
       <Modal
         open={openModal}
         setOpen={setOpenModal}
