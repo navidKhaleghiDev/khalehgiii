@@ -33,7 +33,7 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
   },
 
   {
-    label: 'table.active',
+    label: 'table.status',
     id: 'is_active',
     type: 'component',
     component: (props: BaseTableComponentCellProps<FileTypeProp>) => (
@@ -85,14 +85,14 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
         icon: NotePencil,
         color: 'neutralNoBg',
         permission: EPermissionUsers.CHANGE,
-        title: 'table.editAdminInfo',
+        title: 'table.editFile',
       },
       {
         action: 'delete',
         icon: Trash,
         color: 'redNoBg',
         permission: EPermissionUsers.DELETE,
-        title: 'table.deleteAdmin',
+        title: 'table.deleteFile',
       },
     ],
 

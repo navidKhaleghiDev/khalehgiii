@@ -96,7 +96,7 @@ export function BaseTable<T extends IdItem>(
   }, [header]);
 
   return (
-    <div className="w-auto mt-5">
+    <div className="w-auto">
       <table className="w-full">
         {!isMobile && (
           <BaseTableHeader header={updatedHeader} collapse={isCollapse} />

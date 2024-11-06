@@ -126,13 +126,15 @@ export function DlpSetting() {
           {t('setting.dlp')}
         </Typography>
       </div>
-      <FilterTableList
-        handelSearchQuery={handelSearchQuery}
-        searchQuery={filterQuery}
-        searchPlaceholder={t('table.search')}
-        onClickButton={handleCreateNewType}
-        buttonLabel={t('table.addNewFile')}
-      />
+      <div className="mb-5">
+        <FilterTableList
+          handelSearchQuery={handelSearchQuery}
+          searchQuery={filterQuery}
+          searchPlaceholder={t('table.search')}
+          onClickButton={handleCreateNewType}
+          buttonLabel={t('table.addNewFile')}
+        />
+      </div>
       <BaseTable
         loading={isLoading}
         header={checkPermissionHeaderItem(userPermissions, dlpConfigHeaderItem)}

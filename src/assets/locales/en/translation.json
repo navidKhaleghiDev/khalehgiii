@@ -132,7 +132,8 @@
     "lastTime": "Last Time",
     "recordDate": "Record date",
     "duration": "Duration",
-    "days": "Days"
+    "days": "Days",
+    "deleteFile":" Delete File"
   },
   "dashboard": {
     "adminLists": "Admin Lists",

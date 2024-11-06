@@ -101,7 +101,7 @@ export function UpdateFileTypeModal({
             required: regexPattern.required,
           }}
         />
-        <div className="mb-5">
+        <div className="mb-5 self-end">
           <BaseSwitchController
             id="is_active"
             name="is_active"
