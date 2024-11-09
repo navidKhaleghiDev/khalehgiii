@@ -79,7 +79,7 @@ export function GroupCardEdit({
       <CardButton
         shadow="lg"
         rounded="xl"
-        className="relative w-36 p-3 flex justify-center items-center hover:bg-neutral-100 transition-colors duration-400 "
+        className="relative w-36 p-3 flex justify-center items-center hover:bg-gray-100 transition-colors duration-400 "
         onClick={!loading && !openModal ? onClickActions : undefined}
       >
         <div className="flex flex-col items-center">
@@ -90,7 +90,7 @@ export function GroupCardEdit({
               className="w-20 h-20 rounded-full flex justify-center items-center"
             />
           ) : (
-            <div className="w-20 h-20 bg-neutral-100 rounded-full flex justify-center items-center group-hover:bg-neutral-200 transition-colors duration-400">
+            <div className="w-20 h-20 bg-gray-100 rounded-full flex justify-center items-center group-hover:bg-gray-200 transition-colors duration-400">
               <BaseIcon icon="ph:users-three" size="xl" color="neutral" />
             </div>
           )}

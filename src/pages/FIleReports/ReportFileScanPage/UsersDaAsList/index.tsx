@@ -10,6 +10,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import PhPlayDuotone from '@iconify-icons/ph/play';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { ScannedFileList } from '@src/pages/ScannedFileListPage/ScannedFileList';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -31,9 +32,11 @@ export function UsersDaAsList() {
   const userPermissions = useUserPermission();
   const { width } = useWindowDimensions();
 
-  const userHandler = (list: any) => {
-    setOpen(true);
-    setModelId(list.email);
+  const userHandler: OnClickActionsType<IDaAs> | undefined = (_, data) => {
+    if (data?.email) {
+      setOpen(true);
+      setModelId(data?.email);
+    }
   };
 
   const endpoint = createAPIEndpoint({

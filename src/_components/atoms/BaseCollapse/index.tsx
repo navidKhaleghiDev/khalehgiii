@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 
 import PhCaretLeft from '@iconify-icons/ph/caret-left';
 import PhCaretRight from '@iconify-icons/ph/caret-right';
@@ -12,6 +12,8 @@ type BaseCollapseProps = {
   title?: string;
   description?: string;
   className?: string;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
 export function BaseCollapse({
@@ -19,14 +21,13 @@ export function BaseCollapse({
   title,
   className,
   description,
+  isOpen,
+  onToggle,
 }: BaseCollapseProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const { lang } = useLanguage();
 
-  const toggleCollapse = () => {
-    setIsOpen(!isOpen);
-  };
   const dir = lang === 'fa' ? PhCaretLeft : PhCaretRight;
+
   return (
     <div className={className ?? ''}>
       <div
@@ -52,7 +53,7 @@ export function BaseCollapse({
         <IconButton
           color="neutralNoBg"
           icon={!isOpen ? dir : PhCaretDown}
-          onClick={toggleCollapse}
+          onClick={onToggle}
         />
       </div>
       <div
@@ -60,7 +61,7 @@ export function BaseCollapse({
           isOpen ? 'mt-[0.12rem] dark:border-gray-800' : 'h-0 border-none'
         }`}
       >
-        {content ? <div>{content}</div> : null}
+        {isOpen && content ? <div>{content}</div> : null}
       </div>
     </div>
   );

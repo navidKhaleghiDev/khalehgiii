@@ -19,10 +19,7 @@ export function AddCardList({
   control,
 }: AddCardListProps) {
   return (
-    <div
-      key={id}
-      className="bg-neutral-100 rounded-lg p-2 flex items-center mx-2"
-    >
+    <div key={id} className="bg-gray-100 rounded-lg p-2 flex items-center mx-2">
       {id && (
         <BaseCheckBox
           key={id}

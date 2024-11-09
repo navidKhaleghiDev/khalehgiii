@@ -33,10 +33,10 @@ export function MaxSizeAccess({
     <UserAccessModalCard className="grid grid-cols-2 gap-5">
       <BaseInputNumberController
         control={control}
-        name="max_transmission_download_size"
-        id="max_transmission_download_size"
-        icon={downloadSimple}
-        label={t('table.maxDownloadSize')}
+        name="max_transmission_upload_size"
+        id="max_transmission_upload_size"
+        icon={uploadSimple}
+        label={t('table.maxUploadSize')}
         className="sm:col-span-1 col-span-2"
         dir={dir === 'rtl' ? 'rtl' : 'ltr'}
         min={0}
@@ -44,10 +44,10 @@ export function MaxSizeAccess({
       />
       <BaseInputNumberController
         control={control}
-        name="max_transmission_upload_size"
-        id="max_transmission_upload_size"
-        icon={uploadSimple}
-        label={t('table.maxUploadSize')}
+        name="max_transmission_download_size"
+        id="max_transmission_download_size"
+        icon={downloadSimple}
+        label={t('table.maxDownloadSize')}
         className="sm:col-span-1 col-span-2"
         dir={dir === 'rtl' ? 'rtl' : 'ltr'}
         min={0}
@@ -63,6 +63,7 @@ export function MaxSizeAccess({
         dir={dir === 'rtl' ? 'rtl' : 'ltr'}
         min={0}
         max={setMaxTimeLimitValue()}
+        disabled={timeOfUse === 'PERMANENTLY'}
       />
     </UserAccessModalCard>
   );

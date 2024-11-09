@@ -69,7 +69,7 @@ export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
 
   return (
     <tbody className="relative">
-      <tr className="bg-neutral-100 dark:bg-slate-800 rounded-md flex h-14 items-center px-2 my-1 w-full text-neutral-600 dark:text-gray-300">
+      <tr className="bg-gray-100 dark:bg-slate-800 rounded-md flex h-14 items-center px-2 my-1 w-full text-gray-600 dark:text-gray-300">
         {headers.map((header, colIndex) => (
           <td
             key={colIndex}

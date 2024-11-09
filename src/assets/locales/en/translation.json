@@ -45,7 +45,7 @@
     "unauthorizedBehavior": "Unauthorized Behavior",
     "blocked": "Blocked",
     "action": "Action",
-    "nothingFound": "Nothing Found",
+    "nothingFound": "Nothing Is Found",
     "observeUserBehavior": "Observe User Behavior",
     "numberOfScans": "Number of Scans",
     "userStatus": "User Status",
@@ -258,9 +258,9 @@
     "send": "Send",
     "reportsChart": "ReportsChart",
     "internetLog": "Internet log",
-    "wholeList": "whole List",
-    "todayList": "toDayList",
-    "notFoundPage": "page not found!",
+    "wholeList": "All list",
+    "todayList": "Today list",
+    "notFoundPage": "Page Not Found",
     "goToHome": "go To Home",
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
@@ -302,7 +302,9 @@
     "deleteUser": "Delete User",
     "download": "Download",
     "upload": "upload",
-    "limitBySize": "Limit by size"
+    "limitBySize": "Limit by size",
+    "accessToTheUsersDesktop": "Access to the user desktop",
+    "goToSystem": "Go to the system"
   },
   "groupManagement": {
     "person": "person",
@@ -389,7 +391,8 @@
     "assistanceMemberTitle": "In this section, the groups that the user is a member of are specified.",
     "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified.",
     "areYouSureBlock": "Are you sure you want to block this user?",
-    "areYouSureUnBlock": "Are you sure you want to unblock this user's access?"
+    "areYouSureUnBlock": "Are you sure you want to unblock this user's access?",
+    "yourBrowserDoesntSupportVideo": "Your browser does not support this video."
   },
   "license": {
     "licenseId": "license Id",

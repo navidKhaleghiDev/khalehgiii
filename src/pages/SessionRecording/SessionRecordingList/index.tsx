@@ -20,6 +20,8 @@ import { SessionRecordingHeaderItem } from './constants/SessionRecordingHeaderIt
 
 const PAGE_SIZE = 5;
 const PAGE = 1;
+const tableClass =
+  '[&_thead]:bg-gray-100 [&_tbody_tr_td_*]:text-gray-500 dark:[&_tbody_tr_td_*]:text-gray-400 [&_thead_tr_*]:text-gray-500 dark:[&_thead_tr_*]:text-gray-400 [&_tbody_tr_td:nth-child(3)]:hidden md:[&_thead_tr:nth-child(3)]:table-cell [&_thead_tr:nth-child(4)]:hidden md:[&_thead_tr:nth-child(4)]:table-cell [&_thead_tr:nth-child(3)]:hidden md:[&_tbody_tr_td:nth-child(3)]:table-cell [&_tbody_tr_td:nth-child(4)]:hidden md:[&_tbody_tr_td:nth-child(4)]:table-cell';
 
 interface SessionRecordingListProps {
   id: string | null;
@@ -34,8 +36,6 @@ export function SessionRecordingList({
   const [openModal, setOpenModal] = useState(false);
   const [recordVideo, setRecordedVideo] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const tableClass =
-    '[&_thead]:bg-gray-100 [&_tbody_tr_td_*]:text-gray-500 dark:[&_tbody_tr_td_*]:text-gray-400 [&_thead_tr_*]:text-gray-500 dark:[&_thead_tr_*]:text-gray-400 [&_tbody_tr_td:nth-child(3)]:hidden md:[&_thead_tr:nth-child(3)]:table-cell [&_thead_tr:nth-child(4)]:hidden md:[&_thead_tr:nth-child(4)]:table-cell [&_thead_tr:nth-child(3)]:hidden md:[&_tbody_tr_td:nth-child(3)]:table-cell [&_tbody_tr_td:nth-child(4)]:hidden md:[&_tbody_tr_td:nth-child(4)]:table-cell';
 
   const userPermissions = useUserPermission();
 
@@ -155,7 +155,7 @@ export function SessionRecordingList({
               <video width="750" height="500" controls>
                 <track kind="captions" />
                 <source src={recordVideo} type="video/mp4" />
-                مرورگر شما این ویدئو را پشتیبانی نمی‌کند.
+                {t('userList.yourBrowserDoesntSupportVideo')}
               </video>
             ) : null}
           </div>

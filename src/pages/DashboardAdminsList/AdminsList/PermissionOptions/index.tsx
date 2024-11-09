@@ -5,6 +5,7 @@ import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
 import { BaseCollapse } from '@redesignUi/atoms/BaseCollapse';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { NoResult } from '@redesignUi/molecules/NoResult';
 import { UserPermissionsProps } from '@src/types/permissions';
 
 import { PermissionOptionsProps } from './types';
@@ -24,10 +25,20 @@ export function PermissionOptions({
   const [localSelectedPermissions, setLocalSelectedPermissions] = useState<
     UserPermissionsProps[]
   >([]);
+  const [openCollapse, setOpenCollapse] = useState<string | null>(null);
 
   useEffect(() => {
     setLocalSelectedPermissions(selectedPermissions);
   }, [selectedPermissions]);
+
+  function convertItemAccess(codename: string) {
+    const itemAccess = codename
+      .split('_')
+      .slice(0, 1)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    return itemAccess;
+  }
 
   function getGroupTitle(codename: string) {
     const actionRemoved = codename.split(' ').slice(2).join(' ');
@@ -73,6 +84,12 @@ export function PermissionOptions({
     setSelectedPermissions(updatedPermissions);
   };
 
+  const handleToggleGroup = (groupTitle: string) => {
+    setOpenCollapse((prevOpenGroup) =>
+      prevOpenGroup === groupTitle ? null : groupTitle
+    );
+  };
+
   return (
     <div>
       {loading ? (
@@ -86,52 +103,53 @@ export function PermissionOptions({
             value={searchItem}
             placeholder={t('table.search')}
           />
-          {Object.entries(groupedData).map(([groupTitle, items]) => {
-            const allSelected = items.every((item) =>
-              localSelectedPermissions.some((perm) => perm.id === item.id)
-            );
-            return (
-              <BaseCollapse
-                className="mt-1"
-                key={groupTitle}
-                title={groupTitle}
-                content={
-                  <div className="flex sm:flex-row flex-col sm:h-10 h-[3.87rem] sm:justify-between justify-center sm:items-center w-full gap-2.5">
-                    <BaseCheckBox
-                      id={`all_${groupTitle}`}
-                      name="all"
-                      onChange={() => handleSelectAll(groupTitle, !allSelected)}
-                      checked={allSelected}
-                      label={t('global.all')}
-                      size="sm"
-                    />
-                    <div className="self-end sm:self-auto flex sm:gap-5 gap-2">
-                      {items.map((item) => (
-                        <BaseCheckBox
-                          key={item.id}
-                          id={item.codename}
-                          name={item.codename}
-                          onChange={() => handleSelectPermission(item)}
-                          checked={localSelectedPermissions.some(
-                            (perm) => perm.id === item.id
-                          )}
-                          label={`${item.codename
-                            .split('_')
-                            .slice(0, 1)
-                            .map(
-                              (word) =>
-                                word.charAt(0).toUpperCase() + word.slice(1)
-                            )
-                            .join(' ')}`}
-                          size="sm"
-                        />
-                      ))}
+          {filteredPermissionsData.length === 0 ? (
+            <NoResult />
+          ) : (
+            Object.entries(groupedData).map(([groupTitle, items]) => {
+              const allSelected = items.every((item) =>
+                localSelectedPermissions.some((perm) => perm.id === item.id)
+              );
+              return (
+                <BaseCollapse
+                  className="mt-1"
+                  key={groupTitle}
+                  title={groupTitle}
+                  isOpen={openCollapse === groupTitle}
+                  onToggle={() => handleToggleGroup(groupTitle)}
+                  content={
+                    <div className="flex sm:flex-row flex-col sm:h-10 h-[3.87rem] sm:justify-between justify-center sm:items-center w-full gap-2.5">
+                      <BaseCheckBox
+                        id={`all_${groupTitle}`}
+                        name="all"
+                        onChange={() =>
+                          handleSelectAll(groupTitle, !allSelected)
+                        }
+                        checked={allSelected}
+                        label={t('global.all')}
+                        size="sm"
+                      />
+                      <div className="self-end sm:self-auto flex sm:gap-5 gap-2">
+                        {items.map((item) => (
+                          <BaseCheckBox
+                            key={item.id}
+                            id={item.codename}
+                            name={item.codename}
+                            onChange={() => handleSelectPermission(item)}
+                            checked={localSelectedPermissions.some(
+                              (perm) => perm.id === item.id
+                            )}
+                            label={convertItemAccess(item.codename)}
+                            size="sm"
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                }
-              />
-            );
-          })}
+                  }
+                />
+              );
+            })
+          )}
         </div>
       )}
     </div>

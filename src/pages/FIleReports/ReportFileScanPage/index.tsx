@@ -37,11 +37,7 @@ export function ReportFileScanPage() {
             iconColor="neutral"
             count={analyzeScan?.data?.info?.today_scans ?? 0}
           />
-        ) : (
-          <div className="animate-pulse">
-            <div className="lg:h-20 bg-gray-200 rounded-lg h-[3.75rem] w-[120px] sm:w-[160px] md:w-[350px]" />
-          </div>
-        )}
+        ) : null}
         {!isLoadingDass ? (
           <UsersInfoCard
             icon={WifiHighDuotone}

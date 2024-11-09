@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const chipButtonUserAccessModalStyles = cva(
-  'flex max-w-max justify-between items-center w-full px-2 py-2 gap-2 max-h-7 rounded disabled:opacity-40 disabled:bg-neutral-200 disabled:text-neutral-500 text-sm',
+  'flex max-w-max justify-between items-center w-full px-2 py-2 gap-2 max-h-7 rounded disabled:opacity-40 disabled:bg-gray-200 disabled:text-gray-500 text-sm',
   {
     variants: {
       color: {

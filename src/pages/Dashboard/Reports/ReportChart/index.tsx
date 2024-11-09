@@ -148,12 +148,24 @@ export function ReportsChart({ props }: ReportChartType) {
     scales: {
       x: {
         ticks: {
-          color: isDark ? 'rgb(255, 255, 255)' : 'rgb(104, 104, 104)',
+          color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+        },
+        grid: {
+          color: isDark
+            ? 'rgba(156, 163, 175, 0.5)'
+            : 'rgba(104, 104, 104, 0.5)',
+          lineWidth: 1,
         },
       },
       y: {
         ticks: {
-          color: isDark ? 'rgb(255, 255, 255)' : 'rgb(104, 104, 104)',
+          color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+        },
+        grid: {
+          color: isDark
+            ? 'rgba(156, 163, 175, 0.5)'
+            : 'rgba(104, 104, 104, 0.5)',
+          lineWidth: 1,
         },
       },
     },
