@@ -259,7 +259,7 @@
     "internetLog": "Internet log",
     "wholeList": "Whole List",
     "todayList": "Today List",
-    "notFoundPage": "page not found!",
+    "notFoundPage": "Page Not Found",
     "goToHome": "go To Home",
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
@@ -302,7 +302,8 @@
     "download": "Download",
     "upload": "upload",
     "limitBySize": "Limit by size",
-    "accessToTheUsersDesktop": "Access to the user desktop"
+    "accessToTheUsersDesktop": "Access to the user desktop",
+    "goToSystem": "Go to the system"
   },
   "groupManagement": {
     "person": "person",

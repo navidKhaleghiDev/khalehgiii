@@ -1,5 +1,5 @@
 import { LoginPage } from '@src/pages/Login';
-import NotFoundPage from '@src/pages/NotFound';
+import { NotFoundPage } from '@src/pages/NotFound';
 import UnauthorizedPage from '@src/pages/Unauthorized';
 
 import { createBrowserRouter, RouteObject } from 'react-router-dom';

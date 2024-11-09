@@ -303,7 +303,8 @@
     "download": "دانلود",
     "upload": "آپلود",
     "limitBySize": "محدود کردن بر اساس زمان",
-    "accessToTheUsersDesktop": "دسترسی به میزکار کاربر"
+    "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
+    "goToSystem": "ورود به سامانه"
   },
   "groupManagement": {
     "person": "نفر",
