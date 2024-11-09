@@ -24,14 +24,16 @@ export function ReportFileScanPage() {
   });
   const { data: usersDaas, isLoading: isLoadingDaAsList } = useSWR<
     IResponsePagination<IDaAs>
-  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR);
+  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR, {
+    shouldRetryOnError: false,
+  });
 
   return (
-    <div className="">
+    <>
       <Typography color="black" variant="body2B">
         {t('fileScan.scannedFiles')}
       </Typography>
-      <div className="flex items-center gap-[1.875rem] mt-7 max-w-[21.875rem] md:max-w-[45.62rem]">
+      <div className="flex items-center gap-[1.875rem] mt-7 max-w-[21.875rem] md:max-w-[45.62rem] mb-[7.625rem]">
         <UsersInfoCard
           icon={usersThreeIcon}
           title={t('fileScan.todayScans')}
@@ -47,6 +49,6 @@ export function ReportFileScanPage() {
         />
       </div>
       <UsersDaAsList />
-    </div>
+    </>
   );
 }

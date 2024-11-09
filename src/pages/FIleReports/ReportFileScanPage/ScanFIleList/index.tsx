@@ -7,7 +7,7 @@ import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { IScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
-import { scannedFileHeaderItem } from '@src/pages/ScannedFileListPage/ScannedFileList/constants/scannedFileHeaderItem';
+import { scannedFileHeaderItem } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList/constants/scannedFileHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import {
   API_ANALYZE_DOWNLOAD_FILE,

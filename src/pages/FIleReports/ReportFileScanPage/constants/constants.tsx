@@ -1,7 +1,6 @@
+import PhQueue from '@iconify-icons/ph/queue';
 import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
 import { EPermissionFileScan } from '@src/types/permissions';
-import PhQueue from '@iconify-icons/ph/queue';
-import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
 import {
   BaseTableComponentCellProps,
   HeaderTable,
@@ -35,7 +34,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
     isMobileCollapsed: true,
   },
   {
-    id: 'id',
+    id: 'observeUserBehavior',
     type: 'action',
     action: [
       {
@@ -46,23 +45,5 @@ export const monitoringHeaderItem: HeaderTable[] = [
     ],
     permission: EPermissionFileScan.VIEW,
     class: 'mr-auto',
-  },
-];
-
-export const domainsMock: OptionSelect[] = [
-  {
-    id: 1,
-    label: 'sep.npd-co.com',
-    value: 'sep.npd-co.com',
-  },
-  {
-    id: 2,
-    label: 'fence.npd-co.com',
-    value: 'fence.npd-co.com',
-  },
-  {
-    id: 3,
-    label: 'stage.npd-co.com',
-    value: 'stage.npd-co.com',
   },
 ];
