@@ -18,7 +18,7 @@ import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
-import { UbaPage } from '@src/pages/Uba';
+import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
