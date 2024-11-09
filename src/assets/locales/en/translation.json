@@ -144,7 +144,7 @@
     "licenseStatus": "Status",
     "number": "Number",
     "activeNumbers": "Active Number",
-    "license":"License"
+    "license": "License"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
