@@ -258,8 +258,8 @@
     "send": "Send",
     "reportsChart": "ReportsChart",
     "internetLog": "Internet log",
-    "wholeList": "whole List",
-    "todayList": "toDayList",
+    "wholeList": "Whole List",
+    "todayList": "Today List",
     "notFoundPage": "page not found!",
     "goToHome": "go To Home",
     "to": "To",
@@ -302,7 +302,8 @@
     "deleteUser": "Delete User",
     "download": "Download",
     "upload": "upload",
-    "limitBySize": "Limit by size"
+    "limitBySize": "Limit by size",
+    "accessToTheUsersDesktop": "Access to the user desktop"
   },
   "groupManagement": {
     "person": "person",
@@ -384,7 +385,8 @@
     "assistanceMemberTitle": "In this section, the groups that the user is a member of are specified.",
     "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified.",
     "areYouSureBlock": "Are you sure you want to block this user?",
-    "areYouSureUnBlock": "Are you sure you want to unblock this user's access?"
+    "areYouSureUnBlock": "Are you sure you want to unblock this user's access?",
+    "yourBrowserDoesntSupportVideo": "Your browser does not support this video."
   },
   "license": {
     "licenseId": "license Id",

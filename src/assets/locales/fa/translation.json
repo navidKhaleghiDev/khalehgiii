@@ -303,7 +303,8 @@
     "deleteUser": "حذف کاربر",
     "download": "دانلود",
     "upload": "آپلود",
-    "limitBySize": "محدود کردن بر اساس زمان"
+    "limitBySize": "محدود کردن بر اساس زمان",
+    "accessToTheUsersDesktop": "دسترسی به میزکار کاربر"
   },
   "groupManagement": {
     "person": "نفر",
@@ -345,7 +346,7 @@
     "userType": "نوع کاربری",
     "createNewAdmin": "ساخت ادمین جدید",
     "createNewAdminText": "مشخصات را وارد کنید و دسترسی ها را انتخاب کنید. ",
-    "editInformation": "ویرایش مشخصات ",
+    "editInformation": "ویرایش مشخصات",
     "editInformationText": "مشخصات و لیست دسترسی‌های ادمین.",
     "systemAdminDescription": "توجه داشته باشید کاربری که به عنوان سوپر ادمین شناخته شود ، قابلیت اضافه و حذف کردن دیگر ادمین‌ها را دارد.",
     "admin": "ادمین",
@@ -386,7 +387,8 @@
     "assistanceMemberTitle": "در این بخش گروه هایی که کاربر عضو آن می‌باشد مشخص شده است.",
     "assistanceAdminTitle": "در این بخش گروه هایی که کاربرادمین آن می‌باشد مشخص شده است.",
     "areYouSureBlock": "آیا از مسدود کردن این کاربر مطمئن هستید؟",
-    "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟"
+    "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟",
+    "yourBrowserDoesntSupportVideo": "مرورگر شما این ویدئو را پشتیبانی نمی‌کند."
   },
 
   "license": {

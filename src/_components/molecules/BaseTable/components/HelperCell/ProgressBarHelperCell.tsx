@@ -18,7 +18,7 @@ export function ProgressBarHelperCell({
   const totalMinutes = totalHours * 60;
   const progressPercentage = isPermanent
     ? 100
-    : (usedMinutes / totalMinutes) * 100;
+    : Math.floor((usedMinutes / totalMinutes) * 100);
 
   const formatTime = (minutes: number): string => {
     if (minutes >= 60) {
@@ -53,8 +53,8 @@ export function ProgressBarHelperCell({
               minWidth: `${progressPercentage <= 5 ? '8px' : '0'}`,
             }}
             className={`h-full bg-white dark:bg-gray-600 border border-gray-400 dark:border-500 rounded-lg ${
-              isPermanent ? 'hidden' : ''
-            } ${progressPercentage === 0 ? 'hidden' : ''}`}
+              isPermanent || progressPercentage === 0 ? 'hidden' : ''
+            }`}
           />
         </div>
       </div>

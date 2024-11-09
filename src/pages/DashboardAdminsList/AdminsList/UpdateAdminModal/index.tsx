@@ -126,7 +126,7 @@ export function UpdateAdminModal({
             <BaseButton
               label={t('global.no')}
               size="sm"
-              type="red"
+              type="neutral"
               className="mx-2"
               onClick={() => setShowConfirm(false)}
             />
