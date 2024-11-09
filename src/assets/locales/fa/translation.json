@@ -302,7 +302,8 @@
     "deleteUser": "حذف کاربر",
     "download": "دانلود",
     "upload": "آپلود",
-    "limitBySize": "محدود کردن بر اساس زمان"
+    "limitBySize": "محدود کردن بر اساس زمان",
+    "accessToTheUsersDesktop": "دسترسی به میزکار کاربر"
   },
   "groupManagement": {
     "person": "نفر",
@@ -385,7 +386,8 @@
     "assistanceMemberTitle": "در این بخش گروه هایی که کاربر عضو آن می‌باشد مشخص شده است.",
     "assistanceAdminTitle": "در این بخش گروه هایی که کاربرادمین آن می‌باشد مشخص شده است.",
     "areYouSureBlock": "آیا از مسدود کردن این کاربر مطمئن هستید؟",
-    "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟"
+    "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟",
+    "yourBrowserDoesntSupportVideo": "مرورگر شما این ویدئو را پشتیبانی نمی‌کند."
   },
 
   "license": {

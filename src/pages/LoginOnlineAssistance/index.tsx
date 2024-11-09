@@ -68,13 +68,13 @@ export function LoginOnlineAssistance() {
           <div className="sm:ltr:flex-row-reverse sm:rtl:flex-row flex flex-col py-5 gap-[1.87rem] w-[15.12rem] sm:w-[21.87rem]">
             <LoginCard
               icon={Monitor}
-              title={t('onlineAssistance.remote')}
-              subject="Online Assistance"
+              title={t('global.accessToTheUsersDesktop')}
+              subject={t('global.onlineAssistance')}
               onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
             />
             <LoginCard
               icon={WifiHigh}
-              subject="Netsep"
+              subject={t('dashboard.netsep')}
               title={t('onlineAssistance.internet')}
               onClick={() => navigate(ROUTES_PATH.dashboard)}
             />
