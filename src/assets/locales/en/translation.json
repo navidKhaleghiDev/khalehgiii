@@ -347,7 +347,7 @@
     "adminInfo": "Admin Info",
     "userType": "User type",
     "createNewAdmin": "Create new admin",
-    "createNewAdminText": "Enter the details to create a new admin and select the required permissions",
+    "createNewAdminText": "Create a new admin and select permissions",
     "editInformation": "Edit information",
     "editInformationText": "Change the admin’s profile",
     "systemAdminDescription": "Please note that the user recognized as a administrator has the ability to add and remove other admins.",
