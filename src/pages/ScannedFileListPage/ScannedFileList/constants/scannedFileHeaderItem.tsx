@@ -4,22 +4,22 @@ import {
 } from '@redesignUi/molecules/BaseTable/types';
 import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
 import { ErrorIcon } from '@src/pages/FIleReports/ReportFileScanPage/Components/ErrorIcon';
-// import { EPermissionScanReports } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { IScannedFile } from '@src/services/analyze/types';
+import { EPermissionScanReports } from '@src/types/permissions';
 
 export const scannedFileHeaderItem: HeaderTable[] = [
   {
     label: 'table.fileName',
     id: 'file_name',
     type: 'none',
-    class: 'px-2 md:w-2/12 w-8/12',
+    class: 'px-2 md:w-2/12 w-9/12 md:max-w-[4.375rem]',
   },
   {
     label: 'table.type',
     id: 'file_content_type',
     type: 'none',
-    class: 'w-2/12',
+    class: 'px-3 w-2/12 max-w-[4.375rem]',
     isMobileCollapsed: true,
   },
   {
@@ -32,7 +32,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color={props.row.yara_scan_result ? 'red' : 'teal'}
       />
     ),
-    class: 'w-2/12',
+    class: 'w-2/12 ',
     isMobileCollapsed: true,
   },
   {
@@ -79,7 +79,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    class: 'w-1/12',
-    // permission: EPermissionScanReports.CHANGE,
+    class: ' w-1/12',
+    permission: EPermissionScanReports.CHANGE,
   },
 ];
