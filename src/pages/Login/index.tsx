@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import languageIcon from '@iconify-icons/ph/globe-thin';
+import PhTranslate from '@iconify-icons/ph/translate';
 import { BaseButton } from '@redesignUi/atoms';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { BackButton } from '@redesignUi/atoms/BackButton';
@@ -122,7 +122,7 @@ export function LoginPageCp() {
                 />
               )}
               <BaseDropdownIcon
-                icon={languageIcon}
+                icon={PhTranslate}
                 size="sm"
                 onSelect={(v: string) => changeLanguage(v)}
                 options={languageOptions}

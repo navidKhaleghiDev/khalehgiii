@@ -9,7 +9,7 @@ import { Avatar, Typography } from '@redesignUi/atoms';
 import { SseSvg } from '@redesignUi/atoms/Svgs/SseSvg';
 import { http } from '@src/services/http';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
-import PhGlobe from '@iconify-icons/ph/globe';
+import PhTranslate from '@iconify-icons/ph/translate';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import User from '@iconify-icons/ph/user';
 
@@ -44,7 +44,7 @@ export function NavbarUser(): JSX.Element {
             className={logOutStyles}
           />
           <BaseDropdownIcon
-            icon={PhGlobe}
+            icon={PhTranslate}
             size="sm"
             onSelect={(v: string) => changeLanguage(v)}
             options={languageOptions}
