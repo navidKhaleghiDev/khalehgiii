@@ -52,7 +52,7 @@ export function FilterTableList(props: FilterReportsProps) {
       <div
         className={` ${
           buttonLabel || handelGroupeFilter
-            ? 'max-w-[22.5rem]'
+            ? 'w-full sm:max-w-[22.5rem]'
             : 'w-40 sm:w-[22.5rem]'
         } order-last w-full sm:order-none`}
       >
@@ -124,8 +124,8 @@ export function FilterTableList(props: FilterReportsProps) {
       ) : null}
     </div>
   ) : (
-    <div className="flex items-center justify-between">
-      <div className="w-40 sm:w-[21.87rem]">
+    <div className="flex items-center justify-between gap-[1.875rem]">
+      <div className="w-full sm:w-[21.87rem]">
         <SearchInput
           id="search"
           name="search"
@@ -137,11 +137,13 @@ export function FilterTableList(props: FilterReportsProps) {
           dir={dir === 'rtl' ? 'rtl' : 'ltr'}
         />
       </div>
-      <BaseButton
-        label={buttonLabel}
-        onClick={onClickButton}
-        startIcon={pluse}
-      />
+      <div className="w-40">
+        <BaseButton
+          label={buttonLabel}
+          onClick={onClickButton}
+          startIcon={pluse}
+        />
+      </div>
     </div>
   );
 }
