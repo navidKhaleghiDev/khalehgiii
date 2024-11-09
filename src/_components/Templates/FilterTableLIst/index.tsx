@@ -48,7 +48,7 @@ export function FilterTableList(props: FilterReportsProps) {
   const caret = isFarsi ? caretLeft : caretRight;
 
   return !conditionOne ? (
-    <div className="flex items-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.45rem] sm:gap-x-[1.875rem]">
+    <div className="flex items-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1rem] sm:gap-x-[1.875rem]">
       <div
         className={` ${
           buttonLabel || handelGroupeFilter
