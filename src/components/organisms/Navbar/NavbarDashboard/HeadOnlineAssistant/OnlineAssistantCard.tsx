@@ -21,7 +21,7 @@ export function OnlineAssistantCard({
   return (
     <div className="flex justify-center items-center h-10">
       <BaseIcon icon={icon} size="md" color={color} />
-      <span className="mr-1 text-neutral-500 ">{title}</span>
+      <span className="mr-1 text-gray-500 ">{title}</span>
       <span className="mr-2">{description}</span>
     </div>
   );

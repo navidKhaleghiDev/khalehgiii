@@ -22,7 +22,7 @@ export const baseTableRowCard = cva(
     variants: {
       variant: TYPOGRAPHY_VARIANT,
       fixed: {
-        true: 'bg-neutral-100 dark:bg-slate-800 h-14 px-2',
+        true: 'bg-gray-100 dark:bg-slate-800 h-14 px-2',
       },
     },
     defaultVariants: {
