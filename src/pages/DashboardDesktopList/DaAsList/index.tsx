@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR from 'swr';
 
 import Play from '@iconify-icons/ph/play';
 import UsersThree from '@iconify-icons/ph/users-three';
@@ -57,7 +57,7 @@ const PAGE_SIZE = 5;
 const PAGE = 1;
 
 export function DaAsList() {
-  const { mutate } = useSWRConfig();
+  // const { mutate } = useSWRConfig();
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
@@ -83,18 +83,10 @@ export function DaAsList() {
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
-  const mutateConfigUserDass = useCallback(() => {
-    mutate(
-      (key) => typeof key === 'string' && key.startsWith(E_USERS_DAAS),
-      undefined,
-      { revalidate: true }
-    );
-  }, [mutate]);
-  console.log(data);
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -104,40 +96,34 @@ export function DaAsList() {
     fileType
   ) => {
     const id = fileType?.id;
-    if (action === 'mutate') {
-      mutate(
-        (key) => typeof key === 'string' && key.startsWith('/users/daas'),
-        undefined,
-        { revalidate: true }
-      );
-      return;
-    }
-    if (action === 'more' && id) {
-      setSelectedId(id);
-      setOpenSessionRecording(true);
-      setUserName(fileType.email);
-
-      return;
-    }
-    if (action === 'edit') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenSettingModal(true);
-      return;
-    }
-
-    if (action === 'editLock') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenModal(true);
-      return;
+    switch (action) {
+      case 'more':
+        if (id) {
+          setSelectedId(id);
+          setOpenSessionRecording(true);
+          setUserName(fileType.email);
+        }
+        break;
+      case 'edit':
+        setActiveDaas(fileType as IDaAs);
+        setOpenSettingModal(true);
+        break;
+      case 'editLock':
+        setActiveDaas(fileType as IDaAs);
+        setOpenBlockModal(true);
+        break;
+      case 'details':
+        setActiveDaas(fileType as IDaAs);
+        setOpenOnlineAssistanceModal(true);
+        break;
+      default:
+        break;
+      // do nothing
     }
 
     if (fileType !== undefined && typeof fileType !== 'string') {
       setActiveDaas(fileType as IDaAs);
       setOpenModal(true);
-    }
-    if (action === 'details') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenOnlineAssistanceModal(true);
     }
   };
 
@@ -191,7 +177,7 @@ export function DaAsList() {
     // get
     await API_DAAS_UPDATE(daasUpdated.id as string, daasUpdated)
       .then(() => {
-        mutateConfigUserDass();
+        mutate();
         toast.success(t('global.sucessfulyUpdated'));
         if (openBlockModal) setOpenBlockModal(false);
         if (openModal) setOpenModal(false);
@@ -219,7 +205,7 @@ export function DaAsList() {
       .then(() => {
         toast.success(t('global.successfullyRemoved'));
         setOpenModal(false);
-        mutateConfigUserDass();
+        mutate();
       })
       .catch((err) => {
         toast.error(err);
