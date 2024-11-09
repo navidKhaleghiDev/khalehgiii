@@ -14,7 +14,7 @@ export const sliderStyles = cva(
 );
 
 export const thumbStyles = cva(
-  'absolute top-1/2 w-5 h-5 bg-white dark:bg-gray-600 border border-neutral-200 dark:border-gray-500 rounded-full transform -translate-y-1/2 -translate-x-1/2 cursor-pointer'
+  'absolute top-1/2 w-5 h-5 bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 rounded-full transform -translate-y-1/2 -translate-x-1/2 cursor-pointer'
 );
 
 export const getValueStyles = cva(

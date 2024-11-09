@@ -21,7 +21,7 @@ export function ProgressBar({ durationInSeconds = 30 }) {
   }, [intervalDuration]);
 
   return (
-    <div className="w-full bg-neutral-200 dark:bg-neutral-600 rounded-lg">
+    <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-lg">
       <div
         className="bg-teal-500 p-0.5 text-center text-xs font-medium leading-none text-primary-100 rounded-lg"
         style={{ width: `${progress}%` }}

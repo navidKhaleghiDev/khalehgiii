@@ -19,7 +19,7 @@ import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import userFocus from '@iconify-icons/ph/user-focus';
 
 import { SettingDaasModal } from './SettingDaasModal';

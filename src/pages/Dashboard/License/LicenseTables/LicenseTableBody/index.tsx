@@ -88,7 +88,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
     <div>
       <Card
         color="neutral"
-        className="flex h-10 items-center px-2 my-2 w-full text-neutral-600"
+        className="flex h-10 items-center px-2 my-2 w-full text-gray-600"
       >
         <Typography
           variant="body3"
