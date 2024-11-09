@@ -34,8 +34,8 @@ export function DashboardProgressChart() {
         { x: '2024-05-01', y: 56 },
         { x: '2024-06-01', y: 55 },
       ],
-      borderColor: 'rgb(59, 130, 246)',
-      backgroundColor: 'rgba(59, 130, 246, 0.2)',
+      borderColor: 'rgb(96, 165, 250)',
+      backgroundColor: 'rgba(96, 165, 250)',
     },
     {
       label: 'فایل‌های آلوده',
@@ -44,8 +44,8 @@ export function DashboardProgressChart() {
         { x: '2024-04-01', y: 48 },
         { x: '2024-05-01', y: 40 },
       ],
-      borderColor: 'rgb(168, 85, 247)',
-      backgroundColor: 'rgba(168, 85, 247, 0.2)',
+      borderColor: 'rgb(192, 132, 252)',
+      backgroundColor: 'rgba(192, 132, 252)',
     },
     {
       label: 'رفتارشناسی کاربر',
@@ -57,8 +57,8 @@ export function DashboardProgressChart() {
         { x: '2024-05-01', y: 96 },
         { x: '2024-06-01', y: 37 },
       ],
-      borderColor: 'rgb(20, 184, 166)',
-      backgroundColor: 'rgba(20, 184, 166, 0.2)',
+      borderColor: 'rgb(45, 212, 191)',
+      backgroundColor: 'rgba(45, 212, 191)',
     },
   ];
 
@@ -122,21 +122,21 @@ export function DashboardProgressChart() {
         <div className="flex sm:flex-col flex-row justify-between flex-wrap">
           <div className="flex flex-row sm:flex-col items-start justify-start gap-2.5 pt-5 shrink-0">
             <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
+              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
               variant="body6"
               color="neutral"
             >
               {t('fileScan.scannedFiles')}
             </Typography>
             <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
+              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
               variant="body6"
               color="neutral"
             >
               {t('dashboard.virusFiles')}
             </Typography>
             <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-500 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
+              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
               variant="body6"
               color="neutral"
             >
