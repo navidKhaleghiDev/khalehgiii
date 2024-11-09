@@ -25,7 +25,7 @@ const disableClass =
 const activeClass =
   'bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
 const arrowButtonClass =
-  'bg-white border rounded border-neutral-200 dark:border-gray-500 text-neutral-500';
+  'bg-white border rounded border-gray-200 dark:border-gray-500 text-gray-500';
 
 /**
  * Pagination component for navigating through pages.

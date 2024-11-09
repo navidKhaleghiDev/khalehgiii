@@ -42,6 +42,7 @@ export function ReportFilter({
           size="sm"
           type="neutral"
           className="sm:flex hidden"
+          disabled // This button is disabled until the backend provides data for the domain
         />
         <IconButton
           icon={GlobeSimple}

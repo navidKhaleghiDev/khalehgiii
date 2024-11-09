@@ -33,7 +33,7 @@ export function DaasModalContent({
   timeOfUse,
 }: PropsType) {
   return (
-    <div className="max-h-[35.375rem] overflow-y-auto overflow-x-hidden col-span-6 grid grid-cols-6 rtl:pl-5 ltr:pr-5">
+    <div className="max-h-[35.375rem] overflow-y-auto overflow-x-hidden col-span-6 grid grid-cols-6 rtl:pl-5 rtl:pr-3 ltr:pr-5 ltr:pl-3">
       <DownloadAndUploadAccess control={control} />
 
       <TimeOfUseAccess control={control} />

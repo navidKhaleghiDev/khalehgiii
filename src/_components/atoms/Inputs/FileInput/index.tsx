@@ -62,7 +62,7 @@ export function FileInput(props: FileInputProps): JSX.Element {
         className="hidden"
       />
       <button
-        className={`flex flex-col w-full dark:hover:bg-gray-600 gap-3 items-center border border-neutral-200 dark:border-gray-500 ${
+        className={`flex flex-col w-full dark:hover:bg-gray-600 gap-3 items-center border border-gray-200 dark:border-gray-500 ${
           file && ' border-2 border-teal-500 dark:border-teal-400'
         } px-6 py-4 dark:bg-gray-700 rounded-2xl`}
         type="button"
@@ -93,7 +93,7 @@ export function FileInput(props: FileInputProps): JSX.Element {
       </button>
       {file ? (
         <div className="mt-5">
-          <div className="text-start p-2 flex items-center justify-between rounded-lg dark:text-white bg-neutral-100 dark:bg-gray-800">
+          <div className="text-start p-2 flex items-center justify-between rounded-lg dark:text-white bg-gray-100 dark:bg-gray-800">
             <div className="flex items-center gap-3">
               <div className="border-2 bg-white dark:bg-gray-700 dark:border-gray-500 p-1 rounded-lg">
                 <BaseIcon

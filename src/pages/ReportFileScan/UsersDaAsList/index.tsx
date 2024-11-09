@@ -54,8 +54,6 @@ export function UsersDaAsList() {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  console.log(listDaas);
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
