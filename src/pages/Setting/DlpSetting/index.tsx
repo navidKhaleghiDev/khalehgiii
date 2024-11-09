@@ -117,7 +117,7 @@ export function DlpSetting() {
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
+    <div className={`w-full px-4  ${isLoading ? 'loading' : ''}`}>
       <div className="mb-[2.87rem]">
         <Typography
           color="black"

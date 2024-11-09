@@ -57,7 +57,7 @@ export function License() {
           variant="body2B"
           className="w-full col-span-12 dark:text-white"
         >
-          {t('setting.daas')}
+          {t('table.license')}
         </Typography>
       </div>
 
