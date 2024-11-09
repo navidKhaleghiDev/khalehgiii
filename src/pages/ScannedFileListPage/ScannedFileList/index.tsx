@@ -123,7 +123,7 @@ export function ScannedFileList({ id }: ScannedFileListProp) {
           disabled
         />
       </div>
-      <div className="[&_thead]:bg-gray-100 ">
+      <div className="[&_thead]:bg-gray-100">
         <BaseTable
           body={listDaas}
           header={checkPermissionHeaderItem(

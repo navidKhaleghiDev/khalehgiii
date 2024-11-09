@@ -4,10 +4,12 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Modal } from '@redesignUi/molecules/Modal';
 import PhWarning from '@iconify-icons/ph/warning';
 
+import { BaseTableComponentCellProps } from '@redesignUi/molecules/BaseTable/types';
+import { IScannedFile } from '@src/services/analyze/types';
 import { DetailsContentModal } from '../ErrorInofModal/idnex';
 
 type TagProps = {
-  data: any;
+  data: BaseTableComponentCellProps<IScannedFile>;
 };
 export function ErrorIcon({ data }: TagProps) {
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
@@ -16,6 +18,7 @@ export function ErrorIcon({ data }: TagProps) {
     data.row?.clamav_scan_result ||
     data.row?.yara_scan_result
   );
+
   return (
     <div>
       {clear ? (
@@ -30,6 +33,7 @@ export function ErrorIcon({ data }: TagProps) {
         setOpen={setOpenDetailsModal}
         type="content"
         size="responsive"
+        icon={PhWarning}
         content={<DetailsContentModal scannedFile={data.row} />}
       />
     </div>

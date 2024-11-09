@@ -2,7 +2,11 @@ import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCoun
 import { EPermissionFileScan } from '@src/types/permissions';
 import PhQueue from '@iconify-icons/ph/queue';
 import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import {
+  BaseTableComponentCellProps,
+  HeaderTable,
+} from '@redesignUi/molecules/BaseTable/types';
+import { IDaAs } from '@src/services/users/types';
 
 export const monitoringHeaderItem: HeaderTable[] = [
   {
@@ -24,7 +28,9 @@ export const monitoringHeaderItem: HeaderTable[] = [
     label: 'table.scans',
     id: 'last_uptime',
     type: 'component',
-    component: (props: any) => <UserScanCount email={props.row.email} />,
+    component: (props: BaseTableComponentCellProps<IDaAs>) => (
+      <UserScanCount email={props.row.email} />
+    ),
     class: 'w-1/12',
     isMobileCollapsed: true,
   },
@@ -39,7 +45,6 @@ export const monitoringHeaderItem: HeaderTable[] = [
       },
     ],
     permission: EPermissionFileScan.VIEW,
-
     class: 'mr-auto',
   },
 ];

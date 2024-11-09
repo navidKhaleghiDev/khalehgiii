@@ -1,8 +1,12 @@
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import {
+  BaseTableComponentCellProps,
+  HeaderTable,
+} from '@redesignUi/molecules/BaseTable/types';
 import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
 import { ErrorIcon } from '@src/pages/FIleReports/ReportFileScanPage/Components/ErrorIcon';
 import { EPermissionScanReports } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
+import { IScannedFile } from '@src/services/analyze/types';
 
 export const scannedFileHeaderItem: HeaderTable[] = [
   {
@@ -22,10 +26,10 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.resultScanerStatusYara',
     id: 'yara_scanner_result',
     type: 'component',
-    component: (props: any) => (
+    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
       <TagHelperCell
-        title={props.row.yara_scanner_result ? 'Virus' : 'N.V'}
-        color={props.row.yara_scanner_result ? 'red' : 'teal'}
+        title={props.row.yara_scan_result ? 'Virus' : 'N.V'}
+        color={props.row.yara_scan_result ? 'red' : 'teal'}
       />
     ),
     class: 'w-2/12',
@@ -35,10 +39,10 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.resultScanerStatusSandbox',
     id: 'antiviruses_scanner_result',
     type: 'component',
-    component: (props: any) => (
+    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
       <TagHelperCell
-        title={props.row.antiviruses_scanner_result ? 'Virus' : 'N.V'}
-        color={props.row.antiviruses_scanner_result ? 'red' : 'teal'}
+        title={props.row.antiviruses_scan_result ? 'Virus' : 'N.V'}
+        color={props.row.antiviruses_scan_result ? 'red' : 'teal'}
       />
     ),
     class: 'w-2/12',
@@ -48,7 +52,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.resultScanerStatusClamav',
     id: 'clamav_scan_result',
     type: 'component',
-    component: (props: any) => (
+    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
       <TagHelperCell
         title={props.row.clamav_scan_result ? 'Virus' : 'N.V'}
         color={props.row.clamav_scan_result ? 'red' : 'teal'}
@@ -56,12 +60,6 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     ),
     class: 'w-2/12',
     isMobileCollapsed: true,
-  },
-  {
-    id: 'scan_result_all',
-    type: 'component',
-    component: (props: any) => <ErrorIcon data={props} />,
-    class: 'mr-auto w-1/12',
   },
   {
     id: 'download',
@@ -73,7 +71,15 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    class: 'px-2 w-1/12 mr-auto',
+    class: 'w-1/12 mr-auto',
     permission: EPermissionScanReports.CHANGE,
+  },
+  {
+    id: 'scan_result_all',
+    type: 'component',
+    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
+      <ErrorIcon data={props} />
+    ),
+    class: 'mr-auto w-1/12',
   },
 ];

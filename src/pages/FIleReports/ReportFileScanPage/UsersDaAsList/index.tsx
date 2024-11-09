@@ -11,7 +11,7 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import PhPlayDuotone from '@iconify-icons/ph/play';
 import { ScannedFileList } from '@src/pages/ScannedFileListPage/ScannedFileList';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';

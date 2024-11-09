@@ -16,7 +16,6 @@ import {
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
-import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/Uba';
@@ -80,14 +79,6 @@ export const adminRoutes = [
         element: (
           <ProtectedRoute requiredPermission={EPermissionUsers.VIEW}>
             <DashboardAdminsListPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: ROUTES_PATH.reportsScanFileDetails,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
-            <ScannedFileListPage />
           </ProtectedRoute>
         ),
       },
