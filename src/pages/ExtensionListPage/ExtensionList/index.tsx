@@ -12,6 +12,7 @@ import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -59,7 +60,10 @@ export function ExtensionList() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-
+  const handelSearchQuery = useCallback((value: string) => {
+    setCurrentPage(PAGE);
+    setFilterQuery(value);
+  }, []);
   const handleOnDeleteFileType = async () => {
     if (!activeAdmin) return;
     setLoadingButtonModal(true);
@@ -113,18 +117,16 @@ export function ExtensionList() {
     itemsPer: listWhiteList.length,
   };
 
-  console.log(data);
-
   return (
     <>
       <div className="mb-[1.875rem]">
-        {/* <FilterTableList
+        <FilterTableList
           handelSearchQuery={handelSearchQuery}
           searchPlaceholder={t('systemManagement.search')}
           searchQuery={filterQuery}
           buttonLabel={t('systemManagement.newFormat')}
           onClickButton={() => setOpenUpdateModal(true)}
-        /> */}
+        />
       </div>
       <BaseTable
         body={listWhiteList}

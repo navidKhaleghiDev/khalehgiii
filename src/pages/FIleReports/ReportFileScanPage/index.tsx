@@ -17,14 +17,12 @@ import { UsersDaAsList } from './UsersDaAsList';
 export function ReportFileScanPage() {
   const { t } = useTranslation();
 
-  const { data: analyzeScan } = useSWR<ISwrResponse<IScanStats>>(
-    E_ANALYZE_SCAN_STATS,
-    HTTP_ANALYSES.fetcherSWR
-  );
-  const { data: usersDaas } = useSWR<IResponsePagination<IDaAs>>(
-    `${E_USERS_DAAS}/?is_recording=True `,
-    http.fetcherSWR
-  );
+  const { data: analyzeScan, isLoading: isLoadingAnalyze } = useSWR<
+    ISwrResponse<IScanStats>
+  >(E_ANALYZE_SCAN_STATS, HTTP_ANALYSES.fetcherSWR);
+  const { data: usersDaas, isLoading: isLoadingDass } = useSWR<
+    IResponsePagination<IDaAs>
+  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR);
 
   return (
     <div className="">
@@ -32,17 +30,29 @@ export function ReportFileScanPage() {
         {t('fileScan.scannedFiles')}
       </Typography>
       <div className="flex items-center gap-[1.875rem] mt-7 max-w-[21.875rem] md:max-w-[45.62rem]">
-        <UsersInfoCard
-          icon={usersThreeIcon}
-          title={t('fileScan.todayScans')}
-          iconColor="neutral"
-          count={analyzeScan?.data?.info?.today_scans ?? 0}
-        />
-        <UsersInfoCard
-          icon={WifiHighDuotone}
-          title={t('fileScan.onlineUsers')}
-          count={usersDaas?.data?.online_users ?? 0}
-        />
+        {!isLoadingAnalyze ? (
+          <UsersInfoCard
+            icon={usersThreeIcon}
+            title={t('fileScan.todayScans')}
+            iconColor="neutral"
+            count={analyzeScan?.data?.info?.today_scans ?? 0}
+          />
+        ) : (
+          <div className="animate-pulse">
+            <div className="lg:h-20 bg-gray-200 rounded-lg h-[3.75rem] w-[120px] sm:w-[160px] md:w-[350px]" />
+          </div>
+        )}
+        {!isLoadingDass ? (
+          <UsersInfoCard
+            icon={WifiHighDuotone}
+            title={t('fileScan.onlineUsers')}
+            count={usersDaas?.data?.online_users ?? 0}
+          />
+        ) : (
+          <div className="animate-pulse">
+            <div className="lg:h-20 bg-gray-200 rounded-lg h-[3.75rem] w-[120px] sm:w-[160px] md:w-[350px]" />
+          </div>
+        )}
       </div>
       <UsersDaAsList />
     </div>

@@ -1,32 +1,15 @@
-// import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
-// import PhArrowCounterClockwiseBold from '@iconify-icons/ph/arrow-counter-clockwise-bold';
-// import { IHeaderTable, TableType } from '@ui/atoms/BaseTable/types';
-// import { CircleBorder } from '@ui/atoms/BaseTable/components/tableIcons/CircleBorder';
-// import { EPermissionScanReports } from '@src/types/permissions';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
-
-// const download = {
-//   label: 'table.download',
-//   id: 'id',
-//   type: 'action' as TableType,
-//   action: [
-//     {
-//       action: 'download',
-//       icon: PhDownloadSimpleFill,
-//       color: 'neutralNoBg',
-//     },
-//   ],
-//   permission: EPermissionScanReports.VIEW,
-//   class: 'px-3 w-2/12',
-// };
+import { ErrorIcon } from '@src/pages/FIleReports/ReportFileScanPage/Components/ErrorIcon';
+import { EPermissionScanReports } from '@src/types/permissions';
+import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 
 export const scannedFileHeaderItem: HeaderTable[] = [
   {
     label: 'table.fileName',
     id: 'file_name',
     type: 'none',
-    class: 'px-2 w-2/12 max-w-[70px]',
+    class: 'px-2 sm:w-2/12 max-w-[70px]',
   },
   {
     label: 'table.type',
@@ -74,31 +57,23 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     class: 'w-2/12',
     isMobileCollapsed: true,
   },
-
-  // {
-  //   id: 'scan_result',
-  //   type: 'action',
-  //   action: [
-  //     {
-  //       action: 'edit',
-  //       icon: PhArrowCounterClockwiseBold,
-  //       color: 'neutralNoBg',
-  //     },
-  //   ],
-  //   // permission: EPermissionScanReports.CHANGE,
-  //   class: 'px-3 w-2/12',
-  // },
-  // {
-  //   id: 'is_running',
-  //   type: 'action',
-  //   action: [
-  //     {
-  //       action: 'modal',
-  //       icon: moreIcon,
-  //       color: 'neutralNoBg',
-  //     },
-  //   ],
-  //   permission: EPermissionScanReports.VIEW,
-  //   class: 'px-3 w-2/12',
-  // },
+  {
+    id: 'scan_result_all',
+    type: 'component',
+    component: (props: any) => <ErrorIcon data={props} />,
+    class: 'mr-auto w-1/12',
+  },
+  {
+    id: 'download',
+    type: 'action',
+    action: [
+      {
+        action: 'download',
+        icon: PhDownloadSimple,
+        color: 'neutralNoBg',
+      },
+    ],
+    class: 'px-2 w-1/12 mr-auto',
+    permission: EPermissionScanReports.CHANGE,
+  },
 ];
