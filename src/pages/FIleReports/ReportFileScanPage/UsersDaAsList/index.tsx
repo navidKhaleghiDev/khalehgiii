@@ -32,7 +32,7 @@ export function UsersDaAsList() {
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
 
-  // Daas users info and scan numbers
+  // Daas users info & scan numbers
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
     pageSize: PAGE_SIZE,
@@ -46,8 +46,8 @@ export function UsersDaAsList() {
 
   const handelClickRow: OnClickActionsType<IDaAs> = (_, dass) => {
     if (dass?.email) {
-      setOpen(true);
       setModelId(dass?.email);
+      setOpen(true);
     }
   };
   const handelSearchQuery = useCallback((searchValue: string) => {
@@ -102,7 +102,7 @@ export function UsersDaAsList() {
         title={t('fileScan.recordedActivities')}
         descriptionInfo={t('fileScan.userRecordedActivities')}
         icon={PhPlayDuotone}
-        content={<ScannedFileList id={modelId} />}
+        content={<ScannedFileList userEmail={modelId} />}
       />
     </>
   );

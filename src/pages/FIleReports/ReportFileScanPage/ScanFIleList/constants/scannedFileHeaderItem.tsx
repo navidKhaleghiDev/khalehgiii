@@ -13,13 +13,13 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.fileName',
     id: 'file_name',
     type: 'none',
-    class: 'px-2 md:w-2/12 w-9/12 md:max-w-[4.375rem]',
+    class: 'px-3 w-9/12 w-[150px] sm:w-full md:w-2/12  md:max-w-[90px]',
   },
   {
     label: 'table.type',
     id: 'file_content_type',
     type: 'none',
-    class: 'px-3 w-2/12 max-w-[4.375rem]',
+    class: 'px-3 md:w-2/12 md:max-w-[90px]',
     isMobileCollapsed: true,
   },
   {
@@ -32,7 +32,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color={props.row.yara_scan_result ? 'red' : 'teal'}
       />
     ),
-    class: 'w-2/12 ',
+    class: 'px-3 w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -45,7 +45,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color={props.row.antiviruses_scan_result ? 'red' : 'teal'}
       />
     ),
-    class: 'w-2/12',
+    class: 'px-3 w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -58,7 +58,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color={props.row.clamav_scan_result ? 'red' : 'teal'}
       />
     ),
-    class: 'w-2/12',
+    class: 'px-3 w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -67,7 +67,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     component: (props: BaseTableComponentCellProps<IScannedFile>) => (
       <ErrorIcon data={props} />
     ),
-    class: 'w-1/12 justify-center',
+    class: 'w-1/12 mr-auto',
   },
   {
     id: 'download',
@@ -79,7 +79,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    class: ' w-1/12',
+    class: 'w-1/12 mr-auto',
     permission: EPermissionScanReports.CHANGE,
   },
 ];

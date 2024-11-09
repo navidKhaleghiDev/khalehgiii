@@ -25,7 +25,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
   },
   {
     label: 'table.scans',
-    id: 'last_uptime',
+    id: '',
     type: 'component',
     component: (props: BaseTableComponentCellProps<IDaAs>) => (
       <UserScanCount email={props.row.email} />
@@ -34,7 +34,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
     isMobileCollapsed: true,
   },
   {
-    id: 'observeUserBehavior',
+    id: 'button',
     type: 'action',
     action: [
       {
