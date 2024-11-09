@@ -47,10 +47,11 @@ export function BaseInputUploadImage({
     if (fileList && fileList.length > 0) {
       const newFile = fileList[0];
       const newPreviewUrl = URL.createObjectURL(newFile);
-      setPreviewUrl(newPreviewUrl);
+      setPreviewUrl(() => newPreviewUrl);
       onClick?.(newFile);
     }
   };
+
   return (
     <div className="w-16 h-16">
       <div className="relative  flex justify-center items-center overflow-hidden">
@@ -76,7 +77,11 @@ export function BaseInputUploadImage({
           <div className="group relative">
             <img
               alt=""
-              src={previewUrl}
+              src={
+                typeof previewUrl !== 'string'
+                  ? URL.createObjectURL(previewUrl)
+                  : previewUrl
+              }
               className={`relative ${
                 !disabled && 'group-hover:opacity-40'
               } flex w-16 h-16 justify-center items-center rounded-full overflow-hidden cursor-pointer`}

@@ -296,7 +296,8 @@
     "saveChanges": "Save Changes",
     "deleteMember": "Delete Member",
     "user": "user",
-    "groupLists": "Group Lists"
+    "groupLists": "Group Lists",
+    "member": "member"
   },
   "onlineAssistance": {
     "loginType": "Login type",

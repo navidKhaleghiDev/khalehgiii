@@ -1,8 +1,10 @@
 import UsersThree from '@iconify-icons/ph/users-three';
 import { useTranslation } from 'react-i18next';
+import trashSimple from '@iconify-icons/ph/trash-simple';
 
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { CardButton } from '@redesignUi/atoms/Card/CardButton';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 
 import { TitleNumber } from './TitleNumber/TitleNumber';
 import { GroupCardProps } from './types';
@@ -19,7 +21,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
   const { t } = useTranslation();
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10 justify-center">
+    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10 justify-center ">
       {groupData.length >= 1 &&
         groupData.map((group) => (
           <CardButton
@@ -31,8 +33,13 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
             disabled={disabled}
             rounded="xxl"
             shadow="base"
-            className={`p-5 pt-12 w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px] ${className}`}
+            className={`p-5 pt-12 w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px] relative ${className}`}
           >
+            <IconButton
+              icon={trashSimple}
+              color="redNoBg"
+              className="absolute top-1 left-1"
+            />
             <div className="flex flex-col items-center">
               {!group.image ? (
                 <Avatar

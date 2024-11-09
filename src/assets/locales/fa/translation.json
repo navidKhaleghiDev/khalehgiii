@@ -297,7 +297,8 @@
     "saveChanges": "ذخیره تغییرات",
     "deleteMember": "حذف کاربر",
     "user": "کاربر",
-    "groupLists": "لیست گروه ها"
+    "groupLists": "لیست گروه ها",
+    "member": "کاربر"
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",
