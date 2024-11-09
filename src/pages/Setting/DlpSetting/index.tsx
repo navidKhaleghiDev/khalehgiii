@@ -15,7 +15,7 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { Typography } from '@redesignUi/atoms';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import PhFilePlus from '@iconify-icons/ph/file-plus';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 

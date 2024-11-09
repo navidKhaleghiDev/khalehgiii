@@ -8,4 +8,5 @@ export interface FilterReportsProps {
   onClickButton?: () => void;
   buttonLabel?: string;
   domainFilter?: boolean;
+  sortFilter?: boolean;
 }
