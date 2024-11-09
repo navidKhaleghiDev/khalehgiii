@@ -29,6 +29,7 @@ export function FilterTableList(props: FilterReportsProps) {
   const { dir } = useLanguage();
 
   // This functionality does not work cause we do not have service call
+  //
   // const { data, isLoading, error } = useSWR<IResponseData<TGroup[]>>(
   //   E_USERS_GROUPS,
   //   http.fetcherSWR
@@ -88,6 +89,7 @@ export function FilterTableList(props: FilterReportsProps) {
           />
         </div>
       ) : null}
+      {/* This item does not work does not have service */}
       {handelGroupeFilter ? (
         <div>
           <BaseButton
@@ -105,6 +107,7 @@ export function FilterTableList(props: FilterReportsProps) {
           />
         </div>
       ) : null}
+      {/* This item does not work does not have service */}
       {sortFilter ? (
         <IconButton
           icon={sortAscending}
@@ -134,7 +137,7 @@ export function FilterTableList(props: FilterReportsProps) {
           placeholder={searchPlaceholder}
           hiddenError
           fullWidth
-          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          dir={isFarsi ? 'rtl' : 'ltr'}
         />
       </div>
       <div className="w-40">
