@@ -304,7 +304,8 @@
     "download": "دانلود",
     "upload": "آپلود",
     "limitBySize": "محدود کردن بر اساس زمان",
-    "accessToTheUsersDesktop": "دسترسی به میزکار کاربر"
+    "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
+    "goToSystem": "ورود به سامانه"
   },
   "groupManagement": {
     "person": "نفر",
@@ -341,6 +342,7 @@
     "scannedFiles": "فایل های اسکن شده"
   },
   "adminList": {
+    "adminList": "لیست ادمین",
     "userInfo": "مشخصات کاربر",
     "adminInfo": "مشخصات ادمین",
     "userType": "نوع کاربری",

@@ -44,7 +44,7 @@
     "unauthorizedBehavior": "Unauthorized Behavior",
     "blocked": "Blocked",
     "action": "Action",
-    "nothingFound": "Nothing Found",
+    "nothingFound": "Nothing Is Found",
     "observeUserBehavior": "Observe User Behavior",
     "numberOfScans": "Number of Scans",
     "userStatus": "User Status",
@@ -258,9 +258,9 @@
     "send": "Send",
     "reportsChart": "ReportsChart",
     "internetLog": "Internet log",
-    "wholeList": "Whole List",
-    "todayList": "Today List",
-    "notFoundPage": "page not found!",
+    "wholeList": "All list",
+    "todayList": "Today list",
+    "notFoundPage": "Page Not Found",
     "goToHome": "go To Home",
     "to": "To",
     "enterPriodOfTime": "Enter the desired period of time",
@@ -303,7 +303,8 @@
     "download": "Download",
     "upload": "upload",
     "limitBySize": "Limit by size",
-    "accessToTheUsersDesktop": "Access to the user desktop"
+    "accessToTheUsersDesktop": "Access to the user desktop",
+    "goToSystem": "Go to the system"
   },
   "groupManagement": {
     "person": "person",
@@ -339,6 +340,7 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
+    "adminList": "Admin List",
     "userInfo": "User Info",
     "adminInfo": "Admin Info",
     "userType": "User type",
