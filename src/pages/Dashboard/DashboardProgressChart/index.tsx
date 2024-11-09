@@ -4,17 +4,23 @@ import { useTranslation } from 'react-i18next';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
 import CaretLeft from '@iconify-icons/ph/caret-left';
+import CaretRight from '@iconify-icons/ph/caret-right';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import ChartBar from '@iconify-icons/ph/chart-bar-duotone';
 import ChartLine from '@iconify-icons/ph/chart-line';
 import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
 import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
+import { useLanguage } from '@context/settings/languageContext';
 
 export function DashboardProgressChart() {
   const [chartType, setChartType] = useState('line');
   const [timeFrame, setTimeFrame] = useState('daily');
   const { t } = useTranslation();
+  const { lang } = useLanguage();
+
+  const farsi = lang === 'fa';
+  const caretLeft = farsi ? CaretLeft : CaretRight;
 
   // mock
   const datasets = [
@@ -71,10 +77,11 @@ export function DashboardProgressChart() {
           <div className="col-span-6 justify-self-end">
             <BaseButton
               label={t('global.domain')}
-              endIcon={CaretLeft}
+              endIcon={caretLeft}
               size="sm"
               type="neutral"
               className="sm:flex hidden"
+              disabled // This button is disabled until the backend provides data for the domain
             />
             <IconButton
               icon={GlobeSimple}
@@ -153,7 +160,7 @@ export function DashboardProgressChart() {
             />
           </div>
         </div>
-        <div className="max-w-[31.25rem] w-full h-[15.625rem] flex [&>*:first-child]:self-end [&>*:first-child]:justify-self-end justify-end">
+        <div className="max-w-[31.25rem] w-full sm:h-[15.625rem] h-auto flex [&>*:first-child]:self-end [&>*:first-child]:justify-self-end justify-end">
           {chartType === 'line' ? (
             <TimeScaleChart datasets={datasets} />
           ) : (
