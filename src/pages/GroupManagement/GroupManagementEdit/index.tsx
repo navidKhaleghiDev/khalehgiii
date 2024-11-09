@@ -12,7 +12,7 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
 import { toast } from 'react-toastify';
 import { GroupManagementEditForm } from './GroupManagementEditForm';
-import { DefaultValueForm, TGroup, TGroupMembers } from '../types';
+import { TGroup, TGroupMembers } from '../types';
 
 const PAGE_SIZE = 5;
 const PAGE = 1;
@@ -34,21 +34,23 @@ export function GroupManagementEdit() {
   const [updateGroup, setUpdateGroup] = useState<TGroup[]>([]);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+
   const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
     id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );
   const group = useMemo(() => data?.data ?? [], [data]);
+
   const {
     control,
     handleSubmit,
     getValues,
     formState: { isDirty },
-  } = useForm<DefaultValueForm>({
+  } = useForm<TGroupUpdate>({
     mode: 'onChange',
     defaultValues: {
-      image: updateGroup?.image,
-      name: updateGroup?.name,
+      image: group?.image || '',
+      name: group?.name || '',
     },
   });
   useEffect(() => {
@@ -75,7 +77,7 @@ export function GroupManagementEdit() {
     [updateGroup, filterQuery, currentPage]
   );
   const handleClickAction = useCallback(
-    (action, row) => {
+    (action: any, row: any) => {
       if (action === 'users' || action === 'admins') {
         const alternateAction = action === 'users' ? 'admins' : 'users';
         if (!updateGroup) return;

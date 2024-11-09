@@ -23,5 +23,23 @@ export type UpdateGroupPayload = {
 
 export type DefaultValueForm = Omit<
   TGroup,
-  'users' | 'admins' | 'created_at' | 'updated_at'
+  'users' | 'admins' | 'created_at' | 'updated_at' | 'id'
 >;
+
+export type TGroupUpdate = {
+  id?: string;
+  users: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
+  admins: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
+  name: string;
+  image?: string | Blob | undefined;
+};

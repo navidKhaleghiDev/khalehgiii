@@ -15,7 +15,7 @@ import {
   groupManagementUserHeaderItem,
 } from '../constants/groupManagementHeaderItem';
 
-export function GroupManagementEditForm(props) {
+export function GroupManagementEditForm(props: any) {
   const {
     setFilterQuery,
     filterQuery,

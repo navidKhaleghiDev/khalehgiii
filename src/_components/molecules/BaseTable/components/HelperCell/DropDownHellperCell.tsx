@@ -5,7 +5,7 @@ import PhCaretDown from '@iconify-icons/ph/caret-down';
 import PhCaretUp from '@iconify-icons/ph/caret-up';
 import { useLanguage } from '@context/settings/languageContext';
 
-function DropDownHelperCell({ onClick, options, defaultValue }) {
+function DropDownHelperCell({ onClick, options, defaultValue }: any) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultValue);
   const { isFarsi } = useLanguage();
@@ -22,7 +22,7 @@ function DropDownHelperCell({ onClick, options, defaultValue }) {
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option: any) => {
     setSelected(option);
     setIsOpen(false);
     if (onClick) {
@@ -44,7 +44,7 @@ function DropDownHelperCell({ onClick, options, defaultValue }) {
         <div
           className={`z-20 absolute ${menuStyle}  bg-white dark:bg-gray-600 border border-gray-200 rounded-lg shadow w-[200px] flex-col`}
         >
-          {options.map((option) => (
+          {options.map((option: any) => (
             <div
               className="cursor-pointer p-1 px-3 flex gap-3 !justify-start border-none h-6 w-full font-light leading-none bg-white text-gray-500 border-[0.063rem] border-gray-200
         hover:bg-gray-100 hover:text-gray-600 text-sm "

@@ -1,31 +1,42 @@
-import DropDownHelperCell from '../HelperCell/DropDownHellperCell';
 import { useTranslation } from 'react-i18next';
+import {
+  ActionOnClickActionsType,
+  BaseTableMenuCellProps,
+  IdItem,
+} from '../../types';
+import DropDownHelperCell from '../HelperCell/DropDownHellperCell';
 
 export function BaseTableDropDownCell<T extends IdItem>(
   props: BaseTableMenuCellProps<T>
 ) {
   const { t } = useTranslation();
-
   const { row, header, onClick } = props;
 
-  const { options, defaultValueLabelKey, translateKey, defaultValueKey } =
-    header.drop;
+  if (header?.type === 'drop') {
+    const { options, defaultValueLabelKey, translateKey, defaultValueKey } =
+      header.drop;
 
-  return (
-    header?.type === 'drop' && (
+    return (
       <div className="flex">
         <DropDownHelperCell
-          onClick={(e) =>
-            onClick ? onClick(e.value, { ...row, value: e.value }) : undefined
+          onClick={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onClick
+              ? onClick(e.target.value as ActionOnClickActionsType, {
+                  ...row,
+                  value: e.target.value,
+                })
+              : undefined
           }
           options={options}
           defaultValue={{
             id: row[defaultValueKey],
-            label: t(`${[translateKey]}.${row[defaultValueLabelKey]}`),
+            label: t(`${translateKey}.${row[defaultValueLabelKey]}`),
             value: row[defaultValueLabelKey],
           }}
         />
       </div>
-    )
-  );
+    );
+  }
+
+  return null;
 }
