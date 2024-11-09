@@ -27,6 +27,7 @@
     "email": "Email",
     "firstNameLastName": "First and Last Name",
     "active": "Active",
+    "deactive": "Deactive",
     "metaAdmin": "Super Admin",
     "dateOfCreated": "Creation Date",
     "lastLogin": "Last Login",
@@ -63,6 +64,7 @@
     "fileType": "File Type",
     "allowedForUpload": "Allowed For Upload",
     "allowedForDownload": "Allowed For Download",
+    "permissions": "Permissions",
     "thisWeek": " This Week",
     "thisMonth": "This Month",
     "accessSetting": "Access Setting",
@@ -75,6 +77,7 @@
     "license_id": "license",
     "licenseExpirationDate": "license Expiration Date",
     "licenseCreation": "license Creation",
+    "lisenceName": "License Name",
     "validLicense": "valid License",
     "httpPort": "HTTP port",
     "httpsPort": "HTTPS port",
@@ -117,6 +120,10 @@
     "userType": "User type",
     "deleteAdmin": "Delete Admin",
     "editAdminInfo": "Edit Admin Info",
+    "addNewFile": "New File",
+    "editFile": "Edit File",
+    "addFile": "Add file",
+    "chooseTypeFileAndLicenses": "Choose type file and licenses",
     "lastLogout": "Last Logout",
     "setting": "Setting",
     "timing": "Timing",
@@ -132,7 +139,11 @@
     "lastTime": "Last Time",
     "recordDate": "Record date",
     "duration": "Duration",
-    "days": "Days"
+    "days": "Days",
+    "deleteFile": " Delete File",
+    "licenseStatus": "Status",
+    "number": "Number",
+    "activeNumbers": "Active Number"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -287,6 +298,7 @@
     "remove": "Delete",
     "sureAboutDeleteUser": "Are you sure want to delete the user?",
     "all": "Select All",
+    "deleteFile": " Delete File",
     "deleteUser": "Delete User",
     "download": "Download",
     "upload": "upload",
@@ -415,6 +427,7 @@
   "setting": {
     "application": "Application",
     "daas": "DaaS",
+    "dlp": "DLP",
     "ssoBaseURL": "SSO base URL",
     "ssoClientID": "SSO client ID",
     "ssoSecret": "SSO Secret",
@@ -428,7 +441,8 @@
     "secretP": "secret",
     "realmP": "realm",
     "sso": "SSO",
-    "manager": "Manager"
+    "manager": "Manager",
+    "saveFile": "Save File"
   },
 
   "regexPattern": {

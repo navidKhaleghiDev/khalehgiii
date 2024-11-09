@@ -94,6 +94,7 @@ export function DaAsList() {
       { revalidate: true }
     );
   }, [mutate]);
+  console.log(data);
 
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
