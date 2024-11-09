@@ -55,13 +55,10 @@ export function LoginOnlineAssistance() {
         </div>
         <div className="w-full flex flex-col items-center h-full gap-12 justify-center">
           <div className="items-center justify-center flex flex-col gap-1 p-5">
-            <Typography
-              variant="body1"
-              className="text-neutral-900 font-semibold"
-            >
+            <Typography variant="body1" className="text-gray-900 font-semibold">
               {t('onlineAssistance.loginType')}
             </Typography>
-            <Typography className="text-neutral-500" variant="body3">
+            <Typography className="text-gray-500" variant="body3">
               {t('onlineAssistance.loginTypeChoose')}
             </Typography>
           </div>
