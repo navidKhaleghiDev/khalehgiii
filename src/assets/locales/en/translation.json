@@ -339,6 +339,7 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
+    "adminList": "Admin List",
     "userInfo": "User Info",
     "adminInfo": "Admin Info",
     "userType": "User type",

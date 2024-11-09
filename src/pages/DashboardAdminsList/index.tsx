@@ -25,7 +25,7 @@ export function DashboardAdminsListPage() {
   return (
     <div className="flex flex-col sm:gap-[1.87rem] gap-5">
       <Typography variant="body2B" color="black">
-        {t('dashboard.adminLists')}
+        {t('adminList.adminList')}
       </Typography>
       <div className="flex items-center sm:self-auto self-center gap-[1.87rem] lg:w-[45.62rem] sm:w-[33.75rem] w-full lg:mb-[6.25rem] mb-2.5">
         <UsersInfoCard
