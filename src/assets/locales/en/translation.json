@@ -178,7 +178,8 @@
   },
   "knowledgeManagement": {
     "recoardeActivite": "Recorded activities",
-    "recordedUserActivate": "Recorded user activities"
+    "recordedUserActivate": "Recorded user activities",
+    "videoSrcError": "Your browser does not support the video tag."
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
