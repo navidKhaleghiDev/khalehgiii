@@ -117,7 +117,7 @@ export function FilterTableList(props: FilterReportsProps) {
         />
       ) : null}
       {buttonLabel ? (
-        <div className={`${dir === 'rtl' ? 'sm:mr-auto' : 'sm::ml-auto'}`}>
+        <div className={`${dir === 'rtl' ? 'mr-auto' : 'ml-auto'}`}>
           <BaseButton
             label={buttonLabel}
             onClick={onClickButton}
