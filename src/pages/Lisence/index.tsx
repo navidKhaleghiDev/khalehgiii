@@ -1,15 +1,15 @@
-import { http } from '@src/services/http';
-import useSWR from 'swr';
-import { E_USERS_LICENSES } from '@src/services/users/endpoint';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+
+import { http } from '@src/services/http';
+import { E_USERS_LICENSES } from '@src/services/users/endpoint';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { IResponsePagination } from '@src/types/services';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { Typography } from '@redesignUi/atoms';
-import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { LicenseFileType } from './type';
@@ -61,17 +61,13 @@ export function License() {
         </Typography>
       </div>
 
-      {isLoading ? (
-        <LoadingSpinner />
-      ) : (
-        <BaseTable
-          body={listLicense as LicenseFileType[]}
-          header={checkPermissionHeaderItem(userPermissions, LisenceHeaderItem)}
-          loading={isLoading}
-          pagination={paginationProps}
-          isMobile={dimensions.width <= 770}
-        />
-      )}
+      <BaseTable
+        body={listLicense as LicenseFileType[]}
+        header={checkPermissionHeaderItem(userPermissions, LisenceHeaderItem)}
+        loading={isLoading}
+        pagination={paginationProps}
+        isMobile={dimensions.width <= 770}
+      />
     </div>
   );
 }

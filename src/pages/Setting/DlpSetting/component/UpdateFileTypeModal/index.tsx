@@ -164,7 +164,7 @@ export function UpdateFileTypeModal({
       null}
 
       <div className="flex justify-center col-span-6">
-        {showConfirm && (
+        {showConfirm ? (
           <div className="flex justify-center items-center w-full">
             <Typography className="mx-2">{t('global.areYouSure')}</Typography>
 
@@ -183,9 +183,9 @@ export function UpdateFileTypeModal({
               onClick={() => setShowConfirm(false)}
             />
           </div>
-        )}
+        ) : null}
 
-        {!showConfirm && (
+        {!showConfirm ? (
           <div className="flex gap-2.5">
             <BaseButton
               label={t('global.confirm')}
@@ -199,7 +199,7 @@ export function UpdateFileTypeModal({
               onClick={() => setOpenUpdateModal(false)}
             />
           </div>
-        )}
+        ) : null}
       </div>
     </form>
   );
