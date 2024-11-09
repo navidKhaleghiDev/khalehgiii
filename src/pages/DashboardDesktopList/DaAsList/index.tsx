@@ -57,7 +57,6 @@ const PAGE_SIZE = 5;
 const PAGE = 1;
 
 export function DaAsList() {
-  // const { mutate } = useSWRConfig();
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
@@ -87,7 +86,6 @@ export function DaAsList() {
     endpoint,
     http.fetcherSWR
   );
-
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
