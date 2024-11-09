@@ -7,7 +7,7 @@ export const baseDropDownStyles = cva(
     variants: {
       intent: {
         default:
-          'bg-neutral-100 text-neutral-500 border border-2 border-neutral-500 focus:border-teal-600 focus:text-teal-500 focus:placeholder-teal-500 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:shadow-none',
+          'bg-gray-100 text-gray-500 border border-2 border-gray-500 focus:border-teal-600 focus:text-teal-500 focus:placeholder-teal-500 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-400 disabled:shadow-none',
         error:
           'text-red-600 border border-2 border-red-600 placeholder-red-400',
       },
@@ -33,7 +33,7 @@ export const baseDropDownStyles = cva(
 );
 
 export const optionSelectStyles = cva(
-  'absolute block bg-neutral-100 rounded text-right mt-2 border-2 border-teal-500 max-h-28 overflow-y-auto z-10 flex flex-col',
+  'absolute block bg-gray-100 rounded text-right mt-2 border-2 border-teal-500 max-h-28 overflow-y-auto z-10 flex flex-col',
   {
     variants: {
       isShow: {

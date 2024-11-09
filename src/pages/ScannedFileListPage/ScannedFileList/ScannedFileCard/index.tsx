@@ -31,7 +31,7 @@ export function ScannedFileCard({
         color="neutral"
         className={`${isHeader && 'bg-teal-500 text-white relative'} flex ${
           isHeader ? 'h-10' : 'h-14'
-        } items-center px-2 my-2 w-full text-neutral-600`}
+        } items-center px-2 my-2 w-full text-gray-600`}
       >
         <div className={overflowUiStyle.div}>
           <Typography

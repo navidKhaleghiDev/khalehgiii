@@ -14,7 +14,7 @@ export function DownloadAndUploadAccess({
     <div className="flex flex-col w-full col-span-6">
       <div className="flex flex-row w-full justify-between pb-1.5 mb-1.5 border-b border-b-gray-100">
         <div className="rtl:text-right ltr:text-left">
-          <Typography variant="body5B" color="neutralDark">
+          <Typography variant="body5B" color="neutralDark" className="pb-1">
             {t('global.download')}
           </Typography>
           <Typography variant="body6" color="neutral">
@@ -33,7 +33,7 @@ export function DownloadAndUploadAccess({
       </div>
       <div className="flex flex-row w-full justify-between">
         <div className="rtl:text-right ltr:text-left">
-          <Typography variant="body5B" color="neutralDark">
+          <Typography variant="body5B" color="neutralDark" className="pb-1">
             {t('global.upload')}
           </Typography>
           <Typography variant="body6" color="neutral">
