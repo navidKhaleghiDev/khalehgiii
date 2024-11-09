@@ -70,7 +70,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
                 : 'text-gray-200'
             }  ${
               disabled
-                ? 'text-gray-200 dark:text-gray-800'
+                ? 'text-gray-300 dark:text-gray-500'
                 : 'text-gray-500 dark:text-white'
             }`}
           >

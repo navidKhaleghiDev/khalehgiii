@@ -5,7 +5,7 @@ export const headerStyles = cva('rounded-full p-2 dark:bg-gray-700', {
     type: {
       error: 'bg-red-100',
       success: 'bg-teal-100',
-      info: 'bg-neutral-100',
+      info: 'bg-gray-100',
       content: '',
       noneIcon: '',
     },

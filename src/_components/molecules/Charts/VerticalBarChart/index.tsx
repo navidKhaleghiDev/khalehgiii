@@ -12,6 +12,8 @@ import {
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
+import { useTheme } from '@context/settings/themeContext';
+
 ChartJS.register(
   TimeScale,
   LinearScale,
@@ -36,6 +38,8 @@ export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
     datasets,
   };
 
+  const { isDark } = useTheme();
+
   const options: ChartOptions<'bar'> = {
     responsive: true,
     scales: {
@@ -48,11 +52,29 @@ export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
           display: false,
           text: 'Date',
         },
+        ticks: {
+          color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+        },
+        grid: {
+          color: isDark
+            ? 'rgba(156, 163, 175, 0.5)'
+            : 'rgba(104, 104, 104, 0.5)',
+          lineWidth: 1,
+        },
       },
       y: {
         title: {
           display: false,
           text: 'Value',
+        },
+        ticks: {
+          color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+        },
+        grid: {
+          color: isDark
+            ? 'rgba(156, 163, 175, 0.5)'
+            : 'rgba(104, 104, 104, 0.5)',
+          lineWidth: 1,
         },
       },
     },

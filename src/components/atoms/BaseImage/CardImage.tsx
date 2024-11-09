@@ -8,7 +8,7 @@ export function CardImage({ src, alt, className }: Partial<IBaseImage>) {
   return (
     <Card
       color="neutral"
-      className={`bg-neutral-200 flex justify-center items-center ${className}`}
+      className={`bg-gray-200 flex justify-center items-center ${className}`}
     >
       {src ? (
         <ResponsiveImage src={src} alt={alt ?? ''} />

@@ -2,7 +2,7 @@ import { PALLET, SIZE } from '@src/constants/theme';
 import { cva } from 'class-variance-authority';
 
 const disabledClass =
-  'disabled:opacity-100 disabled:bg-neutral-100 disabled:text-neutral-400 disabled:border-neutral-400 disabled:border-2 disabled:shadow-none ';
+  'disabled:opacity-100 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-400 disabled:border-2 disabled:shadow-none ';
 
 export const baseButtonStyles = cva(
   `flex items-center justify-center transition duration-150 ease-in-out rounded-md focus:outline-none p-px  dark:bg-black ${SIZE.TYPOGRAPHY.BODY2} ${disabledClass}`,
@@ -10,12 +10,12 @@ export const baseButtonStyles = cva(
     variants: {
       type: {
         default: `${PALLET.BUTTON_COLOR.TEAL}`,
-        inactive: `${PALLET.BUTTON_COLOR.NEUTRAL} border border-neutral-600`,
+        inactive: `${PALLET.BUTTON_COLOR.NEUTRAL} border border-gray-600`,
         shadow: `${PALLET.BUTTON_COLOR.SHADOW}`,
         secondary: `${PALLET.BUTTON_COLOR.YELLOW}`,
         red: `${PALLET.BUTTON_COLOR.RED}`,
         redBorder: `bg-white  border border-red-500 text-red-500  hover:bg-red-100 `,
-        tealLink: `text-teal-600 hover:bg-neutral-200 rounded-none`,
+        tealLink: `text-teal-600 hover:bg-gray-200 rounded-none`,
         textLink: `hover:text-teal-800 rounded-none`,
       },
       size: {
@@ -40,7 +40,7 @@ export const iconInButtonStyles = cva('fill-current ', {
   variants: {
     type: {
       default: `${PALLET.BUTTON_COLOR.TEAL}`,
-      inactive: `${PALLET.BUTTON_COLOR.NEUTRAL} border border-neutral-600`,
+      inactive: `${PALLET.BUTTON_COLOR.NEUTRAL} border border-gray-600`,
       shadow: `bg-white text-teal-600 shadow-lg`,
       secondary: `${PALLET.BUTTON_COLOR.YELLOW}`,
       red: `${PALLET.BUTTON_COLOR.RED} `,
@@ -67,12 +67,12 @@ export const iconButtonStyles = cva(
   {
     variants: {
       color: {
-        teal: 'bg-teal-600 text-neutral-100 dark:bg-gray-600 ',
+        teal: 'bg-teal-600 text-gray-100 dark:bg-gray-600 ',
         tealNoBg: 'text-teal-600',
-        neutral: 'bg-neutral-200 text-teal-600',
-        neutralNoBg: 'text-neutral-600',
+        neutral: 'bg-gray-200 text-teal-600',
+        neutralNoBg: 'text-gray-600',
 
-        yellow: 'bg-yellow-600 text-neutral-100',
+        yellow: 'bg-yellow-600 text-gray-100',
         red: 'bg-red-100 text-red-600',
         redBorder: `bg-white  border border-red-500 text-red-500  hover:bg-red-100 `,
         redNoBg: 'text-red-600',

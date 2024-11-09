@@ -2,7 +2,7 @@ import { PALLET } from '@src/constants/theme';
 import { cva } from 'class-variance-authority';
 
 export const titleStyles = cva(
-  `flex items-center bg-neutral-100 h-10 my-4 w-full rounded-md`,
+  `flex items-center bg-gray-100 h-10 my-4 w-full rounded-md`,
   {
     variants: {
       active: {

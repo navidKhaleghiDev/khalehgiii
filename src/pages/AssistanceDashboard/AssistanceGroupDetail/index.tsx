@@ -93,7 +93,7 @@ export function AssistanceGroupDetail({
           return (
             <div
               key={member.id}
-              className="bg-neutral-100 rounded-lg p-2 h-12 col-span-10 md:col-span-6 xl:col-span-4 flex"
+              className="bg-gray-100 rounded-lg p-2 h-12 col-span-10 md:col-span-6 xl:col-span-4 flex"
             >
               <div className="flex  gap-4 items-center mx-2">
                 <ToolTip
