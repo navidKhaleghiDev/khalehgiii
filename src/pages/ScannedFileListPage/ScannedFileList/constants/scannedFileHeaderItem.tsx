@@ -4,7 +4,7 @@ import {
 } from '@redesignUi/molecules/BaseTable/types';
 import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
 import { ErrorIcon } from '@src/pages/FIleReports/ReportFileScanPage/Components/ErrorIcon';
-import { EPermissionScanReports } from '@src/types/permissions';
+// import { EPermissionScanReports } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { IScannedFile } from '@src/services/analyze/types';
 
@@ -13,13 +13,13 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.fileName',
     id: 'file_name',
     type: 'none',
-    class: 'px-2 sm:w-2/12 max-w-[70px]',
+    class: 'px-2 md:w-2/12 w-8/12',
   },
   {
     label: 'table.type',
     id: 'file_content_type',
     type: 'none',
-    class: 'px-5 w-2/12',
+    class: 'w-2/12',
     isMobileCollapsed: true,
   },
   {
@@ -62,6 +62,14 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     isMobileCollapsed: true,
   },
   {
+    id: 'scan_result_all',
+    type: 'component',
+    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
+      <ErrorIcon data={props} />
+    ),
+    class: 'w-1/12 justify-center',
+  },
+  {
     id: 'download',
     type: 'action',
     action: [
@@ -71,15 +79,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
         color: 'neutralNoBg',
       },
     ],
-    class: 'w-1/12 mr-auto',
-    permission: EPermissionScanReports.CHANGE,
-  },
-  {
-    id: 'scan_result_all',
-    type: 'component',
-    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
-      <ErrorIcon data={props} />
-    ),
-    class: 'mr-auto w-1/12',
+    class: 'w-1/12',
+    // permission: EPermissionScanReports.CHANGE,
   },
 ];
