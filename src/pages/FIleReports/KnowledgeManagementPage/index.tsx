@@ -11,7 +11,7 @@ export function KnowledgeManagementPage() {
     <>
       <Typography
         color="black"
-        className="text-sm sm:text-xl font-semibold mb-10"
+        className="text-sm sm:text-xl font-semibold mb-[1.875rem]"
       >
         {t('global.knowledgeManagement')}
       </Typography>
