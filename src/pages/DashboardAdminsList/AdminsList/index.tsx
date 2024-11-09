@@ -156,7 +156,9 @@ export function AdminsList() {
         icon={activeAdmin ? PhPencilSimple : PhUserCirclePlus}
         open={openUpdateModal}
         title={
-          activeAdmin ? t('adminList.adminInfo') : t('adminList.createNewAdmin')
+          activeAdmin
+            ? t('adminList.editInformation')
+            : t('adminList.createNewAdmin')
         }
         descriptionInfo={
           activeAdmin

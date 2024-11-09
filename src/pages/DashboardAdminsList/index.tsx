@@ -23,11 +23,11 @@ export function DashboardAdminsListPage() {
   const totalAdmins = adminData?.data?.count ?? 0;
 
   return (
-    <div className="flex flex-col sm:gap-[1.87rem] gap-5 mt-5">
+    <div className="flex flex-col sm:gap-[1.87rem] gap-5">
       <Typography variant="body2B" color="black">
         {t('dashboard.adminLists')}
       </Typography>
-      <div className="flex items-center sm:self-auto self-center gap-[1.87rem] lg:w-[45.62rem] sm:w-[33.75rem] w-full lg:mb-[5.62rem] mb-2.5">
+      <div className="flex items-center sm:self-auto self-center gap-[1.87rem] lg:w-[45.62rem] sm:w-[33.75rem] w-full lg:mb-[6.25rem] mb-2.5">
         <UsersInfoCard
           icon={User}
           title={t('header.admin')}

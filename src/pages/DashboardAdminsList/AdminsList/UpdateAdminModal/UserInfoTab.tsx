@@ -30,7 +30,7 @@ export function UserInfoTab({
   return (
     <div className="p-5 rtl:pr-0 ltr:pl-0 h-[30.37rem] overflow-y-scroll">
       <div className="border-gray-300 border-b-[0.06rem]">
-        <div className="sm:flex-row flex flex-col sm:justify-between items-start gap-5">
+        <div className="sm:flex-row flex flex-col sm:justify-between items-start sm:gap-5">
           <BaseInputController
             dir={dir}
             fullWidth
@@ -62,7 +62,7 @@ export function UserInfoTab({
             startIcon={dir === 'ltr' ? iconName : undefined}
           />
         </div>
-        <div className="sm:flex-row flex flex-col sm:justify-between items-start w-full gap-5">
+        <div className="sm:flex-row flex flex-col sm:justify-between items-start w-full sm:gap-5">
           <BaseInputController
             dir={dir}
             fullWidth
@@ -72,7 +72,7 @@ export function UserInfoTab({
             placeholder={t('global.userName')}
             label={t('global.userName')}
             rules={{
-              pattern: regexPattern.englishLetter,
+              pattern: regexPattern.email,
               required: regexPattern.required,
             }}
             endIcon={dir === 'rtl' ? iconName : undefined}
