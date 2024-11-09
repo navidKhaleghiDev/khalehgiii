@@ -1,27 +1,26 @@
-import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
 
-import pluse from '@iconify-icons/ph/plus-bold';
-import { BaseButton, Dropdown } from '@redesignUi/atoms';
+import { BaseButton } from '@redesignUi/atoms';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { useLanguage } from '@context/settings/languageContext';
-import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
-import { TGroup } from '@src/services/users/types';
-import { IResponseData } from '@src/types/services';
-import { E_USERS_GROUPS } from '@src/services/users/endpoint';
-import { http } from '@src/services/http';
+import pluse from '@iconify-icons/ph/plus-bold';
+import GlobeSimple from '@iconify-icons/ph/globe-simple';
+import caretLeft from '@iconify-icons/ph/caret-left';
+import caretRight from '@iconify-icons/ph/caret-right';
+import sortAscending from '@iconify-icons/ph/sort-ascending';
+import PhUsersThree from '@iconify-icons/ph/users-three';
 
 import { FilterReportsProps } from './types';
-import { domainsMock } from './constants';
 
-export default function FilterTableList(props: FilterReportsProps) {
+export function FilterTableList(props: FilterReportsProps) {
   const {
     searchQuery,
     searchPlaceholder,
     domainFilter,
     buttonLabel,
     handelSearchQuery,
+    sortFilter,
     handelGroupeFilter,
     onClickButton,
   } = props;
@@ -29,31 +28,34 @@ export default function FilterTableList(props: FilterReportsProps) {
   const { t } = useTranslation();
   const { dir } = useLanguage();
 
-  const { data, isLoading, error } = useSWR<IResponseData<TGroup[]>>(
-    E_USERS_GROUPS,
-    http.fetcherSWR
-  );
-
-  const daasGroups: OptionSelect[] = useMemo(
-    () =>
-      data?.data.map((item) => ({
-        id: String(item.id),
-        label: item.name,
-        value: item.name,
-      })) ?? [],
-    [data]
-  );
+  // This functionality does not work cause we do not have service call
+  //
+  // const { data, isLoading, error } = useSWR<IResponseData<TGroup[]>>(
+  //   E_USERS_GROUPS,
+  //   http.fetcherSWR
+  // );
+  // const daasGroups: OptionSelect[] = useMemo(
+  //   () =>
+  //     data?.data.map((item) => ({
+  //       id: String(item.id),
+  //       label: item.name,
+  //       value: item.name,
+  //     })) ?? [],
+  //   [data]
+  // );
 
   const conditionOne = buttonLabel && !handelGroupeFilter && !domainFilter;
+  const isFarsi = dir === 'rtl';
+  const caret = isFarsi ? caretLeft : caretRight;
 
   return !conditionOne ? (
-    <div className="flex items-center justify-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1.45rem] sm:gap-x-[1.875rem]">
+    <div className="flex items-center sm:justify-start flex-wrap sm:flex-nowrap gap-y-2.5 gap-x-[1rem] sm:gap-x-[1.875rem]">
       <div
         className={` ${
           buttonLabel || handelGroupeFilter
-            ? 'max-w-[380px] '
-            : 'w-[160px] sm:w-[360px]'
-        } order-last sm:order-none`}
+            ? 'w-full sm:max-w-[22.5rem]'
+            : 'w-40 sm:w-[22.5rem]'
+        } order-last w-full sm:order-none`}
       >
         <SearchInput
           id="adminSearch"
@@ -63,32 +65,55 @@ export default function FilterTableList(props: FilterReportsProps) {
           placeholder={searchPlaceholder}
           hiddenError
           fullWidth
-          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          dir={isFarsi ? 'rtl' : 'ltr'}
           className={`${
-            buttonLabel || handelGroupeFilter ? 'w-[350px]' : 'w-[160px]'
-          } sm:w-full`}
+            buttonLabel || handelGroupeFilter ? 'w-[21.875rem]' : 'w-40'
+          } w-full`}
         />
       </div>
       {/* This item does not work does not have service */}
       {domainFilter ? (
-        <Dropdown
-          name="domain"
-          onChange={() =>
-            console.log('This dropDown functionality is not ready')
-          }
-          options={domainsMock}
-          placeHolder={t('global.choseDomain')}
-          size="sm"
-        />
+        <div>
+          <BaseButton
+            label={t('global.choseDomain')}
+            endIcon={caret}
+            type="neutral"
+            className="sm:flex hidden w-[160px]"
+            disabled
+          />
+          <IconButton
+            icon={GlobeSimple}
+            color="neutral"
+            className="sm:hidden flex"
+            disabled
+          />
+        </div>
       ) : null}
+      {/* This item does not work does not have service */}
       {handelGroupeFilter ? (
-        <Dropdown
-          name="group"
-          onChange={handelGroupeFilter}
-          options={daasGroups}
-          placeHolder={t('global.grouping')}
-          disabled={isLoading || error}
-          size="sm"
+        <div>
+          <BaseButton
+            label={t('global.grouping')}
+            endIcon={caret}
+            type="neutral"
+            className="sm:flex hidden w-40"
+            disabled
+          />
+          <IconButton
+            icon={PhUsersThree}
+            color="neutral"
+            className="sm:hidden flex"
+            disabled
+          />
+        </div>
+      ) : null}
+      {/* This item does not work does not have service */}
+      {sortFilter ? (
+        <IconButton
+          icon={sortAscending}
+          color="neutral"
+          className="sm:hidden flex"
+          disabled
         />
       ) : null}
       {buttonLabel ? (
@@ -102,8 +127,8 @@ export default function FilterTableList(props: FilterReportsProps) {
       ) : null}
     </div>
   ) : (
-    <div className="flex items-center justify-between">
-      <div className="w-40 sm:w-[21.87rem]">
+    <div className="flex items-center justify-between gap-[1.875rem]">
+      <div className="w-full sm:w-[21.87rem]">
         <SearchInput
           id="search"
           name="search"
@@ -112,14 +137,16 @@ export default function FilterTableList(props: FilterReportsProps) {
           placeholder={searchPlaceholder}
           hiddenError
           fullWidth
-          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          dir={isFarsi ? 'rtl' : 'ltr'}
         />
       </div>
-      <BaseButton
-        label={buttonLabel}
-        onClick={onClickButton}
-        startIcon={pluse}
-      />
+      <div className="w-40">
+        <BaseButton
+          label={buttonLabel}
+          onClick={onClickButton}
+          startIcon={pluse}
+        />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { NoResult } from '@redesignUi/molecules/NoResult';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
