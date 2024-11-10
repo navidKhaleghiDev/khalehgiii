@@ -126,7 +126,7 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable
-            body={listDaas}
+            body={listDaas.slice(0, listDaas.length - 1)}
             header={checkPermissionHeaderItem(
               userPermissions,
               scannedFileHeaderItem
