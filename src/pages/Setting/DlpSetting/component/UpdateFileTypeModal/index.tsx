@@ -14,10 +14,14 @@ import PhFile from '@iconify-icons/ph/file';
 import { FileTypeProp } from '@src/pages/Setting/type';
 import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
-// import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
-// import PhDownloadSimple from '@iconify-icons/ph/download-simple';
-// import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-// import { useLanguage } from '@context/settings/languageContext';
+import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
+import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+import { useLanguage } from '@context/settings/languageContext';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { EPermissionDaas } from '@src/types/permissions';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -33,13 +37,17 @@ export function UpdateFileTypeModal({
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
+  const userPermissions = useUserPermission();
 
-  // need new api
-  // const { lang } = useLanguage();
-  // const inputStyle = 'col-span-6 lg:col-span-4 h-16';
-  // const direction = lang === 'fa' ? 'rtl' : 'ltr';
+  const { lang } = useLanguage();
+  const inputStyle = 'col-span-6 lg:col-span-4 h-16';
+  const direction = lang === 'fa' ? 'rtl' : 'ltr';
+  const hasChangePermission = checkPermission(
+    userPermissions,
+    EPermissionDaas.CHANGE
+  );
 
-  const { control, handleSubmit, watch } = useForm<FileTypeProp>({
+  const { control, handleSubmit, watch, formState } = useForm<FileTypeProp>({
     mode: 'onChange',
     defaultValues: {
       id: fileType?.id,
@@ -47,6 +55,8 @@ export function UpdateFileTypeModal({
       allowed_for_download: fileType?.allowed_for_download ?? false,
       allowed_for_upload: fileType?.allowed_for_upload ?? false,
       is_active: fileType?.is_active ?? false,
+      upload_file_size_mb: fileType?.upload_file_size_mb,
+      download_file_size_mb: fileType?.download_file_size_mb,
     },
   });
 
@@ -96,13 +106,14 @@ export function UpdateFileTypeModal({
           placeholder=".txt"
           label={t('table.fileType')}
           endIcon={PhFile}
+          dir={direction}
           size="md"
           rules={{
             pattern: regexPattern.wordStartedWithPointAndEn,
             required: regexPattern.required,
           }}
         />
-        <div className="mb-5 self-end">
+        <div className="mb-5 self-start sm:self-end">
           <BaseSwitchController
             id="is_active"
             name="is_active"
@@ -112,29 +123,22 @@ export function UpdateFileTypeModal({
         </div>
       </div>
       {access ? (
-        <div className="gap-8 grid-flow-row-dense grid col-span-6 sm:grid-cols-3 pb-5">
-          <BaseCheckBoxController
-            control={control}
-            id="allowed_for_upload"
-            name="allowed_for_upload"
-            label={t('table.allowedForUpload')}
-          />
-          <BaseCheckBoxController
-            control={control}
-            id="allowed_for_download"
-            name="allowed_for_download"
-            label={t('table.allowedForDownload')}
-          />
-        </div>
-      ) : /* It does not currently have an API
-      /* <div className="flex w-full gap-[1.87rem]">
+        <div className="flex-col sm:flex-row flex w-full gap-x-[1.87rem]">
+          <div className="whitespace-nowrap">
+            <BaseCheckBoxController
+              control={control}
+              id="allowed_for_upload"
+              name="allowed_for_upload"
+              label={t('table.allowedForUpload')}
+              className="py-5"
+            />
             <div className={inputStyle}>
               <BaseInputNumberController
-                id="max_transmission_upload_size"
-                name="max_transmission_upload_size"
+                id="upload_file_size_mb"
+                name="upload_file_size_mb"
                 control={control}
                 label={t('table.maxUploadSize')}
-                // disabled={!hasChangePermission}
+                disabled={!hasChangePermission}
                 placeholder="50"
                 icon={PhUploadSimple}
                 dir={direction}
@@ -144,15 +148,24 @@ export function UpdateFileTypeModal({
                 }}
               />
             </div>
+          </div>
+          <div className="whitespace-nowrap">
+            <BaseCheckBoxController
+              control={control}
+              id="allowed_for_download"
+              name="allowed_for_download"
+              label={t('table.allowedForDownload')}
+              className="py-5"
+            />
             <div className={inputStyle}>
               <BaseInputNumberController
-                id="max_transmission_download_size"
-                name="max_transmission_download_size"
+                id="download_file_size_mb"
+                name="download_file_size_mb"
                 control={control}
                 label={t('table.maxDownloadSize')}
-                // disabled={!hasChangePermission}
-                placeholder="500"
-                icon={PhDownloadSimple}
+                disabled={!hasChangePermission}
+                placeholder="50"
+                icon={PhUploadSimple}
                 dir={direction}
                 max={500}
                 rules={{
@@ -160,8 +173,9 @@ export function UpdateFileTypeModal({
                 }}
               />
             </div>
-          </div> */
-      null}
+          </div>
+        </div>
+      ) : null}
 
       <div className="flex justify-center col-span-6">
         {showConfirm ? (
@@ -193,6 +207,7 @@ export function UpdateFileTypeModal({
               label={t('global.confirm')}
               size="md"
               onClick={() => setShowConfirm(true)}
+              disabled={!formState.isDirty}
             />
             <BaseButton
               label={t('global.cancel')}
