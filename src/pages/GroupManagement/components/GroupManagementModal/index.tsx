@@ -18,6 +18,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
+import { GroupModalForm } from '@src/pages/Dashboard/GroupManagement/GroupModal/GroupModalForm';
 
 /**
  * `GroupModal` component is used for creating or editing a user group. It includes a form

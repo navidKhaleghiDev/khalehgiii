@@ -1,4 +1,5 @@
 export type TGroupMembers = {
+  value?: 'users' | 'admins';
   id: string;
   email: string;
   is_running?: boolean;

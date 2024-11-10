@@ -31,7 +31,16 @@ export function GroupManagementEdit() {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [updateGroup, setUpdateGroup] = useState<TGroup[]>([]);
+  const [updateGroup, setUpdateGroup] = useState<TGroup>(() => ({
+    id: undefined,
+    users: [],
+    admins: [],
+    name: '',
+    created_at: undefined,
+    updated_at: undefined,
+    image: undefined,
+  }));
+
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -39,8 +48,17 @@ export function GroupManagementEdit() {
     id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );
-  const group = useMemo(() => data?.data ?? [], [data]);
-
+  const group: TGroup = useMemo(
+    () =>
+      (data?.data as unknown as TGroup) ??
+      ({
+        users: [],
+        admins: [],
+        name: '',
+        image: undefined,
+      } as TGroup),
+    [data]
+  );
   const {
     control,
     handleSubmit,
@@ -58,7 +76,10 @@ export function GroupManagementEdit() {
   }, [group]);
   const paginatedData = useCallback(
     (key: keyof TGroup) => {
-      const fullData: TGroupMembers[] = updateGroup[key] || [];
+      const fullData: TGroupMembers[] = Array.isArray(updateGroup[key])
+        ? (updateGroup[key] as TGroupMembers[])
+        : [];
+      console.log(fullData);
       const updatedDataByLabel = fullData.map((g) => {
         return { ...g, value: key };
       });
@@ -76,31 +97,37 @@ export function GroupManagementEdit() {
     },
     [updateGroup, filterQuery, currentPage]
   );
+
   const handleClickAction = useCallback(
-    (action: any, row: any) => {
+    (action: 'users' | 'admins' | 'delete', row: TGroupMembers) => {
+      if (!updateGroup) return;
+
       if (action === 'users' || action === 'admins') {
-        const alternateAction = action === 'users' ? 'admins' : 'users';
-        if (!updateGroup) return;
+        const alternateAction: 'users' | 'admins' =
+          action === 'users' ? 'admins' : 'users';
+
         const existsInAction = updateGroup[action].some((m) => m.id === row.id);
         if (existsInAction) return;
+
         const updatedMember = updateGroup[alternateAction].filter(
           (m) => m.id !== row.id
         );
-        setUpdateGroup((prev) => {
-          return {
-            ...prev,
-            [alternateAction]: updatedMember,
-            [action]: [row, ...prev[action]],
-          };
-        });
+
+        setUpdateGroup((prev) => ({
+          ...prev,
+          [alternateAction]: updatedMember,
+          [action]: [row, ...prev[action]],
+        }));
       } else if (action === 'delete') {
-        const key = row.value;
+        const key = row.value as 'users' | 'admins';
         const updateAndRemovedData = updateGroup[key].filter(
           (item) => item.id !== row.id
         );
-        setUpdateGroup((prev) => {
-          return { ...prev, [key]: updateAndRemovedData };
-        });
+
+        setUpdateGroup((prev) => ({
+          ...prev,
+          [key]: updateAndRemovedData,
+        }));
       }
     },
     [updateGroup]
@@ -108,7 +135,10 @@ export function GroupManagementEdit() {
   const handleUpdateGroup = async () => {
     if (!updateGroup) return;
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(buildFormData(updateGroup), updateGroup?.id)
+    await API_USERS_GROUPS_UPDATE(
+      buildFormData(updateGroup),
+      updateGroup?.id as string
+    )
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         mutate();
