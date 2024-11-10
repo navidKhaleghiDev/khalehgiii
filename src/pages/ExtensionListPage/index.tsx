@@ -12,7 +12,7 @@ export function DashboardExtensionListPage() {
       <Typography
         variant="body2B"
         color="neutralDark"
-        className="mb-5 md:mb-[6.25rem]"
+        className="mb-[1.875rem]"
       >
         {t('systemManagement.formatList')}
       </Typography>
