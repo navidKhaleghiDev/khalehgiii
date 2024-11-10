@@ -7,6 +7,7 @@ import X from '@iconify-icons/ph/x';
 import Check from '@iconify-icons/ph/check';
 import TrashSimple from '@iconify-icons/ph/trash-simple';
 import LockLaminated from '@iconify-icons/ph/lock-laminated';
+import PhWarning from '@iconify-icons/ph/warning';
 import Home from '@iconify-icons/ph/house';
 
 import { containerStyles, headerStyles } from './styles';
@@ -29,6 +30,11 @@ function iconHeader(type: ModalProps['type']): IconHeader {
       return {
         icon: Check,
         color: 'text-teal-500 bg-teal-200 dark:text-teal-400 dark:bg-gray-800',
+      };
+    case 'warning':
+      return {
+        icon: PhWarning,
+        color: 'text-red-600 bg-red-200 dark:text-red-400 dark:bg-gray-800',
       };
     case 'info':
       return {

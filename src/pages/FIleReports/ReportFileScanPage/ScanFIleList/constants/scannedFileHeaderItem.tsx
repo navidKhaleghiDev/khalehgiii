@@ -62,6 +62,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     isMobileCollapsed: true,
   },
   {
+    label: 'table.virusWarning',
     id: 'scan_result_all',
     type: 'component',
     component: (props: BaseTableComponentCellProps<IScannedFile>) => (
@@ -70,6 +71,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     class: 'w-1/12 mr-auto',
   },
   {
+    label: 'table.downloadRecord',
     id: 'download',
     type: 'action',
     action: [
@@ -80,6 +82,6 @@ export const scannedFileHeaderItem: HeaderTable[] = [
       },
     ],
     class: 'w-1/12 mr-auto',
-    permission: EPermissionScanReports.CHANGE,
+    permission: EPermissionScanReports.VIEW,
   },
 ];

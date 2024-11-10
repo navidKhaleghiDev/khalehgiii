@@ -12,6 +12,8 @@
     "admin": "ادمین"
   },
   "table": {
+    "virusWarning": " ",
+    "downloadRecord": "",
     "admin": "ادمین",
     "user": "کاربر",
     "name": "نام",

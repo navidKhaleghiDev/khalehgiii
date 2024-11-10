@@ -28,14 +28,16 @@ export function ErrorIcon({ data }: TagProps) {
           onClick={() => setOpenDetailsModal(true)}
         />
       ) : null}
-      <Modal
-        open={openDetailsModal}
-        setOpen={setOpenDetailsModal}
-        type="content"
-        size="responsive"
-        icon={PhWarning}
-        content={<DetailsContentModal scannedFile={data.row} />}
-      />
+      <div dir="ltr">
+        <Modal
+          open={openDetailsModal}
+          setOpen={setOpenDetailsModal}
+          type="warning"
+          size="responsive"
+          icon={PhWarning}
+          content={<DetailsContentModal scannedFile={data.row} />}
+        />
+      </div>
     </div>
   );
 }

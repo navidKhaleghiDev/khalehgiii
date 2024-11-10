@@ -11,6 +11,8 @@
     "admin": "Admin"
   },
   "table": {
+    "virusWarning": " ",
+    "downloadRecord": "",
     "admin": "Administrator",
     "user": "User",
     "name": "Username",

@@ -12,13 +12,14 @@ export function DetailsContentModal({ scannedFile }: PropsType) {
         <div key={item}>
           {scannedFile?.[`${item}_scan_result` as keyof IScannedFile] ? (
             <>
-              <Typography
-                variant="body3B"
-                className="flex justify-end items-center"
-              >
+              <Typography variant="body3B" className="text-start">
                 {item}
               </Typography>
-              <Typography variant="body5" color="neutral" className="text-end">
+              <Typography
+                variant="body5"
+                color="neutral"
+                className="text-start"
+              >
                 {scannedFile?.[`${item}_scan_summary` as keyof IScannedFile]}
               </Typography>
             </>

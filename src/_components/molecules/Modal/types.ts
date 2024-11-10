@@ -31,7 +31,7 @@ interface BaseModalProps extends VariantProps<typeof headerStyles> {
 }
 
 interface ModalWithContent extends BaseModalProps {
-  type: 'content';
+  type: 'content' | 'warning';
   content: ReactElement;
 }
 
