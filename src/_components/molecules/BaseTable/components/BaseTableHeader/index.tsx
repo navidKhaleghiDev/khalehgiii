@@ -45,7 +45,11 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
         );
       })}
       {collapse && (
-        <tr className={`w-1/12 h-10 ${!menu ? directionStyle : ''}`} />
+        <tr
+          className={`w-1/12 flex justify-end sm:px-4 h-10 ${
+            !menu ? directionStyle : ''
+          }`}
+        />
       )}
     </thead>
   );
