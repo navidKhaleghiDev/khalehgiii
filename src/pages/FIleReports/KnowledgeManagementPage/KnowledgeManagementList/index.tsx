@@ -8,8 +8,8 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
+import { NoResult } from '@redesignUi/molecules/NoResult';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { NoResult } from '@ui/molecules/NoResult';
 import { http } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
@@ -33,10 +33,6 @@ export function KnowledgeManagementList() {
     loading?: boolean;
     file?: string;
   } | null>(null);
-  // This functionality is handling the groupe locally
-  // const [filterGroupe, setFilterGroupe] = useState<
-  //   OptionSelect | OptionSelect[] | null
-  // >();
 
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
@@ -91,15 +87,6 @@ export function KnowledgeManagementList() {
     onPageChange: (page: number) => setCurrentPage(page),
   };
 
-  // This functionality is handling the groupe locally
-  // const filterListDass = listDaas
-  //   ? listDaas.filter((item) =>
-  //       item.group_name?.some((itemMember) =>
-  //         Object.keys(itemMember).includes(filterList as string)
-  //       )
-  //     )
-  //   : listDaas;
-
   const flattedListDass = listDaas?.map((item) => ({
     ...item,
     admin_email: item.admin.email,
@@ -115,7 +102,7 @@ export function KnowledgeManagementList() {
         domainFilter
         searchPlaceholder={t('fileScan.adminSearch')}
       />
-      <div className="mt-[1.875rem]">
+      <div className="mt-5">
         <BaseTable
           body={flattedListDass}
           header={checkPermissionHeaderItem(
@@ -137,12 +124,12 @@ export function KnowledgeManagementList() {
         descriptionInfo={t('knowledgeManagement.recordedUserActivate')}
         content={
           <VideoLoadingSkelton isLoading={videoFile?.loading}>
-            <div className="w-[21.25rem] sm:w-full">
+            <div className="w-[21.25rem] sm:w-[46.8rem]">
               {videoFile?.file ? (
                 <video width="750" height="500" controls>
                   <track kind="captions" />
                   <source src={videoFile.file} type="video/mp4" />
-                  Your browser does not support the video tag.
+                  {t('knowledgeManagement.videoSrcError')}
                 </video>
               ) : (
                 <NoResult />

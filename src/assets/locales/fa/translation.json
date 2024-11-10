@@ -72,7 +72,7 @@
     "clamav": "clamav",
     "yara": "yara",
     "license_id": "لایسنس",
-    "license":"لایسنس ها",
+    "license": "لایسنس ها",
     "licenseExpirationDate": "تاریخ انقضا",
     "lisenceName": "نام لایسنس‌ها",
     "licenseCreation": "تاریخ ایجاد لایسنس",
@@ -180,7 +180,8 @@
   },
   "knowledgeManagement": {
     "recoardeActivite": "فعالیت‌های ضبط شده",
-    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر"
+    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر",
+    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند."
   },
   "global": {
     "userName": "نام کاربری",

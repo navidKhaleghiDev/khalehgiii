@@ -53,7 +53,7 @@ function compareExtensionLists(oldList?: string[], newList?: string[]) {
   };
 }
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 6;
 const PAGE = 1;
 
 export function DaAsList() {
