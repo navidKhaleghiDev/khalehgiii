@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const TagHelperCellStyles = cva(
-  'flex justify-center items-center rounded gap-1 px-2 py-0.5 md:dark:bg-transparent dark:bg-gray-600',
+  'flex justify-center items-center rounded gap-1 px-2 py-0.5 md:dark:bg-gray-800 dark:bg-gray-600',
   {
     variants: {
       color: {
