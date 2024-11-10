@@ -1,9 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import {
-  ActionOnClickActionsType,
-  BaseTableMenuCellProps,
-  IdItem,
-} from '../../types';
+import { BaseTableMenuCellProps, IdItem } from '../../types';
 import DropDownHelperCell from '../HelperCell/DropDownHellperCell';
 
 export function BaseTableDropDownCell<T extends IdItem>(
@@ -19,11 +15,11 @@ export function BaseTableDropDownCell<T extends IdItem>(
     return (
       <div className="flex">
         <DropDownHelperCell
-          onClick={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onClick={(e: any) =>
             onClick
-              ? onClick(e.target.value as ActionOnClickActionsType, {
+              ? onClick(e.value, {
                   ...row,
-                  value: e.target.value,
+                  value: e.value,
                 })
               : undefined
           }
