@@ -142,7 +142,8 @@
     "deleteFile": " Delete File",
     "licenseStatus": "Status",
     "number": "Number",
-    "activeNumbers": "Active Number"
+    "activeNumbers": "Active Number",
+    "license":"License"
   },
   "dashboard": {
     "adminLists": "Admin Lists",
@@ -340,6 +341,7 @@
     "scannedFiles": "Scanned files"
   },
   "adminList": {
+    "adminList": "Admin List",
     "userInfo": "User Info",
     "adminInfo": "Admin Info",
     "userType": "User type",

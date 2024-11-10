@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import PhGlobe from '@iconify-icons/ph/globe';
 import { LogoSvg } from '@redesignUi/atoms/Svgs/LogoSvg';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import PhTranslate from '@iconify-icons/ph/translate';
 
 import { ListMenu } from './ListMenu';
 import { NotificationMenu } from './NotificationMenu';
@@ -37,7 +37,7 @@ export function NavbarDashboard(): JSX.Element {
             <NotificationMenu />
           </div>
           <BaseDropdownIcon
-            icon={PhGlobe}
+            icon={PhTranslate}
             size="sm"
             onSelect={(v: string) => changeLanguage(v)}
             options={languageOptions}

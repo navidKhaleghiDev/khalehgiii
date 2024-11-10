@@ -16,7 +16,11 @@ import PhTimer from '@iconify-icons/ph/timer';
 import { PropsType } from '../../type';
 import { TitleSection } from '../../component/TitleSection';
 
-export function DaasSettingForm({ control, userPermissions }: PropsType) {
+export function DaasSettingForm({
+  control,
+  userPermissions,
+  isActive,
+}: PropsType) {
   const { t } = useTranslation();
   const { lang } = useLanguage();
   const direction = lang === 'fa' ? 'rtl' : 'ltr';
@@ -70,7 +74,12 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
 
         <div className="w-full mb-7">
           <div className="gap-5 grid-flow-row-dense grid grid-cols-12">
-            <Card className={cardStyles} color="white">
+            <Card
+              className={`${cardStyles} ${
+                isActive === 'DAILY' ? 'border border-teal-500' : ''
+              }`}
+              color="white"
+            >
               <BaseRadioButtonController
                 control={control}
                 id="daily"
@@ -79,7 +88,12 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
                 label={t('table.daily')}
               />
             </Card>
-            <Card className={cardStyles} color="white">
+            <Card
+              className={`${cardStyles} ${
+                isActive === 'WEEKLY' ? 'border border-teal-500' : ''
+              }`}
+              color="white"
+            >
               <BaseRadioButtonController
                 control={control}
                 id="weekly"
@@ -88,7 +102,12 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
                 label={t('table.weekly')}
               />
             </Card>
-            <Card className={cardStyles} color="white">
+            <Card
+              className={`${cardStyles} ${
+                isActive === 'MONTHLY' ? 'border border-teal-500' : ''
+              }`}
+              color="white"
+            >
               <BaseRadioButtonController
                 control={control}
                 id="monthly"
@@ -97,7 +116,12 @@ export function DaasSettingForm({ control, userPermissions }: PropsType) {
                 label={t('table.monthly')}
               />
             </Card>
-            <Card className={cardStyles} color="white">
+            <Card
+              className={`${cardStyles} ${
+                isActive === 'PERMANENTLY' ? 'border border-teal-500' : ''
+              }`}
+              color="white"
+            >
               <BaseRadioButtonController
                 control={control}
                 id="permanently"
