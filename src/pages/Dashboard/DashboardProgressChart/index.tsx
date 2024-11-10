@@ -67,7 +67,7 @@ export function DashboardProgressChart() {
       <div className="w-full flex flex-col sm:flex-row pb-2.5 sm:pb-[3.125rem]">
         <div className="w-1/2">
           <Typography color="black" variant="body4B">
-            {t('dashboard.progressChart')}
+            {t('dashboard.scanChart')}
           </Typography>
           <Typography color="neutral" variant="body5">
             sep.npd-co.com
