@@ -183,7 +183,8 @@
   },
   "knowledgeManagement": {
     "recoardeActivite": "فعالیت‌های ضبط شده",
-    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر"
+    "recordedUserActivate": "فعالیت‌های ضبط شده کاربر",
+    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند."
   },
   "global": {
     "userName": "نام کاربری",
