@@ -61,6 +61,8 @@ export function UpdateFileTypeModal({
   });
 
   const access = watch('is_active');
+  const uploadAccess = watch('allowed_for_upload');
+  const downloadAccess = watch('allowed_for_download');
 
   const handleOnSubmit = async (data: FileTypeProp) => {
     setLoadingButtonModal(true);
@@ -138,7 +140,7 @@ export function UpdateFileTypeModal({
                 name="upload_file_size_mb"
                 control={control}
                 label={t('table.maxUploadSize')}
-                disabled={!hasChangePermission}
+                disabled={!hasChangePermission || !uploadAccess}
                 placeholder="50"
                 icon={PhUploadSimple}
                 dir={direction}
@@ -163,7 +165,7 @@ export function UpdateFileTypeModal({
                 name="download_file_size_mb"
                 control={control}
                 label={t('table.maxDownloadSize')}
-                disabled={!hasChangePermission}
+                disabled={!hasChangePermission || !downloadAccess}
                 placeholder="50"
                 icon={PhUploadSimple}
                 dir={direction}
