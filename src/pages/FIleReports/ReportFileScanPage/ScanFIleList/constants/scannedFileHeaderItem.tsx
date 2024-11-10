@@ -13,7 +13,7 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.fileName',
     id: 'file_name',
     type: 'none',
-    class: 'px-3 w-9/12 w-[150px] sm:w-full md:w-2/12  md:max-w-[90px]',
+    class: 'w-9/12 text-start w-[150px] sm:w-full md:w-2/12  md:max-w-[90px]',
   },
   {
     label: 'table.type',
