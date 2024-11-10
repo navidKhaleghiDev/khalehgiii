@@ -180,6 +180,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
       EPermissionDaas.DELETE,
       EPermissionSessionRecording.VIEW,
     ],
-    class: 'mr-auto w-2/12 lg:w-1/12',
+    class: 'mr-auto w-2/12 lg:w-1/12 flex justify-end items-end bg-red-400  ',
   },
 ];

@@ -13,7 +13,7 @@ export const groupManagementUserHeaderItem: HeaderTable[] = [
     id: 'userName',
     type: 'avatar',
     email: 'email',
-    isActive: 'isActive',
+    isActive: 'is_running',
     class: 'w-5/12 md:w-8/12  ',
   },
   {
@@ -50,7 +50,7 @@ export const groupManagementAdminHeaderItem: HeaderTable[] = [
     id: 'userName',
     type: 'avatar',
     email: 'email',
-    isActive: 'isActive',
+    isActive: 'is_running',
     class: 'w-5/12 md:w-8/12  ',
   },
   {

@@ -15,4 +15,5 @@ export interface GroupCardProps {
   avatarClassName?: string;
   iconClassName?: string;
   groupData: TGroup[];
+  handleRemoveGroup: (id: string) => void;
 }

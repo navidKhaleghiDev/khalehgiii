@@ -298,7 +298,8 @@
     "deleteMember": "حذف کاربر",
     "user": "کاربر",
     "groupLists": "لیست گروه ها",
-    "member": "کاربر"
+    "member": "کاربر",
+    "createTitle": "برای ایجاد گروه جدید مشخصات زیر را تکمیل کنید."
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",

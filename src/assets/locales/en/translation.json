@@ -297,7 +297,8 @@
     "deleteMember": "Delete Member",
     "user": "user",
     "groupLists": "Group Lists",
-    "member": "member"
+    "member": "member",
+    "createTitle": "Complete the following information to create a new group."
   },
   "onlineAssistance": {
     "loginType": "Login type",
