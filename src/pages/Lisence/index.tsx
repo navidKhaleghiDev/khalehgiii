@@ -15,7 +15,7 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { LicenseFileType } from './type';
 import { LisenceHeaderItem } from './constant/LisenceHeaderItem';
 
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 2;
 const PAGE = 1;
 export function License() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
