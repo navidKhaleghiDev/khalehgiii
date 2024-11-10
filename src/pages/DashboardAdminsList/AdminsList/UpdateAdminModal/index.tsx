@@ -113,8 +113,8 @@ export function UpdateAdminModal({
 
       <div className="flex justify-center mt-4">
         {showConfirm ? (
-          <div className="flex">
-            <Typography>{t('global.areYouSure')}</Typography>
+          <div className="flex items-center">
+            <Typography color="black">{t('global.areYouSure')}</Typography>
             <BaseButton
               label={t('global.yes')}
               size="sm"
