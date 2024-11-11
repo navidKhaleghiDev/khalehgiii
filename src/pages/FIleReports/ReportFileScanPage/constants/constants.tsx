@@ -41,6 +41,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
         icon: PhQueue,
         color: 'neutralNoBg',
         tooltip: 'table.observeUserBehavior',
+        action: 'edit',
       },
     ],
     permission: EPermissionFileScan.VIEW,

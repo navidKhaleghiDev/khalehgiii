@@ -51,6 +51,7 @@ export const KnowledgeManagementHeaderItem: HeaderTable[] = [
         icon: phPlay,
         color: 'neutralNoBg',
         tooltip: 'table.play',
+        action: 'edit',
       },
     ],
     class: 'mr-auto',

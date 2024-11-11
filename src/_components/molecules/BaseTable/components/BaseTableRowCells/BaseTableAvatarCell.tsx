@@ -26,7 +26,9 @@ export default function BaseTableAvatarCell<T extends IdItem>(
   const { row, id, header } = props;
   const { isFarsi } = useLanguage();
 
-  const transitionDir = !isFarsi ? '-' : '';
+  const directionStyle = !isFarsi
+    ? 'hover:-translate-x-[50%]'
+    : 'hover:translate-x-[50%]';
 
   const isAvatarType = header.type === 'avatar';
   const isActive = isAvatarType ? row[header?.isActive] : '';
@@ -36,20 +38,25 @@ export default function BaseTableAvatarCell<T extends IdItem>(
     ? id.map((i: string) => `${row[i]} `)
     : row[id];
 
-  const commonStyle = `whitespace-nowrap text-ellipsis overflow-hidden hover:whitespace-nowrap hover:overflow-visible transition-transform duration-1000 ease-linear hover:${transitionDir}translate-x-[50%] hover:duration-[1000ms]`;
+  const commonStyle = `whitespace-nowrap text-ellipsis overflow-hidden hover:whitespace-nowrap hover:overflow-visible transition-transform duration-2000 ease-linear ${directionStyle} hover:duration-[2000ms]`;
   return (
-    <div className="flex ">
-      <Avatar icon={userIcon} isActive={isActive} size="table" />
-      <div className="flex flex-col mt-1 justify-center mx-2 w-full max-w-28 overflow-hidden ">
+    <div className="flex  overflow-hidden ">
+      <Avatar
+        className="z-10"
+        icon={userIcon}
+        isActive={isActive}
+        size="table"
+      />
+      <div className="flex flex-col mt-1 justify-center mx-2 w-full">
         <Typography
           variant="body6"
-          className={`${commonStyle} text-gray-900 dark:text-white md:block hidden`}
+          className={`${commonStyle} text-gray-900 dark:text-white md:block hidden `}
         >
           {cellLabel ?? '--'}
         </Typography>
         <Typography
           variant="body6"
-          className={`${commonStyle} md:text-gray-400 md:dark:text-white dark:text-gray-300 text-gray-600`}
+          className={`${commonStyle} md:text-gray-400 md:dark:text-white dark:text-gray-300 text-gray-600 `}
         >
           {email ?? '--'}
         </Typography>

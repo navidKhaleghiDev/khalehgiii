@@ -42,7 +42,7 @@ export function BaseTableActionCell<T extends IdItem>(
   );
 
   return (
-    header?.action && (
+    header?.type === 'action' && (
       <div className="flex">
         {header.action.map((action: ActionItem) => (
           <div key={action.action}>

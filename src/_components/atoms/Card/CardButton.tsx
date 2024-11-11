@@ -1,3 +1,4 @@
+import { IdItem } from '@redesignUi/molecules/BaseTable/types';
 import { cardButtonStyles, cardStyles } from './styles';
 import { CardButtonProps } from './types';
 
@@ -22,7 +23,9 @@ import { CardButtonProps } from './types';
  *
  * @returns {JSX.Element} Returns the rendered CardButton component.
  */
-export function CardButton(props: CardButtonProps): JSX.Element {
+export function CardButton<T extends IdItem>(
+  props: CardButtonProps<T>
+): JSX.Element {
   const {
     children,
     className,
