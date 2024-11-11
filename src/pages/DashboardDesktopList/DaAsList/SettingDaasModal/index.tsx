@@ -144,6 +144,7 @@ export function SettingDaasModal({
           dlpDownloadList={dlpDownloadList}
           dlpUploadList={dlpUploadList}
           timeOfUse={timeOfUse}
+          isRecording
         />
       )}
       <div className="flex justify-center col-span-6">

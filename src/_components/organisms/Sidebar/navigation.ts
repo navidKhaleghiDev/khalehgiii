@@ -112,7 +112,7 @@ export const navigationSideBar: NavigationProps[] = [
   },
   {
     id: '6',
-    label: t('global.progressingChart'),
+    label: t('dashboard.scanChart'),
     path: ROUTES_PATH.chart,
     icon: PhChartBarDuotone,
   },

@@ -168,7 +168,7 @@
     "extentions": "فرمت ها",
     "days": "روز",
     "saveChanges": "ثبت تغییرات",
-    "progressChart": "نمودار پیشرفت",
+    "scanChart": "نمودار اسکن ها",
     "activeLicenses": "لایسنس‌های فعال",
     "onlineUsers": "کاربران آنلاین",
     "netsep": "نت سپ",
@@ -309,7 +309,8 @@
     "upload": "آپلود",
     "limitBySize": "محدود کردن بر اساس زمان",
     "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
-    "goToSystem": "ورود به سامانه"
+    "goToSystem": "ورود به سامانه",
+    "developing": "در حال توسعه ..."
   },
   "groupManagement": {
     "person": "نفر",
