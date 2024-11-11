@@ -72,7 +72,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
             variant="body6"
             className={`${
               error && !disabled
-                ? 'text-red-500 dark:text-red-500'
+                ? '!text-red-500 dark:!text-red-500'
                 : 'text-gray-200'
             }  ${
               disabled
@@ -106,7 +106,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
         <input
           id={id}
           type={type}
-          dir="auto"
+          // dir="auto"
           disabled={disabled}
           name={name}
           value={value}
