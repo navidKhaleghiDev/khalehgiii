@@ -34,7 +34,7 @@ export function SideBar(): JSX.Element {
   const { pathname } = useLocation();
   const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
-  const { isDark, toggleTheme, setTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const windowDimensions = useWindowDimensions();
 
   const isUser = user?.first_name && user?.last_name;
@@ -44,8 +44,10 @@ export function SideBar(): JSX.Element {
   const toggleSideBar = () => {
     setToggleSidebar(!toggleSidebar);
   };
+  const handleToggle = () => (isDark ? toggleTheme() : null);
+
   const handleLogout = () => {
-    setTheme('light');
+    handleToggle();
     http.removeAuthHeader();
     setUser(null);
     navigate(ROUTES_PATH.login);
@@ -124,32 +126,35 @@ export function SideBar(): JSX.Element {
               )}
             </div>
           ) : (
-            <div
-              key={item.id}
-              onPointerUp={() => {
-                if (isDropdownVisible?.id === item.id) {
-                  setDropdownVisible(null);
-                } else {
-                  setDropdownVisible(item);
-                }
-              }}
-              className={`flex justify-center flex-col items-center cursor-pointer ${
-                toggleSidebar ? 'w-full' : null
-              }`}
-            >
-              <MenuItem
-                item={item}
-                pathname={pathname}
-                collapsed={!toggleSidebar}
-              />
+            <div className="flex justify-center flex-col items-center">
+              <div
+                key={item.id}
+                onPointerUp={() => {
+                  if (isDropdownVisible?.id === item.id) {
+                    setDropdownVisible(null);
+                  } else {
+                    setDropdownVisible(item);
+                  }
+                }}
+                className={`flex justify-center flex-col items-center cursor-pointer ${
+                  toggleSidebar ? 'w-full' : null
+                }`}
+              >
+                <MenuItem
+                  item={item}
+                  pathname={pathname}
+                  collapsed={!toggleSidebar}
+                />
+
+                {isDropdownVisible?.id === item.id && !toggleSidebar && (
+                  <MenuDropdown
+                    items={item.items}
+                    mouseHover={() => setDropdownVisible(null)}
+                  />
+                )}
+              </div>
               {shouldAddHR && (
                 <hr className="w-10 bg-white border border-gray-300 rounded my-5" />
-              )}
-              {isDropdownVisible?.id === item.id && !toggleSidebar && (
-                <MenuDropdown
-                  items={item.items}
-                  mouseHover={() => setDropdownVisible(null)}
-                />
               )}
             </div>
           );

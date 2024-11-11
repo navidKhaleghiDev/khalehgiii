@@ -24,7 +24,7 @@ export const LisenceHeaderItem: HeaderTable[] = [
     label: 'table.licenseExpirationDate',
     id: 'expiry',
     type: 'date',
-    class: 'px-3 md:w-2/12 xl:w-1/12',
+    class: 'px-3 md:w-3/12 xl:w-2/12',
     isMobileCollapsed: true,
   },
 

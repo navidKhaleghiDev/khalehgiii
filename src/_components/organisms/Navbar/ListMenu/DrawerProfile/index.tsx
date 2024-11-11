@@ -27,7 +27,7 @@ export function DrawerProfile() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const dropdownRef = useRef(null);
   const { isOpen, setIsOpen } = useDrawerContext();
-  const { isDark, toggleTheme, setTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const { pathname } = useLocation();
   const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
@@ -40,8 +40,10 @@ export function DrawerProfile() {
 
   const isUser = user?.first_name && user?.last_name;
 
+  const handleToggle = () => (isDark ? toggleTheme() : null);
+
   const handleLogout = () => {
-    setTheme('light');
+    handleToggle();
     http.removeAuthHeader();
     setUser(null);
     navigate(ROUTES_PATH.login);

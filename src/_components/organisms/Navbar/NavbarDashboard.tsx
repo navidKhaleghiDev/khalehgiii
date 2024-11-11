@@ -9,7 +9,7 @@ import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import PhTranslate from '@iconify-icons/ph/translate';
 
 import { ListMenu } from './ListMenu';
-import { NotificationMenu } from './NotificationMenu';
+// import { NotificationMenu } from './NotificationMenu';
 
 /**
  * @component
@@ -33,9 +33,9 @@ export function NavbarDashboard(): JSX.Element {
           >
             <ListMenu />
           </div>
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             <NotificationMenu />
-          </div>
+          </div> */}
           <BaseDropdownIcon
             icon={PhTranslate}
             size="sm"
