@@ -8,6 +8,7 @@ export const headerStyles = cva('rounded-full p-2 dark:bg-gray-700', {
       info: 'bg-gray-100',
       content: '',
       noneIcon: '',
+      warning: 'bg-red-100',
     },
   },
 });

@@ -9,4 +9,5 @@ export interface UsersInfoCardProps extends VariantProps<typeof iconStyles> {
   title: string;
   count?: number;
   className?: string;
+  isLoading?: boolean;
 }

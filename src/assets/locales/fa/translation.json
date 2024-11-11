@@ -12,6 +12,8 @@
     "admin": "ادمین"
   },
   "table": {
+    "virusWarning": " ",
+    "downloadRecord": "",
     "admin": "ادمین",
     "user": "کاربر",
     "name": "نام",
@@ -20,6 +22,7 @@
     "accessTime": "زمان دسترسی",
     "hours": "ساعت",
     "today": "امروز",
+    "scans": "اسکن ها",
     "usedTime": "زمان استفاده شده",
     "leftTime": "زمان باقی مانده",
     "extendTime": "زمان تمدید",
@@ -51,9 +54,9 @@
     "userStatus": "وضعیت کاربر",
     "fileName": "نام فایل",
     "type": "تایپ",
-    "resultScanerStatusSandbox": " وضعیت اسکنر SANDBOX",
-    "resultScanerStatusClamav": " وضعیت اسکنر CLAMAV",
-    "resultScanerStatusYara": " وضعیت اسکنر YARA",
+    "resultScanerStatusSandbox": "Sandbox",
+    "resultScanerStatusClamav": "clamav",
+    "resultScanerStatusYara": "Yara",
     "moreDetail": "جزییات بیشتر",
     "removeSelected": "حذف انتخاب",
     "daily": "روزانه",
@@ -339,8 +342,13 @@
     "adminSearch": "جستجو ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
-    "onlineUsers": "کاربران آنلاین",
-    "scannedFiles": "فایل های اسکن شده"
+    "onlineUsers": "کابران آنلاین",
+    "scannedFiles": "فایل های اسکن شده",
+    "alphabetic": "حرف الفبا",
+    "creationDate": "تاریخ ایجاد",
+    "Newest": "جدیدترین",
+    "recordedActivities": "فعالیت های ضبط شده",
+    "userRecordedActivities": "فعالیت های ضبط شده کاربر"
   },
   "adminList": {
     "adminList": "لیست ادمین",
