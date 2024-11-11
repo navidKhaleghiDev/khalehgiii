@@ -34,7 +34,7 @@ export function SideBar(): JSX.Element {
   const { pathname } = useLocation();
   const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme, setTheme } = useTheme();
   const windowDimensions = useWindowDimensions();
 
   const isUser = user?.first_name && user?.last_name;
@@ -45,6 +45,7 @@ export function SideBar(): JSX.Element {
     setToggleSidebar(!toggleSidebar);
   };
   const handleLogout = () => {
+    setTheme('light');
     http.removeAuthHeader();
     setUser(null);
     navigate(ROUTES_PATH.login);
