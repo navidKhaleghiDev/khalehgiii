@@ -126,7 +126,6 @@ export function Reports() {
 
       <ReportFilter
         flag={flag}
-        isFarsi={isFarsi}
         handleOnSubmit={handleOnSubmit}
         handleToggleButton={handleToggleButton}
         state={state}
