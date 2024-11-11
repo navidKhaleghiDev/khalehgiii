@@ -106,7 +106,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
         <input
           id={id}
           type={type}
-          // dir="auto"
+          dir="auto"
           disabled={disabled}
           name={name}
           value={value}
