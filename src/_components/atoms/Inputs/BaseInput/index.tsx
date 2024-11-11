@@ -72,7 +72,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
             variant="body6"
             className={`${
               error && !disabled
-                ? 'text-red-500 dark:text-red-500'
+                ? '!text-red-500 dark:!text-red-500'
                 : 'text-gray-200'
             }  ${
               disabled
