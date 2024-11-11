@@ -80,12 +80,12 @@ export const navigationSideBar: NavigationProps[] = [
         path: ROUTES_PATH.internetLog,
       },
       {
-        id: '4',
+        id: '3',
         label: t('license.licenses'),
         path: ROUTES_PATH.licence,
       },
       {
-        id: '3',
+        id: '4',
         label: t('global.monitoring'),
         path: ROUTES_PATH.monitoring,
       },
