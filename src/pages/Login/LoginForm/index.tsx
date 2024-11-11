@@ -5,6 +5,7 @@ import userIcon from '@iconify-icons/ph/user';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { Typography } from '@redesignUi/atoms/Typography';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { useLanguage } from '@context/settings/languageContext';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
 import { Avatar } from '@redesignUi/atoms';
 
@@ -20,6 +21,8 @@ export function LoginForm({
   error,
 }: LoginFormProps<LoginFieldValues>) {
   const { t } = useTranslation();
+  const { dir } = useLanguage();
+  const rtl = dir === 'rtl';
 
   return (
     <>
@@ -48,6 +51,7 @@ export function LoginForm({
           name="email"
           size="lg"
           endIcon={userIcon}
+          dir={rtl ? 'rtl' : 'ltr'}
         />
         <PasswordInputController
           label={t('global.password')}
@@ -56,6 +60,8 @@ export function LoginForm({
           control={control}
           placeholder={t('global.password')}
           id="password"
+          dir={rtl ? 'rtl' : 'ltr'}
+          iconDir="rtl"
         />
       </div>
     </>
