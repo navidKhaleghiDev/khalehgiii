@@ -20,26 +20,36 @@ import { toggleStyles } from './styles';
  */
 
 export function ToggleButton(props: ToggleButtonProps): JSX.Element {
-  const { buttonOptions, onChange, className, classNameButton, size } = props;
+  const {
+    buttonOptions,
+    onChange,
+    className,
+    classNameButton,
+    size,
+    disabled,
+  } = props;
 
   return (
     <div className="flex w-full justify-end">
       <div
         className={`${toggleStyles({
           size,
-        })} bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-800 py-1 ${
-          className ?? ''
-        }`}
+        })} bg-gray-100 dark:bg-gray-800 border ${
+          disabled ? 'opacity-50' : null
+        } border-gray-200 dark:border-gray-800 py-1 ${className ?? ''}`}
       >
         {buttonOptions.map((item: ButtonOption) => (
           <button
             type="button"
             autoFocus={item.active}
             key={item.id}
+            disabled={disabled}
             onClick={() => onChange(item)}
-            className={`flex items-center justify-center cursor-pointer rounded-[0.25rem] text-center w-16 mx-1 text-gray-400 ${
+            className={`flex items-center justify-center ${
+              disabled ? 'cursor-auto' : null
+            } cursor-pointer rounded-[0.25rem] text-center w-16 mx-1 text-gray-400 ${
               item.active &&
-              'text-gray-900 bg-white dark:text-white dark:bg-gray-600 outline-none'
+              'text-gray-900  bg-white dark:text-white dark:bg-gray-600 outline-none'
             } ${classNameButton}`}
           >
             {item.label}

@@ -99,7 +99,6 @@ export function KnowledgeManagementList() {
         handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
         handelGroupeFilter={(option) => console.log(option)}
-        domainFilter
         searchPlaceholder={t('fileScan.adminSearch')}
       />
       <div className="mt-5">
