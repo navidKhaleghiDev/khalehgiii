@@ -361,12 +361,14 @@
     "admin": "Admin",
     "metaAdmin": "Administrator",
     "choseDomain": "Domain",
-    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system.",
+    "newAdmin": "New Admin",
+    "adminSearch": "Search Admin"
   },
   "userList": {
     "onlineUsers": "Online Users",
     "blockedUsers": "Blocked Users",
-    "searchUsers": "Search Users",
+    "searchUsers": "Search User",
     "usersList": "User List",
     "userAccess": "User Access",
     "changeUserProfileAndAccessList": "Change user profile and access list",
