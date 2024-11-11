@@ -13,4 +13,5 @@ export interface ToggleButtonProps extends VariantProps<typeof toggleStyles> {
   onChange: (selected: ButtonOption) => void;
   className?: string;
   classNameButton?: string;
+  disabled?: boolean;
 }

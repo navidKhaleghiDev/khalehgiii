@@ -120,8 +120,6 @@ export function Reports() {
     }
   };
 
-  // console.log(recordsData);
-
   return (
     <div className="flex-wrap flex mb-1 gap-5 pb-9">
       <ReportHeader />

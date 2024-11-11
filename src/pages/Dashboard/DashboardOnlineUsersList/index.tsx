@@ -2,10 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import CaretLeft from '@iconify-icons/ph/caret-left';
-import CaretRight from '@iconify-icons/ph/caret-right';
 import { Card, Typography } from '@redesignUi/atoms';
-import { BaseButton } from '@redesignUi/atoms/BaseButton';
 import { IResponsePagination } from '@src/types/services';
 import { IDaAs } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -14,7 +11,6 @@ import { http } from '@src/services/http';
 import { LoadingPage } from '@redesignUi/molecules/Loading';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
-import { useLanguage } from '@context/settings/languageContext';
 
 import { UserInfo } from './UserInfo';
 
@@ -39,11 +35,7 @@ export function DashboardOnlineUsersList({
     endpoint,
     http.fetcherSWR
   );
-  const { lang } = useLanguage();
   const listDaas = data?.data?.results.filter((user) => user.is_running) ?? [];
-
-  const farsi = lang === 'fa';
-  const caretLeft = farsi ? CaretLeft : CaretRight;
 
   if (isLoading) {
     return <LoadingPage />;
@@ -61,18 +53,16 @@ export function DashboardOnlineUsersList({
             <Typography color="black" variant="body4B">
               {t('dashboard.onlineUsers')}
             </Typography>
-            <Typography color="neutral" variant="body5">
-              sep.npd-co.com
-            </Typography>
           </div>
           <div className="col-span-6 justify-self-end">
-            <BaseButton
+            {/* The functionality dose not work cause we do not have service */}
+            {/* <BaseButton
               label={t('global.domain')}
               endIcon={caretLeft}
               size="sm"
               type="neutral"
-              disabled // This button is disabled until the backend provides data for the domain
-            />
+              disabled
+            /> */}
           </div>
         </div>
         <div className="col-span-12">

@@ -69,6 +69,7 @@ export function DashboardProgressChart() {
         </div>
         <div className="w-1/2 flex sm:justify-end gap-2.5">
           {/* disable the domain cause the functionality dose not work */}
+
           {/* <div className="col-span-6 justify-self-end">
             <BaseButton
               label={t('global.domain')}
@@ -85,6 +86,8 @@ export function DashboardProgressChart() {
               className="sm:hidden flex"
             />
           </div> */}
+          {/* disable the option cause the functionality does not work */}
+
           <div className="max-w-max">
             <ToggleButton
               buttonOptions={[
@@ -109,6 +112,7 @@ export function DashboardProgressChart() {
               ]}
               onChange={(data) => setTimeFrame(data?.value)}
               size="responsive"
+              disabled
             />
           </div>
         </div>
