@@ -1,72 +1,58 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/anchor-has-content */
-import { useCallback, useState, useRef } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+
 import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { IScannedFile } from '@src/services/analyze/types';
-import { useParams } from 'react-router-dom';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
-import { Modal } from '@ui/molecules/Modal';
-import { debounce } from 'lodash';
-import { BaseTable } from '@ui/atoms/BaseTable';
-import { scannedFileHeaderItem } from '@src/pages/ScannedFileListPage/ScannedFileList/constants/scannedFileHeaderItem';
+import { scannedFileHeaderItem } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList/constants/scannedFileHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import {
   API_ANALYZE_DOWNLOAD_FILE,
   API_ANALYZE_SCAN_STATUS_UPDATE,
 } from '@src/services/analyze';
-import { toast } from 'react-toastify';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { MultiDatePicker } from '@redesignUi/atoms/Inputs/DatePicker';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { Modal } from '@redesignUi/molecules/Modal';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
-import { DetailsContentModal } from './DetailsContentModal';
-
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 5;
 const PAGE = 1;
 
-export function ScannedFileList() {
-  const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>('');
-  const [openDetailsModal, setOpenDetailsModal] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [cleanStatusModal, setCleanStatusModal] = useState(false);
-  const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
-  const downloadLinkRef = useRef(null);
-  const { id } = useParams();
-  const { t } = useTranslation();
-  const userPermissions = useUserPermission();
+type ScannedFileListProp = {
+  userEmail: string;
+};
 
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IScannedFile>>(
-    id
-      ? E_ANALYZE_SCAN_PAGINATION(id, {
+export function ScannedFileList({ userEmail }: ScannedFileListProp) {
+  const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [cleanStatusModal, setCleanStatusModal] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const userPermissions = useUserPermission();
+  const { width } = useWindowDimensions();
+  const { t } = useTranslation();
+
+  // Daas users scan reports
+  const { data, isLoading, mutate, error } = useSWR<
+    IResponsePagination<IScannedFile>
+  >(
+    userEmail
+      ? E_ANALYZE_SCAN_PAGINATION(userEmail, {
           page: currentPage,
           pageSize: PAGE_SIZE,
-          filter: `search=${encodeURIComponent(filterQuery)}`,
         })
       : null,
     HTTP_ANALYSES.fetcherSWR
   );
-
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count ?? 0;
   const evidencePermissions =
     listDaas[listDaas.length - 1]?.evidence_permission;
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 1000),
-    []
-  );
-
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
-  };
 
   const downloadFile = async (fileData: any) => {
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
@@ -106,10 +92,6 @@ export function ScannedFileList() {
     }
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
   const handleOpenModal: OnClickActionsType<IScannedFile> = (action, item) => {
     if (action === 'download') {
       downloadFile(item);
@@ -118,7 +100,6 @@ export function ScannedFileList() {
       setCleanStatusModal(true);
     } else {
       setActiveScannedFile(item as IScannedFile);
-      setOpenDetailsModal(true);
     }
   };
 
@@ -126,39 +107,40 @@ export function ScannedFileList() {
     countPage,
     currentPage,
     totalPages: Math.ceil(countPage / PAGE_SIZE),
-    onPageChange: handlePageChange,
-  };
-
-  const searchBarProps: TSearchBar = {
-    name: 'search',
-    value: filterQuery,
-    handleSearchInput: handleFilterChange,
-    componentProps: {
-      type: 'typography',
-      label: id,
-    },
+    onPageChange: (page: number) => setCurrentPage(page),
+    paginationLabel: t('table.file'),
+    allItems: countPage,
+    itemsPer: listDaas.length,
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading ? 'loading' : ''}`}>
-      <a ref={downloadLinkRef} style={{ display: 'none' }} />
-      <BaseTable<IScannedFile>
-        loading={isLoading}
-        headers={checkPermissionHeaderItem(
-          userPermissions,
-          scannedFileHeaderItem(evidencePermissions)
+    <div className="w-full">
+      <div className="text-start my-5">
+        <MultiDatePicker
+          id="recordFilter"
+          name="recordFilter"
+          onChange={() => console.log('This functionality does not work know')}
+          disabled
+        />
+      </div>
+      <div className="[&_thead]:bg-gray-100">
+        {!error ? (
+          <BaseTable
+            body={listDaas.slice(0, listDaas.length - 1)}
+            header={checkPermissionHeaderItem(
+              userPermissions,
+              scannedFileHeaderItem
+            )}
+            loading={isLoading}
+            pagination={paginationProps}
+            onClick={handleOpenModal}
+            isMobile={width <= 760}
+          />
+        ) : (
+          // Remember to handel the error of the component
+          <p className="flex items-center justify-center">{error}</p>
         )}
-        bodyList={listDaas}
-        onClick={handleOpenModal}
-        pagination={paginationProps}
-        searchBar={searchBarProps}
-      />
-      <Modal
-        open={openDetailsModal}
-        setOpen={setOpenDetailsModal}
-        type="success"
-        content={<DetailsContentModal scannedFile={activeScannedFile} />}
-      />
+      </div>
       <Modal
         open={cleanStatusModal}
         setOpen={setCleanStatusModal}

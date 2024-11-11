@@ -11,6 +11,8 @@
     "admin": "Admin"
   },
   "table": {
+    "virusWarning": " ",
+    "downloadRecord": "",
     "admin": "Administrator",
     "user": "User",
     "name": "Username",
@@ -19,6 +21,7 @@
     "accessTime": "Access Time",
     "hours": "Hours",
     "today": "Today",
+    "scans": "Scans",
     "usedTime": "Used Time",
     "leftTime": "Remaining Time",
     "extendTime": "Extend Time",
@@ -50,9 +53,9 @@
     "userStatus": "User Status",
     "fileName": "File Name",
     "type": "Type",
-    "resultScanerStatusSandbox": "SANDBOX Scanner",
-    "resultScanerStatusClamav": "CLAMAV Scanner",
-    "resultScanerStatusYara": " YARA Scanner",
+    "resultScanerStatusSandbox": "Sandbox",
+    "resultScanerStatusClamav": "clamav",
+    "resultScanerStatusYara": " Yara",
     "moreDetail": "More Details",
     "removeSelected": "Remove Selected",
     "daily": "Daily",
@@ -164,7 +167,7 @@
     "extentions": "Extentions List",
     "days": "Days",
     "saveChanges": "Save Changes",
-    "progressChart": "Progress chart",
+    "scanChart": "Scans Chart",
     "activeLicenses": "Active licenses",
     "onlineUsers": "Online users",
     "netsep": "NetSep",
@@ -305,7 +308,8 @@
     "upload": "upload",
     "limitBySize": "Limit by size",
     "accessToTheUsersDesktop": "Access to the user desktop",
-    "goToSystem": "Go to the system"
+    "goToSystem": "Go to the system",
+    "developing": "Developing ..."
   },
   "groupManagement": {
     "person": "person",
@@ -338,7 +342,12 @@
     "adminSearch": "Search",
     "todayScans": "Today's scans",
     "onlineUsers": "Online users",
-    "scannedFiles": "Scanned files"
+    "scannedFiles": "Scanned files",
+    "alphabetic": "alphabetic",
+    "creationDate": "Creation Date",
+    "Newest": "Newest",
+    "recordedActivities": "Recorded activities",
+    "userRecordedActivities": "Recorded user activities"
   },
   "adminList": {
     "adminList": "Admin List",
@@ -353,12 +362,14 @@
     "admin": "Admin",
     "metaAdmin": "Administrator",
     "choseDomain": "Domain",
-    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system."
+    "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system.",
+    "newAdmin": "New Admin",
+    "adminSearch": "Search Admin"
   },
   "userList": {
     "onlineUsers": "Online Users",
     "blockedUsers": "Blocked Users",
-    "searchUsers": "Search Users",
+    "searchUsers": "Search User",
     "usersList": "User List",
     "userAccess": "User Access",
     "changeUserProfileAndAccessList": "Change user profile and access list",

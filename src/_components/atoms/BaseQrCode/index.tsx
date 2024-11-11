@@ -9,22 +9,29 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { QrBorder } from '@redesignUi/atoms/Svgs/QrBorder';
 
-export default function BaseQrCode({ email, defaultValue }: any) {
+interface BaseQrCodeProps {
+  email?: string;
+  secret?: string;
+  setSecret: React.Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+export function BaseQrCode({ email, secret, setSecret }: BaseQrCodeProps) {
   const { t } = useTranslation();
-  const [secret, setSecret] = useState<undefined | string>(undefined);
   const [loading, setLoading] = useState(false);
 
   const handleGenarateQrcode = async () => {
-    setLoading(true);
-    await API_USERS_OTP(email)
-      .then(({ data }) => {
-        toast.success(t('global.sucessfulyUpdated'));
-        setSecret(data?.secret);
-      })
-      .catch((err) => {
-        toast.error(err);
-      })
-      .finally(() => setLoading(false));
+    if (email) {
+      setLoading(true);
+      await API_USERS_OTP(email)
+        .then(({ data }) => {
+          toast.success(t('global.sucessfulyUpdated'));
+          setSecret(data?.secret);
+        })
+        .catch((err) => {
+          toast.error(err);
+        })
+        .finally(() => setLoading(false));
+    }
   };
 
   return (
@@ -38,7 +45,7 @@ export default function BaseQrCode({ email, defaultValue }: any) {
           <div className="relative sm:h-[8.75rem] sm:w-[8.75rem] h-20 w-20">
             <QrBorder className="absolute sm:h-[8.75rem] sm:w-[8.75rem] h-20 w-20" />
             <QRCode
-              value={`otpauth://totp/netsep?secret=${secret || defaultValue}`}
+              value={`otpauth://totp/netsep?secret=${secret}`}
               className=" sm:w-[7.5rem] sm:h-[7.5rem] w-[3.75rem] h-[3.75rem] z-10 absolute right-2.5 top-2.5"
             />
           </div>

@@ -116,6 +116,7 @@ export function ExtensionList() {
     allItems: countPage,
     itemsPer: listWhiteList.length,
   };
+
   return (
     <>
       <div className="mb-[1.875rem]">

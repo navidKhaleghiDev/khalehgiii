@@ -39,7 +39,7 @@ export function MenuDropdown({ items, mouseHover }: MenuDropdownProps) {
             type="button"
             key={item.id}
             tabIndex={0}
-            className="w-full h-7 hover:bg-gray-100 dark:hover:bg-gray-500 rounded-md flex items-center"
+            className="w-full h-7 hover:bg-gray-100 dark:hover:bg-gray-500 rounded flex items-center"
             onPointerDown={() => navigate(item.path)}
           >
             {item.icon && <BaseIcon icon={item.icon} />}

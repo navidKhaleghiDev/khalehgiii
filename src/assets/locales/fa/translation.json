@@ -12,6 +12,8 @@
     "admin": "ادمین"
   },
   "table": {
+    "virusWarning": " ",
+    "downloadRecord": "",
     "admin": "ادمین",
     "user": "کاربر",
     "name": "نام",
@@ -20,6 +22,7 @@
     "accessTime": "زمان دسترسی",
     "hours": "ساعت",
     "today": "امروز",
+    "scans": "اسکن ها",
     "usedTime": "زمان استفاده شده",
     "leftTime": "زمان باقی مانده",
     "extendTime": "زمان تمدید",
@@ -51,9 +54,9 @@
     "userStatus": "وضعیت کاربر",
     "fileName": "نام فایل",
     "type": "تایپ",
-    "resultScanerStatusSandbox": " وضعیت اسکنر SANDBOX",
-    "resultScanerStatusClamav": " وضعیت اسکنر CLAMAV",
-    "resultScanerStatusYara": " وضعیت اسکنر YARA",
+    "resultScanerStatusSandbox": "Sandbox",
+    "resultScanerStatusClamav": "clamav",
+    "resultScanerStatusYara": "Yara",
     "moreDetail": "جزییات بیشتر",
     "removeSelected": "حذف انتخاب",
     "daily": "روزانه",
@@ -165,7 +168,7 @@
     "extentions": "فرمت ها",
     "days": "روز",
     "saveChanges": "ثبت تغییرات",
-    "progressChart": "نمودار پیشرفت",
+    "scanChart": "نمودار اسکن ها",
     "activeLicenses": "لایسنس‌های فعال",
     "onlineUsers": "کاربران آنلاین",
     "netsep": "نت سپ",
@@ -306,7 +309,8 @@
     "upload": "آپلود",
     "limitBySize": "محدود کردن بر اساس زمان",
     "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
-    "goToSystem": "ورود به سامانه"
+    "goToSystem": "ورود به سامانه",
+    "developing": "در حال توسعه ..."
   },
   "groupManagement": {
     "person": "نفر",
@@ -339,8 +343,13 @@
     "adminSearch": "جستجو ادمین",
     "choseDomain": "انتخاب دامنه",
     "todayScans": "اسکن های امروز",
-    "onlineUsers": "کاربران آنلاین",
-    "scannedFiles": "فایل های اسکن شده"
+    "onlineUsers": "کابران آنلاین",
+    "scannedFiles": "فایل های اسکن شده",
+    "alphabetic": "حرف الفبا",
+    "creationDate": "تاریخ ایجاد",
+    "Newest": "جدیدترین",
+    "recordedActivities": "فعالیت های ضبط شده",
+    "userRecordedActivities": "فعالیت های ضبط شده کاربر"
   },
   "adminList": {
     "adminList": "لیست ادمین",
@@ -355,12 +364,14 @@
     "admin": "ادمین",
     "metaAdmin": "سوپر ادمین",
     "choseDomain": "انتخاب دامنه",
-    "systemAdminOtp": "بعد از فعالسازی برای ورود به سامانه قسمت پایین را با تلفن همراه خود اسکن کنید."
+    "systemAdminOtp": "بعد از فعالسازی برای ورود به سامانه قسمت پایین را با تلفن همراه خود اسکن کنید.",
+    "newAdmin": "ادمین جدید",
+    "adminSearch": "جستجو ادمین"
   },
   "userList": {
     "onlineUsers": "کاربران آنلاین",
     "blockedUsers": "کاربران مسدود شده",
-    "searchUsers": "جستجوی کاربر",
+    "searchUsers": "جستجو کاربر",
     "usersList": "لیست کاربران",
     "userAccess": "دسترسی های کاربر",
     "changeUserProfileAndAccessList": "تغییر مشخصات و لیست دسترسی‌های کاربر.",

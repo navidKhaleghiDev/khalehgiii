@@ -22,6 +22,10 @@ export function UserInfo({
   const { user } = useUserContext();
   const { t } = useTranslation();
 
+  const capitalizeFirstLetter = (val: string | undefined) => {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  };
+
   return (
     <Card rounded="xxl" shadow="base" className={className}>
       <div>
@@ -29,9 +33,10 @@ export function UserInfo({
           <Typography
             color="black"
             variant="body4B"
-            className="xl:py-1 py-0 xl:text-base font-medium text-sm whitespace-nowrap overflow-hidden"
+            className="xl:py-1 py-0 xl:text-base font-medium text-sm overflow-hidden"
           >
-            {user.first_name} {user.last_name}
+            {capitalizeFirstLetter(user.first_name)}{' '}
+            {capitalizeFirstLetter(user.last_name)}
           </Typography>
         ) : (
           <Typography
@@ -39,7 +44,7 @@ export function UserInfo({
             variant="body4B"
             className="xl:py-1 py-0 xl:text-base font-medium text-sm whitespace-nowrap overflow-hidden"
           >
-            {user?.email}
+            {capitalizeFirstLetter(user?.username)}
           </Typography>
         )}
         {user?.is_superuser && (

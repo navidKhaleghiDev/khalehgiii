@@ -7,7 +7,7 @@ export function ReportHeader() {
   return (
     <div className="mb-[3.75rem]">
       <Typography variant="body2B" color="black">
-        {t('global.progressingChart')}
+        {t('dashboard.scanChart')}
       </Typography>
       <Typography variant="body3" color="neutral">
         sep.npd-co.com

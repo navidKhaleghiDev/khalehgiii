@@ -7,6 +7,7 @@ import X from '@iconify-icons/ph/x';
 import Check from '@iconify-icons/ph/check';
 import TrashSimple from '@iconify-icons/ph/trash-simple';
 import LockLaminated from '@iconify-icons/ph/lock-laminated';
+import PhWarning from '@iconify-icons/ph/warning';
 import Home from '@iconify-icons/ph/house';
 
 import { containerStyles, headerStyles } from './styles';
@@ -29,6 +30,11 @@ function iconHeader(type: ModalProps['type']): IconHeader {
       return {
         icon: Check,
         color: 'text-teal-500 bg-teal-200 dark:text-teal-400 dark:bg-gray-800',
+      };
+    case 'warning':
+      return {
+        icon: PhWarning,
+        color: 'text-red-600 bg-red-200 dark:text-red-400 dark:bg-gray-800',
       };
     case 'info':
       return {
@@ -93,9 +99,9 @@ export function Modal(props: ModalProps): JSX.Element | null {
     <div className="main-modal fixed w-full h-100 inset-0 z-50 animated fadeIn overflow-hidden flex justify-center items-center backdrop-blur-sm">
       <div
         ref={ref}
-        className={`rounded-[1.25rem] shadow-lg modal-container bg-white dark:bg-gray-600 ${containerStyles(
-          { size }
-        )} mx-auto z-50 overflow-y-auto ${
+        className={`rounded-[1.25rem] shadow-lg modal-container bg-white ${
+          type === 'content' ? 'dark:bg-gray-700' : 'dark:bg-gray-600'
+        } ${containerStyles({ size })} mx-auto z-50 overflow-y-auto ${
           icon && 'max-w-[39.688rem]'
         } ${classContainer}`}
       >

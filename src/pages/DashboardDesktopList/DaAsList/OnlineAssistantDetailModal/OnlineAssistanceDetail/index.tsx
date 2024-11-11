@@ -30,7 +30,7 @@ export default function OnlineAssistanceDetail({
           data.length > 0 &&
           data.map((item) => (
             <div
-              className="bg-transparent h-10 border border-gray-100 rounded-lg flex items-center px-2.5 gap-3 mb-2"
+              className="bg-white dark:bg-gray-600 h-10 border border-gray-100 dark:border-gray-500 rounded-lg flex items-center px-2.5 gap-3 mb-2"
               key={Object.values(item).toString()}
             >
               <Avatar icon={UsersThree} size="sm" />

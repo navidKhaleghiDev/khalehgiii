@@ -15,9 +15,9 @@ export function DaasDashboard() {
     ? user?.online_assistance?.user_http_address
     : user?.online_assistance?.user_http_address;
 
-  const daasUrl = isSSl
+  const daasUrl = isSSlTrue
     ? `${httpCondition}://${changePort}.${user?.base_url}`
-    : `${httpCondition}://${user?.base_url}:${Number(changePort) - 10000}`;
+    : `${httpCondition}://${user?.base_url}:${changePort}`;
 
   const src = user?.online_assistance?.user_http_address
     ? onlineAssistanceAddress
