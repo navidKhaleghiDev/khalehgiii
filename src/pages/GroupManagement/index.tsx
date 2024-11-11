@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
@@ -10,13 +10,13 @@ import { IResponseData } from '@src/types/services';
 import { GroupCard } from '@redesignUi/molecules/Cards/GroupCard';
 import { Pagination } from '@redesignUi/molecules/Pagination';
 import { createAPIEndpoint } from '@src/helper/utils';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
 import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 import UsersThree from '@iconify-icons/ph/users-three';
 import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
 import userIcon from '@iconify-icons/ph/user';
 import { Typography } from '@redesignUi/atoms';
 import { API_DELETE_GROUP } from '@src/services/users';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { toast } from 'react-toastify';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { GroupManagementSkeleton } from './loading';
@@ -94,7 +94,9 @@ export function GroupManagement() {
               buttonLabel={t('groupManagement.newGroup')}
               domainFilter
               searchQuery={filterQuery}
-              handelSearchQuery={(v) => setFilterQuery(v)}
+              handelSearchQuery={(v: SetStateAction<string>) =>
+                setFilterQuery(v)
+              }
             />
           </div>
           <GroupCard
