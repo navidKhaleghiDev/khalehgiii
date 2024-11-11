@@ -44,3 +44,22 @@ export type TGroupUpdate = {
   name: string;
   image?: string | Blob | undefined;
 };
+export type TGroupCreate = {
+  name: string;
+  image: string | Blob | undefined;
+};
+export type GroupManagementCreateProps = {
+  handleCloseModal: () => void;
+};
+
+export type GroupManagementUsersListProps = {
+  memberData: any;
+  countPage: any;
+  currentPage: any;
+  pageSize: number;
+  isLoading: boolean;
+  setCurrentPage: any;
+  keyRef: any;
+  selectedData: any;
+  setSelectedData: any;
+};

@@ -4,7 +4,7 @@ import { t } from 'i18next';
 
 export const dropdownOptions = [
   { id: 1, value: 'users', label: t('global.users') },
-  { id: 1, value: 'admins', label: t('global.admins') },
+  { id: 2, value: 'admins', label: t('global.admins') },
 ];
 
 export const groupManagementUserHeaderItem: HeaderTable[] = [

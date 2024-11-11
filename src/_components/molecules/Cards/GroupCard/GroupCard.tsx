@@ -45,7 +45,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
         groupData.map((group) => (
           <div
             key={group.id}
-            className="relative w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px]"
+            className="relative  w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px]"
           >
             {GroupManagementDelete ? (
               <IconButton
@@ -62,7 +62,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
               onClick={() => !isRemoving && onClick(group)}
               rounded="xxl"
               shadow="base"
-              className={` p-5 pt-12 w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px] ${className}`}
+              className={` p-5 pt-12 h-[236px] w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px] ${className}`}
             >
               <div className="flex flex-col items-center">
                 {!group.image ? (

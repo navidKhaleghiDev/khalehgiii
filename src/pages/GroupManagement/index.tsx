@@ -61,6 +61,7 @@ export function GroupManagement() {
 
   const groupData = data?.data ?? [];
   const countPage = 0;
+  const handleCloseModal = () => setOpenModal(false);
 
   return (
     <div className="flex flex-col gap-6 mt-20">
@@ -111,7 +112,9 @@ export function GroupManagement() {
             title={t('groupManagement.createGroup')}
             descriptionInfo={t('groupManagement.createTitle')}
             setOpen={setOpenModal}
-            content={<GroupManagementCreate />}
+            content={
+              <GroupManagementCreate handleCloseModal={handleCloseModal} />
+            }
           />
         </>
       )}

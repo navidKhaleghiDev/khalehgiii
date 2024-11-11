@@ -1,29 +1,50 @@
-import { useState } from 'react';
-
-import { Card, Typography, Avatar } from '@redesignUi/atoms';
+import { useState, useRef } from 'react';
+import { BaseButton, Card } from '@redesignUi/atoms';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import userIcon from '@iconify-icons/ph/user';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
-import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
 import { http } from '@src/services/http';
 import useSWR from 'swr';
 import { IResponsePagination } from '@src/types/services';
-import { IDaAs } from '@src/services/users/types';
+import { IDaAs, TGroup } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
-import { GroupManagementDropDown } from '../components/GroupManagementDropDown';
-import { dropdownOptions } from '../GroupManagementEdit/constants/groupManagementHeaderItem';
+
+import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { BaseInputUploadImageController } from '@redesignUi/atoms/BaseInputUploadImage/Controller';
+import { API_USERS_GROUPS_CREATE } from '@src/services/users';
+import { GroupManagementUsersList } from '../components/GroupManagementUsersList';
+import {
+  GroupManagementCreateProps,
+  TGroupCreate,
+  TGroupUpdate,
+} from '../types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
-export function GroupManagementCreate() {
+
+const buildFormData = (data: TGroupUpdate) => {
+  const formData = new FormData();
+  formData.append('name', data.name);
+  if (data.image === '' || data.image instanceof Blob) {
+    formData.append('image', data?.image);
+  }
+  data.users.forEach((user) => formData.append('users', user.id));
+  data.admins.forEach((admin) => formData.append('admins', admin.id));
+  return formData;
+};
+
+export function GroupManagementCreate(props: GroupManagementCreateProps) {
+  const { handleCloseModal } = props;
   const { t } = useTranslation();
+  const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [selectedData, setSelectedData] = useState([]);
+  const [selectedData, setSelectedData] = useState({ users: [], admins: [] });
+
+  const keyRef = useRef('users');
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_DAAS,
@@ -32,74 +53,116 @@ export function GroupManagementCreate() {
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
 
-  const listDaas = data?.data?.results ?? [];
+  const list = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
+
+  const listDaas = list.map((item) => {
+    return { ...item, value: 'users' };
+  });
 
   const { control, handleSubmit } = useForm({
     mode: 'onChange',
-    defaultValues: {},
+    defaultValues: {
+      name: '',
+      image: '',
+    },
   });
 
-  const onSubmit = () => {};
-
-  const handleOnChange = (type, list) => {
-    if (type === 'drop') {
-      console.log(setSelectedData((prev) => [...prev, list.value]));
-    } else console.log(setSelectedData((prev) => [...prev, list]));
+  const createGroup = async (listData: TGroup) => {
+    setLoading(true);
+    await API_USERS_GROUPS_CREATE(listData)
+      .then(() => {
+        toast.success(t('global.successfullyAdded'));
+        mutate();
+      })
+      .catch((err) => {
+        toast.error(err);
+      })
+      .finally(() => {
+        setLoading(false);
+        handleCloseModal();
+      });
   };
-  console.log(selectedData);
+
+  const onSubmit: SubmitHandler<TGroupCreate> = (listData) => {
+    const updatedData = {
+      ...listData,
+      ...selectedData,
+    };
+
+    console.log(updatedData);
+    createGroup(buildFormData(updatedData) as any);
+  };
+
   return (
     <div className="w-full">
-      <Card color="white" shadow="sm" border rounded="lg">
+      <div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex justify-between border-b border-gray-200 my-6 w-full">
-            <div className="flex flex-col  justify-between gap-2 w-full ">
+          <Card
+            color="white"
+            shadow="sm"
+            border
+            rounded="xl"
+            className="flex items-center p-2 "
+          >
+            <div className="flex justify-center items-center gap-4 p-1">
+              <BaseInputUploadImageController name="image" control={control} />
+              <BaseInputController
+                className="-mb-4"
+                id="name"
+                name="name"
+                control={control}
+                label={t('groupManagement.groupName')}
+                placeholder={t('groupManagement.development')}
+              />
+            </div>
+          </Card>
+
+          <Card
+            color="white"
+            shadow="sm"
+            border
+            rounded="xl"
+            className="w-11/12 m-auto mt-4 py-4"
+          >
+            <div className="flex flex-col justify-between gap-2">
               <SearchInput
                 fullWidth
-                className="w-1/2 ml-4 sm:w-[255px]"
+                className="w-1/2 mr-5 sm:w-[255px] -mb-3"
                 onChange={(e) => setFilterQuery(e)}
                 value={filterQuery}
                 id="search"
                 name="search"
                 placeholder={t('groupManagement.searchGroup')}
               />
-              {listDaas.map((item) => (
-                <div
-                  key={item.id}
-                  className=" w-full h-12 px-2.5 bg-white rounded-lg border border-gray-100 justify-between items-center inline-flex"
-                >
-                  <div className="flex items-center gap-2 ">
-                    <Avatar icon={userIcon} />
-                    <Typography className="text-gray-600 text-xs">
-                      {item.email}
-                    </Typography>
-                  </div>
-                  <GroupManagementDropDown
-                    onClick={(e: any) => handleOnChange('drop', e)}
-                    options={dropdownOptions}
-                    defaultValue={{
-                      id: item.id,
-                      label: t('groupManagement.users'),
-                      value: 'users',
-                    }}
-                  />
-                  <BaseCheckBox
-                    id={item.id}
-                    name={item.email}
-                    checked={selectedData?.some((v) => v.id === item.id)}
-                    onChange={() => handleOnChange('check', item)}
-                  />
-                </div>
-              ))}
+              <GroupManagementUsersList
+                selectedData={selectedData}
+                setSelectedData={setSelectedData}
+                memberData={listDaas}
+                countPage={countPage}
+                currentPage={currentPage}
+                pageSize={PAGE_SIZE}
+                isLoading={isLoading}
+                setCurrentPage={setCurrentPage}
+                keyRef={keyRef}
+              />
             </div>
+          </Card>
+          <div className="flex  justify-center my-5  gap-3   ">
+            <BaseButton submit label={t('global.confirm')} loading={loading} />
+            <BaseButton
+              type="neutral"
+              label={t('global.cancel')}
+              onClick={handleCloseModal}
+            />
           </div>
         </form>
-      </Card>
+      </div>
     </div>
   );
 }

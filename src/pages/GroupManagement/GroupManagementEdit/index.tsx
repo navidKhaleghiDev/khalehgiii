@@ -100,12 +100,15 @@ export function GroupManagementEdit() {
 
   const handleClickAction = useCallback(
     (action: 'users' | 'admins' | 'delete', row: TGroupMembers) => {
+      const alternateAction: 'users' | 'admins' =
+        action === 'users' ? 'admins' : 'users';
+
+      const key = row.value as 'users' | 'admins';
       if (!updateGroup) return;
 
-      if (action === 'users' || action === 'admins') {
-        const alternateAction: 'users' | 'admins' =
-          action === 'users' ? 'admins' : 'users';
+      if (updateGroup[alternateAction].length === 1) return;
 
+      if (action === 'users' || action === 'admins') {
         const existsInAction = updateGroup[action].some((m) => m.id === row.id);
         if (existsInAction) return;
 
@@ -119,7 +122,8 @@ export function GroupManagementEdit() {
           [action]: [row, ...prev[action]],
         }));
       } else if (action === 'delete') {
-        const key = row.value as 'users' | 'admins';
+        if (updateGroup[key].length === 1) return;
+
         const updateAndRemovedData = updateGroup[key].filter(
           (item) => item.id !== row.id
         );
