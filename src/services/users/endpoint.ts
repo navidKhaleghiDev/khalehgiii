@@ -9,7 +9,8 @@ export const E_USERS_GROUPS = '/users/groups/';
 export const E_USERS_ONLINE_ASSISTANCE = '/users/online_assistance/';
 export const E_USERS_LICENSES = '/users/license/';
 
-export const USERS_GROUPS_GET = (id: string) => `${E_USERS_GROUPS}${id}/`;
+export const USERS_GROUPS_GET = (id: string | number) =>
+  `${E_USERS_GROUPS}${id}/`;
 export const E_USERS_UPDATE = (id: string) => `${E_USERS}${id}/`;
 export const E_USERS_DELETE = (id: number) => `${E_USERS}${id}/`;
 export const E_UPDATE_USER = (id: string | number) => `${E_USERS}${id}/`;
