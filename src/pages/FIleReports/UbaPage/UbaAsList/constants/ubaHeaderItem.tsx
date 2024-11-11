@@ -20,7 +20,7 @@ export const ubaHeaderItem: HeaderTable[] = [
     label: 'table.unauthorizedBehavior',
     id: 'malbehave_count',
     type: 'none',
-    class: 'px-3 lg:w-1/12 w-2/12 rtl:text-right ltr:text-left lg:text-center',
+    class: 'px-3 w-2/12 rtl:text-right ltr:text-left lg:text-center',
     isMobileCollapsed: true,
   },
   {

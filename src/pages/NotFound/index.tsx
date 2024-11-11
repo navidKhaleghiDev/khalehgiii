@@ -1,12 +1,22 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { NotFoundSvg } from '@redesignUi/atoms/Svgs/NotFoundSvg';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { useTheme } from '@context/settings/themeContext';
 
 export function NotFoundPage() {
+  const { isDark, toggleTheme } = useTheme();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleToggle = () => (isDark ? toggleTheme() : null);
+
+  const handleClick = () => {
+    handleToggle();
+    navigate(ROUTES_PATH.home);
+  };
 
   return (
     <div className="h-screen dark:bg-gray-700 bg-gray-50 flex flex-col justify-center items-center font-kalameh">
@@ -20,14 +30,13 @@ export function NotFoundPage() {
         {t('global.notFoundPage')}
       </Typography>
 
-      <Link to={ROUTES_PATH.home}>
-        <BaseButton
-          className="mt-[3.563rem]"
-          label={t('global.goToSystem')}
-          type="teal"
-          size="md"
-        />
-      </Link>
+      <BaseButton
+        className="mt-[3.563rem]"
+        label={t('global.goToSystem')}
+        onClick={handleClick}
+        type="teal"
+        size="md"
+      />
     </div>
   );
 }
