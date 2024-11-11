@@ -51,4 +51,6 @@ export interface FileTypeProp {
   is_active: boolean;
   created_at: string;
   updated_at: string;
+  upload_file_size_mb: number;
+  download_file_size_mb: number;
 }

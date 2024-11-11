@@ -37,7 +37,7 @@ export const baseTableCollapseMobile = cva(
   `bg-gray-100 border border-gray-300  dark:bg-gray-800  `
 );
 export const baseTableMenuCell = cva(
-  `flex gap-3 !justify-start border-none h-6 w-full font-light leading-none `,
+  `flex gap-2 !justify-start border-none !font-normal w-full !text-sm !text-right`,
   {
     variants: {
       color: {

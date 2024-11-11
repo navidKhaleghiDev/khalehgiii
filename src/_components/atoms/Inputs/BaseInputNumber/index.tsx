@@ -32,10 +32,8 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     fullWidth,
     icon,
   } = props;
-
   const rtl = dir === 'rtl';
   const [value, setValue] = useState<number>(defaultValue);
-
   useEffect(() => {
     if (externalValue !== undefined && externalValue !== value) {
       setValue(externalValue as number);
