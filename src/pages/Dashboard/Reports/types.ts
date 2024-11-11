@@ -32,6 +32,8 @@ export type DataGeneratorReturn = {
     label: string;
     data: number[] | any;
     fill: boolean;
+    borderColor?: string;
+    backgroundColor?: string;
   }>;
 };
 export interface ReportChartType {

@@ -12,6 +12,7 @@ import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
 import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
 import { useLanguage } from '@context/settings/languageContext';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 
 export function DashboardProgressChart() {
   const [chartType, setChartType] = useState('line');
@@ -121,27 +122,42 @@ export function DashboardProgressChart() {
       <div className="flex w-full justify-center sm:justify-between flex-col sm:flex-row pb-5">
         <div className="flex sm:flex-col flex-row justify-between flex-wrap">
           <div className="flex flex-row sm:flex-col items-start justify-start gap-2.5 pt-5 shrink-0">
-            <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
-              variant="body6"
-              color="neutral"
+            <ToolTip
+              tooltip={t('global.developing')}
+              position={farsi ? 'left' : 'right'}
             >
-              {t('fileScan.scannedFiles')}
-            </Typography>
-            <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
-              variant="body6"
-              color="neutral"
+              <Typography
+                className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
+                variant="body6"
+                color="neutral"
+              >
+                {t('fileScan.scannedFiles')}
+              </Typography>
+            </ToolTip>
+            <ToolTip
+              tooltip={t('global.developing')}
+              position={farsi ? 'left' : 'right'}
             >
-              {t('dashboard.virusFiles')}
-            </Typography>
-            <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
-              variant="body6"
-              color="neutral"
+              <Typography
+                className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
+                variant="body6"
+                color="neutral"
+              >
+                {t('dashboard.virusFiles')}
+              </Typography>
+            </ToolTip>
+            <ToolTip
+              tooltip={t('global.developing')}
+              position={farsi ? 'left' : 'right'}
             >
-              {t('dashboard.userBehavior')}
-            </Typography>
+              <Typography
+                className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-teal-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
+                variant="body6"
+                color="neutral"
+              >
+                {t('dashboard.userBehavior')}
+              </Typography>
+            </ToolTip>
           </div>
           <div className="flex gap-2.5 pb-5 items-end justify-self-end">
             <IconButton

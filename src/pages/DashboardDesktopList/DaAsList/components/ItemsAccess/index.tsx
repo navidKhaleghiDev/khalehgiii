@@ -99,9 +99,9 @@ export function ItemsAccess(props: ItemsAccessProps) {
             </div>
             <div>
               <BaseSwitchController
-                id="chatroom_privileged"
+                id="has_online_assistance"
                 control={control}
-                name="chatroom_privileged"
+                name="has_online_assistance"
               />
             </div>
           </div>

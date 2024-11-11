@@ -305,7 +305,8 @@
     "upload": "upload",
     "limitBySize": "Limit by size",
     "accessToTheUsersDesktop": "Access to the user desktop",
-    "goToSystem": "Go to the system"
+    "goToSystem": "Go to the system",
+    "developing": "Developing ..."
   },
   "groupManagement": {
     "person": "person",

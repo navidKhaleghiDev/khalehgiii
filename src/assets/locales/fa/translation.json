@@ -306,7 +306,8 @@
     "upload": "آپلود",
     "limitBySize": "محدود کردن بر اساس زمان",
     "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
-    "goToSystem": "ورود به سامانه"
+    "goToSystem": "ورود به سامانه",
+    "developing": "در حال توسعه ..."
   },
   "groupManagement": {
     "person": "نفر",
