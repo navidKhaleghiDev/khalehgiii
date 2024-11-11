@@ -31,7 +31,6 @@ export function LoginOnlineAssistance() {
 
   useEffect(() => {
     if (!isAdminGroup) {
-      // console.log('jsjhdfjh');
       navigate(ROUTES_PATH.home);
     } else if (isInDaas && user?.online_assistance) {
       navigate(user?.online_assistance?.user_http_address);
