@@ -91,6 +91,7 @@ export function UserInfoTab({
               id="password"
               fullWidth
               dir={dir}
+              iconDir={dir}
             />
           ) : null}
         </div>
