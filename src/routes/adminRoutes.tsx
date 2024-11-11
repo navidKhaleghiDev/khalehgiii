@@ -20,6 +20,8 @@ import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
+import { GroupManagementEdit } from '@src/pages/GroupManagement/GroupManagementEdit';
+import { GroupManagement } from '@src/pages/GroupManagement';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 import { ReportFileScanPage } from '@src/pages/FIleReports/ReportFileScanPage';
@@ -134,7 +136,15 @@ export const adminRoutes = [
         path: ROUTES_PATH.dashboardGroupManagement,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>GroupManagement Page</div>
+            <GroupManagement />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dashboardGroupManagementEdit,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <GroupManagementEdit />
           </ProtectedRoute>
         ),
       },

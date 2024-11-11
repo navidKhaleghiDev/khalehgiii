@@ -51,7 +51,8 @@ export function BaseTable<T extends IdItem>(
     paginationLabel,
     allItems,
     itemsPer,
-  } = pagination;
+  } = pagination || {};
+
   const [headerCollapse, setHeaderCollapse] = useState<CategorizedData>({
     mobile: [],
     desktop: [],
@@ -118,16 +119,20 @@ export function BaseTable<T extends IdItem>(
         )}
       </table>
       <div className="mt-5">
-        {!!countPage && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={onPageChange}
-            allItems={allItems}
-            itemsPer={itemsPer}
-            paginationLabel={paginationLabel}
-          />
-        )}
+        {!!countPage &&
+          currentPage &&
+          totalPages &&
+          onPageChange &&
+          !loading && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              allItems={allItems}
+              itemsPer={itemsPer}
+              paginationLabel={paginationLabel}
+            />
+          )}
       </div>
     </div>
   );
