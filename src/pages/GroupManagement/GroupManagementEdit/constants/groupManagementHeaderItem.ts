@@ -2,7 +2,7 @@ import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import PhUserMinusThin from '@iconify-icons/ph/user-minus-thin';
 import { t } from 'i18next';
 
-const dropdownOptions = [
+export const dropdownOptions = [
   { id: 1, value: 'users', label: t('global.users') },
   { id: 1, value: 'admins', label: t('global.admins') },
 ];
