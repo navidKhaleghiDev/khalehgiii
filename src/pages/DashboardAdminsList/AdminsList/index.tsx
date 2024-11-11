@@ -114,10 +114,10 @@ export function AdminsList() {
   return (
     <div className="w-full gap-[1.87rem] flex flex-col">
       <FilterTableList
-        buttonLabel={t('groupManagement.newAdmin')}
+        buttonLabel={t('adminList.newAdmin')}
         onClickButton={handleCreateAdmin}
         searchQuery={filterQuery}
-        searchPlaceholder={t('fileScan.adminSearch')}
+        searchPlaceholder={t('adminList.adminSearch')}
         handelSearchQuery={setFilterQuery}
         domainFilter
       />
