@@ -107,6 +107,7 @@ input[type='time']::-webkit-calendar-picker-indicator {
 }
 ::-webkit-scrollbar-thumb {
   background: #d1d5db;
+
   border-radius: 3px;
 }
 
@@ -116,11 +117,11 @@ input[type='time']::-webkit-calendar-picker-indicator {
 
 /* Dark mode styles with Tailwind's dark class */
 .dark ::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: #d1d5db;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #9ca3af;
+  background: #6b7280;
 }
 
 h2 {
