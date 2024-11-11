@@ -7,6 +7,10 @@ export const regexPattern = {
       /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
     message: t('regexPattern.value'),
   },
+  wordStartedWithPointAndEn: {
+    value: /^\.[A-Za-z0-9]+$/,
+    message: t('regexPattern.moreThanTwoEnglishLettersAndStartWithADot'),
+  },
   onlyEnglishNdOtherCharacters: {
     value: /^(?!.*[\u0600-\u06E9\u200C])/,
     message: t('regexPattern.onlyEnglishNdOtherCharacters'),

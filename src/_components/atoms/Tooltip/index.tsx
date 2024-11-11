@@ -15,7 +15,7 @@ import { ToolTipProps } from './types';
  * @returns {JSX.Element} The rendered ToolTip component.
  */
 
-function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
+export function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
   const { children, tooltip, position, truncate } = props;
   const [show, setShow] = useState(false);
 
@@ -50,5 +50,3 @@ function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
     </div>
   );
 }
-
-export default ToolTip;

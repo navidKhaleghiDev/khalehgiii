@@ -5,12 +5,13 @@
  */
 
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
-import ToolTip from '@redesignUi/atoms/Tooltip';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { useCallback, useState, useRef } from 'react';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import { useLanguage } from '@context/settings/languageContext';
 import { useTranslation } from 'react-i18next';
 import moreIcon from '@iconify-icons/ph/dots-three-vertical-bold';
+
 import {
   BaseTableMenuCellProps,
   IdItem,
@@ -82,11 +83,11 @@ export function BaseTableMenuCell<T extends IdItem>(
         )}
         {open && (
           <div
-            className={`z-20 absolute top-7 ${menuStyle} bg-white dark:bg-gray-600 border border-gray-200 rounded-lg shadow w-[200px] flex-col`}
+            className={`z-20 absolute top-10 ml-5 ltr:mr-5 ${menuStyle} bg-white dark:bg-gray-600 shadow-md rounded-lg w-44 flex-col`}
           >
             {header.menu.map((menu: MenuType) => (
-              <div className="mb-1" key={menu.action}>
-                <div className="rounded-lg h-auto flex w-full">
+              <div key={menu.action}>
+                <div className="rounded-lg flex w-ful ">
                   <BaseButton
                     className={baseTableMenuCell({
                       color: menu.color,

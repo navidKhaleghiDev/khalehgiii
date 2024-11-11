@@ -44,6 +44,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
     size,
     type,
     helpText,
+    onKeyDown,
     autoComplete,
     label,
     hiddenError,
@@ -71,11 +72,11 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
             variant="body6"
             className={`${
               error && !disabled
-                ? 'text-red-500 dark:text-red-500'
+                ? '!text-red-500 dark:!text-red-500'
                 : 'text-gray-200'
             }  ${
               disabled
-                ? 'text-gray-200 dark:text-gray-800'
+                ? 'text-gray-300 dark:text-gray-500'
                 : 'text-gray-500 dark:text-white'
             }`}
           >
@@ -111,6 +112,7 @@ export function BaseInput(props: BaseInputProps): JSX.Element {
           value={value}
           autoComplete={autoComplete}
           onChange={onChange}
+          onKeyDown={onKeyDown}
           placeholder={placeholder}
           tabIndex={inputTabIndex}
           className={baseInputStyles({

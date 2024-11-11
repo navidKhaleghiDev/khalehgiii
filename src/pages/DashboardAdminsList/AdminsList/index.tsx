@@ -16,8 +16,8 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
-import useWindowDimensions from '@src/helper/hooks/useWindowDimensions';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
@@ -35,7 +35,6 @@ export function AdminsList() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const userPermissions = useUserPermission();
-  // const addPermission = checkPermission(userPermissions, EPermissionUsers.ADD);
 
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS,
@@ -48,17 +47,6 @@ export function AdminsList() {
     endpoint,
     http.fetcherSWR
   );
-
-  // const debouncedSetFilterQuery = useCallback(
-  //   debounce((query: string) => {
-  //     setCurrentPage(PAGE);
-  //     setFilterQuery(query);
-  //   }, 1000),
-  //   []
-  // );
-  // const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   debouncedSetFilterQuery(event.target.value);
-  // };
 
   const listWhiteList = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
@@ -123,30 +111,13 @@ export function AdminsList() {
     onPageChange: handlePageChange,
   };
 
-  // const searchBarProps: TSearchBar = {
-  //   name: 'search-admin-list',
-  //   value: filterQuery,
-  //   handleSearchInput: handleFilterChange,
-  //   componentProps: addPermission
-  //     ? {
-  //         type: 'actionAdd',
-  //         label: 'table.addNewAdmin',
-  //         onClick: handleCreateAdmin,
-  //       }
-  //     : undefined,
-  // };
-
   return (
-    <div
-      className={`w-full gap-[1.87rem] flex flex-col ${
-        isLoading ? 'loading' : ''
-      }`}
-    >
+    <div className="w-full gap-[1.87rem] flex flex-col">
       <FilterTableList
-        buttonLabel={t('groupManagement.newAdmin')}
+        buttonLabel={t('adminList.newAdmin')}
         onClickButton={handleCreateAdmin}
         searchQuery={filterQuery}
-        searchPlaceholder={t('fileScan.adminSearch')}
+        searchPlaceholder={t('adminList.adminSearch')}
         handelSearchQuery={setFilterQuery}
         domainFilter
       />
@@ -185,7 +156,9 @@ export function AdminsList() {
         icon={activeAdmin ? PhPencilSimple : PhUserCirclePlus}
         open={openUpdateModal}
         title={
-          activeAdmin ? t('adminList.adminInfo') : t('adminList.createNewAdmin')
+          activeAdmin
+            ? t('adminList.editInformation')
+            : t('adminList.createNewAdmin')
         }
         descriptionInfo={
           activeAdmin

@@ -1,15 +1,12 @@
-import { useTranslation } from 'react-i18next';
-import { MultiDatePicker } from '@ui/atoms/Inputs/MultiDatePicker';
 import { useForm } from 'react-hook-form';
-import { IFormDate, IReportFormType } from '../types';
 
-export function ReportForm({
-  handleOnSubmit,
-  state,
-  onChange,
-}: IReportFormType) {
-  const { t } = useTranslation();
-  const { control, handleSubmit } = useForm<IFormDate>({
+import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
+import { useLanguage } from '@context/settings/languageContext';
+
+import { FormDate, ReportFormType } from '../types';
+
+export function ReportForm({ handleOnSubmit, state }: ReportFormType) {
+  const { control, handleSubmit } = useForm<FormDate>({
     mode: 'onChange',
     defaultValues: {
       start_date: '',
@@ -17,22 +14,19 @@ export function ReportForm({
     },
   });
 
-  // const todayDate = new Date();
-  // todayDate.setDate(todayDate.getDate() + 1);
+  const { isFarsi } = useLanguage();
 
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)}>
-      <MultiDatePicker
-        onChange={onChange}
+      <MultiDatePickerController
         timeDuration={state}
         control={control}
-        placeholder={t('global.periodOfTime')}
         id="start_date"
         name="start_date"
         format="YYYY-MM-DD"
         maxDate={new Date()}
-        submitButton
         fullWidth
+        calendarPosition={isFarsi ? 'bottom-right' : 'bottom-left'}
       />
     </form>
   );

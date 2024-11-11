@@ -132,6 +132,7 @@ export type OnlineAssistanceModel = {
   admin_ip_addr: string | null;
   in_use: boolean;
   last_uptime: string;
+  group_name?: string;
   duration_time: number;
   knowledge_management_record_path: string;
   admin: KnowledgeManagementUserModel;

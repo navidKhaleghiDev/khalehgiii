@@ -18,9 +18,9 @@ export const toastStyle = cva(
 export const toastIconStyle = cva('', {
   variants: {
     type: {
-      success: 'dark:text-teal-400',
-      error: 'dark:text-red-300',
-      info: 'dark:text-gray-300',
+      success: '!text-gray-700 dark:!text-teal-400',
+      error: 'text-gray-700 dark:text-red-300',
+      info: 'text-gray-700 dark:text-gray-300',
     },
     size: {
       sm: 'w-[17.188rem] h-14',

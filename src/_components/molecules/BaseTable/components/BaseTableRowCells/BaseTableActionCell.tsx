@@ -1,6 +1,6 @@
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
-import ToolTip from '@redesignUi/atoms/Tooltip';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { useCallback } from 'react';
 import {
   ActionCellFunction,

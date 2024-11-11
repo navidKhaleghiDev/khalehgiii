@@ -31,6 +31,7 @@ export function LoginOnlineAssistance() {
 
   useEffect(() => {
     if (!isAdminGroup) {
+      // console.log('jsjhdfjh');
       navigate(ROUTES_PATH.home);
     } else if (isInDaas && user?.online_assistance) {
       navigate(user?.online_assistance?.user_http_address);
@@ -55,28 +56,25 @@ export function LoginOnlineAssistance() {
         </div>
         <div className="w-full flex flex-col items-center h-full gap-12 justify-center">
           <div className="items-center justify-center flex flex-col gap-1 p-5">
-            <Typography
-              variant="body1"
-              className="text-neutral-900 font-semibold"
-            >
+            <Typography variant="body1" className="text-gray-900 font-semibold">
               {t('onlineAssistance.loginType')}
             </Typography>
-            <Typography className="text-neutral-500" variant="body3">
+            <Typography className="text-gray-500" variant="body3">
               {t('onlineAssistance.loginTypeChoose')}
             </Typography>
           </div>
           <div className="sm:ltr:flex-row-reverse sm:rtl:flex-row flex flex-col py-5 gap-[1.87rem] w-[15.12rem] sm:w-[21.87rem]">
             <LoginCard
               icon={Monitor}
-              title={t('onlineAssistance.remote')}
-              subject="Online Assistance"
+              title={t('global.accessToTheUsersDesktop')}
+              subject={t('global.onlineAssistance')}
               onClick={() => navigate(ROUTES_PATH.assistanceDashboard)}
             />
             <LoginCard
               icon={WifiHigh}
-              subject="Netsep"
+              subject={t('dashboard.netsep')}
               title={t('onlineAssistance.internet')}
-              onClick={() => navigate(ROUTES_PATH.dashboard)}
+              onClick={() => navigate(ROUTES_PATH.home)}
             />
           </div>
         </div>

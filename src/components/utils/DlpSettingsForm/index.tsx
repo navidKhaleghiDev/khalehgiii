@@ -1,5 +1,6 @@
-import { IDaAs } from '@src/services/users/types';
 import { useTranslation } from 'react-i18next';
+
+import { IDaAs } from '@src/services/users/types';
 import {
   EPermissionWhiteListFiles,
   PermissionsCodeName,
@@ -28,8 +29,8 @@ export function DlpSettingsForm({
   );
   return (
     hasViewPermission && (
-      <>
-        <div className="px-2 col-span-3">
+      <div className="w-full col-span-6 grid grid-cols-2 gap-5 pt-4 mt-4 border-t border-t-gray-300">
+        <div className="sm:col-span-1 col-span-2">
           <DlpList
             name="allowed_files_type_for_download"
             valueList={dlpDownloadList}
@@ -38,7 +39,7 @@ export function DlpSettingsForm({
             userPermissions={userPermissions}
           />
         </div>
-        <div className="px-2 col-span-3">
+        <div className="sm:col-span-1 col-span-2">
           <DlpList
             name="allowed_files_type_for_upload"
             valueList={dlpUploadList}
@@ -47,7 +48,7 @@ export function DlpSettingsForm({
             userPermissions={userPermissions}
           />
         </div>
-      </>
+      </div>
     )
   );
 }

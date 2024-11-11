@@ -102,7 +102,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     <LoadingSpinner />
   ) : (
     <div>
-      <div className=" mb-[2.87rem] mt-5">
+      <div className=" mb-[2.87rem]">
         <Typography
           color="black"
           variant="body2B"

@@ -66,7 +66,8 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
-          const menuStyle = menu ? 'justify-end' : '';
+          const menuStyle = headerList.type === 'menu' ? 'justify-end ' : '';
+          menu = headerList.type === 'menu';
 
           return (
             <td
@@ -85,7 +86,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
         {collapse && (
           <td
             aria-label="BaseTableRow"
-            className={`w-1/12 flex justify-center ${
+            className={` sm:w-[4rem]  w-1/12 flex justify-end sm:px-4 ${
               !menu ? directionStyle : ''
             }  `}
           >

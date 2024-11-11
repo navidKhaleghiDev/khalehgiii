@@ -24,7 +24,8 @@ export type RoutePathType =
   | 'application'
   | 'daas'
   | 'dlp'
-  | 'dashboardGroupManagementEdit';
+  | 'dashboardGroupManagementEdit'
+  | 'licence';
 
 export const RoutesName = {
   HOME: 'home',
@@ -49,6 +50,7 @@ export const RoutesName = {
   APPLICATION: 'application',
   DAAS: 'daas',
   DLP: 'dlp',
+  LICENCE: 'licence',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -57,6 +59,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.UBA}`,
+  licence: `/${RoutesName.LICENCE}`,
   knowledgeManagement: `/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
   dashboardDesktopList: `/${RoutesName.DESKTOP_LIST}`,
   dashboardSessionRecording: `/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,

@@ -36,16 +36,20 @@ export function BaseSwitch(props: BaseSwitchProps): JSX.Element {
   } = props;
 
   return (
-    <div className="flex" dir={dir}>
+    <div className="flex flex-row-reverse" dir={dir}>
       {label && (
         <label
           htmlFor={id}
-          className={`inline-flex items-center cursor-pointer 
+          className={`inline-flex items-center cursor-pointer
             ${dir === 'ltr' && 'text-left'}
             ${disabled && 'opacity-50'}`}
         >
-          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-            <Typography color="black" variant="body6" className="mx-2">
+          <span className="ms-[0.62rem] text-sm font-medium text-gray-900 dark:text-gray-300">
+            <Typography
+              color="black"
+              variant="body6"
+              className="mx-2 text-right"
+            >
               {label}
             </Typography>
           </span>
@@ -53,7 +57,7 @@ export function BaseSwitch(props: BaseSwitchProps): JSX.Element {
       )}
       <label
         htmlFor={id}
-        className={`select-none items-center relative inline-flex `}
+        className="select-none items-center relative inline-flex"
         aria-label="none"
       >
         <input

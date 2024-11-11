@@ -36,8 +36,8 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
         menu = head.type === 'menu';
         return (
           <tr className={className} key={head.id as string}>
-            <th className="flex justify-start">
-              <Typography type="p" className="font-normal ">
+            <th className="flex justify-start whitespace-nowrap">
+              <Typography type="p" className="font-normal">
                 {t(head.label as string)}
               </Typography>
             </th>
@@ -45,7 +45,11 @@ export function BaseTableHeader({ header, collapse }: BaseTableHeaderProps) {
         );
       })}
       {collapse && (
-        <tr className={`w-1/12 h-10 ${!menu ? directionStyle : ''}`} />
+        <tr
+          className={`w-1/12 flex justify-end sm:px-4 h-10 ${
+            !menu ? directionStyle : ''
+          }`}
+        />
       )}
     </thead>
   );

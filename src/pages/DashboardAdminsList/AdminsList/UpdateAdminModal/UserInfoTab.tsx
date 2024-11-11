@@ -3,34 +3,38 @@ import { useTranslation } from 'react-i18next';
 import PencilSimple from '@iconify-icons/ph/pencil-simple';
 import EnvelopeSimple from '@iconify-icons/ph/envelope-simple';
 import User from '@iconify-icons/ph/user';
+import caret from '@iconify-icons/ph/caret-left';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
-import { Typography } from '@redesignUi/atoms';
+import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
-import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
+// import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
 import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
-import BaseQrCode from '@redesignUi/atoms/BaseQrCode';
+import { BaseQrCode } from '@redesignUi/atoms/BaseQrCode';
 
-import { domainsMock } from './dataMock';
+// import { domainsMock } from './dataMock';
 import { UserInfoTabProps } from './types';
+
+const radioClass =
+  'sm:w-40 sm:p-2.5 flex flex-row-reverse sm:rounded-lg dark:bg-gray-600 sm:shadow';
 
 export function UserInfoTab({
   control,
   dir,
   admin,
   isMetaAdmin,
+  secret,
+  setSecret,
 }: UserInfoTabProps) {
   const { t } = useTranslation();
   const iconName = !admin?.id ? User : PencilSimple;
   const iconEmail = !admin?.id ? EnvelopeSimple : PencilSimple;
-  const radioClass =
-    'sm:w-40 sm:p-2.5 flex flex-row-reverse sm:rounded-lg dark:bg-gray-600 sm:shadow';
 
   return (
     <div className="p-5 rtl:pr-0 ltr:pl-0 h-[30.37rem] overflow-y-scroll">
       <div className="border-gray-300 border-b-[0.06rem]">
-        <div className="sm:flex-row flex flex-col sm:justify-between items-start gap-5">
+        <div className="sm:flex-row flex flex-col sm:justify-between items-start sm:gap-5">
           <BaseInputController
             dir={dir}
             fullWidth
@@ -62,22 +66,7 @@ export function UserInfoTab({
             startIcon={dir === 'ltr' ? iconName : undefined}
           />
         </div>
-        <div className="sm:flex-row flex flex-col sm:justify-between items-start w-full gap-5">
-          <BaseInputController
-            dir={dir}
-            fullWidth
-            control={control}
-            name="username"
-            id="username"
-            placeholder={t('global.userName')}
-            label={t('global.userName')}
-            rules={{
-              pattern: regexPattern.englishLetter,
-              required: regexPattern.required,
-            }}
-            endIcon={dir === 'rtl' ? iconName : undefined}
-            startIcon={dir === 'ltr' ? iconName : undefined}
-          />
+        <div className="grid sm:grid-cols-2 sm:gap-5">
           <BaseInputController
             dir={dir}
             fullWidth
@@ -93,9 +82,7 @@ export function UserInfoTab({
             endIcon={dir === 'rtl' ? iconEmail : undefined}
             startIcon={dir === 'ltr' ? iconEmail : undefined}
           />
-        </div>
-        {!admin?.id ? (
-          <div className="grid sm:grid-cols-2 sm:gap-5">
+          {!admin?.id ? (
             <PasswordInputController
               label={t('global.password')}
               name="password"
@@ -105,8 +92,8 @@ export function UserInfoTab({
               fullWidth
               dir={dir}
             />
-          </div>
-        ) : null}
+          ) : null}
+        </div>
       </div>
 
       <div className="flex flex-col justify-center items-center w-full">
@@ -153,7 +140,7 @@ export function UserInfoTab({
             </div>
           </div>
 
-          <div className="flex flex-col justify-between gap-5 py-5 border-gray-300 border-b-[0.06rem]">
+          <div className="flex flex-col justify-between gap-5 py-5">
             <div className="flex flex-col gap-1">
               <Typography
                 variant="body5B"
@@ -163,7 +150,17 @@ export function UserInfoTab({
                 {t('fileScan.choseDomain')}
               </Typography>
               <div className="flex items-end gap-2.5 mt-5">
+                <BaseButton
+                  label={t('global.choseDomain')}
+                  endIcon={caret}
+                  type="neutral"
+                  className="w-[160px]"
+                  disabled
+                />
+              </div>
+              {/* <div className="flex items-end gap-2.5 mt-5">
                 <BaseDropdown
+                  disabled
                   name="domain"
                   options={domainsMock}
                   placeHolder={t('fileScan.choseDomain')}
@@ -172,40 +169,42 @@ export function UserInfoTab({
                   }
                   label={t('global.domain')}
                 />
+              </div> */}
+            </div>
+          </div>
+          {admin?.id ? (
+            <div className="flex sm:flex-col flex-row justify-between items-start gap-1 sm:mt-2.5 mt-4 pt-5 border-gray-300 border-t-[0.06rem]">
+              <div className="w-full flex sm:flex-row flex-col sm:justify-between justify-start gap-2.5 items-start ">
+                <Typography
+                  variant="body5B"
+                  color="neutralDark"
+                  className="text-right ltr:text-left"
+                >
+                  {`${t('global.activateOtp')}`}
+                </Typography>
+                <BaseSwitchController
+                  control={control}
+                  name="totp_enable"
+                  id="totp_enable"
+                  size="md"
+                />
+              </div>
+              <Typography
+                variant="body6"
+                className="text-right ltr:text-left hidden sm:block"
+                color="neutral"
+              >
+                {t('adminList.systemAdminOtp')}
+              </Typography>
+              <div className="bg-gray-100 dark:bg-gray-600 w-[7.62rem] sm:w-full sm:mt-5 sm:py-1 p-5 rounded-lg flex justify-center">
+                <BaseQrCode
+                  email={admin?.email}
+                  setSecret={setSecret}
+                  secret={secret}
+                />
               </div>
             </div>
-          </div>
-
-          <div className="flex sm:flex-col flex-row justify-between items-start gap-1 sm:mt-2.5 mt-4">
-            <div className="w-full flex sm:flex-row flex-col sm:justify-between justify-start gap-2.5 items-start ">
-              <Typography
-                variant="body5B"
-                color="neutralDark"
-                className="text-right ltr:text-left"
-              >
-                {`${t('global.activateOtp')}`}
-              </Typography>
-              <BaseSwitchController
-                control={control}
-                name="totp_enable"
-                id="totp_enable"
-                size="md"
-              />
-            </div>
-            <Typography
-              variant="body6"
-              className="text-right ltr:text-left hidden sm:block"
-              color="neutral"
-            >
-              {t('adminList.systemAdminOtp')}
-            </Typography>
-            <div className="bg-gray-100 dark:bg-gray-600 w-[7.62rem] sm:w-full sm:mt-5 sm:py-1 p-5 rounded-lg flex justify-center">
-              <BaseQrCode
-                email={admin?.email}
-                defaultValue={admin?.totp_secret}
-              />
-            </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </div>
