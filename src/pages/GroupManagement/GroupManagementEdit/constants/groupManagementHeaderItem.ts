@@ -26,7 +26,7 @@ export const groupManagementUserHeaderItem: HeaderTable[] = [
       defaultValueLabelKey: 'value',
       defaultValueKey: 'id',
     },
-    class: 'w-1/12 mr-auto text-sm mx-3',
+    class: 'w-1/12 mr-auto text-sm mx-3 flex justify-end',
   },
   {
     label: 'table.recordingActivity',
@@ -63,7 +63,7 @@ export const groupManagementAdminHeaderItem: HeaderTable[] = [
       defaultValueLabelKey: 'value',
       defaultValueKey: 'id',
     },
-    class: 'w-1/12 mr-auto text-sm mx-3',
+    class: 'w-1/12 mr-auto text-sm mx-3 flex justify-end',
   },
   {
     label: 'table.recordingActivity',
