@@ -61,7 +61,10 @@ export function GroupManagement() {
 
   const groupData = data?.data ?? [];
   const countPage = 0;
-  const handleCloseModal = () => setOpenModal(false);
+  const handleCloseModal = () => {
+    mutate();
+    setOpenModal(false);
+  };
 
   return (
     <div className="flex flex-col gap-6 mt-20">

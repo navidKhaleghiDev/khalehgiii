@@ -64,11 +64,11 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
               shadow="base"
               className={` p-5 pt-12 h-[236px] w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px] ${className}`}
             >
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center ">
                 {!group.image ? (
                   <Avatar
                     icon={UsersThree}
-                    className={`mb-2.5 ${avatarClassName}`}
+                    className={`mb-2.5 w-16 h-16  ${avatarClassName}`}
                     iconClassName={iconClassName}
                     size="lg"
                   />
@@ -76,7 +76,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
                   <img
                     src={group.image as string}
                     alt=""
-                    className="w-16 h-16 rounded-full border border-gray-300"
+                    className="w-16 h-16 mb-2.5 rounded-full border border-gray-300"
                   />
                 )}
                 <Typography
