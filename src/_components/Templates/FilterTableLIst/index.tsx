@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { BaseButton } from '@redesignUi/atoms';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { useLanguage } from '@context/settings/languageContext';
 import pluse from '@iconify-icons/ph/plus-bold';
 import GlobeSimple from '@iconify-icons/ph/globe-simple';
@@ -73,21 +74,23 @@ export function FilterTableList(props: FilterReportsProps) {
       </div>
       {/* This item does not work does not have service */}
       {domainFilter ? (
-        <div>
-          <BaseButton
-            label={t('global.choseDomain')}
-            endIcon={caret}
-            type="neutral"
-            className="sm:flex hidden w-[160px]"
-            disabled
-          />
-          <IconButton
-            icon={GlobeSimple}
-            color="neutral"
-            className="sm:hidden flex"
-            disabled
-          />
-        </div>
+        <ToolTip tooltip={t('global.Developing')} position="top">
+          <div>
+            <BaseButton
+              label={t('global.choseDomain')}
+              endIcon={caret}
+              type="neutral"
+              className="sm:flex hidden w-[160px]"
+              disabled
+            />
+            <IconButton
+              icon={GlobeSimple}
+              color="neutral"
+              className="sm:hidden flex"
+              disabled
+            />
+          </div>
+        </ToolTip>
       ) : null}
       {/* This item does not work does not have service */}
       {handelGroupeFilter ? (

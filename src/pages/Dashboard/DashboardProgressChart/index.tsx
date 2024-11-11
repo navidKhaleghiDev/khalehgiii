@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { BaseButton, Typography } from '@redesignUi/atoms';
+import { Typography } from '@redesignUi/atoms';
 import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
-import CaretLeft from '@iconify-icons/ph/caret-left';
-import CaretRight from '@iconify-icons/ph/caret-right';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import ChartBar from '@iconify-icons/ph/chart-bar-duotone';
 import ChartLine from '@iconify-icons/ph/chart-line';
-import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
 import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
 import { useLanguage } from '@context/settings/languageContext';
@@ -21,7 +18,6 @@ export function DashboardProgressChart() {
   const { lang } = useLanguage();
 
   const farsi = lang === 'fa';
-  const caretLeft = farsi ? CaretLeft : CaretRight;
 
   // mock
   const datasets = [
@@ -70,12 +66,10 @@ export function DashboardProgressChart() {
           <Typography color="black" variant="body4B">
             {t('dashboard.scanChart')}
           </Typography>
-          <Typography color="neutral" variant="body5">
-            sep.npd-co.com
-          </Typography>
         </div>
         <div className="w-1/2 flex sm:justify-end gap-2.5">
-          <div className="col-span-6 justify-self-end">
+          {/* disable the domain cause the functionality dose not work */}
+          {/* <div className="col-span-6 justify-self-end">
             <BaseButton
               label={t('global.domain')}
               endIcon={caretLeft}
@@ -90,7 +84,7 @@ export function DashboardProgressChart() {
               size="sm"
               className="sm:hidden flex"
             />
-          </div>
+          </div> */}
           <div className="max-w-max">
             <ToggleButton
               buttonOptions={[

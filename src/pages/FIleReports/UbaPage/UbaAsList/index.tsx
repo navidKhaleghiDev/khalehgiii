@@ -62,7 +62,6 @@ export function UbaAsList() {
         <FilterTableList
           searchQuery={filterQuery}
           handelSearchQuery={handleFilterQuery}
-          domainFilter
           searchPlaceholder={t('table.search')}
         />
       </div>
