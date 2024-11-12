@@ -46,6 +46,7 @@ export function PasswordInputController<T extends FieldValues>(
     id,
     control,
     helpText,
+    iconDir,
     min,
     max,
     dir,
@@ -75,6 +76,7 @@ export function PasswordInputController<T extends FieldValues>(
           helpText={helpText}
           placeholder={placeholder}
           size={size}
+          iconDir={iconDir}
           hiddenError={hiddenError}
           error={error?.message}
           intent={intent}

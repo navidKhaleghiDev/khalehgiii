@@ -12,7 +12,7 @@ import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import FilterTableList from '@redesignUi/Templates/FilterTableLIst';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -116,6 +116,7 @@ export function ExtensionList() {
     allItems: countPage,
     itemsPer: listWhiteList.length,
   };
+
   return (
     <>
       <div className="mb-[1.875rem]">

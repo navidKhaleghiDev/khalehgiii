@@ -1,7 +1,8 @@
 import { useRef } from 'react';
+
 import { useUserContext } from '@context/user/userContext';
 import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
-import { ContainerDashboard } from '@ui/Templates/ContainerDashboard';
+
 import { AssistanceGroupDetail } from './AssistanceGroupDetail';
 
 export function AssistanceDashboard() {
@@ -11,8 +12,8 @@ export function AssistanceDashboard() {
   const admins = user?.admin_group_of ? user?.admin_group_of : '';
 
   return (
-    <ContainerDashboard>
-      <div className="flex w-full">
+    <div className="flex justify-center items-center p-10">
+      <div className="flex w-[95rem] p-5 bg-white rounded-xl">
         <BaseTabs ref={tabsRef}>
           {Array.isArray(admins) &&
             admins.map((adminGroup) => {
@@ -27,6 +28,6 @@ export function AssistanceDashboard() {
             })}
         </BaseTabs>
       </div>
-    </ContainerDashboard>
+    </div>
   );
 }

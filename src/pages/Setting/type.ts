@@ -41,4 +41,16 @@ export interface PropsType {
   control: Control<any>;
   userPermissions: PermissionsCodeName[];
   dir?: 'rtl' | 'ltr';
+  isActive: string;
+}
+export interface FileTypeProp {
+  id: number;
+  file_type: string;
+  allowed_for_upload: boolean;
+  allowed_for_download: boolean;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  upload_file_size_mb: number;
+  download_file_size_mb: number;
 }

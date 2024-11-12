@@ -24,20 +24,21 @@ export function DaasSetting() {
   );
   const userPermissions = useUserPermission();
 
-  const { control, handleSubmit, reset, formState } = useForm<DaasSettingProp>({
-    mode: 'onChange',
-    defaultValues: {
-      id: daasConfig?.data?.id,
-      can_upload_file: daasConfig?.data?.can_upload_file,
-      can_download_file: daasConfig?.data?.can_download_file,
-      max_transmission_download_size:
-        daasConfig?.data?.max_transmission_download_size,
-      max_transmission_upload_size:
-        daasConfig?.data?.max_transmission_upload_size,
-      time_limit_duration: daasConfig?.data?.time_limit_duration,
-    },
-  });
-
+  const { control, handleSubmit, reset, formState, watch } =
+    useForm<DaasSettingProp>({
+      mode: 'onChange',
+      defaultValues: {
+        id: daasConfig?.data?.id,
+        can_upload_file: daasConfig?.data?.can_upload_file,
+        can_download_file: daasConfig?.data?.can_download_file,
+        max_transmission_download_size:
+          daasConfig?.data?.max_transmission_download_size,
+        max_transmission_upload_size:
+          daasConfig?.data?.max_transmission_upload_size,
+        time_limit_duration: daasConfig?.data?.time_limit_duration,
+      },
+    });
+  const isActive = watch('time_limit_duration');
   useEffect(() => {
     if (daasConfig?.data) {
       reset(daasConfig.data);
@@ -88,7 +89,11 @@ export function DaasSetting() {
       className="w-full h-full flex flex-col justify-between"
       onSubmit={handleSubmit(handleOnUpdate)}
     >
-      <DaasSettingForm control={control} userPermissions={userPermissions} />
+      <DaasSettingForm
+        control={control}
+        userPermissions={userPermissions}
+        isActive={isActive}
+      />
 
       <div className="flex self-end mt-8 lg:mb-[2.1rem]">
         <BaseButton

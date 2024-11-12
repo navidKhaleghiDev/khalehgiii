@@ -60,18 +60,20 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
         })}
       >
         {header.map((headerList) => {
+          menu = headerList.type === 'menu' || headerList.type === 'drop';
+
           const className =
             !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
-          const menuStyle = headerList.type === 'menu' ? 'justify-end' : '';
+          const menuStyle = headerList.type === 'menu' ? 'justify-end ' : '';
           menu = headerList.type === 'menu';
 
           return (
             <td
               aria-label="BaseTableRow"
               key={`${headerList.label} BaseTableRow`}
-              className={`${className}  flex justify-start relative  ${menuStyle} `}
+              className={`${className} flex justify-start relative ${menuStyle} `}
             >
               <BaseTableRenderComponent
                 row={row}
@@ -84,7 +86,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
         {collapse && (
           <td
             aria-label="BaseTableRow"
-            className={`w-1/12 flex justify-center ${
+            className={` sm:w-[4rem]  w-1/12 flex justify-end sm:px-4 ${
               !menu ? directionStyle : ''
             }  `}
           >

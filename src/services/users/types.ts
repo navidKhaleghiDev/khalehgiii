@@ -101,21 +101,17 @@ export type UserOnlineAssistance = {
   user_http_address: string;
   user_https_address: string;
 };
+export type TGroupMembers = {
+  id: string;
+  email: string;
+  is_running?: boolean;
+  has_online_assistance?: boolean;
+};
 
 export type TGroup = {
   id?: string;
-  users: {
-    id: string;
-    email: string;
-    is_running?: boolean;
-    has_online_assistance?: boolean;
-  }[];
-  admins: {
-    id: string;
-    email: string;
-    is_running?: boolean;
-    has_online_assistance?: boolean;
-  }[];
+  users: TGroupMembers[];
+  admins: TGroupMembers[];
   name: string;
   created_at?: string;
   updated_at?: string;
@@ -136,6 +132,7 @@ export type OnlineAssistanceModel = {
   admin_ip_addr: string | null;
   in_use: boolean;
   last_uptime: string;
+  group_name?: string;
   duration_time: number;
   knowledge_management_record_path: string;
   admin: KnowledgeManagementUserModel;

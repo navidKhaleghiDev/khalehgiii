@@ -1,25 +1,42 @@
-import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { BaseButton } from '@ui/atoms/BaseButton';
-import { NoResult } from '@ui/molecules/NoResult';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function NotFoundPage() {
+import { BaseButton, Typography } from '@redesignUi/atoms';
+import { NotFoundSvg } from '@redesignUi/atoms/Svgs/NotFoundSvg';
+import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { useTheme } from '@context/settings/themeContext';
+
+export function NotFoundPage() {
+  const { isDark, toggleTheme } = useTheme();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleToggle = () => (isDark ? toggleTheme() : null);
+
+  const handleClick = () => {
+    handleToggle();
+    navigate(ROUTES_PATH.home);
+  };
 
   return (
-    <div className="p-16 h-screen flex flex-col justify-center items-center font-on">
-      <NoResult description={t('global.notFoundPage')} />
-      <Link to={ROUTES_PATH.home}>
-        <BaseButton
-          className="mt-6"
-          label={t('global.goToHome')}
-          type="default"
-          size="lg"
-        />
-      </Link>
+    <div className="h-screen dark:bg-gray-700 bg-gray-50 flex flex-col justify-center items-center font-kalameh">
+      <NotFoundSvg />
+
+      <Typography
+        color="black"
+        variant="h4"
+        className="mt-[9.625rem] font-semibold"
+      >
+        {t('global.notFoundPage')}
+      </Typography>
+
+      <BaseButton
+        className="mt-[3.563rem]"
+        label={t('global.goToSystem')}
+        onClick={handleClick}
+        type="teal"
+        size="md"
+      />
     </div>
   );
 }
-
-export default NotFoundPage;

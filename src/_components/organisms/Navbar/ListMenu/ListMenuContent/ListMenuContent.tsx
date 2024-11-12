@@ -7,7 +7,6 @@ import { DrawerProfile } from '../DrawerProfile';
 export function ListMenuContent() {
   const { isOpen, setIsOpen } = useDrawerContext();
   const toggleProfile = () => setIsOpen((prev) => !prev);
-  console.log(isOpen, 'test');
 
   return (
     <div>

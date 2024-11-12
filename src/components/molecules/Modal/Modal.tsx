@@ -44,12 +44,12 @@ export function Modal({
                 <IconButton
                   icon={xIcon}
                   onClick={handleToggle}
-                  classNameIcon="h-8 w-8 text-neutral-100"
+                  classNameIcon="h-8 w-8 text-gray-100"
                 />
               </div>
               <BaseIcon
                 icon={type === 'error' ? shieldWarningIcon : shieldCheckIcon}
-                className="h-8 w-8 text-neutral-100"
+                className="h-8 w-8 text-gray-100"
               />
             </div>
           )}

@@ -25,7 +25,7 @@ const disableClass =
 const activeClass =
   'bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
 const arrowButtonClass =
-  'bg-white border rounded border-neutral-200 dark:border-gray-500 text-neutral-500';
+  'bg-white border rounded border-gray-200 dark:border-gray-500 text-gray-500';
 
 /**
  * Pagination component for navigating through pages.
@@ -85,7 +85,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
       for (let i = 1; i <= totalPages; i += 1) {
         pageNumbers.push(i);
       }
-    } else if (currentPage <= 3) {
+    } else if (currentPage <= 2) {
       for (let i = 1; i <= 3; i += 1) {
         pageNumbers.push(i);
       }
@@ -94,7 +94,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
     } else if (currentPage >= totalPages - 2) {
       pageNumbers.push(1);
       pageNumbers.push('...');
-      for (let i = totalPages - 4; i <= totalPages; i += 1) {
+      for (let i = totalPages - 2; i <= totalPages; i += 1) {
         pageNumbers.push(i);
       }
     } else {

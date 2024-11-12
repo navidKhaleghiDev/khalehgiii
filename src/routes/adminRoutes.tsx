@@ -1,7 +1,6 @@
 import UnauthorizedPage from '@src/pages/Unauthorized';
-import NotFoundPage from '@src/pages/NotFound';
+import { NotFoundPage } from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
-import { KnowledgeManagement } from '@src/pages/Dashboard/KnowledgeManagement';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
 import { Reports } from '@src/pages/Dashboard/Reports';
@@ -11,22 +10,24 @@ import {
   EPermissionFileScan,
   EPermissionInternetLogs,
   EPermissionScanReports,
-  EPermissionSessionRecording,
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
 import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
-import { SessionRecording } from '@src/pages/SessionRecording/index';
 import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
-import { ScannedFileListPage } from '@src/pages/ScannedFileListPage';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
-import { UbaPage } from '@src/pages/Uba';
-import { ReportFileScanPage } from '@src/pages/ReportFileScan';
+import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
+import { GroupManagementEdit } from '@src/pages/GroupManagement/GroupManagementEdit';
+import { GroupManagement } from '@src/pages/GroupManagement';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
+import { ReportFileScanPage } from '@src/pages/FIleReports/ReportFileScanPage';
+import { DlpSetting } from '@src/pages/Setting/DlpSetting';
+import { License } from '@src/pages/Lisence';
+import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
 
 import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -49,7 +50,7 @@ export const adminRoutes = [
       },
       {
         path: ROUTES_PATH.knowledgeManagement,
-        element: <KnowledgeManagement />,
+        element: <KnowledgeManagementPage />,
       },
       {
         path: ROUTES_PATH.loginAssistance,
@@ -76,26 +77,10 @@ export const adminRoutes = [
         ),
       },
       {
-        path: ROUTES_PATH.dashboardSessionRecordingList,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionSessionRecording.VIEW}>
-            <SessionRecording />
-          </ProtectedRoute>
-        ),
-      },
-      {
         path: ROUTES_PATH.dashboardAdminsList,
         element: (
           <ProtectedRoute requiredPermission={EPermissionUsers.VIEW}>
             <DashboardAdminsListPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: ROUTES_PATH.reportsScanFileDetails,
-        element: (
-          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
-            <ScannedFileListPage />
           </ProtectedRoute>
         ),
       },
@@ -132,6 +117,14 @@ export const adminRoutes = [
         ),
       },
       {
+        path: ROUTES_PATH.licence,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
+            <License />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: ROUTES_PATH.chart,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
@@ -143,7 +136,15 @@ export const adminRoutes = [
         path: ROUTES_PATH.dashboardGroupManagement,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>GroupManagement Page</div>
+            <GroupManagement />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES_PATH.dashboardGroupManagementEdit,
+        element: (
+          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+            <GroupManagementEdit />
           </ProtectedRoute>
         ),
       },
@@ -175,7 +176,7 @@ export const adminRoutes = [
         path: ROUTES_PATH.dlp,
         element: (
           <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
-            <div>DLP Page</div>
+            <DlpSetting />
           </ProtectedRoute>
         ),
       },

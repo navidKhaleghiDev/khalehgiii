@@ -43,6 +43,7 @@ export function PasswordInput(props: PasswordInputProps) {
     error,
     fullWidth,
     helpText,
+    iconDir,
     hiddenError,
     label,
     placeholder,
@@ -52,7 +53,7 @@ export function PasswordInput(props: PasswordInputProps) {
 
   const [showPassword, setShowPassword] = useState(false);
   const passIcon = showPassword ? PhEye : PhEyeSlash;
-  const rtl = dir === 'rtl';
+  const dirIcon = iconDir === 'rtl';
 
   return (
     <BaseInput
@@ -66,12 +67,12 @@ export function PasswordInput(props: PasswordInputProps) {
       hiddenError={hiddenError}
       error={error}
       disabled={disabled}
-      endIcon={rtl ? passIcon : ''}
+      endIcon={dirIcon ? passIcon : ''}
       label={label}
       placeholder={placeholder}
       type={showPassword ? 'text' : 'password'}
       onClickIcon={() => setShowPassword(!showPassword)}
-      startIcon={!rtl ? passIcon : ''}
+      startIcon={!dirIcon ? passIcon : ''}
       fullWidth={fullWidth}
       className={className}
     />

@@ -1,33 +1,41 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
+import { toast } from 'react-toastify';
+
+import Play from '@iconify-icons/ph/play';
 import { http } from '@src/services/http';
 import { ISessionResponsePagination } from '@src/types/services';
-import { useParams } from 'react-router-dom';
-import { BaseTable } from '@ui/atoms/BaseTable';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
-import { useTranslation } from 'react-i18next';
 import { E_SESSION_RECORD_LIST_PAGINATION } from '@src/services/config/endpoint';
-import { Modal } from '@ui/molecules/Modal';
-import { debounce } from 'lodash';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
-
 import { API_GET_RECORDED_VIDEO } from '@src/services/users';
+import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
+import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
+import { Modal } from '@redesignUi/molecules/Modal';
+import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+
 import { ISessionRecordList, TRecordData } from '../types';
 import { SessionRecordingHeaderItem } from './constants/SessionRecordingHeaderItem';
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 5;
 const PAGE = 1;
+const tableClass =
+  '[&_thead]:bg-gray-100 [&_tbody_tr_td_*]:text-gray-500 dark:[&_tbody_tr_td_*]:text-gray-400 [&_thead_tr_*]:text-gray-500 dark:[&_thead_tr_*]:text-gray-400 [&_tbody_tr_td:nth-child(3)]:hidden md:[&_thead_tr:nth-child(3)]:table-cell [&_thead_tr:nth-child(4)]:hidden md:[&_thead_tr:nth-child(4)]:table-cell [&_thead_tr:nth-child(3)]:hidden md:[&_tbody_tr_td:nth-child(3)]:table-cell [&_tbody_tr_td:nth-child(4)]:hidden md:[&_tbody_tr_td:nth-child(4)]:table-cell';
 
-export function SessionRecordingList() {
+interface SessionRecordingListProps {
+  id: string | null;
+  username: string;
+}
+
+export function SessionRecordingList({
+  id,
+  username,
+}: SessionRecordingListProps) {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [recoderdVideo, setRecordedVideo] = useState<string | null>(null);
+  const [recordVideo, setRecordedVideo] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [filterQuery, setFilterQuery] = useState<string>('');
-  const { id } = useParams();
 
   const userPermissions = useUserPermission();
 
@@ -37,25 +45,11 @@ export function SessionRecordingList() {
     id
       ? E_SESSION_RECORD_LIST_PAGINATION(id, {
           page: currentPage,
-          pageSize: PAGE_SIZE,
-          filter: `search=${encodeURIComponent(filterQuery)}`,
+          pageSize: 9,
         })
       : null,
     http.fetcherSWR
   );
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedSetFilterQuery = useCallback(
-    debounce((query: string) => {
-      setCurrentPage(PAGE);
-      setFilterQuery(query);
-    }, 1000),
-    []
-  );
-
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
-  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -64,27 +58,6 @@ export function SessionRecordingList() {
   const sessionListHistory = data?.data?.history ?? [];
   const sessionListToday = data?.data?.today ?? [];
   const countPage = data?.data?.count ?? 0;
-
-  const getVideoUrl = async (video: string) => {
-    setLoading(true);
-    await API_GET_RECORDED_VIDEO(video)
-      .then((res) => {
-        const blob = new Blob([res.data], { type: 'video/mp4' });
-        const videoURL = URL.createObjectURL(blob);
-        setRecordedVideo(videoURL);
-        setOpenModal(true);
-      })
-      .catch(() => {})
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
-  const handleOpenModal: OnClickActionsType<TRecordData> = (action, item) => {
-    if (action === 'more' && item) {
-      getVideoUrl(item.record_name);
-    }
-  };
 
   const dataTableHistory = Object.entries(sessionListHistory).map((item) => {
     const key = item[0];
@@ -97,56 +70,97 @@ export function SessionRecordingList() {
       value.map((item: TRecordData) => ({ recrod_date: key, ...item }))
   );
 
+  const getVideoUrl = async (video: string) => {
+    await API_GET_RECORDED_VIDEO(video)
+      .then((res) => {
+        const blob = new Blob([res.data], { type: 'video/mp4' });
+        const videoURL = URL.createObjectURL(blob);
+        setRecordedVideo(videoURL);
+        setOpenModal(true);
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+  };
+
+  const handleOpenModal: OnClickActionsType<TRecordData> = (action, item) => {
+    if (action === 'more' && item) {
+      getVideoUrl(item.record_name);
+    }
+  };
+
   const paginationProps = {
     countPage,
     currentPage,
-    handleSearchInput: handleFilterChange,
+    allItems: 3,
+    itemsPer: PAGE_SIZE,
+    paginationLabel: t('header.user'),
     totalPages: Math.ceil(countPage / PAGE_SIZE),
     onPageChange: handlePageChange,
   };
 
   return (
-    <div className={`w-full p-4  ${isLoading || loading ? 'loading' : ''}`}>
+    <div className="w-full">
+      <div className="mb-6">
+        {/* <MultiDatePickerController
+          id="date-filter"
+          name="date-filter"
+          control={control}
+          className="!self-end"
+          size="md"
+          format="YYYYMMDD" 
+        /> */}
+        {/* این قسمت باید اضافه شود */}
+      </div>
       <BaseTabs>
         <BaseTab label={t('global.wholeList')}>
-          <BaseTable
-            loading={isLoading}
-            headers={checkPermissionHeaderItem(
-              userPermissions,
-              SessionRecordingHeaderItem
-            )}
-            bodyList={dataTableHistory}
-            onClick={handleOpenModal}
-            pagination={paginationProps}
-          />
+          <div className={tableClass}>
+            <BaseTable
+              pagination={paginationProps}
+              loading={isLoading}
+              header={checkPermissionHeaderItem(
+                userPermissions,
+                SessionRecordingHeaderItem
+              )}
+              body={dataTableHistory}
+              onClick={handleOpenModal}
+            />
+          </div>
         </BaseTab>
         <BaseTab label={t('global.todayList')}>
-          <BaseTable
-            loading={isLoading}
-            headers={checkPermissionHeaderItem(
-              userPermissions,
-              SessionRecordingHeaderItem
-            )}
-            bodyList={dataTableToday}
-            onClick={handleOpenModal}
-          />
+          <div className={tableClass}>
+            <BaseTable
+              pagination={paginationProps}
+              loading={isLoading}
+              header={checkPermissionHeaderItem(
+                userPermissions,
+                SessionRecordingHeaderItem
+              )}
+              body={dataTableToday}
+              onClick={handleOpenModal}
+            />
+          </div>
         </BaseTab>
       </BaseTabs>
+
       <Modal
         open={openModal}
         setOpen={setOpenModal}
+        icon={Play}
+        title={t('userList.recordedActivities')}
+        descriptionInfo={`${t('userList.recordedUserActivities')} ${username}`}
         content={
           <div>
-            {recoderdVideo && (
+            {recordVideo ? (
               <video width="750" height="500" controls>
                 <track kind="captions" />
-                <source src={recoderdVideo} type="video/mp4" />
-                Your browser does not support the video tag.
+                <source src={recordVideo} type="video/mp4" />
+                {t('userList.yourBrowserDoesntSupportVideo')}
               </video>
-            )}
+            ) : null}
           </div>
         }
-        type="none"
+        type="content"
       />
     </div>
   );

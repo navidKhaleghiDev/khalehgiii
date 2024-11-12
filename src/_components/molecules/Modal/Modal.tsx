@@ -6,7 +6,8 @@ import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
 import X from '@iconify-icons/ph/x';
 import Check from '@iconify-icons/ph/check';
 import TrashSimple from '@iconify-icons/ph/trash-simple';
-import FloppyDisk from '@iconify-icons/ph/floppy-disk';
+import LockLaminated from '@iconify-icons/ph/lock-laminated';
+import PhWarning from '@iconify-icons/ph/warning';
 import Home from '@iconify-icons/ph/house';
 
 import { containerStyles, headerStyles } from './styles';
@@ -30,9 +31,14 @@ function iconHeader(type: ModalProps['type']): IconHeader {
         icon: Check,
         color: 'text-teal-500 bg-teal-200 dark:text-teal-400 dark:bg-gray-800',
       };
+    case 'warning':
+      return {
+        icon: PhWarning,
+        color: 'text-red-600 bg-red-200 dark:text-red-400 dark:bg-gray-800',
+      };
     case 'info':
       return {
-        icon: FloppyDisk,
+        icon: LockLaminated,
         color: 'text-gray-500 bg-gray-200 dark:text-gray-400 dark:bg-gray-800',
       };
     default:
@@ -93,9 +99,9 @@ export function Modal(props: ModalProps): JSX.Element | null {
     <div className="main-modal fixed w-full h-100 inset-0 z-50 animated fadeIn overflow-hidden flex justify-center items-center backdrop-blur-sm">
       <div
         ref={ref}
-        className={`rounded-[1.25rem] shadow-lg modal-container bg-white dark:bg-gray-700 ${containerStyles(
-          { size }
-        )} mx-auto z-50 overflow-y-auto ${
+        className={`rounded-[1.25rem] shadow-lg modal-container bg-white ${
+          type === 'content' ? 'dark:bg-gray-700' : 'dark:bg-gray-600'
+        } ${containerStyles({ size })} mx-auto z-50 overflow-y-auto ${
           icon && 'max-w-[39.688rem]'
         } ${classContainer}`}
       >
@@ -118,24 +124,26 @@ export function Modal(props: ModalProps): JSX.Element | null {
                   </div>
                 )
               : icon && (
-                  <div className="flex items-center justify-center gap-2.5 sm:gap-5">
-                    <div className="border border-gray-200 dark:border-gray-500 flex items-center justify-center shadow-sm rounded-lg p-2 size-12">
+                  <div className="flex items-center justify-center gap-2.5 md:gap-5">
+                    <div className="border border-gray-200 dark:border-gray-500 flex items-center justify-center shadow-sm rounded-lg p-1.5 md:p-2 size-9 md:size-12">
                       <BaseIcon
                         icon={icon}
                         size="md"
-                        className="text-gray-500"
+                        className="text-gray-500 dark:text-gray-400"
                       />
                     </div>
                     <div className="flex flex-col justify-center gap-1">
                       <Typography
-                        variant="body3B"
                         color="neutralDark"
-                        className="rtl:text-right ltr:text-left"
+                        className="rtl:text-right ltr:text-left text-sm md:text-lg font-semibold"
                       >
                         {title}
                       </Typography>
                       <div className="text-start">
-                        <Typography variant="body6" color="neutralMiddle">
+                        <Typography
+                          color="neutralMiddle"
+                          className="text-xs md:text-sm"
+                        >
                           {descriptionInfo}
                         </Typography>
                       </div>

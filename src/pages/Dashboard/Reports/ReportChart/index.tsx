@@ -1,119 +1,104 @@
 import { Bar } from 'react-chartjs-2';
 import moment from 'moment-jalaali';
 import { useTranslation } from 'react-i18next';
+
+import { useTheme } from '@context/settings/themeContext';
+
 import {
-  IReportChartType,
-  TData,
-  TDataGeneratorReturn,
-  TDataType,
-  TFormatData,
+  ReportChartType,
+  Data,
+  DataGeneratorReturn,
+  DataType,
+  FormatData,
 } from '../types';
 
-let duplicates: number;
-// filter data for montly format
-const filterByIndex = (data: string[] | number[], index: number) =>
-  data.filter((_, i) => i !== index);
-const filterChartData = (label: string[], data: number[]) => {
-  const map = new Map();
-  label.forEach((element, index) => {
-    if (map.has(element)) {
-      duplicates = map.get(element);
-    } else {
-      map.set(element, index);
-    }
-  });
-  const removeList = filterByIndex(label, duplicates);
-  const removeDataList = filterByIndex(data, duplicates);
-  return { dataList: removeDataList, labelList: removeList };
-};
-
-export function ReportsChart({ props }: IReportChartType) {
+export function ReportsChart({ props }: ReportChartType) {
   const { t } = useTranslation();
   const {
     HOURLY_FORMAT,
-    MONTLY_FORMAT,
+    MONTHLY_FORMAT,
     DAILY_FORMAT,
     NORMAL_FORMAT,
     flag,
     recordsData,
     isFarsi,
   } = props;
-  const formatData: TFormatData = {
+  const formatData: FormatData = {
     hourly: HOURLY_FORMAT,
-    monthly: MONTLY_FORMAT,
+    monthly: MONTHLY_FORMAT,
     daily: DAILY_FORMAT,
+    weekly: NORMAL_FORMAT,
   };
+
+  const { isDark } = useTheme();
 
   if (isFarsi) {
     moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
   }
 
-  function dataGenerator(type: TDataType, data: TData): TDataGeneratorReturn {
-    const isDaily = formatData[type] === DAILY_FORMAT;
-    const isMonthly = formatData[type] === MONTLY_FORMAT;
-    const dataList: number[] | any = [];
-    const labelList: string[] = [];
-    const weeksKey: string[] = [];
+  function dataGeneratorTest(type: DataType, data: Data): DataGeneratorReturn {
+    const dataListDownload: number[] = [];
+    const dataListUpload: number[] = [];
+    const labelsSet = new Set<string>();
+    const labels: string[] = [];
+    const downloadAggregated: { [key: string]: number } = {};
+    const uploadAggregated: { [key: string]: number } = {};
 
     if (data && Object.keys(data).length > 0) {
-      Object.entries(data).forEach(([key, value]) => {
-        if (isDaily) {
-          // convert data base on daily mode
-          // check and update base on local language
-          // seprate date by week and put any date in seprate object
-          const weekStart = moment(key, 'YYYY-MM-DD').startOf('week');
-          while (weekStart.isoWeekday() !== 6) {
-            weekStart.subtract(1, 'day');
+      Object.entries(data).forEach(([date, values]) => {
+        const formattedDate = moment(date).format(formatData[type]);
+
+        if (type === 'monthly' || type === 'weekly') {
+          if (!downloadAggregated[formattedDate]) {
+            downloadAggregated[formattedDate] = 0;
+            uploadAggregated[formattedDate] = 0;
           }
-          const weekKey = weekStart.format(NORMAL_FORMAT);
-          if (!dataList[weekKey]) {
-            dataList[weekKey] = [];
-            weeksKey.push(weekKey);
+          downloadAggregated[formattedDate] += values.download;
+          uploadAggregated[formattedDate] += values.upload;
+
+          if (!labelsSet.has(formattedDate)) {
+            labelsSet.add(formattedDate);
+            labels.push(formattedDate);
           }
-          dataList[weekKey].push({
-            s: moment(key).format(NORMAL_FORMAT),
-            y: value,
-            x: moment(key).format(formatData[type]),
-          });
         } else {
-          dataList.push(value);
-          labelList.push(moment(key).format(formatData[type]));
+          labels.push(formattedDate);
+          dataListDownload.push(values.download);
+          dataListUpload.push(values.upload);
         }
       });
+
+      if (type === 'monthly' || type === 'weekly') {
+        labels.forEach((label) => {
+          dataListDownload.push(downloadAggregated[label]);
+          dataListUpload.push(uploadAggregated[label]);
+        });
+      }
     }
 
-    const res = filterChartData(labelList, dataList);
-
-    const dailyDataset = () =>
-      Object.values(dataList).map((listData, i) => {
-        return {
-          label: ` ${t('global.week')} ${i + 1}`,
-          data: listData,
-          fill: false,
-        };
-      });
-
-    const result = dailyDataset();
-
-    const labels = isMonthly ? res.labelList : labelList;
-    const chartData = isMonthly ? res.dataList : dataList;
     return {
-      datasets: isDaily
-        ? result
-        : [
-            {
-              label: '',
-              data: chartData,
-              fill: true,
-            },
-          ],
-      labels: labels as string[],
+      labels,
+      datasets: [
+        {
+          label: t('global.download'),
+          data: dataListDownload,
+          fill: true,
+          borderColor: 'rgb(96, 165, 250)',
+          backgroundColor: 'rgba(96, 165, 250)',
+        },
+        {
+          label: t('global.upload'),
+          data: dataListUpload,
+          fill: true,
+          borderColor: 'rgb(192, 132, 252)',
+          backgroundColor: 'rgba(192, 132, 252)',
+        },
+      ],
     };
   }
 
   const dataList = {
-    labels: dataGenerator(flag, recordsData).labels,
-    datasets: dataGenerator(flag, recordsData).datasets,
+    labels: dataGeneratorTest(flag, recordsData).labels,
+    datasets: dataGeneratorTest(flag, recordsData).datasets,
   };
 
   const options = {
@@ -137,6 +122,32 @@ export function ReportsChart({ props }: IReportChartType) {
       title: {
         display: false,
         text: 'Chart.js Bar Chart',
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+        },
+        grid: {
+          color: isDark
+            ? 'rgba(156, 163, 175, 0.5)'
+            : 'rgba(104, 104, 104, 0.5)',
+          lineWidth: 1,
+        },
+      },
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+          stepSize: 1,
+        },
+        grid: {
+          color: isDark
+            ? 'rgba(156, 163, 175, 0.5)'
+            : 'rgba(104, 104, 104, 0.5)',
+          lineWidth: 1,
+        },
       },
     },
   };

@@ -75,7 +75,7 @@ export function BaseCustomCheckBox(props: BaseCustomCheckBoxProps<any>) {
               />
               <label
                 htmlFor={id}
-                className="mr-2 text-neutral-900 dark:text-neutral-300"
+                className="mr-2 text-gray-900 dark:text-gray-300"
               >
                 {label}
               </label>

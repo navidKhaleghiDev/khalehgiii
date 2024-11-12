@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastCustomContainer } from '@redesignUi/molecules/ToastCustomContainer';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';
@@ -18,7 +18,7 @@ function generateRouter(user: any) {
 function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true);
-  const { dir, lang } = useLanguage();
+  const { dir } = useLanguage();
   const { theme } = useTheme();
   const userValue = useMemo(() => ({ user, setUser }), [user]);
   const token = cookie.get(STORAGE_KEY_TOKEN);
@@ -57,9 +57,9 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <RouterProvider router={generateRouter(user)} />
         </Suspense>
-        <ToastContainer
-          rtl={lang === 'fa'}
-          style={{ direction: 'rtl', fontSize: 20 }}
+        <ToastCustomContainer
+          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          size="responsive"
         />
       </div>
     </UserContext.Provider>

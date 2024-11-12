@@ -1,34 +1,34 @@
 export const PALLET = {
   BG_COLOR: {
-    TEAL: 'bg-teal-100 dark:bg-neutral-300', // #f0fdfa
+    TEAL: 'bg-teal-100 dark:bg-gray-300', // #f0fdfa
     TEAL_DARK: 'bg-teal-600 dark:bg-black', // #f0fdfa
     RED: 'bg-red-100 dark:bg-red-300', // #fee2e2
     YELLOW: 'bg-yellow-100 dark:bg-yellow-300', // #f2e9dc
-    NEUTRAL: 'bg-neutral-100 dark:bg-neutral-300', // #f5f5f5
+    NEUTRAL: 'bg-gray-100 dark:bg-gray-300', // #f5f5f5
   },
   TEXT_COLOR: {
     TEAL: 'text-teal-600 dark:text-white',
     RED: 'text-red-600 dark:text-red-600',
     YELLOW: 'text-yellow-600 dark:text-yellow-600',
-    NEUTRAL: 'text-neutral-600 dark:text-white',
-    NEUTRAL_LIGHT: 'text-neutral-100 dark:text-white',
+    NEUTRAL: 'text-gray-600 dark:text-white',
+    NEUTRAL_LIGHT: 'text-gray-100 dark:text-white',
     WHITE: 'text-white dark:text-white',
   },
   BORDER_COLOR: {
     TEAL: 'border-teal-600 dark:border-teal-500',
     RED: 'border-red-600 dark:border-red-600',
     YELLOW: 'border-yellow-600 dark:border-yellow-600',
-    NEUTRAL: 'border-neutral-200 dark:border-neutral-600',
+    NEUTRAL: 'border-gray-200 dark:border-gray-600',
   },
   BUTTON_COLOR: {
-    TEAL: 'bg-teal-600 dark:bg-slate-800 text-neutral-100 hover:bg-teal-700 ', // #0f766e
-    RED: 'bg-red-600 dark:bg-red-600 text-neutral-100 hover:bg-red-700 ',
+    TEAL: 'bg-teal-600 dark:bg-slate-800 text-gray-100 hover:bg-teal-700 ', // #0f766e
+    RED: 'bg-red-600 dark:bg-red-600 text-gray-100 hover:bg-red-700 ',
     YELLOW:
-      'bg-yellow-600 dark:bg-yellow-400 text-neutral-100 hover:bg-yellow-600 ',
+      'bg-yellow-600 dark:bg-yellow-400 text-gray-100 hover:bg-yellow-600 ',
     NEUTRAL:
-      'bg-neutral-100 dark:bg-neutral-500 dark:text-white hover:bg-neutral-200 text-neutral-400 ',
+      'bg-gray-100 dark:bg-gray-500 dark:text-white hover:bg-gray-200 text-gray-400 ',
     SHADOW:
-      'bg-white text-teal-600 shadow border-neutral-100 border hover:bg-teal-600 hover:text-white hover:shadow-md enabled:hover:border-none',
+      'bg-white text-teal-600 shadow border-gray-100 border hover:bg-teal-600 hover:text-white hover:shadow-md enabled:hover:border-none',
   },
 };
 

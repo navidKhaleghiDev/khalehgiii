@@ -23,7 +23,9 @@ export type RoutePathType =
   | 'setting'
   | 'application'
   | 'daas'
-  | 'dlp';
+  | 'dlp'
+  | 'dashboardGroupManagementEdit'
+  | 'licence';
 
 export const RoutesName = {
   HOME: 'home',
@@ -48,6 +50,7 @@ export const RoutesName = {
   APPLICATION: 'application',
   DAAS: 'daas',
   DLP: 'dlp',
+  LICENCE: 'licence',
 };
 
 export const ROUTES_PATH: Record<RoutePathType, string> = {
@@ -56,6 +59,7 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   login: `/`,
   dashboard: `/${RoutesName.DASHBOARD}`,
   uba: `/${RoutesName.UBA}`,
+  licence: `/${RoutesName.LICENCE}`,
   knowledgeManagement: `/${RoutesName.KNOWLEDGE_MANAGEMENT}`,
   dashboardDesktopList: `/${RoutesName.DESKTOP_LIST}`,
   dashboardSessionRecording: `/${RoutesName.DESKTOP_LIST}/${RoutesName.SESSIONRECORDING}`,
@@ -71,7 +75,8 @@ export const ROUTES_PATH: Record<RoutePathType, string> = {
   loginAssistance: `/${RoutesName.LOGIN_ASSISTANCE}`,
   assistanceDashboard: `/${RoutesName.ASSISTANCE_DASHBOARD}`,
   chart: `/${RoutesName.CHART}`,
-  dashboardGroupManagement: `/${RoutesName.GROUP_MANAGEMENT}`,
+  dashboardGroupManagement: `/${RoutesName.DASHBOARD}/${RoutesName.GROUP_MANAGEMENT}`,
+  dashboardGroupManagementEdit: `/${RoutesName.DASHBOARD}/${RoutesName.GROUP_MANAGEMENT}/:id`,
   setting: `/${RoutesName.SETTING}`,
   application: `/${RoutesName.SETTING}/${RoutesName.APPLICATION}`,
   daas: `/${RoutesName.SETTING}/${RoutesName.DAAS}`,

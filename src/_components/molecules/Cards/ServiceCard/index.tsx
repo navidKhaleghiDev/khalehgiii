@@ -12,7 +12,7 @@ export function ServiceCard(props: ServiceCardProps): JSX.Element {
 
   return (
     <Card
-      className={`lg:w-[15.93rem] w-40 h-[8.12rem] lg:py-6 lg:px-4  py-[0.68rem] px-5 flex items-center outline-none text-right overflow-hidden ${
+      className={`lg:w-[15.93rem] w-40 xl:h-[8.125rem] md:h-[8.875rem] h-32 lg:py-6 lg:px-4 py-5 px-5 flex items-center outline-none text-right overflow-hidden ${
         className ?? ''
       }`}
       shadow="base"

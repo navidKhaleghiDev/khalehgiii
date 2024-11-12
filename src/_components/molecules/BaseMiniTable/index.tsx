@@ -1,11 +1,11 @@
 import { useLanguage } from '@context/settings/languageContext';
 import { Card, Typography } from '@redesignUi/atoms';
 
-import { BaseMiniTableSkeleton } from './loading';
 import { BaseMiniTableNoResult } from './components/BaseMiniTableNoResult';
 import { BaseMiniTableProps, IdItem } from './types';
 import { Pagination } from '../Pagination';
 import { BaseTableDateCell } from '../BaseTable/components/BaseTableRowCells/BaseTableDateCell';
+import { LoadingSpinner } from '../Loading';
 
 export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
   const { header, body, loading, pagination, title, date, className } = props;
@@ -27,8 +27,8 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
       shadow="base"
       rounded="xl"
     >
-      <div className="flex justify-between mb-1">
-        <Typography variant="body5B" color="black">
+      <div className="flex justify-between mb-2.5">
+        <Typography variant="body4B" color="black">
           {title}
         </Typography>
         <Pagination
@@ -51,7 +51,9 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
         </div>
 
         {loading ? (
-          <BaseMiniTableSkeleton />
+          <div className="flex items-center justify-center">
+            <LoadingSpinner />
+          </div>
         ) : (
           <div className="w-full">
             {body.length >= 1 ? (

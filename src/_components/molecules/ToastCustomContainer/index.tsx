@@ -47,12 +47,7 @@ function CloseButton({ closeToast, type }: CloseButtonProps): JSX.Element {
       aria-label="Close"
       type="button"
     >
-      <BaseIcon
-        icon={X}
-        color="neutral"
-        size="md"
-        className={`${toastIconStyle({ type })}`}
-      />
+      <BaseIcon icon={X} size="md" className={`${toastIconStyle({ type })}`} />
     </button>
   );
 }
@@ -87,7 +82,6 @@ function getToastIcon(type: CustomTypeOptions = 'success'): JSX.Element {
     <BaseIcon
       icon={toastIconMap[type].icon}
       size="md"
-      color="neutral"
       className={`${toastIconMap[type].class} ${toastIconStyle({ type })}`}
     />
   );
@@ -110,7 +104,7 @@ function getToastClassName(
   type: CustomTypeOptions = 'success'
 ) {
   return `flex items-center ${
-    dir === 'rtl' ? 'flex-row' : 'flex-row-reverse'
+    dir === 'rtl' ? 'flex-row-reverse' : 'flex-row-reverse'
   } px-5 rounded-2xl shadow-lg font-kalameh text-base gap-7 toast-custom ${toastStyle(
     { typeToast: type }
   )} ${toastIconStyle({ size })}`;
@@ -162,7 +156,7 @@ export function ToastCustomContainer({
             : undefined;
         return getToastClassName(dir, size, customType);
       }}
-      bodyClassName={`${dir === 'rtl' ? 'flex-row' : 'flex-row-reverse'} ${
+      bodyClassName={`flex-row-reverse ${
         size === 'sm' ? 'text-xs' : 'sm:text-lg text-xs'
       } text-left font-normal leading-7 gap-7 sm:p-1.5 toast-body-custom h-full overflow-hidden`}
       icon={(props) => {

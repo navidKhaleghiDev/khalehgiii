@@ -20,8 +20,7 @@ export function checkPermissionHeaderItem(
       return false;
     }
 
-    // Check if the item has actions that require permissions
-    if (item.action) {
+    if (item.type === 'action') {
       // eslint-disable-next-line no-param-reassign
       item.action = item.action.filter(
         (actionItem: any) =>

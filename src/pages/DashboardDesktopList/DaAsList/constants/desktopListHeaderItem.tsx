@@ -13,7 +13,7 @@ import { ActionLockHelperCell } from '@redesignUi/molecules/BaseTable/components
 import { ProgressBarHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ProgressBarHelperCell';
 
 import { AccessTime } from '../AccessTime';
-import { AccessTimeSetting } from '../DaAsCard/AccessTimeSetting';
+import { AccessTimeSetting } from '../components/DaAsCard/AccessTimeSetting';
 
 export const desktopListHeaderItem: HeaderTable[] = [
   {
@@ -138,7 +138,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
       />
     ),
     class:
-      'w-1/12 mr-auto lg:mr-0 ltr:translate-x-6 rtl:-translate-x-6 sm:ltr:translate-x-0 sm:rtl:translate-x-0',
+      'w-2/12 mr-auto ltr:translate-x-6 rtl:-translate-x-6 sm:ltr:translate-x-0 sm:rtl:translate-x-0',
   },
 
   {
@@ -180,6 +180,6 @@ export const desktopListHeaderItem: HeaderTable[] = [
       EPermissionDaas.DELETE,
       EPermissionSessionRecording.VIEW,
     ],
-    class: 'mr-auto w-2/12 lg:w-1/12',
+    class: ' w-2/12 lg:w-1/12  mr-auto',
   },
 ];

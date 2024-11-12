@@ -29,6 +29,8 @@ export function UpdateAdminModal({
   const [selectedPermissions, setSelectedPermissions] = useState(
     admin?.user_permissions || []
   );
+  const [secret, setSecret] = useState<undefined | string>(undefined);
+
   const role = admin?.is_meta_admin ? 'true' : 'false';
   const dir = lang === 'fa' ? 'rtl' : 'ltr';
   const { data: permissionData, isLoading } = useSWR<
@@ -40,7 +42,6 @@ export function UpdateAdminModal({
     defaultValues: {
       id: admin?.id,
       email: admin?.email,
-      username: admin?.username ?? '',
       first_name: admin?.first_name ?? '',
       last_name: admin?.last_name ?? '',
       totp_enable: admin?.totp_enable,
@@ -55,6 +56,7 @@ export function UpdateAdminModal({
   const handleOnSubmit = async (data: UserProps) => {
     const updatedData = {
       user_permissions_ids: getSelectedIds,
+      totp_secret: secret,
       ...data,
     };
 
@@ -99,6 +101,8 @@ export function UpdateAdminModal({
             dir={dir}
             admin={admin}
             isMetaAdmin={isMetaAdmin}
+            secret={secret}
+            setSecret={setSecret}
           />
         </BaseTab>
         <BaseTab label={t('global.accessList')}>
@@ -113,20 +117,19 @@ export function UpdateAdminModal({
 
       <div className="flex justify-center mt-4">
         {showConfirm ? (
-          <div className="flex">
-            <Typography>{t('global.areYouSure')}</Typography>
+          <div className="flex items-center">
+            <Typography color="black">{t('global.areYouSure')}</Typography>
             <BaseButton
               label={t('global.yes')}
               size="sm"
               submit
-              disabled={!formState.isValid}
               className="mx-2"
               loading={loadingButtonModal}
             />
             <BaseButton
               label={t('global.no')}
               size="sm"
-              type="red"
+              type="neutral"
               className="mx-2"
               onClick={() => setShowConfirm(false)}
             />

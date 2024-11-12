@@ -30,7 +30,7 @@ export function MenuDropdown({ items, mouseHover }: MenuDropdownProps) {
   return isOpen ? (
     <div
       ref={dropdownRef}
-      className="absolute right-full ltr:left-full w-40 h-20 bg-white dark:bg-gray-600 shadow-md rounded-lg mt-10 overflow-hidden cursor-pointer"
+      className="absolute right-full ltr:left-full w-40 h-fit bg-white dark:bg-gray-600 shadow-md rounded-lg mt-10 overflow-hidden cursor-pointer"
       onPointerDown={mouseHover}
     >
       {items.map((item) => (
@@ -39,7 +39,7 @@ export function MenuDropdown({ items, mouseHover }: MenuDropdownProps) {
             type="button"
             key={item.id}
             tabIndex={0}
-            className="w-full h-7 hover:bg-gray-100 dark:hover:bg-gray-500 rounded-md flex items-center"
+            className="w-full h-7 hover:bg-gray-100 dark:hover:bg-gray-500 rounded flex items-center"
             onPointerDown={() => navigate(item.path)}
           >
             {item.icon && <BaseIcon icon={item.icon} />}

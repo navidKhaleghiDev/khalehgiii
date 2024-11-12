@@ -37,7 +37,7 @@ export function LicenseCard(props: LicenseCardProps): JSX.Element {
       shadow="base"
       rounded="xxl"
     >
-      <div className="w-full flex items-center lg:gap-5 gap[0.62rem] flex-row-reverse">
+      <div className="w-full flex items-center lg:gap-5 gap-[0.62rem] flex-row-reverse">
         <div className="flex flex-col items-start lg:gap-2  w-2/3 box-border">
           <Typography variant="body6B" color="black">
             {title}
@@ -47,7 +47,7 @@ export function LicenseCard(props: LicenseCardProps): JSX.Element {
         <div className="lg:w-1/3">
           <DoughnutChart
             subValue={subValue}
-            totalValue={totalValue}
+            totalValue={totalValue === 0 ? 1 : totalValue}
             color={color}
             type="license"
           >

@@ -82,7 +82,12 @@ export const navigationSideBar: NavigationProps[] = [
       {
         id: '3',
         label: t('license.licenses'),
-        path: ROUTES_PATH.dashboard,
+        path: ROUTES_PATH.licence,
+      },
+      {
+        id: '4',
+        label: t('global.monitoring'),
+        path: ROUTES_PATH.monitoring,
       },
     ],
   },
@@ -112,7 +117,7 @@ export const navigationSideBar: NavigationProps[] = [
   },
   {
     id: '6',
-    label: t('global.progressingChart'),
+    label: t('dashboard.scanChart'),
     path: ROUTES_PATH.chart,
     icon: PhChartBarDuotone,
   },

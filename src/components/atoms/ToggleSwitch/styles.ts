@@ -6,8 +6,8 @@ export const avatarStyles = cva(
     variants: {
       intent: {
         primary: 'bg-teal-600 border-none',
-        grey: 'bg-neutral-100 border',
-        inactive: 'bg-neutral-200 border-none',
+        grey: 'bg-gray-100 border',
+        inactive: 'bg-gray-200 border-none',
       },
       size: {
         sm: 'w-8 h-8 border-1',
@@ -27,7 +27,7 @@ export const iconAvatarStyles = cva('absolute dark:text-white ', {
     intent: {
       primary: 'text-white ',
       grey: 'text-teal-600 ',
-      inactive: 'text-neutral-400 ',
+      inactive: 'text-gray-400 ',
     },
     size: {
       sm: 'w-6 h-6 ',

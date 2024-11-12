@@ -12,7 +12,6 @@ import { MultiDatePicker } from '../index';
  * @param {string | Date} [props.maxDate] - The maximum selectable date.
  * @param {string | Date} [props.minDate] - The minimum selectable date.
  * @param {TimeDuration} [props.timeDuration] - The duration or interval for selecting time, if applicable.
- * @param {sm | md} [props.size] - The size of the date picker (e.g., small, medium, large).
  * @param {boolean} [props.disabled=false] - Whether the date picker is disabled or not.
  * @param {string} [props.calenderPosition=bottom-right] - Specifiers the calender position
  * @param {string} [props.format='YYYY/MM/DD'] - The format in which the date should be displayed.
@@ -35,7 +34,6 @@ export function MultiDatePickerController<T extends FieldValues>(
     calendarPosition,
     minDate,
     timeDuration,
-    size,
     disabled,
     format = 'YYYY/MM/DD',
   } = props;
@@ -57,7 +55,6 @@ export function MultiDatePickerController<T extends FieldValues>(
           fullWidth={fullWidth}
           maxDate={maxDate}
           minDate={minDate}
-          size={size}
           calendarPosition={calendarPosition}
           value={field.value}
         />

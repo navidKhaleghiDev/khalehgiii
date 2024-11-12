@@ -5,7 +5,8 @@ import { BaseTableBody } from './components/BaseTableBody';
 
 import { BaseTableProps, CategorizedData, IdItem } from './types';
 import { Pagination } from '../Pagination';
-import { BaseTableSkeleton } from './components/loading';
+// import { BaseTableSkeleton } from './components/loading';
+import { LoadingSpinner } from '../Loading';
 
 /**
  * A table component that displays data with customizable headers, body content,
@@ -31,7 +32,9 @@ import { BaseTableSkeleton } from './components/loading';
  * @returns {JSX.Element} The rendered table component.
  */
 
-export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
+export function BaseTable<T extends IdItem>(
+  props: BaseTableProps<T>
+): JSX.Element {
   const {
     header,
     body,
@@ -48,7 +51,8 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
     paginationLabel,
     allItems,
     itemsPer,
-  } = pagination;
+  } = pagination || {};
+
   const [headerCollapse, setHeaderCollapse] = useState<CategorizedData>({
     mobile: [],
     desktop: [],
@@ -94,13 +98,16 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   }, [header]);
 
   return (
-    <div className="w-auto ">
+    <div className="w-auto">
       <table className="w-full">
         {!isMobile && (
           <BaseTableHeader header={updatedHeader} collapse={isCollapse} />
         )}
         {loading ? (
-          <BaseTableSkeleton />
+          // <BaseTableSkeleton />
+          <div className="h-full flex justify-center items-center">
+            <LoadingSpinner centerParent />
+          </div>
         ) : (
           <BaseTableBody
             body={body}
@@ -112,16 +119,20 @@ export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
         )}
       </table>
       <div className="mt-5">
-        {!!countPage && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={onPageChange}
-            allItems={allItems}
-            itemsPer={itemsPer}
-            paginationLabel={paginationLabel}
-          />
-        )}
+        {!!countPage &&
+          currentPage &&
+          totalPages &&
+          onPageChange &&
+          !loading && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              allItems={allItems}
+              itemsPer={itemsPer}
+              paginationLabel={paginationLabel}
+            />
+          )}
       </div>
     </div>
   );

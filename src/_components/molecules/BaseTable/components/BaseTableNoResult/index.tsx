@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 import { Typography } from '@redesignUi/atoms';
+import { NoResultSvg } from '@redesignUi/atoms/Svgs/NoResultSvg';
 
 type PropsType = {
   isPage?: boolean;
   description?: string;
 };
 export function BaseTableNoResult({ isPage, description }: PropsType) {
+  const { t } = useTranslation();
   return (
     <tr
       className={`py-8 flex flex-col justify-center items-center ${
@@ -12,9 +16,9 @@ export function BaseTableNoResult({ isPage, description }: PropsType) {
       }`}
     >
       <td>
-        <img src="/not-found.jpg" alt="not found" width={150} height={150} />
-        <Typography color="neutral">
-          {description ?? `موردی یافت نشد`}
+        <NoResultSvg height={200} width={200} />
+        <Typography variant="body4B" color="neutral" className="text-center">
+          {description ?? t('table.nothingFound')}
         </Typography>
       </td>
     </tr>

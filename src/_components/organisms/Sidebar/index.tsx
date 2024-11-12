@@ -6,18 +6,18 @@ import { useLanguage } from '@context/settings/languageContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { http } from '@src/services/http';
 import { useUserContext } from '@context/user/userContext';
-import ToolTip from '@redesignUi/atoms/Tooltip';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { Avatar, Typography } from '@redesignUi/atoms';
+import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
+import { useTheme } from '@context/settings/themeContext';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import User from '@iconify-icons/ph/user';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
-import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
-import { useTheme } from '@context/settings/themeContext';
-import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { MenuDropdown } from './MenuDropdown/MenuDropdown';
 import { MenuItem } from './MenuItem';
@@ -26,22 +26,28 @@ import { NavigationProps } from './types';
 import { MenuItemAccordion } from './MenuItemAccordion';
 
 export function SideBar(): JSX.Element {
-  const windowDimensions = useWindowDimensions();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [isDropdownVisible, setDropdownVisible] =
     useState<NavigationProps | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+  const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { user } = useUserContext();
-  const { setUser } = useUserContext();
+  const { user, setUser } = useUserContext();
   const { lang } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
-  const navigate = useNavigate();
+  const windowDimensions = useWindowDimensions();
+
+  const isUser = user?.first_name && user?.last_name;
+  const logOutStyles =
+    'text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
   const toggleSideBar = () => {
     setToggleSidebar(!toggleSidebar);
   };
+  const handleToggle = () => (isDark ? toggleTheme() : null);
+
   const handleLogout = () => {
+    handleToggle();
     http.removeAuthHeader();
     setUser(null);
     navigate(ROUTES_PATH.login);
@@ -120,32 +126,35 @@ export function SideBar(): JSX.Element {
               )}
             </div>
           ) : (
-            <div
-              key={item.id}
-              onPointerUp={() => {
-                if (isDropdownVisible?.id === item.id) {
-                  setDropdownVisible(null);
-                } else {
-                  setDropdownVisible(item);
-                }
-              }}
-              className={`flex justify-center flex-col items-center cursor-pointer ${
-                toggleSidebar ? 'w-full' : null
-              }`}
-            >
-              <MenuItem
-                item={item}
-                pathname={pathname}
-                collapsed={!toggleSidebar}
-              />
+            <div className="flex justify-center flex-col items-center">
+              <div
+                key={item.id}
+                onPointerUp={() => {
+                  if (isDropdownVisible?.id === item.id) {
+                    setDropdownVisible(null);
+                  } else {
+                    setDropdownVisible(item);
+                  }
+                }}
+                className={`flex justify-center flex-col items-center cursor-pointer ${
+                  toggleSidebar ? 'w-full' : null
+                }`}
+              >
+                <MenuItem
+                  item={item}
+                  pathname={pathname}
+                  collapsed={!toggleSidebar}
+                />
+
+                {isDropdownVisible?.id === item.id && !toggleSidebar && (
+                  <MenuDropdown
+                    items={item.items}
+                    mouseHover={() => setDropdownVisible(null)}
+                  />
+                )}
+              </div>
               {shouldAddHR && (
                 <hr className="w-10 bg-white border border-gray-300 rounded my-5" />
-              )}
-              {isDropdownVisible?.id === item.id && !toggleSidebar && (
-                <MenuDropdown
-                  items={item.items}
-                  mouseHover={() => setDropdownVisible(null)}
-                />
               )}
             </div>
           );
@@ -172,7 +181,7 @@ export function SideBar(): JSX.Element {
             <div className="mx-2">
               <span>
                 <Typography variant="body5" color="neutralDark">
-                  {`${user?.first_name} ${user?.last_name}`}
+                  {isUser ? user?.first_name && user.last_name : ''}
                 </Typography>
               </span>
               <span>
@@ -194,7 +203,7 @@ export function SideBar(): JSX.Element {
                 color="neutralNoBg"
                 size="md"
                 onClick={handleLogout}
-                className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg "
+                className={logOutStyles}
               />
             </ToolTip>
           ) : (
@@ -203,7 +212,7 @@ export function SideBar(): JSX.Element {
               color="neutralNoBg"
               size="md"
               onClick={handleLogout}
-              className="text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg"
+              className={logOutStyles}
             />
           )}
           {toggleSidebar ? (
