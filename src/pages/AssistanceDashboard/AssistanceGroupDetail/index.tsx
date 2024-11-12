@@ -1,20 +1,24 @@
 import { useState, useEffect, useCallback } from 'react';
-import { BaseButton, Typography } from '@ui/atoms';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
 import {
   API_ONLINE_ASSISTANCE,
   API_USERS_GROUPS_GET,
 } from '@src/services/users';
-import { toast } from 'react-toastify';
-import { LoadingSpinner } from '@ui/molecules/Loading';
 import { TGroup } from '@src/services/users/types';
-import ToolTip from '@ui/atoms/Tooltip';
+import User from '@iconify-icons/ph/user';
+import Monitor from '@iconify-icons/ph/monitor-duotone';
 import { useUserContext } from '@context/user/userContext';
-import { useNavigate } from 'react-router-dom';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
+import { Avatar, Typography } from '@redesignUi/atoms';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { useLanguage } from '@context/settings/languageContext';
 
-type TAssistanceGroupDetailProps = {
+type AssistanceGroupDetailProps = {
   id: string;
   groupName: string;
 };
@@ -22,14 +26,16 @@ type TAssistanceGroupDetailProps = {
 export function AssistanceGroupDetail({
   id,
   groupName,
-}: TAssistanceGroupDetailProps) {
+}: AssistanceGroupDetailProps) {
   const { t } = useTranslation();
+  const { lang } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [memberList, setMemberList] = useState<TGroup['users']>([]);
   const { user, setUser } = useUserContext();
   const navigate = useNavigate();
 
   const isValidData = memberList && !loading && id;
+  const dir = lang === 'fa' ? 'right' : 'left';
 
   const handleGetGroupMembers = useCallback(async () => {
     setLoading(true);
@@ -85,7 +91,7 @@ export function AssistanceGroupDetail({
   }, [handleGetGroupMembers, id]);
 
   return (
-    <div className="grid w-full grid-cols-12 gap-6 mb-4">
+    <div className="flex flex-col w-full gap-2.5 max-h-[42.5rem] p-5 overflow-y-auto">
       {isValidData ? (
         memberList.map((member) => {
           const onlineUser = member.is_running;
@@ -93,37 +99,32 @@ export function AssistanceGroupDetail({
           return (
             <div
               key={member.id}
-              className="bg-gray-100 rounded-lg p-2 h-12 col-span-10 md:col-span-6 xl:col-span-4 flex"
+              className="bg-white w-full border border-gray-100 rounded-lg p-5 h-12 flex items-center justify-between"
             >
-              <div className="flex  gap-4 items-center mx-2">
-                <ToolTip
-                  tooltip={
-                    onlineUser && isOnlineAssistance
-                      ? t('onlineAssistance.enterDesktop')
-                      : t('global.dontHaveAccess')
-                  }
-                >
-                  <BaseButton
-                    disabled={!onlineUser || !isOnlineAssistance}
-                    label={t('onlineAssistance.enterDesktop')}
-                    onClick={() =>
-                      handleGoToUsersDesktop(member.id, member?.email)
-                    }
-                  />
-                </ToolTip>
-                <ToolTip
-                  tooltip={
-                    onlineUser
-                      ? t('onlineAssistance.onlineUser')
-                      : t('onlineAssistance.offlineUser')
-                  }
-                >
-                  <Circle id={onlineUser as boolean} />
-                </ToolTip>
+              <div className="flex items-center gap-3">
+                <Avatar icon={User} isActive={onlineUser} size="table" />
+                <Typography variant="body5" color="neutral" className="">
+                  {member?.email}
+                </Typography>
               </div>
-              <Typography variant="body2" color="neutral" className="mr-auto">
-                {member?.email}
-              </Typography>
+              <ToolTip
+                position={dir}
+                tooltip={
+                  onlineUser && isOnlineAssistance
+                    ? t('onlineAssistance.enterDesktop')
+                    : t('global.dontHaveAccess')
+                }
+              >
+                <IconButton
+                  icon={Monitor}
+                  color="neutral"
+                  size="sm"
+                  disabled={!onlineUser || !isOnlineAssistance}
+                  onClick={() =>
+                    handleGoToUsersDesktop(member.id, member?.email)
+                  }
+                />
+              </ToolTip>
             </div>
           );
         })
