@@ -1,75 +1,106 @@
+import { useState } from 'react';
+import UsersThree from '@iconify-icons/ph/users-three';
+import { useTranslation } from 'react-i18next';
+import trashSimple from '@iconify-icons/ph/trash-simple';
+
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { CardButton } from '@redesignUi/atoms/Card/CardButton';
-import UsersThree from '@iconify-icons/ph/users-three';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
+import {
+  checkPermission,
+  useUserPermission,
+} from '@src/helper/hooks/usePermission';
+import { EPermissionGroupManagement } from '@src/types/permissions';
 
-import TitleNumber from './TitleNumber/TitleNumber';
+import { TitleNumber } from './TitleNumber/TitleNumber';
 import { GroupCardProps } from './types';
-
-/**
- * GroupCard Component
- *
- * A card component that displays a title, an avatar icon, and a list of details.
- * The component uses a button card layout and supports disabled and clickable states.
- *
- * @component
- *
- * @param {Object} props - The props for the GroupCard component.
- * @param {string} props.title - The title text displayed in the card.
- * @param {Function} props.onClick - Callback function to handle the click event on the card.
- * @param {boolean} [props.disabled] - Whether the card is disabled or not.
- * @param {string} [props.className] - Additional custom className for styling the outer card.
- * @param {string} [props.avatarClassName] - Additional custom className for styling the avatar.
- * @param {string} [props.iconClassName] - Additional custom className for styling the icon inside the avatar.
- * @param {Array<Object>} [props.details] - List of details to be displayed in the card, each containing a title and a number.
- * @param {string} props.details[].id - The unique identifier for each detail.
- * @param {string} props.details[].title - The title for each detail.
- * @param {number} props.details[].number - The number associated with each detail.
- *
- * @returns {JSX.Element} Returns the rendered GroupCard component.
- */
 
 export function GroupCard(props: GroupCardProps): JSX.Element {
   const {
-    title,
     onClick,
-    disabled,
     className,
     avatarClassName,
     iconClassName,
-    details,
+    groupData,
+    handleRemoveGroup,
   } = props;
+  const { t } = useTranslation();
+  const userPermissions = useUserPermission();
+  const GroupManagementDelete = checkPermission(
+    userPermissions,
+    EPermissionGroupManagement.DELETE
+  );
+
+  const [isRemoving, setIsRemoving] = useState(false);
+
+  const handleIconClick = (groupId: string) => {
+    setIsRemoving(true);
+    handleRemoveGroup(groupId);
+    setIsRemoving(false);
+  };
+
   return (
-    <CardButton
-      border
-      borderColor="neutral"
-      color="white"
-      onClick={onClick}
-      disabled={disabled}
-      rounded="xxl"
-      shadow="base"
-      className={`w-min p-5 pt-12 ${className}`}
-    >
-      <div className="flex flex-col items-center">
-        <Avatar
-          icon={UsersThree}
-          className={`mb-2.5 ${avatarClassName}`}
-          iconClassName={iconClassName}
-          size="lg"
-        />
-        <Typography variant="body4B" color="black" className="font-semibold">
-          {title}
-        </Typography>
-        <div className="flex flex-row gap-2.5 mt-5">
-          {details &&
-            details.map((detail) => (
-              <TitleNumber
-                title={detail.title}
-                number={detail.number}
-                key={detail.id}
-              />
-            ))}
-        </div>
-      </div>
-    </CardButton>
+    <div className="flex flex-wrap  gap-6 md:justify-start justify-center mb-2">
+      {groupData.length >= 1 &&
+        groupData.map((group) => (
+          <div key={group.id}>
+            <CardButton
+              border
+              borderColor="neutral"
+              color="white"
+              onClick={() => !isRemoving && onClick(group)}
+              rounded="xxl"
+              shadow="base"
+              className={`p-5 h-[14.75rem] w-[16.563rem] md:w-[13.938rem] lg:w-[16.563rem] ${className}`}
+            >
+              <div className="flex flex-col items-center ">
+                {GroupManagementDelete ? (
+                  <IconButton
+                    icon={trashSimple}
+                    color="redNoBg"
+                    className="self-end !justify-end !items-start"
+                    onClick={() => handleIconClick(group?.id as string)}
+                  />
+                ) : null}
+                {!group.image ? (
+                  <Avatar
+                    icon={UsersThree}
+                    className={`mb-2.5 w-16 h-16  ${avatarClassName}`}
+                    iconClassName={iconClassName}
+                    size="lg"
+                  />
+                ) : (
+                  <img
+                    src={group.image as string}
+                    alt=""
+                    className="w-16 h-16 mb-2.5 rounded-full border border-gray-300"
+                  />
+                )}
+                <Typography
+                  variant="body4B"
+                  color="black"
+                  className="font-semibold"
+                >
+                  {group.name}
+                </Typography>
+                <div className="flex flex-row sm:gap-2.5 gap-1 mt-5">
+                  <TitleNumber
+                    title={t('groupManagement.admin')}
+                    number={group.admins.length}
+                  />
+                  <TitleNumber
+                    title={t('groupManagement.users')}
+                    number={group.users.length}
+                  />
+                  <TitleNumber
+                    title={t('groupManagement.onlineUsers')}
+                    number={group.users.length}
+                  />
+                </div>
+              </div>
+            </CardButton>
+          </div>
+        ))}
+    </div>
   );
 }

@@ -73,7 +73,7 @@ export function LoginOnlineAssistance() {
               icon={WifiHigh}
               subject={t('dashboard.netsep')}
               title={t('onlineAssistance.internet')}
-              onClick={() => navigate(ROUTES_PATH.dashboard)}
+              onClick={() => navigate(ROUTES_PATH.home)}
             />
           </div>
         </div>

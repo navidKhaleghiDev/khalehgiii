@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { BaseButton, Typography } from '@redesignUi/atoms';
+import { Typography } from '@redesignUi/atoms';
 import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
-import CaretLeft from '@iconify-icons/ph/caret-left';
-import CaretRight from '@iconify-icons/ph/caret-right';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import ChartBar from '@iconify-icons/ph/chart-bar-duotone';
 import ChartLine from '@iconify-icons/ph/chart-line';
-import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
 import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
 import { useLanguage } from '@context/settings/languageContext';
@@ -21,12 +18,11 @@ export function DashboardProgressChart() {
   const { lang } = useLanguage();
 
   const farsi = lang === 'fa';
-  const caretLeft = farsi ? CaretLeft : CaretRight;
 
   // mock
   const datasets = [
     {
-      label: 'فایل های اسکن شده',
+      label: t('fileScan.scannedFiles'),
       data: [
         { x: '2024-01-01', y: 65 },
         { x: '2024-02-01', y: 59 },
@@ -39,7 +35,7 @@ export function DashboardProgressChart() {
       backgroundColor: 'rgba(96, 165, 250)',
     },
     {
-      label: 'فایل‌های آلوده',
+      label: t('dashboard.virusFiles'),
       data: [
         { x: '2024-03-01', y: 28 },
         { x: '2024-04-01', y: 48 },
@@ -49,7 +45,7 @@ export function DashboardProgressChart() {
       backgroundColor: 'rgba(192, 132, 252)',
     },
     {
-      label: 'رفتارشناسی کاربر',
+      label: t('dashboard.uba'),
       data: [
         { x: '2024-01-01', y: 38 },
         { x: '2024-02-01', y: 58 },
@@ -70,12 +66,11 @@ export function DashboardProgressChart() {
           <Typography color="black" variant="body4B">
             {t('dashboard.scanChart')}
           </Typography>
-          <Typography color="neutral" variant="body5">
-            sep.npd-co.com
-          </Typography>
         </div>
         <div className="w-1/2 flex sm:justify-end gap-2.5">
-          <div className="col-span-6 justify-self-end">
+          {/* disable the domain cause the functionality dose not work */}
+
+          {/* <div className="col-span-6 justify-self-end">
             <BaseButton
               label={t('global.domain')}
               endIcon={caretLeft}
@@ -90,7 +85,9 @@ export function DashboardProgressChart() {
               size="sm"
               className="sm:hidden flex"
             />
-          </div>
+          </div> */}
+          {/* disable the option cause the functionality does not work */}
+
           <div className="max-w-max">
             <ToggleButton
               buttonOptions={[
@@ -115,6 +112,7 @@ export function DashboardProgressChart() {
               ]}
               onChange={(data) => setTimeFrame(data?.value)}
               size="responsive"
+              disabled
             />
           </div>
         </div>

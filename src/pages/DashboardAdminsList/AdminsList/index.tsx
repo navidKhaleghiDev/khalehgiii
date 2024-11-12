@@ -22,7 +22,7 @@ import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { UpdateAdminModal } from './UpdateAdminModal';
 import { adminListHeaderItem } from './constants/ adminListHeaderItem';
 
-const PAGE_SIZE = 7;
+const PAGE_SIZE = 6;
 const PAGE = 1;
 
 export function AdminsList() {
@@ -119,7 +119,6 @@ export function AdminsList() {
         searchQuery={filterQuery}
         searchPlaceholder={t('adminList.adminSearch')}
         handelSearchQuery={setFilterQuery}
-        domainFilter
       />
 
       <BaseTable

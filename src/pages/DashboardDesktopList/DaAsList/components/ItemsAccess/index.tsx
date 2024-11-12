@@ -46,9 +46,9 @@ export function ItemsAccess(props: ItemsAccessProps) {
             </div>
             <div>
               <BaseSwitchController
-                id="is_recording"
+                id="has_clipboard_access"
                 control={control}
-                name="is_recording"
+                name="has_clipboard_access"
               />
             </div>
           </div>
