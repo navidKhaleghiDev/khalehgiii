@@ -1,37 +1,28 @@
-import { Typography } from '@ui/atoms/Typography/Typography';
-import { Card } from '@ui/atoms';
-import { IconButton } from '@ui/atoms/BaseButton';
 import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
-import xIcon from '@iconify-icons/ph/x';
 
-import {
-  tomorrow,
-  getNextSaturday,
-  firstDayOfNextMonth,
-} from '@src/helper/utils/dateUtils';
-import {
-  TimeLimitDurationLabel,
-  TimeLimitDurationLabelDetails,
-} from '@src/constants/accessTime';
+// import {
+//   tomorrow,
+//   getNextSaturday,
+//   firstDayOfNextMonth,
+// } from '@src/helper/utils/dateUtils';
+// import { TimeLimitDurationLabelDetails } from '@src/constants/accessTime';
 import { formatDuration } from '@src/helper/utils/timeUtils';
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@context/settings/languageContext';
 import { AccessTimeModalCard } from './AccessTimeModalCard';
 import { AccessDlpModalCard } from './AccessDlpModalCard';
+import { FormatModalCard } from './FormatModalcard';
 
 // Use the `displayText` variable where needed
 
 type PropsType = {
-  onClick: (value: boolean) => void;
   // timeLimitDuration: ETimeLimitDuration;
   // timeLimitValueInHour: number;
   // usageInMinute: number;
   daas?: IDaAs;
 };
 
-export function AccessTimeModal({ onClick, daas }: PropsType) {
-  const { lang } = useLanguage();
-  const localizationDate = lang === 'fa' ? 'fa-IR' : 'en-US';
+export function AccessTimeModal({ daas }: PropsType) {
+  // const localizationDate = lang === 'fa' ? 'fa-IR' : 'en-US';
 
   const { t } = useTranslation();
   const timeLimitDuration: ETimeLimitDuration =
@@ -55,130 +46,86 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
     timeLeft = formatDuration(remainingTime);
   }
 
-  function getExtensionTime(label: ETimeLimitDuration): string {
-    switch (label) {
-      case ETimeLimitDuration.DAILY:
-        return tomorrow.toLocaleDateString(localizationDate);
+  // function getExtensionTime(label: ETimeLimitDuration): string {
+  //   switch (label) {
+  //     case ETimeLimitDuration.DAILY:
+  //       return tomorrow.toLocaleDateString(localizationDate);
 
-      case ETimeLimitDuration.WEEKLY:
-        return getNextSaturday().toLocaleDateString(localizationDate);
+  //     case ETimeLimitDuration.WEEKLY:
+  //       return getNextSaturday().toLocaleDateString(localizationDate);
 
-      case ETimeLimitDuration.MONTHLY:
-        return firstDayOfNextMonth.toLocaleDateString(localizationDate);
+  //     case ETimeLimitDuration.MONTHLY:
+  //       return firstDayOfNextMonth.toLocaleDateString(localizationDate);
 
-      case ETimeLimitDuration.PERMANENTLY:
-        return t('global.doesNot');
+  //     case ETimeLimitDuration.PERMANENTLY:
+  //       return t('global.doesNot');
 
-      default:
-        return '';
-    }
-  }
+  //     default:
+  //       return '';
+  //   }
+  // }
 
   return (
-    <div className="w-full">
-      <div className="flex w-full justify-end p-2">
-        <IconButton
-          icon={xIcon}
-          color="tealNoBg"
-          onClick={() => onClick(false)}
-        />
-      </div>
-      <div className="px-16 pt-8 pb-16 w-full">
-        <Card className="bg-teal-600 flex items-center justify-between h-10 text-white px-2">
-          <Typography variant="body3" color="white">
-            {t('global.timeAccess')}
-          </Typography>
-          <div className="flex items-center justify-between w-1/2">
-            <Typography variant="body3" color="white">
-              {TimeLimitDurationLabel[timeLimitDuration]}
-            </Typography>
-            |
-            <Typography variant="body3" color="white">
-              {timeLimitValueInHour} {t('global.hour')}
-            </Typography>
-          </div>
-        </Card>
-        <div className="flex gap-2">
+    <div>
+      <div>
+        <div className="flex items-center gap-8">
           <AccessTimeModalCard
             label={t('table.usedTime')}
-            name={TimeLimitDurationLabelDetails[timeLimitDuration]}
             value={
               usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
             }
           />
-          <AccessTimeModalCard
-            label={t('table.leftTime')}
-            name={TimeLimitDurationLabelDetails[timeLimitDuration]}
-            value={timeLeft}
-          />
-          <AccessTimeModalCard
-            label={t('table.extendTime')}
-            name={getExtensionTime(timeLimitDuration)}
-            value={
-              timeLimitDuration !== ETimeLimitDuration.PERMANENTLY
-                ? '00:01'
-                : ''
-            }
-          />
+          <AccessTimeModalCard label={t('table.leftTime')} value={timeLeft} />
         </div>
-        <div className="flex flex-col gap-2 mt-4">
-          <AccessDlpModalCard
-            label={t('table.desktopV')}
-            value={daas?.daas_version}
-          />
-          <AccessDlpModalCard
-            label={t('global.maximumUploadSize')}
-            value={`${daas?.daas_configs?.max_transmission_upload_size} MB`}
-            contentDirection="ltr"
-          />
-          <AccessDlpModalCard
-            label={t('global.maximumDownloadSize')}
-            value={`${daas?.daas_configs?.max_transmission_download_size} MB`}
-            contentDirection="ltr"
-          />
-          <AccessDlpModalCard
-            label={t('table.AccessConference')}
-            isAccess={daas?.chatroom_privileged}
-          />
-          <AccessDlpModalCard
-            label={t('global.onlineAssistance')}
-            isAccess={daas?.daas_configs.has_online_assistance}
-          />
-          <AccessDlpModalCard
-            label={t('global.evidenceGathering')}
-            isAccess={daas?.daas_configs?.has_evidence_gathering}
-          />
-          <AccessDlpModalCard
-            label={t('global.clipboardAccess')}
-            isAccess={daas?.daas_configs?.has_clipboard_access}
-          />
-          <AccessDlpModalCard
-            label={t('global.clipboardLog')}
-            isAccess={daas?.daas_configs?.has_clipboard_log_access}
-          />
-          <AccessDlpModalCard
-            label={t('global.uploadAccess')}
-            isAccess={daas?.daas_configs?.can_upload_file}
-          />
-          <AccessDlpModalCard
-            label={t('global.downloadAccess')}
-            isAccess={daas?.daas_configs?.can_download_file}
-          />
-        </div>
-        <div className="flex gap-2">
-          <AccessTimeModalCard
-            label={t('global.allowedTypeForUpload')}
-            value={`${daas?.allowed_files_type_for_upload?.join(' ')}`}
-            contentDirection="ltr"
-          />
-        </div>
-
-        <div className="flex gap-2">
-          <AccessTimeModalCard
-            label={t('global.allowedTypeForDownload')}
-            value={`${daas?.allowed_files_type_for_download?.join(' ')}`}
-            contentDirection="ltr"
-          />
+        <div className="w-full max-h-[600px] overflow-y-auto">
+          <div className="flex flex-col gap-2 mt-4">
+            <AccessDlpModalCard
+              label={t('table.desktopV')}
+              value={daas?.daas_version}
+            />
+            <AccessDlpModalCard
+              label={t('global.maximumUploadSize')}
+              value={`${daas?.daas_configs?.max_transmission_upload_size} MB`}
+              contentDirection="ltr"
+            />
+            <AccessDlpModalCard
+              label={t('global.maximumDownloadSize')}
+              value={`${daas?.daas_configs?.max_transmission_download_size} MB`}
+              contentDirection="ltr"
+            />
+            <AccessDlpModalCard
+              label={t('table.AccessConference')}
+              isAccess={daas?.chatroom_privileged}
+            />
+            <AccessDlpModalCard
+              label={t('global.onlineAssistance')}
+              isAccess={daas?.daas_configs.has_online_assistance}
+            />
+            <AccessDlpModalCard
+              label={t('global.evidenceGathering')}
+              isAccess={daas?.daas_configs?.has_evidence_gathering}
+            />
+            <AccessDlpModalCard
+              label={t('global.clipboardAccess')}
+              isAccess={daas?.daas_configs?.has_clipboard_access}
+            />
+            <AccessDlpModalCard
+              label={t('global.clipboardLog')}
+              isAccess={daas?.daas_configs?.has_clipboard_log_access}
+            />
+            <AccessDlpModalCard
+              label={t('global.uploadAccess')}
+              isAccess={daas?.daas_configs?.can_upload_file}
+            />
+            <AccessDlpModalCard
+              label={t('global.downloadAccess')}
+              isAccess={daas?.daas_configs?.can_download_file}
+            />
+          </div>
+          <div className="flex gap-8 mt-4">
+            <FormatModalCard label={t('global.allowedTypeForUpload')} />
+            <FormatModalCard label={t('global.allowedTypeForDownload')} />
+          </div>
         </div>
       </div>
     </div>

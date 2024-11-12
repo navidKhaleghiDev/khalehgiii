@@ -64,8 +64,7 @@ export function AccessTime() {
       <Modal
         open={openModal}
         setOpen={setOpenModal}
-        content={<AccessTimeModal onClick={setOpenModal} daas={data?.data} />}
-        classContainer="border border-teal-600 w-1/2 h-1/2"
+        content={<AccessTimeModal daas={data?.data} />}
         type="content"
       />
     </>
