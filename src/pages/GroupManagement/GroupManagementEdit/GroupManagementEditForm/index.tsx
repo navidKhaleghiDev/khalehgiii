@@ -31,6 +31,7 @@ type GroupManagementEditFormProps = {
   onSubmit: SubmitHandler<TGroupUpdate>;
   allGroupData: TGroup;
   isDirty: boolean;
+  setOpenEditModal: any;
 };
 
 export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
@@ -48,6 +49,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
     onSubmit,
     allGroupData,
     isDirty,
+    setOpenEditModal,
   } = props;
 
   const [editMode, setEditMode] = useState(false);
@@ -104,7 +106,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
       <div className="flex [&>*]:justify-between [&>*]:w-full pb-4">
         <FilterTableList
           buttonLabel={t('groupManagement.addMember')}
-          onClickButton={() => {}}
+          onClickButton={() => setOpenEditModal(true)}
           searchQuery={filterQuery}
           searchPlaceholder={t('groupManagement.searchGroup')}
           handelSearchQuery={setFilterQuery}

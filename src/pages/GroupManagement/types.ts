@@ -48,6 +48,10 @@ export type TGroupCreate = {
   name: string;
   image: string | Blob | undefined;
 };
+export type GroupManagementAddNewMemberProps = {
+  handleCloseModal: () => void;
+  onClick: (data: any) => void;
+};
 export type GroupManagementCreateProps = {
   handleCloseModal: () => void;
 };
