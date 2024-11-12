@@ -46,9 +46,8 @@ export function GroupManagementAddNewMember(
     return { ...item, value: 'users' };
   });
   const buttonCondition =
-    selectedData.users.length === 0 && selectedData.users.length === 0;
+    selectedData.users.length === 0 && selectedData.admins.length === 0;
 
-  console.log(selectedData);
   return (
     <div className="w-full">
       <div className=" h-[26.25rem] overflow-auto mt-4 pe-4">

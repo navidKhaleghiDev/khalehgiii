@@ -65,7 +65,7 @@ export function GroupManagementEdit() {
   const {
     control,
     handleSubmit,
-    getValues,
+    reset,
     formState: { isDirty },
   } = useForm<TGroupUpdate>({
     mode: 'onChange',
@@ -75,8 +75,16 @@ export function GroupManagementEdit() {
     },
   });
   useEffect(() => {
-    if (group) setUpdateGroup(group);
+    if (group) {
+      setUpdateGroup(group);
+    }
   }, [group]);
+
+  useEffect(() => {
+    reset({
+      name: updateGroup.name,
+    });
+  }, [reset, updateGroup]);
 
   const paginatedData = useCallback(
     (key: keyof TGroup) => {
@@ -142,7 +150,7 @@ export function GroupManagementEdit() {
 
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
     setUpdateGroup((prev) => {
-      return { ...prev, name: listData.name, image: getValues('image') };
+      return { ...prev, ...listData };
     });
     setOpenModal(true);
   };

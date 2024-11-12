@@ -67,7 +67,6 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
   };
 
   const handleUpdateDropDown = (dropKey: string, item: IDaAs) => {
-    keyRef.current = dropKey;
     const alternativeKey = dropKey === 'users' ? 'admins' : 'users';
 
     setSelectedData((prevSelected: SelectedDataType) => {
