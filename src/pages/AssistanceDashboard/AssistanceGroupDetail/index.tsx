@@ -16,6 +16,7 @@ import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { useLanguage } from '@context/settings/languageContext';
 
 type AssistanceGroupDetailProps = {
   id: string;
@@ -27,12 +28,14 @@ export function AssistanceGroupDetail({
   groupName,
 }: AssistanceGroupDetailProps) {
   const { t } = useTranslation();
+  const { lang } = useLanguage();
   const [loading, setLoading] = useState(false);
   const [memberList, setMemberList] = useState<TGroup['users']>([]);
   const { user, setUser } = useUserContext();
   const navigate = useNavigate();
 
   const isValidData = memberList && !loading && id;
+  const dir = lang === 'fa' ? 'right' : 'left';
 
   const handleGetGroupMembers = useCallback(async () => {
     setLoading(true);
@@ -88,7 +91,7 @@ export function AssistanceGroupDetail({
   }, [handleGetGroupMembers, id]);
 
   return (
-    <div className="flex flex-col w-full gap-2.5">
+    <div className="flex flex-col w-full gap-2.5 max-h-[42.5rem] p-5 overflow-y-auto">
       {isValidData ? (
         memberList.map((member) => {
           const onlineUser = member.is_running;
@@ -96,7 +99,7 @@ export function AssistanceGroupDetail({
           return (
             <div
               key={member.id}
-              className="bg-white w-full border  border-gray-100 rounded-lg p-5 h-12 flex items-center justify-between"
+              className="bg-white w-full border border-gray-100 rounded-lg p-5 h-12 flex items-center justify-between"
             >
               <div className="flex items-center gap-3">
                 <Avatar icon={User} isActive={onlineUser} size="table" />
@@ -105,6 +108,7 @@ export function AssistanceGroupDetail({
                 </Typography>
               </div>
               <ToolTip
+                position={dir}
                 tooltip={
                   onlineUser && isOnlineAssistance
                     ? t('onlineAssistance.enterDesktop')

@@ -13,7 +13,7 @@ export function AssistanceDashboard() {
 
   return (
     <div className="flex justify-center items-center p-10">
-      <div className="flex w-[1520px] p-5 bg-white rounded-xl">
+      <div className="flex w-[95rem] p-5 bg-white rounded-xl">
         <BaseTabs ref={tabsRef}>
           {Array.isArray(admins) &&
             admins.map((adminGroup) => {
