@@ -363,8 +363,8 @@
     "alphabetic": "alphabetic",
     "creationDate": "Creation Date",
     "Newest": "Newest",
-    "recordedActivities": "Recorded activities",
-    "userRecordedActivities": "Recorded user activities"
+    "recordedActivities": "Analyze files",
+    "userRecordedActivities": "Analyze users files"
   },
   "adminList": {
     "adminList": "Admin List",
