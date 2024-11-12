@@ -16,7 +16,7 @@ export function TextCheckHelperCell({
 
   return (
     <Typography variant="body6" color="black" className="whitespace-nowrap">
-      {!id ? t(firstCondition || '') : t(secondCondition || '')}
+      {id ? t(firstCondition || '') : t(secondCondition || '')}
     </Typography>
   );
 }
