@@ -40,25 +40,16 @@ export function GroupManagementDropDown({
 
       {isOpen && (
         <div
-          className={`z-20 absolute ${menuStyle} bg-white dark:bg-gray-600 border border-gray-200 rounded-lg shadow w-[200px] flex-col`}
+          className={`z-20 absolute top-10 ml-5 ltr:mr-5 ${menuStyle} bg-white dark:bg-gray-700 shadow-md rounded-lg w-44 flex-col`}
         >
           {options.map((option: any) => (
-            <div
-              className="cursor-pointer p-1 px-3 flex gap-3 !justify-start border-none h-6 w-full font-light leading-none bg-white text-gray-500 border-[0.063rem] border-gray-200
-        hover:bg-gray-100 hover:text-gray-600 text-sm "
-              key={option.value}
-              role="button"
-              tabIndex={0}
+            <BaseButton
+              label={option.label}
+              type="neutral"
+              className="flex dark:bg-gray-700 !bg-gray-50 hover:!bg-gray-200 gap-2 !justify-start border-none !font-normal w-full !text-sm !text-right dark:hover:!bg-gray-500"
+              key={option.label}
               onClick={() => handleOptionClick(option)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  handleOptionClick(option);
-                  e.preventDefault();
-                }
-              }}
-            >
-              {option.label}
-            </div>
+            />
           ))}
         </div>
       )}

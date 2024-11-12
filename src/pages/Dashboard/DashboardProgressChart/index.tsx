@@ -22,7 +22,7 @@ export function DashboardProgressChart() {
   // mock
   const datasets = [
     {
-      label: 'فایل های اسکن شده',
+      label: t('fileScan.scannedFiles'),
       data: [
         { x: '2024-01-01', y: 65 },
         { x: '2024-02-01', y: 59 },
@@ -35,7 +35,7 @@ export function DashboardProgressChart() {
       backgroundColor: 'rgba(96, 165, 250)',
     },
     {
-      label: 'فایل‌های آلوده',
+      label: t('dashboard.virusFiles'),
       data: [
         { x: '2024-03-01', y: 28 },
         { x: '2024-04-01', y: 48 },
@@ -45,7 +45,7 @@ export function DashboardProgressChart() {
       backgroundColor: 'rgba(192, 132, 252)',
     },
     {
-      label: 'رفتارشناسی کاربر',
+      label: t('dashboard.uba'),
       data: [
         { x: '2024-01-01', y: 38 },
         { x: '2024-02-01', y: 58 },

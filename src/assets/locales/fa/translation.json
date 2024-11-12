@@ -332,15 +332,16 @@
     "newGroup": "گروه جدید",
     "onlineUsers": "کاربران آنلاین",
     "groupName": "نام گروه ",
-    "searchGroup": "جستجوی گروه",
-    "addMember": "عضو جدید",
+    "searchGroup": "جستجو گروه",
     "saveChanges": "ذخیره تغییرات",
     "deleteMember": "حذف کاربر",
     "user": "کاربر",
     "groupLists": "لیست گروه ها",
     "member": "کاربر",
     "createTitle": "برای ایجاد گروه جدید مشخصات زیر را تکمیل کنید.",
-    "development": "توسعه نرم افزار "
+    "development": "توسعه نرم افزار",
+    "addMember": "افزودن کاربر",
+    "addMemberTitle": "در لیست زیر کاربر مورد نظر را انتخاب کرده و نوع کاربری را مشخص کنید."
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",
