@@ -3,7 +3,6 @@ import CryptoJS from 'crypto-js';
 import cookie from 'js-cookie';
 import useWebSocket from 'react-use-websocket';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { STORAGE_KEY_TOKEN } from '@src/services/http';
 import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
 import userGearIcon from '@iconify-icons/ph/user-gear';
@@ -29,7 +28,6 @@ interface ConnectionMessage {
  * return <HeadOnlineAssistantUser />;
  */
 export function HeadOnlineAssistantUser() {
-  const { t } = useTranslation();
   const [messageHistory, setMessageHistory] =
     useState<ConnectionMessage | null>(null);
 
@@ -72,13 +70,10 @@ export function HeadOnlineAssistantUser() {
         <div className="w-70 text-sm shadow-md rounded-lg h-7 px-2 flex items-center bg-white dark:inset-0 dark:bg-cover dark:bg-blur dark:bg-opacity-20 gap-2">
           <OnlineAssistantCard
             icon={userGearIcon}
-            title={t('global.admin')}
             description={messageHistory.admin}
           />
           <OnlineAssistantCard
             icon={PhRecordFill}
-            title={t('global.status')}
-            color="teal"
             description={messageHistory.status}
           />
         </div>
