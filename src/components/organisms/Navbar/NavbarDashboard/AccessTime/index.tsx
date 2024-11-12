@@ -18,7 +18,7 @@ import { ISwrResponse } from '@src/types/services';
 import { useTranslation } from 'react-i18next';
 import { AccessTimeModal } from './AccessTimeModal';
 
-export function AccessTime() {
+export function AccessTimeCO() {
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
   useSWR(E_USERS_DAAS_UPDATE_USAGE, http.fetcherSWR, {
@@ -72,7 +72,7 @@ export function AccessTime() {
       <Modal
         open={openModal}
         setOpen={setOpenModal}
-        content={<AccessTimeModal onClick={setOpenModal} daas={data?.data} />}
+        content={<AccessTimeModal daas={data?.data} />}
         classContainer="border border-teal-600 w-1/2 h-1/2"
         type="none"
         freeSize

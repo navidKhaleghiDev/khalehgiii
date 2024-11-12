@@ -190,6 +190,7 @@
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
     "onlineAdmin": "ادمین آنلاین",
+    "unlimited": "نامحدود",
     "alphabet": "حروف الفبا",
     "creationDate": "تاریخ ایجاد",
     "newest": "جدیدترین",
@@ -249,8 +250,8 @@
     "webcamAccess": "دسترسی وب کم",
     "uploadAccess": "دسترسی آپلود",
     "downloadAccess": "دسترسی دانلود",
-    "allowedTypeForUpload": "تایپ های مجاز آپلود",
-    "allowedTypeForDownload": "تایپ های مجاز دانلود",
+    "allowedTypeForUpload": "فرمت های مجاز آپلود",
+    "allowedTypeForDownload": "فرمت های مجاز دانلود",
     "doesNot": "ندارد",
     "onlineUsers": "یوزر آنلاین",
     "week": "هفته",
@@ -332,16 +333,15 @@
     "newGroup": "گروه جدید",
     "onlineUsers": "کاربران آنلاین",
     "groupName": "نام گروه ",
-    "searchGroup": "جستجو گروه",
+    "searchGroup": "جستجوی گروه",
+    "addMember": "عضو جدید",
     "saveChanges": "ذخیره تغییرات",
     "deleteMember": "حذف کاربر",
     "user": "کاربر",
     "groupLists": "لیست گروه ها",
     "member": "کاربر",
     "createTitle": "برای ایجاد گروه جدید مشخصات زیر را تکمیل کنید.",
-    "development": "توسعه نرم افزار",
-    "addMember": "افزودن کاربر",
-    "addMemberTitle": "در لیست زیر کاربر مورد نظر را انتخاب کرده و نوع کاربری را مشخص کنید."
+    "development": "توسعه نرم افزار "
   },
   "onlineAssistance": {
     "loginType": "نوع ورود",
@@ -365,8 +365,8 @@
     "alphabetic": "حرف الفبا",
     "creationDate": "تاریخ ایجاد",
     "Newest": "جدیدترین",
-    "recordedActivities": "فعالیت های ضبط شده",
-    "userRecordedActivities": "فعالیت های ضبط شده کاربر"
+    "recordedActivities": "فایل های آنالیز شده",
+    "userRecordedActivities": "فایل های آنالیز شده کاربر"
   },
   "adminList": {
     "adminList": "لیست ادمین",

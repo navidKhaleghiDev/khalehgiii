@@ -33,7 +33,7 @@ export function Daas({ src }: TDassProps) {
   ) : (
     <div
       style={{
-        height: `${window.innerHeight - 50}px`,
+        height: `${window.innerHeight - 64}px`,
       }}
     >
       <iframe

@@ -28,7 +28,6 @@ export function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
-
   return (
     <div className="relative inline-block group">
       <div className={containerTooltipStyles({ position, show, truncate })}>
