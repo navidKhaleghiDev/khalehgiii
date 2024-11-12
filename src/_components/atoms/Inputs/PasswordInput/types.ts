@@ -9,10 +9,10 @@ import {
 
 import { BaseInputProps } from '../BaseInput/types';
 
-export type PasswordInputProps = Omit<
-  BaseInputProps,
-  'type' | 'startIcon' | 'endIcon'
->;
+export interface PasswordInputProps
+  extends Omit<BaseInputProps, 'type' | 'startIcon' | 'endIcon'> {
+  iconDir?: 'rtl' | 'ltr';
+}
 export interface PasswordInputControllerProps<T extends FieldValues>
   extends Omit<PasswordInputProps, 'onChange' | 'value' | 'error'> {
   name: FieldPath<T>;

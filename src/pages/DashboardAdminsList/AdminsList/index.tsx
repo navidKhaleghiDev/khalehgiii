@@ -119,7 +119,6 @@ export function AdminsList() {
         searchQuery={filterQuery}
         searchPlaceholder={t('adminList.adminSearch')}
         handelSearchQuery={setFilterQuery}
-        domainFilter
       />
 
       <BaseTable

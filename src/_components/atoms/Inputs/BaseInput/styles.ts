@@ -1,14 +1,14 @@
 import { cva } from 'class-variance-authority';
 
 export const baseInputStyles = cva(
-  `peer p-2 flex text-sm dark:bg-slate-700 bg-white text-gray-900 dark:border-gray-400 dark:focus:placeholder-white border-gray-300 hover:border-gray-500 dark:hover:placeholder-gray-300 dark:hover:border-gray-300 hover:placeholder-gray-500 focus:border-gray-900 focus:placeholder-gray-900 rounded-lg outline-none rtl:placeholder:text-right ltr:placeholder:text-left border h-10 disabled:bg-white disabled:border-gray-300 dark:text-white disabled:placeholder-gray-300 disabled:opacity-50 dark:placeholder-gray-500 dark:bg-transparent dark:disabled:border-gray-500 dark:disabled:placeholder-gray-500`,
+  `peer p-2 flex text-sm dark:bg-slate-700 bg-white text-gray-900 dark:border-gray-400 border-gray-300 hover:border-gray-500 dark:hover:border-gray-300 focus:border-gray-900 rounded-lg outline-none rtl:placeholder:text-right ltr:placeholder:text-left border h-10 disabled:bg-white disabled:border-gray-300 dark:text-white disabled:placeholder-gray-300 disabled:opacity-50 dark:placeholder-gray-500 dark:bg-transparent dark:disabled:border-gray-500 dark:disabled:placeholder-gray-500`,
   {
     variants: {
       intent: {
         default: ``,
       },
       error: {
-        true: 'border-red-600 hover:border-red-500 focus:border-red-500 placeholder-gray-900 dark:text-white dark:placeholder-white dark:focus:border-red-500  dark:hover:border-red-500 dark:border-red-500',
+        true: 'border-red-600 hover:border-red-500 focus:border-red-500 dark:text-white dark:focus:border-red-500  dark:hover:border-red-500 dark:border-red-500',
         false: 'dark:focus:border-white',
       },
       fullWidth: {

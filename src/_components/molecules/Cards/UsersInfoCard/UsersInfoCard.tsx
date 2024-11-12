@@ -24,7 +24,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
     <Card
       border
       borderColor="neutral"
-      className={`w-full lg:h-20 h-[3.75rem] p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
+      className={`w-full lg:h-20 h-[3.75rem] p-3 sm:p-4 md:p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"
@@ -35,15 +35,12 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
       <div className="w-full">
         <Typography
           color="neutralMiddle"
-          className="lg:text-lg text-sm whitespace-nowrap"
+          className="lg:text-lg text-xs whitespace-nowrap"
         >
           {title}
         </Typography>
 
-        <Typography
-          className="text-gray-900 dark:text-white font-semibold leading-7"
-          variant="body2"
-        >
+        <Typography className="text-gray-900 dark:text-white font-semibold leading-7 text-base sm:text-lg md:text-xl">
           {count ?? 0}
         </Typography>
       </div>

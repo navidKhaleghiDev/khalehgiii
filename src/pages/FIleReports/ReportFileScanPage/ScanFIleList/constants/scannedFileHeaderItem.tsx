@@ -13,13 +13,14 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     label: 'table.fileName',
     id: 'file_name',
     type: 'none',
-    class: 'w-9/12 text-start w-[150px] sm:w-full md:w-2/12  md:max-w-[90px]',
+    class:
+      'w-9/12 text-start w-[9.37rem] sm:w-full md:w-2/12  md:max-w-[5.625rem]',
   },
   {
     label: 'table.type',
     id: 'file_content_type',
     type: 'none',
-    class: 'px-3 md:w-2/12 md:max-w-[90px]',
+    class: 'px-3 md:w-2/12 md:max-w-[5.625rem]',
     isMobileCollapsed: true,
   },
   {

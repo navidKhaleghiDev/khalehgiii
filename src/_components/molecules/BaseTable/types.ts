@@ -8,13 +8,12 @@ export type BaseTableProps<BodyType> = {
   loading: boolean;
   isMobile?: boolean;
   onClick?: OnClickActionsType<BodyType>;
-  pagination: Pagination;
+  pagination?: Pagination;
 };
 
 interface HeaderTableBase {
   isCollapsed?: boolean;
   isMobileCollapsed?: boolean;
-  action?: any;
   component?: any;
   function?: any;
   id: string | string[];
@@ -43,8 +42,34 @@ export type HeaderTable = HeaderTableBase &
   (
     | { type: Exclude<TableType, 'date'> }
     | { type: 'date'; render?: 'date' | 'day' | 'hour' }
+  ) &
+  (
+    | { type: Exclude<TableType, 'action'> }
+    | { type: 'action'; action: ActionItem[] }
+  ) &
+  (
+    | { type: Exclude<TableType, 'drop'> }
+    | {
+        type: 'drop';
+        drop: DropType;
+      }
   );
 
+type DropType = {
+  options: DropDownHelperCellOption[];
+  translateKey: TableKeys;
+  defaultValueLabelKey: string;
+  defaultValueKey: string;
+};
+
+export interface ActionItem {
+  action: ActionOnClickActionsType;
+  icon: IconButtonProps['icon'];
+  color: IconButtonProps['color'];
+  size?: IconButtonProps['size'];
+  tooltip?: string;
+  permission?: PermissionsCodeName;
+}
 export type MenuHeader = {
   type: 'menu';
   menu: MenuType[];
@@ -152,7 +177,8 @@ export type Pagination = {
   itemsPer: number;
   onPageChange: (page: number) => void;
 };
-type TableLabel = `table.${string}`;
+
+type TableLabel = `${TableKeys}.${string}`;
 
 export type IdItem = {
   id: string | number;
@@ -163,14 +189,8 @@ export type IdItem = {
 //   [key in TTableType]: JSX.Element;
 // };
 
-export interface ActionItem {
-  action: ActionOnClickActionsType;
-  icon: IconButtonProps['icon'];
-  color: IconButtonProps['color'];
-  size: IconButtonProps['size'];
-  tooltip: string;
-  permission?: PermissionsCodeName;
-}
+export type DropDownHelperCellOption = { id: number; label: string };
+
 export type ActionCellFunction = { action: ActionItem };
 
 export type MenuCellFunction = { menu: MenuType };
@@ -181,7 +201,8 @@ export type TableType =
   | 'component'
   | 'date'
   | 'avatar'
-  | 'menu';
+  | 'menu'
+  | 'drop';
 
 export type ActionOnClickActionsType =
   | 'delete'
@@ -193,6 +214,23 @@ export type ActionOnClickActionsType =
   | 'button'
   | 'editLock';
 
+type TableKeys =
+  | 'login'
+  | 'header'
+  | 'table'
+  | 'dashboard'
+  | 'admin'
+  | 'global'
+  | 'groupManagement'
+  | 'onlineAssistance'
+  | 'fileScan'
+  | 'adminList'
+  | 'userList'
+  | 'license'
+  | 'systemManagement'
+  | 'setting'
+  | 'regexPattern'
+  | 'title';
 export type OnClickActionsType<DataType> = (
   action: ActionOnClickActionsType,
   typeFile?: StringifyProperties<DataType> | DataType,

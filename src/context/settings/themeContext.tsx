@@ -15,7 +15,6 @@ interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
   isDark: boolean;
-  setTheme: (theme: Theme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -38,7 +37,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   }, [theme]);
 
   const contextValue = useMemo(
-    () => ({ theme, toggleTheme, isDark, setTheme }),
+    () => ({ theme, toggleTheme, isDark }),
     [theme, toggleTheme, isDark]
   );
   return (

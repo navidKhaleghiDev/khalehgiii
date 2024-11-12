@@ -119,6 +119,7 @@ export const iconButtonStyles = cva(
       size: {
         sm: 'h-7 w-7',
         md: 'h-10 w-10',
+        lg: 'h-18 w-18 ',
       },
     },
     defaultVariants: {

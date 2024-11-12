@@ -31,6 +31,7 @@ export function LoginOnlineAssistance() {
 
   useEffect(() => {
     if (!isAdminGroup) {
+      // console.log('jsjhdfjh');
       navigate(ROUTES_PATH.home);
     } else if (isInDaas && user?.online_assistance) {
       navigate(user?.online_assistance?.user_http_address);
@@ -73,7 +74,7 @@ export function LoginOnlineAssistance() {
               icon={WifiHigh}
               subject={t('dashboard.netsep')}
               title={t('onlineAssistance.internet')}
-              onClick={() => navigate(ROUTES_PATH.dashboard)}
+              onClick={() => navigate(ROUTES_PATH.home)}
             />
           </div>
         </div>

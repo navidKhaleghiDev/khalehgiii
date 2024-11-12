@@ -30,7 +30,7 @@ export function MenuDropdown({ items, mouseHover }: MenuDropdownProps) {
   return isOpen ? (
     <div
       ref={dropdownRef}
-      className="absolute right-full ltr:left-full w-40 h-20 bg-white dark:bg-gray-600 shadow-md rounded-lg mt-10 overflow-hidden cursor-pointer"
+      className="absolute right-full ltr:left-full w-40 h-fit bg-white dark:bg-gray-600 shadow-md rounded-lg mt-10 overflow-hidden cursor-pointer"
       onPointerDown={mouseHover}
     >
       {items.map((item) => (

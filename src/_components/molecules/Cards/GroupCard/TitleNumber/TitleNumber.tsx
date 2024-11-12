@@ -17,10 +17,7 @@ import { DetailWithoutID } from '../types';
  * @returns {JSX.Element} Returns the rendered TitleNumber component.
  */
 
-export default function TitleNumber({
-  title,
-  number,
-}: DetailWithoutID): JSX.Element {
+export function TitleNumber({ title, number }: DetailWithoutID): JSX.Element {
   return (
     <div className="flex flex-col min-w-16">
       <Typography
