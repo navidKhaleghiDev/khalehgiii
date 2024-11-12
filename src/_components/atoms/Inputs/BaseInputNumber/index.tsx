@@ -30,6 +30,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     onChange,
     disabled,
     fullWidth,
+    onKeyDown,
     icon,
   } = props;
   const rtl = dir === 'rtl';
@@ -62,7 +63,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
         >
           <Typography
             variant="body6"
-            className={`${
+            className={`mb-1 ${
               error && !disabled
                 ? 'text-red-500 dark:text-red-500'
                 : 'text-gray-200'
@@ -101,6 +102,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             min={min}
             defaultValue={defaultValue}
             max={max}
+            onKeyDown={onKeyDown}
           />
           {icon ? (
             <BaseIcon

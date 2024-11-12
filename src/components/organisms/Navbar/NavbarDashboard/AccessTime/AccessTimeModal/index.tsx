@@ -168,7 +168,9 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
         <div className="flex gap-2">
           <AccessTimeModalCard
             label={t('global.allowedTypeForUpload')}
-            value={`${daas?.allowed_files_type_for_upload?.join(' ')}`}
+            value={`${Object.keys(
+              daas?.allowed_files_type_for_upload || {}
+            ).join(' ')}`}
             contentDirection="ltr"
           />
         </div>
@@ -176,7 +178,9 @@ export function AccessTimeModal({ onClick, daas }: PropsType) {
         <div className="flex gap-2">
           <AccessTimeModalCard
             label={t('global.allowedTypeForDownload')}
-            value={`${daas?.allowed_files_type_for_download?.join(' ')}`}
+            value={`${Object.keys(
+              daas?.allowed_files_type_for_download || {}
+            ).join(' ')}`}
             contentDirection="ltr"
           />
         </div>

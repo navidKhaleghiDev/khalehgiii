@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,10 +11,11 @@ import { BaseInput, regexPattern } from '@redesignUi/atoms/Inputs';
 import { ChipButtonUserAccessModal } from '@src/pages/DashboardDesktopList/DaAsList/components/ChipButtonUserAccessModal';
 import X from '@iconify-icons/ph/x';
 import { useLanguage } from '@context/settings/languageContext';
+import { BaseInputNumber } from '@redesignUi/atoms/Inputs/BaseInputNumber';
 
 type PropsType = {
   name: keyof IDaAs;
-  valueList: string[];
+  valueList: any;
   label: string;
   userPermissions: PermissionsCodeName[];
   onChange: (name: PropsType['name'], values: string[]) => void;
@@ -31,39 +31,68 @@ export function DlpList({
   const { t } = useTranslation();
   const { dir } = useLanguage();
   const [error, setError] = useState<string>();
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>('');
+  const [contentValue, setContentValue] = useState<number>();
 
   const hasDeletePermission = checkPermission(
     userPermissions,
     EPermissionWhiteListFiles.DELETE
   );
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyFirstPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      const mValue = (event.target as HTMLInputElement)?.value;
+      // const mValue = (event.target as HTMLInputElement)?.value;
 
-      const regex = regexPattern.wordStartedWithPointAndEn;
-      if (!regex.value.test(mValue)) {
-        setError(regex.message);
-      } else {
-        error && setError(undefined);
+      // const regex = regexPattern.wordStartedWithPointAndEn;
+      // if (!regex.value.test(mValue)) {
+      //   setError(regex.message);
+      // } else {
+      //   error && setError(undefined);
+      // }
+
+      // if (!valueList.includes(mValue) && mValue !== '') {
+      //   onChange(name, [...valueList, mValue]);
+      //   setValue('');
+      // }
+
+      // if (valueList.includes(mValue)) {
+      //   setError(t('userList.theFormatIsRepetitive'));
+      // }
+
+      if (!contentValue) {
+        setError(
+          t('userList.enterTheAllowedVolumeForThisFormatInTheOppositeField')
+        );
       }
+    }
+  };
 
-      if (!valueList.includes(mValue) && mValue !== '') {
-        onChange(name, [...valueList, mValue]);
-        setValue('');
-      }
+  const handleKeySecondPress = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const cValue = (event.target as HTMLInputElement)?.value;
 
-      if (valueList.includes(mValue)) {
-        setError(t('userList.theFormatIsRepetitive'));
+      if (valueList[cValue] !== undefined) {
+        const updatedValueList = {
+          ...valueList,
+          [cValue]: valueList[cValue] + 1,
+        };
+        onChange(name, updatedValueList);
+      } else if (value !== '') {
+        const updatedValueList = { ...valueList, [value]: Number(cValue) };
+        onChange(name, updatedValueList);
       }
     }
   };
 
   const remove = (mValue: string) => {
-    const newArray = valueList.filter((item) => item !== mValue);
-    onChange(name, newArray);
+    const { [mValue]: deleted, ...newValueList } = valueList;
+    onChange(name, newValueList);
   };
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const values = event.target.value;
@@ -74,34 +103,43 @@ export function DlpList({
     setValue(values);
   };
   return (
-    <>
-      <BaseInput
-        value={value ?? ''}
-        onChange={handleOnChange}
-        name={name}
-        id={name}
-        error={error}
-        onKeyDown={handleKeyPress}
-        placeholder=".text"
-        label={label}
-        size="md"
-        dir={dir === 'rtl' ? 'rtl' : 'ltr'}
-      />
-      {Array.isArray(valueList) && (
-        <div className="flex justify-start gap-1 flex-wrap mt-2 overflow-auto max-h-20">
-          {valueList.map((labelItem) => (
-            <ChipButtonUserAccessModal
-              label={labelItem}
-              color="neutral"
-              key={labelItem}
-              onClick={
-                hasDeletePermission ? () => remove(labelItem) : undefined
-              }
-              icon={X}
-            />
-          ))}
+    <div className="flex flex-col">
+      <div className="flex sm:flex-row flex-col sm:gap-5 gap-2.5 items-baseline">
+        <div className="sm:basis-1/2 basis-full w-full">
+          <BaseInput
+            value={value ?? ''}
+            onChange={handleOnChange}
+            name={name}
+            id={name}
+            error={error}
+            onKeyDown={handleKeyFirstPress}
+            placeholder=".text"
+            label={label}
+            size="md"
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          />
         </div>
-      )}
-    </>
+        <BaseInputNumber
+          id="allowed_volume"
+          name="allowed_volume"
+          label={t('userList.allowedVolume')}
+          max={500}
+          onChange={(Value) => setContentValue(Value)}
+          size="md"
+          onKeyDown={handleKeySecondPress}
+        />
+      </div>
+      <div className="flex justify-start gap-1 flex-wrap mt-2 basis-full">
+        {Object.entries(valueList).map(([key, val]) => (
+          <ChipButtonUserAccessModal
+            label={`${key}:${val}`}
+            color="neutral"
+            key={key}
+            onClick={hasDeletePermission ? () => remove(key) : undefined}
+            icon={X}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

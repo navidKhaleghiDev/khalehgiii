@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { t } from 'i18next';
 
 import { useTheme } from '@context/settings/themeContext';
@@ -11,10 +11,8 @@ import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
 
 import { Avatar, Typography } from '@redesignUi/atoms';
 import PhSignOut from '@iconify-icons/ph/sign-out';
-import { http } from '@src/services/http';
 import { useUserContext } from '@context/user/userContext';
 import User from '@iconify-icons/ph/user';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useLanguage } from '@context/settings/languageContext';
 import { useDrawerContext } from '@context/drawer/drawerContext';
 import { navigationSideBar } from '@redesignUi/organisms/Sidebar/navigation';
@@ -22,16 +20,17 @@ import { NavigationProps } from '@redesignUi/organisms/Sidebar/types';
 import { MenuItem } from '@redesignUi/organisms/Sidebar/MenuItem';
 import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/MenuItemAccordion';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
+import { useLogout } from '@src/helper/hooks/useLogout';
 
 export function DrawerProfile() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const dropdownRef = useRef(null);
+  const { logout } = useLogout();
   const { isOpen, setIsOpen } = useDrawerContext();
   const { isDark, toggleTheme } = useTheme();
   const { pathname } = useLocation();
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
   const { lang } = useLanguage();
-  const navigate = useNavigate();
   useClickOutside({
     ref: dropdownRef,
     setValue: setIsOpen,
@@ -44,9 +43,7 @@ export function DrawerProfile() {
 
   const handleLogout = () => {
     handleToggle();
-    http.removeAuthHeader();
-    setUser(null);
-    navigate(ROUTES_PATH.login);
+    logout();
   };
 
   return (
