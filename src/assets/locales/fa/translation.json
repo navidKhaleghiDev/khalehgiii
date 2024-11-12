@@ -419,7 +419,9 @@
     "assistanceAdminTitle": "در این بخش گروه هایی که کاربرادمین آن می‌باشد مشخص شده است.",
     "areYouSureBlock": "آیا از مسدود کردن این کاربر مطمئن هستید؟",
     "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟",
-    "yourBrowserDoesntSupportVideo": "مرورگر شما این ویدئو را پشتیبانی نمی‌کند."
+    "yourBrowserDoesntSupportVideo": "مرورگر شما این ویدئو را پشتیبانی نمی‌کند.",
+    "allowedVolume": "حجم مجاز",
+    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "حجم مجاز برای این فرمت را در فیلد روبرو وارد کنید"
   },
 
   "license": {

@@ -20,8 +20,8 @@ export interface IDaAs {
   id: string;
   is_lock: boolean;
   daas_configs: IDaasConfig;
-  allowed_files_type_for_download: string[] | null;
-  allowed_files_type_for_upload: string[] | null;
+  allowed_files_type_for_download: Record<string, number>;
+  allowed_files_type_for_upload: Record<string, number>;
   email: string;
   http_port: number | string;
   https_port: number | string;
@@ -30,10 +30,10 @@ export interface IDaAs {
   is_running?: boolean | string;
   exceeded_usage?: boolean | string;
   usage_in_minute: number | string;
-  forbidden_upload_files: string[] | null;
-  forbidden_download_files: string[] | null;
-  extra_allowed_download_files: string[] | null;
-  extra_allowed_upload_files: string[] | null;
+  forbidden_upload_files: string[];
+  forbidden_download_files: string[];
+  extra_allowed_download_files: Record<string, number>;
+  extra_allowed_upload_files: Record<string, number>;
   daas_version: string;
   chatroom_privileged: boolean;
   member_of: TNumberObjectArray;
