@@ -17,8 +17,8 @@ type PropsType = {
   isMetaConfig?: boolean;
   userPermissions: PermissionsCodeName[];
   handleSetDlpValues: (name: keyof IDaAs, values: string[]) => void;
-  dlpDownloadList: string[];
-  dlpUploadList: string[];
+  dlpDownloadList: Record<string, number>;
+  dlpUploadList: Record<string, number>;
   timeOfUse: ETimeLimitDuration;
 };
 

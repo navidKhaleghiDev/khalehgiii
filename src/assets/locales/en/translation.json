@@ -201,6 +201,7 @@
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",
+    "successfullyLoggedOut": "You have successfully logged out",
     "successfullyLogedIn": "You have successfully logged in",
     "exit": "Exit",
     "setting": "Settings",
@@ -417,7 +418,9 @@
     "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified.",
     "areYouSureBlock": "Are you sure you want to block this user?",
     "areYouSureUnBlock": "Are you sure you want to unblock this user's access?",
-    "yourBrowserDoesntSupportVideo": "Your browser does not support this video."
+    "yourBrowserDoesntSupportVideo": "Your browser does not support this video.",
+    "allowedVolume": "Allowed volume",
+    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "Enter the allowed volume for this format in the opposite field"
   },
   "license": {
     "licenseId": "license Id",

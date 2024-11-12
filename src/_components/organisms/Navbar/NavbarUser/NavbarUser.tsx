@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { t } from 'i18next';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
@@ -8,34 +8,31 @@ import { useLanguage } from '@context/settings/languageContext';
 import { useUserContext } from '@context/user/userContext';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { SseSvg } from '@redesignUi/atoms/Svgs/SseSvg';
-import { http } from '@src/services/http';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import PhTranslate from '@iconify-icons/ph/translate';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import User from '@iconify-icons/ph/user';
-import { ToolTip } from '@redesignUi/atoms/Tooltip';
+import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
+import { useLogout } from '@src/helper/hooks/useLogout';
 
 import { AccessTime } from './AccessTime/AccessTime';
 
 export function NavbarUser(): JSX.Element {
-  const navigate = useNavigate();
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
+  const { logout } = useLogout();
   const { changeLanguage, lang } = useLanguage();
+  const { t } = useTranslation();
 
   const isUser = user?.first_name && user?.last_name;
 
   const logOutStyles =
     'text-gray-500 hover:text-gray-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
-  const handleLogout = () => {
-    http.removeAuthHeader();
-    setUser(null);
-    navigate(ROUTES_PATH.login);
-  };
   return (
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base py-3">
-        <div className="flex justify-between items-center gap-x-5">
+        <div className="flex justify-between items-center gap-5">
           <ToolTip
             tooltip={t('global.exit')}
             position={lang === 'fa' ? 'right' : 'left'}
@@ -44,7 +41,7 @@ export function NavbarUser(): JSX.Element {
               icon={PhSignOut}
               color="neutralNoBg"
               size="md"
-              onClick={handleLogout}
+              onClick={logout}
               className={logOutStyles}
             />
           </ToolTip>
@@ -73,6 +70,8 @@ export function NavbarUser(): JSX.Element {
             <AccessTime />
           </div>
         </div>
+
+        {!isUser && <HeadOnlineAssistant />}
         <Link to={ROUTES_PATH.home}>
           <SseSvg className="left-[0.081px] top-[1.75px] w-14 h-[1.12rem] md:w-[5.43rem] md:h-[1.43rem] xl:w-[7.43rem] xl:h-8" />
         </Link>
