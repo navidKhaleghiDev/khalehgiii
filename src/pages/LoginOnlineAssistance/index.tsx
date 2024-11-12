@@ -21,7 +21,7 @@ export function LoginOnlineAssistance() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { user } = useUserContext();
-  const logout = useLogout();
+  const { logout } = useLogout();
   const { changeLanguage, lang } = useLanguage();
 
   const isAdminGroup =

@@ -40,7 +40,7 @@ export function NavbarDashboard() {
   const [openModal, setOpenModal] = useState(false);
   const { user } = useUserContext();
   const userPermissions = useUserPermission();
-  const logout = useLogout();
+  const { logout } = useLogout();
 
   const isUser = user?.is_meta_admin || user?.is_superuser;
 
