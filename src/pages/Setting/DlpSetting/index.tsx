@@ -23,7 +23,7 @@ import { FileTypeProp } from '../type';
 import { dlpConfigHeaderItem } from './constants/dlpConfigHeaderItem';
 import { UpdateFileTypeModal } from './component/UpdateFileTypeModal';
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 10;
 const PAGE = 1;
 
 export function DlpSetting() {
