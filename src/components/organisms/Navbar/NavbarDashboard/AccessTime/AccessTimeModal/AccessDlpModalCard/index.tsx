@@ -1,7 +1,6 @@
-import { Typography } from '@ui/atoms/Typography/Typography';
-import xIcon from '@iconify-icons/ph/x';
-import checkBoldIcon from '@iconify-icons/ph/check-bold';
-import { BaseIcon, Card } from '@ui/atoms';
+import { Card, Typography } from '@redesignUi/atoms';
+import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
+import { useTranslation } from 'react-i18next';
 
 type AccessDlpModalCardProps = {
   label: string;
@@ -16,23 +15,25 @@ export function AccessDlpModalCard({
   isAccess,
   contentDirection = 'rtl',
 }: AccessDlpModalCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Card
-      color="neutral"
-      className="w-full flex justify-between items-center h-10 px-2"
+      color="neutralLight"
+      className="flex justify-between items-center border border-neutral-100 rounded-lg px-5 py-2.5"
     >
-      <Typography variant="h6" color="neutral">
+      <Typography variant="body5" color="black">
         {label}
       </Typography>
       {isAccess !== undefined && (
-        <BaseIcon
-          icon={isAccess ? checkBoldIcon : xIcon}
-          color={isAccess ? 'teal' : 'red'}
+        <TagHelperCell
+          title={isAccess ? t('table.allowed') : t('table.disallow')}
+          color={isAccess ? 'teal' : 'natural'}
         />
       )}
       {value && (
         <div dir={contentDirection}>
-          <Typography variant="h6" color="neutral">
+          <Typography variant="body5" color="black">
             {value}
           </Typography>
         </div>

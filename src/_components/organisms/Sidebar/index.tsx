@@ -40,6 +40,10 @@ export function SideBar(): JSX.Element {
   const logOutStyles =
     'text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
+  const capitalizeFirstLetter = (val: string | undefined) => {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  };
+
   const toggleSideBar = () => {
     setToggleSidebar(!toggleSidebar);
   };
@@ -178,7 +182,9 @@ export function SideBar(): JSX.Element {
             <div className="mx-2">
               <span>
                 <Typography variant="body5" color="neutralDark">
-                  {isUser ? user?.first_name && user.last_name : ''}
+                  {isUser
+                    ? user?.first_name && user.last_name
+                    : capitalizeFirstLetter(user?.username)}
                 </Typography>
               </span>
               <span>

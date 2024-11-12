@@ -30,7 +30,7 @@ import {
 import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 
 import { ChangePasswordForm } from './ChangePasswordForm';
-import { AccessTime } from './AccessTime';
+import { AccessTimeCO } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
 
 // let logoutApiService;
@@ -103,7 +103,7 @@ export function NavbarDashboard() {
 
           {user && !user.is_superuser ? (
             <div className={timeStyle}>
-              <AccessTime />
+              <AccessTimeCO />
             </div>
           ) : viewMalwareConfigPermission || viewDaasPermission ? (
             <div className={timeStyle}>
