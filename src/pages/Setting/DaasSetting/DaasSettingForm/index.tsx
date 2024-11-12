@@ -219,10 +219,10 @@ export function DaasSettingForm({
               placeholder="0"
               icon={PhDownloadSimple}
               dir={direction}
-              max={50}
-              rules={{
-                required: regexPattern.required,
-              }}
+              max={500}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
               fullWidth
             />
           </div>
@@ -237,9 +237,9 @@ export function DaasSettingForm({
               icon={PhDownloadSimple}
               dir={direction}
               max={500}
-              rules={{
-                required: regexPattern.required,
-              }}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
               fullWidth
             />
           </div>
@@ -266,10 +266,10 @@ export function DaasSettingForm({
               placeholder="0"
               icon={PhDownloadSimple}
               dir={direction}
-              max={50}
-              rules={{
-                required: regexPattern.required,
-              }}
+              max={500}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
               fullWidth
             />
           </div>
@@ -284,9 +284,9 @@ export function DaasSettingForm({
               icon={PhDownloadSimple}
               dir={direction}
               max={500}
-              rules={{
-                required: regexPattern.required,
-              }}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
               fullWidth
             />
           </div>
