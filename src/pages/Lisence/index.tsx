@@ -15,7 +15,7 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { LicenseFileType } from './type';
 import { LisenceHeaderItem } from './constant/LisenceHeaderItem';
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 10;
 const PAGE = 1;
 export function License() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
@@ -36,7 +36,7 @@ export function License() {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-  const listLicense = data?.data ?? [];
+  const listLicense = data?.data.results ?? [];
   const countPage = data?.data.count || 0;
 
   const paginationProps = {
