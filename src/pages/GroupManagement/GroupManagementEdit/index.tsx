@@ -3,7 +3,6 @@ import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
 import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-
 import { http } from '@src/services/http';
 import { USERS_GROUPS_GET } from '@src/services/users/endpoint';
 import { IResponseData } from '@src/types/services';
@@ -19,6 +18,7 @@ import { GroupManagementAddNewMember } from './components/GroupManagementAddNewM
 
 const PAGE_SIZE = 5;
 const PAGE = 1;
+
 const buildFormData = (data: TGroupUpdate) => {
   const formData = new FormData();
   formData.append('name', data.name);
@@ -29,6 +29,7 @@ const buildFormData = (data: TGroupUpdate) => {
   data.admins.forEach((admin) => formData.append('admins', admin.id));
   return formData;
 };
+
 export function GroupManagementEdit() {
   const { id } = useParams();
   const { t } = useTranslation();
@@ -37,7 +38,7 @@ export function GroupManagementEdit() {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
-  const [updateGroup, setUpdateGroup] = useState<TGroup>(() => ({
+  const [updateGroup, setUpdateGroup] = useState<TGroup>({
     id: undefined,
     users: [],
     admins: [],
@@ -45,13 +46,14 @@ export function GroupManagementEdit() {
     created_at: undefined,
     updated_at: undefined,
     image: undefined,
-  }));
+  });
 
   const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
     id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );
-  const group: TGroup = useMemo(
+
+  const group = useMemo(
     () =>
       (data?.data as unknown as TGroup) ??
       ({
@@ -62,10 +64,11 @@ export function GroupManagementEdit() {
       } as TGroup),
     [data]
   );
+
   const {
     control,
     handleSubmit,
-    reset,
+    setValue,
     formState: { isDirty },
   } = useForm<TGroupUpdate>({
     mode: 'onChange',
@@ -74,6 +77,7 @@ export function GroupManagementEdit() {
       name: group?.name || '',
     },
   });
+
   useEffect(() => {
     if (group) {
       setUpdateGroup(group);
@@ -81,67 +85,48 @@ export function GroupManagementEdit() {
   }, [group]);
 
   useEffect(() => {
-    reset({
-      name: updateGroup.name,
-    });
-  }, [reset, updateGroup]);
+    if (updateGroup.name) {
+      setValue('name', updateGroup.name);
+    }
+  }, [setValue, updateGroup]);
 
   const paginatedData = useCallback(
     (key: keyof TGroup) => {
       const fullData: TGroupMembers[] = Array.isArray(updateGroup[key])
         ? (updateGroup[key] as TGroupMembers[])
         : [];
-      const updatedDataByLabel = fullData.map((g) => {
-        return { ...g, value: key };
-      });
-      const allFilteredData = updatedDataByLabel.filter((item) =>
+      const updatedDataByLabel = fullData.map((g) => ({ ...g, value: key }));
+      const filteredData = updatedDataByLabel.filter((item) =>
         item.email.toLowerCase().includes(filterQuery.toLowerCase())
       );
       const startIndex = (currentPage - 1) * PAGE_SIZE;
       const endIndex = startIndex + PAGE_SIZE;
-      if (filterQuery) {
-        return allFilteredData.length > PAGE_SIZE
-          ? allFilteredData.slice(startIndex, endIndex)
-          : allFilteredData;
-      }
-      return updatedDataByLabel.slice(startIndex, endIndex);
+      return filterQuery
+        ? filteredData.slice(startIndex, endIndex)
+        : updatedDataByLabel.slice(startIndex, endIndex);
     },
     [updateGroup, filterQuery, currentPage]
   );
 
   const handleClickAction = useCallback(
     (action: 'users' | 'admins' | 'delete', row: TGroupMembers) => {
-      const alternateAction: 'users' | 'admins' =
-        action === 'users' ? 'admins' : 'users';
-
+      const alternateAction = action === 'users' ? 'admins' : 'users';
       const key = row.value as 'users' | 'admins';
-      if (!updateGroup) return;
+      if (!updateGroup || updateGroup[alternateAction].length === 1) return;
 
-      if (updateGroup[alternateAction].length === 1) return;
-
-      if (action === 'users' || action === 'admins') {
-        const existsInAction = updateGroup[action].some((m) => m.id === row.id);
-        if (existsInAction) return;
-
-        const updatedMember = updateGroup[alternateAction].filter(
-          (m) => m.id !== row.id
-        );
-
-        setUpdateGroup((prev) => ({
-          ...prev,
-          [alternateAction]: updatedMember,
-          [action]: [row, ...prev[action]],
-        }));
-      } else if (action === 'delete') {
-        if (updateGroup[key].length === 1) return;
-
-        const updateAndRemovedData = updateGroup[key].filter(
+      if (action === 'delete') {
+        const filteredMembers = updateGroup[key].filter(
           (item) => item.id !== row.id
         );
-
+        setUpdateGroup((prev) => ({ ...prev, [key]: filteredMembers }));
+      } else if (!updateGroup[action].some((m) => m.id === row.id)) {
+        const updatedMembers = updateGroup[alternateAction].filter(
+          (m) => m.id !== row.id
+        );
         setUpdateGroup((prev) => ({
           ...prev,
-          [key]: updateAndRemovedData,
+          [alternateAction]: updatedMembers,
+          [action]: [row, ...prev[action]],
         }));
       }
     },
@@ -149,9 +134,7 @@ export function GroupManagementEdit() {
   );
 
   const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
-    setUpdateGroup((prev) => {
-      return { ...prev, ...listData };
-    });
+    setUpdateGroup((prev) => ({ ...prev, ...listData }));
     setOpenModal(true);
   };
 
@@ -161,8 +144,6 @@ export function GroupManagementEdit() {
   };
 
   const handleUpdateGroup = async (updatedGroup: any) => {
-    console.log(updatedGroup);
-    if (!updatedGroup) return;
     setLoading(true);
     await API_USERS_GROUPS_UPDATE(buildFormData(updatedGroup), id as string)
       .then(() => {
@@ -174,24 +155,19 @@ export function GroupManagementEdit() {
         toast.error(err);
       })
       .finally(() => {
-        setOpenModal(false);
         setLoading(false);
       });
   };
 
   const handleAddNewMember = (list: any) => {
-    setUpdateGroup((prev) => {
-      const updatedGroup = {
-        ...prev,
-        users: [...(prev.users || []), ...(list.users || [])],
-        admins: [...(prev.admins || []), ...(list.admins || [])],
-      };
-
-      handleUpdateGroup(updatedGroup);
-
-      return updatedGroup;
-    });
+    setUpdateGroup((prev) => ({
+      ...prev,
+      users: [...(prev.users || []), ...(list.users || [])],
+      admins: [...(prev.admins || []), ...(list.admins || [])],
+    }));
+    handleUpdateGroup(updateGroup);
   };
+
   return (
     <div>
       <Typography variant="body2B" color="black" className="mb-5">
