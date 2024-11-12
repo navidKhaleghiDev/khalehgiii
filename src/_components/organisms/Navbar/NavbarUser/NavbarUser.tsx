@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
@@ -12,11 +13,9 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 import PhTranslate from '@iconify-icons/ph/translate';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import User from '@iconify-icons/ph/user';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 
-/**
- * @component
- * @returns{JSX.Element}
- */
+import { AccessTime } from './AccessTime/AccessTime';
 
 export function NavbarUser(): JSX.Element {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ export function NavbarUser(): JSX.Element {
 
   const isUser = user?.first_name && user?.last_name;
   const logOutStyles =
-    'text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
+    'text-gray-500 hover:text-gray-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
   const handleLogout = () => {
     http.removeAuthHeader();
@@ -35,14 +34,16 @@ export function NavbarUser(): JSX.Element {
   return (
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base py-3">
-        <div className="flex justify-between items-center gap-5">
-          <IconButton
-            icon={PhSignOut}
-            color="neutralNoBg"
-            size="md"
-            onClick={handleLogout}
-            className={logOutStyles}
-          />
+        <div className="flex justify-between items-center gap-x-5">
+          <ToolTip tooltip={t('global.exit')} position="right">
+            <IconButton
+              icon={PhSignOut}
+              color="neutralNoBg"
+              size="md"
+              onClick={handleLogout}
+              className={logOutStyles}
+            />
+          </ToolTip>
           <BaseDropdownIcon
             icon={PhTranslate}
             size="sm"
@@ -64,8 +65,10 @@ export function NavbarUser(): JSX.Element {
               </span>
             </div>
           </div>
+          <div className="mx-[3.75rem]">
+            <AccessTime />
+          </div>
         </div>
-
         <Link to={ROUTES_PATH.home}>
           <SseSvg className="left-[0.081px] top-[1.75px] w-14 h-[1.12rem] md:w-[5.43rem] md:h-[1.43rem] xl:w-[7.43rem] xl:h-8" />
         </Link>

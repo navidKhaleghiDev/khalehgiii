@@ -75,7 +75,7 @@ export function BaseTableMenuCell<T extends IdItem>(
     header.type === 'menu' && (
       <div ref={ref} className="flex">
         {header.tooltip ? (
-          <ToolTip tooltip={t(header.tooltip)}>
+          <ToolTip tooltip={t(header.tooltip)} position="right">
             <MenuComponent menu={header} />
           </ToolTip>
         ) : (

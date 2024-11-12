@@ -1,0 +1,73 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+
+import { IDaAs } from '@src/services/users/types';
+import {
+  E_USERS_DAAS_UPDATE_USAGE,
+  E_USERS_PROFILE,
+} from '@src/services/users/endpoint';
+import { http } from '@src/services/http';
+import { ISwrResponse } from '@src/types/services';
+import { AccessTimeModal } from '@ui/organisms/Navbar/NavbarDashboard/AccessTime/AccessTimeModal';
+import { Card, Typography } from '@redesignUi/atoms';
+import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { Modal } from '@redesignUi/molecules/Modal';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import PhInfo from '@iconify-icons/ph/info';
+
+export function AccessTime() {
+  const [openModal, setOpenModal] = useState(false);
+  const { t } = useTranslation();
+  useSWR(E_USERS_DAAS_UPDATE_USAGE, http.fetcherSWR, {
+    refreshInterval: 60000,
+  });
+
+  const { data, isLoading, mutate } = useSWR<ISwrResponse<IDaAs>>(
+    E_USERS_PROFILE,
+    http.fetcherSWR,
+    {
+      refreshInterval: 60000,
+    }
+  );
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  const timeLimitValueInHour =
+    data?.data?.daas_configs?.time_limit_value_in_hour ?? 0;
+
+  return (
+    <>
+      <Card
+        color="neutral"
+        className="flex items-center justify-around w-[15.93rem] h-10"
+      >
+        <Typography variant="body5" color="neutral">
+          {t('global.timeAccess')}
+        </Typography>
+        <Typography variant="body5" color="teal">
+          {timeLimitValueInHour} {t('table.hours')}
+        </Typography>
+        <IconButton
+          icon={PhInfo}
+          size="md"
+          color="neutralNoBg"
+          onClick={() => {
+            mutate();
+            setOpenModal(true);
+          }}
+        />
+      </Card>
+
+      <Modal
+        open={openModal}
+        setOpen={setOpenModal}
+        content={<AccessTimeModal onClick={setOpenModal} daas={data?.data} />}
+        classContainer="border border-teal-600 w-1/2 h-1/2"
+        type="content"
+      />
+    </>
+  );
+}
