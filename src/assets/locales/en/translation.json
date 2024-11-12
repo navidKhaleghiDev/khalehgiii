@@ -132,6 +132,7 @@
     "connection": "Connection",
     "custom": "Custom",
     "block": "Block",
+    "inActive": "In Active",
     "assistance": "Assistance",
     "deleteUser": "Delete User",
     "allowed": "Allowed",

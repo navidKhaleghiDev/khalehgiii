@@ -34,7 +34,7 @@ export const LisenceHeaderItem: HeaderTable[] = [
     type: 'component',
     component: (props: BaseTableComponentCellProps<LicenseFileType>) => (
       <TagHelperCell
-        title={props.row.active ? 'table.active' : 'table.block'}
+        title={props.row.active ? 'table.active' : 'table.inActive'}
         translate
         color={props.row.active ? 'teal' : 'yellow'}
       />
