@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
@@ -8,38 +9,42 @@ import { useUserContext } from '@context/user/userContext';
 import { Avatar, Typography } from '@redesignUi/atoms';
 import { SseSvg } from '@redesignUi/atoms/Svgs/SseSvg';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import PhTranslate from '@iconify-icons/ph/translate';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import User from '@iconify-icons/ph/user';
 import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 import { useLogout } from '@src/helper/hooks/useLogout';
 
-/**
- * @component
- * @returns{JSX.Element}
- */
+import { AccessTime } from './AccessTime/AccessTime';
 
 export function NavbarUser(): JSX.Element {
   const { user } = useUserContext();
   const { logout } = useLogout();
-
-  const { changeLanguage } = useLanguage();
+  const { changeLanguage, lang } = useLanguage();
+  const { t } = useTranslation();
 
   const isUser = user?.first_name && user?.last_name;
+
   const logOutStyles =
-    'text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
+    'text-gray-500 hover:text-gray-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
   return (
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base py-3">
         <div className="flex justify-between items-center gap-5">
-          <IconButton
-            icon={PhSignOut}
-            color="neutralNoBg"
-            size="md"
-            onClick={logout}
-            className={logOutStyles}
-          />
+          <ToolTip
+            tooltip={t('global.exit')}
+            position={lang === 'fa' ? 'right' : 'left'}
+          >
+            <IconButton
+              icon={PhSignOut}
+              color="neutralNoBg"
+              size="md"
+              onClick={logout}
+              className={logOutStyles}
+            />
+          </ToolTip>
           <BaseDropdownIcon
             icon={PhTranslate}
             size="sm"
@@ -60,6 +65,9 @@ export function NavbarUser(): JSX.Element {
                 </Typography>
               </span>
             </div>
+          </div>
+          <div className="mx-[3.75rem]">
+            <AccessTime />
           </div>
         </div>
 
