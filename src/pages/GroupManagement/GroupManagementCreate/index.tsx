@@ -95,7 +95,6 @@ export function GroupManagementCreate(props: GroupManagementCreateProps) {
       ...selectedData,
     };
 
-    console.log(updatedData);
     createGroup(buildFormData(updatedData) as any);
   };
 

@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
 import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
 import { http } from '@src/services/http';
 import { USERS_GROUPS_GET } from '@src/services/users/endpoint';
 import { IResponseData } from '@src/types/services';
@@ -10,9 +13,9 @@ import { Typography } from '@redesignUi/atoms';
 import { TGroupUpdate } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
-import { toast } from 'react-toastify';
 import { GroupManagementEditForm } from './GroupManagementEditForm';
 import { TGroup, TGroupMembers } from '../types';
+import { GroupManagementAddNewMember } from './components/GroupManagementAddNewMember';
 
 const PAGE_SIZE = 5;
 const PAGE = 1;
@@ -31,6 +34,9 @@ export function GroupManagementEdit() {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
   const [updateGroup, setUpdateGroup] = useState<TGroup>(() => ({
     id: undefined,
     users: [],
@@ -40,9 +46,6 @@ export function GroupManagementEdit() {
     updated_at: undefined,
     image: undefined,
   }));
-
-  const [loading, setLoading] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
 
   const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
     id ? USERS_GROUPS_GET(id) : null,
@@ -74,12 +77,12 @@ export function GroupManagementEdit() {
   useEffect(() => {
     if (group) setUpdateGroup(group);
   }, [group]);
+
   const paginatedData = useCallback(
     (key: keyof TGroup) => {
       const fullData: TGroupMembers[] = Array.isArray(updateGroup[key])
         ? (updateGroup[key] as TGroupMembers[])
         : [];
-      console.log(fullData);
       const updatedDataByLabel = fullData.map((g) => {
         return { ...g, value: key };
       });
@@ -136,17 +139,27 @@ export function GroupManagementEdit() {
     },
     [updateGroup]
   );
-  const handleUpdateGroup = async () => {
-    if (!updateGroup) return;
+
+  const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
+    setUpdateGroup((prev) => {
+      return { ...prev, name: listData.name, image: getValues('image') };
+    });
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    mutate();
+    setOpenEditModal(false);
+  };
+
+  const handleUpdateGroup = async (updatedGroup: any) => {
+    console.log(updatedGroup);
+    if (!updatedGroup) return;
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(
-      buildFormData(updateGroup),
-      updateGroup?.id as string
-    )
+    await API_USERS_GROUPS_UPDATE(buildFormData(updatedGroup), id as string)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
-        mutate();
-
+        handleCloseModal();
         setOpenModal(false);
       })
       .catch((err) => {
@@ -157,13 +170,20 @@ export function GroupManagementEdit() {
         setLoading(false);
       });
   };
-  const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
-    setUpdateGroup((prev) => {
-      return { ...prev, name: listData.name, image: getValues('image') };
-    });
-    setOpenModal(true);
-  };
 
+  const handleAddNewMember = (list: any) => {
+    setUpdateGroup((prev) => {
+      const updatedGroup = {
+        ...prev,
+        users: [...(prev.users || []), ...(list.users || [])],
+        admins: [...(prev.admins || []), ...(list.admins || [])],
+      };
+
+      handleUpdateGroup(updatedGroup);
+
+      return updatedGroup;
+    });
+  };
   return (
     <div>
       <Typography variant="body2B" color="black" className="my-5">
@@ -183,6 +203,22 @@ export function GroupManagementEdit() {
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
         isDirty={isDirty}
+        setOpenEditModal={setOpenEditModal}
+      />
+      <Modal
+        size="lg"
+        type="content"
+        icon={PhUserCirclePlus}
+        open={openEditModal}
+        title={t('groupManagement.createGroup')}
+        descriptionInfo={t('groupManagement.createTitle')}
+        setOpen={setOpenEditModal}
+        content={
+          <GroupManagementAddNewMember
+            handleCloseModal={handleCloseModal}
+            onClick={handleAddNewMember}
+          />
+        }
       />
       <Modal
         open={openModal}
@@ -192,7 +228,7 @@ export function GroupManagementEdit() {
         buttonOne={{
           loading,
           label: t('global.yes'),
-          onClick: handleUpdateGroup,
+          onClick: () => handleUpdateGroup(updateGroup),
         }}
         buttonTow={{
           label: t('global.no'),

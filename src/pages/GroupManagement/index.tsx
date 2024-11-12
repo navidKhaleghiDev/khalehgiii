@@ -31,7 +31,9 @@ export function GroupManagement() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [groupIdToDelete, setGroupIdToDelete] = useState<string | null>(null);
   const endpoint = createAPIEndpoint({
     endPoint: E_USERS_GROUPS,
     pageSize: PAGE_SIZE,
@@ -44,9 +46,11 @@ export function GroupManagement() {
     http.fetcherSWR
   );
 
-  const updateGroup = async (id: string) => {
+  const updateGroup = async () => {
+    if (!groupIdToDelete) return;
+
     setLoading(true);
-    await API_DELETE_GROUP(id)
+    await API_DELETE_GROUP(groupIdToDelete)
       .then(() => {
         toast.success(t('global.successfullyRemoved'));
         mutate();
@@ -56,7 +60,14 @@ export function GroupManagement() {
       })
       .finally(() => {
         setLoading(false);
+        setOpenDeleteModal(false);
+        setGroupIdToDelete(null);
       });
+  };
+
+  const handleRemoveGroup = (id: string) => {
+    setGroupIdToDelete(id);
+    setOpenDeleteModal(true);
   };
 
   const groupData = data?.data ?? [];
@@ -102,7 +113,7 @@ export function GroupManagement() {
           <GroupCard
             onClick={(item: TGroup) => navigate(`${item.id}`)}
             groupData={groupData}
-            handleRemoveGroup={updateGroup}
+            handleRemoveGroup={handleRemoveGroup}
           />
           <Pagination
             currentPage={currentPage}
@@ -120,6 +131,25 @@ export function GroupManagement() {
             content={
               <GroupManagementCreate handleCloseModal={handleCloseModal} />
             }
+          />
+          <Modal
+            open={openDeleteModal}
+            setOpen={setOpenDeleteModal}
+            type="error"
+            title={t('global.sureAboutThis')}
+            buttonOne={{
+              label: t('global.yes'),
+              onClick: updateGroup,
+              loading,
+            }}
+            buttonTow={{
+              label: t('global.no'),
+              onClick: () => {
+                setOpenDeleteModal(false);
+                setGroupIdToDelete(null);
+              },
+              color: 'red',
+            }}
           />
         </>
       )}
