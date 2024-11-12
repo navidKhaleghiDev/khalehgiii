@@ -35,6 +35,12 @@ export interface DaasSettingProp {
   is_globally_config: boolean;
   has_online_assistance?: boolean;
   has_clipboard_log_access?: boolean;
+  cpu_file_size_gb_chrome?: number;
+  cpu_file_size_gb_firefox?: number;
+  memory_file_size_gb_chrome?: number;
+  memory_file_size_gb_firefox?: number;
+  chrome_file_limit?: boolean;
+  firefox_file_limit?: boolean;
 }
 
 export interface PropsType {

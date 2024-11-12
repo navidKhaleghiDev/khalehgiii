@@ -36,6 +36,14 @@ export function DaasSetting() {
         max_transmission_upload_size:
           daasConfig?.data?.max_transmission_upload_size,
         time_limit_duration: daasConfig?.data?.time_limit_duration,
+        chrome_file_limit: daasConfig?.data?.chrome_file_limit,
+        firefox_file_limit: daasConfig?.data?.firefox_file_limit,
+        cpu_file_size_gb_chrome: daasConfig?.data?.cpu_file_size_gb_chrome,
+        cpu_file_size_gb_firefox: daasConfig?.data?.cpu_file_size_gb_firefox,
+        memory_file_size_gb_chrome:
+          daasConfig?.data?.memory_file_size_gb_chrome,
+        memory_file_size_gb_firefox:
+          daasConfig?.data?.memory_file_size_gb_firefox,
       },
     });
   const isActive = watch('time_limit_duration');
