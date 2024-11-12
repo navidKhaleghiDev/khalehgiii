@@ -11,8 +11,8 @@ import { IconButton } from '@redesignUi/atoms/BaseButton';
 import PhTranslate from '@iconify-icons/ph/translate';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import User from '@iconify-icons/ph/user';
-import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 import { useLogout } from '@src/helper/hooks/useLogout';
+import { HeadOnlineAssistant } from '../component/HeadOnlineAssistant';
 
 /**
  * @component
@@ -25,6 +25,8 @@ export function NavbarUser(): JSX.Element {
 
   const { changeLanguage } = useLanguage();
 
+  const inUserDesktop = user?.online_assistance?.user;
+
   const isUser = user?.first_name && user?.last_name;
   const logOutStyles =
     'text-red-500 hover:text-red-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
@@ -33,13 +35,15 @@ export function NavbarUser(): JSX.Element {
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base py-3">
         <div className="flex justify-between items-center gap-5">
-          <IconButton
-            icon={PhSignOut}
-            color="neutralNoBg"
-            size="md"
-            onClick={logout}
-            className={logOutStyles}
-          />
+          {!inUserDesktop && (
+            <IconButton
+              icon={PhSignOut}
+              color="neutralNoBg"
+              size="md"
+              onClick={logout}
+              className={logOutStyles}
+            />
+          )}
           <BaseDropdownIcon
             icon={PhTranslate}
             size="sm"
