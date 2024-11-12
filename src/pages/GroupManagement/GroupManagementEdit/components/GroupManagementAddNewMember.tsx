@@ -68,6 +68,7 @@ export function GroupManagementAddNewMember(
               placeholder={t('groupManagement.searchGroup')}
             />
             <GroupManagementUsersList
+              filterQuery={filterQuery}
               selectedData={selectedData}
               setSelectedData={setSelectedData}
               memberData={listDaas}

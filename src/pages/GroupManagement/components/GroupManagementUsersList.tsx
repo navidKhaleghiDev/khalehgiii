@@ -24,10 +24,10 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
     keyRef,
     selectedData,
     setSelectedData,
+    filterQuery,
   } = props;
 
   const { t } = useTranslation();
-
   const [allMembers, setAllMembers] = useState<IDaAs[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
@@ -96,9 +96,12 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
       );
       return [...prevMembers, ...newMembers];
     });
-
     setIsFetching(false);
-  }, [memberData]);
+    if (filterQuery.length >= 1) {
+      setCurrentPage(1);
+      setAllMembers(memberData);
+    }
+  }, [memberData, filterQuery, setCurrentPage]);
 
   const lastItemRef = useCallback(
     (node: any) => {
