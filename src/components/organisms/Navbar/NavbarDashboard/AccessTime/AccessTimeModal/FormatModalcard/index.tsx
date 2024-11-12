@@ -20,7 +20,7 @@ export function FormatModalCard({ label, formatList }: FormatModalCardProps) {
                 dir="ltr"
               >
                 <div className="flex flex-row-reverse text-sm items-center justify-center gap-[4px]">
-                  <p className="text-sm">{value as string}MB</p>
+                  <p className="text-sm text-gray-400">{value as string}MB</p>
                   <p>{key}</p>
                 </div>
               </div>
