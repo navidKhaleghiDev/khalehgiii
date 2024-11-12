@@ -22,7 +22,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
     type: 'avatar',
     email: 'email',
     isActive: 'is_running',
-    class: 'w-3/12',
+    class: 'w-4/12',
   },
   {
     label: 'table.lastUptime',
