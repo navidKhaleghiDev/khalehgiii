@@ -104,7 +104,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
   },
   {
     label: 'table.httpPort',
-    id: 'https_port',
+    id: 'http_port',
     type: 'none',
     class: 'w-2/12',
     isCollapsed: true,
