@@ -23,6 +23,7 @@ export function NavbarUser(): JSX.Element {
   const { changeLanguage, lang } = useLanguage();
 
   const isUser = user?.first_name && user?.last_name;
+
   const logOutStyles =
     'text-gray-500 hover:text-gray-500 dark:text-red-300 dark:hover:text-red-300 text-lg';
 
