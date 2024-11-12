@@ -76,8 +76,8 @@ export function AccessTimeModal({ daas }: PropsType) {
         />
         <AccessTimeModalCard label={t('table.leftTime')} value={timeLeft} />
       </div>
-      <div className="w-full max-h-[600px] overflow-y-auto">
-        <div className="flex flex-col gap-2 mt-4">
+      <div className="w-full max-h-[600px] overflow-y-auto ">
+        <div className="flex flex-col gap-2 mt-4 pe-5">
           <AccessDlpModalCard
             label={t('table.desktopV')}
             value={daas?.daas_version}
@@ -121,7 +121,7 @@ export function AccessTimeModal({ daas }: PropsType) {
             isAccess={daas?.daas_configs?.can_download_file}
           />
         </div>
-        <div className="flex gap-8 mt-4">
+        <div className="flex gap-8 mt-4 pe-5">
           <FormatModalCard
             label={t('global.allowedTypeForDownload')}
             formatList={daas?.allowed_files_type_for_download ?? {}}

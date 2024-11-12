@@ -20,7 +20,7 @@ export function AccessDlpModalCard({
   return (
     <Card
       color="neutralLight"
-      className="w-[607px] flex justify-between items-center border border-neutral-100 rounded-lg px-5 py-2.5"
+      className="flex justify-between items-center border border-neutral-100 rounded-lg px-5 py-2.5"
     >
       <Typography variant="body5" color="black">
         {label}

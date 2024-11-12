@@ -7,15 +7,15 @@ type FormatModalCardProps = {
 
 export function FormatModalCard({ label, formatList }: FormatModalCardProps) {
   return (
-    <div className="text-start w-60">
+    <div className="text-start w-[255px]">
       <Typography variant="body5" color="neutral">
         {label}
       </Typography>
-      <div className="flex flex-wrap gap-2 px-2.5 mt-4 py-2">
+      <div className="flex flex-wrap content-stretch h-full gap-2 px-2.5 mt-4 py-2 border rounded-lg">
         {formatList
           ? Object.entries(formatList).map(([key, value]) => (
               <div
-                className="bg-neutral-100 px-[10px] py-1 rounded-md text-neutral-800"
+                className="bg-neutral-100 px-2.5 py-1 rounded-md text-neutral-800"
                 key={`${key} ${value}`}
                 dir="ltr"
               >
