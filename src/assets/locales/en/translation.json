@@ -331,14 +331,15 @@
     "onlineUsers": "Online Users",
     "groupName": " Group Name",
     "searchGroup": "Search Group",
-    "addMember": "Add Member",
+    "addMember": "Add member",
     "saveChanges": "Save Changes",
     "deleteMember": "Delete Member",
     "user": "user",
     "groupLists": "Group Lists",
     "member": "member",
     "createTitle": "Complete the following information to create a new group.",
-    "development": "Development"
+    "development": "Development",
+    "addMemberTitle": "Select the desired user in the list below specify the of user."
   },
   "onlineAssistance": {
     "loginType": "Login type",

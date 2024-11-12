@@ -186,7 +186,7 @@ export function GroupManagementEdit() {
   };
   return (
     <div>
-      <Typography variant="body2B" color="black" className="my-5">
+      <Typography variant="body2B" color="black" className="mb-5">
         {t('groupManagement.editGroup')}
       </Typography>
       <GroupManagementEditForm
@@ -210,8 +210,8 @@ export function GroupManagementEdit() {
         type="content"
         icon={PhUserCirclePlus}
         open={openEditModal}
-        title={t('groupManagement.createGroup')}
-        descriptionInfo={t('groupManagement.createTitle')}
+        title={t('groupManagement.addMember')}
+        descriptionInfo={t('groupManagement.addMemberTitle')}
         setOpen={setOpenEditModal}
         content={
           <GroupManagementAddNewMember
@@ -223,17 +223,18 @@ export function GroupManagementEdit() {
       <Modal
         open={openModal}
         setOpen={setOpenModal}
-        type="noneIcon"
+        size="responsive"
+        type="success"
         title={t('global.sureAboutThis')}
         buttonOne={{
           loading,
-          label: t('global.yes'),
+          label: t('global.save'),
           onClick: () => handleUpdateGroup(updateGroup),
         }}
         buttonTow={{
-          label: t('global.no'),
+          label: t('global.cancel'),
           onClick: () => setOpenModal(false),
-          color: 'red',
+          color: 'tertiary',
         }}
       />
     </div>

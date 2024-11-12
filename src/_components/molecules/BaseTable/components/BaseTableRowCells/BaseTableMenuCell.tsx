@@ -87,11 +87,11 @@ export function BaseTableMenuCell<T extends IdItem>(
           >
             {header.menu.map((menu: MenuType) => (
               <div key={menu.action}>
-                <div className="rounded-lg flex w-ful ">
+                <div className="rounded-lg flex w-ful">
                   <BaseButton
-                    className={baseTableMenuCell({
+                    className={`dark:hover:!bg-gray-500 ${baseTableMenuCell({
                       color: menu.color,
-                    })}
+                    })}`}
                     type="neutral"
                     startIcon={menu.icon}
                     label={t(menu.title)}

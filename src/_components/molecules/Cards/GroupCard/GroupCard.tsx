@@ -40,21 +40,10 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
   };
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10 justify-center">
+    <div className="flex flex-wrap  gap-6 md:justify-start justify-center mb-2">
       {groupData.length >= 1 &&
         groupData.map((group) => (
-          <div
-            key={group.id}
-            className="relative  w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px]"
-          >
-            {GroupManagementDelete ? (
-              <IconButton
-                icon={trashSimple}
-                color="redNoBg"
-                className="absolute top-2 left-3"
-                onClick={() => handleIconClick(group?.id as string)}
-              />
-            ) : null}
+          <div key={group.id}>
             <CardButton
               border
               borderColor="neutral"
@@ -62,9 +51,17 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
               onClick={() => !isRemoving && onClick(group)}
               rounded="xxl"
               shadow="base"
-              className={` p-5 pt-12 h-[236px] w-[100%] sm:w-[287px] md:w-[223px] lg:w-[255px] ${className}`}
+              className={`p-5 h-[14.75rem] w-[16.563rem] md:w-[13.938rem] lg:w-[16.563rem] ${className}`}
             >
               <div className="flex flex-col items-center ">
+                {GroupManagementDelete ? (
+                  <IconButton
+                    icon={trashSimple}
+                    color="redNoBg"
+                    className="self-end !justify-end !items-start"
+                    onClick={() => handleIconClick(group?.id as string)}
+                  />
+                ) : null}
                 {!group.image ? (
                   <Avatar
                     icon={UsersThree}
@@ -86,7 +83,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
                 >
                   {group.name}
                 </Typography>
-                <div className="flex flex-row gap-2.5 mt-5">
+                <div className="flex flex-row sm:gap-2.5 gap-1 mt-5">
                   <TitleNumber
                     title={t('groupManagement.admin')}
                     number={group.admins.length}

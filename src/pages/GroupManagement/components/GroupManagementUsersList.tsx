@@ -119,9 +119,7 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
   );
 
   return (
-    <div
-      className={`w-full h-80 overflow-auto  ${isLoading ? 'loading' : ''} `}
-    >
+    <div className={`w-full ${isLoading ? 'loading' : ''} `}>
       {allMembers.map((item, index) => {
         const currentKey = keyRef.current;
         const alternativeKey = currentKey === 'users' ? 'admins' : 'users';
@@ -130,11 +128,11 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
           <div
             ref={index === allMembers.length - 1 ? lastItemRef : undefined}
             key={item.id}
-            className="w-11/12 m-auto h-12 px-2.5 bg-white rounded-lg border border-gray-100 justify-between items-center inline-flex"
+            className="w-11/12 m-auto h-12 px-2.5 bg-white dark:bg-gray-600 dark:border-gray-500 rounded-lg border border-gray-100 justify-between items-center inline-flex"
           >
             <div className="flex w-4/12 items-center gap-2">
-              <Avatar icon={userIcon} />
-              <Typography className="text-gray-600 text-xs">
+              <Avatar icon={userIcon} size="table" />
+              <Typography variant="body6" color="neutralDark">
                 {item.email}
               </Typography>
             </div>
