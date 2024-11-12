@@ -1,21 +1,39 @@
 import { useState } from 'react';
-import pencilSimple from '@iconify-icons/ph/pencil-simple';
-import pluse from '@iconify-icons/ph/plus-bold';
 import { useTranslation } from 'react-i18next';
+import { Control, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 
 import { Typography } from '@redesignUi/atoms';
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
 import { BaseInputUploadImageController } from '@redesignUi/atoms/BaseInputUploadImage/Controller';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { Pagination } from '@redesignUi/molecules/Pagination';
+import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import pencilSimple from '@iconify-icons/ph/pencil-simple';
+
 import {
   groupManagementAdminHeaderItem,
   groupManagementUserHeaderItem,
 } from '../constants/groupManagementHeaderItem';
+import { TGroup, TGroupUpdate } from '../../types';
 
-export function GroupManagementEditForm(props: any) {
+type GroupManagementEditFormProps = {
+  setFilterQuery: (e: string) => void;
+  filterQuery: string;
+  paginatedData: any;
+  setCurrentPage: (val: number) => void;
+  handleClickAction: any;
+  isLoading: boolean;
+  currentPage: number;
+  group: TGroup;
+  control: Control<TGroupUpdate>;
+  handleSubmit: UseFormHandleSubmit<TGroupUpdate, undefined>;
+  onSubmit: SubmitHandler<TGroupUpdate>;
+  allGroupData: TGroup;
+  isDirty: boolean;
+};
+
+export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
   const {
     setFilterQuery,
     filterQuery,
@@ -47,35 +65,32 @@ export function GroupManagementEditForm(props: any) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex justify-between border-b border-gray-200 my-6">
-        <div className="w-full flex my-4">
+      <div className="flex justify-between border-b border-gray-200 mb-[1.875rem]">
+        <div className="w-full flex mb-[1.875rem] gap-5 items-center">
           <BaseInputUploadImageController
             name="image"
             control={control}
             disabled={!editMode}
           />
           {!editMode ? (
-            <div className="flex flex-col justify-center px-6 my-5">
-              <Typography>{group?.name}</Typography>
-              <Typography
-                variant="body6"
-                color="neutral"
-                className="!text-gray-400"
-              >
+            <div className="flex flex-col justify-center">
+              <Typography variant="body2B" color="black">
+                {group?.name}
+              </Typography>
+              <Typography variant="body6" color="neutralMiddle">
                 {`${allAdminsLength} ${t(
                   'groupManagement.admin'
                 )}   |   ${allUsersLength} ${t('groupManagement.user')}  `}
               </Typography>
             </div>
           ) : (
-            <div className="px-6 ">
-              <BaseInputController
-                name="name"
-                id="name"
-                control={control}
-                label={t('groupManagement.groupName')}
-              />
-            </div>
+            <BaseInputController
+              name="name"
+              id="name"
+              control={control}
+              className="-mb-2"
+              label={t('groupManagement.groupName')}
+            />
           )}
         </div>
         <IconButton
@@ -86,20 +101,13 @@ export function GroupManagementEditForm(props: any) {
           onClick={() => setEditMode((prev) => !prev)}
         />
       </div>
-      <div className="flex  justify-between">
-        <SearchInput
-          fullWidth
-          className="w-1/2 ml-4 sm:w-[255px]"
-          onChange={(e) => setFilterQuery(e)}
-          value={filterQuery}
-          id="search"
-          name="search"
-          placeholder={t('groupManagement.searchGroup')}
-        />
-        <BaseButton
-          className="w-1/2 ml-4 sm:w-40"
-          label={t('groupManagement.addMember')}
-          endIcon={pluse}
+      <div className="flex [&>*]:justify-between [&>*]:w-full pb-4">
+        <FilterTableList
+          buttonLabel={t('groupManagement.addMember')}
+          onClickButton={() => {}}
+          searchQuery={filterQuery}
+          searchPlaceholder={t('groupManagement.searchGroup')}
+          handelSearchQuery={setFilterQuery}
         />
       </div>
 
@@ -110,7 +118,7 @@ export function GroupManagementEditForm(props: any) {
         loading={isLoading}
         isMobile
       />
-      <div className="border-t border-gray-200 my-4" />
+      <div className="border-t border-gray-200 my-5" />
       <BaseTable
         header={groupManagementUserHeaderItem}
         body={userData}
