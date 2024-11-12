@@ -54,7 +54,7 @@ export function BaseInputUploadImage({
 
   return (
     <div className="w-16 h-16">
-      <div className="relative  flex justify-center items-center overflow-hidden">
+      <div className="relative flex justify-center items-center overflow-hidden">
         <input
           name={name}
           accept="image/*"
@@ -70,7 +70,7 @@ export function BaseInputUploadImage({
             color="neutralNoBg"
             size="lg"
             onClick={handleBrowseFile}
-            className="bg-gray-100 dark:bg-gray-600 !rounded-full p-3 border border-gray-300"
+            className="bg-gray-100 dark:bg-gray-600 !rounded-full p-3 border border-gray-300 dark:border-gray-400 dark:!text-gray-400"
             icon={icon || usersThreeLight}
           />
         ) : (

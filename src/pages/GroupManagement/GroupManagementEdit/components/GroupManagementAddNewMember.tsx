@@ -54,12 +54,12 @@ export function GroupManagementAddNewMember(
           shadow="sm"
           border
           rounded="xl"
-          className="w-11/12 m-auto mt-4 py-4"
+          className="border-gray-200 py-4 dark:border-gray-500 !bg-transparent"
         >
           <div className="flex flex-col justify-between gap-2">
             <SearchInput
               fullWidth
-              className="w-1/2 mr-5 sm:w-[255px] -mb-3"
+              className="w-1/2 mx-5 sm:w-[255px] "
               onChange={(e) => setFilterQuery(e)}
               value={filterQuery}
               id="search"
@@ -79,7 +79,7 @@ export function GroupManagementAddNewMember(
             />
           </div>
         </Card>
-        <div className="flex  justify-center my-5  gap-3   ">
+        <div className="flex justify-center my-5 gap-3">
           <BaseButton
             onClick={() => (onClick ? onClick(selectedData) : undefined)}
             label={t('global.confirm')}
