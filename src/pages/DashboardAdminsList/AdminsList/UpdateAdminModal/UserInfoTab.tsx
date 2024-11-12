@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 import PencilSimple from '@iconify-icons/ph/pencil-simple';
 import EnvelopeSimple from '@iconify-icons/ph/envelope-simple';
 import User from '@iconify-icons/ph/user';
-import caret from '@iconify-icons/ph/caret-left';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
-import { BaseButton, Typography } from '@redesignUi/atoms';
+import { Typography } from '@redesignUi/atoms';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
 // import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
 import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
@@ -91,6 +90,7 @@ export function UserInfoTab({
               id="password"
               fullWidth
               dir={dir}
+              iconDir={dir}
             />
           ) : null}
         </div>
@@ -139,8 +139,9 @@ export function UserInfoTab({
               />
             </div>
           </div>
+          {/* Remove the domain cause there is no functionality */}
 
-          <div className="flex flex-col justify-between gap-5 py-5">
+          {/* <div className="flex flex-col justify-between gap-5 py-5">
             <div className="flex flex-col gap-1">
               <Typography
                 variant="body5B"
@@ -158,7 +159,7 @@ export function UserInfoTab({
                   disabled
                 />
               </div>
-              {/* <div className="flex items-end gap-2.5 mt-5">
+              <div className="flex items-end gap-2.5 mt-5">
                 <BaseDropdown
                   disabled
                   name="domain"
@@ -169,9 +170,9 @@ export function UserInfoTab({
                   }
                   label={t('global.domain')}
                 />
-              </div> */}
+              </div>
             </div>
-          </div>
+          </div> */}
           {admin?.id ? (
             <div className="flex sm:flex-col flex-row justify-between items-start gap-1 sm:mt-2.5 mt-4 pt-5 border-gray-300 border-t-[0.06rem]">
               <div className="w-full flex sm:flex-row flex-col sm:justify-between justify-start gap-2.5 items-start ">

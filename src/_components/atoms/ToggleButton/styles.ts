@@ -8,6 +8,10 @@ export const toggleStyles = cva('flex', {
       responsive:
         'h-7 text-xs rounded-[0.25rem] sm:h-10 sm:text-sm sm:rounded-lg',
     },
+    disabled: {
+      true: 'opacity-50',
+      false: '',
+    },
   },
   defaultVariants: {
     size: 'md',

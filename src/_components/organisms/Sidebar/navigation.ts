@@ -84,6 +84,11 @@ export const navigationSideBar: NavigationProps[] = [
         label: t('license.licenses'),
         path: ROUTES_PATH.licence,
       },
+      {
+        id: '4',
+        label: t('global.monitoring'),
+        path: ROUTES_PATH.monitoring,
+      },
     ],
   },
 

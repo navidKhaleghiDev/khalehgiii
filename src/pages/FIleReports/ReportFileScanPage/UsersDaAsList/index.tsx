@@ -73,7 +73,6 @@ export function UsersDaAsList() {
         searchQuery={searchQuery}
         handelSearchQuery={handelSearchQuery}
         searchPlaceholder={t('fileScan.adminSearch')}
-        domainFilter
         handelGroupeFilter={() => console.log('this functionary is disables')}
       />
       <div className="mt-[1.875rem]">

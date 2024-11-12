@@ -137,8 +137,10 @@ export function ReportsChart({ props }: ReportChartType) {
         },
       },
       y: {
+        beginAtZero: true,
         ticks: {
           color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+          stepSize: 1,
         },
         grid: {
           color: isDark

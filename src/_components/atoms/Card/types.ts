@@ -9,7 +9,7 @@ export interface CardProps
   className?: string;
 }
 
-export interface CardButtonProps extends CardProps {
-  onClick?: () => void;
+export interface CardButtonProps<BodyType> extends CardProps {
+  onClick?: (() => void) | (() => () => BodyType);
   disabled?: boolean;
 }

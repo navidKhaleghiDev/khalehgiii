@@ -238,7 +238,6 @@ export function DaAsList() {
         searchQuery={filterQuery}
         searchPlaceholder={t('userList.searchUsers')}
         handelSearchQuery={handelSearchQuery}
-        domainFilter
       />
       <BaseTable
         loading={isLoading}
