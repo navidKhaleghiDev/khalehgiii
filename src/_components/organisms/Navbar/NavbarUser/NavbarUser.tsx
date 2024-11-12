@@ -20,7 +20,7 @@ import { AccessTime } from './AccessTime/AccessTime';
 export function NavbarUser(): JSX.Element {
   const navigate = useNavigate();
   const { user, setUser } = useUserContext();
-  const { changeLanguage } = useLanguage();
+  const { changeLanguage, lang } = useLanguage();
 
   const isUser = user?.first_name && user?.last_name;
   const logOutStyles =
@@ -35,7 +35,10 @@ export function NavbarUser(): JSX.Element {
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base py-3">
         <div className="flex justify-between items-center gap-x-5">
-          <ToolTip tooltip={t('global.exit')} position="right">
+          <ToolTip
+            tooltip={t('global.exit')}
+            position={lang === 'fa' ? 'right' : 'left'}
+          >
             <IconButton
               icon={PhSignOut}
               color="neutralNoBg"
