@@ -30,7 +30,7 @@ export function DlpSettingsForm({
   return (
     hasViewPermission && (
       <div className="w-full col-span-6 grid grid-cols-2 gap-5 pt-4 mt-4 border-t border-t-gray-300">
-        <div className="sm:col-span-1 col-span-2">
+        <div className="sm:col-span-2 col-span-2">
           <DlpList
             name="allowed_files_type_for_download"
             valueList={dlpDownloadList}
@@ -39,7 +39,7 @@ export function DlpSettingsForm({
             userPermissions={userPermissions}
           />
         </div>
-        <div className="sm:col-span-1 col-span-2">
+        <div className="sm:col-span-2 col-span-2">
           <DlpList
             name="allowed_files_type_for_upload"
             valueList={dlpUploadList}
