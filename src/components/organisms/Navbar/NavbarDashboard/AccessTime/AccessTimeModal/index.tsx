@@ -39,7 +39,7 @@ export function AccessTimeModal({ daas }: PropsType) {
   let timeLeft;
 
   if (timeLimitDuration === ETimeLimitDuration.PERMANENTLY) {
-    timeLeft = '';
+    timeLeft = t('global.unlimited');
   } else if (remainingTime < 0) {
     timeLeft = t('global.hasBeenFinished');
   } else {
@@ -67,65 +67,69 @@ export function AccessTimeModal({ daas }: PropsType) {
 
   return (
     <div>
-      <div>
-        <div className="flex items-center gap-8">
-          <AccessTimeModalCard
-            label={t('table.usedTime')}
-            value={
-              usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
-            }
+      <div className="flex items-center gap-8">
+        <AccessTimeModalCard
+          label={t('table.usedTime')}
+          value={
+            usageInMinute ? formatDuration(Math.floor(usageInMinute)) : '-'
+          }
+        />
+        <AccessTimeModalCard label={t('table.leftTime')} value={timeLeft} />
+      </div>
+      <div className="w-full max-h-[600px] overflow-y-auto">
+        <div className="flex flex-col gap-2 mt-4">
+          <AccessDlpModalCard
+            label={t('table.desktopV')}
+            value={daas?.daas_version}
           />
-          <AccessTimeModalCard label={t('table.leftTime')} value={timeLeft} />
+          <AccessDlpModalCard
+            label={t('global.maximumUploadSize')}
+            value={`${daas?.daas_configs?.max_transmission_upload_size} MB`}
+            contentDirection="ltr"
+          />
+          <AccessDlpModalCard
+            label={t('global.maximumDownloadSize')}
+            value={`${daas?.daas_configs?.max_transmission_download_size} MB`}
+            contentDirection="ltr"
+          />
+          <AccessDlpModalCard
+            label={t('table.AccessConference')}
+            isAccess={daas?.chatroom_privileged}
+          />
+          <AccessDlpModalCard
+            label={t('global.onlineAssistance')}
+            isAccess={daas?.daas_configs.has_online_assistance}
+          />
+          <AccessDlpModalCard
+            label={t('global.evidenceGathering')}
+            isAccess={daas?.daas_configs?.has_evidence_gathering}
+          />
+          <AccessDlpModalCard
+            label={t('global.clipboardAccess')}
+            isAccess={daas?.daas_configs?.has_clipboard_access}
+          />
+          <AccessDlpModalCard
+            label={t('global.clipboardLog')}
+            isAccess={daas?.daas_configs?.has_clipboard_log_access}
+          />
+          <AccessDlpModalCard
+            label={t('global.uploadAccess')}
+            isAccess={daas?.daas_configs?.can_upload_file}
+          />
+          <AccessDlpModalCard
+            label={t('global.downloadAccess')}
+            isAccess={daas?.daas_configs?.can_download_file}
+          />
         </div>
-        <div className="w-full max-h-[600px] overflow-y-auto">
-          <div className="flex flex-col gap-2 mt-4">
-            <AccessDlpModalCard
-              label={t('table.desktopV')}
-              value={daas?.daas_version}
-            />
-            <AccessDlpModalCard
-              label={t('global.maximumUploadSize')}
-              value={`${daas?.daas_configs?.max_transmission_upload_size} MB`}
-              contentDirection="ltr"
-            />
-            <AccessDlpModalCard
-              label={t('global.maximumDownloadSize')}
-              value={`${daas?.daas_configs?.max_transmission_download_size} MB`}
-              contentDirection="ltr"
-            />
-            <AccessDlpModalCard
-              label={t('table.AccessConference')}
-              isAccess={daas?.chatroom_privileged}
-            />
-            <AccessDlpModalCard
-              label={t('global.onlineAssistance')}
-              isAccess={daas?.daas_configs.has_online_assistance}
-            />
-            <AccessDlpModalCard
-              label={t('global.evidenceGathering')}
-              isAccess={daas?.daas_configs?.has_evidence_gathering}
-            />
-            <AccessDlpModalCard
-              label={t('global.clipboardAccess')}
-              isAccess={daas?.daas_configs?.has_clipboard_access}
-            />
-            <AccessDlpModalCard
-              label={t('global.clipboardLog')}
-              isAccess={daas?.daas_configs?.has_clipboard_log_access}
-            />
-            <AccessDlpModalCard
-              label={t('global.uploadAccess')}
-              isAccess={daas?.daas_configs?.can_upload_file}
-            />
-            <AccessDlpModalCard
-              label={t('global.downloadAccess')}
-              isAccess={daas?.daas_configs?.can_download_file}
-            />
-          </div>
-          <div className="flex gap-8 mt-4">
-            <FormatModalCard label={t('global.allowedTypeForUpload')} />
-            <FormatModalCard label={t('global.allowedTypeForDownload')} />
-          </div>
+        <div className="flex gap-8 mt-4">
+          <FormatModalCard
+            label={t('global.allowedTypeForDownload')}
+            formatList={daas?.allowed_files_type_for_download ?? {}}
+          />
+          <FormatModalCard
+            label={t('global.allowedTypeForUpload')}
+            formatList={daas?.allowed_files_type_for_upload ?? {}}
+          />
         </div>
       </div>
     </div>

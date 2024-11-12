@@ -28,7 +28,7 @@ export function AccessDlpModalCard({
       {isAccess !== undefined && (
         <TagHelperCell
           title={isAccess ? t('table.allowed') : t('table.disallow')}
-          color={isAccess ? 'teal' : 'red'}
+          color={isAccess ? 'teal' : 'natural'}
         />
       )}
       {value && (

@@ -7,6 +7,7 @@ import {
   E_USERS_DAAS_UPDATE_USAGE,
   E_USERS_PROFILE,
 } from '@src/services/users/endpoint';
+import UserFocus from '@iconify-icons/ph/user-focus';
 import { http } from '@src/services/http';
 import { ISwrResponse } from '@src/types/services';
 import { AccessTimeModal } from '@ui/organisms/Navbar/NavbarDashboard/AccessTime/AccessTimeModal';
@@ -65,7 +66,9 @@ export function AccessTime() {
         open={openModal}
         setOpen={setOpenModal}
         content={<AccessTimeModal daas={data?.data} />}
+        icon={UserFocus}
         type="content"
+        title={t('table.access')}
       />
     </>
   );

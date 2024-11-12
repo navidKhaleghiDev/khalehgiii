@@ -17,7 +17,7 @@ export function AccessTimeModalCard({
       <Card className="w-40 p-[0.625rem] mt-1 !bg-neutral-100">
         <div className="flex">
           <Typography variant="body5" color="teal">
-            {value && '00:00'}
+            {value}
           </Typography>
         </div>
       </Card>
