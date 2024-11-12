@@ -200,6 +200,7 @@
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",
+    "successfullyLoggedOut": "You have successfully logged out",
     "successfullyLogedIn": "You have successfully logged in",
     "exit": "Exit",
     "setting": "Settings",

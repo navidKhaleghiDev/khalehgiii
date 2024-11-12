@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { t } from 'i18next';
 
 import { useLanguage } from '@context/settings/languageContext';
-import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { http } from '@src/services/http';
 import { useUserContext } from '@context/user/userContext';
 import { ToolTip } from '@redesignUi/atoms/Tooltip';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
@@ -19,6 +17,7 @@ import PhSignOut from '@iconify-icons/ph/sign-out';
 import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
 
+import { useLogout } from '@src/helper/hooks/useLogout';
 import { MenuDropdown } from './MenuDropdown/MenuDropdown';
 import { MenuItem } from './MenuItem';
 import { navigationSideBar } from './navigation';
@@ -30,9 +29,9 @@ export function SideBar(): JSX.Element {
   const [isDropdownVisible, setDropdownVisible] =
     useState<NavigationProps | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
-  const navigate = useNavigate();
+  const { logout } = useLogout();
   const { pathname } = useLocation();
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
   const { lang } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
   const windowDimensions = useWindowDimensions();
@@ -47,10 +46,8 @@ export function SideBar(): JSX.Element {
   const handleToggle = () => (isDark ? toggleTheme() : null);
 
   const handleLogout = () => {
+    logout();
     handleToggle();
-    http.removeAuthHeader();
-    setUser(null);
-    navigate(ROUTES_PATH.login);
   };
   const enLanguageIcon = lang === 'en' ? PhCaretDoubleLeft : PhCaretDoubleRight;
   const faLanguageIcon = lang === 'fa' ? PhCaretDoubleLeft : PhCaretDoubleRight;
