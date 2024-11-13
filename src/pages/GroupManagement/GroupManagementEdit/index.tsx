@@ -144,9 +144,10 @@ export function GroupManagementEdit() {
   };
 
   const handleUpdateGroup = async (updatedGroup: any) => {
-    console.log(updatedGroup);
+    const newGroupData = buildFormData(updatedGroup);
+
     setLoading(true);
-    await API_USERS_GROUPS_UPDATE(buildFormData(updatedGroup), id as string)
+    await API_USERS_GROUPS_UPDATE(newGroupData, id as string)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         handleCloseModal();
@@ -166,6 +167,7 @@ export function GroupManagementEdit() {
       users: [...updateGroup.users, ...list.users],
       admins: [...updateGroup.admins, ...list.admins],
     };
+
     handleUpdateGroup(updatedGroup);
   };
 
