@@ -22,13 +22,13 @@ export const desktopListHeaderItem: HeaderTable[] = [
     type: 'avatar',
     email: 'email',
     isActive: 'is_running',
-    class: 'w-3/12',
+    class: 'lg:w-3/12 w-5/12',
   },
   {
     label: 'table.lastUptime',
     id: 'last_uptime',
     type: 'date',
-    class: 'lg:w-1/12 w-2/12',
+    class: 'lg:w-1/12 w-3/12',
     isMobileCollapsed: true,
   },
   {
@@ -44,7 +44,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         }
       />
     ),
-    class: 'lg:w-1/12 w-2/12',
+    class: 'lg:w-1/12 w-3/12',
   },
   {
     label: 'table.setting',
@@ -72,7 +72,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
       />
     ),
     permission: EPermissionDaas.CHANGE,
-    class: 'w-2/12 lg:w-1/12',
+    class: 'w-3/12 lg:w-1/12',
     isMobileCollapsed: true,
   },
   {
@@ -103,8 +103,8 @@ export const desktopListHeaderItem: HeaderTable[] = [
     class: 'w-1/12',
   },
   {
-    label: 'table.httpsPort',
-    id: 'https_port',
+    label: 'table.httpPort',
+    id: 'http_port',
     type: 'none',
     class: 'w-2/12',
     isCollapsed: true,

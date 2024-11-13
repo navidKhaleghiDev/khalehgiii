@@ -30,7 +30,7 @@ import {
 import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 
 import { ChangePasswordForm } from './ChangePasswordForm';
-import { AccessTime } from './AccessTime';
+import { AccessTimeCO } from './AccessTime';
 import { HeadDescription } from './HeadDescription';
 
 // let logoutApiService;
@@ -40,7 +40,7 @@ export function NavbarDashboard() {
   const [openModal, setOpenModal] = useState(false);
   const { user } = useUserContext();
   const userPermissions = useUserPermission();
-  const logout = useLogout();
+  const { logout } = useLogout();
 
   const isUser = user?.is_meta_admin || user?.is_superuser;
 
@@ -103,7 +103,7 @@ export function NavbarDashboard() {
 
           {user && !user.is_superuser ? (
             <div className={timeStyle}>
-              <AccessTime />
+              <AccessTimeCO />
             </div>
           ) : viewMalwareConfigPermission || viewDaasPermission ? (
             <div className={timeStyle}>

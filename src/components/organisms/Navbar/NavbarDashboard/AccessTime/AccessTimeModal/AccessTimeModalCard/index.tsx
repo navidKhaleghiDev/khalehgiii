@@ -1,35 +1,22 @@
-import { Typography } from '@ui/atoms/Typography/Typography';
-import { Card } from '@ui/atoms';
+import { Card, Typography } from '@redesignUi/atoms';
 
 type AccessTimeModalCardProps = {
   label: string;
-  name?: string;
   value?: string;
-  contentDirection?: 'ltr' | 'rtl';
 };
 
 export function AccessTimeModalCard({
   label,
-  name,
   value,
-  contentDirection = 'rtl',
 }: AccessTimeModalCardProps) {
   return (
-    <div className="w-full flex flex-col items-start mt-4">
-      <Typography variant="body3" color="neutral">
+    <div className="text-start">
+      <Typography variant="body5" color="neutral">
         {label}
       </Typography>
-      <Card
-        color="neutral"
-        className="w-full flex justify-center items-center h-16 px-2"
-      >
-        <div className="flex" dir={contentDirection}>
-          {name && (
-            <Typography variant="h5" color="neutral">
-              {name}،
-            </Typography>
-          )}
-          <Typography variant="h5" color="teal">
+      <Card className="w-40 p-[0.625rem] mt-1 !bg-neutral-100">
+        <div className="flex">
+          <Typography variant="body5" color="teal">
             {value}
           </Typography>
         </div>

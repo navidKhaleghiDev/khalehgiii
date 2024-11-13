@@ -89,7 +89,6 @@ export function GroupManagement() {
               {t('groupManagement.groupLists')}
             </Typography>
             <div className="gap-[1.87rem] lg:w-[21.875rem] sm:w-[15.938rem] w-40 lg:mb-[5.62rem] mb-2.5">
-              {' '}
               <UsersInfoCard
                 iconColor="neutral"
                 icon={UsersThree}

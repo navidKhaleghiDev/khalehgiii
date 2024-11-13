@@ -13,7 +13,6 @@ import {
   API_ANALYZE_DOWNLOAD_FILE,
   API_ANALYZE_SCAN_STATUS_UPDATE,
 } from '@src/services/analyze';
-import { MultiDatePicker } from '@redesignUi/atoms/Inputs/DatePicker';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
@@ -115,14 +114,15 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
 
   return (
     <div className="w-full">
-      <div className="text-start my-5">
+      {/* This functionality is disabled cause we do not have service */}
+      {/* <div className="text-start my-5">
         <MultiDatePicker
           id="recordFilter"
           name="recordFilter"
           onChange={() => console.log('This functionality does not work know')}
           disabled
         />
-      </div>
+      </div> */}
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable

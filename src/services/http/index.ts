@@ -29,6 +29,8 @@ enum StatusCode {
 export const STORAGE_KEY_TOKEN = 't';
 export const STORAGE_KEY_REFRESH_TOKEN = 'r';
 
+let isRefreshing = false;
+
 // const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
 const headers: Readonly<Record<string, string | boolean>> = {
@@ -171,6 +173,10 @@ export class Http {
     localStorage.clear();
   }
 
+  private handleInvalidRefreshToken() {
+    this.removeAuthHeader();
+    window.location.href = '/';
+  }
   // private handleSuccess<T>(response: AxiosResponse<T>) {
   //   return response.data;
   // }
@@ -186,27 +192,39 @@ export class Http {
             throw handleResponseError(data);
           }
           case StatusCode.Unauthorized: {
-            // 401 - Handle Unauthorized
             const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
-            if (refresh) {
+
+            if (!refresh || isRefreshing) {
+              this.handleInvalidRefreshToken();
+              throw handleResponseError(data);
+            }
+
+            if (!isRefreshing) {
+              isRefreshing = true;
+
               try {
                 const refreshResponse = await this.http.post(
                   `${this.baseUrl}${E_USERS_REFRESH}`,
                   { refresh }
                 );
-                const accessToken = refreshResponse.data?.access;
-                if (accessToken) {
-                  this.setAuthHeader(accessToken, refresh);
-                  break;
+
+                const newAccessToken = refreshResponse.data?.access;
+
+                if (newAccessToken) {
+                  this.setAuthHeader(newAccessToken, refresh);
+                } else {
+                  this.handleInvalidRefreshToken();
                 }
               } catch (refreshError) {
-                console.error('refresh token error:', refreshError);
+                this.handleInvalidRefreshToken();
+              } finally {
+                isRefreshing = false;
               }
             }
-            this.removeAuthHeader();
-            window.location.href = '/';
-            break;
+
+            throw handleResponseError(data);
           }
+
           case StatusCode.Forbidden: {
             // 403 - Handle Forbidden
             // toast.error(t('global.dontHaveAccess'));

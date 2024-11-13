@@ -66,4 +66,5 @@ export type GroupManagementUsersListProps = {
   keyRef: any;
   selectedData: any;
   setSelectedData: any;
+  filterQuery: string;
 };

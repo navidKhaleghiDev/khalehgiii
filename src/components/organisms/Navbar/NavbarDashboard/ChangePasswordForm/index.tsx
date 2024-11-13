@@ -9,6 +9,7 @@ import { PasswordInput } from '@ui/atoms/Inputs/PasswordInput';
 import { API_UPDATE_USER } from '@src/services/users';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useLogout } from '@src/helper/hooks/useLogout';
 
 type ChangePasswordValues = {
   email: string;
@@ -22,8 +23,9 @@ export interface ILoginFieldValues extends FieldValues {
   remember_me?: boolean;
 }
 
-export function ChangePasswordForm({ user, logout }: any) {
+export function ChangePasswordForm({ user }: any) {
   const { t } = useTranslation();
+  const { logout } = useLogout();
   const {
     control,
     handleSubmit,

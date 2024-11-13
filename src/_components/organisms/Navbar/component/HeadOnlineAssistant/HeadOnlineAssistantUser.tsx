@@ -5,14 +5,17 @@ import useWebSocket from 'react-use-websocket';
 import { useEffect, useState } from 'react';
 import { STORAGE_KEY_TOKEN } from '@src/services/http';
 import { OnlineAssistantCard } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant/OnlineAssistantCard';
-import userGearIcon from '@iconify-icons/ph/user-gear';
-import PhRecordFill from '@iconify-icons/ph/record-fill';
+import PhRecord from '@iconify-icons/ph/record';
+import { BaseIcon } from '@redesignUi/atoms';
+import usersThreeLight from '@iconify-icons/ph/users-three-light';
+import userIcon from '@iconify-icons/ph/user';
 
 const URL = import.meta.env.VITE_WEB_SOCKET_URL;
 
 interface ConnectionMessage {
   admin: string;
   status: string;
+  group: string;
 }
 
 /**
@@ -67,15 +70,18 @@ export function HeadOnlineAssistantUser() {
   return (
     <div>
       {messageHistory && messageHistory.status === 'connected' && (
-        <div className="w-70 text-sm shadow-md rounded-lg h-7 px-2 flex items-center bg-white dark:inset-0 dark:bg-cover dark:bg-blur dark:bg-opacity-20 gap-2">
-          <OnlineAssistantCard
-            icon={userGearIcon}
-            description={messageHistory.admin}
-          />
-          <OnlineAssistantCard
-            icon={PhRecordFill}
-            description={messageHistory.status}
-          />
+        <div className="flex justify-center items-center max-w-[450px] px-4 h-10 bg-gray-100 rounded-lg">
+          <div className="flex gap-2 justify-between w-full items-center h-7">
+            <OnlineAssistantCard
+              icon={userIcon}
+              description={messageHistory.admin}
+            />
+            <OnlineAssistantCard
+              icon={usersThreeLight}
+              description={messageHistory.group}
+            />
+            <BaseIcon icon={PhRecord} color="red" />
+          </div>
         </div>
       )}
     </div>
