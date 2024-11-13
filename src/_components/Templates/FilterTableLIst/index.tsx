@@ -10,7 +10,6 @@ import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import caretLeft from '@iconify-icons/ph/caret-left';
 import caretRight from '@iconify-icons/ph/caret-right';
 import sortAscending from '@iconify-icons/ph/sort-ascending';
-import PhUsersThree from '@iconify-icons/ph/users-three';
 
 import { FilterReportsProps } from './types';
 
@@ -95,7 +94,7 @@ export function FilterTableList(props: FilterReportsProps) {
       {/* This item does not work does not have service */}
       {handelGroupeFilter ? (
         <div>
-          <BaseButton
+          {/* <BaseButton
             label={t('global.grouping')}
             endIcon={caret}
             type="neutral"
@@ -107,7 +106,7 @@ export function FilterTableList(props: FilterReportsProps) {
             color="neutral"
             className="sm:hidden flex"
             disabled
-          />
+          /> */}
         </div>
       ) : null}
       {/* This item does not work does not have service */}

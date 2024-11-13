@@ -9,7 +9,7 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import PhPlayDuotone from '@iconify-icons/ph/play';
+import PhFolder from '@iconify-icons/ph/folder';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { ScannedFileList } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
@@ -100,7 +100,7 @@ export function UsersDaAsList() {
         classContainer="w-[20.875rem] sm:w-[39.68rem]"
         title={t('fileScan.recordedActivities')}
         descriptionInfo={t('fileScan.userRecordedActivities')}
-        icon={PhPlayDuotone}
+        icon={PhFolder}
         content={<ScannedFileList userEmail={modelId} />}
       />
     </>

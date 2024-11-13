@@ -132,6 +132,7 @@
     "connection": "Connection",
     "custom": "Custom",
     "block": "Block",
+    "inActive": "Inactive",
     "assistance": "Assistance",
     "deleteUser": "Delete User",
     "allowed": "Allowed",
@@ -188,6 +189,7 @@
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "alphabet": "Alphabet",
+    "unlimited": "Unlimited",
     "onlineAdmin": "Online admin",
     "creationDate": "Creation date",
     "choseDomain": "Domain",
@@ -200,6 +202,7 @@
     "userName": "Username",
     "password": "Password",
     "requiredField": "This field is required.",
+    "successfullyLoggedOut": "You have successfully logged out",
     "successfullyLogedIn": "You have successfully logged in",
     "exit": "Exit",
     "setting": "Settings",
@@ -239,16 +242,16 @@
     "limitedNumberRequest": "The number of your requests has been limited. Please try again in one minute.",
     "pleaseBePatient": "Please be patient",
     "addNewFile": "add new String File",
-    "timeAccess": "time access",
+    "timeAccess": "Time access",
     "hasBeenFinished": "has been finished",
     "maximumUploadSize": "Maximum Upload Size",
     "maximumDownloadSize": "Maximum Download Size",
     "microphoneAccess": "microphone access",
     "webcamAccess": "Webcam Access",
-    "uploadAccess": "upload access",
-    "downloadAccess": "download Access",
-    "allowedTypeForDownload": "allowed Type For Download",
-    "allowedTypeForUpload": "allowed Type For Upload",
+    "uploadAccess": "Upload access",
+    "downloadAccess": "Download Access",
+    "allowedTypeForDownload": "Allowed Type For Download",
+    "allowedTypeForUpload": "Allowed Type For Upload",
     "doseNot": "does not ",
     "onlineUsers": "Online Users",
     "week": "week",
@@ -331,14 +334,15 @@
     "onlineUsers": "Online Users",
     "groupName": " Group Name",
     "searchGroup": "Search Group",
-    "addMember": "Add Member",
+    "addMember": "Add member",
     "saveChanges": "Save Changes",
     "deleteMember": "Delete Member",
     "user": "user",
     "groupLists": "Group Lists",
     "member": "member",
     "createTitle": "Complete the following information to create a new group.",
-    "development": "Development"
+    "development": "Development",
+    "addMemberTitle": "Select the desired user in the list below specify the of user."
   },
   "onlineAssistance": {
     "loginType": "Login type",
@@ -361,8 +365,8 @@
     "alphabetic": "alphabetic",
     "creationDate": "Creation Date",
     "Newest": "Newest",
-    "recordedActivities": "Recorded activities",
-    "userRecordedActivities": "Recorded user activities"
+    "recordedActivities": "Analyze files",
+    "userRecordedActivities": "Analyze users files"
   },
   "adminList": {
     "adminList": "Admin List",
@@ -415,7 +419,9 @@
     "assistanceAdminTitle": "In this section, the groups that the user is an admin of are specified.",
     "areYouSureBlock": "Are you sure you want to block this user?",
     "areYouSureUnBlock": "Are you sure you want to unblock this user's access?",
-    "yourBrowserDoesntSupportVideo": "Your browser does not support this video."
+    "yourBrowserDoesntSupportVideo": "Your browser does not support this video.",
+    "allowedVolume": "Allowed volume",
+    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "Enter the allowed volume for this format in the opposite field"
   },
   "license": {
     "licenseId": "license Id",

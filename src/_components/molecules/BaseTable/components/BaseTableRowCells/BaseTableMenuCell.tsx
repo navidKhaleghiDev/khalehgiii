@@ -45,7 +45,7 @@ export function BaseTableMenuCell<T extends IdItem>(
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
-  const { isFarsi } = useLanguage();
+  const { isFarsi, lang } = useLanguage();
   const { t } = useTranslation();
 
   useClickOutside({ ref, setValue: setOpen, value: open });
@@ -75,7 +75,10 @@ export function BaseTableMenuCell<T extends IdItem>(
     header.type === 'menu' && (
       <div ref={ref} className="flex">
         {header.tooltip ? (
-          <ToolTip tooltip={t(header.tooltip)}>
+          <ToolTip
+            tooltip={t(header.tooltip)}
+            position={lang === 'fa' ? 'right' : 'left'}
+          >
             <MenuComponent menu={header} />
           </ToolTip>
         ) : (
@@ -87,11 +90,11 @@ export function BaseTableMenuCell<T extends IdItem>(
           >
             {header.menu.map((menu: MenuType) => (
               <div key={menu.action}>
-                <div className="rounded-lg flex w-ful ">
+                <div className="rounded-lg flex w-ful">
                   <BaseButton
-                    className={baseTableMenuCell({
+                    className={`dark:hover:!bg-gray-500 ${baseTableMenuCell({
                       color: menu.color,
-                    })}
+                    })}`}
                     type="neutral"
                     startIcon={menu.icon}
                     label={t(menu.title)}

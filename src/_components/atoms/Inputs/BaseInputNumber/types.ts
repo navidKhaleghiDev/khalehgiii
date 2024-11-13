@@ -1,3 +1,4 @@
+import React from 'react';
 import { VariantProps } from 'class-variance-authority';
 import {
   Control,
@@ -35,4 +36,5 @@ export type BaseInputNumberProps = Omit<
     value?: number;
     icon?: IconType;
     defaultValue?: number | undefined;
+    ref?: React.Ref<HTMLInputElement>;
   };

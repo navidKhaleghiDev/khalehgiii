@@ -45,21 +45,22 @@ export function GroupManagementAddNewMember(
   const listDaas = list.map((item) => {
     return { ...item, value: 'users' };
   });
+  const buttonCondition =
+    selectedData.users.length === 0 && selectedData.admins.length === 0;
 
   return (
     <div className="w-full">
-      <div>
+      <div className=" h-[26.25rem] overflow-auto mt-4 pe-4">
         <Card
-          color="white"
           shadow="sm"
           border
           rounded="xl"
-          className="w-11/12 m-auto mt-4 py-4"
+          className="border-gray-200 py-4 dark:border-gray-500 !bg-transparent"
         >
           <div className="flex flex-col justify-between gap-2">
             <SearchInput
               fullWidth
-              className="w-1/2 mr-5 sm:w-[255px] -mb-3"
+              className="w-1/2 mx-5 sm:w-[255px] -mb-3"
               onChange={(e) => setFilterQuery(e)}
               value={filterQuery}
               id="search"
@@ -67,6 +68,7 @@ export function GroupManagementAddNewMember(
               placeholder={t('groupManagement.searchGroup')}
             />
             <GroupManagementUsersList
+              filterQuery={filterQuery}
               selectedData={selectedData}
               setSelectedData={setSelectedData}
               memberData={listDaas}
@@ -79,18 +81,19 @@ export function GroupManagementAddNewMember(
             />
           </div>
         </Card>
-        <div className="flex  justify-center my-5  gap-3   ">
-          <BaseButton
-            onClick={() => (onClick ? onClick(selectedData) : undefined)}
-            label={t('global.confirm')}
-            loading={isLoading}
-          />
-          <BaseButton
-            type="neutral"
-            label={t('global.cancel')}
-            onClick={handleCloseModal}
-          />
-        </div>
+      </div>
+      <div className="flex justify-center my-5 gap-3">
+        <BaseButton
+          disabled={buttonCondition}
+          onClick={() => (onClick ? onClick(selectedData) : undefined)}
+          label={t('global.confirm')}
+          loading={isLoading}
+        />
+        <BaseButton
+          type="neutral"
+          label={t('global.cancel')}
+          onClick={handleCloseModal}
+        />
       </div>
     </div>
   );
