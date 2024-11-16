@@ -8,7 +8,7 @@ import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { IScannedFile } from '@src/services/analyze/types';
 import { EPermissionScanReports } from '@src/types/permissions';
 
-export const scannedFileHeaderItem: HeaderTable[] = [
+export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
   {
     label: 'table.fileName',
     id: 'file_name',
@@ -71,6 +71,9 @@ export const scannedFileHeaderItem: HeaderTable[] = [
     ),
     class: 'w-1/12 mr-auto',
   },
+];
+export const scannedFileHeaderWithPermission: HeaderTable[] = [
+  ...scannedFileHeaderWithOutPermission,
   {
     label: 'table.downloadRecord',
     id: 'download',

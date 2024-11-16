@@ -17,14 +17,16 @@ import { UsersDaAsList } from './UsersDaAsList';
 export function ReportFileScanPage() {
   const { t } = useTranslation();
 
+  // shouldRetryOnError : cancel the new Request after getting error
   const { data: analyzeScan, isLoading: isLoadingAnalyzeScan } = useSWR<
     ISwrResponse<IScanStats>
   >(E_ANALYZE_SCAN_STATS, HTTP_ANALYSES.fetcherSWR, {
     shouldRetryOnError: false,
   });
+
   const { data: usersDaas, isLoading: isLoadingDaAsList } = useSWR<
     IResponsePagination<IDaAs>
-  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR, {
+  >(`${E_USERS_DAAS}`, http.fetcherSWR, {
     shouldRetryOnError: false,
   });
 

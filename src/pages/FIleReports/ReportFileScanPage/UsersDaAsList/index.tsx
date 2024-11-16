@@ -19,13 +19,13 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 
 import { monitoringHeaderItem } from '../constants/constants';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function UsersDaAsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [modelId, setModelId] = useState('');
+  const [userEmail, setUserEmail] = useState<IDaAs['email']>('');
   const [open, setOpen] = useState(false);
 
   const userPermissions = useUserPermission();
@@ -44,9 +44,9 @@ export function UsersDaAsList() {
     http.fetcherSWR
   );
 
-  const handelClickRow: OnClickActionsType<IDaAs> = (_, dass) => {
-    if (dass?.email) {
-      setModelId(dass?.email);
+  const handelClickRow: OnClickActionsType<IDaAs> = (action, daAs) => {
+    if (action === 'button' && daAs?.email) {
+      setUserEmail(daAs?.email);
       setOpen(true);
     }
   };
@@ -97,11 +97,11 @@ export function UsersDaAsList() {
         open={open}
         setOpen={setOpen}
         type="content"
-        classContainer="w-[20.875rem] sm:w-[39.68rem]"
-        title={t('fileScan.recordedActivities')}
-        descriptionInfo={t('fileScan.userRecordedActivities')}
         icon={PhFolder}
-        content={<ScannedFileList userEmail={modelId} />}
+        title={t('fileScan.recordedActivities')}
+        classContainer="w-[20.875rem] sm:w-[39.68rem]"
+        content={<ScannedFileList userEmail={userEmail} />}
+        descriptionInfo={t('fileScan.userRecordedActivities')}
       />
     </>
   );
