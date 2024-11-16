@@ -1,13 +1,15 @@
+import DateObject from 'react-date-object';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import useSWR from 'swr';
-import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
 
 import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { IScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
+import { MultiDatePicker } from '@redesignUi/atoms/Inputs/DatePicker';
 import {
   API_ANALYZE_DOWNLOAD_FILE,
   API_ANALYZE_SCAN_STATUS_UPDATE,
@@ -17,6 +19,8 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { MultiDatePickerProps } from '@redesignUi/atoms/Inputs/DatePicker/types';
+
 import {
   scannedFileHeaderWithOutPermission,
   scannedFileHeaderWithPermission,
@@ -31,15 +35,21 @@ type ScannedFileListProp = {
 
 export function ScannedFileList({ userEmail }: ScannedFileListProp) {
   const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
-  const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [cleanStatusModal, setCleanStatusModal] = useState(false);
+  const [dateRange, setRangeDate] = useState<DateObject[] | undefined>();
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [loading, setLoading] = useState<boolean>(false);
 
   const userPermissions = useUserPermission();
   const { width } = useWindowDimensions();
   const { t } = useTranslation();
 
-  // Daas users scan reports
+  const handleDatePickerFilter: MultiDatePickerProps['onChange'] = (date) => {
+    setRangeDate(date);
+    console.log(dateRange);
+  };
+
+  // DaAs users scan reports
   const { data, isLoading, mutate, error } = useSWR<
     IResponsePagination<IScannedFile>
   >(
@@ -51,10 +61,11 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
       : null,
     HTTP_ANALYSES.fetcherSWR
   );
-  const listDaas = data?.data?.results ?? [];
+
+  const scanFilesList = data?.data?.results ?? [];
   const countPage = data?.data?.count ?? 0;
   const evidencePermissions =
-    listDaas[listDaas.length - 1]?.evidence_permission;
+    scanFilesList[scanFilesList.length - 1]?.evidence_permission;
 
   const downloadFile = async (fileData: any) => {
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
@@ -112,7 +123,7 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
     onPageChange: (page: number) => setCurrentPage(page),
     paginationLabel: t('table.file'),
     allItems: countPage,
-    itemsPer: listDaas.length,
+    itemsPer: scanFilesList.length,
   };
 
   const scanFileHeader = evidencePermissions
@@ -121,19 +132,17 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
 
   return (
     <div className="w-full">
-      {/* This functionality is disabled cause we do not have service */}
-      {/* <div className="text-start my-5">
+      <div className="text-start my-5">
         <MultiDatePicker
           id="recordFilter"
           name="recordFilter"
-          onChange={() => console.log('This functionality does not work know')}
-          disabled
+          onChange={(date) => handleDatePickerFilter(date)}
         />
-      </div> */}
+      </div>
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable
-            body={listDaas.slice(0, listDaas.length - 1)}
+            body={scanFilesList.slice(0, scanFilesList.length - 1)}
             header={checkPermissionHeaderItem(userPermissions, scanFileHeader)}
             loading={isLoading}
             pagination={paginationProps}
