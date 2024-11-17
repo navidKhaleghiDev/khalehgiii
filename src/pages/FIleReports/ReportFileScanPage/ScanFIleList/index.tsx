@@ -24,6 +24,7 @@ const PAGE = 1;
 
 export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [isLoadingDownload, setIsLoadingDownload] = useState(false);
   // const [dateRange, setDateRange] = useState();
 
   // disable caus the service call
@@ -54,9 +55,9 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
     scanFilesList[scanFilesList.length - 1]?.evidence_permission;
 
   const downloadFile = async (fileData: any) => {
+    setIsLoadingDownload(true);
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
       .then((res) => {
-        console.log(data);
         const response = res.data;
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
@@ -72,7 +73,8 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
             ? t('global.dontHaveAccess')
             : t('global.somethingWentWrong')
         );
-      });
+      })
+      .finally(() => setIsLoadingDownload(false));
   };
 
   // There is no item for updating the scanFile
@@ -138,6 +140,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
           fullWidth
         />
       </form> */}
+      {isLoadingDownload && <div>Downloading....</div>}
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable
