@@ -20,11 +20,15 @@ export const E_ANALYZE_LOG_UPDATE = (id: number) => `${E_ANALYZE_LOG}${id}/`;
 
 export const E_ANALYZE_SCAN_PAGINATION = (
   userEmail: string,
-  { pageSize, page, filter }: IPagination
+  { pageSize, page, filter, dateRange }: any
 ) =>
   `${E_ANALYZE_SCANS}?username=${userEmail}&${
     filter ? `${filter}&` : ''
-  }page_size=${pageSize}&page=${page}`;
+  }page_size=${pageSize}&page=${page}${
+    dateRange
+      ? `&created_at__gte=${dateRange.start_date}&created_at_lte=${dateRange.end_date}`
+      : ''
+  }`;
 
 export const E_ANALYZE_SCAN_USER_PAGINATION = (userEmail: string) =>
   `${E_ANALYZE_SCANS}?username=${userEmail}`;

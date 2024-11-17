@@ -18,13 +18,22 @@ import {
   scannedFileHeaderWithOutPermission,
   scannedFileHeaderWithPermission,
 } from './constants/scannedFileHeaderItem';
-import { ScanFileDatePicker } from './ScanFIleDatePicker';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  // const [dateRange, setDateRange] = useState();
+
+  // disable caus the service call
+  // const { control, handleSubmit } = useForm<FormDate>({
+  //   mode: 'onChange',
+  //   defaultValues: {
+  //     start_date: '',
+  //     end_date: '',
+  //   },
+  // });
 
   const userPermissions = useUserPermission();
   const { width } = useWindowDimensions();
@@ -47,16 +56,14 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const downloadFile = async (fileData: any) => {
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
       .then((res) => {
+        console.log(data);
         const response = res.data;
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
-        a.style.display = 'none';
         a.href = url;
         a.download = fileData.file_name;
-
         document.body.appendChild(a);
         a.click();
-
         window.URL.revokeObjectURL(url);
       })
       .catch(() => {
@@ -109,9 +116,28 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
     ? scannedFileHeaderWithPermission
     : scannedFileHeaderWithOutPermission;
 
+  // Disable cause the service call dose not work
+  // const handelDateForm = (date: any) => {
+  //   const updatedData = {
+  //     start_date: convertI2ToAD(date.start_date[0]),
+  //     end_date: convertI2ToAD(date.start_date[1]),
+  //   };
+  //   setDateRange(updatedData);
+  // };
+
   return (
     <div className="w-full">
-      <ScanFileDatePicker />
+      {/* Disable cause the service dose not work */}
+      {/* <form onSubmit={handleSubmit(handelDateForm)}>
+        <MultiDatePickerController
+          control={control}
+          id="start_date"
+          name="start_date"
+          format="YYYY-MM-DD"
+          maxDate={new Date()}
+          fullWidth
+        />
+      </form> */}
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable
