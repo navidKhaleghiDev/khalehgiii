@@ -68,8 +68,3 @@ export interface IAddConfigAnalyze {
   log_server_host: string;
   log_server_port: number;
 }
-export interface IAddConfigAnalyzeDownload {
-  file_content_type: string;
-  username: string;
-  file_hash: string;
-}

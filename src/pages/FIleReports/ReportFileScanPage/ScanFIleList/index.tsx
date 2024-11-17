@@ -1,5 +1,5 @@
-import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import useSWR from 'swr';
 
@@ -13,6 +13,7 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { StringifyProperties } from '@src/types/global';
 
 import {
   scannedFileHeaderWithOutPermission,
@@ -54,7 +55,9 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const evidencePermissions =
     scanFilesList[scanFilesList.length - 1]?.evidence_permission;
 
-  const downloadFile = async (fileData: any) => {
+  const downloadFile = async (
+    fileData: IScannedFile | StringifyProperties<IScannedFile>
+  ) => {
     setIsLoadingDownload(true);
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
       .then((res) => {
@@ -93,7 +96,9 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   // };
 
   const handelClickRow: OnClickActionsType<IScannedFile> = (action, item) => {
-    if (action === 'download') downloadFile(item);
+    if (action === 'download' && item) {
+      downloadFile(item);
+    }
 
     // There is no item for editing the items
     // } else if (action === 'edit') {
