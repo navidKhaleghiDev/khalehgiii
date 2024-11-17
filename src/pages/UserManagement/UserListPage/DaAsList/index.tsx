@@ -13,7 +13,6 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
-import { SessionRecordingList } from '@src/pages/SessionRecording/SessionRecordingList';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
@@ -24,6 +23,7 @@ import userFocus from '@iconify-icons/ph/user-focus';
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 import { desktopListHeaderItem } from './constants/desktopListHeaderItem';
+import { SessionRecordingList } from '../SessionRecording/SessionRecordingList';
 
 function compareExtensionLists(
   oldList?: Record<string, number>,

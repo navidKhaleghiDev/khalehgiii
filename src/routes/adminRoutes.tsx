@@ -1,4 +1,3 @@
-import UnauthorizedPage from '@src/pages/Unauthorized';
 import { NotFoundPage } from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
@@ -15,9 +14,6 @@ import {
 } from '@src/types/permissions';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
-import Application from '@src/pages/Setting/Application';
-import { DaasSetting } from '@src/pages/Setting/DaasSetting';
-import { DlpSetting } from '@src/pages/Setting/DlpSetting';
 import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
 import { DashboardDesktopListPage } from '@src/pages/UserManagement/UserListPage';
 import { DashboardAdminsListPage } from '@src/pages/UserManagement/AdminListPage';
@@ -28,6 +24,10 @@ import { GroupManagement } from '@src/pages/UserManagement/GroupManagement';
 import { MonitoringPage } from '@src/pages/SystemStrategy/MonitoringPage';
 import { DashboardExtensionListPage } from '@src/pages/SystemStrategy/ExtensionListPage';
 import { License } from '@src/pages/SystemStrategy/LicensePage';
+import Application from '@src/pages/Setting/Application';
+import UnauthorizedPage from '@src/pages/Unauthorized';
+import { DaasSetting } from '@src/pages/Setting/DaasSetting';
+import { DlpSetting } from '@src/pages/Setting/DlpSetting';
 
 import { ProtectedRoute } from './ProtectedRoute';
 import { ROUTES_PATH } from './routesConstants';
