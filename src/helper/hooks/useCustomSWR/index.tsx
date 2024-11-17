@@ -7,8 +7,8 @@ type SwrResponseType<T> = {
   error: string;
   isLoading: boolean;
   isValidating: boolean;
-  count?: IResponsePagination<T>['data']['count'];
-  resultData?: IResponsePagination<T>['data']['results'];
+  count: IResponsePagination<T>['data']['count'];
+  resultData: IResponsePagination<T>['data']['results'];
   mutate: SWRResponse<IResponsePagination<T>, string>['mutate'];
 };
 

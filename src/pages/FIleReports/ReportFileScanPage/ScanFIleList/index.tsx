@@ -1,15 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import useSWR from 'swr';
 
 import { HTTP_ANALYSES } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
 import { IScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { API_ANALYZE_DOWNLOAD_FILE } from '@src/services/analyze';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { useCustomSwr } from '@src/helper/hooks/useCustomSWR';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
@@ -42,18 +41,16 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const { t } = useTranslation();
 
   // Daas user scan reports
-  const { data, isLoading, error } = useSWR<IResponsePagination<IScannedFile>>(
+  const { isLoading, error, resultData, count } = useCustomSwr<IScannedFile>(
     E_ANALYZE_SCAN_PAGINATION(userEmail, {
       page: currentPage,
       pageSize: PAGE_SIZE,
     }),
     HTTP_ANALYSES.fetcherSWR
   );
-  const scanFilesList = data?.data?.results ?? [];
-  const countPage = data?.data?.count ?? 0;
   // Daas user download file permission
   const evidencePermissions =
-    scanFilesList[scanFilesList.length - 1]?.evidence_permission;
+    resultData[resultData.length - 1]?.evidence_permission;
 
   const downloadFile = async (
     fileData: IScannedFile | StringifyProperties<IScannedFile>
@@ -111,13 +108,13 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
 
   // Table data
   const paginationProps = {
-    countPage,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     onPageChange: (page: number) => setCurrentPage(page),
     paginationLabel: t('table.file'),
-    allItems: countPage,
-    itemsPer: scanFilesList.length,
+    allItems: count,
+    itemsPer: resultData.length,
   };
   const scanFileHeader = evidencePermissions
     ? scannedFileHeaderWithPermission
@@ -149,7 +146,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable
-            body={scanFilesList.slice(0, scanFilesList.length - 1)}
+            body={resultData.slice(0, resultData.length - 1)}
             header={checkPermissionHeaderItem(userPermissions, scanFileHeader)}
             loading={isLoading}
             pagination={paginationProps}

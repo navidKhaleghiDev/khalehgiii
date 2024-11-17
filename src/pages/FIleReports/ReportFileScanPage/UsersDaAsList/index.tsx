@@ -1,11 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useSWR from 'swr';
 
 import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
+import { useCustomSwr } from '@src/helper/hooks/useCustomSWR';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
@@ -39,7 +38,7 @@ export function UsersDaAsList() {
     filterQuery: searchQuery,
     currentPage,
   });
-  const { data, isLoading, error } = useSWR<IResponsePagination<IDaAs>>(
+  const { isLoading, error, resultData, count } = useCustomSwr<IDaAs>(
     endpoint,
     http.fetcherSWR
   );
@@ -55,16 +54,14 @@ export function UsersDaAsList() {
     setSearchQuery(searchValue);
   }, []);
 
-  const listDaAs = data?.data.results ?? [];
-  const listDaAsCount = data?.data.count ?? 0;
   const paginationProps = {
-    countPage: listDaAsCount,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(listDaAsCount / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     onPageChange: (page: number) => setCurrentPage(page),
     paginationLabel: t('header.admin'),
-    allItems: listDaAsCount,
-    itemsPer: listDaAs.length,
+    allItems: count,
+    itemsPer: resultData.length,
   };
 
   return (
@@ -79,7 +76,7 @@ export function UsersDaAsList() {
         {!error ? (
           <BaseTable
             loading={isLoading}
-            body={listDaAs}
+            body={resultData}
             header={checkPermissionHeaderItem(
               userPermissions,
               monitoringHeaderItem
