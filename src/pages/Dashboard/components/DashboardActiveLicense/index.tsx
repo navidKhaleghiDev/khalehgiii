@@ -53,7 +53,11 @@ export function DashboardActiveLicense() {
                 subValue={license.active || 0}
                 totalValue={license.number || 0}
                 title={license.name}
-                date={moment(license.expiry).format('jYYYY/jMM/jDD')}
+                date={
+                  license.expiry
+                    ? moment(license.expiry).format('jYYYY/jMM/jDD')
+                    : '---'
+                }
                 className="flex-shrink-0 w-[12.125rem] sm:w-[15.875rem] hover:border-transparent active:border-transparent cursor-default dark:border-none"
                 key={license.name}
                 color={color}
