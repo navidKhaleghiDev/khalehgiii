@@ -7,7 +7,6 @@ import { HTTP_ANALYSES } from '@src/services/http';
 import { IResponsePagination } from '@src/types/services';
 import { IScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
-import { scannedFileHeaderItem } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList/constants/scannedFileHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import {
   API_ANALYZE_DOWNLOAD_FILE,
@@ -18,6 +17,8 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+
+import { scannedFileHeaderItem } from './constants/scannedFileHeaderItem';
 
 const PAGE_SIZE = 5;
 const PAGE = 1;

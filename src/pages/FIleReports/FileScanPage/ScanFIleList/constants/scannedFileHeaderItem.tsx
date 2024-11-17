@@ -3,10 +3,11 @@ import {
   HeaderTable,
 } from '@redesignUi/molecules/BaseTable/types';
 import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
-import { ErrorIcon } from '@src/pages/FIleReports/ReportFileScanPage/Components/ErrorIcon';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { IScannedFile } from '@src/services/analyze/types';
 import { EPermissionScanReports } from '@src/types/permissions';
+
+import { ErrorIcon } from '../../Components/ErrorIcon';
 
 export const scannedFileHeaderItem: HeaderTable[] = [
   {

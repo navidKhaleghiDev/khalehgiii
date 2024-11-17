@@ -11,13 +11,13 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import PhFolder from '@iconify-icons/ph/folder';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { ScannedFileList } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { monitoringHeaderItem } from '../constants/constants';
+import { ScannedFileList } from '../ScanFIleList';
 
 const PAGE_SIZE = 5;
 const PAGE = 1;

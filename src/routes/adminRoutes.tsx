@@ -13,21 +13,21 @@ import {
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
-import { InternetLog } from '@src/pages/Dashboard/InternetLog';
-import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
-import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
-import { ReportFileScanPage } from '@src/pages/FIleReports/ReportFileScanPage';
 import { DlpSetting } from '@src/pages/Setting/DlpSetting';
-import { License } from '@src/pages/Lisence';
 import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
-import { GroupManagement } from '@src/pages/Dashboard/GroupManagement';
-import { GroupManagementEdit } from '@src/pages/UserManagement/GroupManagement/GroupManagementEdit';
 import { DashboardDesktopListPage } from '@src/pages/UserManagement/UserListPage';
 import { DashboardAdminsListPage } from '@src/pages/UserManagement/AdminListPage';
+import { InternetLog } from '@src/pages/SystemStrategy/InternetLogPage';
+import { GroupManagementEdit } from '@src/pages/UserManagement/GroupManagement/GroupManagementEdit';
+import { ReportFileScanPage } from '@src/pages/FIleReports/FileScanPage';
+import { GroupManagement } from '@src/pages/UserManagement/GroupManagement';
+import { MonitoringPage } from '@src/pages/SystemStrategy/MonitoringPage';
+import { DashboardExtensionListPage } from '@src/pages/SystemStrategy/ExtensionListPage';
+import { License } from '@src/pages/SystemStrategy/LicensePage';
 
 import { ProtectedRoute } from './ProtectedRoute';
 import { ROUTES_PATH } from './routesConstants';
