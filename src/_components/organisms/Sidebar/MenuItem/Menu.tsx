@@ -36,7 +36,7 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
           to={item.path}
           target={item.isNewTab ? '_blank' : '_self'}
         >
-          <div className={`flex items-center ${!collapsed && 'fixed'}`}>
+          <div className={`flex items-center ${!collapsed && ''}`}>
             {item?.icon && (
               <BaseIcon
                 icon={item.icon}

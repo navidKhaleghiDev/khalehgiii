@@ -59,7 +59,7 @@ export function SideBar(): JSX.Element {
   return (
     <div
       className={`relative z-30 flex flex-col justify-between items-end h-full ${
-        windowDimensions.height <= 760 || windowDimensions.width <= 1280
+        windowDimensions.height <= 768 || windowDimensions.width <= 1280
           ? 'hidden'
           : ''
       }

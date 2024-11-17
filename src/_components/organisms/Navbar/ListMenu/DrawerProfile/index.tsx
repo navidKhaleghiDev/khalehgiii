@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+
+import { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { t } from 'i18next';
 
@@ -53,25 +54,26 @@ export function DrawerProfile() {
         lang === 'fa' ? 'right-0' : 'left-0'
       } z-50 w-[17.12rem] lg:w-[19.18rem] h-full bg-white dark:bg-gray-600 shadow-md flex flex-col justify-between transition-transform duration-500`}
     >
-      <div className="flex flex-col w-[14.37rem] h-[25rem] mx-auto pt-5">
-        <div className="flex justify-between items-center  w-full h-[3.75rem]">
-          <BaseSwitchWithIcon
-            id="1"
-            name="dark"
-            checked={isDark}
-            onChange={toggleTheme}
-            rightIcon={sunRisingTwotoneLoop}
-            leftIcon={moonTwotoneAltLoop}
-          />
-          <IconButton
-            icon={x}
-            size="md"
-            color="neutralNoBg"
-            onClick={() => setIsOpen(false)}
-          />
-        </div>
-        <hr className="w-full bg-white border border-gray-300 rounded my-4" />
+      <div className="flex justify-between items-center w-full h-[3.75rem] p-5">
+        <BaseSwitchWithIcon
+          id="1"
+          name="dark"
+          checked={isDark}
+          onChange={toggleTheme}
+          rightIcon={sunRisingTwotoneLoop}
+          leftIcon={moonTwotoneAltLoop}
+        />
+        <IconButton
+          icon={x}
+          size="md"
+          color="neutralNoBg"
+          onClick={() => setIsOpen(false)}
+        />
+      </div>
 
+      <hr className="w-full bg-white border border-gray-300 rounded my-4" />
+
+      <div className="flex-1 overflow-y-auto px-5">
         {navigationSideBar.map((item: NavigationProps, index) => {
           const shouldAddHR = [2].includes(index);
           if (!item.items) {
@@ -101,7 +103,7 @@ export function DrawerProfile() {
         })}
       </div>
 
-      <div className="flex flex-col items-start w-full mb-5 px-3">
+      <div className="flex flex-col items-start w-full mb-5 px-5 bg-white sticky bottom-0">
         <div className="flex items-center">
           <Avatar icon={User} size="md" className="my-3" />
           <div className="mx-2">

@@ -26,7 +26,7 @@ export function NavbarDashboard(): JSX.Element {
         <div className="flex justify-between items-center pt-[0.93rem] pb-[0.56rem] gap-2.5 ">
           <div
             className={`${
-              windowDimensions.height <= 760 || windowDimensions.width <= 1280
+              windowDimensions.height <= 768 || windowDimensions.width <= 1280
                 ? 'block'
                 : 'hidden'
             }`}
