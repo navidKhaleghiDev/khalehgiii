@@ -59,7 +59,7 @@ export function SideBar(): JSX.Element {
   return (
     <div
       className={`relative z-30 flex flex-col justify-between items-end h-full ${
-        windowDimensions.height <= 768 || windowDimensions.width <= 1280
+        windowDimensions.height <= 760 || windowDimensions.width <= 1280
           ? 'hidden'
           : ''
       }
@@ -67,7 +67,7 @@ export function SideBar(): JSX.Element {
         toggleSidebar ? 'w-64' : 'w-16'
       } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600 rounded-lg`}
     >
-      <div className="flex flex-col items-center w-full mt-5 px-3">
+      <div className="flex flex-col items-center w-full mt-5 px-3 overflow-y-auto overflow-x-hidden">
         <div
           className={`flex flex-col ${
             toggleSidebar ? 'items-start' : 'items-center'
@@ -83,83 +83,88 @@ export function SideBar(): JSX.Element {
           />
           <hr className="w-full bg-white border border-gray-300 rounded my-5" />
         </div>
+        <div
+          className={`${
+            toggleSidebar ? 'w-full' : ''
+          } overflow-y-auto overflow-x-hidden`}
+        >
+          {navigationSideBar.map((item: NavigationProps, index) => {
+            const shouldAddHR = [2].includes(index);
 
-        {navigationSideBar.map((item: NavigationProps, index) => {
-          const shouldAddHR = [2].includes(index);
-
-          if (!item.items) {
-            return !toggleSidebar ? (
-              <ToolTip
-                position={lang === 'fa' ? 'left' : 'right'}
-                key={item.id}
-                tooltip={`${item.label}`}
-              >
-                <MenuItem
-                  item={item}
-                  pathname={pathname}
-                  collapsed={!toggleSidebar}
-                />
-              </ToolTip>
-            ) : (
-              <div className="w-full" key={item.id}>
-                <MenuItem
-                  item={item}
-                  pathname={pathname}
-                  collapsed={!toggleSidebar}
-                />
-              </div>
-            );
-          }
-
-          return toggleSidebar ? (
-            <div className="w-full" key={item.id}>
-              <MenuItemAccordion
-                open={openAccordion}
-                setOpen={setOpenAccordion}
-                index={index}
-                item={item}
-                pathname={pathname}
-                collapsed={!toggleSidebar}
-                icon={item.icon}
-              />
-              {shouldAddHR && (
-                <hr className="w-full bg-white border border-gray-300 rounded my-5" />
-              )}
-            </div>
-          ) : (
-            <div className="flex justify-center flex-col items-center">
-              <div
-                key={item.id}
-                onPointerUp={() => {
-                  if (isDropdownVisible?.id === item.id) {
-                    setDropdownVisible(null);
-                  } else {
-                    setDropdownVisible(item);
-                  }
-                }}
-                className={`flex justify-center flex-col items-center cursor-pointer ${
-                  toggleSidebar ? 'w-full' : null
-                }`}
-              >
-                <MenuItem
-                  item={item}
-                  pathname={pathname}
-                  collapsed={!toggleSidebar}
-                />
-
-                {isDropdownVisible?.id === item.id && !toggleSidebar && (
-                  <MenuDropdown
-                    items={item.items}
-                    mouseHover={() => setDropdownVisible(null)}
+            if (!item.items) {
+              return !toggleSidebar ? (
+                <ToolTip
+                  position={lang === 'fa' ? 'left' : 'right'}
+                  key={item.id}
+                  tooltip={`${item.label}`}
+                >
+                  <MenuItem
+                    item={item}
+                    pathname={pathname}
+                    collapsed={!toggleSidebar}
                   />
+                </ToolTip>
+              ) : (
+                <div className="w-full" key={item.id}>
+                  <MenuItem
+                    item={item}
+                    pathname={pathname}
+                    collapsed={!toggleSidebar}
+                  />
+                </div>
+              );
+            }
+
+            return toggleSidebar ? (
+              <div className="w-full" key={item.id}>
+                <MenuItemAccordion
+                  open={openAccordion}
+                  setOpen={setOpenAccordion}
+                  index={index}
+                  item={item}
+                  pathname={pathname}
+                  collapsed={!toggleSidebar}
+                  icon={item.icon}
+                />
+                {shouldAddHR && (
+                  <hr className="w-full bg-white border border-gray-300 rounded my-5" />
                 )}
               </div>
-              {shouldAddHR && (
-                <hr className="w-10 bg-white border border-gray-300 rounded my-5" />
-              )}
-            </div>
-          );
-        })}
+            ) : (
+              <div className="flex justify-center flex-col items-center">
+                <div
+                  key={item.id}
+                  onPointerUp={() => {
+                    if (isDropdownVisible?.id === item.id) {
+                      setDropdownVisible(null);
+                    } else {
+                      setDropdownVisible(item);
+                    }
+                  }}
+                  className={`flex justify-center flex-col items-center cursor-pointer ${
+                    toggleSidebar ? 'w-full' : null
+                  }`}
+                >
+                  <MenuItem
+                    item={item}
+                    pathname={pathname}
+                    collapsed={!toggleSidebar}
+                  />
+
+                  {isDropdownVisible?.id === item.id && !toggleSidebar && (
+                    <MenuDropdown
+                      items={item.items}
+                      mouseHover={() => setDropdownVisible(null)}
+                    />
+                  )}
+                </div>
+                {shouldAddHR && (
+                  <hr className="w-10 bg-white border border-gray-300 rounded my-5" />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div

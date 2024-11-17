@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { t } from 'i18next';

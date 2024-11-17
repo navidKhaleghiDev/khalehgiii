@@ -36,18 +36,18 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
           to={item.path}
           target={item.isNewTab ? '_blank' : '_self'}
         >
-          <div className={`flex items-center ${!collapsed && ''}`}>
-            {item?.icon && (
+          <div className="flex items-center">
+            {item?.icon ? (
               <BaseIcon
                 icon={item.icon}
                 className="w-6 h-6 text-gray-500 dark:text-gray-300"
               />
-            )}
-            {!collapsed && (
+            ) : null}
+            {!collapsed ? (
               <Typography className="pt-1 px-2" variant="body5">
                 {item.label}
               </Typography>
-            )}
+            ) : null}
           </div>
         </Link>
       ) : (
@@ -57,18 +57,18 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
             isChildren,
           })}
         >
-          <div className={`flex items-center ${!collapsed && 'fixed'}`}>
-            {item?.icon && (
+          <div className="flex items-center">
+            {item?.icon ? (
               <BaseIcon
                 icon={item.icon}
                 className="w-6 h-6 text-gray-500 dark:text-gray-300"
               />
-            )}
-            {!collapsed && (
+            ) : null}
+            {!collapsed ? (
               <Typography className="pt-1 px-2" variant="body5">
                 {item.label}
               </Typography>
-            )}
+            ) : null}
           </div>
         </div>
       )}

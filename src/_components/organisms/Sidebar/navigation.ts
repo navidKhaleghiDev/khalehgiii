@@ -16,6 +16,7 @@ export const navigationSideBar: NavigationProps[] = [
     label: t('global.home'),
     path: ROUTES_PATH.home,
     icon: PhHouseSimpleDuotone,
+    items: [],
   },
   {
     id: '2',
@@ -120,5 +121,6 @@ export const navigationSideBar: NavigationProps[] = [
     label: t('dashboard.scanChart'),
     path: ROUTES_PATH.chart,
     icon: PhChartBarDuotone,
+    items: [],
   },
 ];
