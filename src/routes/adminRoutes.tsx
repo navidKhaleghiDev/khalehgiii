@@ -14,23 +14,23 @@ import {
   EPermissionUsers,
 } from '@src/types/permissions';
 import { InternetLog } from '@src/pages/Dashboard/InternetLog';
-import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
-import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
 import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
 import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
-import { GroupManagementEdit } from '@src/pages/GroupManagement/GroupManagementEdit';
-import { GroupManagement } from '@src/pages/GroupManagement';
 import Application from '@src/pages/Setting/Application';
 import { DaasSetting } from '@src/pages/Setting/DaasSetting';
 import { ReportFileScanPage } from '@src/pages/FIleReports/ReportFileScanPage';
 import { DlpSetting } from '@src/pages/Setting/DlpSetting';
 import { License } from '@src/pages/Lisence';
 import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
+import { GroupManagement } from '@src/pages/Dashboard/GroupManagement';
+import { GroupManagementEdit } from '@src/pages/UserManagement/GroupManagement/GroupManagementEdit';
+import { DashboardDesktopListPage } from '@src/pages/UserManagement/UserListPage';
+import { DashboardAdminsListPage } from '@src/pages/UserManagement/AdminListPage';
 
-import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
+import { ROUTES_PATH } from './routesConstants';
 
 export const adminRoutes = [
   {

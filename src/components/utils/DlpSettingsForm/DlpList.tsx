@@ -8,10 +8,10 @@ import {
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { BaseInput, regexPattern } from '@redesignUi/atoms/Inputs';
-import { ChipButtonUserAccessModal } from '@src/pages/DashboardDesktopList/DaAsList/components/ChipButtonUserAccessModal';
 import X from '@iconify-icons/ph/x';
 import { useLanguage } from '@context/settings/languageContext';
 import { BaseInputNumber } from '@redesignUi/atoms/Inputs/BaseInputNumber';
+import { ChipButtonUserAccessModal } from '@src/pages/UserManagement/UserListPage/DaAsList/components/ChipButtonUserAccessModal';
 
 type PropsType = {
   name: keyof IDaAs;

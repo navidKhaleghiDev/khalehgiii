@@ -12,7 +12,6 @@ import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { desktopListHeaderItem } from '@src/pages/DashboardDesktopList/DaAsList/constants/desktopListHeaderItem';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { SessionRecordingList } from '@src/pages/SessionRecording/SessionRecordingList';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
@@ -24,6 +23,7 @@ import userFocus from '@iconify-icons/ph/user-focus';
 
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
+import { desktopListHeaderItem } from './constants/desktopListHeaderItem';
 
 function compareExtensionLists(
   oldList?: Record<string, number>,
