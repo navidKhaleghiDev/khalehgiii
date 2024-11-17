@@ -41,7 +41,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
         </Typography>
 
         <Typography className="text-gray-900 dark:text-white font-semibold leading-7 text-base sm:text-lg md:text-xl">
-          {count ?? 0}
+          {count ?? '-'}
         </Typography>
       </div>
     </Card>
