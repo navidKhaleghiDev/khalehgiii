@@ -42,9 +42,6 @@ export function MenuItemAccordion(props: MenuItemAccordionProps): JSX.Element {
   const isInSubMenu =
     hasSubMenu && item.items?.some((subItem) => pathname === subItem.path);
 
-  const hasItem = !!item.items?.length;
-  console.log(hasItem);
-
   return (
     <div>
       <button
@@ -65,9 +62,7 @@ export function MenuItemAccordion(props: MenuItemAccordionProps): JSX.Element {
             </Typography>
           )}
         </div>
-        {hasItem && (
-          <BaseIcon icon={open === index ? PhCaretDown : iconDirection} />
-        )}
+        <BaseIcon icon={open === index ? PhCaretDown : iconDirection} />
       </button>
       <div className={`${open !== index && 'hidden'}`}>
         {item.items?.map((i: NavigationProps) => (

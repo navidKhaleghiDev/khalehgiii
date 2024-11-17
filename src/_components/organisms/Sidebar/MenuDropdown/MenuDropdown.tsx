@@ -27,6 +27,7 @@ export function MenuDropdown({ items, mouseHover }: MenuDropdownProps) {
     setValue: setIsOpen,
     value: isOpen,
   });
+  console.log(isOpen);
   return isOpen ? (
     <div
       ref={dropdownRef}

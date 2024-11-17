@@ -10,3 +10,7 @@ export interface NavigationProps {
   items?: NavigationProps[];
   mouseHover?: () => void;
 }
+export interface SideBarFooterProps {
+  toggle?: boolean;
+  toggleSidebarHandler?: () => void;
+}
