@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { IDaAs } from '@src/services/users/types';
 import { http } from '@src/services/http';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import { useCustomSwr } from '@src/helper/hooks/useCustomSWR';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
@@ -13,6 +12,7 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { ScannedFileList } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { usePaginationSwr } from '@src/services/http/httpClient';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
@@ -38,7 +38,7 @@ export function UsersDaAsList() {
     filterQuery: searchQuery,
     currentPage,
   });
-  const { isLoading, error, resultData, count } = useCustomSwr<IDaAs>(
+  const { isLoading, error, resultData, count } = usePaginationSwr<IDaAs>(
     endpoint,
     http.fetcherSWR
   );

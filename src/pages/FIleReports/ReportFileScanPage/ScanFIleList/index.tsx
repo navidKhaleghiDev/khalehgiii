@@ -8,11 +8,11 @@ import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { API_ANALYZE_DOWNLOAD_FILE } from '@src/services/analyze';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { useCustomSwr } from '@src/helper/hooks/useCustomSWR';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { StringifyProperties } from '@src/types/global';
+import { usePaginationSwr } from '@src/services/http/httpClient';
 
 import {
   scannedFileHeaderWithOutPermission,
@@ -41,13 +41,14 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const { t } = useTranslation();
 
   // Daas user scan reports
-  const { isLoading, error, resultData, count } = useCustomSwr<IScannedFile>(
-    E_ANALYZE_SCAN_PAGINATION(userEmail, {
-      page: currentPage,
-      pageSize: PAGE_SIZE,
-    }),
-    HTTP_ANALYSES.fetcherSWR
-  );
+  const { isLoading, error, resultData, count } =
+    usePaginationSwr<IScannedFile>(
+      E_ANALYZE_SCAN_PAGINATION(userEmail, {
+        page: currentPage,
+        pageSize: PAGE_SIZE,
+      }),
+      HTTP_ANALYSES.fetcherSWR
+    );
   // Daas user download file permission
   const evidencePermissions =
     resultData[resultData.length - 1]?.evidence_permission;
