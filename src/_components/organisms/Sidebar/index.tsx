@@ -20,18 +20,16 @@ export function SideBar(): JSX.Element {
 
   return (
     <div
-      className={`relative z-30 flex flex-col justify-between items-end h-full ${
+      className={`relative z-30 flex flex-col justify-between items-end h-full bg-white dark:bg-gray-600 rounded-2xl ${
         windowDimensions.height <= 760 || windowDimensions.width <= 1280
           ? 'hidden'
           : ''
       }
-      ${
-        toggleSidebar ? 'w-64' : 'w-16'
-      } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600 rounded-lg`}
+     `}
     >
-      <div className="flex flex-col items-center w-full mt-5 px-3 overflow-y-auton">
+      <div className="flex flex-col items-center w-full mt-5 overflow-y-auto overflow-x-hidden">
         <div
-          className={`flex flex-col ${
+          className={`flex flex-col sticky top-0 pt-5 px-3 bg-white dark:bg-gray-600 ${
             toggleSidebar ? 'items-start' : 'items-center'
           } w-full`}
         >
@@ -43,7 +41,7 @@ export function SideBar(): JSX.Element {
             rightIcon={sunRisingTwotoneLoop}
             leftIcon={moonTwotoneAltLoop}
           />
-          <hr className="w-full bg-white border border-gray-300 rounded mt-5 mb-2" />
+          <hr className="w-full bg-white border border-gray-300 rounded mt-5" />
         </div>
         <MenuContent collaps={toggleSidebar} />
       </div>

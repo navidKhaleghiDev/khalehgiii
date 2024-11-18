@@ -102,7 +102,7 @@ export function DrawerProfile() {
         })}
       </div>
 
-      <div className="flex flex-col items-start w-full mb-5 px-5 bg-white sticky bottom-0">
+      <div className="flex flex-col items-start w-full mb-5 px-5 sticky bottom-0">
         <div className="flex items-center">
           <Avatar icon={User} size="md" className="my-3" />
           <div className="mx-2">

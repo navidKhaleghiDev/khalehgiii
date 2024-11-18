@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 import { useLanguage } from '@context/settings/languageContext';
 import { ToolTip } from '@redesignUi/atoms/Tooltip';
-import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { NavigationProps } from '../types';
 import { navigationSideBar } from '../navigation';
@@ -17,25 +16,16 @@ export function MenuContent({ collaps }: any): JSX.Element {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const { pathname } = useLocation();
   const { lang } = useLanguage();
-  const windowDimensions = useWindowDimensions();
 
   return (
     <div
-      className={`relative z-30 flex flex-col justify-between items-end h-full ${
-        windowDimensions.height <= 760 || windowDimensions.width <= 1280
-          ? 'hidden'
-          : ''
-      }
+      className={`
       ${
         collaps ? 'w-64' : 'w-16'
-      } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600 rounded-lg`}
+      } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600`}
     >
       <div className="flex flex-col items-center w-full mt-1 px-3 overflow-y-auto overflow-x-hidden">
-        <div
-          className={`${
-            collaps ? 'w-full' : ''
-          } overflow-y-auto overflow-x-hidden`}
-        >
+        <div className={`${collaps ? 'w-full' : ''}`}>
           {navigationSideBar.map((item: NavigationProps, index) => {
             const shouldAddHR = [2].includes(index);
 
@@ -107,7 +97,7 @@ export function MenuContent({ collaps }: any): JSX.Element {
                   )}
                 </div>
                 {shouldAddHR && (
-                  <hr className="w-10 bg-white border border-gray-300 rounded my-1" />
+                  <hr className="w-10 bg-white border border-gray-300 rounded my-2" />
                 )}
               </div>
             );
