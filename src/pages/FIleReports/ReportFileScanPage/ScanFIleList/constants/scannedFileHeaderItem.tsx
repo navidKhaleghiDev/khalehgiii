@@ -2,12 +2,14 @@ import {
   BaseTableComponentCellProps,
   HeaderTable,
 } from '@redesignUi/molecules/BaseTable/types';
-import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
 import { ErrorIcon } from '@src/pages/FIleReports/ReportFileScanPage/Components/ErrorIcon';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { IScannedFile } from '@src/services/analyze/types';
 import { EPermissionScanReports } from '@src/types/permissions';
 
+import { VirusTag } from '../VirusTag';
+
+// Header without evidence permissions
 export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
   {
     label: 'table.fileName',
@@ -27,11 +29,8 @@ export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
     label: 'table.resultScanerStatusYara',
     id: 'yara_scanner_result',
     type: 'component',
-    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
-      <TagHelperCell
-        title={props.row.yara_scan_result ? 'Virus' : 'N.V'}
-        color={props.row.yara_scan_result ? 'red' : 'teal'}
-      />
+    component: ({ row }: BaseTableComponentCellProps<IScannedFile>) => (
+      <VirusTag virusResult={row.yara_scan_result} />
     ),
     class: 'px-3 w-2/12',
     isMobileCollapsed: true,
@@ -40,11 +39,8 @@ export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
     label: 'table.resultScanerStatusSandbox',
     id: 'antiviruses_scanner_result',
     type: 'component',
-    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
-      <TagHelperCell
-        title={props.row.antiviruses_scan_result ? 'Virus' : 'N.V'}
-        color={props.row.antiviruses_scan_result ? 'red' : 'teal'}
-      />
+    component: ({ row }: BaseTableComponentCellProps<IScannedFile>) => (
+      <VirusTag virusResult={row.antiviruses_scan_result} />
     ),
     class: 'px-3 w-2/12',
     isMobileCollapsed: true,
@@ -53,11 +49,8 @@ export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
     label: 'table.resultScanerStatusClamav',
     id: 'clamav_scan_result',
     type: 'component',
-    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
-      <TagHelperCell
-        title={props.row.clamav_scan_result ? 'Virus' : 'N.V'}
-        color={props.row.clamav_scan_result ? 'red' : 'teal'}
-      />
+    component: ({ row }: BaseTableComponentCellProps<IScannedFile>) => (
+      <VirusTag virusResult={row.clamav_scan_result} />
     ),
     class: 'px-3 w-2/12',
     isMobileCollapsed: true,
@@ -72,6 +65,8 @@ export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
     class: 'w-1/12 mr-auto',
   },
 ];
+
+// Header with evidence permissions
 export const scannedFileHeaderWithPermission: HeaderTable[] = [
   ...scannedFileHeaderWithOutPermission,
   {
