@@ -201,8 +201,8 @@ export function DaasSettingForm({
           <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
             <BaseCheckBoxController
               control={control}
-              id="chrome_file_limit"
-              name="chrome_file_limit"
+              id=""
+              name=""
               label={t('setting.chrome')}
             />
             <ChromeSvg />
@@ -211,8 +211,8 @@ export function DaasSettingForm({
         <div className="grid w-full grid-cols-12 gap-[1.87rem] mb-3">
           <div className={inputStyle}>
             <BaseInputNumberController
-              id="memory_file_size_gb_chrome"
-              name="memory_file_size_gb_chrome"
+              id=""
+              name=""
               control={control}
               label={t('setting.memory')}
               disabled={!hasChangePermission}
@@ -248,8 +248,8 @@ export function DaasSettingForm({
           <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
             <BaseCheckBoxController
               control={control}
-              id="firefox_file_limit"
-              name="firefox_file_limit"
+              id=""
+              name=""
               label={t('setting.fireFox')}
             />
             <FirefoxSvg />
@@ -258,8 +258,8 @@ export function DaasSettingForm({
         <div className="grid w-full grid-cols-12 gap-[1.87rem]">
           <div className={inputStyle}>
             <BaseInputNumberController
-              id="memory_file_size_gb_firefox"
-              name="memory_file_size_gb_firefox"
+              id=""
+              name=""
               control={control}
               label={t('setting.memory')}
               disabled={!hasChangePermission}
@@ -275,8 +275,8 @@ export function DaasSettingForm({
           </div>
           <div className={inputStyle}>
             <BaseInputNumberController
-              id="cpu_file_size_gb_firefox"
-              name="cpu_file_size_gb_firefox"
+              id=""
+              name=""
               control={control}
               label={t('setting.cpu')}
               disabled={!hasChangePermission}
