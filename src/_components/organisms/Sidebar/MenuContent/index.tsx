@@ -107,7 +107,7 @@ export function MenuContent({ collaps }: any): JSX.Element {
                   )}
                 </div>
                 {shouldAddHR && (
-                  <hr className="w-10 bg-white border border-gray-300 rounded my-5" />
+                  <hr className="w-10 bg-white border border-gray-300 rounded my-1" />
                 )}
               </div>
             );

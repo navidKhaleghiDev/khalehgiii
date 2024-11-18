@@ -11,7 +11,6 @@ import { SideBarFooter } from './SideBarFooter';
 
 export function SideBar(): JSX.Element {
   const [toggleSidebar, setToggleSidebar] = useState(false);
-
   const { isDark, toggleTheme } = useTheme();
   const windowDimensions = useWindowDimensions();
 
@@ -44,7 +43,7 @@ export function SideBar(): JSX.Element {
             rightIcon={sunRisingTwotoneLoop}
             leftIcon={moonTwotoneAltLoop}
           />
-          <hr className="w-full bg-white border border-gray-300 rounded mt-5" />
+          <hr className="w-full bg-white border border-gray-300 rounded mt-5 mb-2" />
         </div>
         <MenuContent collaps={toggleSidebar} />
       </div>
