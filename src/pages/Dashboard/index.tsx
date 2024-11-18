@@ -24,7 +24,7 @@ export function DashboardPage() {
         <DashboardCharts permissions={userPermissions ?? []} />
       </div>
       {width > 1279 && (
-        <div className="xl:col-span-4 flex order-5">
+        <div className="xl:col-span-4 flex order-5 max-h-[36.375rem]">
           <DashboardOnlineUsersList permissions={userPermissions ?? []} />
         </div>
       )}
