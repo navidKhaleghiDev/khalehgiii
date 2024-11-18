@@ -12,6 +12,7 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { EPermissionGroupManagement } from '@src/types/permissions';
 
+import { useLanguage } from '@context/settings/languageContext';
 import { TitleNumber } from './TitleNumber/TitleNumber';
 import { GroupCardProps } from './types';
 
@@ -26,6 +27,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
   } = props;
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
+  const { rtl } = useLanguage();
   const GroupManagementDelete = checkPermission(
     userPermissions,
     EPermissionGroupManagement.DELETE
@@ -43,7 +45,18 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
     <div className="flex flex-wrap  gap-6 md:justify-start justify-center mb-2">
       {groupData.length >= 1 &&
         groupData.map((group) => (
-          <div key={group.id}>
+          <div
+            key={group.id}
+            className="relative  h-[14.75rem] w-[16.563rem] md:w-[13.938rem] lg:w-[16.563rem]"
+          >
+            {GroupManagementDelete ? (
+              <IconButton
+                icon={trashSimple}
+                color="redNoBg"
+                className={`absolute top-2 ${rtl ? 'left-2 ' : 'right-2'} `}
+                onClick={() => handleIconClick(group?.id as string)}
+              />
+            ) : null}
             <CardButton
               border
               borderColor="neutral"
@@ -54,14 +67,6 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
               className={`p-5 h-[14.75rem] w-[16.563rem] md:w-[13.938rem] lg:w-[16.563rem] ${className}`}
             >
               <div className="flex flex-col items-center ">
-                {GroupManagementDelete ? (
-                  <IconButton
-                    icon={trashSimple}
-                    color="redNoBg"
-                    className="self-end !justify-end !items-start"
-                    onClick={() => handleIconClick(group?.id as string)}
-                  />
-                ) : null}
                 {!group.image ? (
                   <Avatar
                     icon={UsersThree}
