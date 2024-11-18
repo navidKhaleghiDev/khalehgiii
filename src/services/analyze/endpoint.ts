@@ -26,7 +26,7 @@ export const E_ANALYZE_SCAN_PAGINATION = (
     filter ? `${filter}&` : ''
   }page_size=${pageSize}&page=${page}${
     dateRange
-      ? `&created_at__gte=${dateRange.start_date}&created_at_lte=${dateRange.end_date}`
+      ? `&created_at__gte=${dateRange.start_date}&created_at__lte=${dateRange.end_date}`
       : ''
   }`;
 
