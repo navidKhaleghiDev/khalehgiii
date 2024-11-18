@@ -14,10 +14,7 @@ import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { StringifyProperties } from '@src/types/global';
 import { usePaginationSwr } from '@src/services/http/httpClient';
 
-import {
-  scannedFileHeaderWithOutPermission,
-  scannedFileHeaderWithPermission,
-} from './constants/scannedFileHeaderItem';
+import { getScanFileHeader } from './constants/scannedFileHeaderItem';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -118,9 +115,6 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
     allItems: count,
     itemsPer: resultData.length,
   };
-  const scanFileHeader = evidencePermissions
-    ? scannedFileHeaderWithPermission
-    : scannedFileHeaderWithOutPermission;
 
   // Disable cause the service call dose not work
   // const handelDateForm = (date: any) => {
@@ -149,7 +143,10 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
         {!error ? (
           <BaseTable
             body={resultData.slice(0, resultData.length - 1)}
-            header={checkPermissionHeaderItem(userPermissions, scanFileHeader)}
+            header={checkPermissionHeaderItem(
+              userPermissions,
+              getScanFileHeader(evidencePermissions)
+            )}
             loading={isLoading}
             pagination={paginationProps}
             onClick={handelClickRow}

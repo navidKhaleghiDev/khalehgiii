@@ -10,7 +10,7 @@ import { EPermissionScanReports } from '@src/types/permissions';
 import { VirusTag } from '../VirusTag';
 
 // Header without evidence permissions
-export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
+export const getScanFileHeader = (permission: boolean): HeaderTable[] => [
   {
     label: 'table.fileName',
     id: 'file_name',
@@ -64,11 +64,6 @@ export const scannedFileHeaderWithOutPermission: HeaderTable[] = [
     ),
     class: 'w-1/12 mr-auto',
   },
-];
-
-// Header with evidence permissions
-export const scannedFileHeaderWithPermission: HeaderTable[] = [
-  ...scannedFileHeaderWithOutPermission,
   {
     label: 'table.downloadRecord',
     id: 'download',
@@ -77,10 +72,11 @@ export const scannedFileHeaderWithPermission: HeaderTable[] = [
       {
         action: 'download',
         icon: PhDownloadSimple,
+        tooltip: 'table.download',
         color: 'neutralNoBg',
       },
     ],
-    class: 'w-1/12 mr-auto',
+    class: `w-1/12 mr-auto ${!permission ? 'hidden' : ''} `,
     permission: EPermissionScanReports.VIEW,
   },
 ];
