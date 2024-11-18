@@ -98,7 +98,7 @@ export function UserInfoTab({
 
       <div className="flex flex-col justify-center items-center w-full">
         <div className="w-full flex-col justify-center">
-          <div className="flex flex-col justify-between sm:gap-5 gap-2.5 sm:py-5 py-4 border-gray-300 border-b-[0.06rem]">
+          <div className="flex flex-col justify-between sm:gap-5 gap-2.5 sm:py-5 py-4">
             <div className="flex flex-col gap-1">
               <Typography
                 variant="body5B"

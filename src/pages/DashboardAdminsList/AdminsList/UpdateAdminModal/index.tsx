@@ -51,6 +51,9 @@ export function UpdateAdminModal({
 
   const isMetaAdmin = watch('is_meta_admin');
 
+  const hasPermissionsChanged =
+    selectedPermissions.length === admin?.user_permissions?.length;
+
   const permissions = permissionData?.data || [];
   const getSelectedIds = selectedPermissions.map((item) => item.id);
   const handleOnSubmit = async (data: UserProps) => {
@@ -141,7 +144,7 @@ export function UpdateAdminModal({
               className="sm:w-[11.87rem] w-[5.93rem] whitespace-nowrap p-2"
               loading={loadingButtonModal}
               onClick={() => setShowConfirm(true)}
-              disabled={!formState.isDirty}
+              disabled={!formState.isDirty && hasPermissionsChanged}
             />
             <BaseButton
               label={t('global.cancel')}
