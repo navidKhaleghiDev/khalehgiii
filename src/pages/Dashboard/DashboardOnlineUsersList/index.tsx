@@ -22,8 +22,7 @@ export function DashboardOnlineUsersList({
 
   const { data, isLoading, error } = useSWR<IResponsePagination<IDaAs>>(
     E_USERS_DAAS,
-    http.fetcherSWR,
-    { refreshInterval: 10000 }
+    http.fetcherSWR
   );
   const listDaas =
     data?.data?.results.filter((user) => user.is_running).slice(0, 8) ?? [];
