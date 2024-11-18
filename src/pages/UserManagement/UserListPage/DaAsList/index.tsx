@@ -23,7 +23,7 @@ import userFocus from '@iconify-icons/ph/user-focus';
 import { SettingDaasModal } from './SettingDaasModal';
 import { OnlineAssistanceDetailModal } from './OnlineAssistantDetailModal';
 import { desktopListHeaderItem } from './constants/desktopListHeaderItem';
-import { SessionRecordingList } from '../SessionRecording/SessionRecordingList';
+import { SessionRecordingList } from './SessionRecording/SessionRecordingList';
 
 function compareExtensionLists(
   oldList?: Record<string, number>,
