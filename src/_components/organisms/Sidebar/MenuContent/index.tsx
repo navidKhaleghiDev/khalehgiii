@@ -24,24 +24,26 @@ export function MenuContent({ collaps }: any): JSX.Element {
         collaps ? 'w-64' : 'w-16'
       } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600`}
     >
-      <div className="flex flex-col items-center w-full mt-1 px-3 overflow-y-auto overflow-x-hidden">
-        <div className={`${collaps ? 'w-full' : ''}`}>
+      <div className="flex flex-col items-center w-full mt-1 overflow-y-auto overflow-x-hidden no-scrollbar">
+        <div className={`${collaps ? 'w-full' : ''} absolute z-50 px-3`}>
           {navigationSideBar.map((item: NavigationProps, index) => {
             const shouldAddHR = [2].includes(index);
 
             if (!item.items) {
               return !collaps ? (
-                <ToolTip
-                  position={lang === 'fa' ? 'left' : 'right'}
-                  key={item.id}
-                  tooltip={`${item.label}`}
-                >
-                  <MenuItem
-                    item={item}
-                    pathname={pathname}
-                    collapsed={!collaps}
-                  />
-                </ToolTip>
+                <div className="">
+                  <ToolTip
+                    position={lang === 'fa' ? 'left' : 'right'}
+                    key={item.id}
+                    tooltip={`${item.label}`}
+                  >
+                    <MenuItem
+                      item={item}
+                      pathname={pathname}
+                      collapsed={!collaps}
+                    />
+                  </ToolTip>
+                </div>
               ) : (
                 <div className="w-full" key={item.id}>
                   <MenuItem

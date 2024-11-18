@@ -116,7 +116,7 @@ export function SideBarFooter({
         ) : null}
       </div>
 
-      <hr className="w-full bg-white border border-gray-300 rounded my-5" />
+      <hr className="w-full bg-white border border-gray-300 rounded my-3" />
       <IconButton
         size="md"
         color="neutral"

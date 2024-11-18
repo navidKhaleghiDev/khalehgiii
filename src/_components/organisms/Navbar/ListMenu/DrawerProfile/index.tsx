@@ -70,9 +70,9 @@ export function DrawerProfile() {
         />
       </div>
 
-      <hr className="w-full bg-white border border-gray-300 rounded my-4" />
+      <hr className="w-full bg-white border border-gray-300 rounded mb-3" />
 
-      <div className="flex-1 overflow-y-auto px-5">
+      <div className="flex-1 overflow-y-auto px-5 no-scrollbar">
         {navigationSideBar.map((item: NavigationProps, index) => {
           const shouldAddHR = [2].includes(index);
           if (!item.items) {
