@@ -25,9 +25,9 @@ const PAGE = 1;
 export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [isLoadingDownload, setIsLoadingDownload] = useState(false);
-  // const [dateRange, setDateRange] = useState();
 
-  // disable caus the service call
+  // Disable caus the service call
+  // const [dateRange, setDateRange] = useState();
   // const { control, handleSubmit } = useForm<FormDate>({
   //   mode: 'onChange',
   //   defaultValues: {
@@ -49,6 +49,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       }),
       HTTP_ANALYSES.fetcherSWR
     );
+
   // Daas user download file permission
   const evidencePermissions =
     resultData[resultData.length - 1]?.evidence_permission;
