@@ -13,7 +13,7 @@ import { TGroup } from '@src/services/users/types';
 import {
   GroupModalProps,
   TGroupUpdate,
-} from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
+} from '@src/pages/NotUsed/GroupManagement/GroupModal/types';
 import {
   checkPermission,
   useUserPermission,

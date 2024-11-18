@@ -7,7 +7,7 @@ import {
 import { checkPermission } from '@src/helper/hooks/usePermission';
 
 import { DashboardProgressChart } from '../DashboardProgressChart';
-import { DashboardActiveLicense } from '../components/DashboardActiveLicense';
+import { DashboardActiveLicense } from '../DashboardActiveLicense';
 
 export function DashboardCharts({
   permissions,

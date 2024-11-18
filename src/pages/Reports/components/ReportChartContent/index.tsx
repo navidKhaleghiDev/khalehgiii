@@ -2,7 +2,7 @@ import { LoadingWrapper } from '@redesignUi/molecules/Loading/LoadingWrapper';
 import { Card, Typography } from '@redesignUi/atoms';
 import { NoReportChart } from '@redesignUi/atoms/Svgs';
 
-import { ReportsChart } from '../../ReportChart';
+import { ReportsChart } from '../ReportChart';
 
 type ReportChartContentProps = {
   recordsData: any;

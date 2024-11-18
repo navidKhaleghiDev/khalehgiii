@@ -10,7 +10,7 @@ import {
   DataGeneratorReturn,
   DataType,
   FormatData,
-} from '../types';
+} from '../../types';
 
 export function ReportsChart({ props }: ReportChartType) {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ export function ReportsChart({ props }: ReportChartType) {
     moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
   }
 
-  function dataGeneratorTest(type: DataType, data: Data): DataGeneratorReturn {
+  function dataGenerator(type: DataType, data: Data): DataGeneratorReturn {
     const dataListDownload: number[] = [];
     const dataListUpload: number[] = [];
     const labelsSet = new Set<string>();
@@ -97,8 +97,8 @@ export function ReportsChart({ props }: ReportChartType) {
   }
 
   const dataList = {
-    labels: dataGeneratorTest(flag, recordsData).labels,
-    datasets: dataGeneratorTest(flag, recordsData).datasets,
+    labels: dataGenerator(flag, recordsData).labels,
+    datasets: dataGenerator(flag, recordsData).datasets,
   };
 
   const options = {

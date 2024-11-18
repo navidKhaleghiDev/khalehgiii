@@ -5,7 +5,7 @@ import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import PhCaretDownBold from '@iconify-icons/ph/caret-down-bold';
 import PhCaretUpBold from '@iconify-icons/ph/caret-up-bold';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { SettingMalwareCard } from '@src/pages/Dashboard/License/SettingMalwareCard';
+import { SettingMalwareCard } from '@src/pages/NotUsed/License/SettingMalwareCard';
 import { useTranslation } from 'react-i18next';
 import {
   checkPermission,

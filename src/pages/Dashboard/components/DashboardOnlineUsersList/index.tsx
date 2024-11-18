@@ -12,7 +12,7 @@ import { LoadingPage } from '@redesignUi/molecules/Loading';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 
-import { UserInfo } from './UserInfo';
+import { UserInfoAvatar } from './UserInfoAvatar';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
@@ -67,7 +67,7 @@ export function DashboardOnlineUsersList({
         </div>
         <div className="col-span-12">
           {listDaas?.map((user) => (
-            <UserInfo
+            <UserInfoAvatar
               fullName={user?.email}
               email={user?.email}
               key={user.id}

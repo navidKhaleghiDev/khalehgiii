@@ -9,9 +9,6 @@ export function ReportHeader() {
       <Typography variant="body2B" color="black">
         {t('dashboard.scanChart')}
       </Typography>
-      <Typography variant="body3" color="neutral">
-        sep.npd-co.com
-      </Typography>
     </div>
   );
 }

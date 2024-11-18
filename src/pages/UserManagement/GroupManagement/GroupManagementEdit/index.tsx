@@ -9,7 +9,7 @@ import { IResponseData } from '@src/types/services';
 import useSWR from 'swr';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@redesignUi/atoms';
-import { TGroupUpdate } from '@src/pages/Dashboard/GroupManagement/GroupModal/types';
+import { TGroupUpdate } from '@src/pages/NotUsed/GroupManagement/GroupModal/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
 import { GroupManagementEditForm } from './GroupManagementEditForm';

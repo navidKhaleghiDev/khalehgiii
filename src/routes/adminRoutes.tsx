@@ -2,7 +2,7 @@ import { NotFoundPage } from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
-import { Reports } from '@src/pages/Dashboard/Reports';
+import { Reports } from '@src/pages/Reports';
 import {
   EPermissionDaas,
   EPermissionExtensions,

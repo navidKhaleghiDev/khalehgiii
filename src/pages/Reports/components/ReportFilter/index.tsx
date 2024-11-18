@@ -5,7 +5,7 @@ import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
 import { ButtonOption } from '@redesignUi/atoms/ToggleButton/types';
 
 import { FormDateData, ReducerStateType } from '../../types';
-import { ReportForm } from '../../ReportForm';
+import { ReportForm } from '../../../NotUsed';
 
 type ReportFilterProps = {
   flag: string;

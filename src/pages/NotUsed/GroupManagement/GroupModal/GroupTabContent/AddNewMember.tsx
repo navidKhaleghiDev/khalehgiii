@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 import { Control, useFormContext } from 'react-hook-form';
-import { AddCardList } from '@src/pages/Dashboard/GroupManagement/GroupModal/components/AddCardList';
+import { AddCardList } from '@src/pages/NotUsed/GroupManagement/GroupModal/components/AddCardList';
 import { IDaAs, TGroup } from '@src/services/users/types';
 import { IResponsePagination } from '@src/types/services';
 import useSWR from 'swr';
@@ -10,7 +10,7 @@ import { http } from '@src/services/http';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { TUserList } from '@src/pages/Dashboard/GroupManagement/type';
+import { TUserList } from '@src/pages/NotUsed/GroupManagement/type';
 
 /**
  * Filters out duplicate objects from the provided lists based on the `id` property.

@@ -7,7 +7,7 @@ import { LicenseCard } from '@redesignUi/molecules/Cards/LicenseCard';
 import { http } from '@src/services/http';
 import { E_USERS_LICENSES } from '@src/services/users/endpoint';
 import { LicenseCardProps } from '@redesignUi/molecules/Cards/LicenseCard/types';
-import { LicenseFileType } from '@src/pages/Dashboard/License/SettingMalwareCard/type';
+import { LicenseFileType } from '@src/pages/NotUsed/License/SettingMalwareCard/type';
 import { NoResult } from '@redesignUi/molecules/NoResult';
 
 type LicenseCardKeys =
