@@ -57,8 +57,11 @@ function compareExtensionLists(
 
 const PAGE_SIZE = 6;
 const PAGE = 1;
-
-export function DaAsList() {
+interface DaAsListProps {
+  showLockedUsers: boolean;
+  showOnlineUsers: boolean;
+}
+export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
@@ -82,12 +85,15 @@ export function DaAsList() {
     pageSize: PAGE_SIZE,
     currentPage,
     filterQuery,
+    lockFilter: showLockedUsers,
+    onlineFilter: showOnlineUsers,
   });
 
   const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
+
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
@@ -238,6 +244,7 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -249,7 +256,6 @@ export function DaAsList() {
     itemsPer: PAGE_SIZE,
     paginationLabel: t('header.user'),
     totalPages: Math.ceil(countPage / PAGE_SIZE),
-
     onPageChange: handlePageChange,
   };
 
