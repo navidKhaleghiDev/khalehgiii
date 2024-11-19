@@ -41,7 +41,7 @@ export interface PropsType {
   control: Control<any>;
   userPermissions: PermissionsCodeName[];
   dir?: 'rtl' | 'ltr';
-  isActive: string;
+  isActive?: string;
 }
 export interface FileTypeProp {
   id: number;

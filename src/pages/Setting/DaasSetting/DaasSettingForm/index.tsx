@@ -1,22 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-import { checkPermission } from '@src/helper/hooks/usePermission';
-import { EPermissionDaas } from '@src/types/permissions';
 import { Card, Typography } from '@redesignUi/atoms';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
-import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
-import { useLanguage } from '@context/settings/languageContext';
 import { Divider } from '@redesignUi/atoms/Divider';
-import PhDownloadSimple from '@iconify-icons/ph/download-simple';
-import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import PhTimer from '@iconify-icons/ph/timer';
-import { ChromeSvg } from '@redesignUi/atoms/Svgs/ChromeSvg';
-import { FirefoxSvg } from '@redesignUi/atoms/Svgs/FirefoxSvg';
 
+import { AccessSeting } from './components/AccessSeting';
 import { PropsType } from '../../type';
 import { TitleSection } from '../../component/TitleSection';
+import { ResourceLimitation } from './components/ResourceLimitation';
 
 export function DaasSettingForm({
   control,
@@ -24,15 +16,7 @@ export function DaasSettingForm({
   isActive,
 }: PropsType) {
   const { t } = useTranslation();
-  const { lang } = useLanguage();
-  const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
-  const hasChangePermission = checkPermission(
-    userPermissions,
-    EPermissionDaas.CHANGE
-  );
-
-  const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
   const cardStyles =
     'flex items-center w-40 sm:w-full h-10 shrink-0 pr-[0.62rem] ltr:pl-[0.62rem] col-span-6 md:col-span-3 lg:col-span-2';
 
@@ -136,255 +120,13 @@ export function DaasSettingForm({
           </div>
         </div>
         <Divider />
-        <div>
-          <TitleSection label={t('table.accessSetting')} />
-        </div>
 
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-5 mb-3">
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id="max_transmission_upload_size"
-              name="max_transmission_upload_size"
-              control={control}
-              label={t('table.maxUploadSize')}
-              disabled={!hasChangePermission}
-              placeholder="50"
-              icon={PhUploadSimple}
-              dir={direction}
-              max={50}
-              rules={{
-                required: regexPattern.required,
-              }}
-              fullWidth
-            />
-          </div>
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id="max_transmission_download_size"
-              name="max_transmission_download_size"
-              control={control}
-              label={t('table.maxDownloadSize')}
-              disabled={!hasChangePermission}
-              placeholder="500"
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              rules={{
-                required: regexPattern.required,
-              }}
-              fullWidth
-            />
-          </div>
-
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id="time_limit_value_in_hour"
-              name="time_limit_value_in_hour"
-              control={control}
-              label={t('table.timeLimitDuration')}
-              disabled={!hasChangePermission}
-              placeholder={t('global.selectHour')}
-              icon={PhTimer}
-              dir={direction}
-              rules={{
-                required: regexPattern.required,
-              }}
-              fullWidth
-            />
-          </div>
-        </div>
+        <AccessSeting control={control} userPermissions={userPermissions} />
         <Divider />
-        <div>
-          <TitleSection label={t('setting.resourceLimitations')} />
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
-            <BaseCheckBoxController
-              control={control}
-              id=""
-              name=""
-              label={t('setting.chrome')}
-            />
-            <ChromeSvg />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mb-3">
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.memory')}
-              disabled={!hasChangePermission}
-              placeholder="0"
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id="cpu_file_size_gb_chrome"
-              name="cpu_file_size_gb_chrome"
-              control={control}
-              label={t('setting.cpu')}
-              disabled={!hasChangePermission}
-              placeholder={t('setting.core')}
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
-            <BaseCheckBoxController
-              control={control}
-              id=""
-              name=""
-              label={t('setting.fireFox')}
-            />
-            <FirefoxSvg />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem]">
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.memory')}
-              disabled={!hasChangePermission}
-              placeholder="0"
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.cpu')}
-              disabled={!hasChangePermission}
-              placeholder={t('setting.core')}
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
-            <BaseCheckBoxController
-              control={control}
-              id=""
-              name=""
-              label={t('setting.vsCode')}
-            />
-            <FirefoxSvg />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem]">
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.memory')}
-              disabled={!hasChangePermission}
-              placeholder="0"
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.cpu')}
-              disabled={!hasChangePermission}
-              placeholder={t('setting.core')}
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
-            <BaseCheckBoxController
-              control={control}
-              id=""
-              name=""
-              label={t('setting.remina')}
-            />
-            <FirefoxSvg />
-          </div>
-        </div>
-        <div className="grid w-full grid-cols-12 gap-[1.87rem]">
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.memory')}
-              disabled={!hasChangePermission}
-              placeholder="0"
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-          <div className={inputStyle}>
-            <BaseInputNumberController
-              id=""
-              name=""
-              control={control}
-              label={t('setting.cpu')}
-              disabled={!hasChangePermission}
-              placeholder={t('setting.core')}
-              icon={PhDownloadSimple}
-              dir={direction}
-              max={500}
-              // rules={{
-              //   required: regexPattern.required,
-              // }}
-              fullWidth
-            />
-          </div>
-        </div>
+        <ResourceLimitation
+          control={control}
+          userPermissions={userPermissions}
+        />
       </div>
     </div>
   );

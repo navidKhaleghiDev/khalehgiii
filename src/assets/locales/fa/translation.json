@@ -484,8 +484,8 @@
     "core": "Core",
     "memory": "حافظه (GB)",
     "saveFile": "ذخیره فایل",
-    "vsCode":"VsCode",
-    "remina":"Remina"
+    "ide":"IDE",
+    "remina":"Remote Access"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

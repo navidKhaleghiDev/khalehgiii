@@ -481,8 +481,8 @@
     "core": "Core",
     "memory": "Memory(GB)",
     "saveFile": "Save File",
-    "vsCode":"VsCode",
-    "remina":"Remina"
+    "ide":"IDE",
+    "remina":"Remote Access"
   },
 
   "regexPattern": {
