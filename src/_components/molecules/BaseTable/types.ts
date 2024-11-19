@@ -118,6 +118,7 @@ export type BaseTableCollapseDesktopProps<BodyType> = Omit<
   'header'
 > & {
   header: HeaderTable[];
+  className: string;
 };
 export type BaseTableCollapseMobileProps<BodyType> =
   BaseTableCollapseDesktopProps<BodyType>;
@@ -125,7 +126,9 @@ export type BaseTableCollapseMobileProps<BodyType> =
 export type BaseTableCollapseProps<BodyType> = Omit<
   BaseTableRowProps<BodyType>,
   'index' | 'body'
->;
+> & {
+  className: string;
+};
 export type BaseTableActionCellProps<BodyType> = Omit<
   BaseTableRenderComponentProps<BodyType>,
   'body' | 'isMobile'
