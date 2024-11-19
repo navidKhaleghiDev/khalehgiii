@@ -18,7 +18,7 @@ export function SideBar(): JSX.Element {
 
   return (
     <div
-      className={`relative z-30 xl:flex flex-col justify-between items-end h-full bg-white dark:bg-gray-600 rounded-2xl hidden
+      className={`relative z-30 hidden xl:flex flex-col justify-between items-end h-full bg-white dark:bg-gray-600 rounded-2xl 
      `}
     >
       <div className="flex flex-col items-center w-full mt-5 overflow-y-auto overflow-x-hidden no-scrollbar">
