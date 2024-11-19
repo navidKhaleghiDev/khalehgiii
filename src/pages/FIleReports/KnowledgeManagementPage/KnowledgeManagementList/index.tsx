@@ -1,4 +1,3 @@
-import useSWR from 'swr';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -11,10 +10,10 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { NoResult } from '@redesignUi/molecules/NoResult';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { OnlineAssistanceModel } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
+import { usePaginationSwr } from '@src/services/http/httpClient';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
@@ -45,9 +44,8 @@ export function KnowledgeManagementList() {
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<
-    IResponsePagination<OnlineAssistanceModel>
-  >(endpoint, http.fetcherSWR);
+  const { count, resultData, isLoading } =
+    usePaginationSwr<OnlineAssistanceModel>(endpoint, http.fetcherSWR);
 
   const handleOnClickRow: OnClickActionsType<OnlineAssistanceModel> = async (
     _,
@@ -74,20 +72,17 @@ export function KnowledgeManagementList() {
     setFilterQuery(value);
   }, []);
 
-  const listDaas = data?.data?.results ?? [];
-  const countPage = data?.data?.count || 0;
-
   const paginationProps = {
-    countPage,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     paginationLabel: t('header.admin'),
-    allItems: countPage,
-    itemsPer: listDaas.length,
+    allItems: count,
+    itemsPer: resultData.length,
     onPageChange: (page: number) => setCurrentPage(page),
   };
 
-  const flattedListDass = listDaas?.map((item) => ({
+  const flattedListDaas = resultData?.map((item) => ({
     ...item,
     admin_email: item.admin.email,
     user_email: item.user.email,
@@ -103,7 +98,7 @@ export function KnowledgeManagementList() {
       />
       <div className="mt-5">
         <BaseTable
-          body={flattedListDass}
+          body={flattedListDaas}
           header={checkPermissionHeaderItem(
             userPermissions,
             KnowledgeManagementHeaderItem
