@@ -30,7 +30,7 @@ export function License() {
     endpoint,
     http.fetcherSWR
   );
-  
+
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
