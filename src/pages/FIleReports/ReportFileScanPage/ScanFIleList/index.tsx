@@ -11,31 +11,19 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
-import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
 import { StringifyProperties } from '@src/types/global';
-import { useForm } from 'react-hook-form';
 import { usePaginationSwr } from '@src/services/http/httpClient';
 
-import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
-
 import { getScanFileHeader } from './constants/scannedFileHeaderItem';
+import { DateFormat, ScanFileDatePicker } from '../ScanFilesDatePicker';
 
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
 export function ScannedFileList({ userEmail }: { userEmail: string }) {
-  const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [isLoadingDownload, setIsLoadingDownload] = useState(false);
-
-  // Disable caus the service call
-  const [dateRange, setDateRange] = useState();
-  const { control, handleSubmit } = useForm<any>({
-    mode: 'onChange',
-    defaultValues: {
-      start_date: '',
-      end_date: '',
-    },
-  });
+  const [dateRange, setDateRange] = useState<DateFormat>();
+  const [currentPage, setCurrentPage] = useState<number>(PAGE);
 
   const userPermissions = useUserPermission();
   const { width } = useWindowDimensions();
@@ -52,7 +40,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       HTTP_ANALYSES.fetcherSWR
     );
 
-  // Daas user download file permission
+  // Daas user download file permission per user
   const evidencePermissions =
     resultData[resultData.length - 1]?.evidence_permission;
 
@@ -81,33 +69,10 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       .finally(() => setIsLoadingDownload(false));
   };
 
-  // There is no item for updating the scanFile
-  // const cleanStatus = async () => {
-  //   if (activeScannedFile) {
-  //     setLoading(true);
-  //     await API_ANALYZE_SCAN_STATUS_UPDATE(activeScannedFile)
-  //       .then(() => {
-  //         mutate();
-  //       })
-  //       .catch((err) => {
-  //         toast.error(err);
-  //       })
-  //       .finally(() => setLoading(false));
-  //   }
-  // };
-
   const handelClickRow: OnClickActionsType<IScannedFile> = (action, item) => {
     if (action === 'download' && item) {
       downloadFile(item);
     }
-
-    // There is no item for editing the items
-    // } else if (action === 'edit') {
-    //   setActiveScannedFile({ ...item, scan_result: 'CLEAN' } as IScannedFile);
-    //   setCleanStatusModal(true);
-    // } else {
-    //   setActiveScannedFile(item as IScannedFile);
-    // }
   };
 
   // Table data
@@ -121,28 +86,9 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
     itemsPer: resultData.length,
   };
 
-  // Disable cause the service call dose not work
-  const handelDateForm = (date: any) => {
-    const updatedData = {
-      start_date: convertI2ToAD(date.start_date[0]),
-      end_date: convertI2ToAD(date.start_date[1]),
-    };
-    setDateRange(updatedData as any);
-  };
-
   return (
     <div className="w-full">
-      {/* Disable cause the service dose not work */}
-      <form onSubmit={handleSubmit(handelDateForm)}>
-        <MultiDatePickerController
-          control={control}
-          id="start_date"
-          name="start_date"
-          format="YYYY-MM-DD"
-          maxDate={new Date()}
-          fullWidth
-        />
-      </form>
+      <ScanFileDatePicker onChange={(value) => setDateRange(value)} />
       {isLoadingDownload && <div>Downloading....</div>}
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
@@ -162,23 +108,6 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
           <p className="flex items-center justify-center">{error}</p>
         )}
       </div>
-      {/* This modal is for the old design */}
-      {/* <Modal
-        open={cleanStatusModal}
-        setOpen={setCleanStatusModal}
-        type="error"
-        title={t('global.sureAboutThis')}
-        buttonOne={{
-          label: t('global.yes'),
-          onClick: () => cleanStatus(),
-          loading,
-        }}
-        buttonTow={{
-          label: t('global.no'),
-          onClick: () => setCleanStatusModal(false),
-          color: 'red',
-        }}
-      /> */}
     </div>
   );
 }
