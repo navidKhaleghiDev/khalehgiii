@@ -483,7 +483,9 @@
     "cpu": "CPU (Core)",
     "core": "Core",
     "memory": "حافظه (GB)",
-    "saveFile": "ذخیره فایل"
+    "saveFile": "ذخیره فایل",
+    "vsCode":"VsCode",
+    "remina":"Remina"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

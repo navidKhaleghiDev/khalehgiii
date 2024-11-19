@@ -35,7 +35,6 @@ export interface DaasSettingProp {
   is_globally_config: boolean;
   has_online_assistance?: boolean;
   has_clipboard_log_access?: boolean;
-
 }
 
 export interface PropsType {

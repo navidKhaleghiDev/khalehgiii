@@ -291,6 +291,100 @@ export function DaasSettingForm({
             />
           </div>
         </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
+          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+            <BaseCheckBoxController
+              control={control}
+              id=""
+              name=""
+              label={t('setting.vsCode')}
+            />
+            <FirefoxSvg />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem]">
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.memory')}
+              disabled={!hasChangePermission}
+              placeholder="0"
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
+              fullWidth
+            />
+          </div>
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.cpu')}
+              disabled={!hasChangePermission}
+              placeholder={t('setting.core')}
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
+              fullWidth
+            />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
+          <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+            <BaseCheckBoxController
+              control={control}
+              id=""
+              name=""
+              label={t('setting.remina')}
+            />
+            <FirefoxSvg />
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-12 gap-[1.87rem]">
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.memory')}
+              disabled={!hasChangePermission}
+              placeholder="0"
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
+              fullWidth
+            />
+          </div>
+          <div className={inputStyle}>
+            <BaseInputNumberController
+              id=""
+              name=""
+              control={control}
+              label={t('setting.cpu')}
+              disabled={!hasChangePermission}
+              placeholder={t('setting.core')}
+              icon={PhDownloadSimple}
+              dir={direction}
+              max={500}
+              // rules={{
+              //   required: regexPattern.required,
+              // }}
+              fullWidth
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

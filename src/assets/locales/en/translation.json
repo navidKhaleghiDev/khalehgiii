@@ -480,7 +480,9 @@
     "cpu": "CPU (Core)",
     "core": "Core",
     "memory": "Memory(GB)",
-    "saveFile": "Save File"
+    "saveFile": "Save File",
+    "vsCode":"VsCode",
+    "remina":"Remina"
   },
 
   "regexPattern": {
