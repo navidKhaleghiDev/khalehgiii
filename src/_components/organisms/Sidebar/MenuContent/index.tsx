@@ -25,7 +25,7 @@ export function MenuContent({ collaps }: any): JSX.Element {
       } transition-width duration-500 ease-in-out bg-white dark:bg-gray-600`}
     >
       <div className="flex flex-col items-center w-full mt-1 overflow-y-auto overflow-x-hidden no-scrollbar">
-        <div className={`${collaps ? 'w-full' : ''} absolute z-50 px-3`}>
+        <div className={`${collaps ? 'w-full' : 'absolute z-50'} px-3`}>
           {navigationSideBar.map((item: NavigationProps, index) => {
             const shouldAddHR = [2].includes(index);
 
