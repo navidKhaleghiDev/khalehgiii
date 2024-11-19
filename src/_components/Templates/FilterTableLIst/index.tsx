@@ -102,8 +102,6 @@ export function FilterTableList(props: FilterReportsProps) {
       {handelGroupeFilter ? (
         <div>
           <Dropdown
-            // endIcon={caret}
-            // type="neutral"
             placeHolder={t('global.grouping')}
             onChange={handelGroupeFilter}
             options={daasGroups}

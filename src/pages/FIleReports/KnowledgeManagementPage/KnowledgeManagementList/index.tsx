@@ -8,14 +8,15 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { NoResult } from '@redesignUi/molecules/NoResult';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { http } from '@src/services/http';
-import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
+import { E_USERS_ONLINE_ASSISTANCE_GROUP } from '@src/services/users/endpoint';
 import { OnlineAssistanceModel } from '@src/services/users/types';
-import { createAPIEndpoint } from '@src/helper/utils';
 import { usePaginationSwr } from '@src/services/http/httpClient';
+import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
+import { FilterReportsProps } from '@redesignUi/Templates/FilterTableLIst/types';
+import { IOptionSelect } from '@redesignUi/atoms/BaseDropdownIcon/type';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { VideoLoadingSkelton } from '../Components/VideoLoadingSkelton';
@@ -27,6 +28,7 @@ const PAGE = 1;
 export function KnowledgeManagementList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
+  const [group, setFilterGroup] = useState<IOptionSelect>();
   const [openModal, setOpenModal] = useState(false);
   const [videoFile, setVideoFile] = useState<{
     loading?: boolean;
@@ -37,15 +39,16 @@ export function KnowledgeManagementList() {
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
 
-  const endpoint = createAPIEndpoint({
-    endPoint: E_USERS_ONLINE_ASSISTANCE,
-    pageSize: PAGE_SIZE,
-    currentPage,
-    filterQuery,
-  });
-
   const { count, resultData, isLoading } =
-    usePaginationSwr<OnlineAssistanceModel>(endpoint, http.fetcherSWR);
+    usePaginationSwr<OnlineAssistanceModel>(
+      E_USERS_ONLINE_ASSISTANCE_GROUP({
+        page: currentPage,
+        pageSize: PAGE_SIZE,
+        filter: filterQuery,
+        group: group?.value,
+      }),
+      http.fetcherSWR
+    );
 
   const handleOnClickRow: OnClickActionsType<OnlineAssistanceModel> = async (
     _,
@@ -88,12 +91,15 @@ export function KnowledgeManagementList() {
     user_email: item.user.email,
   }));
 
+  const handelFilterGroup: FilterReportsProps['handelGroupeFilter'] = (value) =>
+    setFilterGroup(value as IOptionSelect);
+
   return (
     <>
       <FilterTableList
         handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
-        handelGroupeFilter={(option) => console.log(option)}
+        handelGroupeFilter={handelFilterGroup}
         searchPlaceholder={t('fileScan.adminSearch')}
       />
       <div className="mt-5">

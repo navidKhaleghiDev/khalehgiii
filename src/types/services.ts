@@ -48,6 +48,7 @@ export interface IPagination {
   pageSize: number;
   page: number;
   filter?: string;
+  group?: string;
 }
 
 export type IAxiosResponse<T> = T;

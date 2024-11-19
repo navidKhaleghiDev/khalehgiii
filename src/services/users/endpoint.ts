@@ -18,6 +18,15 @@ export const E_USER_GET_OTP = (email: string) =>
   `${E_USERS_OTP}?email=${email}`;
 export const E_USERS_PAGINATION = ({ pageSize, page, filter }: IPagination) =>
   `${E_USERS}?page_size=${pageSize}&page=${page}${filter ? `&${filter}` : ''}`;
+export const E_USERS_ONLINE_ASSISTANCE_GROUP = ({
+  pageSize,
+  page,
+  filter,
+  group,
+}: IPagination) =>
+  `${E_USERS_ONLINE_ASSISTANCE}?page=${page}&page_size=${pageSize}&search=${
+    filter ? `${filter}` : ''
+  }&group_name=${group ? `${group}` : ''}`;
 
 // users daas endpoints
 export const E_USERS_DAAS_PAGINATION = ({
