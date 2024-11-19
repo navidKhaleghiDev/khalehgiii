@@ -11,8 +11,12 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
 import { StringifyProperties } from '@src/types/global';
+import { useForm } from 'react-hook-form';
 import { usePaginationSwr } from '@src/services/http/httpClient';
+
+import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
 
 import { getScanFileHeader } from './constants/scannedFileHeaderItem';
 
@@ -24,14 +28,14 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const [isLoadingDownload, setIsLoadingDownload] = useState(false);
 
   // Disable caus the service call
-  // const [dateRange, setDateRange] = useState();
-  // const { control, handleSubmit } = useForm<FormDate>({
-  //   mode: 'onChange',
-  //   defaultValues: {
-  //     start_date: '',
-  //     end_date: '',
-  //   },
-  // });
+  const [dateRange, setDateRange] = useState();
+  const { control, handleSubmit } = useForm<any>({
+    mode: 'onChange',
+    defaultValues: {
+      start_date: '',
+      end_date: '',
+    },
+  });
 
   const userPermissions = useUserPermission();
   const { width } = useWindowDimensions();
@@ -43,6 +47,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       E_ANALYZE_SCAN_PAGINATION(userEmail, {
         page: currentPage,
         pageSize: PAGE_SIZE,
+        dateRange,
       }),
       HTTP_ANALYSES.fetcherSWR
     );
@@ -117,18 +122,18 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   };
 
   // Disable cause the service call dose not work
-  // const handelDateForm = (date: any) => {
-  //   const updatedData = {
-  //     start_date: convertI2ToAD(date.start_date[0]),
-  //     end_date: convertI2ToAD(date.start_date[1]),
-  //   };
-  //   setDateRange(updatedData);
-  // };
+  const handelDateForm = (date: any) => {
+    const updatedData = {
+      start_date: convertI2ToAD(date.start_date[0]),
+      end_date: convertI2ToAD(date.start_date[1]),
+    };
+    setDateRange(updatedData as any);
+  };
 
   return (
     <div className="w-full">
       {/* Disable cause the service dose not work */}
-      {/* <form onSubmit={handleSubmit(handelDateForm)}>
+      <form onSubmit={handleSubmit(handelDateForm)}>
         <MultiDatePickerController
           control={control}
           id="start_date"
@@ -137,7 +142,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
           maxDate={new Date()}
           fullWidth
         />
-      </form> */}
+      </form>
       {isLoadingDownload && <div>Downloading....</div>}
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
