@@ -1,4 +1,3 @@
-// LanguageContext.tsx
 import React, { createContext, useContext, useState, useMemo } from 'react';
 import i18next from 'i18next';
 
@@ -10,8 +9,9 @@ if (!storedLang) {
 interface LanguageContextProps {
   lang: string;
   changeLanguage: (lang: string) => void;
-  dir: string | undefined;
+  dir: 'rtl' | 'ltr';
   isFarsi: boolean;
+  rtl: boolean;
 }
 
 interface LanguageProviderProps {
@@ -38,12 +38,15 @@ export function LanguageProvider({
     [newLang]
   );
 
-  const dir = lang === 'fa' ? 'rtl' : 'ltr';
+  const dir: 'rtl' | 'ltr' = lang === 'fa' ? 'rtl' : 'ltr';
+
+  const rtl = lang === 'fa' || lang === 'ar';
+
   const isFarsi = lang === 'fa';
 
   const contextValue = useMemo(
-    () => ({ lang, changeLanguage, dir, isFarsi }),
-    [lang, changeLanguage, dir, isFarsi]
+    () => ({ lang, changeLanguage, dir, isFarsi, rtl }),
+    [lang, changeLanguage, dir, isFarsi, rtl]
   );
 
   return (
