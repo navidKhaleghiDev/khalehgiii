@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { BaseButton } from '@redesignUi/atoms';
+import { BaseButton, Dropdown } from '@redesignUi/atoms';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
 import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
 import { ToolTip } from '@redesignUi/atoms/Tooltip';
@@ -9,7 +9,16 @@ import pluse from '@iconify-icons/ph/plus-bold';
 import GlobeSimple from '@iconify-icons/ph/globe-simple';
 import caretLeft from '@iconify-icons/ph/caret-left';
 import caretRight from '@iconify-icons/ph/caret-right';
+import PhUsersThree from '@iconify-icons/ph/users-three';
 import sortAscending from '@iconify-icons/ph/sort-ascending';
+
+import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
+import { useMemo } from 'react';
+import useSWR from 'swr';
+import { TGroup } from '@src/services/users/types';
+import { IResponseData } from '@src/types/services';
+import { E_USERS_GROUPS } from '@src/services/users/endpoint';
+import { http } from '@src/services/http';
 
 import { FilterReportsProps } from './types';
 
@@ -28,21 +37,19 @@ export function FilterTableList(props: FilterReportsProps) {
   const { t } = useTranslation();
   const { dir } = useLanguage();
 
-  // This functionality does not work cause we do not have service call
-  //
-  // const { data, isLoading, error } = useSWR<IResponseData<TGroup[]>>(
-  //   E_USERS_GROUPS,
-  //   http.fetcherSWR
-  // );
-  // const daasGroups: OptionSelect[] = useMemo(
-  //   () =>
-  //     data?.data.map((item) => ({
-  //       id: String(item.id),
-  //       label: item.name,
-  //       value: item.name,
-  //     })) ?? [],
-  //   [data]
-  // );
+  const { data } = useSWR<IResponseData<TGroup[]>>(
+    E_USERS_GROUPS,
+    http.fetcherSWR
+  );
+  const daasGroups: OptionSelect[] = useMemo(
+    () =>
+      data?.data.map((item) => ({
+        id: String(item.id),
+        label: item.name,
+        value: item.name,
+      })) ?? [],
+    [data]
+  );
 
   const conditionOne = buttonLabel && !handelGroupeFilter && !domainFilter;
   const isFarsi = dir === 'rtl';
@@ -94,19 +101,21 @@ export function FilterTableList(props: FilterReportsProps) {
       {/* This item does not work does not have service */}
       {handelGroupeFilter ? (
         <div>
-          {/* <BaseButton
-            label={t('global.grouping')}
-            endIcon={caret}
-            type="neutral"
-            className="sm:flex hidden w-40"
-            disabled
+          <Dropdown
+            // endIcon={caret}
+            // type="neutral"
+            placeHolder={t('global.grouping')}
+            onChange={handelGroupeFilter}
+            options={daasGroups}
+            name="groupFilter"
+            size="sm"
           />
           <IconButton
             icon={PhUsersThree}
             color="neutral"
             className="sm:hidden flex"
             disabled
-          /> */}
+          />
         </div>
       ) : null}
       {/* This item does not work does not have service */}
