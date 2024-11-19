@@ -319,7 +319,7 @@ export function DaAsList() {
         }}
       />
       <Modal
-        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"
         size="lg"
         open={openSessionRecording}
         setOpen={setOpenSessionRecording}
@@ -346,7 +346,7 @@ export function DaAsList() {
         }
       />
       <Modal
-        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"
         size="lg"
         open={openOnlineAssistanceModal}
         setOpen={setOpenOnlineAssistanceModal}
