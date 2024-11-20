@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +16,6 @@ import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import { useLanguage } from '@context/settings/languageContext';
 import {
   checkPermission,
   useUserPermission,
@@ -26,22 +25,22 @@ import { EPermissionDaas } from '@src/types/permissions';
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
   fileType?: Partial<FileTypeProp>;
-  setOpenUpdateModal: any;
+  setOpenUpdateModal: Dispatch<SetStateAction<boolean>>;
+  dir?: 'rtl' | 'ltr';
 };
 
 export function UpdateFileTypeModal({
   handleClose,
   fileType,
   setOpenUpdateModal,
+  dir,
 }: PropsType) {
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const userPermissions = useUserPermission();
 
-  const { lang } = useLanguage();
   const inputStyle = 'col-span-6 lg:col-span-4 h-16';
-  const direction = lang === 'fa' ? 'rtl' : 'ltr';
   const hasChangePermission = checkPermission(
     userPermissions,
     EPermissionDaas.CHANGE
@@ -108,7 +107,7 @@ export function UpdateFileTypeModal({
           placeholder=".txt"
           label={t('table.fileType')}
           endIcon={PhFile}
-          dir={direction}
+          dir={dir}
           size="md"
           rules={{
             pattern: regexPattern.wordStartedWithPointAndEn,
@@ -143,7 +142,7 @@ export function UpdateFileTypeModal({
                 disabled={!hasChangePermission || !uploadAccess}
                 placeholder="50"
                 icon={PhUploadSimple}
-                dir={direction}
+                dir={dir}
                 max={50}
                 rules={{
                   required: regexPattern.required,
@@ -168,7 +167,7 @@ export function UpdateFileTypeModal({
                 disabled={!hasChangePermission || !downloadAccess}
                 placeholder="50"
                 icon={PhUploadSimple}
-                dir={direction}
+                dir={dir}
                 max={500}
                 rules={{
                   required: regexPattern.required,

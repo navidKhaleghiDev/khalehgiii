@@ -1,6 +1,5 @@
 import { t } from 'i18next';
 
-import { useLanguage } from '@context/settings/languageContext';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 
@@ -12,10 +11,8 @@ import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
 
-export function AccessSeting({ control, userPermissions }: PropsType) {
+export function AccessSeting({ control, userPermissions, dir }: PropsType) {
   const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
-  const { lang } = useLanguage();
-  const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
   const hasChangePermission = checkPermission(
     userPermissions,
@@ -36,7 +33,7 @@ export function AccessSeting({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder="50"
             icon={PhUploadSimple}
-            dir={direction}
+            dir={dir}
             max={50}
             rules={{
               required: regexPattern.required,
@@ -53,7 +50,7 @@ export function AccessSeting({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder="500"
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir}
             max={500}
             rules={{
               required: regexPattern.required,
@@ -71,7 +68,7 @@ export function AccessSeting({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('global.hour')}
             icon={PhTimer}
-            dir={direction}
+            dir={dir}
             rules={{
               required: regexPattern.required,
             }}
