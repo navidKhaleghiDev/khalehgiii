@@ -26,10 +26,10 @@ export function BaseTableCollapseMobile<T extends IdItem>(
   props: BaseTableCollapseMobileProps<T>
 ) {
   const { t } = useTranslation();
-  const { header, row, onClick } = props;
+  const { header, row, onClick, className } = props;
 
   return (
-    <tr className={baseTableCollapseMobile()}>
+    <tr className={baseTableCollapseMobile({ className })}>
       {header.map((headerList) => (
         <th
           key={headerList.label}
