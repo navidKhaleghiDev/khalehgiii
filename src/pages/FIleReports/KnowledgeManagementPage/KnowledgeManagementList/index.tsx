@@ -15,7 +15,6 @@ import { usePaginationSwr } from '@src/services/http/httpClient';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
-import { FilterReportsProps } from '@redesignUi/Templates/FilterTableLIst/types';
 import { IOptionSelect } from '@redesignUi/atoms/BaseDropdownIcon/type';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
@@ -39,7 +38,7 @@ export function KnowledgeManagementList() {
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
 
-  const { count, resultData, isLoading } =
+  const { count, resultData, isLoading, error } =
     usePaginationSwr<OnlineAssistanceModel>(
       E_USERS_ONLINE_ASSISTANCE_GROUP({
         page: currentPage,
@@ -55,19 +54,18 @@ export function KnowledgeManagementList() {
     row
   ) => {
     setVideoFile({ loading: true });
-
+    setOpenModal(true);
     await API_KNOWLEDGE_MANAGEMENT(row?.id as string)
       .then((res) => {
-        setOpenModal(true);
         const blob = new Blob([res.data], { type: 'video/mp4' });
         const videoURL = URL.createObjectURL(blob);
         setVideoFile({ loading: false, file: videoURL });
       })
       .catch((err) => {
+        setOpenModal(false);
         toast.error(
           err.message ?? 'error on get video of knowledge management'
         );
-        setOpenModal(false);
       });
   };
   const handelSearchQuery = useCallback((value: string) => {
@@ -91,29 +89,30 @@ export function KnowledgeManagementList() {
     user_email: item.user.email,
   }));
 
-  const handelFilterGroup: FilterReportsProps['handelGroupeFilter'] = (value) =>
-    setFilterGroup(value as IOptionSelect);
-
   return (
     <>
       <FilterTableList
         handelSearchQuery={handelSearchQuery}
         searchQuery={filterQuery}
-        handelGroupeFilter={handelFilterGroup}
+        handelGroupeFilter={(value) => setFilterGroup(value as IOptionSelect)}
         searchPlaceholder={t('fileScan.adminSearch')}
       />
       <div className="mt-5">
-        <BaseTable
-          body={flattedListDaas}
-          header={checkPermissionHeaderItem(
-            userPermissions,
-            KnowledgeManagementHeaderItem
-          )}
-          loading={isLoading}
-          pagination={paginationProps}
-          onClick={handleOnClickRow}
-          isMobile={width <= 760}
-        />
+        {!error ? (
+          <BaseTable
+            body={flattedListDaas}
+            header={checkPermissionHeaderItem(
+              userPermissions,
+              KnowledgeManagementHeaderItem
+            )}
+            loading={isLoading}
+            pagination={paginationProps}
+            onClick={handleOnClickRow}
+            isMobile={width <= 760}
+          />
+        ) : (
+          <div className="text-center">{error}</div>
+        )}
       </div>
       <Modal
         open={openModal}
