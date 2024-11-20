@@ -11,7 +11,6 @@ import {
 import { EPermissionKeycloak } from '@src/types/permissions';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-// import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
@@ -24,18 +23,18 @@ import {
 
 import { ApplicationSettingProp } from '../../type';
 
+interface ApplicationSettingProps {
+  userExist?: boolean;
+  dir?: 'rtl' | 'ltr';
+}
 export function ApplicationSetting({
   userExist,
   dir,
-}: {
-  userExist?: boolean;
-  dir: 'rtl' | 'ltr';
-}) {
+}: ApplicationSettingProps) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const { lang } = useLanguage();
-  // const direction = lang === 'fa' ? 'rtl' : 'ltr';
+
   const inputStyles = 'col-span-6 lg:col-span-4';
 
   const userPermissions = useUserPermission();
