@@ -55,6 +55,14 @@ function compareExtensionLists(
   return { addedList, removedList };
 }
 
+const MODALS = {
+  DELETE_USER: 'deleteUser',
+  BLOCK_USER: 'blockUser',
+  SETTING: 'setting',
+  SESSION_RECORDING: 'sessionRecording',
+  ONLINE_ASSISTANCE: 'onlineAssistance',
+};
+
 const PAGE_SIZE = 6;
 const PAGE = 1;
 interface DaAsListProps {
@@ -66,14 +74,8 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
-  const [openModal, setOpenModal] = useState(false);
-  const [openBlockModal, setOpenBlockModal] = useState(false);
-
-  const [openSettingModal, setOpenSettingModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
-    useState(false);
-  const [openSessionRecording, setOpenSessionRecording] = useState(false);
+  const [activeModal, setActiveModal] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [userName, setUserName] = useState<string>('');
 
@@ -106,33 +108,28 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       case 'more':
         if (id) {
           setSelectedId(id);
-          setOpenSessionRecording(true);
+          setActiveModal(MODALS.SESSION_RECORDING);
           setUserName(fileType.email);
         }
         break;
       case 'edit':
-        setActiveDaas(fileType as IDaAs);
-        setOpenSettingModal(true);
+        setActiveModal(MODALS.SETTING);
         break;
       case 'editLock':
-        setActiveDaas(fileType as IDaAs);
-        setOpenBlockModal(true);
+        setActiveModal(MODALS.BLOCK_USER);
         break;
       case 'details':
-        setActiveDaas(fileType as IDaAs);
-        setOpenOnlineAssistanceModal(true);
+        setActiveModal(MODALS.ONLINE_ASSISTANCE);
         break;
       default:
         break;
       // do nothing
     }
-
     if (fileType !== undefined && typeof fileType !== 'string') {
       setActiveDaas(fileType as IDaAs);
-      setOpenModal(true);
+      setActiveModal(MODALS.DELETE_USER);
     }
   };
-
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
     if (!daas) return;
     let daasUpdated = daas;
@@ -209,10 +206,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       .then(() => {
         mutate();
         toast.success(t('global.sucessfulyUpdated'));
-        if (openBlockModal) setOpenBlockModal(false);
-        if (openModal) setOpenModal(false);
-        if (openSettingModal) setOpenSettingModal(false);
-        if (openSessionRecording) setOpenSessionRecording(false);
+        setActiveModal(null);
       })
       .catch((err) => {
         toast.error(err);
@@ -225,7 +219,6 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const handleOnBlock = () => {
     setLoadingButtonModal(true);
     updateDaas(activeDaas);
-    setOpenBlockModal(false);
   };
   const handleOnRequests = async () => {
     if (!activeDaas) return;
@@ -234,8 +227,8 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
     await API_DAAS_DELETE(activeDaas.id as string)
       .then(() => {
         toast.success(t('global.successfullyRemoved'));
-        setOpenModal(false);
         mutate();
+        setActiveModal(null);
       })
       .catch((err) => {
         toast.error(err);
@@ -284,8 +277,8 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       />
       <Modal
         size="responsive"
-        open={openModal}
-        setOpen={setOpenModal}
+        open={activeModal === MODALS.DELETE_USER}
+        setOpen={() => setActiveModal(null)}
         type="error"
         title={t('global.deleteUser')}
         description={t('global.sureAboutDeleteUser')}
@@ -297,14 +290,14 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         }}
         buttonTow={{
           label: t('global.cancel'),
-          onClick: () => setOpenModal(false),
+          onClick: () => setActiveModal(null),
           color: 'tertiary',
         }}
       />
       <Modal
         size="responsive"
-        open={openBlockModal}
-        setOpen={setOpenBlockModal}
+        open={activeModal === MODALS.BLOCK_USER}
+        setOpen={() => setActiveModal(null)}
         type="info"
         title={t('table.userStatus')}
         description={
@@ -320,15 +313,15 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         }}
         buttonTow={{
           label: t('global.cancel'),
-          onClick: () => setOpenBlockModal(false),
+          onClick: () => setActiveModal(null),
           color: 'tertiary',
         }}
       />
       <Modal
         classContainer="md:h-[45.625rem] h-[36.875rem]"
         size="lg"
-        open={openSessionRecording}
-        setOpen={setOpenSessionRecording}
+        open={activeModal === MODALS.SESSION_RECORDING}
+        setOpen={() => setActiveModal(null)}
         type="content"
         content={<SessionRecordingList id={selectedId} username={userName} />}
         icon={Play}
@@ -340,22 +333,22 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         title={t('userList.userAccess')}
         descriptionInfo={t('userList.changeUserProfileAndAccessList')}
         icon={userFocus}
-        open={openSettingModal}
-        setOpen={setOpenSettingModal}
+        open={activeModal === MODALS.SETTING}
+        setOpen={() => setActiveModal(null)}
         content={
           <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
             userPermissions={userPermissions}
-            setOpenSettingModal={setOpenSettingModal}
+            setOpenSettingModal={() => setActiveModal(null)}
           />
         }
       />
       <Modal
         classContainer="md:h-[45.625rem] h-[36.875rem]"
         size="lg"
-        open={openOnlineAssistanceModal}
-        setOpen={setOpenOnlineAssistanceModal}
+        open={activeModal === MODALS.ONLINE_ASSISTANCE}
+        setOpen={() => setActiveModal(null)}
         type="content"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
         icon={UsersThree}
