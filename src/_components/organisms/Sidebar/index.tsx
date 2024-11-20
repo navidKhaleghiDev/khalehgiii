@@ -21,9 +21,9 @@ export function SideBar(): JSX.Element {
       className={`relative z-30 hidden xl:flex flex-col justify-between items-end h-full bg-white dark:bg-gray-600 rounded-2xl 
      `}
     >
-      <div className="flex flex-col items-center w-full mt-5 overflow-y-auto overflow-x-hidden no-scrollbar">
+      <div className="flex flex-col items-center w-full  overflow-y-auto overflow-x-hidden no-scrollbar">
         <div
-          className={`flex flex-col sticky z-50 top-0 px-3 bg-white dark:bg-gray-600 ${
+          className={`flex flex-col pt-5 sticky z-50 top-0 px-3 bg-white dark:bg-gray-600 ${
             toggleSidebar ? 'items-start' : 'items-center'
           } w-full`}
         >
@@ -37,7 +37,7 @@ export function SideBar(): JSX.Element {
           />
           <hr className="w-full bg-white border border-gray-300 rounded mt-5" />
         </div>
-        <MenuContent collaps={toggleSidebar} />
+        <MenuContent collops={toggleSidebar} />
       </div>
 
       <SideBarFooter

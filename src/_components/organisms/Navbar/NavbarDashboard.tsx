@@ -24,7 +24,9 @@ export function NavbarDashboard(): JSX.Element {
           <div className="block xl:hidden">
             <ListMenu />
           </div>
-          {/* <div className="hidden md:block">
+          {/*
+          need api
+          <div className="hidden md:block">
             <NotificationMenu />
           </div> */}
           <BaseDropdownIcon

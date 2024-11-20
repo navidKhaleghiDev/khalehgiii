@@ -10,7 +10,10 @@ import { MenuItemAccordion } from '../MenuItemAccordion';
 import { MenuDropdown } from '../MenuDropdown/MenuDropdown';
 import { MenuItem } from '../MenuItem';
 
-export function MenuContent({ collaps }: any): JSX.Element {
+interface MenuContentProps {
+  collops: boolean;
+}
+export function MenuContent({ collops }: MenuContentProps): JSX.Element {
   const [isDropdownVisible, setDropdownVisible] =
     useState<NavigationProps | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -21,16 +24,16 @@ export function MenuContent({ collaps }: any): JSX.Element {
     <div
       className={`
       ${
-        collaps ? 'w-64' : 'w-16'
+        collops ? 'w-64' : 'w-16'
       } transition-width duration-500 ease-in-out dark:bg-gray-600`}
     >
       <div className="flex flex-col items-center w-full mt-1 overflow-y-auto overflow-x-hidden no-scrollbar">
-        <div className={`${collaps ? 'w-full' : 'absolute z-40'} px-3`}>
+        <div className={`${collops ? 'w-full' : 'absolute z-40'} px-3`}>
           {navigationSideBar.map((item: NavigationProps, index) => {
             const shouldAddHR = [2].includes(index);
 
             if (!item.items) {
-              return !collaps ? (
+              return !collops ? (
                 <div>
                   <ToolTip
                     position={lang === 'fa' ? 'left' : 'right'}
@@ -40,7 +43,7 @@ export function MenuContent({ collaps }: any): JSX.Element {
                     <MenuItem
                       item={item}
                       pathname={pathname}
-                      collapsed={!collaps}
+                      collapsed={!collops}
                     />
                   </ToolTip>
                 </div>
@@ -49,13 +52,13 @@ export function MenuContent({ collaps }: any): JSX.Element {
                   <MenuItem
                     item={item}
                     pathname={pathname}
-                    collapsed={!collaps}
+                    collapsed={!collops}
                   />
                 </div>
               );
             }
 
-            return collaps ? (
+            return collops ? (
               <div className="w-full" key={item.id}>
                 <MenuItemAccordion
                   open={openAccordion}
@@ -63,7 +66,7 @@ export function MenuContent({ collaps }: any): JSX.Element {
                   index={index}
                   item={item}
                   pathname={pathname}
-                  collapsed={!collaps}
+                  collapsed={!collops}
                   icon={item.icon}
                 />
                 {shouldAddHR && (
@@ -82,16 +85,16 @@ export function MenuContent({ collaps }: any): JSX.Element {
                     }
                   }}
                   className={`flex justify-center flex-col items-center cursor-pointer ${
-                    collaps ? 'w-full' : null
+                    collops ? 'w-full' : null
                   }`}
                 >
                   <MenuItem
                     item={item}
                     pathname={pathname}
-                    collapsed={!collaps}
+                    collapsed={!collops}
                   />
 
-                  {isDropdownVisible?.id === item.id && !collaps && (
+                  {isDropdownVisible?.id === item.id && !collops && (
                     <MenuDropdown
                       items={item.items}
                       mouseHover={() => setDropdownVisible(null)}
