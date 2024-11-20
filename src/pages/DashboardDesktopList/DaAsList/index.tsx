@@ -55,14 +55,6 @@ function compareExtensionLists(
   return { addedList, removedList };
 }
 
-const MODALS = {
-  DELETE_USER: 'deleteUser',
-  BLOCK_USER: 'blockUser',
-  SETTING: 'setting',
-  SESSION_RECORDING: 'sessionRecording',
-  ONLINE_ASSISTANCE: 'onlineAssistance',
-};
-
 const PAGE_SIZE = 6;
 const PAGE = 1;
 interface DaAsListProps {
@@ -75,7 +67,14 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [activeModal, setActiveModal] = useState<
+    | 'deleteUser'
+    | 'blockUser'
+    | 'setting'
+    | 'sessionRecording'
+    | 'onlineAssistance'
+    | null
+  >(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [userName, setUserName] = useState<string>('');
 
@@ -103,29 +102,28 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
     action,
     fileType
   ) => {
-    // setActiveDaas(fileType as IDaAs);
+    setActiveDaas(fileType as IDaAs);
     const id = fileType?.id;
     switch (action) {
       case 'more':
         if (id) {
           setSelectedId(id);
-          setActiveModal(MODALS.SESSION_RECORDING);
+          setActiveModal('sessionRecording');
           setUserName(fileType.email);
         }
         break;
       case 'edit':
-        setActiveModal(MODALS.SETTING);
+        setActiveModal('setting');
         break;
       case 'editLock':
-        setActiveModal(MODALS.BLOCK_USER);
+        setActiveModal('blockUser');
         break;
       case 'details':
-        setActiveModal(MODALS.ONLINE_ASSISTANCE);
+        setActiveModal('onlineAssistance');
         break;
       case 'delete':
         if (id) {
-          setActiveDaas(fileType as IDaAs);
-          setActiveModal(MODALS.DELETE_USER);
+          setActiveModal('deleteUser');
         }
         break;
       default:
@@ -280,7 +278,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       />
       <Modal
         size="responsive"
-        open={activeModal === MODALS.DELETE_USER}
+        open={activeModal === 'deleteUser'}
         setOpen={() => setActiveModal(null)}
         type="error"
         title={t('global.deleteUser')}
@@ -299,7 +297,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       />
       <Modal
         size="responsive"
-        open={activeModal === MODALS.BLOCK_USER}
+        open={activeModal === 'blockUser'}
         setOpen={() => setActiveModal(null)}
         type="info"
         title={t('table.userStatus')}
@@ -323,7 +321,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       <Modal
         classContainer="md:h-[45.625rem] h-[36.875rem]"
         size="lg"
-        open={activeModal === MODALS.SESSION_RECORDING}
+        open={activeModal === 'sessionRecording'}
         setOpen={() => setActiveModal(null)}
         type="content"
         content={<SessionRecordingList id={selectedId} username={userName} />}
@@ -336,7 +334,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         title={t('userList.userAccess')}
         descriptionInfo={t('userList.changeUserProfileAndAccessList')}
         icon={userFocus}
-        open={activeModal === MODALS.SETTING}
+        open={activeModal === 'setting'}
         setOpen={() => setActiveModal(null)}
         content={
           <SettingDaasModal
@@ -350,7 +348,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       <Modal
         classContainer="md:h-[45.625rem] h-[36.875rem]"
         size="lg"
-        open={activeModal === MODALS.ONLINE_ASSISTANCE}
+        open={activeModal === 'onlineAssistance'}
         setOpen={() => setActiveModal(null)}
         type="content"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
