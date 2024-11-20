@@ -1,7 +1,5 @@
 import { Avatar, Typography } from '@redesignUi/atoms';
 import userIcon from '@iconify-icons/ph/user';
-// import { useLanguage } from '@context/settings/languageContext';
-
 import { BaseTableAvatarCellProps, IdItem } from '../../types';
 
 /**
@@ -24,11 +22,6 @@ export default function BaseTableAvatarCell<T extends IdItem>(
   props: BaseTableAvatarCellProps<T>
 ) {
   const { row, id, header } = props;
-  // const { isFarsi } = useLanguage();
-
-  // const directionStyle = !isFarsi
-  //   ? 'hover:-translate-x-[50%]'
-  //   : 'hover:translate-x-[50%]';
 
   const isAvatarType = header.type === 'avatar';
   const isActive = isAvatarType ? row[header?.isActive] : '';
