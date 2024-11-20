@@ -103,6 +103,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
     action,
     fileType
   ) => {
+    // setActiveDaas(fileType as IDaAs);
     const id = fileType?.id;
     switch (action) {
       case 'more':
@@ -121,13 +122,15 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       case 'details':
         setActiveModal(MODALS.ONLINE_ASSISTANCE);
         break;
+      case 'delete':
+        if (id) {
+          setActiveDaas(fileType as IDaAs);
+          setActiveModal(MODALS.DELETE_USER);
+        }
+        break;
       default:
         break;
       // do nothing
-    }
-    if (fileType !== undefined && typeof fileType !== 'string') {
-      setActiveDaas(fileType as IDaAs);
-      setActiveModal(MODALS.DELETE_USER);
     }
   };
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
