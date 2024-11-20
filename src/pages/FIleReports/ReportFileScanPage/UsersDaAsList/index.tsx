@@ -12,7 +12,7 @@ import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { ScannedFileList } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { usePaginationSwr } from '@src/services/http/httpClient';
+import { useGetPagination } from '@src/services/http/httpClient';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
@@ -38,7 +38,7 @@ export function UsersDaAsList() {
     filterQuery: searchQuery,
     currentPage,
   });
-  const { isLoading, error, resultData, count } = usePaginationSwr<IDaAs>(
+  const { isLoading, error, resultData, count } = useGetPagination<IDaAs>(
     endpoint,
     http.fetcherSWR
   );

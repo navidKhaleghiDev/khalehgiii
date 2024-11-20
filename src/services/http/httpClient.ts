@@ -61,7 +61,7 @@ export function usePost<T = object, R = AxiosResponse<T>>(
 }
 
 // Handel API request that has pagination
-export function usePaginationSwr<T>(
+export function useGetPagination<T>(
   endPoint: string,
   fetcher: (url: string) => Promise<IResponsePagination<T>>,
   options?: SWRConfiguration

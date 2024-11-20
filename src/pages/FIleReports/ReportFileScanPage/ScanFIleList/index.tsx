@@ -12,7 +12,7 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { StringifyProperties } from '@src/types/global';
-import { usePaginationSwr } from '@src/services/http/httpClient';
+import { useGetPagination } from '@src/services/http/httpClient';
 
 import { getScanFileHeader } from './constants/scannedFileHeaderItem';
 import { DateFormat, ScanFileDatePicker } from '../ScanFilesDatePicker';
@@ -31,7 +31,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
 
   // Daas user scan reports
   const { isLoading, error, resultData, count } =
-    usePaginationSwr<IScannedFile>(
+    useGetPagination<IScannedFile>(
       E_ANALYZE_SCAN_PAGINATION(userEmail, {
         page: currentPage,
         pageSize: PAGE_SIZE,
