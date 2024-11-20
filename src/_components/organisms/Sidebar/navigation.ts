@@ -109,7 +109,7 @@ export const navigationSideBar: NavigationProps[] = [
         path: ROUTES_PATH.application,
       },
       {
-        id: '3',
+        id: '5-3',
         label: 'DLP',
         path: ROUTES_PATH.dlp,
       },

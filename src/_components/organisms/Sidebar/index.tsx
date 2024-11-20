@@ -23,7 +23,7 @@ export function SideBar(): JSX.Element {
     >
       <div className="flex flex-col items-center w-full mt-5 overflow-y-auto overflow-x-hidden no-scrollbar">
         <div
-          className={`flex flex-col sticky top-0 px-3 bg-white dark:bg-gray-600 ${
+          className={`flex flex-col sticky z-50 top-0 px-3 bg-white dark:bg-gray-600 ${
             toggleSidebar ? 'items-start' : 'items-center'
           } w-full`}
         >

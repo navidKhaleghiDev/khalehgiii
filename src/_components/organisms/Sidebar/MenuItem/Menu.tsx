@@ -27,51 +27,28 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
 
   return (
     <div>
-      {!collapsed || !hasSubMenu ? (
-        <Link
-          className={menuItemStyles({
-            active: isActive || isInSubMenu,
-            isChildren,
-          })}
-          to={item.path}
-          target={item.isNewTab ? '_blank' : '_self'}
-        >
-          <div className="flex items-center">
-            {item?.icon ? (
-              <BaseIcon
-                icon={item.icon}
-                className="w-6 h-6 text-gray-500 dark:text-gray-300"
-              />
-            ) : null}
-            {!collapsed ? (
-              <Typography className="pt-1 px-2" variant="body5">
-                {item.label}
-              </Typography>
-            ) : null}
-          </div>
-        </Link>
-      ) : (
-        <div
-          className={menuItemStyles({
-            active: isActive || isInSubMenu,
-            isChildren,
-          })}
-        >
-          <div className="flex items-center">
-            {item?.icon ? (
-              <BaseIcon
-                icon={item.icon}
-                className="w-6 h-6 text-gray-500 dark:text-gray-300"
-              />
-            ) : null}
-            {!collapsed ? (
-              <Typography className="pt-1 px-2" variant="body5">
-                {item.label}
-              </Typography>
-            ) : null}
-          </div>
+      <Link
+        className={menuItemStyles({
+          active: isActive || isInSubMenu,
+          isChildren,
+        })}
+        to={item.path}
+        target={item.isNewTab ? '_blank' : '_self'}
+      >
+        <div className="flex items-center">
+          {item?.icon ? (
+            <BaseIcon
+              icon={item.icon}
+              className="w-6 h-6 text-gray-500 dark:text-gray-300"
+            />
+          ) : null}
+          {!collapsed ? (
+            <Typography className="pt-1 px-2" variant="body5">
+              {item.label}
+            </Typography>
+          ) : null}
         </div>
-      )}
+      </Link>
     </div>
   );
 }

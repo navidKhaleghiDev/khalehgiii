@@ -22,7 +22,7 @@ export function SideBarFooter({
   useState<NavigationProps | null>(null);
   const { logout } = useLogout();
   const { user } = useUserContext();
-  const { lang } = useLanguage();
+  const { lang, rtl } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
 
   const isUser = user?.first_name && user?.last_name;
@@ -39,16 +39,12 @@ export function SideBarFooter({
     logout();
     handleToggle();
   };
-  const enLanguageIcon = lang === 'en' ? PhCaretDoubleLeft : PhCaretDoubleRight;
-  const faLanguageIcon = lang === 'fa' ? PhCaretDoubleLeft : PhCaretDoubleRight;
+  const enLanguageIcon = rtl === false ? PhCaretDoubleLeft : PhCaretDoubleRight;
+  const faLanguageIcon = rtl === true ? PhCaretDoubleLeft : PhCaretDoubleRight;
 
   return (
-    <div
-      className={`flex flex-col ${
-        toggle ? 'items-start' : 'items-center'
-      } w-full mb-5 px-3`}
-    >
-      <div className="flex items-center">
+    <div className="flex flex-col w-full mb-5 px-3">
+      <div className="flex items-center ">
         {!toggle ? (
           <ToolTip
             tooltip={t('global.userName')}
