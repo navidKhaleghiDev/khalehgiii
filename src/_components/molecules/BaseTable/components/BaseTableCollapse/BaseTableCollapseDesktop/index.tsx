@@ -26,10 +26,10 @@ export function BaseTableCollapseDesktop<T extends IdItem>(
   props: BaseTableCollapseDesktopProps<T>
 ) {
   const { t } = useTranslation();
-  const { header, row, onClick } = props;
+  const { header, row, onClick, className } = props;
 
   return (
-    <tr className={baseTableCollapseDesktop()}>
+    <tr className={baseTableCollapseDesktop({ className })}>
       {header.map((headerList) => (
         <td
           key={headerList.label}

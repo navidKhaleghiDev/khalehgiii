@@ -1,6 +1,7 @@
 import { useLanguage } from '@context/settings/languageContext';
 
 import { Typography } from '@redesignUi/atoms/Typography/Typography';
+import { useOverflowCheck } from '@src/helper/hooks/useOverflowDetection';
 import { BaseTableNoneCellProps, IdItem } from '../../types';
 
 /**
@@ -22,6 +23,12 @@ export function BaseTableNoneCell<T extends IdItem>(
 ) {
   const { row, id, header } = props;
   const { isFarsi } = useLanguage();
+  const { isHovered, handleMouseEnter, handleMouseLeave, isOverflowing } =
+    useOverflowCheck();
+
+  const directionStyle = !isFarsi
+    ? 'group-hover:-translate-x-[50%]'
+    : 'group-hover:translate-x-[50%]';
 
   const textTransform = header.type === 'none' && header.textTransform;
 
@@ -31,13 +38,20 @@ export function BaseTableNoneCell<T extends IdItem>(
 
   return (
     <div className="group w-full">
-      <div className="relative w-full max-w-[300px] overflow-hidden group">
+      <div
+        id={cellLabel}
+        className="relative w-full max-w-[300px] overflow-hidden group"
+        onMouseEnter={() => handleMouseEnter(cellLabel)}
+        onMouseLeave={handleMouseLeave}
+      >
         <Typography
           variant="body6"
           type="p"
-          className={` text-gray-900 dark:text-white whitespace-nowrap text-ellipsis overflow-hidden group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear group-hover:${
-            !isFarsi ? '-' : ''
-          }translate-x-[50%] group-hover:duration-[1000ms] font-normal ${textTransform} `}
+          className={` text-gray-900 dark:text-white font-normal text-nowrap ${textTransform} ${
+            isHovered && isOverflowing
+              ? `  !text-ellipsis whitespace-nowrap group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear ${directionStyle} `
+              : ''
+          }`}
         >
           {cellLabel ?? '--'}
         </Typography>
