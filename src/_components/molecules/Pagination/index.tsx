@@ -42,8 +42,6 @@ const arrowButtonClass =
  * @returns {JSX.Element | null} The Pagination component.
  */
 
-// Note: in iconButton we do not have rounded
-
 export function Pagination(props: PaginationProps): JSX.Element | null {
   const {
     currentPage,
