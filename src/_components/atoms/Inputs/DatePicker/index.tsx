@@ -73,10 +73,13 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
   };
 
   const handleSubmit = () => {
-    // if (datePickerRef.current) {
-    //   datePickerRef.current.closeCalendar();
-    // }
+    setTimeout(() => {
+      if (datePickerRef.current) {
+        datePickerRef.current?.closeCalendar();
+      }
+    }, 1);
   };
+
   return (
     <div className={`${className ?? ''}`}>
       <DatePicker
