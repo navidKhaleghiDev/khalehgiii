@@ -18,7 +18,7 @@ type PaginationProps = {
 };
 
 const mClass =
-  'flex size-7 text-gray-500 dark:text-gray-400 dark:bg-gray-600 justify-center rounded-lg items-center dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100';
+  'flex size-7 text-sm md:text-base text-gray-500 dark:text-gray-400 dark:bg-gray-600 justify-center rounded-lg items-center dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100';
 
 const disableClass =
   'opacity-50 cursor-not-allowed hover:bg-white hover:text-gray-500 dark:hover:bg-transparent dark:hover:text-gray-400';
@@ -77,37 +77,39 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   };
 
   const renderPageNumbers = () => {
-    const pageNumbers = [];
+    const generatePageNumbers = (): (number | string)[] => {
+      if (totalPages <= 3) {
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
+      }
 
-    if (totalPages <= 3) {
-      for (let i = 1; i <= totalPages; i += 1) {
-        pageNumbers.push(i);
+      if (currentPage <= 2) {
+        return [
+          ...Array.from({ length: 3 }, (_, i) => i + 1),
+          '...',
+          totalPages,
+        ];
       }
-    } else if (currentPage <= 2) {
-      for (let i = 1; i <= 3; i += 1) {
-        pageNumbers.push(i);
-      }
-      pageNumbers.push('...');
-      pageNumbers.push(totalPages);
-    } else if (currentPage >= totalPages - 2) {
-      pageNumbers.push(1);
-      pageNumbers.push('...');
-      for (let i = totalPages - 2; i <= totalPages; i += 1) {
-        pageNumbers.push(i);
-      }
-    } else {
-      pageNumbers.push(1);
-      pageNumbers.push('...');
-      for (let i = currentPage - 1; i <= currentPage + 1; i += 1) {
-        pageNumbers.push(i);
-      }
-      pageNumbers.push('...');
-      pageNumbers.push(totalPages);
-    }
 
-    return pageNumbers.map((number, index) => {
+      if (currentPage >= totalPages - 2) {
+        return [
+          1,
+          '...',
+          ...Array.from({ length: 3 }, (_, i) => totalPages - 2 + i),
+        ];
+      }
+
+      return [
+        1,
+        '...',
+        ...Array.from({ length: 3 }, (_, i) => currentPage - 1 + i),
+        '...',
+        totalPages,
+      ];
+    };
+
+    return generatePageNumbers().map((number, index) => {
       const isEllipsis = number === '...';
-      const keyItem = index;
+      const keyIndex = `${number}${index}`;
 
       return (
         <button
@@ -116,8 +118,8 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
             currentPage === number ? activeClass : 'bg-white text-gray-600'
           }`}
           disabled={isEllipsis}
-          key={keyItem}
-          onClick={() => handlePageChange(number as number)}
+          key={keyIndex}
+          onClick={() => !isEllipsis && handlePageChange(number as number)}
         >
           {number}
         </button>
@@ -131,7 +133,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
   return !headerPagination ? (
     <div
       dir="ltr"
-      className="bg-white dark:bg-gray-600 flex items-center justify-between  rounded-lg p-1.5"
+      className="bg-white dark:bg-gray-600 flex items-center justify-between rounded-lg p-1.5"
     >
       <div className="flex justify-center items-center gap-2">
         <IconButton
@@ -154,12 +156,18 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
           onClick={handleNextClick}
         />
       </div>
-      <Typography color="neutralMiddle" className="hidden sm:block">
+      <Typography
+        color="neutralMiddle"
+        className="hidden sm:block text-sm md:text-base"
+      >
         {`${t('global.show')} ${itemsPer}  ${paginationLabel} ${t(
           'global.of'
         )} ${allItems}`}
       </Typography>
-      <Typography color="neutralMiddle" className="block sm:hidden">
+      <Typography
+        color="neutralMiddle"
+        className="block sm:hidden text-sm md:text-base"
+      >
         {allItems} of {itemsPer}
       </Typography>
     </div>
