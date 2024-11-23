@@ -98,7 +98,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
+  const handleOnClickActions: OnClickActionsType<IDaAs> = (
     action,
     fileType
   ) => {
