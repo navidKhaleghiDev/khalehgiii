@@ -7,7 +7,7 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import { BaseTableRenderComponent } from '../BaseTableRenderComponent';
 import { BaseTableCollapse } from '../BaseTableCollapse';
 import { BaseTableRowProps, IdItem } from '../../types';
-import { baseTableRowStyles } from '../../styles';
+import { baseTableCollapseStyle, baseTableRowStyles } from '../../styles';
 
 let menu = false;
 
@@ -56,7 +56,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
         className={baseTableRowStyles({
           isOpen,
           radiusTop: index === 0,
-          radiusButton: index === body.length - 1,
+          radiusButton: !isOpen && index === body.length - 1,
         })}
       >
         {header.map((headerList) => {
@@ -66,7 +66,7 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
             !isFarsi && headerList?.class?.includes('mr-auto')
               ? headerList.class.replace('mr-auto', 'ml-auto')
               : headerList?.class;
-          const menuStyle = headerList.type === 'menu' ? 'justify-end ' : '';
+          const menuStyle = headerList.type === 'menu' ? 'justify-end' : '';
           menu = headerList.type === 'menu';
 
           return (
@@ -101,6 +101,9 @@ export function BaseTableRow<T extends IdItem>(props: BaseTableRowProps<T>) {
       </tr>
       {isOpen && (
         <BaseTableCollapse
+          className={baseTableCollapseStyle({
+            radiusButton: index === body.length - 1,
+          })}
           isMobile={isMobile}
           collapseHeader={collapseHeader}
           header={header}
