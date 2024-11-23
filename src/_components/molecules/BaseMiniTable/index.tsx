@@ -1,6 +1,6 @@
 import { useLanguage } from '@context/settings/languageContext';
 import { Card, Typography } from '@redesignUi/atoms';
-
+import { useOverflowCheck } from '@src/helper/hooks/useOverflowDetection';
 import { BaseMiniTableNoResult } from './components/BaseMiniTableNoResult';
 import { BaseMiniTableProps, IdItem } from './types';
 import { Pagination } from '../Pagination';
@@ -11,8 +11,11 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
   const { header, body, loading, pagination, title, date, className } = props;
   const { currentPage, totalPages, onPageChange } = pagination;
 
+  const { isHovered, handleMouseEnter, handleMouseLeave, isOverflowing } =
+    useOverflowCheck();
+
   const { isFarsi } = useLanguage();
-  const directionStyle = isFarsi
+  const directionStyle = !isFarsi
     ? 'group-hover:-translate-x-[50%]'
     : 'group-hover:translate-x-[50%]';
 
@@ -63,23 +66,34 @@ export function BaseMiniTable<T extends IdItem>(props: BaseMiniTableProps<T>) {
                   className="max-h-7 mt-1 bg-white dark:bg-gray-600 rounded-lg border border-gray-100"
                 >
                   <div className="flex">
-                    {Object.keys(header).map((key) => (
-                      <div
-                        key={key}
-                        className="group flex-1 px-4 py-2 text-gray-900 dark:text-gray-300 text-xs overflow-hidden"
-                      >
-                        <Typography
-                          type="div"
-                          className={`!text-ellipsis whitespace-nowrap group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear ${directionStyle} group-hover:duration-[1000ms]`}
+                    {Object.keys(header).map((key) => {
+                      const cellId = `cell-${item.id}-${key}`;
+
+                      return (
+                        <div
+                          key={key}
+                          id={cellId}
+                          className="group flex-1 px-4 py-2 text-gray-900 dark:text-gray-300 text-xs overflow-hidden"
+                          onMouseEnter={() => handleMouseEnter(cellId)}
+                          onMouseLeave={handleMouseLeave}
                         >
-                          {isDateKey(key) ? (
-                            <BaseTableDateCell id={key} row={item} />
-                          ) : (
-                            item[key]
-                          )}
-                        </Typography>
-                      </div>
-                    ))}
+                          <Typography
+                            type="div"
+                            className={
+                              isHovered && isOverflowing
+                                ? `  !text-ellipsis whitespace-nowrap group-hover:whitespace-nowrap group-hover:overflow-visible transition-transform duration-1000 ease-linear ${directionStyle}`
+                                : ''
+                            }
+                          >
+                            {isDateKey(key) ? (
+                              <BaseTableDateCell id={key} row={item} />
+                            ) : (
+                              item[key]
+                            )}
+                          </Typography>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               ))
