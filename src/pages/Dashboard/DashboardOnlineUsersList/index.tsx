@@ -31,44 +31,42 @@ export function DashboardOnlineUsersList({
     return <LoadingPage />;
   }
 
-  return (
-    checkPermission(permissions, EPermissionDaas.VIEW) && (
-      <Card
-        rounded="xxl"
-        shadow="base"
-        className=" w-full basis-full flex-grow p-5"
-      >
-        <div className="col-span-12 grid grid-cols-12 pb-9">
-          <div className="col-span-6">
-            <Typography color="black" variant="body4B">
-              {t('dashboard.onlineUsers')}
-            </Typography>
-          </div>
-          <div className="col-span-6 justify-self-end">
-            {/* The functionality dose not work cause we do not have service */}
-            {/* <BaseButton
+  return checkPermission(permissions, EPermissionDaas.VIEW) ? (
+    <Card
+      rounded="xxl"
+      shadow="base"
+      className=" w-full basis-full flex-grow p-5"
+    >
+      <div className="col-span-12 grid grid-cols-12 pb-9">
+        <div className="col-span-6">
+          <Typography color="black" variant="body4B">
+            {t('dashboard.onlineUsers')}
+          </Typography>
+        </div>
+        <div className="col-span-6 justify-self-end">
+          {/* The functionality dose not work cause we do not have service */}
+          {/* <BaseButton
               label={t('global.domain')}
               endIcon={caretLeft}
               size="sm"
               type="neutral"
               disabled
             /> */}
-          </div>
         </div>
-        <div className="col-span-12">
-          {listDaas.length > 0 && !error ? (
-            listDaas?.map((user) => (
-              <UserInfo
-                fullName={user?.email}
-                email={user?.email}
-                key={user.id}
-              />
-            ))
-          ) : (
-            <NoResult />
-          )}
-        </div>
-      </Card>
-    )
-  );
+      </div>
+      <div className="col-span-12">
+        {listDaas.length > 0 && !error ? (
+          listDaas?.map((user) => (
+            <UserInfo
+              fullName={user?.email}
+              email={user?.email}
+              key={user.id}
+            />
+          ))
+        ) : (
+          <NoResult />
+        )}
+      </div>
+    </Card>
+  ) : null;
 }

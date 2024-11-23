@@ -39,13 +39,20 @@ export function DashboardActiveLicense() {
     ? data.data
     : [];
 
+  const onWheelHandle = (e: React.WheelEvent<HTMLDivElement>) => {
+    e.currentTarget.scrollLeft -= e.deltaY;
+  };
+
   return (
     <>
       <Typography color="black" variant="body4B">
         {t('dashboard.activeLicenses')}
       </Typography>
       {!error ? (
-        <div className="flex w-full gap-2.5 overflow-x-auto py-5 px-1">
+        <div
+          className="flex w-full gap-2.5 overflow-x-auto py-5 px-1"
+          onWheel={onWheelHandle}
+        >
           {licensesList.map((license) => {
             const color = licenseCardsColor[license.name as LicenseCardKeys];
             return (

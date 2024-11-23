@@ -23,11 +23,11 @@ export function DashboardPage() {
       <div className="xl:col-span-8 col-span-12 order-4">
         <DashboardCharts permissions={userPermissions ?? []} />
       </div>
-      {width > 1279 && (
+      {width > 1279 ? (
         <div className="xl:col-span-4 flex order-5 max-h-[36.375rem]">
           <DashboardOnlineUsersList permissions={userPermissions ?? []} />
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
