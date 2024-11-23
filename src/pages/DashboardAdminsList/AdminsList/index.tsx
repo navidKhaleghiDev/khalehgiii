@@ -171,7 +171,6 @@ export function AdminsList() {
             admin={activeAdmin}
           />
         }
-        classContainer="md:h-[45.5rem] h-[36.875rem] overflow-x-hidden"
       />
     </div>
   );
