@@ -82,6 +82,13 @@ export type ResultOfRecords = {
   records: Records | [];
 };
 
+type RecordItem = {
+  download_clean: number;
+  download_malware: number;
+  upload_clean: number;
+  upload_malware: number;
+};
+
 export type Records = {
-  [date: string]: number | [];
+  [date: string]: RecordItem;
 };

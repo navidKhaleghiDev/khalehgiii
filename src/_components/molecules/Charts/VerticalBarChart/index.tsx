@@ -44,16 +44,14 @@ export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
     responsive: true,
     scales: {
       x: {
-        type: 'time',
-        time: {
-          unit: 'month',
-        },
+        type: 'category',
         title: {
           display: false,
-          text: 'Date',
+          text: 'value',
         },
         ticks: {
           color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+          align: 'center',
         },
         grid: {
           color: isDark
@@ -69,6 +67,7 @@ export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
         },
         ticks: {
           color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+          stepSize: 1,
         },
         grid: {
           color: isDark
@@ -76,6 +75,7 @@ export function VerticalBarChart({ datasets }: VerticalBarChartProps) {
             : 'rgba(104, 104, 104, 0.5)',
           lineWidth: 1,
         },
+        beginAtZero: true,
       },
     },
     plugins: {
