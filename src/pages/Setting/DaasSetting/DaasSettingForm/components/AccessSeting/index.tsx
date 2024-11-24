@@ -10,8 +10,22 @@ import { EPermissionDaas } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
+import { ETimeLimitDuration } from '@src/services/users/types';
 
-export function AccessSeting({ control, userPermissions, dir }: PropsType) {
+export function AccessSeting({
+  control,
+  userPermissions,
+  dir,
+  timeOfUse,
+}: PropsType) {
+  const maxTimeLimitValues: { [key in ETimeLimitDuration]?: number } = {
+    DAILY: 24,
+    WEEKLY: 168,
+    MONTHLY: 744,
+  };
+
+  const setMaxTimeLimitValue = () =>
+    maxTimeLimitValues[timeOfUse as ETimeLimitDuration] || 0;
   const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
 
   const hasChangePermission = checkPermission(
@@ -65,10 +79,11 @@ export function AccessSeting({ control, userPermissions, dir }: PropsType) {
             name="time_limit_value_in_hour"
             control={control}
             label={t('table.timeLimitDuration')}
-            disabled={!hasChangePermission}
+            disabled={!hasChangePermission || timeOfUse === 'PERMANENTLY'}
             placeholder={t('global.hour')}
             icon={PhTimer}
             dir={dir}
+            max={setMaxTimeLimitValue()}
             rules={{
               required: regexPattern.required,
             }}

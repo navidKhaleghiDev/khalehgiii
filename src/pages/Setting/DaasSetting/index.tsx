@@ -39,6 +39,8 @@ export function DaasSetting() {
       },
     });
   const isActive = watch('time_limit_duration');
+  const timeOfUse = watch('time_limit_duration') || [];
+
   useEffect(() => {
     if (daasConfig?.data) {
       reset(daasConfig.data);
@@ -93,6 +95,7 @@ export function DaasSetting() {
         control={control}
         userPermissions={userPermissions}
         isActive={isActive}
+        timeOfUse={timeOfUse}
       />
 
       <div className="flex self-end mt-8 lg:mb-[2.1rem]">

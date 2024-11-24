@@ -14,6 +14,7 @@ export function DaasSettingForm({
   control,
   userPermissions,
   isActive,
+  timeOfUse
 }: PropsType) {
   const { t } = useTranslation();
 
@@ -121,7 +122,11 @@ export function DaasSettingForm({
         </div>
         <Divider />
 
-        <AccessSeting control={control} userPermissions={userPermissions} />
+        <AccessSeting
+          control={control}
+          userPermissions={userPermissions}
+          timeOfUse={timeOfUse}
+        />
         <Divider />
         <ResourceLimitation
           control={control}
