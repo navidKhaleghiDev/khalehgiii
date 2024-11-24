@@ -14,7 +14,7 @@ export function DaasSettingForm({
   control,
   userPermissions,
   isActive,
-  timeOfUse
+  timeOfUse,
 }: PropsType) {
   const { t } = useTranslation();
 

@@ -42,7 +42,7 @@ export interface PropsType {
   userPermissions: PermissionsCodeName[];
   dir?: 'rtl' | 'ltr';
   isActive?: string;
-  timeOfUse?: ETimeLimitDuration ;
+  timeOfUse?: ETimeLimitDuration;
 }
 export interface FileTypeProp {
   id: number;
