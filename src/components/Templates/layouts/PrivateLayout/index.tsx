@@ -12,6 +12,7 @@ import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
 import { NavbarDashboard } from '@redesignUi/organisms/Navbar/NavbarDashboard';
 import { SideBar } from '@redesignUi/organisms/Sidebar';
 import { NavbarUser } from '@redesignUi/organisms/Navbar/NavbarUser/NavbarUser';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 function LayoutCp() {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ function LayoutCp() {
   const { user, setUser } = useUserContext();
   const isUser = user?.is_meta_admin || user?.is_superuser;
   const navigate = useNavigate();
+  const windowDimensions = useWindowDimensions();
 
   useEffect(() => {
     const getProfile = async () => {
@@ -63,7 +65,7 @@ function LayoutCp() {
             {isUser ? (
               <nav className="flex mx-auto sm:h-full z-40">
                 <div className="flex items-center justify-center w-full h-full shadow-md sm:w-fit rounded-2xl">
-                  <SideBar />
+                  {windowDimensions.height <= 760 ? null : <SideBar />}
                 </div>
               </nav>
             ) : null}

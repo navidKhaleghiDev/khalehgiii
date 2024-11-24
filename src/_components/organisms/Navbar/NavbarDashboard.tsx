@@ -24,15 +24,10 @@ export function NavbarDashboard(): JSX.Element {
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base">
         <div className="flex justify-between items-center pt-[0.93rem] pb-[0.56rem] gap-2.5 ">
-          <div
-            className={`${
-              windowDimensions.height <= 760 || windowDimensions.width <= 1280
-                ? 'block'
-                : 'hidden'
-            }`}
-          >
+          {windowDimensions.height <= 760 || windowDimensions.width <= 1280 ? (
             <ListMenu />
-          </div>
+          ) : null}
+
           {/*
           need api
           <div className="hidden md:block">
