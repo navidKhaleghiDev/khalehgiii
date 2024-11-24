@@ -4,6 +4,7 @@ import { BaseSwitchWithIcon } from '@redesignUi/atoms/BaseSwitchWithIcon';
 import { useTheme } from '@context/settings/themeContext';
 import sunRisingTwotoneLoop from '@iconify-icons/line-md/sun-rising-twotone-loop';
 import moonTwotoneAltLoop from '@iconify-icons/line-md/moon-twotone-alt-loop';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { MenuContent } from './MenuContent';
 import { SideBarFooter } from './SideBarFooter';
@@ -11,6 +12,7 @@ import { SideBarFooter } from './SideBarFooter';
 export function SideBar(): JSX.Element {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const windowDimensions = useWindowDimensions();
 
   const toggleSideBar = () => {
     setToggleSidebar(!toggleSidebar);
@@ -18,7 +20,11 @@ export function SideBar(): JSX.Element {
 
   return (
     <div
-      className={`relative z-30 hidden xl:flex flex-col justify-between items-end h-full bg-white dark:bg-gray-600 rounded-2xl 
+      className={`relative z-30 h-full bg-white dark:bg-gray-600 rounded-2xl ${
+        windowDimensions.height <= 760 || windowDimensions.width <= 1280
+          ? 'hidden'
+          : ' xl:flex flex-col justify-between items-end'
+      }
      `}
     >
       <div className="flex flex-col items-center w-full  overflow-y-auto overflow-x-hidden no-scrollbar">

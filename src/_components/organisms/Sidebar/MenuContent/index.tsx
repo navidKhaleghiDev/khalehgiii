@@ -28,7 +28,7 @@ export function MenuContent({ collops }: MenuContentProps): JSX.Element {
       } transition-width duration-500 ease-in-out dark:bg-gray-600`}
     >
       <div className="flex flex-col items-center w-full mt-1 overflow-y-auto overflow-x-hidden no-scrollbar">
-        <div className={`${collops ? 'w-full' : 'absolute z-40'} px-3`}>
+        <div className={`${collops ? 'w-full px-3' : 'absolute z-40'}`}>
           {navigationSideBar.map((item: NavigationProps, index) => {
             const shouldAddHR = [2].includes(index);
 

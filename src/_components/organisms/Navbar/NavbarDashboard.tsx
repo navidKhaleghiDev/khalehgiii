@@ -6,6 +6,7 @@ import { languageOptions } from '@src/constants/optios';
 import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
 import { useLanguage } from '@context/settings/languageContext';
 import PhTranslate from '@iconify-icons/ph/translate';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { ListMenu } from './ListMenu';
 // import { NotificationMenu } from './NotificationMenu';
@@ -17,11 +18,19 @@ import { ListMenu } from './ListMenu';
 
 export function NavbarDashboard(): JSX.Element {
   const { changeLanguage } = useLanguage();
+  const windowDimensions = useWindowDimensions();
+
   return (
     <div>
       <div className="flex h-16 items-center justify-between container mx-auto shadow-base">
         <div className="flex justify-between items-center pt-[0.93rem] pb-[0.56rem] gap-2.5 ">
-          <div className="block xl:hidden">
+          <div
+            className={`${
+              windowDimensions.height <= 760 || windowDimensions.width <= 1280
+                ? 'block'
+                : 'hidden'
+            }`}
+          >
             <ListMenu />
           </div>
           {/*
