@@ -36,16 +36,6 @@ export function ExtensionList() {
   const { t } = useTranslation();
   const userPermissions = useUserPermission();
 
-  // check o tic about permissions
-  // const viewTablePermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionExtensions.VIEW
-  // );
-  // const addPermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionExtensions.ADD
-  // );
-
   const endpoint = createAPIEndpoint({
     endPoint: E_ANALYZE_MIME_TYPE,
     pageSize: PAGE_SIZE,
