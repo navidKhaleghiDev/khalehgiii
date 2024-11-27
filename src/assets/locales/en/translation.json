@@ -421,7 +421,10 @@
     "areYouSureUnBlock": "Are you sure you want to unblock this user's access?",
     "yourBrowserDoesntSupportVideo": "Your browser does not support this video.",
     "allowedVolume": "Allowed volume",
-    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "Enter the allowed volume for this format in the opposite field"
+    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "Enter the allowed volume for this format in the opposite field",
+    "formInstruction": "After entering the information in the fields below, press Enter to add them to the list.",
+    "timeExceededError": "The entered time exceeds the allowed usage range.",
+    "timeLessThanUserUsage": "The entered time is less than the user's utilized time."
   },
   "license": {
     "licenseId": "license Id",

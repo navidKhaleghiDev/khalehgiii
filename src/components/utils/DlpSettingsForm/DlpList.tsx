@@ -15,10 +15,13 @@ import { BaseInputNumber } from '@redesignUi/atoms/Inputs/BaseInputNumber';
 
 type PropsType = {
   name: keyof IDaAs;
-  valueList: any;
+  valueList: { [key: string]: number };
   label: string;
   userPermissions: PermissionsCodeName[];
-  onChange: (name: PropsType['name'], values: string[]) => void;
+  onChange: (
+    name: PropsType['name'],
+    values: { [key: string]: number }
+  ) => void;
 };
 
 export function DlpList({
