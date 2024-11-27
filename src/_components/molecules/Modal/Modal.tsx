@@ -90,9 +90,16 @@ export function Modal(props: ModalProps): JSX.Element | null {
     descriptionInfo,
     description,
     classContainer,
+    shouldCloseOnOutsideClick = true,
   } = props;
   const ref = useRef(null);
-  useClickOutside({ ref, setValue: setOpen, value: open });
+
+  useClickOutside(
+    shouldCloseOnOutsideClick
+      ? { ref, setValue: setOpen, value: open }
+      : { ref, setValue: () => {}, value: false }
+  );
+
   const handleToggle = () => setOpen(!open);
 
   return open ? (
