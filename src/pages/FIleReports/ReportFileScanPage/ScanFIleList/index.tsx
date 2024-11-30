@@ -8,6 +8,7 @@ import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { API_ANALYZE_DOWNLOAD_FILE } from '@src/services/analyze';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
@@ -88,8 +89,13 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
 
   return (
     <div className="w-full">
-      <ScanFileDatePicker onChange={(value) => setDateRange(value)} />
-      {isLoadingDownload && <div>Downloading....</div>}
+      <div className="flex items-center justify-between">
+        <ScanFileDatePicker
+          onChange={(value) => setDateRange(value)}
+          disabled={!resultData.length}
+        />
+        {isLoadingDownload && <LoadingSpinner />}
+      </div>
       <div className="[&_thead]:bg-gray-100">
         {!error ? (
           <BaseTable

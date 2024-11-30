@@ -10,8 +10,10 @@ export type DateFormat = {
 
 export function ScanFileDatePicker({
   onChange,
+  disabled,
 }: {
   onChange: (value: DateFormat) => void;
+  disabled: boolean;
 }) {
   const { control, handleSubmit } = useForm<any>({
     mode: 'onChange',
@@ -37,6 +39,7 @@ export function ScanFileDatePicker({
         name="start_date"
         format="YYYY-MM-DD"
         maxDate={new Date()}
+        disabled={disabled}
         fullWidth
       />
     </form>
