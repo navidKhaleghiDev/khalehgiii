@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -13,6 +13,7 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { StringifyProperties } from '@src/types/global';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+import { ActionOnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { useGetPagination } from '@src/services/http/httpClient';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -27,11 +28,10 @@ const PAGE = 1;
 export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
+  const [openModal, setOpenModal] = useState<ActionOnClickActionsType>();
   const [activeAdmin, setActiveAdmin] = useState<
     IMimeType | StringifyProperties<IMimeType>
   >();
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
   const { width } = useWindowDimensions();
@@ -44,6 +44,7 @@ export function ExtensionList() {
     currentPage,
     filterQuery,
   });
+
   const { count, resultData, isLoading, mutate } = useGetPagination<IMimeType>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
@@ -65,7 +66,7 @@ export function ExtensionList() {
       .then(() => {
         mutate();
         toast.success(t('global.successfullyRemoved'));
-        setDeleteModal(false);
+        setOpenModal('delete');
       })
       .catch((err) => {
         toast.error(err);
@@ -76,12 +77,10 @@ export function ExtensionList() {
   };
 
   const handleCloseUpdateModal = (isMutate?: boolean) => {
-    console.log(isMutate);
-
     if (isMutate) {
       mutate();
     }
-    setOpenUpdateModal(false);
+    setOpenModal('edit');
   };
 
   const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
@@ -89,14 +88,7 @@ export function ExtensionList() {
     fileType
   ) => {
     setActiveAdmin(fileType);
-    if (action === 'delete') {
-      setDeleteModal(true);
-      return;
-    }
-
-    if (action === 'edit') {
-      setOpenUpdateModal(true);
-    }
+    setOpenModal(action);
   };
 
   const paginationProps = {
@@ -109,6 +101,9 @@ export function ExtensionList() {
     itemsPer: resultData.length,
   };
 
+  const handelOpenModal: Dispatch<SetStateAction<boolean>> = () =>
+    setOpenModal('mutate');
+
   return (
     <>
       <div className="mb-[1.875rem]">
@@ -117,7 +112,7 @@ export function ExtensionList() {
           searchPlaceholder={t('systemManagement.search')}
           searchQuery={filterQuery}
           buttonLabel={t('systemManagement.newFormat')}
-          onClickButton={() => setOpenUpdateModal(true)}
+          onClickButton={() => setOpenModal('edit')}
         />
       </div>
       <BaseTable
@@ -132,8 +127,8 @@ export function ExtensionList() {
         isMobile={width <= 765}
       />
       <Modal
-        open={deleteModal}
-        setOpen={setDeleteModal}
+        open={openModal === 'delete'}
+        setOpen={handelOpenModal}
         type="error"
         size="responsive"
         title={t('systemManagement.deleteFormat')}
@@ -146,13 +141,13 @@ export function ExtensionList() {
         }}
         buttonTow={{
           label: t('global.cancel'),
-          onClick: () => setDeleteModal(false),
+          onClick: () => setOpenModal('mutate'),
           color: 'tertiary',
         }}
       />
       <Modal
-        open={openUpdateModal}
-        setOpen={setOpenUpdateModal}
+        open={openModal === 'edit'}
+        setOpen={handelOpenModal}
         type="content"
         icon={PhUploadSimple}
         title={t('systemManagement.uploadFile')}
