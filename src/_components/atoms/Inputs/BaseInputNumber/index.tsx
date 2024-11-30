@@ -21,8 +21,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     size,
     placeholder,
     className,
-    defaultValue = 0,
-    value: externalValue, // Added this prop to sync with Controller
+    defaultValue,
     label,
     error,
     min = 0,
@@ -33,13 +32,15 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     onKeyDown,
     icon,
   } = props;
+
   const rtl = dir === 'rtl';
-  const [value, setValue] = useState<number>(defaultValue);
+  const [value, setValue] = useState<number>(defaultValue ?? 0);
+
   useEffect(() => {
-    if (externalValue !== undefined && externalValue !== value) {
-      setValue(externalValue as number);
+    if (defaultValue !== undefined && defaultValue !== value) {
+      setValue(defaultValue);
     }
-  }, [externalValue, value]);
+  }, [defaultValue, value]);
 
   const isOutOfRange = value > max || value < min;
 
@@ -67,7 +68,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
               error && !disabled
                 ? 'text-red-500 dark:text-red-500'
                 : 'text-gray-200'
-            }  ${
+            } ${
               disabled
                 ? 'text-gray-300 dark:text-gray-500'
                 : 'text-gray-500 dark:text-white'
@@ -83,11 +84,11 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             name={name}
             id={id}
             type="number"
-            value={value === 0 ? '' : value}
+            value={value === 0 ? '' : value} // Use controlled value
             onChange={(e) => {
               const newValue = Number(e.target.value);
               setValue(newValue);
-              onChange(newValue);
+              onChange?.(newValue);
             }}
             className={baseInputNumberStyles({
               intent: error || isOutOfRange ? 'error' : 'default',
@@ -100,11 +101,10 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             disabled={disabled}
             placeholder={placeholder}
             min={min}
-            defaultValue={defaultValue}
             max={max}
             onKeyDown={onKeyDown}
           />
-          {icon ? (
+          {icon && (
             <BaseIcon
               className={BaseIconInputNumberStyles({
                 dir,
@@ -112,7 +112,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
               })}
               icon={icon}
             />
-          ) : null}
+          )}
         </div>
         <IconButton
           disabled={disabled}
@@ -137,12 +137,11 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
           })}
         />
       </div>
-      {isOutOfRange ||
-        (error && (
-          <Typography color="red" variant="body6" className="min-h-5">
-            {error}
-          </Typography>
-        ))}
+      {(isOutOfRange || error) && (
+        <Typography color="red" variant="body6" className="min-h-5">
+          {error}
+        </Typography>
+      )}
     </div>
   );
 }
