@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Control, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 
 import { Typography } from '@redesignUi/atoms';
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
@@ -11,28 +10,38 @@ import { Pagination } from '@redesignUi/molecules/Pagination';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import pencilSimple from '@iconify-icons/ph/pencil-simple';
 
+import { regexPattern } from '@redesignUi/atoms/Inputs';
 import {
   groupManagementAdminHeaderItem,
   groupManagementUserHeaderItem,
 } from '../constants/groupManagementHeaderItem';
-import { TGroup, TGroupUpdate } from '../../types';
+import { GroupManagementEditFormProps } from '../../types';
 
-type GroupManagementEditFormProps = {
-  setFilterQuery: (e: string) => void;
-  filterQuery: string;
-  paginatedData: any;
-  setCurrentPage: (val: number) => void;
-  handleClickAction: any;
-  isLoading: boolean;
-  currentPage: number;
-  group: TGroup;
-  control: Control<TGroupUpdate>;
-  handleSubmit: UseFormHandleSubmit<TGroupUpdate, undefined>;
-  onSubmit: SubmitHandler<TGroupUpdate>;
-  allGroupData: TGroup;
-  isDirty: boolean;
-  setOpenEditModal: any;
-};
+/**
+ * Group Management Edit Form Component.
+ *
+ * This component renders a form for editing group management details,
+ * including group name, image, and member details. It integrates pagination,
+ * table filtering, and form submission functionality.
+ *
+ * @param {GroupManagementEditFormProps} props - The props for the component.
+ * @param {function} props.setFilterQuery - Function to set the filter query for the table.
+ * @param {string} props.filterQuery - Current filter query for the table.
+ * @param {function} props.paginatedData - Function to retrieve paginated data for users or admins.
+ * @param {function} props.setCurrentPage - Function to update the current pagination page.
+ * @param {function} props.handleClickAction - Function to handle click actions on table rows.
+ * @param {boolean} props.isLoading - Indicates whether data is currently loading.
+ * @param {number} props.currentPage - Current page in the pagination.
+ * @param {object} props.group - Group data, including users and admins.
+ * @param {object} props.control - `react-hook-form` control object for form management.
+ * @param {function} props.handleSubmit - Function to handle form submission.
+ * @param {function} props.onSubmit - Callback for form submission.
+ * @param {object} props.allGroupData - Complete group data for comparison and validations.
+ * @param {boolean} props.isDirty - Indicates whether the form has unsaved changes.
+ * @param {function} props.setOpenEditModal - Function to toggle the visibility of the edit modal.
+ *
+ * @returns {JSX.Element} - The rendered Group Management Edit Form component.
+ */
 
 export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
   const {
@@ -87,6 +96,12 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
             </div>
           ) : (
             <BaseInputController
+              rules={{
+                required: regexPattern.required,
+                pattern: regexPattern.en_spc,
+                minLength: 2,
+                maxLength: 20,
+              }}
               name="name"
               id="name"
               control={control}
