@@ -50,6 +50,10 @@
   text-align: left;
 }
 
+.toast-container-custom {
+  top: 16px;
+}
+
 .Toastify__toast-icon {
   margin: 0;
   margin-inline-end: 0 !important;

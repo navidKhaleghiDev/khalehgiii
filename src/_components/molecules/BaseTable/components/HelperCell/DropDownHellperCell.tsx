@@ -4,8 +4,29 @@ import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import PhCaretDown from '@iconify-icons/ph/caret-down';
 import PhCaretUp from '@iconify-icons/ph/caret-up';
 import { useLanguage } from '@context/settings/languageContext';
+import { DropDownHelperCellProps, IdItem } from '../../types';
 
-function DropDownHelperCell({ onClick, options, defaultValue }: any) {
+/**
+ * DropDown Helper Cell Component.
+ *
+ * This component renders a dropdown menu with customizable options and supports
+ * dynamic selection. It is designed to be used within table cells or other UI elements
+ * where dropdown functionality is required.
+ *
+ * @template T
+ * @param {DropDownHelperCellProps<T>} props - The props for the dropdown helper cell.
+ * @param {function} props.onClick - Callback triggered when a dropdown option is selected.
+ * @param {Array<{ id: string | number, label: string, value: any }>} props.options - Array of dropdown options.
+ * @param {{ id: string | number, label: string, value: any }} props.defaultValue - Default selected value for the dropdown.
+ *
+ * @returns {JSX.Element} - The rendered dropdown helper cell.
+ */
+
+function DropDownHelperCell<T extends IdItem>({
+  onClick,
+  options,
+  defaultValue,
+}: DropDownHelperCellProps<T>) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(defaultValue);
   const { isFarsi } = useLanguage();
