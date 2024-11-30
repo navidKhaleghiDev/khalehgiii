@@ -127,9 +127,11 @@ export function SideBar(): JSX.Element {
               )}
             </div>
           ) : (
-            <div className="flex justify-center flex-col items-center">
+            <div
+              className="flex justify-center flex-col items-center"
+              key={item.id}
+            >
               <div
-                key={item.id}
                 onPointerUp={() => {
                   if (isDropdownVisible?.id === item.id) {
                     setDropdownVisible(null);
