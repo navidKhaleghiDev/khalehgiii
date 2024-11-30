@@ -30,11 +30,20 @@ export const baseTableRowStyles = cva(
     },
   }
 );
+
+export const baseTableCollapseStyle = cva(``, {
+  variants: {
+    radiusButton: {
+      true: ' rounded-b-lg md:rounded-b-2xl',
+      false: '',
+    },
+  },
+});
 export const baseTableCollapseDesktop = cva(
   `py-2 gap-4 flex justify-start h-full bg-gray-100 border border-gray-400 dark:border-gray-500 border-t-0 transition duration-150 ease-in-out  dark:bg-gray-800`
 );
 export const baseTableCollapseMobile = cva(
-  `bg-gray-100 border border-gray-400 dark:border-gray-500 dark:bg-gray-800  `
+  `bg-gray-100 border border-gray-400 dark:border-gray-500 dark:bg-gray-800`
 );
 export const baseTableMenuCell = cva(
   `flex gap-2 !justify-start border-none !font-normal w-full !text-sm !text-right`,

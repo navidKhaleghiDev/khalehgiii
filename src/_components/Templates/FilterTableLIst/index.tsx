@@ -12,7 +12,23 @@ import caretRight from '@iconify-icons/ph/caret-right';
 import sortAscending from '@iconify-icons/ph/sort-ascending';
 
 import { FilterReportsProps } from './types';
-
+/**
+ * FilterTableList Component.
+ *
+ * A utility component for filtering table data with support for search, domain filtering, sorting, and custom actions.
+ *
+ * @param {FilterReportsProps} props - The props for the component.
+ * @param {string} props.searchQuery - The current search query text.
+ * @param {string} props.searchPlaceholder - Placeholder text for the search input.
+ * @param {boolean} [props.domainFilter] - If true, displays a domain filter button (currently disabled).
+ * @param {string} [props.buttonLabel] - Label for the action button.
+ * @param {(e: ChangeEvent<HTMLInputElement>) => void} props.handelSearchQuery - Callback for handling search input changes.
+ * @param {boolean} [props.sortFilter] - If true, displays a sort filter icon (currently disabled).
+ * @param {() => void} [props.handelGroupeFilter] - Callback for handling group filter action.
+ * @param {() => void} [props.onClickButton] - Callback for the action button click.
+ *
+ * @returns {JSX.Element} - The rendered filter table list component.
+ */
 export function FilterTableList(props: FilterReportsProps) {
   const {
     searchQuery,
@@ -27,22 +43,6 @@ export function FilterTableList(props: FilterReportsProps) {
 
   const { t } = useTranslation();
   const { dir } = useLanguage();
-
-  // This functionality does not work cause we do not have service call
-  //
-  // const { data, isLoading, error } = useSWR<IResponseData<TGroup[]>>(
-  //   E_USERS_GROUPS,
-  //   http.fetcherSWR
-  // );
-  // const daasGroups: OptionSelect[] = useMemo(
-  //   () =>
-  //     data?.data.map((item) => ({
-  //       id: String(item.id),
-  //       label: item.name,
-  //       value: item.name,
-  //     })) ?? [],
-  //   [data]
-  // );
 
   const conditionOne = buttonLabel && !handelGroupeFilter && !domainFilter;
   const isFarsi = dir === 'rtl';
@@ -71,7 +71,6 @@ export function FilterTableList(props: FilterReportsProps) {
           } w-full`}
         />
       </div>
-      {/* This item does not work does not have service */}
       {domainFilter ? (
         <ToolTip tooltip={t('global.Developing')} position="top">
           <div>
@@ -91,25 +90,6 @@ export function FilterTableList(props: FilterReportsProps) {
           </div>
         </ToolTip>
       ) : null}
-      {/* This item does not work does not have service */}
-      {handelGroupeFilter ? (
-        <div>
-          {/* <BaseButton
-            label={t('global.grouping')}
-            endIcon={caret}
-            type="neutral"
-            className="sm:flex hidden w-40"
-            disabled
-          />
-          <IconButton
-            icon={PhUsersThree}
-            color="neutral"
-            className="sm:hidden flex"
-            disabled
-          /> */}
-        </div>
-      ) : null}
-      {/* This item does not work does not have service */}
       {sortFilter ? (
         <IconButton
           icon={sortAscending}
