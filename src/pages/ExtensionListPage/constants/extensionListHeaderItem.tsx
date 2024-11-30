@@ -17,7 +17,7 @@ export const extensionListHeaderItem: HeaderTable[] = [
     label: 'table.dateOfCreated',
     id: 'created_at',
     type: 'date',
-    class: 'px-4 lg:px-3 w-2/12 lg:w-1/12',
+    class: 'px-4 lg:px-0.5 w-2/12 lg:w-1/12',
     isMobileCollapsed: true,
   },
   {

@@ -11,6 +11,7 @@ import { IMimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { StringifyProperties } from '@src/types/global';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { useGetPagination } from '@src/services/http/httpClient';
@@ -26,14 +27,16 @@ const PAGE = 1;
 export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
+  const [activeAdmin, setActiveAdmin] = useState<
+    IMimeType | StringifyProperties<IMimeType>
+  >();
   const [deleteModal, setDeleteModal] = useState(false);
-  const { width } = useWindowDimensions();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
-  const { t } = useTranslation();
+  const { width } = useWindowDimensions();
   const userPermissions = useUserPermission();
+  const { t } = useTranslation();
 
   const endpoint = createAPIEndpoint({
     endPoint: E_ANALYZE_MIME_TYPE,
@@ -53,6 +56,7 @@ export function ExtensionList() {
     setCurrentPage(PAGE);
     setFilterQuery(value);
   }, []);
+
   const handleOnDeleteFileType = async () => {
     if (!activeAdmin) return;
     setLoadingButtonModal(true);
@@ -72,6 +76,8 @@ export function ExtensionList() {
   };
 
   const handleCloseUpdateModal = (isMutate?: boolean) => {
+    console.log(isMutate);
+
     if (isMutate) {
       mutate();
     }
@@ -82,7 +88,7 @@ export function ExtensionList() {
     action,
     fileType
   ) => {
-    setActiveAdmin(fileType as IMimeType);
+    setActiveAdmin(fileType);
     if (action === 'delete') {
       setDeleteModal(true);
       return;
