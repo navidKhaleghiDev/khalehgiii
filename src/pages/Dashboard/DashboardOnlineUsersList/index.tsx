@@ -9,7 +9,7 @@ import { http } from '@src/services/http';
 import { LoadingPage } from '@redesignUi/molecules/Loading';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
-import { NoResult } from '@redesignUi/molecules/NoResult';
+import { NoResultUsers } from '@redesignUi/molecules/NoResultUsers';
 
 import { UserInfo } from './UserInfo';
 
@@ -64,7 +64,7 @@ export function DashboardOnlineUsersList({
             />
           ))
         ) : (
-          <NoResult />
+          <NoResultUsers />
         )}
       </div>
     </Card>

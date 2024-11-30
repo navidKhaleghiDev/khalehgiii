@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@redesignUi/atoms';
-import { NoResultSvg } from '@redesignUi/atoms/Svgs/NoResultSvg';
+import { NoResultTableSvg } from '@redesignUi/atoms/Svgs/NoResultTableSvg';
 
 type PropsType = {
   isPage?: boolean;
@@ -16,9 +16,9 @@ export function BaseTableNoResult({ isPage, description }: PropsType) {
       }`}
     >
       <td>
-        <NoResultSvg height={200} width={200} />
+        <NoResultTableSvg height={200} width={200} />
         <Typography variant="body4B" color="neutral" className="text-center">
-          {description ?? t('table.nothingFound')}
+          {description ?? t('global.notFoundData')}
         </Typography>
       </td>
     </tr>
