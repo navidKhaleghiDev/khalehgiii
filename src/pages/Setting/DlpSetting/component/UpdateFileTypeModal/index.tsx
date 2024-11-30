@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import { regexPattern } from '@ui/atoms/Inputs';
 import {
   API_CREATE_FILE_TYPE,
   API_UPDATE_FILE_TYPE,
@@ -21,6 +20,7 @@ import {
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas } from '@src/types/permissions';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
@@ -110,7 +110,7 @@ export function UpdateFileTypeModal({
           dir={dir}
           size="md"
           rules={{
-            pattern: regexPattern.wordStartedWithPointAndEn,
+            pattern: regexPattern.DotSeparatedLetters,
             required: regexPattern.required,
           }}
         />

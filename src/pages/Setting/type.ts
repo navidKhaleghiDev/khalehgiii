@@ -43,6 +43,7 @@ export interface PropsType {
   dir?: 'rtl' | 'ltr';
   isActive?: string;
   timeOfUse?: ETimeLimitDuration;
+  usageInMinute?: number | string;
 }
 export interface FileTypeProp {
   id: number;

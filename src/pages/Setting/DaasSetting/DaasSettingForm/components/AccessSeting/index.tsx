@@ -1,8 +1,6 @@
 import { t } from 'i18next';
 
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-
 import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { PropsType } from '@src/pages/Setting/type';
@@ -11,27 +9,36 @@ import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
 import { ETimeLimitDuration } from '@src/services/users/types';
+import { useLanguage } from '@context/settings/languageContext';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
 
 export function AccessSeting({
   control,
   userPermissions,
-  dir,
   timeOfUse,
+  usageInMinute,
 }: PropsType) {
+  const { dir } = useLanguage();
   const maxTimeLimitValues: { [key in ETimeLimitDuration]?: number } = {
     DAILY: 24,
     WEEKLY: 168,
     MONTHLY: 744,
   };
 
+  const minTimeLimitValue =
+    usageInMinute && typeof usageInMinute === 'number'
+      ? Math.ceil(usageInMinute / 60)
+      : 0;
   const setMaxTimeLimitValue = () =>
     maxTimeLimitValues[timeOfUse as ETimeLimitDuration] || 0;
+
   const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
 
   const hasChangePermission = checkPermission(
     userPermissions,
     EPermissionDaas.CHANGE
   );
+
   return (
     <>
       <div>
@@ -47,7 +54,7 @@ export function AccessSeting({
             disabled={!hasChangePermission}
             placeholder="50"
             icon={PhUploadSimple}
-            dir={dir}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={50}
             rules={{
               required: regexPattern.required,
@@ -64,10 +71,11 @@ export function AccessSeting({
             disabled={!hasChangePermission}
             placeholder="500"
             icon={PhDownloadSimple}
-            dir={dir}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             rules={{
               required: regexPattern.required,
+              // validate: (value: number) => value !== 0 || t('error'),
             }}
             fullWidth
           />
@@ -82,10 +90,17 @@ export function AccessSeting({
             disabled={!hasChangePermission || timeOfUse === 'PERMANENTLY'}
             placeholder={t('global.hour')}
             icon={PhTimer}
-            dir={dir}
-            max={setMaxTimeLimitValue()}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             rules={{
               required: regexPattern.required,
+              max: {
+                value: setMaxTimeLimitValue(),
+                message: t('userList.timeExceededError'),
+              },
+              min: {
+                value: minTimeLimitValue,
+                message: t('userList.timeLessThanUserUsage'),
+              },
             }}
             fullWidth
           />

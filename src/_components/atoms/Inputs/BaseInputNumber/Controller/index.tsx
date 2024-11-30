@@ -36,7 +36,7 @@ export function BaseInputNumberController(
     intent,
     label,
     min = 0,
-    max = 100,
+    max = 100000,
     control,
     fullWidth,
     disabled,

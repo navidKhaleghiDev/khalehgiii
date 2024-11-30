@@ -137,12 +137,11 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
           })}
         />
       </div>
-      {isOutOfRange ||
-        (error && (
-          <Typography color="red" variant="body6" className="min-h-5">
-            {error}
-          </Typography>
-        ))}
+      {isOutOfRange && error && (
+        <Typography color="red" variant="body6" className="min-h-5">
+          {error}
+        </Typography>
+      )}
     </div>
   );
 }

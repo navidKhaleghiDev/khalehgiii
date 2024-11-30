@@ -7,15 +7,16 @@ import { ChromeSvg } from '@redesignUi/atoms/Svgs/ChromeSvg';
 import { FirefoxSvg } from '@redesignUi/atoms/Svgs/FirefoxSvg';
 import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import { checkPermission } from '@src/helper/hooks/usePermission';
-import { PropsType } from '@src/pages/Setting/type';
 import { EPermissionDaas } from '@src/types/permissions';
-
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
+import { VsSvg } from '@redesignUi/atoms/Svgs/VsSvg';
+import { RemminaSvg } from '@redesignUi/atoms/Svgs/RemminaSvg';
+import { PropsType } from '@src/pages/Setting/type';
 
-export function ResourceLimitation({ control, userPermissions }: PropsType) {
+export function ResourceLimitation({ userPermissions, control }: PropsType) {
+  const { dir } = useLanguage();
+
   const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
-  const { lang } = useLanguage();
-  const direction = lang === 'fa' ? 'rtl' : 'ltr';
 
   const hasChangePermission = checkPermission(
     userPermissions,
@@ -30,8 +31,8 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
         <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
           <BaseCheckBoxController
             control={control}
-            id=""
-            name=""
+            id="chromLimitaion"
+            name="chromLimitaion"
             label={t('setting.chrome')}
           />
           <ChromeSvg />
@@ -40,14 +41,14 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
       <div className="grid w-full grid-cols-12 gap-[1.87rem] mb-3">
         <div className={inputStyle}>
           <BaseInputNumberController
-            id=""
-            name=""
+            id="fireFoxLimation"
+            name="fireFoxLimation"
             control={control}
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             placeholder="0"
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -64,7 +65,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -77,8 +78,8 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
         <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
           <BaseCheckBoxController
             control={control}
-            id=""
-            name=""
+            id="FireFoxLimattion"
+            name="FireFoxLimattion"
             label={t('setting.fireFox')}
           />
           <FirefoxSvg />
@@ -94,7 +95,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder="0"
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -111,7 +112,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -124,11 +125,11 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
         <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
           <BaseCheckBoxController
             control={control}
-            id=""
-            name=""
+            id="IDELimatation"
+            name="IDELimatation"
             label={t('setting.ide')}
           />
-          <FirefoxSvg />
+          <VsSvg />
         </div>
       </div>
       <div className="grid w-full grid-cols-12 gap-[1.87rem]">
@@ -141,7 +142,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder="0"
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -158,7 +159,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -171,11 +172,11 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
         <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
           <BaseCheckBoxController
             control={control}
-            id=""
-            name=""
+            id="remotAccesLimtion"
+            name="remotAccesLimtion"
             label={t('setting.remina')}
           />
-          <FirefoxSvg />
+          <RemminaSvg />
         </div>
       </div>
       <div className="grid w-full grid-cols-12 gap-[1.87rem]">
@@ -188,7 +189,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder="0"
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -205,7 +206,7 @@ export function ResourceLimitation({ control, userPermissions }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={direction}
+            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
             // rules={{
             //   required: regexPattern.required,
