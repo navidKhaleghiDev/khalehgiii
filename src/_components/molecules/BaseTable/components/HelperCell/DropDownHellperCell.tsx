@@ -65,15 +65,18 @@ function DropDownHelperCell<T extends IdItem>({
         <div
           className={`z-20 absolute top-10 ml-5 ltr:mr-5 ${menuStyle} bg-white dark:bg-gray-600 shadow-md rounded-lg w-44 flex-col`}
         >
-          {options.map((option: any) => (
-            <BaseButton
-              label={option.label}
-              type="neutral"
-              className="flex gap-2 !justify-start border-none !font-normal w-full !text-sm !text-right dark:hover:!bg-gray-500"
-              key={option.label}
-              onClick={() => handleOptionClick(option)}
-            />
-          ))}
+          {options.map((option: any) => {
+            console.log(option);
+            return (
+              <BaseButton
+                label={option.label}
+                type="neutral"
+                className="flex gap-2 !justify-start border-none !font-normal w-full !text-sm !text-right dark:hover:!bg-gray-500"
+                key={option.label}
+                onClick={() => handleOptionClick(option)}
+              />
+            );
+          })}
         </div>
       )}
     </div>

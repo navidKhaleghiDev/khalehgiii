@@ -20,6 +20,7 @@ import { UsersInfoCardProps } from './types';
  */
 export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
   const { icon, iconColor, title, count, className, isLoading } = props;
+
   return !isLoading ? (
     <Card
       border
