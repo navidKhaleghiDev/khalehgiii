@@ -1,9 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import useSWR from 'swr';
 
-import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -15,6 +13,7 @@ import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { useGetPagination } from '@src/services/http/httpClient';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
@@ -42,7 +41,7 @@ export function ExtensionList() {
     currentPage,
     filterQuery,
   });
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
+  const { count, resultData, isLoading, mutate } = useGetPagination<IMimeType>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
   );
@@ -72,9 +71,6 @@ export function ExtensionList() {
       });
   };
 
-  const listWhiteList = data?.data?.results ?? [];
-  const countPage = data?.data?.count || 0;
-
   const handleCloseUpdateModal = (isMutate?: boolean) => {
     if (isMutate) {
       mutate();
@@ -98,13 +94,13 @@ export function ExtensionList() {
   };
 
   const paginationProps = {
-    countPage,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     onPageChange: handlePageChange,
     paginationLabel: t('global.format'),
-    allItems: countPage,
-    itemsPer: listWhiteList.length,
+    allItems: count,
+    itemsPer: resultData.length,
   };
 
   return (
@@ -119,7 +115,7 @@ export function ExtensionList() {
         />
       </div>
       <BaseTable
-        body={listWhiteList}
+        body={resultData}
         header={checkPermissionHeaderItem(
           userPermissions,
           extensionListHeaderItem
