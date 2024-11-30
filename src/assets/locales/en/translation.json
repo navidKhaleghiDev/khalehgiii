@@ -189,6 +189,7 @@
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "alphabet": "Alphabet",
+    "correctFile": "Chose correct file.",
     "unlimited": "Unlimited",
     "onlineAdmin": "Online admin",
     "creationDate": "Creation date",

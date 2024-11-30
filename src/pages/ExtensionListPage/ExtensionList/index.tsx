@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -29,7 +29,7 @@ export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [openModal, setOpenModal] = useState<ActionOnClickActionsType>();
-  const [activeAdmin, setActiveAdmin] = useState<
+  const [mimeType, setMimeType] = useState<
     IMimeType | StringifyProperties<IMimeType>
   >();
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -38,13 +38,13 @@ export function ExtensionList() {
   const userPermissions = useUserPermission();
   const { t } = useTranslation();
 
+  // MimeType extension for the service
   const endpoint = createAPIEndpoint({
     endPoint: E_ANALYZE_MIME_TYPE,
     pageSize: PAGE_SIZE,
     currentPage,
     filterQuery,
   });
-
   const { count, resultData, isLoading, mutate } = useGetPagination<IMimeType>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
@@ -59,10 +59,10 @@ export function ExtensionList() {
   }, []);
 
   const handleOnDeleteFileType = async () => {
-    if (!activeAdmin) return;
+    if (!mimeType) return;
     setLoadingButtonModal(true);
 
-    await API_ANALYZE_MIME_TYPE_DELETE(activeAdmin?.id as number)
+    await API_ANALYZE_MIME_TYPE_DELETE(mimeType?.id as number)
       .then(() => {
         mutate();
         toast.success(t('global.successfullyRemoved'));
@@ -87,7 +87,7 @@ export function ExtensionList() {
     action,
     fileType
   ) => {
-    setActiveAdmin(fileType);
+    setMimeType(fileType);
     setOpenModal(action);
   };
 
@@ -100,9 +100,6 @@ export function ExtensionList() {
     allItems: count,
     itemsPer: resultData.length,
   };
-
-  const handelOpenModal: Dispatch<SetStateAction<boolean>> = () =>
-    setOpenModal('mutate');
 
   return (
     <>
@@ -128,7 +125,7 @@ export function ExtensionList() {
       />
       <Modal
         open={openModal === 'delete'}
-        setOpen={handelOpenModal}
+        setOpen={() => setOpenModal('mutate')}
         type="error"
         size="responsive"
         title={t('systemManagement.deleteFormat')}
@@ -147,7 +144,7 @@ export function ExtensionList() {
       />
       <Modal
         open={openModal === 'edit'}
-        setOpen={handelOpenModal}
+        setOpen={() => setOpenModal('mutate')}
         type="content"
         icon={PhUploadSimple}
         title={t('systemManagement.uploadFile')}
