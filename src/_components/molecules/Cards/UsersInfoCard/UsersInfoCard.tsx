@@ -27,10 +27,10 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
       border
       borderColor="neutral"
       className={`lg:h-20 h-[3.75rem] p-3 sm:p-4 md:p-5 flex items-center gap-5 outline-none overflow-hidden ${
-        onClick === undefined
-          ? 'hover:border-transparent active:border-transparent cursor-default dark:border-none'
-          : ''
-      } ${onClick !== undefined ? 'w-fit sm:w-full' : 'w-full'} ${className}`}
+        onClick
+          ? 'w-fit sm:w-full'
+          : 'w-full hover:border-transparent active:border-transparent cursor-default dark:border-none'
+      } ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"
@@ -39,7 +39,7 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
       <div className="w-full flex items-center justify-center gap-5">
         <div
           className={`${iconStyles({ iconColor })} ${
-            onClick !== undefined ? 'self-center' : ''
+            onClick ? 'self-center' : ''
           }`}
         >
           <BaseIcon icon={icon} size="md" />
