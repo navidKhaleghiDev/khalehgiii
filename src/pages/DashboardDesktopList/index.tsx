@@ -16,18 +16,18 @@ import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
 import { DaAsList } from './DaAsList';
 
 export function DashboardDesktopListPage() {
+  const [showLockedUsers, setShowLockedUsers] = useState<boolean>(false);
+  const [showOnlineUsers, setShowOnlineUsers] = useState<boolean>(false);
+
   const { t } = useTranslation();
   const { data: userData } = useSWR<IResponsePagination<IDaAs>>(
     E_USERS_DAAS,
     http.fetcherSWR
   );
 
-  const [showLockedUsers, setShowLockedUsers] = useState<boolean>(false);
-  const [showOnlineUsers, setShowOnlineUsers] = useState<boolean>(false);
-
   const {
-    online_users: onlineUsers = 0,
-    count: allUsers = 0,
+    online_users: onlineUsers = undefined,
+    count: allUsers = undefined,
     results = [],
   } = userData?.data || {};
 

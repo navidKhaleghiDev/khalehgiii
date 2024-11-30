@@ -100,16 +100,16 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
 
   const handleOnClickActions: OnClickActionsType<IDaAs> = (
     action,
-    fileType
+    userDaas
   ) => {
-    setActiveDaas(fileType as IDaAs);
-    const id = fileType?.id;
+    setActiveDaas(userDaas as IDaAs);
+    const id = userDaas?.id;
     switch (action) {
       case 'more':
         if (id) {
           setSelectedId(id);
           setActiveModal('sessionRecording');
-          setUserName(fileType.email);
+          setUserName(userDaas.email);
         }
         break;
       case 'edit':
