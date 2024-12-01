@@ -139,40 +139,6 @@ export function UserInfoTab({
               />
             </div>
           </div>
-          {/* Remove the domain cause there is no functionality */}
-
-          {/* <div className="flex flex-col justify-between gap-5 py-5">
-            <div className="flex flex-col gap-1">
-              <Typography
-                variant="body5B"
-                color="neutralDark"
-                className="text-right ltr:text-left"
-              >
-                {t('fileScan.choseDomain')}
-              </Typography>
-              <div className="flex items-end gap-2.5 mt-5">
-                <BaseButton
-                  label={t('global.choseDomain')}
-                  endIcon={caret}
-                  type="neutral"
-                  className="w-[160px]"
-                  disabled
-                />
-              </div>
-              <div className="flex items-end gap-2.5 mt-5">
-                <BaseDropdown
-                  disabled
-                  name="domain"
-                  options={domainsMock}
-                  placeHolder={t('fileScan.choseDomain')}
-                  onChange={() =>
-                    console.log('This dropDown functionality is not ready')
-                  }
-                  label={t('global.domain')}
-                />
-              </div>
-            </div>
-          </div> */}
           {admin?.id ? (
             <div className="flex sm:flex-col flex-row justify-between items-start gap-1 sm:mt-2.5 mt-4 pt-5 border-gray-300 border-t-[0.06rem]">
               <div className="w-full flex sm:flex-row flex-col sm:justify-between justify-start gap-2.5 items-start ">
