@@ -23,8 +23,8 @@ const PAGE = 1;
 
 export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const [isLoadingDownload, setIsLoadingDownload] = useState(false);
-  const [dateRange, setDateRange] = useState<DateFormat>();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
+  const [dateRange, setDateRange] = useState<DateFormat>();
 
   const userPermissions = useUserPermission();
   const { width } = useWindowDimensions();
@@ -90,10 +90,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   return (
     <div className="w-full">
       <div className="flex items-center justify-between">
-        <ScanFileDatePicker
-          onChange={(value) => setDateRange(value)}
-          disabled={!resultData.length}
-        />
+        <ScanFileDatePicker onChange={(value) => setDateRange(value)} />
         {isLoadingDownload && <LoadingSpinner />}
       </div>
       <div className="[&_thead]:bg-gray-100">
