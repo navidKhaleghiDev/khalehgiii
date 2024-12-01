@@ -23,7 +23,8 @@ export function MenuItem(props: MenuItemProps): JSX.Element {
   const isActive = pathname === item.path;
   const hasSubMenu = Array.isArray(item.items) && item.items.length > 0;
   const isInSubMenu =
-    hasSubMenu && item.items?.some((subItem) => pathname === subItem.path);
+    hasSubMenu &&
+    item.items?.some((subItem: { path: string }) => pathname === subItem.path);
 
   return (
     <div>

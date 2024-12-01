@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { BaseIcon, Typography } from '@redesignUi/atoms';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
-import { NavigationProps } from '../types';
+import { NavigationParams } from '../types';
 
 interface MenuDropdownProps {
-  items: NavigationProps[];
+  items: NavigationParams[];
   mouseHover?: () => void;
 }
 

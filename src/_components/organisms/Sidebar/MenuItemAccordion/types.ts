@@ -2,7 +2,7 @@ import { VariantProps } from 'class-variance-authority';
 
 import { IconType } from '@src/types/global';
 
-import { NavigationProps } from '../types';
+import { NavigationParams } from '../types';
 import { menuItemStyles } from '../MenuItem/styles';
 
 export interface MenuItemAccordionProps
@@ -10,7 +10,7 @@ export interface MenuItemAccordionProps
   open: number | null;
   setOpen: (open: number | null) => void;
   index: number;
-  item: NavigationProps;
+  item: NavigationParams;
   pathname: string;
   icon?: IconType;
   collapsed: boolean;

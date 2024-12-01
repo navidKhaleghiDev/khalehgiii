@@ -8,9 +8,9 @@ import PhGearSixDuotone from '@iconify-icons/ph/gear-six-duotone';
 import PhChartBarDuotone from '@iconify-icons/ph/chart-bar-duotone';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 
-import { NavigationProps } from './types';
+import { NavigationParams } from './types';
 
-export const navigationSideBar: NavigationProps[] = [
+export const navigationSideBar: NavigationParams[] = [
   {
     id: '1',
     label: t('global.home'),

@@ -15,7 +15,7 @@ import User from '@iconify-icons/ph/user';
 import { useLanguage } from '@context/settings/languageContext';
 import { useDrawerContext } from '@context/drawer/drawerContext';
 import { navigationSideBar } from '@redesignUi/organisms/Sidebar/navigation';
-import { NavigationProps } from '@redesignUi/organisms/Sidebar/types';
+import { NavigationParams } from '@redesignUi/organisms/Sidebar/types';
 import { MenuItem } from '@redesignUi/organisms/Sidebar/MenuItem';
 import { MenuItemAccordion } from '@redesignUi/organisms/Sidebar/MenuItemAccordion';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
@@ -72,7 +72,7 @@ export function DrawerProfile() {
       <hr className="w-full bg-white border border-gray-300 rounded mb-3" />
 
       <div className="flex-1 overflow-y-auto px-5 no-scrollbar">
-        {navigationSideBar.map((item: NavigationProps, index) => {
+        {navigationSideBar.map((item: NavigationParams, index) => {
           const shouldAddHR = [2].includes(index);
           if (!item.items) {
             return (
