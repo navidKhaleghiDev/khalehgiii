@@ -98,7 +98,7 @@ export function DlpList({
     const values = event.target.value;
     const regex = regexPattern.wordStartedWithPointAndEn;
     if (!regex.value.test(values)) {
-      setError(regex.message);
+      setError(t(regex.message));
     } else if (error) setError(undefined);
     setValue(values);
   };
