@@ -475,7 +475,7 @@
     "sso": "SSO",
     "manager": "Manager",
     "saveFile": "Save File",
-    "zero":"Please enter a value greater than zero."
+    "zero": "Please enter a value greater than zero."
   },
 
   "regexPattern": {
