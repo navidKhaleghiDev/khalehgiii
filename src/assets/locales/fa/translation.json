@@ -477,7 +477,8 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile": "ذخیره فایل"
+    "saveFile": "ذخیره فایل",
+    "zero":"لطفا مقداری بیشتر از صفر وارد کنید"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

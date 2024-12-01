@@ -68,7 +68,7 @@ export function UpdateFileTypeModal({
       (data.allowed_for_upload && !data.upload_file_size_mb) ||
       (data.allowed_for_download && !data.download_file_size_mb)
     ) {
-      toast.error(t('global.pleaseFillRequiredFields'));
+      toast.error(t('setting.zero'));
       return;
     }
     setLoadingButtonModal(true);
@@ -152,7 +152,8 @@ export function UpdateFileTypeModal({
                 dir={dir === 'rtl' ? 'rtl' : 'ltr'}
                 max={50}
                 rules={{
-                  required: regexPattern.required,
+                  required:
+                    uploadAccess && downloadAccess ? regexPattern.required : '',
                 }}
               />
             </div>
@@ -177,7 +178,8 @@ export function UpdateFileTypeModal({
                 dir={dir === 'rtl' ? 'rtl' : 'ltr'}
                 max={500}
                 rules={{
-                  required: regexPattern.required,
+                  required:
+                    uploadAccess && downloadAccess ? regexPattern.required : '',
                 }}
               />
             </div>
