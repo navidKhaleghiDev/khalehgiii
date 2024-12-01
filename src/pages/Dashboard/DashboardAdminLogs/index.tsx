@@ -34,7 +34,10 @@ export function DashboardAdminLogs({
 
   const { data, isLoading } = useSWR<IResponsePagination<IUser>>(
     endpoint,
-    http.fetcherSWR
+    http.fetcherSWR,
+    {
+      shouldRetryOnError: false,
+    }
   );
   const countPage = data?.data?.count || 0;
 
