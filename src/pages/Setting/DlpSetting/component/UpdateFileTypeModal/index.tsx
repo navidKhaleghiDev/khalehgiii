@@ -39,9 +39,8 @@ export function UpdateFileTypeModal({
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const userPermissions = useUserPermission();
 
-  const { lang } = useLanguage();
+  const { dir } = useLanguage();
   const inputStyle = 'col-span-6 lg:col-span-4 h-16';
-  const direction = lang === 'fa' ? 'rtl' : 'ltr';
   const hasChangePermission = checkPermission(
     userPermissions,
     EPermissionDaas.CHANGE
@@ -65,6 +64,13 @@ export function UpdateFileTypeModal({
   const downloadAccess = watch('allowed_for_download');
 
   const handleOnSubmit = async (data: FileTypeProp) => {
+    if (
+      (data.allowed_for_upload && !data.upload_file_size_mb) ||
+      (data.allowed_for_download && !data.download_file_size_mb)
+    ) {
+      toast.error(t('global.pleaseFillRequiredFields'));
+      return;
+    }
     setLoadingButtonModal(true);
 
     if (data.id) {
@@ -108,7 +114,7 @@ export function UpdateFileTypeModal({
           placeholder=".txt"
           label={t('table.fileType')}
           endIcon={PhFile}
-          dir={direction}
+          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
           size="md"
           rules={{
             pattern: regexPattern.wordStartedWithPointAndEn,
@@ -141,9 +147,9 @@ export function UpdateFileTypeModal({
                 control={control}
                 label={t('table.maxUploadSize')}
                 disabled={!hasChangePermission || !uploadAccess}
-                placeholder="50"
+                placeholder={t('table.upload')}
                 icon={PhUploadSimple}
-                dir={direction}
+                dir={dir === 'rtl' ? 'rtl' : 'ltr'}
                 max={50}
                 rules={{
                   required: regexPattern.required,
@@ -166,9 +172,9 @@ export function UpdateFileTypeModal({
                 control={control}
                 label={t('table.maxDownloadSize')}
                 disabled={!hasChangePermission || !downloadAccess}
-                placeholder="50"
+                placeholder={t('table.download')}
                 icon={PhUploadSimple}
-                dir={direction}
+                dir={dir === 'rtl' ? 'rtl' : 'ltr'}
                 max={500}
                 rules={{
                   required: regexPattern.required,

@@ -146,7 +146,7 @@ export function DaasSettingForm({
               control={control}
               label={t('table.maxUploadSize')}
               disabled={!hasChangePermission}
-              placeholder="50"
+              placeholder={t('table.upload')}
               icon={PhUploadSimple}
               dir={direction}
               max={50}
@@ -163,7 +163,7 @@ export function DaasSettingForm({
               control={control}
               label={t('table.maxDownloadSize')}
               disabled={!hasChangePermission}
-              placeholder="500"
+              placeholder={t('table.download')}
               icon={PhDownloadSimple}
               dir={direction}
               max={500}
