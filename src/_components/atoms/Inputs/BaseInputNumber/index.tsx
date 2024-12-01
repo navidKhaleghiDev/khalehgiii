@@ -72,8 +72,6 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     }
   };
 
-  console.log(value);
-
   return (
     <div dir={dir} className={`w-full ${className ?? ''}`}>
       {label && (
