@@ -9,7 +9,7 @@ export const dropdownOptions = [
 
 export const groupManagementUserHeaderItem: HeaderTable[] = [
   {
-    label: 'table.recordingActivity',
+    label: 'table.noting',
     id: 'userName',
     type: 'avatar',
     email: 'email',
@@ -17,7 +17,7 @@ export const groupManagementUserHeaderItem: HeaderTable[] = [
     class: 'w-5/12 md:w-8/12  ',
   },
   {
-    label: 'table.recordingActivity',
+    label: 'table.randomNothing',
     id: 'userName',
     type: 'drop',
     drop: {
@@ -29,7 +29,7 @@ export const groupManagementUserHeaderItem: HeaderTable[] = [
     class: 'w-1/12 mr-auto text-sm mx-3 flex justify-end',
   },
   {
-    label: 'table.recordingActivity',
+    label: 'table.table.noting1',
     id: 'userName',
     type: 'action',
     action: [
@@ -46,7 +46,7 @@ export const groupManagementUserHeaderItem: HeaderTable[] = [
 ];
 export const groupManagementAdminHeaderItem: HeaderTable[] = [
   {
-    label: 'table.recordingActivity',
+    label: 'table.noting',
     id: 'userName',
     type: 'avatar',
     email: 'email',
@@ -54,7 +54,7 @@ export const groupManagementAdminHeaderItem: HeaderTable[] = [
     class: 'w-5/12 md:w-8/12  ',
   },
   {
-    label: 'table.recordingActivity',
+    label: 'table.randomNothing',
     id: 'userName',
     type: 'drop',
     drop: {
@@ -66,7 +66,7 @@ export const groupManagementAdminHeaderItem: HeaderTable[] = [
     class: 'w-1/12 mr-auto text-sm mx-3 flex justify-end',
   },
   {
-    label: 'table.recordingActivity',
+    label: 'table.recording',
     id: 'userName',
     type: 'action',
     action: [
