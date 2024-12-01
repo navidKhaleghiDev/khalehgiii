@@ -10,7 +10,7 @@ export function BaseMiniTableNoResult({ description }: PropsType) {
   const { t } = useTranslation();
   return (
     <div>
-      <NoResultUsersSvg className="m-auto xl:w-[150px] xl:h-[150px] md:w-[100px] md:h-[100px] h-[150px] w-[150px]" />
+      <NoResultUsersSvg className="m-auto xl:w-[9.375rem] xl:h-[9.375rem] md:w-[6.25rem] md:h-[6.25rem] h-[9.375rem] w-[9.375rem]" />
       <Typography
         variant="body4B"
         color="neutral"

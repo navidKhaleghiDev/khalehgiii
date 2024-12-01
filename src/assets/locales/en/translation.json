@@ -315,7 +315,9 @@
     "accessToTheUsersDesktop": "Access to the user desktop",
     "goToSystem": "Go to the system",
     "developing": "Developing ...",
-    "notFoundData": "There is no data on the page."
+    "notFoundDataInPage": "There is no data on the page.",
+    "notFoundData": "There is no data",
+    "noUsersOnline": "No users are currently online"
   },
   "groupManagement": {
     "person": "person",

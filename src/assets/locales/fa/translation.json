@@ -316,7 +316,9 @@
     "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
     "goToSystem": "ورود به سامانه",
     "developing": "در حال توسعه ...",
-    "notFoundData": "داده ای در صفحه وجود ندارد."
+    "notFoundDataInPage": "داده ای در صفحه وجود ندارد.",
+    "notFoundData": "داده ای وجود ندارد.",
+    "noUsersOnline": "هیچ کاربری در حال حاضر آنلاین نیست."
   },
   "groupManagement": {
     "person": "نفر",

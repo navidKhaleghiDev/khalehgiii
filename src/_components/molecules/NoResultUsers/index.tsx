@@ -19,7 +19,7 @@ export function NoResultUsers({ isPage, description }: NoResultUsersProps) {
     >
       <NoResultUsersSvg height={200} width={200} />
       <Typography variant="body4B" color="neutral" className="text-center">
-        {description ?? t('global.notFoundData')}
+        {description ?? t('global.noUsersOnline')}
       </Typography>
     </div>
   );

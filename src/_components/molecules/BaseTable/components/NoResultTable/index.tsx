@@ -19,7 +19,7 @@ export function NoResultTable({ isPage, description }: NoResultTableProps) {
     >
       <NoResultTableSvg height={200} width={200} />
       <Typography variant="body4B" color="neutral" className="text-center">
-        {description ?? t('global.notFoundData')}
+        {description ?? t('global.notFoundDataInPage')}
       </Typography>
     </div>
   );
