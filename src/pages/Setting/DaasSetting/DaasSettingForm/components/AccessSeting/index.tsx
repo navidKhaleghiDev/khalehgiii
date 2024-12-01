@@ -12,6 +12,8 @@ import { ETimeLimitDuration } from '@src/services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 
+const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
+
 export function AccessSeting({
   control,
   userPermissions,
@@ -32,8 +34,6 @@ export function AccessSeting({
   const setMaxTimeLimitValue = () =>
     maxTimeLimitValues[timeOfUse as ETimeLimitDuration] || 0;
 
-  const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
-
   const hasChangePermission = checkPermission(
     userPermissions,
     EPermissionDaas.CHANGE
@@ -52,7 +52,7 @@ export function AccessSeting({
             control={control}
             label={t('table.maxUploadSize')}
             disabled={!hasChangePermission}
-            placeholder="50"
+            placeholder={t('table.upload')}
             icon={PhUploadSimple}
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={50}
@@ -69,7 +69,7 @@ export function AccessSeting({
             control={control}
             label={t('table.maxDownloadSize')}
             disabled={!hasChangePermission}
-            placeholder="500"
+            placeholder={t('table.download')}
             icon={PhDownloadSimple}
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}

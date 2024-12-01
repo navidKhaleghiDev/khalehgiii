@@ -13,10 +13,11 @@ import { VsSvg } from '@redesignUi/atoms/Svgs/VsSvg';
 import { RemminaSvg } from '@redesignUi/atoms/Svgs/RemminaSvg';
 import { PropsType } from '@src/pages/Setting/type';
 
+const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
+const checkBoxStyle = 'w-full grid grid-flow-col gap-2 whitespace-nowrap';
+
 export function ResourceLimitation({ userPermissions, control }: PropsType) {
   const { dir } = useLanguage();
-
-  const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
 
   const hasChangePermission = checkPermission(
     userPermissions,
@@ -28,7 +29,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
         <TitleSection label={t('setting.resourceLimitations')} />
       </div>
       <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-        <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+        <div className={`${checkBoxStyle}`}>
           <BaseCheckBoxController
             control={control}
             id="chromLimitaion"
@@ -46,7 +47,6 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             control={control}
             label={t('setting.memory')}
             disabled={!hasChangePermission}
-            placeholder="0"
             icon={PhDownloadSimple}
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
@@ -75,7 +75,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
         </div>
       </div>
       <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-        <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+        <div className={`${checkBoxStyle}`}>
           <BaseCheckBoxController
             control={control}
             id="FireFoxLimattion"
@@ -93,7 +93,6 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             control={control}
             label={t('setting.memory')}
             disabled={!hasChangePermission}
-            placeholder="0"
             icon={PhDownloadSimple}
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
@@ -122,7 +121,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
         </div>
       </div>
       <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-        <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+        <div className={`${checkBoxStyle}`}>
           <BaseCheckBoxController
             control={control}
             id="IDELimatation"
@@ -140,7 +139,6 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             control={control}
             label={t('setting.memory')}
             disabled={!hasChangePermission}
-            placeholder="0"
             icon={PhDownloadSimple}
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
@@ -169,7 +167,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
         </div>
       </div>
       <div className="grid w-full grid-cols-12 gap-[1.87rem] mt-3 mb-5">
-        <div className="w-full grid grid-flow-col gap-2 whitespace-nowrap">
+        <div className={`${checkBoxStyle}`}>
           <BaseCheckBoxController
             control={control}
             id="remotAccesLimtion"
@@ -187,7 +185,6 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             control={control}
             label={t('setting.memory')}
             disabled={!hasChangePermission}
-            placeholder="0"
             icon={PhDownloadSimple}
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
             max={500}
