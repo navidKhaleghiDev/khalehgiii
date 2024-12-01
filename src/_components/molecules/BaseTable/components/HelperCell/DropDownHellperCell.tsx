@@ -5,7 +5,6 @@ import PhCaretDown from '@iconify-icons/ph/caret-down';
 import PhCaretUp from '@iconify-icons/ph/caret-up';
 import { useLanguage } from '@context/settings/languageContext';
 import { DropDownHelperCellProps, IdItem } from '../../types';
-
 /**
  * DropDown Helper Cell Component.
  *
@@ -21,7 +20,6 @@ import { DropDownHelperCellProps, IdItem } from '../../types';
  *
  * @returns {JSX.Element} - The rendered dropdown helper cell.
  */
-
 function DropDownHelperCell<T extends IdItem>({
   onClick,
   options,
