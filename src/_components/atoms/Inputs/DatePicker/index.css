@@ -1,6 +1,6 @@
 .custom-calendar.rmdp-wrapper,
 .rmdp-container .custom-calendar.ep-arrow::after {
-  padding: 1rem 1.1rem;
+  padding: 0.8rem 0.9rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,7 +121,7 @@
 
 .custom-calendar-dark.rmdp-wrapper,
 .rmdp-container .custom-calendar-dark.ep-arrow::after {
-  padding: 1rem 1.1rem;
+  padding: 0.8rem 0.9rem;
   display: flex;
   background-color: #374151;
   flex-direction: column;

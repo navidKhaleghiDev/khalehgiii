@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 
 import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
 import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
+import { useLanguage } from '@context/settings/languageContext';
+import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 export type DateFormat = {
   start_date: string | string[] | undefined;
@@ -20,6 +22,15 @@ export function ScanFileDatePicker({
       end_date: '',
     },
   });
+  const { dir } = useLanguage();
+  const { height } = useWindowDimensions();
+
+  const myCalenderPositionLandScape = dir === 'rtl' ? 'right' : 'left';
+  const myCalenderPositionNormal =
+    dir === 'rtl' ? 'bottom-end' : 'bottom-start';
+
+  const overall =
+    height <= 400 ? myCalenderPositionLandScape : myCalenderPositionNormal;
 
   const handelDateForm = (date: any) => {
     const updatedData = {
@@ -29,6 +40,7 @@ export function ScanFileDatePicker({
 
     onChange(updatedData);
   };
+
   return (
     <form onSubmit={handleSubmit(handelDateForm)} className="text-start my-5">
       <MultiDatePickerController
@@ -38,6 +50,7 @@ export function ScanFileDatePicker({
         format="YYYY-MM-DD"
         maxDate={new Date()}
         fullWidth
+        calendarPosition={overall}
       />
     </form>
   );

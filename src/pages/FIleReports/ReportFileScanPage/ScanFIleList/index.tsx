@@ -27,7 +27,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const [dateRange, setDateRange] = useState<DateFormat>();
 
   const userPermissions = useUserPermission();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const { t } = useTranslation();
 
   // Daas user scan reports
@@ -93,7 +93,13 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
         <ScanFileDatePicker onChange={(value) => setDateRange(value)} />
         {isLoadingDownload && <LoadingSpinner />}
       </div>
-      <div className="[&_thead]:bg-gray-100">
+      <div
+        className={`[&_thead]:bg-gray-100 ${
+          height <= 670
+            ? 'h-[180px] overflow-auto pe-3'
+            : 'h-[400px] sm:h-[550px]'
+        }`}
+      >
         {!error ? (
           <BaseTable
             body={resultData.slice(0, resultData.length - 1)}
