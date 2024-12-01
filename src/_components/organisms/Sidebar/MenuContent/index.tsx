@@ -4,46 +4,46 @@ import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@context/settings/languageContext';
 import { ToolTip } from '@redesignUi/atoms/Tooltip';
 
-import { NavigationProps } from '../types';
+import { NavigationParams } from '../types';
 import { navigationSideBar } from '../navigation';
 import { MenuItemAccordion } from '../MenuItemAccordion';
 import { MenuDropdown } from '../MenuDropdown/MenuDropdown';
 import { MenuItem } from '../MenuItem';
 
 interface MenuContentProps {
-  collops: boolean;
+  collapse: boolean;
 }
-export function MenuContent({ collops }: MenuContentProps): JSX.Element {
+export function MenuContent({ collapse }: MenuContentProps): JSX.Element {
   const [isDropdownVisible, setDropdownVisible] =
-    useState<NavigationProps | null>(null);
+    useState<NavigationParams | null>(null);
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
   const { pathname } = useLocation();
-  const { lang } = useLanguage();
+  const { dir } = useLanguage();
 
   return (
     <div
       className={`
       ${
-        collops ? 'w-64' : 'w-16'
+        collapse ? 'w-64' : 'w-16'
       } transition-width duration-500 ease-in-out dark:bg-gray-600`}
     >
       <div className="flex flex-col items-center w-full mt-1 overflow-y-auto overflow-x-hidden no-scrollbar">
-        <div className={`${collops ? 'w-full px-3' : 'absolute z-40'}`}>
-          {navigationSideBar.map((item: NavigationProps, index) => {
+        <div className={`${collapse ? 'w-full px-3' : 'absolute z-40'}`}>
+          {navigationSideBar.map((item: NavigationParams, index) => {
             const shouldAddHR = [2].includes(index);
 
             if (!item.items) {
-              return !collops ? (
+              return !collapse ? (
                 <div>
                   <ToolTip
-                    position={lang === 'fa' ? 'left' : 'right'}
+                    position={dir === 'rtl' ? 'left' : 'right'}
                     key={item.id}
                     tooltip={`${item.label}`}
                   >
                     <MenuItem
                       item={item}
                       pathname={pathname}
-                      collapsed={!collops}
+                      collapsed={!collapse}
                     />
                   </ToolTip>
                 </div>
@@ -52,13 +52,13 @@ export function MenuContent({ collops }: MenuContentProps): JSX.Element {
                   <MenuItem
                     item={item}
                     pathname={pathname}
-                    collapsed={!collops}
+                    collapsed={!collapse}
                   />
                 </div>
               );
             }
 
-            return collops ? (
+            return collapse ? (
               <div className="w-full" key={item.id}>
                 <MenuItemAccordion
                   open={openAccordion}
@@ -66,7 +66,7 @@ export function MenuContent({ collops }: MenuContentProps): JSX.Element {
                   index={index}
                   item={item}
                   pathname={pathname}
-                  collapsed={!collops}
+                  collapsed={!collapse}
                   icon={item.icon}
                 />
                 {shouldAddHR && (
@@ -85,16 +85,16 @@ export function MenuContent({ collops }: MenuContentProps): JSX.Element {
                     }
                   }}
                   className={`flex justify-center flex-col items-center cursor-pointer ${
-                    collops ? 'w-full' : null
+                    collapse ? 'w-full' : null
                   }`}
                 >
                   <MenuItem
                     item={item}
                     pathname={pathname}
-                    collapsed={!collops}
+                    collapsed={!collapse}
                   />
 
-                  {isDropdownVisible?.id === item.id && !collops && (
+                  {isDropdownVisible?.id === item.id && !collapse && (
                     <MenuDropdown
                       items={item.items}
                       mouseHover={() => setDropdownVisible(null)}

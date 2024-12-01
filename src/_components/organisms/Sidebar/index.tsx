@@ -34,7 +34,7 @@ export function SideBar(): JSX.Element {
           />
           <hr className="w-full bg-white border border-gray-300 rounded mt-5" />
         </div>
-        <MenuContent collops={toggleSidebar} />
+        <MenuContent collapse={toggleSidebar} />
       </div>
 
       <SideBarFooter

@@ -13,16 +13,16 @@ import User from '@iconify-icons/ph/user';
 import PhSignOut from '@iconify-icons/ph/sign-out';
 import { useLogout } from '@src/helper/hooks/useLogout';
 
-import { NavigationProps, SideBarFooterProps } from '../types';
+import { NavigationParams, SideBarFooterProps } from '../types';
 
 export function SideBarFooter({
   toggle,
   toggleSidebarHandler,
 }: SideBarFooterProps): JSX.Element {
-  useState<NavigationProps | null>(null);
+  useState<NavigationParams | null>(null);
   const { logout } = useLogout();
   const { user } = useUserContext();
-  const { lang, rtl } = useLanguage();
+  const { dir, rtl } = useLanguage();
   const { isDark, toggleTheme } = useTheme();
 
   const isUser = user?.first_name && user?.last_name;
@@ -39,8 +39,8 @@ export function SideBarFooter({
     logout();
     handleToggle();
   };
-  const enLanguageIcon = rtl === false ? PhCaretDoubleLeft : PhCaretDoubleRight;
-  const faLanguageIcon = rtl === true ? PhCaretDoubleLeft : PhCaretDoubleRight;
+  const enLanguageIcon = !rtl ? PhCaretDoubleLeft : PhCaretDoubleRight;
+  const faLanguageIcon = rtl ? PhCaretDoubleLeft : PhCaretDoubleRight;
 
   return (
     <div className="flex flex-col w-full mb-5 px-3">
@@ -48,7 +48,7 @@ export function SideBarFooter({
         {!toggle ? (
           <ToolTip
             tooltip={t('global.userName')}
-            position={lang === 'fa' ? 'left' : 'right'}
+            position={dir === 'rtl' ? 'left' : 'right'}
           >
             <Avatar icon={User} size="md" className="my-2" />
           </ToolTip>
@@ -76,7 +76,7 @@ export function SideBarFooter({
         {!toggle ? (
           <ToolTip
             tooltip={t('onlineAssistance.exitFromUserProfile')}
-            position={lang === 'fa' ? 'left' : 'right'}
+            position={dir === 'rtl' ? 'left' : 'right'}
           >
             <IconButton
               icon={PhSignOut}
