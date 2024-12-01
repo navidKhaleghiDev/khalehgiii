@@ -11,6 +11,7 @@ import {
 import { EPermissionKeycloak } from '@src/types/permissions';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
@@ -101,7 +102,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
     <LoadingSpinner />
   ) : (
     <div>
-      <div className=" mb-[2.87rem]">
+      <div className="mb-[2.87rem]">
         <Typography
           color="black"
           variant="body2B"
@@ -117,7 +118,16 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
         {SettingsKeycloakP ? (
           <>
             <TitleSection label={t('setting.sso')} />
-
+            <div className="flex items-center gap-x-5 col-span-4 my-[1.87rem]">
+              <Typography color="neutralMiddle" variant="body5">
+                SSO TL
+              </Typography>
+              <BaseSwitchController
+                id="keycloak_ssl"
+                name="keycloak_ssl"
+                control={control}
+              />
+            </div>
             <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
               <div className={inputStyles}>
                 <BaseInputController
