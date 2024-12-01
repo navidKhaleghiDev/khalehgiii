@@ -22,6 +22,57 @@ import { Modal } from '@redesignUi/molecules/Modal';
 
 import { GroupManagementCreate } from './GroupManagementCreate';
 
+/**
+ * GroupManagement Component.
+ *
+ * A component for managing user groups, including functionalities for searching, paginating, creating, and deleting groups.
+ *
+ * @returns {JSX.Element} - The rendered Group Management component.
+ *
+ * @description
+ * This component uses the following key features:
+ * - Displays a list of groups with pagination and search capabilities.
+ * - Supports adding new groups via a modal form.
+ * - Allows deletion of groups with confirmation.
+ * - Displays group-related statistics using `UsersInfoCard`.
+ * - Integrates with `useSWR` for data fetching and mutation.
+ *
+ * @example
+ * <GroupManagement />
+ *
+ * @dependencies
+ * - `react-i18next` for translations.
+ * - `react-router-dom` for navigation.
+ * - `swr` for data fetching and cache management.
+ * - `react-toastify` for displaying toast notifications.
+ * - Custom UI components like `GroupCard`, `FilterTableList`, `Pagination`, `Modal`, and `UsersInfoCard`.
+ * - `@src/services/users` for API calls related to user groups.
+ *
+ * @internalComponents
+ * - **updateGroup**: Deletes a group and updates the UI.
+ * - **handleRemoveGroup**: Sets up the group ID for deletion and opens a confirmation modal.
+ * - **handleCloseModal**: Closes the modal and triggers data re-fetching.
+ *
+ * @state
+ * @property {number} currentPage - Tracks the current page in pagination.
+ * @property {string} filterQuery - Stores the search query for filtering groups.
+ * @property {boolean} openModal - Controls the visibility of the "Create Group" modal.
+ * @property {boolean} openDeleteModal - Controls the visibility of the "Delete Group" confirmation modal.
+ * @property {boolean} loading - Tracks the loading state during API interactions.
+ * @property {string | null} groupIdToDelete - Stores the ID of the group to be deleted.
+ *
+ * @functions
+ * @function updateGroup - Handles group deletion, displays success/error toast, and refreshes the data.
+ * @function handleRemoveGroup - Prepares the state for group deletion and opens the confirmation modal.
+ * @function handleCloseModal - Closes the "Create Group" modal and refreshes the group list.
+ *
+ * @hooks
+ * - `useNavigate` for navigation.
+ * - `useTranslation` for internationalization.
+ * - `useSWR` for API data fetching and state management.
+ * - `useState` for component state handling.
+ */
+
 const PAGE_SIZE = 10;
 const PAGE = 1;
 

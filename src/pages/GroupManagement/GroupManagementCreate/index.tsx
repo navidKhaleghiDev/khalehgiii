@@ -16,6 +16,7 @@ import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controll
 import { BaseInputUploadImageController } from '@redesignUi/atoms/BaseInputUploadImage/Controller';
 import { API_USERS_GROUPS_CREATE } from '@src/services/users';
 
+import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { GroupManagementUsersList } from '../components/GroupManagementUsersList';
 import {
   GroupManagementCreateProps,
@@ -116,6 +117,12 @@ export function GroupManagementCreate(props: GroupManagementCreateProps) {
             <div className="flex justify-center items-center gap-4 p-1">
               <BaseInputUploadImageController name="image" control={control} />
               <BaseInputController
+                rules={{
+                  required: regexPattern.required,
+                  pattern: regexPattern.en_spc,
+                  minLength: 2,
+                  maxLength: 20,
+                }}
                 fullWidth
                 dir={dir}
                 className=""

@@ -137,6 +137,17 @@ export type BaseTableActionCellProps<BodyType> = Omit<
 export type BaseTableMenuCellProps<BodyType extends IdItem> =
   BaseTableNoneCellProps<BodyType>;
 
+export type BaseTableDropDownCellProps<BodyType extends IdItem> =
+  BaseTableNoneCellProps<BodyType>;
+
+export type DropDownHelperCellProps<BodyType extends IdItem> = Pick<
+  BaseTableDropDownCellProps<BodyType>,
+  'onClick'
+> & {
+  options: DropDownHelperCellOption[];
+  defaultValue: DropDownHelperCellOption;
+};
+
 export type BaseTableComponentCellProps<BodyType> = Pick<
   BaseTableRowProps<BodyType>,
   'row' | 'onClick'
@@ -192,7 +203,11 @@ export type IdItem = {
 //   [key in TTableType]: JSX.Element;
 // };
 
-export type DropDownHelperCellOption = { id: number; label: string };
+export type DropDownHelperCellOption = {
+  id: number;
+  label: string;
+  value: string;
+};
 
 export type ActionCellFunction = { action: ActionItem };
 
