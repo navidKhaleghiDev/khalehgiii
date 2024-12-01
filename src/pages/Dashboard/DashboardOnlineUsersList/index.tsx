@@ -31,12 +31,11 @@ export function DashboardOnlineUsersList({
     currentPage,
     filterQuery,
   });
-  const { data, isLoading, error } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
 
-  console.log(error);
   const listDaas = data?.data?.results.filter((user) => user.is_running) ?? [];
 
   if (isLoading) {
