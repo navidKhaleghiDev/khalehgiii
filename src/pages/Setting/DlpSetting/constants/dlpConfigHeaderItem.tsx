@@ -38,7 +38,7 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
     type: 'component',
     component: (props: BaseTableComponentCellProps<FileTypeProp>) => (
       <TagHelperCell
-        title={props.row.is_active ? 'table.active' : 'table.block'}
+        title={props.row.is_active ? 'table.active' : 'table.deactive'}
         translate
         color={props.row.is_active ? 'teal' : 'yellow'}
       />

@@ -15,11 +15,24 @@ export const createAPIEndpoint = ({
   currentPage,
   pageSize,
   filterQuery,
+  lockFilter,
+  onlineFilter,
 }: any): string => {
   const params = new URLSearchParams({
     page: String(currentPage),
     page_size: String(pageSize),
     search: encodeURIComponent(filterQuery),
   });
-  return `${endPoint}?${params}`;
+
+  let url = `${endPoint}?${params}`;
+
+  if (lockFilter) {
+    url += `&is_lock=true`;
+  }
+
+  if (onlineFilter) {
+    url += `&is_running=true`;
+  }
+
+  return url;
 };

@@ -1,7 +1,6 @@
 import { Control } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { timeLimitDurationOptions } from '@src/pages/DashboardDesktopList/DaAsList/components/DaAsCard/SetAccessTime';
 import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { Typography } from '@redesignUi/atoms';
@@ -9,6 +8,7 @@ import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { Dropdown } from '@ui/atoms/DropDown';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { timeLimitDurationOptions } from '@src/pages/UserManagement/UserListPage/DaAsList/components/DaAsCard/AccessTimeSetting';
 
 type PropsType = {
   control: Control<any>;

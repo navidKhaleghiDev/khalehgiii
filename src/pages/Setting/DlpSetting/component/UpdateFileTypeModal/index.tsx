@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import { regexPattern } from '@ui/atoms/Inputs';
 import {
   API_CREATE_FILE_TYPE,
   API_UPDATE_FILE_TYPE,
@@ -16,17 +15,18 @@ import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import { useLanguage } from '@context/settings/languageContext';
 import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { EPermissionDaas } from '@src/types/permissions';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { useLanguage } from '@context/settings/languageContext';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
   fileType?: Partial<FileTypeProp>;
-  setOpenUpdateModal: any;
+  setOpenUpdateModal: Dispatch<SetStateAction<boolean>>;
 };
 
 export function UpdateFileTypeModal({
@@ -117,7 +117,7 @@ export function UpdateFileTypeModal({
           dir={dir === 'rtl' ? 'rtl' : 'ltr'}
           size="md"
           rules={{
-            pattern: regexPattern.wordStartedWithPointAndEn,
+            pattern: regexPattern.DotSeparatedLetters,
             required: regexPattern.required,
           }}
         />
