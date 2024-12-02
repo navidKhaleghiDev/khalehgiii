@@ -1,11 +1,11 @@
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
-import { DashboardCards } from './DashboardCards';
-import { DashboardAdminLogs } from './DashboardAdminLogs';
-import { DashboardOnlineUsersList } from './DashboardOnlineUsersList';
+import { DashboardCards } from './components/DashboardCards';
+import { DashboardAdminLogs } from './components/DashboardAdminLogs';
+import { DashboardOnlineUsersList } from './components/DashboardOnlineUsersList';
 import { DashboardAdminInfo } from './components/DashboardAdminInfo';
-import { DashboardCharts } from './DashboardCharts';
+import { DashboardCharts } from './components/DashboardCharts';
 
 export function DashboardPage() {
   const userPermissions = useUserPermission();

@@ -1,9 +1,6 @@
 import { HTTP_ANALYSES, http } from '@src/services/http';
 import { IAxiosResponse } from '@src/types/services';
-import {
-  FormDate,
-  FormDateTimeFrame,
-} from '@src/pages/Dashboard/Reports/types';
+import { FormDate, FormDateTimeFrame } from '@src/pages/Reports/types';
 import { IAddConfig, IDaasConfig, IFileType } from './types';
 import {
   E_CONFIG,
