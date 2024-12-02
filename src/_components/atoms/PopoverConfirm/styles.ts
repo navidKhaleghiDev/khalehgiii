@@ -19,7 +19,6 @@ export const tooltipStyles = cva(
 
 export const containerTooltipStyles = cva(
   'absolute z-20 whitespace-nowrap rounded bg-black py-[6px] px-4 text-sm font-semibold text-white',
-  // 'absolute z-20 whitespace-nowrap rounded bg-black py-[6px] px-4 text-sm font-semibold text-white opacity-0 group-hover:opacity-100',
   {
     variants: {
       position: {
