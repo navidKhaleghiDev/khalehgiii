@@ -16,9 +16,13 @@ type PropsType = {
   isRecording?: boolean;
   isMetaConfig?: boolean;
   userPermissions: PermissionsCodeName[];
-  handleSetDlpValues: (name: keyof IDaAs, values: string[]) => void;
+  handleSetDlpValues: (
+    name: keyof IDaAs,
+    values: { [key: string]: number }
+  ) => void;
   dlpDownloadList: Record<string, number>;
   dlpUploadList: Record<string, number>;
+  usageInMinute: number | string;
   timeOfUse: ETimeLimitDuration;
 };
 
@@ -30,6 +34,7 @@ export function DaasModalContent({
   handleSetDlpValues,
   dlpDownloadList,
   dlpUploadList,
+  usageInMinute,
   timeOfUse,
 }: PropsType) {
   return (
@@ -38,7 +43,11 @@ export function DaasModalContent({
 
       <TimeOfUseAccess control={control} />
 
-      <MaxSizeAccess control={control} timeOfUse={timeOfUse} />
+      <MaxSizeAccess
+        control={control}
+        timeOfUse={timeOfUse}
+        usageInMinute={usageInMinute}
+      />
 
       <DlpSettingsForm
         handleSetDlpValues={handleSetDlpValues}

@@ -29,21 +29,6 @@ export function ReportFilter({
     >
       <div className="flex items-center justify-between sm:gap-[1.875rem] gap-2.5">
         <ReportForm handleOnSubmit={handleOnSubmit} state={state} />
-        {/* This functionality does not work cause we do not have the service */}
-        {/* <BaseButton
-          label={t('global.domain')}
-          endIcon={caretLeft}
-          size="sm"
-          type="neutral"
-          className="sm:flex hidden"
-          disabled // This button is disabled until the backend provides data for the domain
-        />
-        <IconButton
-          icon={GlobeSimple}
-          color="neutral"
-          size="sm"
-          className="sm:hidden flex"
-        /> */}
       </div>
       <div className="flex gap-2.5 items-end justify-end">
         <ToggleButton

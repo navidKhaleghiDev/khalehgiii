@@ -1,6 +1,8 @@
 import React from 'react';
+
+import { NoResultTable } from '@redesignUi/molecules/BaseTable/components/NoResultTable';
+
 import { BaseTableRow } from '../BaseTableRow';
-import { BaseTableNoResult } from '../BaseTableNoResult';
 import { BaseTableBodyProps } from '../../types';
 
 /**
@@ -23,7 +25,7 @@ export function BaseTableBody({
   onClick,
   isMobile,
   collapseHeader,
-}: BaseTableBodyProps) {
+}: BaseTableBodyProps): JSX.Element {
   return (
     <tbody>
       {body.length >= 1 ? (
@@ -43,7 +45,7 @@ export function BaseTableBody({
           );
         })
       ) : (
-        <BaseTableNoResult />
+        <NoResultTable />
       )}
     </tbody>
   );

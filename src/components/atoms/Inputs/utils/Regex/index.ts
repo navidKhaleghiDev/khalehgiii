@@ -9,6 +9,7 @@ export const regexPattern = {
     value: /^\.[A-Za-z0-9]+$/,
     message: 'بیشتر از 2 حرف انگلیسی و با نقطه (.) شروع شود.',
   },
+
   url: {
     value:
       /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?/gi,

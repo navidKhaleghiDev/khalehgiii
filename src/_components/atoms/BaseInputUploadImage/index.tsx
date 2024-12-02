@@ -5,6 +5,21 @@ import pencilSimple from '@iconify-icons/ph/pencil-simple';
 import { BaseUploadInputProps } from '@ui/atoms/Inputs/BaseUploadInput/types';
 import { IconButton } from '../BaseButton';
 
+/**
+ * Base Input Upload Image Component.
+ *
+ * A customizable file upload input component designed for image uploads. It allows users to preview, upload, and remove selected images.
+ *
+ * @param {BaseInputUploadImageProps} props - The props for the component.
+ * @param {string} props.name - The name of the input field.
+ * @param {any} [props.icon=usersThreeLight] - Optional icon to display when no image is uploaded. Defaults to `usersThreeLight`.
+ * @param {boolean} [props.disabled=false] - Whether the input is disabled.
+ * @param {string} [props.defaultValue] - The default image URL to display as the initial preview.
+ * @param {(file: File | null) => void} [props.onClick] - Callback invoked when an image is uploaded or removed.
+ *
+ * @returns {JSX.Element} - The rendered upload image input component.
+ */
+
 interface BaseInputUploadImageProps
   extends Omit<
     BaseUploadInputProps,

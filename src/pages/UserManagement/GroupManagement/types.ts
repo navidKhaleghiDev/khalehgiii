@@ -1,5 +1,8 @@
+import { Dispatch, SetStateAction } from 'react';
+import { Control, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
+
 export type TGroupMembers = {
-  value?: 'users' | 'admins';
+  value?: keyof TGroup;
   id: string;
   email: string;
   is_running?: boolean;
@@ -67,4 +70,20 @@ export type GroupManagementUsersListProps = {
   selectedData: any;
   setSelectedData: any;
   filterQuery: string;
+};
+export type GroupManagementEditFormProps = {
+  setFilterQuery: (e: string) => void;
+  filterQuery: string;
+  paginatedData: (key: keyof TGroup) => TGroupMembers[];
+  setCurrentPage: (val: number) => void;
+  handleClickAction: any;
+  isLoading: boolean;
+  currentPage: number;
+  group: TGroup;
+  control: Control<TGroupUpdate>;
+  handleSubmit: UseFormHandleSubmit<TGroupUpdate, undefined>;
+  onSubmit: SubmitHandler<TGroupUpdate>;
+  allGroupData: TGroup;
+  isDirty: boolean;
+  setOpenEditModal: Dispatch<SetStateAction<boolean>>;
 };

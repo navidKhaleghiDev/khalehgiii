@@ -28,6 +28,7 @@ interface BaseModalProps extends VariantProps<typeof headerStyles> {
   buttonTow?: ModalButtonType;
   descriptionInfo?: string;
   icon?: IconType;
+  shouldCloseOnOutsideClick?: boolean;
 }
 
 interface ModalWithContent extends BaseModalProps {

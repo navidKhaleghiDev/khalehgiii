@@ -15,10 +15,13 @@ import { ChipButtonUserAccessModal } from '@src/pages/UserManagement/UserListPag
 
 type PropsType = {
   name: keyof IDaAs;
-  valueList: any;
+  valueList: { [key: string]: number };
   label: string;
   userPermissions: PermissionsCodeName[];
-  onChange: (name: PropsType['name'], values: string[]) => void;
+  onChange: (
+    name: PropsType['name'],
+    values: { [key: string]: number }
+  ) => void;
 };
 
 export function DlpList({
@@ -44,28 +47,20 @@ export function DlpList({
   ) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      // const mValue = (event.target as HTMLInputElement)?.value;
-
-      // const regex = regexPattern.wordStartedWithPointAndEn;
-      // if (!regex.value.test(mValue)) {
-      //   setError(regex.message);
-      // } else {
-      //   error && setError(undefined);
-      // }
-
-      // if (!valueList.includes(mValue) && mValue !== '') {
-      //   onChange(name, [...valueList, mValue]);
-      //   setValue('');
-      // }
-
-      // if (valueList.includes(mValue)) {
-      //   setError(t('userList.theFormatIsRepetitive'));
-      // }
 
       if (!contentValue) {
         setError(
           t('userList.enterTheAllowedVolumeForThisFormatInTheOppositeField')
         );
+      }
+
+      const numberInput = document.getElementById(
+        name === 'allowed_files_type_for_download'
+          ? 'allowed_volume_dl'
+          : 'allowed_volume_up'
+      );
+      if (numberInput) {
+        numberInput.focus();
       }
     }
   };
@@ -120,7 +115,11 @@ export function DlpList({
           />
         </div>
         <BaseInputNumber
-          id="allowed_volume"
+          id={`${
+            name === 'allowed_files_type_for_download'
+              ? 'allowed_volume_dl'
+              : 'allowed_volume_up'
+          }`}
           name="allowed_volume"
           label={t('userList.allowedVolume')}
           max={500}
