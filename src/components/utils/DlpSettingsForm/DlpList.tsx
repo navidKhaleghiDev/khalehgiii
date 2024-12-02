@@ -110,7 +110,6 @@ export function DlpList({
             onKeyDown={handleKeyFirstPress}
             placeholder=".text"
             label={label}
-            size="md"
             dir={dir === 'rtl' ? 'rtl' : 'ltr'}
           />
         </div>
@@ -124,7 +123,7 @@ export function DlpList({
           label={t('userList.allowedVolume')}
           max={500}
           onChange={(Value) => setContentValue(Value)}
-          size="md"
+          fullWidth
           onKeyDown={handleKeySecondPress}
         />
       </div>

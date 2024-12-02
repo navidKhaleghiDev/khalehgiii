@@ -48,7 +48,7 @@ export function GroupManagementEdit() {
     image: undefined,
   });
 
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
+  const { data, isLoading } = useSWR<IResponseData<TGroup[]>>(
     id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );
@@ -90,31 +90,6 @@ export function GroupManagementEdit() {
     }
   }, [setValue, updateGroup]);
 
-  const paginatedData = useCallback(
-    (key: keyof TGroup) => {
-      const groupData = Array.isArray(updateGroup[key])
-        ? (updateGroup[key] as TGroupMembers[])
-        : [];
-
-      const mappedData = groupData.map((member) => ({ ...member, value: key }));
-
-      const filteredData = filterQuery
-        ? mappedData.filter((item) =>
-            item.email.toLowerCase().includes(filterQuery.toLowerCase())
-          )
-        : mappedData;
-
-      const startIndex = (currentPage - 1) * PAGE_SIZE;
-      const paginatedResult = filteredData.slice(
-        startIndex,
-        startIndex + PAGE_SIZE
-      );
-
-      return paginatedResult;
-    },
-    [updateGroup, filterQuery, currentPage]
-  );
-
   const handleClickAction = useCallback(
     (action: 'users' | 'admins' | 'delete', row: TGroupMembers) => {
       const alternateAction = action === 'users' ? 'admins' : 'users';
@@ -147,7 +122,6 @@ export function GroupManagementEdit() {
   };
 
   const handleCloseModal = () => {
-    mutate();
     setOpenEditModal(false);
   };
 
@@ -170,13 +144,14 @@ export function GroupManagementEdit() {
   };
 
   const handleAddNewMember = (list: any) => {
-    const updatedGroup = {
-      ...updateGroup,
-      users: [...updateGroup.users, ...list.users],
-      admins: [...updateGroup.admins, ...list.admins],
-    };
-
-    handleUpdateGroup(updatedGroup);
+    setUpdateGroup((prev) => {
+      return {
+        ...prev,
+        users: [...updateGroup.users, ...list.users],
+        admins: [...updateGroup.admins, ...list.admins],
+      };
+    });
+    handleCloseModal();
   };
 
   return (
@@ -187,8 +162,8 @@ export function GroupManagementEdit() {
       <GroupManagementEditForm
         setFilterQuery={setFilterQuery}
         filterQuery={filterQuery}
-        paginatedData={paginatedData}
         setCurrentPage={setCurrentPage}
+        pageSize={PAGE_SIZE}
         handleClickAction={handleClickAction}
         isLoading={isLoading}
         currentPage={currentPage}
