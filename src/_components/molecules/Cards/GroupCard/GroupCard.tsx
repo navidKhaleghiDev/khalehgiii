@@ -99,7 +99,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
                   />
                   <TitleNumber
                     title={t('groupManagement.onlineUsers')}
-                    number={group.users.length}
+                    number={group?.online_users ?? 0}
                   />
                 </div>
               </div>

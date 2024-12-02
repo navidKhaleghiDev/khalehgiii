@@ -48,24 +48,14 @@ export function DashboardOnlineUsersList({
         shadow="base"
         className=" w-full basis-full flex-grow p-5"
       >
-        <div className="col-span-12 grid grid-cols-12 pb-9">
-          <div className="col-span-6">
+        <div className="col-span-12 grid grid-cols-12 pb-5">
+          <div className="col-span-12">
             <Typography color="black" variant="body4B">
               {t('dashboard.onlineUsers')}
             </Typography>
           </div>
-          <div className="col-span-6 justify-self-end">
-            {/* The functionality dose not work cause we do not have service */}
-            {/* <BaseButton
-              label={t('global.domain')}
-              endIcon={caretLeft}
-              size="sm"
-              type="neutral"
-              disabled
-            /> */}
-          </div>
         </div>
-        <div className="col-span-12">
+        <div className="col-span-12 flex flex-col gap-5">
           {listDaas?.map((user) => (
             <UserInfo
               fullName={user?.email}

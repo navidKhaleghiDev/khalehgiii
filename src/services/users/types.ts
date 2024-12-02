@@ -116,6 +116,7 @@ export type TGroup = {
   created_at?: string;
   updated_at?: string;
   image?: string | Blob | undefined;
+  online_users?: number;
 };
 
 export type UpdateGroupPayload = {

@@ -8,7 +8,7 @@ interface UserInfoProps {
 
 export function UserInfo({ fullName, email }: UserInfoProps) {
   return (
-    <div className="flex gap-3 pb-5">
+    <div className="flex gap-3">
       <Avatar icon={User} size="md" />
       <div>
         <Typography color="neutralDark" variant="body5">
