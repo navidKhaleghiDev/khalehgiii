@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@redesignUi/atoms';
@@ -15,7 +15,11 @@ import {
   groupManagementAdminHeaderItem,
   groupManagementUserHeaderItem,
 } from '../constants/groupManagementHeaderItem';
-import { GroupManagementEditFormProps } from '../../types';
+import {
+  GroupManagementEditFormProps,
+  TGroup,
+  TGroupMembers,
+} from '../../types';
 
 /**
  * Group Management Edit Form Component.
@@ -45,9 +49,9 @@ import { GroupManagementEditFormProps } from '../../types';
 
 export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
   const {
+    pageSize,
     setFilterQuery,
     filterQuery,
-    paginatedData,
     setCurrentPage,
     handleClickAction,
     isLoading,
@@ -64,10 +68,35 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
   const [editMode, setEditMode] = useState(false);
   const { t } = useTranslation();
 
-  const numberOfUsers = group?.users?.length as number;
+  const paginatedData = useCallback(
+    (key: keyof TGroup) => {
+      const groupData = Array.isArray(group[key])
+        ? (group[key] as TGroupMembers[])
+        : [];
 
-  const userData = paginatedData('users');
-  const adminData = paginatedData('admins');
+      const mappedData = groupData.map((member) => ({ ...member, value: key }));
+
+      const filteredData = filterQuery
+        ? mappedData.filter((item) =>
+            item.email.toLowerCase().includes(filterQuery.toLowerCase())
+          )
+        : mappedData;
+
+      const startIndex = (currentPage - 1) * pageSize;
+      const paginatedResult = filteredData.slice(
+        startIndex,
+        startIndex + pageSize
+      );
+
+      return paginatedResult;
+    },
+    [group, filterQuery, currentPage, pageSize]
+  );
+
+  const numberOfUsers =
+    group.users.length >= group.admins.length
+      ? group.users.length
+      : group.admins.length;
 
   const allAdminsLength = allGroupData?.admins?.length;
   const allUsersLength = allGroupData?.users?.length;
@@ -130,7 +159,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
 
       <BaseTable
         header={groupManagementAdminHeaderItem}
-        body={adminData}
+        body={paginatedData('admins')}
         onClick={handleClickAction}
         loading={isLoading}
         isMobile
@@ -138,7 +167,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
       <div className="border-t border-gray-200 my-5" />
       <BaseTable
         header={groupManagementUserHeaderItem}
-        body={userData}
+        body={paginatedData('users')}
         loading={isLoading}
         onClick={handleClickAction}
         isMobile
@@ -152,7 +181,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
       </div>
       <Pagination
         currentPage={currentPage}
-        totalPages={numberOfUsers / 5}
+        totalPages={Math.ceil(numberOfUsers / 5)}
         allItems={numberOfUsers}
         itemsPer={5}
         paginationLabel={t('groupManagement.member')}
