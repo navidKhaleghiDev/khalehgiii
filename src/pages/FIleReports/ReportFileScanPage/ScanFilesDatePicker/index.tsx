@@ -4,6 +4,7 @@ import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/C
 import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
 import { useLanguage } from '@context/settings/languageContext';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { FormDateData } from '@src/pages/Reports/types';
 
 export type DateFormat = {
   start_date: string | string[] | undefined;
@@ -25,7 +26,7 @@ export function ScanFileDatePicker({
   const { dir } = useLanguage();
   const { height } = useWindowDimensions();
 
-  const handelDateForm = (date: any) => {
+  const handelDateForm = (date: FormDateData) => {
     onChange({
       start_date: convertI2ToAD(date.start_date[0]),
       end_date: convertI2ToAD(date.start_date[1]),
