@@ -40,6 +40,7 @@ export function UpdateFileTypeModal({
   const userPermissions = useUserPermission();
 
   const { dir } = useLanguage();
+  const direction = dir === 'rtl' ? 'rtl' : 'ltr';
   const inputStyle = 'col-span-6 lg:col-span-4 h-16';
   const hasChangePermission = checkPermission(
     userPermissions,
@@ -114,7 +115,7 @@ export function UpdateFileTypeModal({
           placeholder=".txt"
           label={t('table.fileType')}
           endIcon={PhFile}
-          dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+          dir={direction}
           size="md"
           rules={{
             pattern: regexPattern.DotSeparatedLetters,
@@ -149,11 +150,10 @@ export function UpdateFileTypeModal({
                 disabled={!hasChangePermission || !uploadAccess}
                 placeholder={t('table.upload')}
                 icon={PhUploadSimple}
-                dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                dir={direction}
                 max={50}
                 rules={{
-                  required:
-                    uploadAccess && downloadAccess ? regexPattern.required : '',
+                  required: uploadAccess ? regexPattern.required : '',
                 }}
               />
             </div>
@@ -175,11 +175,10 @@ export function UpdateFileTypeModal({
                 disabled={!hasChangePermission || !downloadAccess}
                 placeholder={t('table.download')}
                 icon={PhUploadSimple}
-                dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                dir={direction}
                 max={500}
                 rules={{
-                  required:
-                    uploadAccess && downloadAccess ? regexPattern.required : '',
+                  required: downloadAccess ? regexPattern.required : '',
                 }}
               />
             </div>

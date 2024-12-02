@@ -31,6 +31,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const { dir } = useLanguage();
   const { t } = useTranslation();
   const inputStyles = 'col-span-6 lg:col-span-4';
+  const direction = dir === 'rtl' ? 'rtl' : 'ltr';
 
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
@@ -140,7 +141,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoBaseURL')}
                   placeholder="http://localhost"
                   fullWidth
-                  dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                  dir={direction}
                 />
               </div>
               <div className={inputStyles}>
@@ -154,7 +155,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoClientID')}
                   placeholder={t('setting.clientIDP')}
                   fullWidth
-                  dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                  dir={direction}
                 />
               </div>
 
@@ -169,7 +170,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoSecret')}
                   placeholder={t('setting.secretP')}
                   fullWidth
-                  dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                  dir={direction}
                 />
               </div>
 
@@ -185,7 +186,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoPort')}
                   placeholder="8080"
                   fullWidth
-                  dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                  dir={direction}
                 />
               </div>
               <div className={inputStyles}>
@@ -199,7 +200,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label="SSO realm"
                   placeholder={t('setting.realmP')}
                   fullWidth
-                  dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+                  dir={direction}
                 />
               </div>
             </div>
@@ -221,7 +222,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               label={t('setting.logServerIP')}
               placeholder="192.168.1.1"
               fullWidth
-              dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+              dir={direction}
             />
           </div>
           <div className={inputStyles}>
@@ -236,7 +237,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               label={t('setting.logServerPort')}
               placeholder="8000"
               fullWidth
-              dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+              dir={direction}
             />
           </div>
         </div>
@@ -256,7 +257,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               label={t('setting.daasProvider')}
               placeholder="sep.npd-co.com"
               fullWidth
-              dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+              dir={direction}
             />
           </div>
         </div>
