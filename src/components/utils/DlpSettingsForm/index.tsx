@@ -6,11 +6,15 @@ import {
   PermissionsCodeName,
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
+import { Typography } from '@redesignUi/atoms';
 
 import { DlpList } from './DlpList';
 
 type PropsType = {
-  handleSetDlpValues: (name: keyof IDaAs, values: string[]) => void;
+  handleSetDlpValues: (
+    name: keyof IDaAs,
+    values: { [key: string]: number }
+  ) => void;
   dlpDownloadList: any;
   dlpUploadList: any;
   userPermissions: PermissionsCodeName[];
@@ -30,7 +34,14 @@ export function DlpSettingsForm({
   return (
     hasViewPermission && (
       <div className="w-full col-span-6 grid grid-cols-2 gap-5 pt-4 mt-4 border-t border-t-gray-300">
-        <div className="sm:col-span-2 col-span-2">
+        <Typography
+          className="col-span-2 text-start"
+          variant="body6"
+          color="neutralDark"
+        >
+          {t('userList.formInstruction')}
+        </Typography>
+        <div className="col-span-2">
           <DlpList
             name="allowed_files_type_for_download"
             valueList={dlpDownloadList}

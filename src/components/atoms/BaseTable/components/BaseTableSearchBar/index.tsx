@@ -1,6 +1,7 @@
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { ResetAllAccessTime } from '@src/pages/UserManagement/UserListPage/DaAsList/ResetAllAccessTime';
 import { Typography } from '@ui/atoms/Typography';
-import { ResetAllAccessTime } from '@src/pages/DashboardDesktopList/DaAsList/ResetAllAccessTime';
+
 import { ButtonAdd } from './components/SearchBarButtons/ButtonAdd';
 import { ITableSearchComponent, TComponent, TSearchBar } from './types';
 
