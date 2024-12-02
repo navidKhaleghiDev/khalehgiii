@@ -51,20 +51,24 @@ function compareExtensionLists(
 
 const PAGE_SIZE = 6;
 const PAGE = 1;
-
-export function DaAsList() {
+interface DaAsListProps {
+  showLockedUsers: boolean;
+  showOnlineUsers: boolean;
+}
+export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
-  const [openModal, setOpenModal] = useState(false);
-  const [openBlockModal, setOpenBlockModal] = useState(false);
-
-  const [openSettingModal, setOpenSettingModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const [openOnlineAssistanceModal, setOpenOnlineAssistanceModal] =
-    useState(false);
-  const [openSessionRecording, setOpenSessionRecording] = useState(false);
+  const [activeModal, setActiveModal] = useState<
+    | 'deleteUser'
+    | 'blockUser'
+    | 'setting'
+    | 'sessionRecording'
+    | 'onlineAssistance'
+    | null
+  >(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [userName, setUserName] = useState<string>('');
 
@@ -76,51 +80,51 @@ export function DaAsList() {
     pageSize: PAGE_SIZE,
     currentPage,
     filterQuery,
+    lockFilter: showLockedUsers,
+    onlineFilter: showOnlineUsers,
   });
 
   const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
     endpoint,
     http.fetcherSWR
   );
+
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
+  const handleOnClickActions: OnClickActionsType<IDaAs> = (
     action,
-    fileType
+    userDaas
   ) => {
-    const id = fileType?.id;
+    setActiveDaas(userDaas as IDaAs);
+    const id = userDaas?.id;
     switch (action) {
       case 'more':
         if (id) {
           setSelectedId(id);
-          setOpenSessionRecording(true);
-          setUserName(fileType.email);
+          setActiveModal('sessionRecording');
+          setUserName(userDaas.email);
         }
         break;
       case 'edit':
-        setActiveDaas(fileType as IDaAs);
-        setOpenSettingModal(true);
+        setActiveModal('setting');
         break;
       case 'editLock':
-        setActiveDaas(fileType as IDaAs);
-        setOpenBlockModal(true);
+        setActiveModal('blockUser');
         break;
       case 'details':
-        setActiveDaas(fileType as IDaAs);
-        setOpenOnlineAssistanceModal(true);
+        setActiveModal('onlineAssistance');
+        break;
+      case 'delete':
+        if (id) {
+          setActiveModal('deleteUser');
+        }
         break;
       default:
         break;
       // do nothing
     }
-
-    if (fileType !== undefined && typeof fileType !== 'string') {
-      setActiveDaas(fileType as IDaAs);
-      setOpenModal(true);
-    }
   };
-
   const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
     if (!daas) return;
     let daasUpdated = daas;
@@ -197,10 +201,7 @@ export function DaAsList() {
       .then(() => {
         mutate();
         toast.success(t('global.sucessfulyUpdated'));
-        if (openBlockModal) setOpenBlockModal(false);
-        if (openModal) setOpenModal(false);
-        if (openSettingModal) setOpenSettingModal(false);
-        if (openSessionRecording) setOpenSessionRecording(false);
+        setActiveModal(null);
       })
       .catch((err) => {
         toast.error(err);
@@ -213,7 +214,6 @@ export function DaAsList() {
   const handleOnBlock = () => {
     setLoadingButtonModal(true);
     updateDaas(activeDaas);
-    setOpenBlockModal(false);
   };
   const handleOnRequests = async () => {
     if (!activeDaas) return;
@@ -222,8 +222,8 @@ export function DaAsList() {
     await API_DAAS_DELETE(activeDaas.id as string)
       .then(() => {
         toast.success(t('global.successfullyRemoved'));
-        setOpenModal(false);
         mutate();
+        setActiveModal(null);
       })
       .catch((err) => {
         toast.error(err);
@@ -232,6 +232,7 @@ export function DaAsList() {
         setLoadingButtonModal(false);
       });
   };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -243,7 +244,6 @@ export function DaAsList() {
     itemsPer: PAGE_SIZE,
     paginationLabel: t('header.user'),
     totalPages: Math.ceil(countPage / PAGE_SIZE),
-
     onPageChange: handlePageChange,
   };
 
@@ -272,8 +272,8 @@ export function DaAsList() {
       />
       <Modal
         size="responsive"
-        open={openModal}
-        setOpen={setOpenModal}
+        open={activeModal === 'deleteUser'}
+        setOpen={() => setActiveModal(null)}
         type="error"
         title={t('global.deleteUser')}
         description={t('global.sureAboutDeleteUser')}
@@ -285,14 +285,14 @@ export function DaAsList() {
         }}
         buttonTow={{
           label: t('global.cancel'),
-          onClick: () => setOpenModal(false),
+          onClick: () => setActiveModal(null),
           color: 'tertiary',
         }}
       />
       <Modal
         size="responsive"
-        open={openBlockModal}
-        setOpen={setOpenBlockModal}
+        open={activeModal === 'blockUser'}
+        setOpen={() => setActiveModal(null)}
         type="info"
         title={t('table.userStatus')}
         description={
@@ -308,15 +308,15 @@ export function DaAsList() {
         }}
         buttonTow={{
           label: t('global.cancel'),
-          onClick: () => setOpenBlockModal(false),
+          onClick: () => setActiveModal(null),
           color: 'tertiary',
         }}
       />
       <Modal
         classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"
         size="lg"
-        open={openSessionRecording}
-        setOpen={setOpenSessionRecording}
+        open={activeModal === 'sessionRecording'}
+        setOpen={() => setActiveModal(null)}
         type="content"
         content={<SessionRecordingList id={selectedId} username={userName} />}
         icon={Play}
@@ -328,14 +328,14 @@ export function DaAsList() {
         title={t('userList.userAccess')}
         descriptionInfo={t('userList.changeUserProfileAndAccessList')}
         icon={userFocus}
-        open={openSettingModal}
-        setOpen={setOpenSettingModal}
+        open={activeModal === 'setting'}
+        setOpen={() => setActiveModal(null)}
         content={
           <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
             daas={activeDaas as IDaAs}
             userPermissions={userPermissions}
-            setOpenSettingModal={setOpenSettingModal}
+            setOpenSettingModal={() => setActiveModal(null)}
           />
         }
         classContainer="md:h-[45.5rem] h-[36.875rem] overflow-x-hidden w-[20.87rem] sm:w-[33.43rem] lg:w-[39.68rem] mx-auto max-w-[39.688rem]"
@@ -343,8 +343,8 @@ export function DaAsList() {
       <Modal
         classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"
         size="lg"
-        open={openOnlineAssistanceModal}
-        setOpen={setOpenOnlineAssistanceModal}
+        open={activeModal === 'onlineAssistance'}
+        setOpen={() => setActiveModal(null)}
         type="content"
         content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
         icon={UsersThree}

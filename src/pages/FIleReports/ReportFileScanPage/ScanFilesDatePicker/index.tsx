@@ -25,21 +25,19 @@ export function ScanFileDatePicker({
   const { dir } = useLanguage();
   const { height } = useWindowDimensions();
 
+  const handelDateForm = (date: any) => {
+    onChange({
+      start_date: convertI2ToAD(date.start_date[0]),
+      end_date: convertI2ToAD(date.start_date[1]),
+    });
+  };
+
+  // Handle calender position in the mobile landScape and wide
   const myCalenderPositionLandScape = dir === 'rtl' ? 'right' : 'left';
   const myCalenderPositionNormal =
     dir === 'rtl' ? 'bottom-end' : 'bottom-start';
-
-  const overall =
+  const calenderPosition =
     height <= 400 ? myCalenderPositionLandScape : myCalenderPositionNormal;
-
-  const handelDateForm = (date: any) => {
-    const updatedData = {
-      start_date: convertI2ToAD(date.start_date[0]),
-      end_date: convertI2ToAD(date.start_date[1]),
-    };
-
-    onChange(updatedData);
-  };
 
   return (
     <form onSubmit={handleSubmit(handelDateForm)} className="text-start my-5">
@@ -50,7 +48,7 @@ export function ScanFileDatePicker({
         format="YYYY-MM-DD"
         maxDate={new Date()}
         fullWidth
-        calendarPosition={overall}
+        calendarPosition={calenderPosition}
       />
     </form>
   );

@@ -99,8 +99,8 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       <div
         className={`[&_thead]:bg-gray-100 ${
           height <= 670
-            ? 'h-[180px] overflow-auto pe-3'
-            : 'h-[400px] sm:h-[550px]'
+            ? 'h-[11.25rem] overflow-auto pe-3'
+            : 'h-[25rem] sm:h-[34.375rem]'
         }`}
       >
         {!error ? (
