@@ -25,7 +25,7 @@ export default function OnlineAssistanceDetail({
         </Typography>
       </div>
 
-      <div className="mt-5 max-h-[13.94rem] overflow-y-auto">
+      <div className="mt-5 max-h-[13.94rem] overflow-y-auto pe-5">
         {Array.isArray(data) &&
           data.length > 0 &&
           data.map((item) => (

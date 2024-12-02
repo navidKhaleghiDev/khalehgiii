@@ -164,6 +164,7 @@ export function AdminsList() {
             ? t('adminList.editInformationText')
             : t('adminList.createNewAdminText')
         }
+        shouldCloseOnOutsideClick={false}
         setOpen={setOpenUpdateModal}
         content={
           <UpdateAdminModal

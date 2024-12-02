@@ -9,7 +9,7 @@ import {
 } from '@src/services/users';
 import { TGroup } from '@src/services/users/types';
 import User from '@iconify-icons/ph/user';
-import Monitor from '@iconify-icons/ph/monitor-duotone';
+import Monitor from '@iconify-icons/ph/monitor';
 import { useUserContext } from '@context/user/userContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { ToolTip } from '@redesignUi/atoms/Tooltip';
@@ -117,7 +117,7 @@ export function AssistanceGroupDetail({
               >
                 <IconButton
                   icon={Monitor}
-                  color="neutral"
+                  color="neutralNoBg"
                   size="sm"
                   disabled={!onlineUser || !isOnlineAssistance}
                   onClick={() =>
