@@ -7,14 +7,17 @@ import timer from '@iconify-icons/ph/timer';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 import { ETimeLimitDuration } from '@src/services/users/types';
+import { regexPattern } from '@redesignUi/atoms/Inputs';
 
 import { UserAccessModalCard } from '../DaAsCard/UserAccessModalCard';
 
 export function MaxSizeAccess({
   control,
+  usageInMinute,
   timeOfUse,
 }: {
   control: Control<any>;
+  usageInMinute: number | string;
   timeOfUse: ETimeLimitDuration;
 }) {
   const { t } = useTranslation();
@@ -22,10 +25,15 @@ export function MaxSizeAccess({
 
   const maxTimeLimitValues: { [key in ETimeLimitDuration]?: number } = {
     DAILY: 24,
-    MONTHLY: 720,
+    MONTHLY: 744,
     WEEKLY: 168,
     PERMANENTLY: 2000,
   };
+
+  const minTimeLimitValue =
+    usageInMinute && typeof usageInMinute === 'number'
+      ? Math.ceil(usageInMinute / 60)
+      : 0;
 
   const setMaxTimeLimitValue = () => maxTimeLimitValues[timeOfUse] || 0;
 
@@ -61,9 +69,18 @@ export function MaxSizeAccess({
         label={t('table.timeLimitValueInHour')}
         className="sm:col-span-1 col-span-2"
         dir={dir === 'rtl' ? 'rtl' : 'ltr'}
-        min={0}
-        max={setMaxTimeLimitValue()}
         disabled={timeOfUse === 'PERMANENTLY'}
+        rules={{
+          max: {
+            value: setMaxTimeLimitValue(),
+            message: t('userList.timeExceededError'),
+          },
+          min: {
+            value: minTimeLimitValue,
+            message: t('userList.timeLessThanUserUsage'),
+          },
+          required: regexPattern.required,
+        }}
       />
     </UserAccessModalCard>
   );
