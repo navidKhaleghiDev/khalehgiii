@@ -36,7 +36,7 @@ export function BaseInputNumberController(
     intent,
     label,
     min = 0,
-    max = 100,
+    max = 10000000,
     control,
     fullWidth,
     disabled,
@@ -69,7 +69,7 @@ export function BaseInputNumberController(
             size={size}
             disabled={disabled}
             onChange={(e) => onChange(e)}
-            value={value}
+            defaultValue={value}
             id={id}
             icon={icon}
           />

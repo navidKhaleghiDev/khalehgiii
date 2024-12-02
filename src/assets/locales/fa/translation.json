@@ -315,7 +315,10 @@
     "limitBySize": "محدود کردن بر اساس زمان",
     "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
     "goToSystem": "ورود به سامانه",
-    "developing": "در حال توسعه ..."
+    "developing": "در حال توسعه ...",
+    "notFoundDataInPage": "داده ای در صفحه وجود ندارد.",
+    "notFoundData": "داده ای وجود ندارد.",
+    "noUsersOnline": "هیچ کاربری در حال حاضر آنلاین نیست."
   },
   "groupManagement": {
     "person": "نفر",
@@ -402,14 +405,14 @@
     "trustedUploadFormat": "فرمت های مورد تایید آپلود",
     "sessionRecording": "ضبط دسکتاپ",
     "thePossibilityOfRecordingtheDesktopByTheUser": "امکان ضبط دسکتاپ توسط کاربر.",
-    "clipboard": "کلیپ‌بورد",
+    "clipboard": "کلیپ بورد",
     "thePossibilityOfUsingTexts": "امکان استفاده از متن‌ها.",
     "evidence": "شواهد",
     "abilityToDownloadFilesUploadedOrDownloadedByTheUser": "امکان دانلود فایل‌های آپلود شده یا دانلود شده توسط کاربر.",
     "conference": "کنفرانس",
     "accessToWebcamAndMicrophone": "دسترسی به وب‌کم و میکروفون.",
     "accessToTheUsersDesktopOnline": "دسترسی به میز کار کاربر به صورت آنلاین.",
-    "clipboardLog": "لاگ کلیپبورد",
+    "clipboardLog": "لاگ کلیپ بورد",
     "reportOfTextTransferredViaClipboard": "گزارش متن‌های منتقل‌شده از طریق کلیپ‌بورد.",
     "recordedActivities": "فعالیت های ضبط شده",
     "recordedUserActivities": "فعالیت های ضبط شده کاربر",
@@ -423,7 +426,10 @@
     "areYouSureUnBlock": "آیا از فعال سازی دسترسی این کاربر مطئن هستید؟",
     "yourBrowserDoesntSupportVideo": "مرورگر شما این ویدئو را پشتیبانی نمی‌کند.",
     "allowedVolume": "حجم مجاز",
-    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "حجم مجاز برای این فرمت را در فیلد روبرو وارد کنید"
+    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "حجم مجاز برای این فرمت را در فیلد روبرو وارد کنید",
+    "formInstruction": "پس از وارد کردن اطلاعات در فیلد های زیر، با فشردن کلید Enter، آن‌ها را به لیست اضافه کنید.",
+    "timeExceededError": "زمان وارد شده بیشتر از محدوده زمان استفاده می باشد.",
+    "timeLessThanUserUsage": "زمان وارد شده کمتر از زمان استفاده شده کاربر می باشد."
   },
 
   "license": {
@@ -477,7 +483,15 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile": "ذخیره فایل"
+    "resourceLimitations": "محدودیت منابع",
+    "chrome": "Chrome",
+    "fireFox": "Firefox",
+    "cpu": "CPU (Core)",
+    "core": "Core",
+    "memory": "حافظه (GB)",
+    "saveFile": "ذخیره فایل",
+    "ide": "IDE",
+    "remina": "Remote Access"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

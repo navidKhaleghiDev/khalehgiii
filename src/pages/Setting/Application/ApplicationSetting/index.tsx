@@ -11,7 +11,6 @@ import {
 import { EPermissionKeycloak } from '@src/types/permissions';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
@@ -24,12 +23,18 @@ import {
 
 import { ApplicationSettingProp } from '../../type';
 
-export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
+interface ApplicationSettingProps {
+  userExist?: boolean;
+  dir?: 'rtl' | 'ltr';
+}
+export function ApplicationSetting({
+  userExist,
+  dir,
+}: ApplicationSettingProps) {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { lang } = useLanguage();
-  const direction = lang === 'fa' ? 'rtl' : 'ltr';
+
   const inputStyles = 'col-span-6 lg:col-span-4';
 
   const userPermissions = useUserPermission();
@@ -131,7 +136,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoBaseURL')}
                   placeholder="http://localhost"
                   fullWidth
-                  dir={direction}
+                  dir={dir}
                 />
               </div>
               <div className={inputStyles}>
@@ -145,7 +150,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoClientID')}
                   placeholder={t('setting.clientIDP')}
                   fullWidth
-                  dir={direction}
+                  dir={dir}
                 />
               </div>
 
@@ -160,7 +165,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoSecret')}
                   placeholder={t('setting.secretP')}
                   fullWidth
-                  dir={direction}
+                  dir={dir}
                 />
               </div>
 
@@ -176,7 +181,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label={t('setting.ssoPort')}
                   placeholder="8080"
                   fullWidth
-                  dir={direction}
+                  dir={dir}
                 />
               </div>
               <div className={inputStyles}>
@@ -190,7 +195,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
                   label="SSO realm"
                   placeholder={t('setting.realmP')}
                   fullWidth
-                  dir={direction}
+                  dir={dir}
                 />
               </div>
             </div>
@@ -212,7 +217,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               label={t('setting.logServerIP')}
               placeholder="192.168.1.1"
               fullWidth
-              dir={direction}
+              dir={dir}
             />
           </div>
           <div className={inputStyles}>
@@ -227,7 +232,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               label={t('setting.logServerPort')}
               placeholder="8000"
               fullWidth
-              dir={direction}
+              dir={dir}
             />
           </div>
         </div>
@@ -247,7 +252,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               label={t('setting.daasProvider')}
               placeholder="sep.npd-co.com"
               fullWidth
-              dir={direction}
+              dir={dir}
             />
           </div>
         </div>

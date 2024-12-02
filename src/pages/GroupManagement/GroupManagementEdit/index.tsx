@@ -92,18 +92,25 @@ export function GroupManagementEdit() {
 
   const paginatedData = useCallback(
     (key: keyof TGroup) => {
-      const fullData: TGroupMembers[] = Array.isArray(updateGroup[key])
+      const groupData = Array.isArray(updateGroup[key])
         ? (updateGroup[key] as TGroupMembers[])
         : [];
-      const updatedDataByLabel = fullData.map((g) => ({ ...g, value: key }));
-      const filteredData = updatedDataByLabel.filter((item) =>
-        item.email.toLowerCase().includes(filterQuery.toLowerCase())
-      );
+
+      const mappedData = groupData.map((member) => ({ ...member, value: key }));
+
+      const filteredData = filterQuery
+        ? mappedData.filter((item) =>
+            item.email.toLowerCase().includes(filterQuery.toLowerCase())
+          )
+        : mappedData;
+
       const startIndex = (currentPage - 1) * PAGE_SIZE;
-      const endIndex = startIndex + PAGE_SIZE;
-      return filterQuery
-        ? filteredData.slice(startIndex, endIndex)
-        : updatedDataByLabel.slice(startIndex, endIndex);
+      const paginatedResult = filteredData.slice(
+        startIndex,
+        startIndex + PAGE_SIZE
+      );
+
+      return paginatedResult;
     },
     [updateGroup, filterQuery, currentPage]
   );
@@ -112,6 +119,7 @@ export function GroupManagementEdit() {
     (action: 'users' | 'admins' | 'delete', row: TGroupMembers) => {
       const alternateAction = action === 'users' ? 'admins' : 'users';
       const key = row.value as 'users' | 'admins';
+
       if (!updateGroup || updateGroup[alternateAction].length === 1) return;
 
       if (action === 'delete') {

@@ -118,6 +118,7 @@ export type BaseTableCollapseDesktopProps<BodyType> = Omit<
   'header'
 > & {
   header: HeaderTable[];
+  className: string;
 };
 export type BaseTableCollapseMobileProps<BodyType> =
   BaseTableCollapseDesktopProps<BodyType>;
@@ -125,7 +126,9 @@ export type BaseTableCollapseMobileProps<BodyType> =
 export type BaseTableCollapseProps<BodyType> = Omit<
   BaseTableRowProps<BodyType>,
   'index' | 'body'
->;
+> & {
+  className: string;
+};
 export type BaseTableActionCellProps<BodyType> = Omit<
   BaseTableRenderComponentProps<BodyType>,
   'body' | 'isMobile'
@@ -133,6 +136,17 @@ export type BaseTableActionCellProps<BodyType> = Omit<
 
 export type BaseTableMenuCellProps<BodyType extends IdItem> =
   BaseTableNoneCellProps<BodyType>;
+
+export type BaseTableDropDownCellProps<BodyType extends IdItem> =
+  BaseTableNoneCellProps<BodyType>;
+
+export type DropDownHelperCellProps<BodyType extends IdItem> = Pick<
+  BaseTableDropDownCellProps<BodyType>,
+  'onClick'
+> & {
+  options: DropDownHelperCellOption[];
+  defaultValue: DropDownHelperCellOption;
+};
 
 export type BaseTableComponentCellProps<BodyType> = Pick<
   BaseTableRowProps<BodyType>,
@@ -189,7 +203,11 @@ export type IdItem = {
 //   [key in TTableType]: JSX.Element;
 // };
 
-export type DropDownHelperCellOption = { id: number; label: string };
+export type DropDownHelperCellOption = {
+  id: number;
+  label: string;
+  value: string;
+};
 
 export type ActionCellFunction = { action: ActionItem };
 

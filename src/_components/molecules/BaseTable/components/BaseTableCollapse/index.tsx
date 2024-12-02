@@ -22,18 +22,20 @@ import { BaseTableCollapseProps, IdItem } from '../../types';
 export function BaseTableCollapse<T extends IdItem>(
   props: BaseTableCollapseProps<T>
 ) {
-  const { isMobile, collapseHeader, row, onClick } = props;
+  const { isMobile, collapseHeader, row, onClick, className } = props;
 
   return (
     <>
       {isMobile ? (
         <BaseTableCollapseMobile
+          className={className}
           header={collapseHeader}
           row={row}
           onClick={onClick}
         />
       ) : (
         <BaseTableCollapseDesktop
+          className={className}
           header={collapseHeader}
           row={row}
           onClick={onClick}

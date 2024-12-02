@@ -34,21 +34,15 @@ function compareExtensionLists(
 
   if (!oldList || !newList) return { addedList, removedList };
 
-  const oldListKeys = Object.keys(oldList);
-  const newListKeys = Object.keys(newList);
-
-  const setOldList = new Set(oldListKeys);
-  const setNewList = new Set(newListKeys);
-
-  newListKeys.forEach((key) => {
-    if (!setOldList.has(key)) {
-      addedList[key] = newList[key];
+  Object.keys(oldList).forEach((key) => {
+    if (!(key in newList)) {
+      removedList[key] = oldList[key];
     }
   });
 
-  oldListKeys.forEach((key) => {
-    if (!setNewList.has(key)) {
-      removedList[key] = oldList[key];
+  Object.keys(newList).forEach((key) => {
+    if (!(key in oldList) || newList[key] !== oldList[key]) {
+      addedList[key] = newList[key];
     }
   });
 
@@ -319,7 +313,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         }}
       />
       <Modal
-        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"
         size="lg"
         open={activeModal === 'sessionRecording'}
         setOpen={() => setActiveModal(null)}
@@ -344,9 +338,10 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
             setOpenSettingModal={() => setActiveModal(null)}
           />
         }
+        classContainer="md:h-[45.5rem] h-[36.875rem] overflow-x-hidden w-[20.87rem] sm:w-[33.43rem] lg:w-[39.68rem] mx-auto max-w-[39.688rem]"
       />
       <Modal
-        classContainer="md:h-[45.625rem] h-[36.875rem]"
+        classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"
         size="lg"
         open={activeModal === 'onlineAssistance'}
         setOpen={() => setActiveModal(null)}

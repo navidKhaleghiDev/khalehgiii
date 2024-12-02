@@ -26,7 +26,7 @@ export function OnlineAssistanceDetailModal({
   }
 
   return (
-    <div className="w-full h-96 overflow-auto">
+    <div className="w-full">
       {admins.length !== 0 ? (
         <OnlineAssistanceDetail
           title={t('userList.groupAdmin')}

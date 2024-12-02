@@ -44,6 +44,8 @@ export function SettingDaasModal({
       is_recording: daas.daas_configs.is_recording,
       has_evidence_gathering: daas.daas_configs.has_evidence_gathering,
       has_online_assistance: daas.daas_configs.has_online_assistance,
+      has_clipboard_access: daas.daas_configs.has_clipboard_access,
+      has_clipboard_log_access: daas.daas_configs.has_clipboard_log_access,
       max_transmission_download_size:
         daas.daas_configs.max_transmission_download_size,
       max_transmission_upload_size:
@@ -77,7 +79,7 @@ export function SettingDaasModal({
     has_online_assistance,
     has_evidence_gathering,
     has_clipboard_access,
-    has_clipboard_log,
+    has_clipboard_log_access,
     allowed_files_type_for_download,
     allowed_files_type_for_upload,
     forbidden_upload_files,
@@ -93,7 +95,7 @@ export function SettingDaasModal({
         is_recording,
         has_evidence_gathering,
         has_clipboard_access,
-        has_clipboard_log,
+        has_clipboard_log_access,
         has_online_assistance,
         clipboard_up,
         clipboard_down,
@@ -118,13 +120,17 @@ export function SettingDaasModal({
     handleOnChange(updatedDaasData);
   };
 
-  const handleSetDlpValues = (name: keyof IDaAs, values: string[]) => {
+  const handleSetDlpValues = (
+    name: keyof IDaAs,
+    values: { [key: string]: number }
+  ) => {
     setValue(name, values);
   };
 
   const dlpDownloadList = watch('allowed_files_type_for_download') || [];
   const dlpUploadList = watch('allowed_files_type_for_upload') || [];
   const timeOfUse = watch('time_limit_duration') || [];
+  const usageInMinute = daas.usage_in_minute;
 
   const hasViewDaasPermission = checkPermission(
     userPermissions,
@@ -144,6 +150,7 @@ export function SettingDaasModal({
           dlpDownloadList={dlpDownloadList}
           dlpUploadList={dlpUploadList}
           timeOfUse={timeOfUse}
+          usageInMinute={usageInMinute}
           isRecording
         />
       )}
