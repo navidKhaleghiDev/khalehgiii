@@ -18,7 +18,7 @@ import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/compo
 import { monitoringHeaderItem } from '../constants/constants';
 import { ScannedFileList } from '../ScanFIleList';
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 6;
 const PAGE = 1;
 
 export function UsersDaAsList() {
