@@ -1,9 +1,8 @@
-import UnauthorizedPage from '@src/pages/Unauthorized';
 import { NotFoundPage } from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
-import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
-import { Reports } from '@src/pages/Dashboard/Reports';
+import { AssistanceDashboard } from '@src/pages/LoginOnlineAssistance/AssistanceDashboard';
+import { Reports } from '@src/pages/Reports';
 import {
   EPermissionDaas,
   EPermissionExtensions,
@@ -13,24 +12,25 @@ import {
   EPermissionUba,
   EPermissionUsers,
 } from '@src/types/permissions';
-import { InternetLog } from '@src/pages/Dashboard/InternetLog';
-import { DashboardDesktopListPage } from '@src/pages/DashboardDesktopList';
-import { DashboardAdminsListPage } from '@src/pages/DashboardAdminsList';
-import { DashboardExtensionListPage } from '@src/pages/ExtensionListPage';
-import { MonitoringPage } from '@src/pages/Monitoring';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
-import { GroupManagementEdit } from '@src/pages/GroupManagement/GroupManagementEdit';
-import { GroupManagement } from '@src/pages/GroupManagement';
-import Application from '@src/pages/Setting/Application';
-import { DaasSetting } from '@src/pages/Setting/DaasSetting';
-import { ReportFileScanPage } from '@src/pages/FIleReports/ReportFileScanPage';
-import { DlpSetting } from '@src/pages/Setting/DlpSetting';
-import { License } from '@src/pages/Lisence';
 import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
+import { DashboardDesktopListPage } from '@src/pages/UserManagement/UserListPage';
+import { DashboardAdminsListPage } from '@src/pages/UserManagement/AdminListPage';
+import { InternetLog } from '@src/pages/SystemStrategy/InternetLogPage';
+import { GroupManagementEdit } from '@src/pages/UserManagement/GroupManagement/GroupManagementEdit';
+import { ReportFileScanPage } from '@src/pages/FIleReports/FileScanPage';
+import { GroupManagement } from '@src/pages/UserManagement/GroupManagement';
+import { MonitoringPage } from '@src/pages/SystemStrategy/MonitoringPage';
+import { DashboardExtensionListPage } from '@src/pages/SystemStrategy/ExtensionListPage';
+import { License } from '@src/pages/SystemStrategy/LicensePage';
+import Application from '@src/pages/Setting/Application';
+import UnauthorizedPage from '@src/pages/Unauthorized';
+import { DaasSetting } from '@src/pages/Setting/DaasSetting';
+import { DlpSetting } from '@src/pages/Setting/DlpSetting';
 
-import { ROUTES_PATH } from './routesConstants';
 import { ProtectedRoute } from './ProtectedRoute';
+import { ROUTES_PATH } from './routesConstants';
 
 export const adminRoutes = [
   {
