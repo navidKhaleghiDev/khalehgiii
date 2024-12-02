@@ -43,16 +43,6 @@ export function DashboardOnlineUsersList({
             {t('dashboard.onlineUsers')}
           </Typography>
         </div>
-        <div className="col-span-6 justify-self-end">
-          {/* The functionality dose not work cause we do not have service */}
-          {/* <BaseButton
-              label={t('global.domain')}
-              endIcon={caretLeft}
-              size="sm"
-              type="neutral"
-              disabled
-            /> */}
-        </div>
       </div>
       <div className="col-span-12">
         {listDaas.length > 0 && !error ? (
