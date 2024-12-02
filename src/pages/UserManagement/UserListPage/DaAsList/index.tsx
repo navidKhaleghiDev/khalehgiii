@@ -325,6 +325,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       />
       <Modal
         type="content"
+        size="lg"
         title={t('userList.userAccess')}
         descriptionInfo={t('userList.changeUserProfileAndAccessList')}
         icon={userFocus}
@@ -338,7 +339,6 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
             setOpenSettingModal={() => setActiveModal(null)}
           />
         }
-        classContainer="md:h-[45.5rem] h-[36.875rem] overflow-x-hidden w-[20.87rem] sm:w-[33.43rem] lg:w-[39.68rem] mx-auto max-w-[39.688rem]"
       />
       <Modal
         classContainer="md:max-h-[45.625rem] max-h-[36.875rem]"

@@ -110,7 +110,7 @@ export function Modal(props: ModalProps): JSX.Element | null {
           type === 'content' ? 'dark:bg-gray-700' : 'dark:bg-gray-600'
         } ${containerStyles({
           size,
-        })} mx-auto z-50 overflow-y-auto no-scrollbar${
+        })} mx-auto z-50 overflow-y-auto no-scrollbar ${
           icon && 'max-w-[39.688rem]'
         } ${classContainer}`}
       >
