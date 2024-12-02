@@ -477,7 +477,15 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile": "ذخیره فایل"
+    "resourceLimitations": "محدودیت منابع",
+    "chrome": "Chrome",
+    "fireFox": "Firefox",
+    "cpu": "CPU (Core)",
+    "core": "Core",
+    "memory": "حافظه (GB)",
+    "saveFile": "ذخیره فایل",
+    "ide": "IDE",
+    "remina": "Remote Access"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

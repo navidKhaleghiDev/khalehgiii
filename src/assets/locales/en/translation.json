@@ -474,7 +474,15 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile": "Save File"
+    "resourceLimitations": "Resource limitations",
+    "chrome": "Chrome",
+    "fireFox": "Firefox",
+    "cpu": "CPU (Core)",
+    "core": "Core",
+    "memory": "Memory(GB)",
+    "saveFile": "Save File",
+    "ide": "IDE",
+    "remina": "Remote Access"
   },
 
   "regexPattern": {
