@@ -2,7 +2,7 @@ import UnauthorizedPage from '@src/pages/Unauthorized';
 import { NotFoundPage } from '@src/pages/NotFound';
 import PrivateLayout from '@ui/Templates/layouts/PrivateLayout';
 import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
-import { AssistanceDashboard } from '@src/pages/AssistanceDashboard';
+import { AssistanceDashboard } from '@src/pages/LoginOnlineAssistance/AssistanceDashboard';
 import { DaasDashboard } from '@src/pages/Dashboard/DaasDashboard';
 import { ROUTES_PATH } from './routesConstants';
 

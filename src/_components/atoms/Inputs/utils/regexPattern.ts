@@ -15,6 +15,10 @@ export const regexPattern = {
     value: /^(?!.*[\u0600-\u06E9\u200C])/,
     message: t('regexPattern.onlyEnglishNdOtherCharacters'),
   },
+  DotSeparatedLetters: {
+    value: /^\.[A-Za-z0-9]+(\.[A-Za-z0-9]+)*$/,
+    message: t('regexPattern.moreThanTwoEnglishLettersAndStartWithADot'),
+  },
   lessThan50: {
     value: /^[0-9][0-9]?$|^50$/,
     message: t('regexPattern.lessThan50'),

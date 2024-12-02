@@ -41,7 +41,9 @@ export interface PropsType {
   control: Control<any>;
   userPermissions: PermissionsCodeName[];
   dir?: 'rtl' | 'ltr';
-  isActive: string;
+  isActive?: string;
+  timeOfUse?: ETimeLimitDuration;
+  usageInMinute?: number | string;
 }
 export interface FileTypeProp {
   id: number;
