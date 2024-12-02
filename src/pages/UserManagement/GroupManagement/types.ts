@@ -74,7 +74,8 @@ export type GroupManagementUsersListProps = {
 export type GroupManagementEditFormProps = {
   setFilterQuery: (e: string) => void;
   filterQuery: string;
-  paginatedData: (key: keyof TGroup) => TGroupMembers[];
+  // paginatedData: (key: keyof TGroup) => TGroupMembers[];
+  pageSize: number;
   setCurrentPage: (val: number) => void;
   handleClickAction: any;
   isLoading: boolean;

@@ -139,7 +139,7 @@ export function SettingDaasModal({
 
   return (
     <form
-      className="w-full h-full grid grid-cols-6 gap-x-8 gap-y-4"
+      className="h-full grid grid-cols-6 gap-x-8 gap-y-4"
       onSubmit={handleSubmit(handleOnSubmit)}
     >
       {hasViewDaasPermission && (
@@ -155,7 +155,7 @@ export function SettingDaasModal({
         />
       )}
       <div className="flex justify-center col-span-6">
-        {showConfirm && (
+        {showConfirm ? (
           <div className="flex justify-center items-center w-full">
             <Typography color="black" className="mx-2">
               {t('global.areYouSure')}
@@ -174,21 +174,19 @@ export function SettingDaasModal({
               onClick={() => setShowConfirm(false)}
             />
           </div>
-        )}
-
-        {!showConfirm && (
+        ) : (
           <div className="flex gap-2.5">
             <BaseButton
               label={t('global.confirm')}
-              size="md"
               onClick={() => setShowConfirm(true)}
               type="teal"
+              className="sm:w-[11.87rem] w-[5.93rem] whitespace-nowrap p-2"
             />
             <BaseButton
               label={t('global.cancel')}
-              size="md"
               onClick={() => setOpenSettingModal(false)}
               type="neutral"
+              className="sm:w-[11.87rem] w-[5.93rem]"
             />
           </div>
         )}
