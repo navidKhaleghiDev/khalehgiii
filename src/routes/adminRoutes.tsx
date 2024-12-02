@@ -14,11 +14,11 @@ import {
 } from '@src/types/permissions';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
+import { GroupManagementEdit } from '@src/pages/UserManagement/GroupManagement/GroupManagementEdit';
 import { KnowledgeManagementPage } from '@src/pages/FIleReports/KnowledgeManagementPage';
 import { DashboardDesktopListPage } from '@src/pages/UserManagement/UserListPage';
 import { DashboardAdminsListPage } from '@src/pages/UserManagement/AdminListPage';
 import { InternetLog } from '@src/pages/SystemStrategy/InternetLogPage';
-import { GroupManagementEdit } from '@src/pages/UserManagement/GroupManagement/GroupManagementEdit';
 import { ReportFileScanPage } from '@src/pages/FIleReports/FileScanPage';
 import { GroupManagement } from '@src/pages/UserManagement/GroupManagement';
 import { MonitoringPage } from '@src/pages/SystemStrategy/MonitoringPage';

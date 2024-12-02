@@ -18,16 +18,12 @@ import { API_USERS_GROUPS_CREATE } from '@src/services/users';
 
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { GroupManagementUsersList } from '../components/GroupManagementUsersList';
-import {
-  GroupManagementCreateProps,
-  TGroupCreate,
-  TGroupUpdate,
-} from '../types';
+import { GroupManagementCreateProps, TGroupCreate } from '../types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
 
-const buildFormData = (data: TGroupUpdate) => {
+const buildFormData = (data: TGroup) => {
   const formData = new FormData();
   formData.append('name', data.name);
   if (data.image === '' || data.image instanceof Blob) {
