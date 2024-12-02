@@ -34,7 +34,10 @@ export function DashboardAdminLogs({
 
   const { data, isLoading } = useSWR<IResponsePagination<IUser>>(
     endpoint,
-    http.fetcherSWR
+    http.fetcherSWR,
+    {
+      shouldRetryOnError: false,
+    }
   );
   const countPage = data?.data?.count || 0;
 
@@ -61,7 +64,7 @@ export function DashboardAdminLogs({
         date={['last_login', 'last_logout']}
         pagination={paginationProps}
         title={t('dashboard.adminLogin')}
-        className="w-full xl:[&>*:last-child>*:last-child>*]:max-h-10 md:[&>*:last-child>*:last-child>*]:max-h-6 [&>*:last-child>*:last-child>*]:max-h-10 xl:h-[17.5rem] md:h-[13.125rem] h-auto"
+        className="w-full xl:[&>*:last-child>*:last-child>*]:max-h-10 md:[&>*:last-child>*:last-child>*]:max-h-6 [&>*:last-child>*:last-child>*]:max-h-10 xl:h-[17.5rem] md:h-[13.125rem]"
       />
     )
   );

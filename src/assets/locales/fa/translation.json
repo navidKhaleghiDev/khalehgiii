@@ -315,7 +315,10 @@
     "limitBySize": "محدود کردن بر اساس زمان",
     "accessToTheUsersDesktop": "دسترسی به میزکار کاربر",
     "goToSystem": "ورود به سامانه",
-    "developing": "در حال توسعه ..."
+    "developing": "در حال توسعه ...",
+    "notFoundDataInPage": "داده ای در صفحه وجود ندارد.",
+    "notFoundData": "داده ای وجود ندارد.",
+    "noUsersOnline": "هیچ کاربری در حال حاضر آنلاین نیست."
   },
   "groupManagement": {
     "person": "نفر",

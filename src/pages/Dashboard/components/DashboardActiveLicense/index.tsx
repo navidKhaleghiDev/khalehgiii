@@ -39,13 +39,20 @@ export function DashboardActiveLicense() {
     ? data.data
     : [];
 
+  const onWheelHandle = (e: React.WheelEvent<HTMLDivElement>) => {
+    e.currentTarget.scrollLeft -= e.deltaY;
+  };
+
   return (
     <>
       <Typography color="black" variant="body4B">
         {t('dashboard.activeLicenses')}
       </Typography>
       {!error ? (
-        <div className="flex w-full gap-2.5 overflow-x-auto py-5 px-1">
+        <div
+          className="flex w-full gap-2.5 overflow-x-auto py-5 px-1"
+          onWheel={onWheelHandle}
+        >
           {licensesList.map((license) => {
             const color = licenseCardsColor[license.name as LicenseCardKeys];
             return (
@@ -53,7 +60,11 @@ export function DashboardActiveLicense() {
                 subValue={license.active || 0}
                 totalValue={license.number || 0}
                 title={license.name}
-                date={moment(license.expiry).format('jYYYY/jMM/jDD')}
+                date={
+                  license.expiry
+                    ? moment(license.expiry).format('jYYYY/jMM/jDD')
+                    : '---'
+                }
                 className="flex-shrink-0 w-[12.125rem] sm:w-[15.875rem] hover:border-transparent active:border-transparent cursor-default dark:border-none"
                 key={license.name}
                 color={color}
