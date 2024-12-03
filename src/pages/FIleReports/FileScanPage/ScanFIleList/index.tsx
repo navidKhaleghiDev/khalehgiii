@@ -12,6 +12,7 @@ import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { ServerError } from '@redesignUi/molecules/ServerError';
 import { StringifyProperties } from '@src/types/global';
 import { useGetPagination } from '@src/services/http/httpClient';
 
@@ -90,7 +91,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
     itemsPer: resultData.length,
   };
 
-  return (
+  return !error ? (
     <div className="w-full">
       <div className="flex items-center justify-between">
         <ScanFileDatePicker onChange={(value) => setDateRange(value)} />
@@ -103,23 +104,24 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
             : 'h-[25rem] sm:h-[34.375rem]'
         }`}
       >
-        {!error ? (
-          <BaseTable
-            body={resultData.slice(0, resultData.length - 1)}
-            header={checkPermissionHeaderItem(
-              userPermissions,
-              getScanFileHeader(evidencePermissions)
-            )}
-            loading={isLoading}
-            pagination={paginationProps}
-            onClick={handelClickRow}
-            isMobile={width <= 760}
-          />
-        ) : (
-          // Remember to handel the error of the component
-          <p className="flex items-center justify-center">{error}</p>
-        )}
+        <BaseTable
+          body={resultData.slice(0, resultData.length - 1)}
+          header={checkPermissionHeaderItem(
+            userPermissions,
+            getScanFileHeader(evidencePermissions)
+          )}
+          loading={isLoading}
+          pagination={paginationProps}
+          onClick={handelClickRow}
+          isMobile={width <= 760}
+        />
       </div>
     </div>
+  ) : (
+    <ServerError
+      width={width <= 760 ? 150 : 250}
+      height={width <= 760 ? 150 : 250}
+      description={error}
+    />
   );
 }
