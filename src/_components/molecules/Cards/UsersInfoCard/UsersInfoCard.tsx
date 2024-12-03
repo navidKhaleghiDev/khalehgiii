@@ -1,4 +1,5 @@
-import { BaseIcon, Card, Typography } from '@redesignUi/atoms';
+import { CardButton } from '@redesignUi/atoms/Card/CardButton';
+import { BaseIcon, Typography } from '@redesignUi/atoms';
 
 import { iconStyles } from './styles';
 import { UsersInfoCardProps } from './types';
@@ -19,32 +20,46 @@ import { UsersInfoCardProps } from './types';
  * @returns {JSX.Element} Returns the rendered UsersInfoCard component.
  */
 export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
-  const { icon, iconColor, title, count, className, isLoading } = props;
+  const { icon, iconColor, title, count, className, isLoading, onClick } =
+    props;
   return !isLoading ? (
-    <Card
+    <CardButton
       border
       borderColor="neutral"
-      className={`w-full lg:h-20 h-[3.75rem] p-3 sm:p-4 md:p-5 flex items-center gap-5 outline-none overflow-hidden ${className}`}
+      className={`lg:h-20 h-[3.75rem] p-3 sm:p-4 md:p-5 flex items-center gap-5 outline-none overflow-hidden ${
+        onClick
+          ? 'w-fit sm:w-full'
+          : 'w-full hover:border-transparent active:border-transparent cursor-default dark:border-none'
+      } ${className}`}
       color="white"
       rounded="xxl"
       shadow="base"
+      onClick={onClick}
     >
-      <div className={iconStyles({ iconColor })}>
-        <BaseIcon icon={icon} size="md" />
-      </div>
-      <div className="w-full">
-        <Typography
-          color="neutralMiddle"
-          className="lg:text-lg text-xs whitespace-nowrap"
+      <div className="w-full flex items-center justify-center gap-5">
+        <div
+          className={`${iconStyles({ iconColor })} ${
+            onClick ? 'self-center' : ''
+          }`}
         >
-          {title}
-        </Typography>
+          <BaseIcon icon={icon} size="md" />
+        </div>
+        <div
+          className={`w-full ${onClick !== undefined ? 'hidden sm:block' : ''}`}
+        >
+          <Typography
+            color="neutralMiddle"
+            className="lg:text-lg text-xs whitespace-nowrap text-start"
+          >
+            {title}
+          </Typography>
 
-        <Typography className="text-gray-900 dark:text-white font-semibold leading-7 text-base sm:text-lg md:text-xl">
-          {count ?? 0}
-        </Typography>
+          <Typography className="text-gray-900 dark:text-white font-semibold leading-7 text-base sm:text-lg md:text-xl text-start">
+            {count ?? 0}
+          </Typography>
+        </div>
       </div>
-    </Card>
+    </CardButton>
   ) : (
     <div className="animate-pulse">
       <div className="lg:h-20 h-[3.75rem] rounded-md w-[160px] sm:w-[250px] md:w-[350px] bg-gray-300" />

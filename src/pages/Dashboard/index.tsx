@@ -1,11 +1,11 @@
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
-import { DashboardCards } from './DashboardCards';
-import { DashboardAdminLogs } from './DashboardAdminLogs';
-import { DashboardOnlineUsersList } from './DashboardOnlineUsersList';
+import { DashboardCards } from './components/DashboardCards';
+import { DashboardAdminLogs } from './components/DashboardAdminLogs';
+import { DashboardOnlineUsersList } from './components/DashboardOnlineUsersList';
 import { DashboardAdminInfo } from './components/DashboardAdminInfo';
-import { DashboardCharts } from './DashboardCharts';
+import { DashboardCharts } from './components/DashboardCharts';
 
 export function DashboardPage() {
   const userPermissions = useUserPermission();
@@ -23,11 +23,11 @@ export function DashboardPage() {
       <div className="xl:col-span-8 col-span-12 order-4">
         <DashboardCharts permissions={userPermissions ?? []} />
       </div>
-      {width > 1279 && (
-        <div className="xl:col-span-4 flex order-5">
+      {width > 1279 ? (
+        <div className="xl:col-span-4 flex order-5 max-h-[36.375rem]">
           <DashboardOnlineUsersList permissions={userPermissions ?? []} />
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import { VariantProps } from 'class-variance-authority';
 
 import { menuItemStyles } from './styles';
-import { NavigationProps } from '../types';
+import { NavigationParams } from '../types';
 
 export interface MenuItemProps extends VariantProps<typeof menuItemStyles> {
-  item: NavigationProps;
+  item: NavigationParams;
   pathname: string;
   collapsed: boolean;
 }

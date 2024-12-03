@@ -21,8 +21,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     size,
     placeholder,
     className,
-    defaultValue = 0,
-    value: externalValue, // Added this prop to sync with Controller
+    defaultValue,
     label,
     error,
     min = 0,
@@ -33,24 +32,43 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
     onKeyDown,
     icon,
   } = props;
-  const rtl = dir === 'rtl';
-  const [value, setValue] = useState<number>(defaultValue);
-  useEffect(() => {
-    if (externalValue !== undefined && externalValue !== value) {
-      setValue(externalValue as number);
-    }
-  }, [externalValue, value]);
 
-  const isOutOfRange = value > max || value < min;
+  const rtl = dir === 'rtl';
+  const [value, setValue] = useState<string | number>(defaultValue ?? 0);
+
+  useEffect(() => {
+    if (defaultValue !== undefined && defaultValue !== value) {
+      setValue(defaultValue);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue]);
+
+  const isOutOfRange =
+    typeof value === 'number' && (value > max || value < min);
 
   const handleValueChange = (type: 'increment' | 'decrement') => {
+    const currentValue =
+      typeof value === 'number' ? value : parseFloat(value) || 0;
     const newValue =
       type === 'increment'
-        ? Math.min(value + 1, max)
-        : Math.max(value - 1, min);
+        ? Math.min(currentValue + 1, max)
+        : Math.max(currentValue - 1, min);
     setValue(newValue);
-    if (onChange) {
-      onChange(newValue);
+    onChange?.(newValue);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+
+    if (value === 0 && newValue !== '') {
+      setValue(newValue);
+    } else {
+      setValue(newValue === '' ? '' : Number(newValue));
+    }
+
+    // eslint-disable-next-line no-restricted-globals
+    if (newValue !== '' && !isNaN(Number(newValue))) {
+      onChange?.(Number(newValue));
     }
   };
 
@@ -67,7 +85,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
               error && !disabled
                 ? 'text-red-500 dark:text-red-500'
                 : 'text-gray-200'
-            }  ${
+            } ${
               disabled
                 ? 'text-gray-300 dark:text-gray-500'
                 : 'text-gray-500 dark:text-white'
@@ -83,11 +101,18 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             name={name}
             id={id}
             type="number"
-            value={value === 0 ? '' : value}
-            onChange={(e) => {
-              const newValue = Number(e.target.value);
-              setValue(newValue);
-              onChange(newValue);
+            value={value}
+            onChange={handleInputChange}
+            onFocus={() => {
+              if (value === 0) {
+                setValue('');
+              }
+            }}
+            onBlur={() => {
+              if (value === '') {
+                setValue(0);
+                onChange?.(0);
+              }
             }}
             className={baseInputNumberStyles({
               intent: error || isOutOfRange ? 'error' : 'default',
@@ -100,11 +125,10 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             disabled={disabled}
             placeholder={placeholder}
             min={min}
-            defaultValue={defaultValue}
             max={max}
             onKeyDown={onKeyDown}
           />
-          {icon ? (
+          {icon && (
             <BaseIcon
               className={BaseIconInputNumberStyles({
                 dir,
@@ -112,7 +136,7 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
               })}
               icon={icon}
             />
-          ) : null}
+          )}
         </div>
         <IconButton
           disabled={disabled}
@@ -137,12 +161,11 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
           })}
         />
       </div>
-      {isOutOfRange ||
-        (error && (
-          <Typography color="red" variant="body6" className="min-h-5">
-            {error}
-          </Typography>
-        ))}
+      {(isOutOfRange || error) && (
+        <Typography color="red" variant="body6" className="min-h-5">
+          {error}
+        </Typography>
+      )}
     </div>
   );
 }
