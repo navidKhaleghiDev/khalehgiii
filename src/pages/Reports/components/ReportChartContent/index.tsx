@@ -52,7 +52,7 @@ export function ReportChartContent({
         >
           {message}
           <div className="self-center">
-            <NoReportChart className="sm:w-auto w-[350px] sm:h-auto h-[200px]" />
+            <NoReportChart className="sm:w-auto w-[21.875rem] sm:h-auto h-[12.5rem]" />
           </div>
         </Typography>
       ) : (
@@ -62,7 +62,7 @@ export function ReportChartContent({
           color="neutral"
         >
           <div className="self-center">
-            <NoReportChart className="sm:w-auto w-[350px] sm:h-auto h-[200px]" />
+            <NoReportChart className="sm:w-auto w-[21.875rem] sm:h-auto h-[12.5rem]" />
           </div>
           {message}
         </Typography>

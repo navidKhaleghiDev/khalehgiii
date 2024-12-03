@@ -62,14 +62,8 @@ export function DashboardProgressChart() {
         setRecordsData(result.records);
       } else {
         setRecordsData(null);
-        console.warn('No data available for the selected date range.');
       }
     } catch (err) {
-      if (err instanceof Error) {
-        console.error('Error message:', err.message);
-      } else {
-        console.error('Unexpected error:', err);
-      }
       setRecordsData(null);
     }
   };
