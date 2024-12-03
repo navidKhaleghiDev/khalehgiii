@@ -55,8 +55,8 @@ export function UpdateFileTypeModal({
       allowed_for_download: fileType?.allowed_for_download ?? false,
       allowed_for_upload: fileType?.allowed_for_upload ?? false,
       is_active: fileType?.is_active ?? false,
-      upload_file_size_mb: fileType?.upload_file_size_mb,
-      download_file_size_mb: fileType?.download_file_size_mb,
+      upload_file_size_mb: fileType?.upload_file_size_mb || 0,
+      download_file_size_mb: fileType?.download_file_size_mb || 0,
     },
   });
 
@@ -65,13 +65,6 @@ export function UpdateFileTypeModal({
   const downloadAccess = watch('allowed_for_download');
 
   const handleOnSubmit = async (data: FileTypeProp) => {
-    if (
-      (data.allowed_for_upload && !data.upload_file_size_mb) ||
-      (data.allowed_for_download && !data.download_file_size_mb)
-    ) {
-      toast.error(t('setting.zero'));
-      return;
-    }
     setLoadingButtonModal(true);
 
     if (data.id) {
@@ -151,9 +144,17 @@ export function UpdateFileTypeModal({
                 placeholder={t('table.upload')}
                 icon={PhUploadSimple}
                 dir={direction}
-                max={50}
                 rules={{
                   required: uploadAccess ? regexPattern.required : '',
+                  min: uploadAccess
+                    ? { value: 1, message: t('setting.zero') }
+                    : '',
+                  max: {
+                    value: 50,
+                    message: t(
+                      'userList.enterTheAllowedVolumeForThisFormatInTheOppositeField'
+                    ),
+                  },
                 }}
               />
             </div>
@@ -176,9 +177,17 @@ export function UpdateFileTypeModal({
                 placeholder={t('table.download')}
                 icon={PhUploadSimple}
                 dir={direction}
-                max={500}
                 rules={{
                   required: downloadAccess ? regexPattern.required : '',
+                  min: uploadAccess
+                    ? { value: 1, message: t('setting.zero') }
+                    : '',
+                  max: {
+                    value: 500,
+                    message: t(
+                      'userList.enterTheAllowedVolumeForThisFormatInTheOppositeField'
+                    ),
+                  },
                 }}
               />
             </div>
