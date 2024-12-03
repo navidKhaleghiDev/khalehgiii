@@ -38,7 +38,7 @@ export function ScanFileDatePicker({
   const myCalenderPositionNormal =
     dir === 'rtl' ? 'bottom-end' : 'bottom-start';
   const calenderPosition =
-    height <= 400 ? myCalenderPositionLandScape : myCalenderPositionNormal;
+    height <= 500 ? myCalenderPositionLandScape : myCalenderPositionNormal;
 
   return (
     <form onSubmit={handleSubmit(handelDateForm)} className="text-start my-5">
