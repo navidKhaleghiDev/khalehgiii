@@ -11,15 +11,16 @@ import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import pencilSimple from '@iconify-icons/ph/pencil-simple';
 
 import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import {
   groupManagementAdminHeaderItem,
   groupManagementUserHeaderItem,
-} from '../constants/groupManagementHeaderItem';
+} from '../../constants/groupManagementHeaderItem';
 import {
   GroupManagementEditFormProps,
   TGroup,
   TGroupMembers,
-} from '../../types';
+} from '../../../types';
 
 /**
  * Group Management Edit Form Component.
@@ -47,7 +48,9 @@ import {
  * @returns {JSX.Element} - The rendered Group Management Edit Form component.
  */
 
-export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
+export function GroupManagementEditForm<T extends TGroup>(
+  props: GroupManagementEditFormProps<T>
+) {
   const {
     pageSize,
     setFilterQuery,
@@ -56,7 +59,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
     handleClickAction,
     isLoading,
     currentPage,
-    group,
+    updateGroup,
     control,
     handleSubmit,
     onSubmit,
@@ -70,8 +73,8 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
 
   const paginatedData = useCallback(
     (key: keyof TGroup) => {
-      const groupData = Array.isArray(group[key])
-        ? (group[key] as TGroupMembers[])
+      const groupData = Array.isArray(updateGroup[key])
+        ? (updateGroup[key] as TGroupMembers[])
         : [];
 
       const mappedData = groupData.map((member) => ({ ...member, value: key }));
@@ -90,18 +93,18 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
 
       return paginatedResult;
     },
-    [group, filterQuery, currentPage, pageSize]
+    [updateGroup, filterQuery, currentPage, pageSize]
   );
 
   const numberOfUsers =
-    group.users.length >= group.admins.length
-      ? group.users.length
-      : group.admins.length;
+    updateGroup.users.length >= updateGroup.admins.length
+      ? updateGroup.users.length
+      : updateGroup.admins.length;
 
   const allAdminsLength = allGroupData?.admins?.length;
   const allUsersLength = allGroupData?.users?.length;
 
-  const isGroupEdited = allGroupData !== group || isDirty;
+  const isGroupEdited = allGroupData !== updateGroup || isDirty;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -115,7 +118,7 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
           {!editMode ? (
             <div className="flex flex-col justify-center">
               <Typography variant="body2B" color="black">
-                {group?.name}
+                {updateGroup?.name}
               </Typography>
               <Typography variant="body6" color="neutralMiddle">
                 {`${allAdminsLength} ${t(
@@ -159,17 +162,17 @@ export function GroupManagementEditForm(props: GroupManagementEditFormProps) {
 
       <BaseTable
         header={groupManagementAdminHeaderItem}
-        body={paginatedData('admins')}
-        onClick={handleClickAction}
+        body={paginatedData('admins') as TGroupMembers[]}
+        onClick={handleClickAction as OnClickActionsType<TGroupMembers>}
         loading={isLoading}
         isMobile
       />
       <div className="border-t border-gray-200 my-5" />
       <BaseTable
         header={groupManagementUserHeaderItem}
-        body={paginatedData('users')}
+        body={paginatedData('users') as TGroupMembers[]}
         loading={isLoading}
-        onClick={handleClickAction}
+        onClick={handleClickAction as OnClickActionsType<TGroupMembers>}
         isMobile
       />
       <div className="flex w-full justify-end mb-5">

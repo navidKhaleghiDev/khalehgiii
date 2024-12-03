@@ -250,8 +250,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
               id="daas_provider_baseurl"
               name="daas_provider_baseurl"
               rules={{
-                required: regexPattern.required,
-                pattern: regexPattern.urlLink,
+                required: inputRegexPattern.required,
               }}
               control={control}
               label={t('setting.daasProvider')}

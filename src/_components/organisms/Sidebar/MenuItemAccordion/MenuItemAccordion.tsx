@@ -6,7 +6,7 @@ import PhCaretDown from '@iconify-icons/ph/caret-down';
 import PhHouseSimpleDuotone from '@iconify-icons/ph/house-simple-duotone';
 
 import { MenuItemAccordionProps } from './types';
-import { NavigationProps } from '../types';
+import { NavigationParams } from '../types';
 import { MenuItem } from '../MenuItem/Menu';
 import { menuItemStyles } from '../MenuItem/styles';
 
@@ -40,7 +40,8 @@ export function MenuItemAccordion(props: MenuItemAccordionProps): JSX.Element {
   const isActive = item.path === `/${isParentPath}`;
   const hasSubMenu = Array.isArray(item.items) && item.items.length > 0;
   const isInSubMenu =
-    hasSubMenu && item.items?.some((subItem) => pathname === subItem.path);
+    hasSubMenu &&
+    item.items?.some((subItem: { path: string }) => pathname === subItem.path);
 
   return (
     <div>
@@ -65,7 +66,7 @@ export function MenuItemAccordion(props: MenuItemAccordionProps): JSX.Element {
         <BaseIcon icon={open === index ? PhCaretDown : iconDirection} />
       </button>
       <div className={`${open !== index && 'hidden'}`}>
-        {item.items?.map((i: NavigationProps) => (
+        {item.items?.map((i: NavigationParams) => (
           <MenuItem
             key={i.id}
             item={i}
