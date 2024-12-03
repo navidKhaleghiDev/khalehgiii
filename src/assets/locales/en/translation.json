@@ -315,7 +315,10 @@
     "limitBySize": "Limit by size",
     "accessToTheUsersDesktop": "Access to the user desktop",
     "goToSystem": "Go to the system",
-    "developing": "Developing ..."
+    "developing": "Developing ...",
+    "notFoundDataInPage": "There is no data on the page.",
+    "notFoundData": "There is no data",
+    "noUsersOnline": "No users are currently online"
   },
   "groupManagement": {
     "person": "person",
@@ -422,7 +425,10 @@
     "areYouSureUnBlock": "Are you sure you want to unblock this user's access?",
     "yourBrowserDoesntSupportVideo": "Your browser does not support this video.",
     "allowedVolume": "Allowed volume",
-    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "Enter the allowed volume for this format in the opposite field"
+    "enterTheAllowedVolumeForThisFormatInTheOppositeField": "Enter the allowed volume for this format in the opposite field",
+    "formInstruction": "After entering the information in the fields below, press Enter to add them to the list.",
+    "timeExceededError": "The entered time exceeds the allowed usage range.",
+    "timeLessThanUserUsage": "The entered time is less than the user's utilized time."
   },
   "license": {
     "licenseId": "license Id",
@@ -475,7 +481,15 @@
     "realmP": "realm",
     "sso": "SSO",
     "manager": "Manager",
-    "saveFile": "Save File"
+    "resourceLimitations": "Resource limitations",
+    "chrome": "Chrome",
+    "fireFox": "Firefox",
+    "cpu": "CPU (Core)",
+    "core": "Core",
+    "memory": "Memory(GB)",
+    "saveFile": "Save File",
+    "ide": "IDE",
+    "remina": "Remote Access"
   },
 
   "regexPattern": {
