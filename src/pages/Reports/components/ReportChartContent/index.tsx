@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { LoadingWrapper } from '@redesignUi/molecules/Loading/LoadingWrapper';
 import { Card, Typography } from '@redesignUi/atoms';
 import { NoReportChart } from '@redesignUi/atoms/Svgs';
+import { LegendChart } from '@redesignUi/molecules/Charts/LegendChart';
 
 import { ReportsChart } from '../ReportChart';
+import { PropsChartType } from '../../types';
 
 type ReportChartContentProps = {
-  recordsData: any;
-  chartData: any;
+  chartData: PropsChartType;
   isLoading: boolean;
   error: boolean;
   message: string;
 };
 
 export function ReportChartContent({
-  recordsData,
   chartData,
   isLoading,
   error,
@@ -23,30 +23,18 @@ export function ReportChartContent({
 }: ReportChartContentProps) {
   const { t } = useTranslation();
 
-  return recordsData && !error ? (
+  return chartData.recordsData && !error ? (
     <Card
       shadow="xl"
       color="white"
       rounded="xl"
-      className="w-full flex justify-center items-center py-10 relative sm:h-[35rem] min-h-auto sm:max-h-[65vh] h-auto"
+      className="w-full flex justify-center items-center py-10 h-auto"
     >
       <LoadingWrapper isLoading={isLoading}>
         <div className="w-full flex md:flex-row flex-col md:py-5 md:px-10 p-5 gap-5">
           <div className="flex md:flex-col flex-row md:justify-start justify-center items-start gap-3">
-            <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-blue-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
-              variant="body5"
-              color="neutral"
-            >
-              {t('global.download')}
-            </Typography>
-            <Typography
-              className="flex items-baseline group before:content-[''] before:w-2 before:h-2 before:block before:bg-purple-400 before:rounded-full gap-1 sm:gap-5 flex-row-reverse sm:flex-row whitespace-nowrap"
-              variant="body5"
-              color="neutral"
-            >
-              {t('global.upload')}
-            </Typography>
+            <LegendChart description={t('global.download')} color="blue" />
+            <LegendChart description={t('global.upload')} color="purple" />
           </div>
           <div className="w-full flex justify-center sm:items-center items-start m-auto xl:h-[450px] h-auto min-h-auto max-h-[65vh]">
             <ReportsChart props={chartData} />

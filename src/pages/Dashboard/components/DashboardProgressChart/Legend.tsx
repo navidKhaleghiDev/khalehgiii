@@ -1,6 +1,9 @@
 import { Typography } from '@redesignUi/atoms';
+import { useTranslation } from 'react-i18next';
 
-export function Legend({ t }: { t: any }) {
+export function Legend() {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-row sm:flex-col items-start justify-start gap-2.5 pt-5 shrink-0">
       <Typography

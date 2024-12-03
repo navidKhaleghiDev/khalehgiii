@@ -5,7 +5,7 @@ import ChartLine from '@iconify-icons/ph/chart-line';
 export function ChartToggleButtons({
   setChartType,
 }: {
-  setChartType: (type: string) => void;
+  setChartType: (type: 'line' | 'bar') => void;
 }) {
   return (
     <div className="flex gap-2.5 pb-5 items-end justify-self-end">

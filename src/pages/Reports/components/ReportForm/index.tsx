@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 
-import { FormDate, ReportFormType } from '../Reports/types';
+import { FormDate, ReportFormType } from '../../types';
 
 export function ReportForm({ handleOnSubmit, state }: ReportFormType) {
   const { control, handleSubmit } = useForm<FormDate>({

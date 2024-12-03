@@ -8,7 +8,6 @@ import {
   ReportChartType,
   Data,
   DataGeneratorReturn,
-  DataType,
   FormatData,
 } from '../../types';
 
@@ -36,7 +35,7 @@ export function ReportsChart({ props }: ReportChartType) {
     moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
   }
 
-  function dataGenerator(type: DataType, data: Data): DataGeneratorReturn {
+  function dataGenerator(type: string, data: Data): DataGeneratorReturn {
     const dataListDownload: number[] = [];
     const dataListUpload: number[] = [];
     const labelsSet = new Set<string>();

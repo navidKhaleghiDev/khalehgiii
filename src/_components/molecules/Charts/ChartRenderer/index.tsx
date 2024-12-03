@@ -1,4 +1,4 @@
-import { Line } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   TimeScale,
@@ -24,23 +24,26 @@ ChartJS.register(
   Legend
 );
 
-interface TimeScaleChartProps {
+type ChartRendererProps = {
   datasets: {
     label: string;
     data: { x: string; y: number }[];
     borderColor: string;
     backgroundColor: string;
   }[];
-}
+  chartType: 'line' | 'bar';
+};
 
-export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
-  const data = {
-    datasets,
-  };
+const chartComponents = {
+  line: Line,
+  bar: Bar,
+};
 
+export function ChartRenderer(props: ChartRendererProps) {
+  const { datasets, chartType } = props;
   const { isDark } = useTheme();
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions<'line' | 'bar'> = {
     responsive: true,
     scales: {
       x: {
@@ -93,5 +96,7 @@ export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
     },
   };
 
-  return <Line data={data} options={options} />;
+  const ChartComponent = chartComponents[chartType];
+
+  return <ChartComponent data={{ datasets }} options={options} />;
 }

@@ -4,6 +4,7 @@ import moment from 'moment-jalaali';
 
 import { useLanguage } from '@context/settings/languageContext';
 import { API_GET_REPORTS } from '@src/services/config';
+
 import { HeaderProgressChartSection } from './HeaderProgressChartSection';
 import { Legend } from './Legend';
 import { ChartToggleButtons } from './ChartToggleButton';
@@ -26,7 +27,7 @@ type Records = {
 };
 
 export function DashboardProgressChart() {
-  const [chartType, setChartType] = useState('line');
+  const [chartType, setChartType] = useState<'line' | 'bar'>('line');
   const [timeFrame, setTimeFrame] = useState('daily');
   const [recordsData, setRecordsData] = useState<Records | null>(null);
   const [fileScanData, setFileScanData] = useState<{ x: string; y: number }[]>(
@@ -156,12 +157,11 @@ export function DashboardProgressChart() {
     <>
       <HeaderProgressChartSection
         setTimeFrame={setTimeFrame}
-        t={t}
         timeFrame={timeFrame}
       />
       <div className="flex w-full justify-center sm:justify-between flex-col sm:flex-row pb-5">
         <div className="flex sm:flex-col flex-row justify-between flex-wrap">
-          <Legend t={t} />
+          <Legend />
 
           <ChartToggleButtons setChartType={setChartType} />
         </div>

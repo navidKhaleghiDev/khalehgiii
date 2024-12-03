@@ -1,15 +1,16 @@
 import { Typography } from '@redesignUi/atoms';
 import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
+import { useTranslation } from 'react-i18next';
 
 export function HeaderProgressChartSection({
   timeFrame,
   setTimeFrame,
-  t,
 }: {
   timeFrame: string;
   setTimeFrame: (value: string) => void;
-  t: any;
 }) {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col sm:flex-row pb-2.5 sm:pb-[3.125rem]">
       <div className="w-1/2">

@@ -20,7 +20,6 @@ export type DataSet = {
   borderColor: string;
 };
 
-export type DataType = string;
 export type FormatData = {
   [key: string]: string;
 };

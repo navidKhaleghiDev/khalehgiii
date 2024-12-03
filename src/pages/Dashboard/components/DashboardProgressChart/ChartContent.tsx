@@ -1,19 +1,22 @@
 import { NoReportChart } from '@redesignUi/atoms/Svgs';
-import { TimeScaleChart } from '@redesignUi/molecules/Charts/TimeScaleChart';
-import { VerticalBarChart } from '@redesignUi/molecules/Charts/VerticalBarChart';
+import { ChartRenderer } from '@redesignUi/molecules/Charts/ChartRenderer';
+
+type Dataset = {
+  label: string;
+  data: Array<{ x: string; y: number }>;
+  borderColor: string;
+  backgroundColor: string;
+};
 
 export function ChartContent({
   chartType,
   datasets,
 }: {
-  chartType: string;
-  datasets: any[];
+  chartType: 'line' | 'bar';
+  datasets: Dataset[];
 }) {
   if (datasets[0].data.length > 0 || datasets[1].data.length > 0) {
-    if (chartType === 'line') {
-      return <TimeScaleChart datasets={datasets} />;
-    }
-    return <VerticalBarChart datasets={datasets} />;
+    return <ChartRenderer datasets={datasets} chartType={chartType} />;
   }
   return (
     <div className="self-center w-full h-auto dark:bg-gray-700 bg-gray-50 rounded-2xl">
