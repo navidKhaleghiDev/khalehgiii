@@ -37,6 +37,7 @@ export function UploadFileModal({ handleClose }: PropsType) {
         .catch((err) => {
           setShowConfirm(false);
           toast.error(err);
+          handleClose();
         })
         .finally(() => {
           setLoadingButtonModal(false);
