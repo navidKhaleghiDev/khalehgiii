@@ -50,7 +50,7 @@ export function UploadFileModal({ handleClose }: PropsType) {
         toast.error(t('global.correctFile'));
       }
     } else {
-      toast.error(t('knowledgeManagement.emptyTypeError'));
+      toast.error(t('knowledgeManagement.appropriateType'));
     }
   };
 

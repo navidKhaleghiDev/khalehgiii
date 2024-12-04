@@ -185,7 +185,7 @@
     "recoardeActivite": "Recorded activities",
     "recordedUserActivate": "Recorded user activities",
     "videoSrcError": "Your browser does not support the video tag.",
-    "emptyTypeError": "Type of the file can not be empty."
+    "appropriateType": "Enter the file with the appropriate size (1GB) and type."
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
