@@ -185,7 +185,8 @@
   "knowledgeManagement": {
     "recoardeActivite": "فعالیت‌های ضبط شده",
     "recordedUserActivate": "فعالیت‌های ضبط شده کاربر",
-    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند."
+    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند.",
+    "emptyTypeError": "دارا بودن فرمت فایل الزامی است"
   },
   "global": {
     "userName": "نام کاربری",

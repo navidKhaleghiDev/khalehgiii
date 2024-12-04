@@ -25,25 +25,30 @@ export function UploadFileModal({ handleClose }: PropsType) {
   });
 
   const handleOnSubmit = async (data: MimeType) => {
-    setLoadingButtonModal(true);
-    const body = new FormData();
-    if (data.file.length > 0) {
-      body.append('file', data?.file[0]);
-      await API_ANALYZE_MIME_TYPE_CREATE(body)
-        .then(() => {
-          toast.success(t('global.successfullyAdded'));
-          handleClose();
-        })
-        .catch((err) => {
-          setShowConfirm(false);
-          toast.error(err);
-          handleClose();
-        })
-        .finally(() => {
-          setLoadingButtonModal(false);
-        });
+    // This logic (Can not add the file without type)
+    if (data.file[0].type !== '') {
+      setLoadingButtonModal(true);
+      const body = new FormData();
+      if (data.file.length > 0) {
+        body.append('file', data?.file[0]);
+        await API_ANALYZE_MIME_TYPE_CREATE(body)
+          .then(() => {
+            toast.success(t('global.successfullyAdded'));
+            handleClose();
+          })
+          .catch((err) => {
+            setShowConfirm(false);
+            toast.error(err);
+            handleClose();
+          })
+          .finally(() => {
+            setLoadingButtonModal(false);
+          });
+      } else {
+        toast.error(t('global.correctFile'));
+      }
     } else {
-      toast.error(t('global.correctFile'));
+      toast.error(t('knowledgeManagement.emptyTypeError'));
     }
   };
 

@@ -184,7 +184,8 @@
   "knowledgeManagement": {
     "recoardeActivite": "Recorded activities",
     "recordedUserActivate": "Recorded user activities",
-    "videoSrcError": "Your browser does not support the video tag."
+    "videoSrcError": "Your browser does not support the video tag.",
+    "emptyTypeError": "Type of the file can not be empty."
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
