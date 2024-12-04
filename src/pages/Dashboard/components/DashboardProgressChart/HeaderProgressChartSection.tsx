@@ -12,7 +12,7 @@ export function HeaderProgressChartSection({
   const { t } = useTranslation();
 
   return (
-    <div className="w-full flex flex-col sm:flex-row pb-2.5 sm:pb-[3.125rem]">
+    <div className="w-full flex flex-col sm:flex-row pb-2.5 sm:pb-[1.125rem]">
       <div className="w-1/2">
         <Typography color="black" variant="body4B">
           {t('dashboard.scanChart')}
