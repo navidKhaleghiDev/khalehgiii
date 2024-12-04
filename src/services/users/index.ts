@@ -1,8 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { HTTP_ANALYSES, http } from '@src/services/http';
-import { GroupListUpdateParams } from '@src/pages/NotUsed/GroupManagement/type';
 import { AxiosResponseData, ServerResponse } from '@src/types/services';
-import { KeysType } from '@src/pages/NotUsed/License/SettingMalwareCard/type';
 import {
   BodyUsersLogin,
   ResponseLogin,
@@ -12,6 +10,8 @@ import {
   GroupParams,
   ResponseAssistance,
   BodyAssistance,
+  GroupListUpdateParams,
+  KeysType,
 } from './types';
 import {
   E_USERS_DAAS_DELETE,

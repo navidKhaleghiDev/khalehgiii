@@ -95,3 +95,21 @@ export type GroupManagementEditFormProps<T> = {
 };
 
 export type ActionType = 'users' | 'admins' | 'delete';
+
+export type GroupUpdate = {
+  id?: string;
+  users: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
+  admins: {
+    id: string;
+    email: string;
+    is_running?: boolean;
+    has_online_assistance?: boolean;
+  }[];
+  name: string;
+  image?: string | Blob | undefined;
+};

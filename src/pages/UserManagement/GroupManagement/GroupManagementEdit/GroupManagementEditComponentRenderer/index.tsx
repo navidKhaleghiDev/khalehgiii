@@ -1,17 +1,19 @@
 import { useCallback, useState } from 'react';
+
 import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
 import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@redesignUi/atoms';
-import { GroupUpdateNU } from '@src/pages/NotUsed/GroupManagement/GroupModal/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
+
 import {
   GroupManagementEditRenderComponentsProps,
   GroupParams,
   GroupOnClickParams,
+  GroupUpdate,
 } from '../../types';
 import { GroupManagementEditForm } from './GroupManagementEditForm';
 import { GroupManagementAddNewMember } from '../components/GroupManagementAddNewMember';
@@ -19,7 +21,7 @@ import { GroupManagementAddNewMember } from '../components/GroupManagementAddNew
 const PAGE_SIZE = 5;
 // const PAGE = 1;
 
-const buildFormData = (data: GroupUpdateNU) => {
+const buildFormData = (data: GroupUpdate) => {
   const formData = new FormData();
   formData.append('name', data.name);
   if (data.image === '' || data.image instanceof Blob) {

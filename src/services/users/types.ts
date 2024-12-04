@@ -146,3 +146,15 @@ export interface ResponseAssistance {
 export interface BodyAssistance {
   id: string;
 }
+
+export type KeysType = {
+  [key: string]: boolean;
+};
+
+export type UsersListParams = { id: string; email: string }[];
+
+export type GroupListUpdateParams = {
+  users: UsersListParams;
+  admins: UsersListParams;
+  name: string;
+};
