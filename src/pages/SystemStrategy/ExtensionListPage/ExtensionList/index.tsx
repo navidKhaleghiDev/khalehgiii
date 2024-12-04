@@ -80,7 +80,7 @@ export function ExtensionList() {
     if (isMutate) {
       mutate();
     }
-    setOpenModal('edit');
+    setOpenModal('mutate');
   };
 
   const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
