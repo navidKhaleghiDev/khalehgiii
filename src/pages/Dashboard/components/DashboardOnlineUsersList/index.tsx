@@ -37,14 +37,14 @@ export function DashboardOnlineUsersList({
       shadow="base"
       className=" w-full basis-full flex-grow p-5"
     >
-      <div className="col-span-12 grid grid-cols-12 pb-9">
+      <div className="col-span-12 grid grid-cols-12 pb-5">
         <div className="col-span-6">
           <Typography color="black" variant="body4B">
             {t('dashboard.onlineUsers')}
           </Typography>
         </div>
       </div>
-      <div className="col-span-12">
+      <div className="flex flex-col gap-5 col-span-12">
         {listDaas.length > 0 && !error ? (
           listDaas?.map((user) => (
             <UserInfoAvatar
