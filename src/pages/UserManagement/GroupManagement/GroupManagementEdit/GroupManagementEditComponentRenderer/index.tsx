@@ -5,13 +5,13 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@redesignUi/atoms';
-import { TGroupUpdate } from '@src/pages/NotUsed/GroupManagement/GroupModal/types';
+import { GroupUpdateNU } from '@src/pages/NotUsed/GroupManagement/GroupModal/types';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
 import {
   GroupManagementEditRenderComponentsProps,
-  TGroup,
-  TGroupOnClick,
+  GroupParams,
+  GroupOnClickParams,
 } from '../../types';
 import { GroupManagementEditForm } from './GroupManagementEditForm';
 import { GroupManagementAddNewMember } from '../components/GroupManagementAddNewMember';
@@ -19,7 +19,7 @@ import { GroupManagementAddNewMember } from '../components/GroupManagementAddNew
 const PAGE_SIZE = 5;
 // const PAGE = 1;
 
-const buildFormData = (data: TGroupUpdate) => {
+const buildFormData = (data: GroupUpdateNU) => {
   const formData = new FormData();
   formData.append('name', data.name);
   if (data.image === '' || data.image instanceof Blob) {
@@ -47,7 +47,7 @@ export function GroupManagementEditRenderComponents(
     control,
     handleSubmit,
     formState: { isDirty },
-  } = useForm<TGroup>({
+  } = useForm<GroupParams>({
     mode: 'onChange',
     defaultValues: {
       image: updateGroup?.image || '',
@@ -56,7 +56,7 @@ export function GroupManagementEditRenderComponents(
   });
 
   const handleClickAction = useCallback(
-    (action: TGroupOnClick['action'], row: TGroupOnClick['row']) => {
+    (action: GroupOnClickParams['action'], row: GroupOnClickParams['row']) => {
       const alternateAction: 'users' | 'admins' =
         action === 'users' ? 'admins' : 'users';
       const key = row.value as 'users' | 'admins';
@@ -72,7 +72,7 @@ export function GroupManagementEditRenderComponents(
         const updatedMembers = updateGroup[alternateAction].filter(
           (m) => m.id !== row.id
         );
-        setUpdateGroup((prev: TGroup) => ({
+        setUpdateGroup((prev: GroupParams) => ({
           ...prev,
           [alternateAction]: updatedMembers,
           [action]: [row, ...prev[action]],
@@ -82,7 +82,7 @@ export function GroupManagementEditRenderComponents(
     [setUpdateGroup, updateGroup]
   );
 
-  const onSubmit: SubmitHandler<TGroup> = (listData) => {
+  const onSubmit: SubmitHandler<GroupParams> = (listData) => {
     setUpdateGroup((prev) => ({ ...prev, ...listData }));
     setOpenModal(true);
   };

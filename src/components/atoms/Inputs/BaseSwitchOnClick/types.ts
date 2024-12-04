@@ -1,4 +1,4 @@
-export interface IBaseSwitch {
+export interface BaseSwitchProps {
   defaultValue?: string;
   defaultChecked?: boolean;
   className?: string;

@@ -1,9 +1,9 @@
-import { IResponseData } from '@src/types/services';
+import { ResponseData } from '@src/types/services';
 import { Dispatch, SetStateAction } from 'react';
 import { Control, SubmitHandler, UseFormHandleSubmit } from 'react-hook-form';
 import { MutatorCallback } from 'swr';
 
-export type TGroupMembers = {
+export type GroupMembersParams = {
   value: 'users' | 'admins';
   id: string;
   email: string;
@@ -11,10 +11,10 @@ export type TGroupMembers = {
   has_online_assistance: boolean;
 };
 
-export type TGroup = {
+export type GroupParams = {
   id?: string;
-  users: TGroupMembers[];
-  admins: TGroupMembers[];
+  users: GroupMembersParams[];
+  admins: GroupMembersParams[];
   name: string;
   created_at: string;
   updated_at: string;
@@ -23,17 +23,17 @@ export type TGroup = {
 };
 
 export type UpdateGroupPayload = {
-  users: string[] | TGroup['users'];
-  admins: string[] | TGroup['admins'];
+  users: string[] | GroupParams['users'];
+  admins: string[] | GroupParams['admins'];
   name: string;
 };
 
 export type DefaultValueForm = Omit<
-  TGroup,
+  GroupParams,
   'users' | 'admins' | 'created_at' | 'updated_at' | 'id'
 >;
 
-export type TGroupCreate = {
+export type GroupCreateParams = {
   name: string;
   image: string | Blob | undefined;
 };
@@ -59,35 +59,35 @@ export type GroupManagementUsersListProps = {
 };
 
 export type GroupManagementEditRenderComponentsProps = {
-  updateGroup: TGroup;
-  setUpdateGroup: Dispatch<SetStateAction<TGroup>>;
+  updateGroup: GroupParams;
+  setUpdateGroup: Dispatch<SetStateAction<GroupParams>>;
   mutate: (
     data?:
-      | IResponseData<TGroup>
-      | Promise<IResponseData<TGroup>>
-      | MutatorCallback<IResponseData<TGroup>>,
+      | ResponseData<GroupParams>
+      | Promise<ResponseData<GroupParams>>
+      | MutatorCallback<ResponseData<GroupParams>>,
     options?: { revalidate?: boolean }
-  ) => Promise<IResponseData<TGroup> | undefined>;
-  group: TGroup;
+  ) => Promise<ResponseData<GroupParams> | undefined>;
+  group: GroupParams;
 };
-export type TGroupOnClick = {
+export type GroupOnClickParams = {
   action: ActionType;
-  row: TGroupMembers;
+  row: GroupMembersParams;
 };
 export type GroupManagementEditFormProps<T> = {
   setFilterQuery: (e: string) => void;
   filterQuery: string;
   setCurrentPage: (val: number) => void;
   handleClickAction: (
-    action: TGroupOnClick['action'],
-    row: TGroupOnClick['row']
+    action: GroupOnClickParams['action'],
+    row: GroupOnClickParams['row']
   ) => void;
   pageSize: number;
   isLoading: boolean;
   currentPage: number;
-  control: Control<TGroup>;
-  handleSubmit: UseFormHandleSubmit<TGroup>;
-  onSubmit: SubmitHandler<TGroup>;
+  control: Control<GroupParams>;
+  handleSubmit: UseFormHandleSubmit<GroupParams>;
+  onSubmit: SubmitHandler<GroupParams>;
   allGroupData: T;
   isDirty: boolean;
   setOpenEditModal: Dispatch<SetStateAction<boolean>>;

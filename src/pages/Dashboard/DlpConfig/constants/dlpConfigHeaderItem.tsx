@@ -1,11 +1,11 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import trashIcon from '@iconify-icons/ph/trash';
 import notePencilIcon from '@iconify-icons/ph/note-pencil';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { HeaderTableProps } from '@ui/atoms/BaseTable/types';
 import { booleanIcon } from '@src/pages/Dashboard/DlpConfig/utils';
-import { EPermissionWhiteListFiles } from '@src/types/permissions';
+import { PermissionWhiteListFiles } from '@src/types/permissions';
 
-export const dlpConfigHeaderItem: IHeaderTable[] = [
+export const dlpConfigHeaderItem: HeaderTableProps[] = [
   {
     id: 'id',
     type: 'action',
@@ -14,18 +14,18 @@ export const dlpConfigHeaderItem: IHeaderTable[] = [
         action: 'delete',
         icon: trashIcon,
         color: 'redNoBg',
-        permission: EPermissionWhiteListFiles.DELETE,
+        permission: PermissionWhiteListFiles.DELETE,
       },
       {
         action: 'edit',
         icon: notePencilIcon,
         color: 'neutralNoBg',
-        permission: EPermissionWhiteListFiles.CHANGE,
+        permission: PermissionWhiteListFiles.CHANGE,
       },
     ],
     permission: [
-      EPermissionWhiteListFiles.CHANGE,
-      EPermissionWhiteListFiles.DELETE,
+      PermissionWhiteListFiles.CHANGE,
+      PermissionWhiteListFiles.DELETE,
     ],
 
     class: 'px-3 w-2/12',

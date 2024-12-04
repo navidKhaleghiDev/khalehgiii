@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 
 import { http } from '@src/services/http';
 import useSWR from 'swr';
-import { IResponsePagination } from '@src/types/services';
-import { IDaAs, TGroup } from '@src/services/users/types';
+import { ResponsePagination } from '@src/types/services';
+import { DaAsParams, GroupParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useLanguage } from '@context/settings/languageContext';
@@ -18,12 +18,12 @@ import { API_USERS_GROUPS_CREATE } from '@src/services/users';
 
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { GroupManagementUsersList } from '../components/GroupManagementUsersList';
-import { GroupManagementCreateProps, TGroupCreate } from '../types';
+import { GroupManagementCreateProps, GroupCreateParams } from '../types';
 
 const PAGE_SIZE = 10;
 const PAGE = 1;
 
-const buildFormData = (data: TGroup) => {
+const buildFormData = (data: GroupParams) => {
   const formData = new FormData();
   formData.append('name', data.name);
   if (data.image === '' || data.image instanceof Blob) {
@@ -55,7 +55,7 @@ export function GroupManagementCreate(props: GroupManagementCreateProps) {
     filterQuery,
   });
 
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading, mutate } = useSWR<ResponsePagination<DaAsParams>>(
     endpoint,
     http.fetcherSWR
   );
@@ -75,7 +75,7 @@ export function GroupManagementCreate(props: GroupManagementCreateProps) {
     },
   });
 
-  const createGroup = async (listData: TGroup) => {
+  const createGroup = async (listData: GroupParams) => {
     setLoading(true);
     await API_USERS_GROUPS_CREATE(listData)
       .then(() => {
@@ -91,7 +91,7 @@ export function GroupManagementCreate(props: GroupManagementCreateProps) {
       });
   };
 
-  const onSubmit: SubmitHandler<TGroupCreate> = (listData) => {
+  const onSubmit: SubmitHandler<GroupCreateParams> = (listData) => {
     const updatedData = {
       ...listData,
       ...selectedData,

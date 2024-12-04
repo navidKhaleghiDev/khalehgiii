@@ -7,7 +7,7 @@ import {
 } from 'react-hook-form';
 import { baseOtpStyles } from './styles';
 
-export interface TBaseInputProps<T extends FieldValues>
+export interface BaseInputProps<T extends FieldValues>
   extends VariantProps<typeof baseOtpStyles> {
   name: FieldPath<T>;
   control: Control<T>;
@@ -18,12 +18,12 @@ export interface TBaseInputProps<T extends FieldValues>
   pureError?: string;
 }
 
-export type THandleChange = (
+export type HandleChange = (
   e: React.ChangeEvent<HTMLInputElement>,
   index: number,
   field: { value: string; onChange: (value: string) => void }
 ) => void;
-export type THandleKeyDown = (
+export type HandleKeyDown = (
   e: React.KeyboardEvent<HTMLInputElement>,
   index: number
 ) => void;

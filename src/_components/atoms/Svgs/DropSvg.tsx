@@ -1,6 +1,6 @@
-import { ISvgProp } from './types';
+import { SvgProps } from './types';
 
-export function DropSvg({ className }: ISvgProp) {
+export function DropSvg({ className }: SvgProps) {
   return (
     <svg
       width="20"

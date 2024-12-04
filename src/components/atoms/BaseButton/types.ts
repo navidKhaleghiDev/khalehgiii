@@ -4,7 +4,7 @@ import { IconType } from '@src/types/global';
 import { baseButtonStyles, iconButtonStyles } from './styles';
 
 export type BaseButtonStyleProps = VariantProps<typeof baseButtonStyles>;
-export interface IBaseButton extends BaseButtonStyleProps {
+export interface BaseButtonProps extends BaseButtonStyleProps {
   onClick?: () => void;
   label: string;
   disabled?: boolean;
@@ -15,7 +15,7 @@ export interface IBaseButton extends BaseButtonStyleProps {
   loading?: boolean;
 }
 
-export interface IIconButton extends VariantProps<typeof iconButtonStyles> {
+export interface IconButtonProps extends VariantProps<typeof iconButtonStyles> {
   onClick?: () => void;
   icon: IconType;
   className?: string;

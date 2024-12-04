@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import useSWR from 'swr';
-import { IResponsePagination } from '@src/types/services';
-import { IDaasConfig } from '@src/services/config/types';
+import { ResponsePagination } from '@src/types/services';
+import { DaasConfig } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
@@ -19,7 +19,7 @@ import { DlpConfigCard } from './DlpConfigCard';
 const PAGE_SIZE = 8;
 const PAGE = 1;
 
-const headerItem: StringifyProperties<IDaasConfig> = {
+const headerItem: StringifyProperties<DaasConfig> = {
   id: '',
   can_upload_file: 'آپلود',
   can_download_file: 'دانلود',
@@ -38,7 +38,7 @@ const headerItem: StringifyProperties<IDaasConfig> = {
 export function DaasConfigList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeDaasConfig] = useState<Partial<IDaasConfig>>();
+  const [activeDaasConfig] = useState<Partial<DaasConfig>>();
   const [openSettingModal, setOpenSettingModal] = useState(false);
 
   const endpoint = createAPIEndpoint({
@@ -47,7 +47,7 @@ export function DaasConfigList() {
     currentPage,
     filterQuery,
   });
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaasConfig>>(
+  const { data, isLoading, mutate } = useSWR<ResponsePagination<DaasConfig>>(
     endpoint,
     http.fetcherSWR
   );
@@ -120,7 +120,7 @@ export function DaasConfigList() {
         content={
           <SettingDaasConfigModal
             handleClose={handleCloseModal}
-            daasConfig={activeDaasConfig as IDaasConfig}
+            daasConfig={activeDaasConfig as DaasConfig}
           />
         }
       />

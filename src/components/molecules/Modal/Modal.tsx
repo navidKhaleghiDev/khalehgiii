@@ -7,7 +7,7 @@ import xIcon from '@iconify-icons/ph/x';
 import { BaseIcon, Typography } from '@ui/atoms';
 import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
 import { containerStyles, contentStyles, headerStyles } from './styles';
-import { IModal } from './types';
+import { ModalProps } from './types';
 
 export function Modal({
   open,
@@ -20,7 +20,7 @@ export function Modal({
   description,
   classContainer,
   freeSize,
-}: IModal) {
+}: ModalProps) {
   const ref = useRef(null);
   useClickOutside({ ref, setValue: setOpen, value: open });
   const handleToggle = () => setOpen(!open);

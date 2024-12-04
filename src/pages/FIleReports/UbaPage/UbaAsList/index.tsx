@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
 import { Uba } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
@@ -26,7 +26,7 @@ export function UbaAsList() {
     setFilterQuery(value);
   };
 
-  const { data, isLoading } = useSWR<IResponsePagination<Uba>>(
+  const { data, isLoading } = useSWR<ResponsePagination<Uba>>(
     E_UBA_LIST_PAGINATION({
       page: currentPage,
       pageSize: PAGE_SIZE,

@@ -1,11 +1,11 @@
 import PhQueue from '@iconify-icons/ph/queue';
 import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
-import { EPermissionFileScan } from '@src/types/permissions';
+import { PermissionFileScan } from '@src/types/permissions';
 import {
   BaseTableComponentCellProps,
   HeaderTable,
 } from '@redesignUi/molecules/BaseTable/types';
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 
 export const monitoringHeaderItem: HeaderTable[] = [
   {
@@ -27,7 +27,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
     label: 'table.scans',
     id: '',
     type: 'component',
-    component: (props: BaseTableComponentCellProps<IDaAs>) => (
+    component: (props: BaseTableComponentCellProps<DaAsParams>) => (
       <UserScanCount email={props.row.email} />
     ),
     class: 'w-1/12',
@@ -44,7 +44,7 @@ export const monitoringHeaderItem: HeaderTable[] = [
         action: 'edit',
       },
     ],
-    permission: EPermissionFileScan.VIEW,
+    permission: PermissionFileScan.VIEW,
     class: 'mr-auto',
   },
 ];

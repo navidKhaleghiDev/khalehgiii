@@ -5,7 +5,7 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 
-export interface IBaseSwitch<T extends FieldValues> {
+export interface BaseSwitchProps<T extends FieldValues> {
   control?: Control<T>;
   name: FieldPath<T>;
   rules?: RegisterOptions<T>;

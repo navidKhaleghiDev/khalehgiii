@@ -1,17 +1,17 @@
 import { AxiosResponse } from 'axios';
 import { HTTP_ANALYSES, http } from '@src/services/http';
-import { TGroupListUpdate } from '@src/pages/NotUsed/GroupManagement/type';
-import { IAxiosResponse, IServerResponse } from '@src/types/services';
+import { GroupListUpdateParams } from '@src/pages/NotUsed/GroupManagement/type';
+import { AxiosResponseData, ServerResponse } from '@src/types/services';
 import { KeysType } from '@src/pages/NotUsed/License/SettingMalwareCard/type';
 import {
-  IBodyUsersLogin,
-  IResponseLogin,
-  IDaAs,
-  IUser,
-  IBodyUsersLogout,
-  TGroup,
-  IResponseAssistance,
-  IBodyAssistance,
+  BodyUsersLogin,
+  ResponseLogin,
+  DaAsParams,
+  UserParams,
+  BodyUsersLogout,
+  GroupParams,
+  ResponseAssistance,
+  BodyAssistance,
 } from './types';
 import {
   E_USERS_DAAS_DELETE,
@@ -33,44 +33,52 @@ import {
   E_USERS_ONLINE_ASSISTANCE,
   E_GET_RECORDED_VIDEO,
 } from './endpoint';
-import { IDaasConfig } from '../config/types';
+import { DaasConfig } from '../config/types';
 import { E_MALWARE_ANTIVIRUS } from '../analyze/endpoint';
 
 export const API_UPDATE_USER = (
-  body: Partial<IUser>,
+  body: Partial<UserParams>,
   userId: string | number
-) => http.patch<IAxiosResponse<Partial<IUser>>>(E_UPDATE_USER(userId), body);
+) =>
+  http.patch<AxiosResponseData<Partial<UserParams>>>(
+    E_UPDATE_USER(userId),
+    body
+  );
 
-export const API_CREATE_USER = (body: IUser) =>
-  http.post<IAxiosResponse<IUser>>(E_USERS, body);
-export const API_USERS_GROUPS_CREATE = (body: TGroupListUpdate) =>
-  http.post<IAxiosResponse<TGroupListUpdate>>(E_USERS_GROUPS, body, {
+export const API_CREATE_USER = (body: UserParams) =>
+  http.post<AxiosResponseData<UserParams>>(E_USERS, body);
+export const API_USERS_GROUPS_CREATE = (body: GroupListUpdateParams) =>
+  http.post<AxiosResponseData<GroupListUpdateParams>>(E_USERS_GROUPS, body, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
 export const API_USERS_GROUPS_UPDATE = (body: any, id: string | number) =>
-  http.patch<IAxiosResponse<TGroupListUpdate>>(USERS_GROUPS_GET(id), body, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+  http.patch<AxiosResponseData<GroupListUpdateParams>>(
+    USERS_GROUPS_GET(id),
+    body,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }
+  );
 
 export const API_USERS_GROUPS_GET = (id: string) =>
-  http.get<IAxiosResponse<TGroup>>(USERS_GROUPS_GET(id));
+  http.get<AxiosResponseData<GroupParams>>(USERS_GROUPS_GET(id));
 
 export const API_DAAS_DELETE = (id: string) =>
-  http.delete<IAxiosResponse<IDaAs[]>>(E_USERS_DAAS_DELETE(id));
+  http.delete<AxiosResponseData<DaAsParams[]>>(E_USERS_DAAS_DELETE(id));
 
 export const API_USERS_DELETE = (id: number) =>
-  http.delete<IAxiosResponse<number>>(E_USERS_DELETE(id));
+  http.delete<AxiosResponseData<number>>(E_USERS_DELETE(id));
 
-interface IDaAsUpdated extends Omit<IDaAs, 'daas_configs'> {
-  daas_configs: Partial<IDaasConfig>;
+interface DaAsUpdated extends Omit<DaAsParams, 'daas_configs'> {
+  daas_configs: Partial<DaasConfig>;
 }
 
-export const API_DAAS_UPDATE = (id: string, body: Partial<IDaAsUpdated>) =>
-  http.patch<Partial<IDaAsUpdated>, IAxiosResponse<IDaAs[]>>(
+export const API_DAAS_UPDATE = (id: string, body: Partial<DaAsUpdated>) =>
+  http.patch<Partial<DaAsUpdated>, AxiosResponseData<DaAsParams[]>>(
     E_USERS_DAAS_UPDATE(id),
     body
   );
@@ -81,26 +89,23 @@ export const API_DAAS_RESET_USAGE_DAAS = (id: string) =>
 export const API_DAAS_RESET_ALL_USAGE_DAAS = () =>
   http.get(E_USERS_DAAS_RESET_ALL_USAGE);
 
-export const API_USERS_LOGOUT = (body: IBodyUsersLogout) =>
+export const API_USERS_LOGOUT = (body: BodyUsersLogout) =>
   http.post(E_USERS_LOGOUT, body);
 
 export const API_USERS_LOGOUT_ONLINE_ASSISTANCE = () =>
   http.get(E_USERS_LOGOUT_ONLINE_ASSISTANCE);
 
-export const API_USERS_LOGIN = (body: IBodyUsersLogin) =>
-  http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(
-    E_USERS_LOGIN,
-    body
-  );
-export const API_USERS_LOGIN_OTP = (body: IBodyUsersLogin) =>
-  http.post<IBodyUsersLogin, IServerResponse<IResponseLogin>>(
+export const API_USERS_LOGIN = (body: BodyUsersLogin) =>
+  http.post<BodyUsersLogin, ServerResponse<ResponseLogin>>(E_USERS_LOGIN, body);
+export const API_USERS_LOGIN_OTP = (body: BodyUsersLogin) =>
+  http.post<BodyUsersLogin, ServerResponse<ResponseLogin>>(
     E_USERS_OTP_LOGIN,
     body
   );
 
-export const API_USERS_PROFILE = () => http.get<IUser>(E_USERS_PROFILE);
+export const API_USERS_PROFILE = () => http.get<UserParams>(E_USERS_PROFILE);
 export const API_USERS_OTP = (email: string) =>
-  http.get<IUser>(E_USER_GET_OTP(email));
+  http.get<UserParams>(E_USER_GET_OTP(email));
 
 export const API_USERS_LICENSE_UPDATE = (body: any) =>
   http.patch(`/users/daas/${body.id}/`, body);
@@ -122,13 +127,13 @@ export const API_KNOWLEDGE_MANAGEMENT = (id: string) =>
     responseType: 'blob',
   });
 export const API_ONLINE_ASSISTANCE = (body: { id: string }) => {
-  return http.post<IBodyAssistance, IServerResponse<IResponseAssistance>>(
+  return http.post<BodyAssistance, ServerResponse<ResponseAssistance>>(
     E_USERS_ONLINE_ASSISTANCE,
     body
   );
 };
 export const API_DELETE_GROUP = (id: string) => {
-  return http.delete<IBodyAssistance, IServerResponse<IResponseAssistance>>(
+  return http.delete<BodyAssistance, ServerResponse<ResponseAssistance>>(
     USERS_GROUPS_GET(id)
   );
 };

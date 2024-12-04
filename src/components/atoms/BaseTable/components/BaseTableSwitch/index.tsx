@@ -1,11 +1,11 @@
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseSwitchWithState } from '@ui/atoms/Inputs/BaseSwitchWithState';
 
 type LicenseFormProps = {
   name: string;
   value: any;
-  onClick: OnClickActionsType<IDaAs>;
+  onClick: OnClickActionsType<DaAsParams>;
 };
 
 export function BaseTableSwitch({ name, onClick, value }: LicenseFormProps) {

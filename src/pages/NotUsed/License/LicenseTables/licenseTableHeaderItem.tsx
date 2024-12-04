@@ -1,7 +1,7 @@
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { HeaderTableProps } from '@ui/atoms/BaseTable/types';
 import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 
-export const licenseHeaderItem: IHeaderTable[] = [
+export const licenseHeaderItem: HeaderTableProps[] = [
   {
     label: 'license.licenseId',
     id: 'license_id',

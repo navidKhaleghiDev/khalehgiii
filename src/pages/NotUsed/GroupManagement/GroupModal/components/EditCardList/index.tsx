@@ -2,7 +2,7 @@ import { IconButton } from '@ui/atoms/BaseButton';
 // import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
 import { Typography } from '@ui/atoms/Typography';
 
-type TEditCardProps = {
+type EditCardProps = {
   item: { id: string; email: string };
   onClick: (item: string) => void;
   permissions: boolean;
@@ -14,7 +14,7 @@ export function EditCardList({
   onClick,
   permissions,
   disabled,
-}: TEditCardProps) {
+}: EditCardProps) {
   return (
     <div className="bg-gray-100 rounded-lg p-2 flex  justify-between items-center mx-2">
       <Typography variant="body2" color="neutral">

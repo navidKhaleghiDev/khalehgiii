@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import ToolTip from '@ui/atoms/Tooltip';
 import gear from '@iconify-icons/ph/gear';
 import { IconButton } from '@ui/atoms/BaseButton';
@@ -8,7 +8,7 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import { OnClickActionsType } from '../types';
 
 type PropsType = {
-  daas: IDaAs;
+  daas: DaAsParams;
   onClickActions?: OnClickActionsType;
 };
 

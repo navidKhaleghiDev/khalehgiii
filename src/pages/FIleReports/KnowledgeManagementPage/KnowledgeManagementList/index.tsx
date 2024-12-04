@@ -11,7 +11,7 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { NoResult } from '@redesignUi/molecules/NoResult';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
 import { OnlineAssistanceModel } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -45,9 +45,10 @@ export function KnowledgeManagementList() {
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<
-    IResponsePagination<OnlineAssistanceModel>
-  >(endpoint, http.fetcherSWR);
+  const { data, isLoading } = useSWR<ResponsePagination<OnlineAssistanceModel>>(
+    endpoint,
+    http.fetcherSWR
+  );
 
   const handleOnClickRow: OnClickActionsType<OnlineAssistanceModel> = async (
     _,

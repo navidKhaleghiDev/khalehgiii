@@ -1,7 +1,7 @@
 import { Control } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { PermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { Typography } from '@redesignUi/atoms';
 import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
@@ -27,7 +27,7 @@ export function DaasConfigForm({
 
   const hasChangePermission = checkPermission(
     userPermissions,
-    EPermissionDaas.CHANGE
+    PermissionDaas.CHANGE
   );
 
   return (

@@ -1,14 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 import { IconButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
-import { IComponentTable, IActionItem } from '../../types';
+import { ComponentTableProps, ActionItemProps } from '../../types';
 
-export function ActionCell({ row, header, onClick }: IComponentTable) {
+export function ActionCell({ row, header, onClick }: ComponentTableProps) {
   const { t } = useTranslation();
   return (
     header?.action && (
       <div className="absolute flex">
-        {header.action.map((action: IActionItem, i: number) => (
+        {header.action.map((action: ActionItemProps, i: number) => (
           <IconButton
             tooltip={t(action.tooltip)}
             tooltipPosition="top"

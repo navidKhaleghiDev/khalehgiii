@@ -1,4 +1,4 @@
-import { IPagination } from '@src/types/services';
+import { Pagination } from '@src/types/services';
 import { E_ANALYZE_SCAN_STATS } from '../analyze/endpoint';
 
 // users endpoints
@@ -16,7 +16,7 @@ export const E_USERS_DELETE = (id: number) => `${E_USERS}${id}/`;
 export const E_UPDATE_USER = (id: string | number) => `${E_USERS}${id}/`;
 export const E_USER_GET_OTP = (email: string) =>
   `${E_USERS_OTP}?email=${email}`;
-export const E_USERS_PAGINATION = ({ pageSize, page, filter }: IPagination) =>
+export const E_USERS_PAGINATION = ({ pageSize, page, filter }: Pagination) =>
   `${E_USERS}?page_size=${pageSize}&page=${page}${filter ? `&${filter}` : ''}`;
 
 // users daas endpoints
@@ -24,7 +24,7 @@ export const E_USERS_DAAS_PAGINATION = ({
   pageSize,
   page,
   filter,
-}: IPagination) =>
+}: Pagination) =>
   `/users/daas/${
     filter ? `?${filter}&` : '?'
   }page_size=${pageSize}&page=${page}`;

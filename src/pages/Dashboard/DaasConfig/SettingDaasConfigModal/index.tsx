@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
 import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
-import { IDaasConfig } from '@src/services/config/types';
+import { DaasConfig } from '@src/services/config/types';
 import { useTranslation } from 'react-i18next';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
-  daasConfig: IDaasConfig;
+  daasConfig: DaasConfig;
 };
 
 export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
@@ -18,7 +18,7 @@ export function SettingDaasConfigModal({ handleClose, daasConfig }: PropsType) {
   const userPermissions = useUserPermission();
 
   const [showConfirm, setShowConfirm] = useState(false);
-  const { control, handleSubmit } = useForm<IDaasConfig>({
+  const { control, handleSubmit } = useForm<DaasConfig>({
     mode: 'onChange',
     defaultValues: {
       can_upload_file: daasConfig.can_upload_file,

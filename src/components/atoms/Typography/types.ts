@@ -5,7 +5,7 @@ import { IconType } from '@src/types/global';
 import { typographyStyles } from './styles';
 import { BaseIcon } from '../BaseIcon';
 
-export interface ITypography
+export interface TypographyProps
   extends VariantProps<typeof typographyStyles>,
     PropsWithChildren {
   type?:
@@ -24,7 +24,7 @@ export interface ITypography
 }
 
 type BaseIconProps = ComponentProps<typeof BaseIcon>;
-export interface ITypographyIcon extends Omit<ITypography, 'children'> {
+export interface TypographyIconProps extends Omit<TypographyProps, 'children'> {
   text: string;
   iconColor?: BaseIconProps['color'];
   iconSize?: BaseIconProps['size'];
