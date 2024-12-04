@@ -1,6 +1,11 @@
 import PhTrashSimple from '@iconify-icons/ph/trash-simple';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import {
+  BaseTableComponentCellProps,
+  HeaderTable,
+} from '@redesignUi/molecules/BaseTable/types';
+import { IMimeType } from '@src/services/analyze/types';
 import { EPermissionExtensions } from '@src/types/permissions';
+
 import { FileICon } from '../Components/FIleIcon';
 
 export const extensionListHeaderItem: HeaderTable[] = [
@@ -8,7 +13,7 @@ export const extensionListHeaderItem: HeaderTable[] = [
     label: 'table.fileExtension',
     id: 'extension_list',
     type: 'component',
-    component: (props: any) => (
+    component: (props: BaseTableComponentCellProps<IMimeType>) => (
       <FileICon fileType={props.row?.extension_list} />
     ),
     class: 'px-3 w-10/12 md:w-3/12 lg:w-2/12',

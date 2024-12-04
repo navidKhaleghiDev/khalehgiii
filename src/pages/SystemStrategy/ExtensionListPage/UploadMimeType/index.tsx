@@ -15,6 +15,8 @@ interface MimeType {
   file: File[];
 }
 
+const limitFileSize = 1073741824;
+
 export function UploadFileModal({ handleClose }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -25,8 +27,8 @@ export function UploadFileModal({ handleClose }: PropsType) {
   });
 
   const handleOnSubmit = async (data: MimeType) => {
-    // This logic (Can not add the file without type)
-    if (data.file[0].type !== '') {
+    // This logic (Can not add the file without type & limit of the file size)
+    if (data.file[0].type !== '' && data.file[0].size <= limitFileSize) {
       setLoadingButtonModal(true);
       const body = new FormData();
       if (data.file.length > 0) {
@@ -52,6 +54,7 @@ export function UploadFileModal({ handleClose }: PropsType) {
     }
   };
 
+  console.log(watch('file'));
   return (
     <div className="pt-5 w-full">
       <form
