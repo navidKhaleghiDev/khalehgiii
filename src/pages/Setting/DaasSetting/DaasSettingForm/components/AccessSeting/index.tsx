@@ -54,7 +54,7 @@ export function AccessSeting({
             disabled={!hasChangePermission}
             placeholder={t('table.upload')}
             icon={PhUploadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={50}
             rules={{
               required: regexPattern.required,
@@ -71,7 +71,7 @@ export function AccessSeting({
             disabled={!hasChangePermission}
             placeholder={t('table.download')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             rules={{
               required: regexPattern.required,
@@ -90,7 +90,7 @@ export function AccessSeting({
             disabled={!hasChangePermission || timeOfUse === 'PERMANENTLY'}
             placeholder={t('global.hour')}
             icon={PhTimer}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             rules={{
               required: regexPattern.required,
               max: {
