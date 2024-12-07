@@ -1,5 +1,6 @@
-import { IUser } from '@src/services/users/types';
 import { Control } from 'react-hook-form';
+
+import { IUser } from '@src/services/users/types';
 
 export interface UserProps extends Omit<IUser, 'is_meta_admin'> {
   is_meta_admin?: string | boolean;
