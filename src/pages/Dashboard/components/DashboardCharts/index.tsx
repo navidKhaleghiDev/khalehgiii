@@ -1,7 +1,7 @@
 import { Card } from '@redesignUi/atoms';
 import {
-  EPermissionFileScan,
-  EPermissionUba,
+  PermissionFileScan,
+  PermissionUba,
   PermissionsCodeName,
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
@@ -17,8 +17,8 @@ export function DashboardCharts({
   return (
     <Card rounded="xxl" shadow="base" className="p-5">
       {checkPermission(permissions, [
-        EPermissionFileScan.VIEW,
-        EPermissionUba.VIEW,
+        PermissionFileScan.VIEW,
+        PermissionUba.VIEW,
       ]) ? (
         <DashboardProgressChart />
       ) : null}

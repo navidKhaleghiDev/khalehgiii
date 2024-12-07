@@ -1,6 +1,6 @@
-import { ISvgProp } from './types';
+import { SvgProps } from './types';
 
-export function RejectSvg({ className }: ISvgProp) {
+export function RejectSvg({ className }: SvgProps) {
   return (
     <svg
       width="16"

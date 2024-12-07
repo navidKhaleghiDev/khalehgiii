@@ -3,12 +3,12 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import trashIcon from '@iconify-icons/ph/trash';
 import { StringifyProperties } from '@src/types/global';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { IMimeType } from '@src/services/analyze/types';
+import { MimeType } from '@src/services/analyze/types';
 
 import { OnClickActionsType } from './types';
 
 type MimeTypeCardProps = {
-  mimeType: StringifyProperties<IMimeType> | IMimeType;
+  mimeType: StringifyProperties<MimeType> | MimeType;
   isHeader?: boolean;
   onClickActions?: OnClickActionsType;
 };

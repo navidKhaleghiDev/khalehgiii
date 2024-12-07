@@ -8,7 +8,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionKeycloak } from '@src/types/permissions';
+import { PermissionKeycloak } from '@src/types/permissions';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
@@ -40,7 +40,7 @@ export function ApplicationSetting({
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
     userPermissions,
-    EPermissionKeycloak.VIEW
+    PermissionKeycloak.VIEW
   );
 
   const { control, handleSubmit, reset, formState } =

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { http } from '@src/services/http';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -24,7 +24,7 @@ const PAGE = 1;
 export function UsersDaAsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [userEmail, setUserEmail] = useState<IDaAs['email']>('');
+  const [userEmail, setUserEmail] = useState<DaAsParams['email']>('');
   const [open, setOpen] = useState(false);
 
   const userPermissions = useUserPermission();
@@ -38,12 +38,12 @@ export function UsersDaAsList() {
     filterQuery: searchQuery,
     currentPage,
   });
-  const { isLoading, error, resultData, count } = useGetPagination<IDaAs>(
+  const { isLoading, error, resultData, count } = useGetPagination<DaAsParams>(
     endpoint,
     http.fetcherSWR
   );
 
-  const handelClickRow: OnClickActionsType<IDaAs> = (action, daAs) => {
+  const handelClickRow: OnClickActionsType<DaAsParams> = (action, daAs) => {
     if (action === 'button' && daAs?.email) {
       setUserEmail(daAs?.email);
       setOpen(true);

@@ -7,12 +7,12 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { API_DELETE_GROUP } from '@src/services/users';
 import { Modal } from '@ui/molecules/Modal';
-import { TGroup } from '@src/services/users/types';
+import { GroupParams } from '@src/services/users/types';
 import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionGroupManagement } from '@src/types/permissions';
+import { PermissionGroupManagement } from '@src/types/permissions';
 
 type GroupCardEditProps = {
   name: string;
@@ -20,7 +20,7 @@ type GroupCardEditProps = {
   id?: string;
   onClickActions?: () => void;
   mutate: any;
-  setGroupSelected: (value: undefined | TGroup) => void;
+  setGroupSelected: (value: undefined | GroupParams) => void;
 };
 
 export function GroupCardEdit({
@@ -36,7 +36,7 @@ export function GroupCardEdit({
   const userPermissions = useUserPermission();
   const GroupManagementDelete = checkPermission(
     userPermissions,
-    EPermissionGroupManagement.DELETE
+    PermissionGroupManagement.DELETE
   );
 
   const [openModal, setOpenModal] = useState(false);

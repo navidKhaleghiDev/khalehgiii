@@ -5,8 +5,8 @@ import useSWR from 'swr';
 
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
-import { TGroup } from '@src/services/users/types';
-import { IResponseData } from '@src/types/services';
+import { GroupParams } from '@src/services/users/types';
+import { ResponseData } from '@src/types/services';
 import { GroupCard } from '@redesignUi/molecules/Cards/GroupCard';
 import { Pagination } from '@redesignUi/molecules/Pagination';
 import { createAPIEndpoint } from '@src/helper/utils';
@@ -92,7 +92,7 @@ export function GroupManagement() {
     filterQuery,
   });
 
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
+  const { data, isLoading, mutate } = useSWR<ResponseData<GroupParams[]>>(
     endpoint,
     http.fetcherSWR
   );
@@ -164,7 +164,7 @@ export function GroupManagement() {
             />
           </div>
           <GroupCard
-            onClick={(item: TGroup) => navigate(`${item.id}`)}
+            onClick={(item: GroupParams) => navigate(`${item.id}`)}
             groupData={groupData}
             handleRemoveGroup={handleRemoveGroup}
           />

@@ -1,6 +1,6 @@
-import { IBaseImage } from './types';
+import { BaseImageProps } from './types';
 
-export function ResponsiveImage({ src, alt, className }: IBaseImage) {
+export function ResponsiveImage({ src, alt, className }: BaseImageProps) {
   return (
     <img
       src={src}

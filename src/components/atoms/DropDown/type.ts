@@ -7,7 +7,7 @@ import {
 } from 'react-hook-form';
 import { baseDropDownStyles } from './styles';
 
-export interface IOptionSelect {
+export interface OptionSelect {
   id?: string;
   value?: string;
   label: string;
@@ -19,7 +19,7 @@ export interface DropdownProps<T extends FieldValues>
   control?: Control<T>;
   name: FieldPath<T>;
   rules?: RegisterOptions<T>;
-  options: IOptionSelect[];
+  options: OptionSelect[];
   fullWidth?: boolean;
   placeHolder: string;
   className?: string;
@@ -31,6 +31,6 @@ export interface DropdownProps<T extends FieldValues>
 }
 
 export type StateType = {
-  activeOption: IOptionSelect | null;
+  activeOption: OptionSelect | null;
   openOptions: boolean;
 };

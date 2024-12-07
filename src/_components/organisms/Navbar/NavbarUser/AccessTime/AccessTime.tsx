@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import {
   E_USERS_DAAS_UPDATE_USAGE,
   E_USERS_PROFILE,
 } from '@src/services/users/endpoint';
 import UserFocus from '@iconify-icons/ph/user-focus';
 import { http } from '@src/services/http';
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 import { AccessTimeModal } from '@ui/organisms/Navbar/NavbarDashboard/AccessTime/AccessTimeModal';
 import { Card, Typography } from '@redesignUi/atoms';
 import { IconButton } from '@redesignUi/atoms/BaseButton';
@@ -24,7 +24,7 @@ export function AccessTime() {
     refreshInterval: 60000,
   });
 
-  const { data, isLoading, mutate } = useSWR<ISwrResponse<IDaAs>>(
+  const { data, isLoading, mutate } = useSWR<SwrResponse<DaAsParams>>(
     E_USERS_PROFILE,
     http.fetcherSWR,
     {

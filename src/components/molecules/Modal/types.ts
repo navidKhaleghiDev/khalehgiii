@@ -15,7 +15,7 @@ type ModalButtonType = {
   color?: BaseButtonStyleProps['type'];
   loading?: boolean;
 };
-export interface IModal
+export interface ModalProps
   extends VariantProps<typeof headerStyles>,
     PropsWithChildren {
   title?: string;

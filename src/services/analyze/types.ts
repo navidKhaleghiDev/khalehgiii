@@ -1,24 +1,24 @@
-export enum EScannerStatus {
+export enum ScannerStatus {
   FINISHED = 'FINISHED',
   IN_PROCESS = 'IN_PROCESS',
   FAILED = 'FAILED',
 }
 
-export interface IScannedFile {
+export interface ScannedFile {
   id: number;
   file_name: string;
   file_size_in_bytes: number;
   file_content_type: string;
   username: string;
-  yara_scanner_status: EScannerStatus;
-  clamav_scanner_status: EScannerStatus;
+  yara_scanner_status: ScannerStatus;
+  clamav_scanner_status: ScannerStatus;
   yara_scan_summary: string | null;
   yara_scan_result: boolean;
   yara_error_message: string | null;
   clamav_scan_summary: string | null;
   clamav_scan_result: boolean;
   antiviruses_scan_result: boolean;
-  antiviruses_scanner_status: EScannerStatus;
+  antiviruses_scanner_status: ScannerStatus;
   antiviruses_scan_sandbox_summary: string | null;
   antiviruses_scan_vendors_summary: string | null;
   antiviruses_last_analysis_stats: string | null;
@@ -49,11 +49,11 @@ export interface Uba {
   malbehave_count: number; // تعداد رفتار غیر مجاز
 }
 
-export interface IScanStats {
+export interface ScanStats {
   info: { today_scans: number; remaining_days: number; malware_files: number };
 }
 
-export interface IMimeType {
+export interface MimeType {
   created_at: string;
   extension_list: string;
   file: string | null;
@@ -62,9 +62,14 @@ export interface IMimeType {
   updated_at: string;
 }
 
-export interface IAddConfigAnalyze {
+export interface AddConfigAnalyze {
   file_content_type: any;
   id?: number | null;
   log_server_host: string;
   log_server_port: number;
+}
+export interface AddConfigAnalyzeDownload {
+  file_content_type: string;
+  username: string;
+  file_hash: string;
 }

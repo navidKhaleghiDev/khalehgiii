@@ -3,14 +3,14 @@ import userIcon from '@iconify-icons/ph/user';
 import { useTranslation } from 'react-i18next';
 
 import { Avatar, Typography } from '@redesignUi/atoms';
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
 import { GroupManagementDropDown } from './GroupManagementDropDown';
 import { dropdownOptions } from '../GroupManagementEdit/constants/groupManagementHeaderItem';
 import { GroupManagementUsersListProps } from '../types';
 
 interface SelectedDataType {
-  [key: string]: IDaAs[];
+  [key: string]: DaAsParams[];
 }
 
 export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
@@ -28,12 +28,12 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
   } = props;
 
   const { t } = useTranslation();
-  const [allMembers, setAllMembers] = useState<IDaAs[]>([]);
+  const [allMembers, setAllMembers] = useState<DaAsParams[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
   const observer = useRef<IntersectionObserver | null>(null);
 
-  const handleUpdateCheckbox = (item: IDaAs) => {
+  const handleUpdateCheckbox = (item: DaAsParams) => {
     const key = keyRef.current;
     const alternativeKey = key === 'users' ? 'admins' : 'users';
 
@@ -66,7 +66,7 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
     });
   };
 
-  const handleUpdateDropDown = (dropKey: string, item: IDaAs) => {
+  const handleUpdateDropDown = (dropKey: string, item: DaAsParams) => {
     const alternativeKey = dropKey === 'users' ? 'admins' : 'users';
 
     setSelectedData((prevSelected: SelectedDataType) => {
@@ -91,7 +91,7 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
   useEffect(() => {
     setAllMembers((prevMembers) => {
       const newMembers = memberData.filter(
-        (item: IDaAs) =>
+        (item: DaAsParams) =>
           !prevMembers.some((prevItem) => prevItem.id === item.id)
       );
       return [...prevMembers, ...newMembers];
@@ -156,9 +156,11 @@ export function GroupManagementUsersList(props: GroupManagementUsersListProps) {
                 name={item.email}
                 checked={
                   selectedData[alternativeKey].some(
-                    (v: IDaAs) => v.id === item.id
+                    (v: DaAsParams) => v.id === item.id
                   ) ||
-                  selectedData[currentKey].some((v: IDaAs) => v.id === item.id)
+                  selectedData[currentKey].some(
+                    (v: DaAsParams) => v.id === item.id
+                  )
                 }
                 onChange={() => handleUpdateCheckbox(item)}
               />

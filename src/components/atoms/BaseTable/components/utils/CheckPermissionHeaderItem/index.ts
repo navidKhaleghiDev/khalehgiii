@@ -1,12 +1,12 @@
 import { PermissionsCodeName } from '@src/types/permissions';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { HeaderTableProps } from '@ui/atoms/BaseTable/types';
 
 export function checkPermissionHeaderItem(
   userPermissions: PermissionsCodeName[],
-  headerItems: IHeaderTable[]
-): IHeaderTable[] {
+  headerItems: HeaderTableProps[]
+): HeaderTableProps[] {
   // Filter header items based on user permissions
-  const filteredHeaderItems = headerItems.filter((item: IHeaderTable) => {
+  const filteredHeaderItems = headerItems.filter((item: HeaderTableProps) => {
     // Check if the item itself requires a permission
     if (Array.isArray(item.permission)) {
       if (

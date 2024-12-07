@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import {
-  EPermissionWhiteListFiles,
+  PermissionWhiteListFiles,
   PermissionsCodeName,
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
@@ -14,7 +14,7 @@ import { BaseInputNumber } from '@redesignUi/atoms/Inputs/BaseInputNumber';
 import { ChipButtonUserAccessModal } from '@src/pages/UserManagement/UserListPage/DaAsList/components/ChipButtonUserAccessModal';
 
 type PropsType = {
-  name: keyof IDaAs;
+  name: keyof DaAsParams;
   valueList: { [key: string]: number };
   label: string;
   userPermissions: PermissionsCodeName[];
@@ -39,7 +39,7 @@ export function DlpList({
 
   const hasDeletePermission = checkPermission(
     userPermissions,
-    EPermissionWhiteListFiles.DELETE
+    PermissionWhiteListFiles.DELETE
   );
 
   const handleKeyFirstPress = (

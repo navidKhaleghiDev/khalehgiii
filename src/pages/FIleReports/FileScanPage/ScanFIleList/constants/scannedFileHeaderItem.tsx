@@ -4,8 +4,8 @@ import {
 } from '@redesignUi/molecules/BaseTable/types';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { VirusTag } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList/VirusTag';
-import { IScannedFile } from '@src/services/analyze/types';
-import { EPermissionScanReports } from '@src/types/permissions';
+import { ScannedFile } from '@src/services/analyze/types';
+import { PermissionScanReports } from '@src/types/permissions';
 
 import { ErrorIcon } from '../../Components/ErrorIcon';
 
@@ -29,7 +29,7 @@ export const getScanFileHeader = (permission: boolean): HeaderTable[] => [
     label: 'table.resultScanerStatusYara',
     id: 'yara_scanner_result',
     type: 'component',
-    component: ({ row }: BaseTableComponentCellProps<IScannedFile>) => (
+    component: ({ row }: BaseTableComponentCellProps<ScannedFile>) => (
       <VirusTag virusResult={row.yara_scan_result} />
     ),
     class: 'px-3 w-2/12',
@@ -39,7 +39,7 @@ export const getScanFileHeader = (permission: boolean): HeaderTable[] => [
     label: 'table.resultScanerStatusSandbox',
     id: 'antiviruses_scanner_result',
     type: 'component',
-    component: ({ row }: BaseTableComponentCellProps<IScannedFile>) => (
+    component: ({ row }: BaseTableComponentCellProps<ScannedFile>) => (
       <VirusTag virusResult={row.antiviruses_scan_result} />
     ),
     class: 'px-3 w-2/12',
@@ -49,7 +49,7 @@ export const getScanFileHeader = (permission: boolean): HeaderTable[] => [
     label: 'table.resultScanerStatusClamav',
     id: 'clamav_scan_result',
     type: 'component',
-    component: ({ row }: BaseTableComponentCellProps<IScannedFile>) => (
+    component: ({ row }: BaseTableComponentCellProps<ScannedFile>) => (
       <VirusTag virusResult={row.clamav_scan_result} />
     ),
     class: 'px-3 w-2/12',
@@ -59,7 +59,7 @@ export const getScanFileHeader = (permission: boolean): HeaderTable[] => [
     label: 'table.virusWarning',
     id: 'scan_result_all',
     type: 'component',
-    component: (props: BaseTableComponentCellProps<IScannedFile>) => (
+    component: (props: BaseTableComponentCellProps<ScannedFile>) => (
       <ErrorIcon data={props} />
     ),
     class: 'w-1/12 mr-auto',
@@ -77,6 +77,6 @@ export const getScanFileHeader = (permission: boolean): HeaderTable[] => [
       },
     ],
     class: `w-1/12 mr-auto ${!permission ? 'hidden' : ''} `,
-    permission: EPermissionScanReports.VIEW,
+    permission: PermissionScanReports.VIEW,
   },
 ];

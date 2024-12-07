@@ -10,7 +10,7 @@ export type BaseUploadInputProps = {
   disabled?: boolean;
 };
 
-export type TFile = {
+export type FileProps = {
   lastModified: string;
   lastModifiedDate: string;
   name: string;

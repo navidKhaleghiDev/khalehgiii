@@ -1,12 +1,12 @@
-import { IPagination } from '@src/types/services';
-import { IScannedFile } from './types';
+import { Pagination } from '@src/types/services';
+import { ScannedFile } from './types';
 
 const E_ANALYZE_SCANS = 'analyze/scan/';
 
 export const E_ANALYZE_SCAN = (userEmail: string) =>
   `${E_ANALYZE_SCANS}?username=${userEmail}`;
 
-export const E_ANALYZE_SCAN_STATUS_UPDATE = (body: IScannedFile) =>
+export const E_ANALYZE_SCAN_STATUS_UPDATE = (body: ScannedFile) =>
   `${E_ANALYZE_SCANS}${body.id}/`;
 
 export const E_ANALYZE_MIME_TYPE = 'analyze/mime_types/';
@@ -40,11 +40,7 @@ export const E_ANALYZE_REPORTS = (start_date: string, end_date: string) =>
 
 export const E_UBA = `analyze/mal_uba/`;
 
-export const E_UBA_LIST_PAGINATION = ({
-  pageSize,
-  page,
-  filter,
-}: IPagination) =>
+export const E_UBA_LIST_PAGINATION = ({ pageSize, page, filter }: Pagination) =>
   `${E_UBA}${filter ? `?${filter}&` : '?'}page_size=${pageSize}&page=${page}`;
 
 export const E_ANALYZE_SCANNER = 'analyze/scanners_config/';

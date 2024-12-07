@@ -1,12 +1,12 @@
-export interface IServerResponse<T> {
+export interface ServerResponse<T> {
   data: T;
 }
 
-export interface ISwrResponse<T> {
+export interface SwrResponse<T> {
   data: T;
 }
 
-export interface IServerResponsePagination<T> {
+export interface ServerResponsePagination<T> {
   data: {
     count: number;
     next: string;
@@ -14,7 +14,7 @@ export interface IServerResponsePagination<T> {
     results: T;
   };
 }
-export interface ISessionResponsePagination<T> {
+export interface SessionResponsePagination<T> {
   data: {
     count?: number;
     next?: string;
@@ -24,7 +24,7 @@ export interface ISessionResponsePagination<T> {
   };
 }
 
-export interface IResponsePagination<T> {
+export interface ResponsePagination<T> {
   data: {
     online_users: number;
     online_recording_sessions: number;
@@ -35,7 +35,7 @@ export interface IResponsePagination<T> {
   };
 }
 
-export interface IServerResponseList<T> {
+export interface ServerResponseList<T> {
   data: {
     count: number;
     next: string;
@@ -44,14 +44,14 @@ export interface IServerResponseList<T> {
   };
 }
 
-export interface IPagination {
+export interface Pagination {
   pageSize: number;
   page: number;
   filter?: string;
 }
 
-export type IAxiosResponse<T> = T;
+export type AxiosResponseData<T> = T;
 
-export interface IResponseData<T> {
+export interface ResponseData<T> {
   data: T;
 }

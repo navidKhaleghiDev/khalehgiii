@@ -3,14 +3,14 @@ import { BaseButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 import { Control, useFormContext } from 'react-hook-form';
 import { AddCardList } from '@src/pages/NotUsed/GroupManagement/GroupModal/components/AddCardList';
-import { IDaAs, TGroup } from '@src/services/users/types';
-import { IResponsePagination } from '@src/types/services';
+import { DaAsParams, GroupParams } from '@src/services/users/types';
+import { ResponsePagination } from '@src/types/services';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { TUserList } from '@src/pages/NotUsed/GroupManagement/type';
+import { UsersListParams } from '@src/pages/NotUsed/GroupManagement/type';
 
 /**
  * Filters out duplicate objects from the provided lists based on the `id` property.
@@ -35,7 +35,7 @@ type AddNewMemberProps = {
   isUpdatingGroupMember: boolean;
   onCancel: () => void;
   onClickMainButton: () => void;
-  group?: TGroup;
+  group?: GroupParams;
   isAdmins?: boolean;
   activeTab?: number;
   currentPage: number;
@@ -56,7 +56,7 @@ type AddNewMemberProps = {
  * @param {boolean} props.isUpdatingGroupMember - Flag indicating if group members are being updated.
  * @param {() => void} props.onCancel - Function to handle cancellation of the member addition process.
  * @param {() => void} props.onClickMainButton - Function to handle the main button click event.
- * @param {TGroup} [props.group] - The group data, if editing an existing group.
+ * @param {GroupParams} [props.group] - The group data, if editing an existing group.
  * @param {boolean} [props.isAdmins] - Flag indicating if the members being added are admins.
  * @param {number} [props.activeTab] - The currently active tab in the UI (0 for users, 1 for admins).
  * @param {number} props.currentPage - The current page number for pagination.
@@ -100,7 +100,7 @@ export function AddNewMember({
   const { t } = useTranslation();
   const { watch, setValue } = useFormContext();
 
-  const [loadedData, setLoadedData] = useState<IDaAs[]>([]);
+  const [loadedData, setLoadedData] = useState<DaAsParams[]>([]);
   const [isFetching, setIsFetching] = useState(false);
 
   const endpoint = createAPIEndpoint({
@@ -110,7 +110,7 @@ export function AddNewMember({
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading } = useSWR<ResponsePagination<DaAsParams>>(
     endpoint,
     http.fetcherSWR
   );
@@ -120,10 +120,10 @@ export function AddNewMember({
   /**
    * Handles the change in checkbox selection for each member.
    *
-   * @param {IDaAs} item - The member item that was checked or unchecked.
+   * @param {DaAsParams} item - The member item that was checked or unchecked.
    * @param {boolean} isChecked - Indicates if the checkbox is checked or not.
    */
-  const handleCheckboxChange = (item: IDaAs, isChecked: boolean) => {
+  const handleCheckboxChange = (item: DaAsParams, isChecked: boolean) => {
     const currentItems = watch(name) || [];
     if (isChecked) {
       setValue(name, [...currentItems, item]);
@@ -163,7 +163,7 @@ export function AddNewMember({
       : loadedData;
   const filteredList =
     group && isUpdatingGroupMember
-      ? removeDuplicateObjectsWithId<IDaAs, TUserList>(
+      ? removeDuplicateObjectsWithId<DaAsParams, UsersListParams>(
           loadedData,
           isAdmins ? group?.admins ?? [] : group?.users ?? []
         )
@@ -198,7 +198,7 @@ export function AddNewMember({
         <LoadingSpinner />
       ) : (
         <div className="w-full space-y-4 h-72 overflow-auto">
-          {filteredList.map((item: IDaAs, index) => (
+          {filteredList.map((item: DaAsParams, index) => (
             <div
               ref={index === filteredList.length - 1 ? lastItemRef : undefined}
               key={item.id}

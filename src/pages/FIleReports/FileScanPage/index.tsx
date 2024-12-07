@@ -5,11 +5,11 @@ import { Typography } from '@redesignUi/atoms/Typography';
 import usersThreeIcon from '@iconify-icons/ph/users-three';
 import WifiHighDuotone from '@iconify-icons/ph/wifi-high-duotone';
 import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
-import { IResponsePagination, ISwrResponse } from '@src/types/services';
+import { ResponsePagination, SwrResponse } from '@src/types/services';
 import { http, HTTP_ANALYSES } from '@src/services/http';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
-import { IScanStats } from '@src/services/analyze/types';
-import { IDaAs } from '@src/services/users/types';
+import { ScanStats } from '@src/services/analyze/types';
+import { DaAsParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 
 import { UsersDaAsList } from './UsersDaAsList';
@@ -22,7 +22,7 @@ export function ReportFileScanPage() {
     data: analyzeScan,
     isLoading: isLoadingAnalyzeScan,
     error: analyzeScanError,
-  } = useSWR<ISwrResponse<IScanStats>>(
+  } = useSWR<SwrResponse<ScanStats>>(
     E_ANALYZE_SCAN_STATS,
     HTTP_ANALYSES.fetcherSWR,
     {
@@ -39,10 +39,14 @@ export function ReportFileScanPage() {
     data: usersDaas,
     isLoading: isLoadingDaAsList,
     error: userDaasError,
-  } = useSWR<IResponsePagination<IDaAs>>(`${E_USERS_DAAS}`, http.fetcherSWR, {
-    // shouldRetryOnError : Cancel the new Request after getting error(issue service call)
-    shouldRetryOnError: false,
-  });
+  } = useSWR<ResponsePagination<DaAsParams>>(
+    `${E_USERS_DAAS}`,
+    http.fetcherSWR,
+    {
+      // shouldRetryOnError : Cancel the new Request after getting error(issue service call)
+      shouldRetryOnError: false,
+    }
+  );
   const daasCount = !userDaasError ? usersDaas?.data?.online_users : undefined;
 
   return (

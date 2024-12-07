@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
 
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
-import { IMimeType } from '@src/services/analyze/types';
+import { MimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
@@ -27,7 +27,7 @@ const PAGE = 1;
 export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
+  const [activeAdmin, setActiveAdmin] = useState<Partial<MimeType>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const { width } = useWindowDimensions();
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
@@ -52,7 +52,7 @@ export function ExtensionList() {
     currentPage,
     filterQuery,
   });
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
+  const { data, isLoading, mutate } = useSWR<ResponsePagination<MimeType>>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
   );
@@ -92,11 +92,11 @@ export function ExtensionList() {
     setOpenUpdateModal(false);
   };
 
-  const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
+  const handleOnClickActions: OnClickActionsType<MimeType> | undefined = (
     action,
     fileType
   ) => {
-    setActiveAdmin(fileType as IMimeType);
+    setActiveAdmin(fileType as MimeType);
     if (action === 'delete') {
       setDeleteModal(true);
       return;

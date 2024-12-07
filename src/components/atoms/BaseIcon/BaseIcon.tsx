@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 
 import { baseIconStyles } from './styles';
-import { IBaseIcon } from './types';
+import { BaseIconProps } from './types';
 
 export function BaseIcon({
   color,
@@ -9,7 +9,7 @@ export function BaseIcon({
   hoverColor,
   className,
   icon = 'fa:home',
-}: IBaseIcon) {
+}: BaseIconProps) {
   return (
     <Icon
       className={baseIconStyles({ size, color, hoverColor, className })}

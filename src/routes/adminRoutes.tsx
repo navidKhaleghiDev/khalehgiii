@@ -4,13 +4,13 @@ import { LoginOnlineAssistance } from '@src/pages/LoginOnlineAssistance';
 import { AssistanceDashboard } from '@src/pages/LoginOnlineAssistance/AssistanceDashboard';
 import { Reports } from '@src/pages/Reports';
 import {
-  EPermissionDaas,
-  EPermissionExtensions,
-  EPermissionFileScan,
-  EPermissionInternetLogs,
-  EPermissionScanReports,
-  EPermissionUba,
-  EPermissionUsers,
+  PermissionDaas,
+  PermissionExtensions,
+  PermissionFileScan,
+  PermissionInternetLogs,
+  PermissionScanReports,
+  PermissionUba,
+  PermissionUsers,
 } from '@src/types/permissions';
 import { UbaPage } from '@src/pages/FIleReports/UbaPage';
 import { DashboardPage } from '@src/pages/Dashboard';
@@ -63,7 +63,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.internetLog,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionInternetLogs.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionInternetLogs.VIEW}>
             <InternetLog />
           </ProtectedRoute>
         ),
@@ -71,7 +71,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.dashboardDesktopList,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionDaas.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionDaas.VIEW}>
             <DashboardDesktopListPage />
           </ProtectedRoute>
         ),
@@ -79,7 +79,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.dashboardAdminsList,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionUsers.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionUsers.VIEW}>
             <DashboardAdminsListPage />
           </ProtectedRoute>
         ),
@@ -87,7 +87,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.reportsScanFile,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionFileScan.VIEW}>
             <ReportFileScanPage />
           </ProtectedRoute>
         ),
@@ -95,7 +95,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.monitoring,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionFileScan.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionFileScan.VIEW}>
             <MonitoringPage />
           </ProtectedRoute>
         ),
@@ -103,7 +103,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.extensionList,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionExtensions.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionExtensions.VIEW}>
             <DashboardExtensionListPage />
           </ProtectedRoute>
         ),
@@ -111,7 +111,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.uba,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionUba.VIEW}>
             <UbaPage />
           </ProtectedRoute>
         ),
@@ -119,7 +119,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.licence,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionUba.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionUba.VIEW}>
             <License />
           </ProtectedRoute>
         ),
@@ -127,7 +127,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.chart,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <Reports />
           </ProtectedRoute>
         ),
@@ -135,7 +135,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.dashboardGroupManagement,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <GroupManagement />
           </ProtectedRoute>
         ),
@@ -143,7 +143,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.dashboardGroupManagementEdit,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <GroupManagementEdit />
           </ProtectedRoute>
         ),
@@ -151,7 +151,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.setting,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <div>Setting Page</div>
           </ProtectedRoute>
         ),
@@ -159,7 +159,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.application,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <Application />
           </ProtectedRoute>
         ),
@@ -167,7 +167,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.daas,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <DaasSetting />
           </ProtectedRoute>
         ),
@@ -175,7 +175,7 @@ export const adminRoutes = [
       {
         path: ROUTES_PATH.dlp,
         element: (
-          <ProtectedRoute requiredPermission={EPermissionScanReports.VIEW}>
+          <ProtectedRoute requiredPermission={PermissionScanReports.VIEW}>
             <DlpSetting />
           </ProtectedRoute>
         ),

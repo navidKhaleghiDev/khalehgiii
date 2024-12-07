@@ -5,7 +5,7 @@ import { Typography } from '@ui/atoms';
 import phoneIcon from '@iconify-icons/ph/phone';
 import magnifyingGlassIcon from '@iconify-icons/ph/magnifying-glass';
 
-import { IHomeRoutes, homeRoutes } from './routes';
+import { HomeRouteItem, homeRoutes } from './routes';
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export function NavbarHome() {
@@ -42,7 +42,7 @@ export function NavbarHome() {
           {/* navbar */}
           <div className="hidden w-full md:block md:w-auto">
             <ul className="flex items-around">
-              {homeRoutes.map((route: IHomeRoutes) => {
+              {homeRoutes.map((route: HomeRouteItem) => {
                 return (
                   <li
                     key={route.id}

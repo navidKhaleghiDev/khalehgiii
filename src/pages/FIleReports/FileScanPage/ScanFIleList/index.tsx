@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { HTTP_ANALYSES } from '@src/services/http';
-import { IScannedFile } from '@src/services/analyze/types';
+import { ScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { API_ANALYZE_DOWNLOAD_FILE } from '@src/services/analyze';
@@ -35,22 +35,21 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
   const { t } = useTranslation();
 
   // Daas user scan reports
-  const { isLoading, error, resultData, count } =
-    useGetPagination<IScannedFile>(
-      E_ANALYZE_SCAN_PAGINATION(userEmail, {
-        page: currentPage,
-        pageSize: PAGE_SIZE,
-        dateRange,
-      }),
-      HTTP_ANALYSES.fetcherSWR
-    );
+  const { isLoading, error, resultData, count } = useGetPagination<ScannedFile>(
+    E_ANALYZE_SCAN_PAGINATION(userEmail, {
+      page: currentPage,
+      pageSize: PAGE_SIZE,
+      dateRange,
+    }),
+    HTTP_ANALYSES.fetcherSWR
+  );
 
   // Daas user download file permission per user
   const evidencePermissions =
     resultData[resultData.length - 1]?.evidence_permission;
 
   const downloadFile = async (
-    fileData: IScannedFile | StringifyProperties<IScannedFile>
+    fileData: ScannedFile | StringifyProperties<ScannedFile>
   ) => {
     setIsLoadingDownload(true);
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
@@ -74,7 +73,7 @@ export function ScannedFileList({ userEmail }: { userEmail: string }) {
       .finally(() => setIsLoadingDownload(false));
   };
 
-  const handelClickRow: OnClickActionsType<IScannedFile> = (action, item) => {
+  const handelClickRow: OnClickActionsType<ScannedFile> = (action, item) => {
     if (action === 'download' && item) {
       downloadFile(item);
     }

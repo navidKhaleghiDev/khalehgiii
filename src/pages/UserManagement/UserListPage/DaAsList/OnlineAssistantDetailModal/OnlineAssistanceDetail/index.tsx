@@ -1,10 +1,10 @@
 import UsersThree from '@iconify-icons/ph/users-three';
 
 import { Avatar, Typography } from '@redesignUi/atoms';
-import { TNumberObjectArray } from '@src/types/global';
+import { NumberObjectArray } from '@src/types/global';
 
-type TOnlineAssistanceDetailProps = {
-  data: TNumberObjectArray;
+type OnlineAssistanceDetailProps = {
+  data: NumberObjectArray;
   title: string;
   description: string;
 };
@@ -13,7 +13,7 @@ export default function OnlineAssistanceDetail({
   data,
   title,
   description,
-}: TOnlineAssistanceDetailProps) {
+}: OnlineAssistanceDetailProps) {
   return (
     <div className="flex flex-col p-[13px]">
       <div className="self-start">

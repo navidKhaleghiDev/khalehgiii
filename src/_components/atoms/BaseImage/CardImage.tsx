@@ -1,10 +1,10 @@
 import PhImage from '@iconify-icons/ph/image';
 import { BaseIcon, Card } from '@redesignUi/atoms';
 
-import { IBaseImage } from './types';
+import { BaseImageProps } from './types';
 import { ResponsiveImage } from './ResponsiveImage';
 
-export function CardImage({ src, alt, className }: Partial<IBaseImage>) {
+export function CardImage({ src, alt, className }: Partial<BaseImageProps>) {
   return (
     <Card
       color="neutral"
