@@ -186,12 +186,14 @@
   "knowledgeManagement": {
     "recoardeActivite": "فعالیت‌های ضبط شده",
     "recordedUserActivate": "فعالیت‌های ضبط شده کاربر",
-    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند."
+    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند.",
+    "appropriateType": "فایل با فرمت و اندازه مناسب(1GB) وارد کنید."
   },
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
     "onlineAdmin": "ادمین آنلاین",
+    "correctFile": "فایل صحیح را انتخاب کنید",
     "unlimited": "نامحدود",
     "alphabet": "حروف الفبا",
     "creationDate": "تاریخ ایجاد",

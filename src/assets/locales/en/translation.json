@@ -185,11 +185,13 @@
   "knowledgeManagement": {
     "recoardeActivite": "Recorded activities",
     "recordedUserActivate": "Recorded user activities",
-    "videoSrcError": "Your browser does not support the video tag."
+    "videoSrcError": "Your browser does not support the video tag.",
+    "appropriateType": "Enter the file with the appropriate size (1GB) and type."
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "alphabet": "Alphabet",
+    "correctFile": "Chose correct file.",
     "unlimited": "Unlimited",
     "onlineAdmin": "Online admin",
     "creationDate": "Creation date",
