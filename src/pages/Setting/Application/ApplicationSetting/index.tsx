@@ -11,6 +11,8 @@ import {
 import { PermissionKeycloak } from '@src/types/permissions';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
+import { useLanguage } from '@context/settings/languageContext';
 import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
@@ -23,19 +25,13 @@ import {
 
 import { ApplicationSettingProp } from '../../type';
 
-interface ApplicationSettingProps {
-  userExist?: boolean;
-  dir?: 'rtl' | 'ltr';
-}
-export function ApplicationSetting({
-  userExist,
-  dir,
-}: ApplicationSettingProps) {
-  const { t } = useTranslation();
+export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const [loadingButton, setLoadingButton] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const { dir } = useLanguage();
+  const { t } = useTranslation();
   const inputStyles = 'col-span-6 lg:col-span-4';
+  const direction = dir === 'rtl' ? 'rtl' : 'ltr';
 
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
@@ -107,7 +103,7 @@ export function ApplicationSetting({
     <LoadingSpinner />
   ) : (
     <div>
-      <div className=" mb-[2.87rem]">
+      <div className="mb-[2.87rem]">
         <Typography
           color="black"
           variant="body2B"
@@ -123,7 +119,16 @@ export function ApplicationSetting({
         {SettingsKeycloakP ? (
           <>
             <TitleSection label={t('setting.sso')} />
-
+            <div className="flex items-center gap-x-5 col-span-4 my-[1.87rem]">
+              <Typography color="neutralMiddle" variant="body5">
+                SSO TL
+              </Typography>
+              <BaseSwitchController
+                id="keycloak_ssl"
+                name="keycloak_ssl"
+                control={control}
+              />
+            </div>
             <div className="grid w-full grid-cols-12 gap-x-[1.87rem] gap-y-5">
               <div className={inputStyles}>
                 <BaseInputController
@@ -136,7 +141,7 @@ export function ApplicationSetting({
                   label={t('setting.ssoBaseURL')}
                   placeholder="http://localhost"
                   fullWidth
-                  dir={dir}
+                  dir={direction}
                 />
               </div>
               <div className={inputStyles}>
@@ -150,7 +155,7 @@ export function ApplicationSetting({
                   label={t('setting.ssoClientID')}
                   placeholder={t('setting.clientIDP')}
                   fullWidth
-                  dir={dir}
+                  dir={direction}
                 />
               </div>
 
@@ -165,7 +170,7 @@ export function ApplicationSetting({
                   label={t('setting.ssoSecret')}
                   placeholder={t('setting.secretP')}
                   fullWidth
-                  dir={dir}
+                  dir={direction}
                 />
               </div>
 
@@ -181,7 +186,7 @@ export function ApplicationSetting({
                   label={t('setting.ssoPort')}
                   placeholder="8080"
                   fullWidth
-                  dir={dir}
+                  dir={direction}
                 />
               </div>
               <div className={inputStyles}>
@@ -195,7 +200,7 @@ export function ApplicationSetting({
                   label="SSO realm"
                   placeholder={t('setting.realmP')}
                   fullWidth
-                  dir={dir}
+                  dir={direction}
                 />
               </div>
             </div>
@@ -217,7 +222,7 @@ export function ApplicationSetting({
               label={t('setting.logServerIP')}
               placeholder="192.168.1.1"
               fullWidth
-              dir={dir}
+              dir={direction}
             />
           </div>
           <div className={inputStyles}>
@@ -232,7 +237,7 @@ export function ApplicationSetting({
               label={t('setting.logServerPort')}
               placeholder="8000"
               fullWidth
-              dir={dir}
+              dir={direction}
             />
           </div>
         </div>
@@ -251,11 +256,11 @@ export function ApplicationSetting({
               label={t('setting.daasProvider')}
               placeholder="sep.npd-co.com"
               fullWidth
-              dir={dir}
+              dir={direction}
             />
           </div>
         </div>
-        <div className="flex self-end mt-8 lg:mt-[10.5rem] w-40 sm:w-[11.875rem]">
+        <div className="flex self-end mt-8 lg:mt-[4.9rem] w-40 sm:w-[11.875rem]">
           <BaseButton
             label={t('dashboard.saveChanges')}
             disabled={!formState.isDirty}

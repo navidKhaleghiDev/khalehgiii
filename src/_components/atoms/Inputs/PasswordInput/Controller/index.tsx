@@ -1,4 +1,5 @@
 import { Controller, FieldValues } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { PasswordInput } from '..';
 import { PasswordInputControllerProps } from '../types';
@@ -45,6 +46,7 @@ export function PasswordInputController<T extends FieldValues>(
     intent,
     id,
     control,
+    rules,
     helpText,
     iconDir,
     min,
@@ -52,13 +54,22 @@ export function PasswordInputController<T extends FieldValues>(
     dir,
   } = props;
 
+  const { t } = useTranslation();
+
   return (
     <Controller
       name={name}
       control={control}
       rules={{
-        required: regexPattern.required,
-        // pattern: regexPattern.password,
+        ...rules,
+        required: {
+          value: regexPattern.required.value,
+          message: t(regexPattern.required.message),
+        },
+        pattern: {
+          value: rules?.pattern?.value,
+          message: rules?.pattern?.message,
+        },
         minLength: min,
         maxLength: max,
       }}

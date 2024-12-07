@@ -58,6 +58,7 @@
     "resultScanerStatusYara": " Yara",
     "moreDetail": "More Details",
     "removeSelected": "Remove Selected",
+    "VirusFileReport": "Report Virus File",
     "daily": "Daily",
     "weekly": "Weekly",
     "monthly": "Monthly",
@@ -184,11 +185,13 @@
   "knowledgeManagement": {
     "recoardeActivite": "Recorded activities",
     "recordedUserActivate": "Recorded user activities",
-    "videoSrcError": "Your browser does not support the video tag."
+    "videoSrcError": "Your browser does not support the video tag.",
+    "appropriateType": "Enter the file with the appropriate size (1GB) and type."
   },
   "global": {
     "knowledgeManagement": "Knowledge Management",
     "alphabet": "Alphabet",
+    "correctFile": "Chose correct file.",
     "unlimited": "Unlimited",
     "onlineAdmin": "Online admin",
     "creationDate": "Creation date",
@@ -488,7 +491,8 @@
     "memory": "Memory(GB)",
     "saveFile": "Save File",
     "ide": "IDE",
-    "remina": "Remote Access"
+    "remina": "Remote Access",
+    "zero": "Please enter a value greater than zero."
   },
 
   "regexPattern": {

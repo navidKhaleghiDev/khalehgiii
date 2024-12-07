@@ -21,25 +21,26 @@ import {
 } from '@src/helper/hooks/usePermission';
 import { PermissionDaas } from '@src/types/permissions';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { useLanguage } from '@context/settings/languageContext';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
   fileType?: Partial<FileTypeProp>;
   setOpenUpdateModal: Dispatch<SetStateAction<boolean>>;
-  dir?: 'rtl' | 'ltr';
 };
 
 export function UpdateFileTypeModal({
   handleClose,
   fileType,
   setOpenUpdateModal,
-  dir,
 }: PropsType) {
   const { t } = useTranslation();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const userPermissions = useUserPermission();
 
+  const { dir } = useLanguage();
+  const direction = dir === 'rtl' ? 'rtl' : 'ltr';
   const inputStyle = 'col-span-6 lg:col-span-4 h-16';
   const hasChangePermission = checkPermission(
     userPermissions,
@@ -54,8 +55,8 @@ export function UpdateFileTypeModal({
       allowed_for_download: fileType?.allowed_for_download ?? false,
       allowed_for_upload: fileType?.allowed_for_upload ?? false,
       is_active: fileType?.is_active ?? false,
-      upload_file_size_mb: fileType?.upload_file_size_mb,
-      download_file_size_mb: fileType?.download_file_size_mb,
+      upload_file_size_mb: fileType?.upload_file_size_mb || 0,
+      download_file_size_mb: fileType?.download_file_size_mb || 0,
     },
   });
 
@@ -107,7 +108,7 @@ export function UpdateFileTypeModal({
           placeholder=".txt"
           label={t('table.fileType')}
           endIcon={PhFile}
-          dir={dir}
+          dir={direction}
           size="md"
           rules={{
             pattern: regexPattern.DotSeparatedLetters,
@@ -140,12 +141,20 @@ export function UpdateFileTypeModal({
                 control={control}
                 label={t('table.maxUploadSize')}
                 disabled={!hasChangePermission || !uploadAccess}
-                placeholder="50"
+                placeholder={t('table.upload')}
                 icon={PhUploadSimple}
-                dir={dir}
-                max={50}
+                dir={direction}
                 rules={{
-                  required: regexPattern.required,
+                  required: uploadAccess ? regexPattern.required : '',
+                  min: uploadAccess
+                    ? { value: 1, message: t('setting.zero') }
+                    : '',
+                  max: {
+                    value: 50,
+                    message: t(
+                      'userList.enterTheAllowedVolumeForThisFormatInTheOppositeField'
+                    ),
+                  },
                 }}
               />
             </div>
@@ -165,12 +174,20 @@ export function UpdateFileTypeModal({
                 control={control}
                 label={t('table.maxDownloadSize')}
                 disabled={!hasChangePermission || !downloadAccess}
-                placeholder="50"
+                placeholder={t('table.download')}
                 icon={PhUploadSimple}
-                dir={dir}
-                max={500}
+                dir={direction}
                 rules={{
-                  required: regexPattern.required,
+                  required: downloadAccess ? regexPattern.required : '',
+                  min: downloadAccess
+                    ? { value: 1, message: t('setting.zero') }
+                    : '',
+                  max: {
+                    value: 500,
+                    message: t(
+                      'userList.enterTheAllowedVolumeForThisFormatInTheOppositeField'
+                    ),
+                  },
                 }}
               />
             </div>

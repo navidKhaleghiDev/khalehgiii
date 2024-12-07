@@ -14,6 +14,7 @@
   "table": {
     "virusWarning": " ",
     "downloadRecord": "",
+    "VirusFileReport": "گزارش فایل آلوده",
     "admin": "ادمین",
     "user": "کاربر",
     "name": "نام",
@@ -185,12 +186,14 @@
   "knowledgeManagement": {
     "recoardeActivite": "فعالیت‌های ضبط شده",
     "recordedUserActivate": "فعالیت‌های ضبط شده کاربر",
-    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند."
+    "videoSrcError": "مرورگر شمااز ویدیو پشتیبانی نمی کند.",
+    "appropriateType": "فایل با فرمت و اندازه مناسب(1GB) وارد کنید."
   },
   "global": {
     "userName": "نام کاربری",
     "knowledgeManagement": "مدیریت دانش",
     "onlineAdmin": "ادمین آنلاین",
+    "correctFile": "فایل صحیح را انتخاب کنید",
     "unlimited": "نامحدود",
     "alphabet": "حروف الفبا",
     "creationDate": "تاریخ ایجاد",
@@ -491,7 +494,8 @@
     "memory": "حافظه (GB)",
     "saveFile": "ذخیره فایل",
     "ide": "IDE",
-    "remina": "Remote Access"
+    "remina": "Remote Access",
+    "zero": "لطفا مقداری بیشتر از صفر وارد کنید"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

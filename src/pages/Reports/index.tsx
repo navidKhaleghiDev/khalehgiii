@@ -7,7 +7,6 @@ import { API_GET_REPORTS } from '@src/services/config';
 
 import {
   FormDateData,
-  DataType,
   FormDateTimeFrame,
   Records,
   ReducerStateType,
@@ -67,7 +66,7 @@ export function Reports() {
   const { t } = useTranslation();
   const [recordsData, setRecordsData] = useState<Records | []>();
 
-  const [flag, setFlag] = useState<DataType>('daily');
+  const [flag, setFlag] = useState<string>('daily');
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleOnSubmit = async (data: FormDateData) => {
@@ -132,7 +131,6 @@ export function Reports() {
       />
 
       <ReportChartContent
-        recordsData={recordsData}
         chartData={chartData}
         isLoading={state.loading}
         error={state.error}

@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { Typography, BaseButton } from '@redesignUi/atoms';
-import { regexPattern } from '@ui/atoms/Inputs';
 import { API_ANALYZE_MIME_TYPE_CREATE } from '@src/services/analyze';
 import { FileInputController } from '@redesignUi/atoms/Inputs/FileInput/Controller';
 
@@ -12,39 +11,46 @@ type PropsType = {
   handleClose: () => void;
 };
 
-interface FieldValuesParams extends FieldValues {
+interface MimeType {
   file: File[];
 }
 
-export function UploadFileModal({ handleClose }: PropsType) {
-  const { t } = useTranslation();
+const limitFileSize = 1073741824;
 
+export function UploadFileModal({ handleClose }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
-  const { control, handleSubmit } = useForm<FieldValuesParams>({
+  const { t } = useTranslation();
+  const { control, handleSubmit, watch } = useForm<MimeType>({
     mode: 'onChange',
   });
 
-  const handleOnSubmit = async (data: FieldValuesParams) => {
-    setLoadingButtonModal(true);
-    const body = new FormData();
-    if (data.file.length > 0) {
-      body.append('file', data?.file[0]);
-      await API_ANALYZE_MIME_TYPE_CREATE(body)
-        .then(() => {
-          toast.success(t('global.successfullyAdded'));
-          handleClose();
-        })
-        .catch((err) => {
-          toast.error(err);
-          setShowConfirm(false);
-        })
-        .finally(() => {
-          setLoadingButtonModal(false);
-        });
+  const handleOnSubmit = async (data: MimeType) => {
+    // This logic (Can not add the file without type & limit of the file size)
+    if (data.file[0].type !== '' && data.file[0].size <= limitFileSize) {
+      setLoadingButtonModal(true);
+      const body = new FormData();
+      if (data.file.length > 0) {
+        body.append('file', data?.file[0]);
+        await API_ANALYZE_MIME_TYPE_CREATE(body)
+          .then(() => {
+            toast.success(t('global.successfullyAdded'));
+            handleClose();
+          })
+          .catch((err) => {
+            setShowConfirm(false);
+            toast.error(err);
+            handleClose();
+          })
+          .finally(() => {
+            setLoadingButtonModal(false);
+          });
+      } else {
+        toast.error(t('global.correctFile'));
+      }
     } else {
-      toast.error('choose correct file.');
+      toast.error(t('knowledgeManagement.appropriateType'));
     }
   };
 
@@ -59,15 +65,11 @@ export function UploadFileModal({ handleClose }: PropsType) {
             control={control}
             name="file"
             id="file"
-            rules={{
-              required: regexPattern.required,
-            }}
             className="mb-20"
           />
         </div>
-
         <div className="flex justify-center col-span-6">
-          {showConfirm && (
+          {showConfirm ? (
             <div className="flex justify-center items-center w-full">
               <Typography className="mx-2" color="neutralDark">
                 {t('global.areYouSure')}
@@ -76,28 +78,30 @@ export function UploadFileModal({ handleClose }: PropsType) {
                 label={t('global.yes')}
                 size="sm"
                 submit
+                disabled={!watch('file')?.length}
                 className="mx-2"
                 loading={loadingButtonModal}
               />
               <BaseButton
                 label={t('global.no')}
                 size="sm"
-                type="red"
+                type="neutral"
                 className="mx-2"
                 onClick={() => setShowConfirm(false)}
               />
             </div>
-          )}
+          ) : null}
 
-          {!showConfirm && (
+          {!showConfirm ? (
             <div className="flex gap-2">
               <BaseButton
                 label={t('global.confirm')}
                 size="md"
+                disabled={!watch('file')?.length}
                 onClick={() => setShowConfirm(true)}
               />
             </div>
-          )}
+          ) : null}
         </div>
       </form>
     </div>
