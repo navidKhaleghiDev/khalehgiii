@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import useSWR, { SWRConfiguration } from 'swr';
 import { FetcherResponse, SWRResponse } from 'swr/_internal';
 import useSWRMutation, { SWRMutationConfiguration } from 'swr/mutation';
+
 import { IResponsePagination } from '@src/types/services';
 
 import { http, AxiosRequestConfig } from '.';
@@ -60,7 +61,7 @@ function usePost<T = object, R = AxiosResponse<T>>(
 }
 
 // Handel API request that has pagination
-export function useGetPagination<T>(
+function useGetPagination<T>(
   endPoint: string,
   fetcher: (url: string) => Promise<IResponsePagination<T>>,
   options?: SWRConfiguration
@@ -83,4 +84,4 @@ export function useGetPagination<T>(
   };
 }
 
-export { useGet, usePost };
+export { useGet, usePost, useGetPagination };
