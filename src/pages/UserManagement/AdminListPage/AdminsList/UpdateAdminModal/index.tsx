@@ -33,7 +33,6 @@ export function UpdateAdminModal({
   const [otp, setOtp] = useState<boolean | undefined>(admin?.totp_enable);
 
   const role = admin?.is_meta_admin ? 'true' : 'false';
-  const direction = dir === 'rtl' ? 'rtl' : 'ltr';
   const { data: permissionData, isLoading } = useSWR<
     ResponseData<UserPermissionsProps[]>
   >(E_USERS_PERMISSION, http.fetcherSWR);
@@ -103,7 +102,7 @@ export function UpdateAdminModal({
         <BaseTab label={t('adminList.adminInfo')}>
           <UserInfoTab
             control={control}
-            dir={direction}
+            dir={dir}
             admin={admin}
             isMetaAdmin={isMetaAdmin}
             secret={secret}
