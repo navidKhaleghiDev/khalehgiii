@@ -34,24 +34,41 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
   } = props;
 
   const rtl = dir === 'rtl';
-  const [value, setValue] = useState<number>(defaultValue ?? 0);
+  const [value, setValue] = useState<string | number>(defaultValue ?? 0);
 
   useEffect(() => {
     if (defaultValue !== undefined && defaultValue !== value) {
       setValue(defaultValue);
     }
-  }, [defaultValue, value]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue]);
 
-  const isOutOfRange = value > max || value < min;
+  const isOutOfRange =
+    typeof value === 'number' && (value > max || value < min);
 
   const handleValueChange = (type: 'increment' | 'decrement') => {
+    const currentValue =
+      typeof value === 'number' ? value : parseFloat(value) || 0;
     const newValue =
       type === 'increment'
-        ? Math.min(value + 1, max)
-        : Math.max(value - 1, min);
+        ? Math.min(currentValue + 1, max)
+        : Math.max(currentValue - 1, min);
     setValue(newValue);
-    if (onChange) {
-      onChange(newValue);
+    onChange?.(newValue);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+
+    if (value === 0 && newValue !== '') {
+      setValue(newValue);
+    } else {
+      setValue(newValue === '' ? '' : Number(newValue));
+    }
+
+    // eslint-disable-next-line no-restricted-globals
+    if (newValue !== '' && !isNaN(Number(newValue))) {
+      onChange?.(Number(newValue));
     }
   };
 
@@ -84,11 +101,18 @@ export function BaseInputNumber(props: BaseInputNumberProps): JSX.Element {
             name={name}
             id={id}
             type="number"
-            value={value === 0 ? '' : value} // Use controlled value
-            onChange={(e) => {
-              const newValue = Number(e.target.value);
-              setValue(newValue);
-              onChange?.(newValue);
+            value={value}
+            onChange={handleInputChange}
+            onFocus={() => {
+              if (value === 0) {
+                setValue('');
+              }
+            }}
+            onBlur={() => {
+              if (value === '') {
+                setValue(0);
+                onChange?.(0);
+              }
             }}
             className={baseInputNumberStyles({
               intent: error || isOutOfRange ? 'error' : 'default',

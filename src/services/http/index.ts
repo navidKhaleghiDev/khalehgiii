@@ -192,6 +192,7 @@ export class Http {
             throw handleResponseError(data);
           }
           case StatusCode.Unauthorized: {
+            // 401 - Handle Unauthorized
             const refresh = localStorage.getItem(STORAGE_KEY_REFRESH_TOKEN);
 
             if (!refresh || isRefreshing) {

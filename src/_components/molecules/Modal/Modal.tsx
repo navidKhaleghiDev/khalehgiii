@@ -90,23 +90,32 @@ export function Modal(props: ModalProps): JSX.Element | null {
     descriptionInfo,
     description,
     classContainer,
+    shouldCloseOnOutsideClick = true,
   } = props;
   const ref = useRef(null);
-  useClickOutside({ ref, setValue: setOpen, value: open });
+
+  useClickOutside(
+    shouldCloseOnOutsideClick
+      ? { ref, setValue: setOpen, value: open }
+      : { ref, setValue: () => {}, value: false }
+  );
+
   const handleToggle = () => setOpen(!open);
 
   return open ? (
-    <div className="main-modal fixed w-full h-100 inset-0 z-50 animated fadeIn overflow-hidden flex justify-center items-center backdrop-blur-sm">
+    <div className="fixed w-full inset-0 z-50 overflow-y-auto flex justify-center items-center backdrop-blur-sm">
       <div
         ref={ref}
         className={`rounded-[1.25rem] shadow-lg modal-container bg-white ${
           type === 'content' ? 'dark:bg-gray-700' : 'dark:bg-gray-600'
-        } ${containerStyles({ size })} mx-auto z-50 overflow-y-auto ${
+        } ${containerStyles({
+          size,
+        })} mx-auto z-50 overflow-y-auto no-scrollbar ${
           icon && 'max-w-[39.688rem]'
         } ${classContainer}`}
       >
-        <div className="modal-content text-center min-h-[12rem]">
-          <div className="flex items-center justify-between h-12 box-content p-5 flex-row">
+        <div className="text-center max-h-[85vh] overflow-y-auto no-scrollbar">
+          <div className="flex items-center justify-between box-content p-5 flex-row">
             {type !== 'content'
               ? type !== 'noneIcon' && (
                   <div
