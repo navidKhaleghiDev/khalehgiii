@@ -179,7 +179,7 @@ export function UpdateFileTypeModal({
                 dir={direction}
                 rules={{
                   required: downloadAccess ? regexPattern.required : '',
-                  min: uploadAccess
+                  min: downloadAccess
                     ? { value: 1, message: t('setting.zero') }
                     : '',
                   max: {
