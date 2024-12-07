@@ -30,7 +30,7 @@ export function UpdateAdminModal({
     admin?.user_permissions || []
   );
   const [secret, setSecret] = useState<undefined | string>(undefined);
-  const [otp, setOtp] = useState<boolean>(false);
+  const [otp, setOtp] = useState<boolean | undefined>(admin?.totp_enable);
 
   const role = admin?.is_meta_admin ? 'true' : 'false';
   const direction = dir === 'rtl' ? 'rtl' : 'ltr';
@@ -53,6 +53,7 @@ export function UpdateAdminModal({
 
   const hasPermissionsChanged =
     selectedPermissions.length === admin?.user_permissions?.length;
+  const hasOtpChanged = otp !== admin?.totp_enable;
 
   const permissions = permissionData?.data || [];
   const getSelectedIds = selectedPermissions.map((item) => item.id);
@@ -147,7 +148,9 @@ export function UpdateAdminModal({
               className="sm:w-[11.87rem] w-[5.93rem] whitespace-nowrap p-2"
               loading={loadingButtonModal}
               onClick={() => setShowConfirm(true)}
-              disabled={!formState.isDirty && hasPermissionsChanged}
+              disabled={
+                !formState.isDirty && hasPermissionsChanged && hasOtpChanged
+              }
             />
             <BaseButton
               label={t('global.cancel')}

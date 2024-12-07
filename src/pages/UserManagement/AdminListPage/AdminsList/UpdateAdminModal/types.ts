@@ -14,7 +14,7 @@ export interface UserInfoTabProps {
   dir: 'ltr' | 'rtl';
   admin?: Partial<IUser>;
   setSecret: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setOtp: React.Dispatch<React.SetStateAction<boolean>>;
+  setOtp: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   otp?: boolean;
   secret?: string;
   isMetaAdmin?: string | boolean | undefined;

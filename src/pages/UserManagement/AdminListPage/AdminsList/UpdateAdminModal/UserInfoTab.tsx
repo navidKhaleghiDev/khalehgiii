@@ -170,13 +170,9 @@ export function UserInfoTab({
                   {`${t('global.activateOtp')}`}
                 </Typography>
                 <BaseSwitch
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      handleGenerateQRCode();
-                    } else {
-                      setOtp(false);
-                    }
-                  }}
+                  onChange={(e) =>
+                    e.target.checked ? handleGenerateQRCode() : setOtp(false)
+                  }
                   checked={otp}
                   name="totp_enable"
                   id="totp_enable"
