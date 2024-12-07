@@ -1,6 +1,11 @@
-import { IComponentTable } from '../../types';
+import { ComponentTableProps } from '../../types';
 
-export function ComponentCell({ row, id, header, onClick }: IComponentTable) {
+export function ComponentCell({
+  row,
+  id,
+  header,
+  onClick,
+}: ComponentTableProps) {
   const Component = header?.component;
   if (!Component) {
     return null;

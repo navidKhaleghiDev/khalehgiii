@@ -5,7 +5,7 @@ import { t } from 'i18next';
 import { BaseInputProps } from '../types';
 import { baseSelectStyles } from './styles';
 import { Typography } from '../../Typography';
-import { IOptionSelect, OptionSelect } from './OptionSelect';
+import { OptionParams, OptionSelect } from './OptionSelect';
 import { IconInput } from '../IconInput';
 
 export function BaseSelect(props: BaseInputProps<any>) {
@@ -57,7 +57,7 @@ export function BaseSelect(props: BaseInputProps<any>) {
               {[
                 { id: '1', label: 'گزینه', value: 'tow' },
                 { id: '2', label: 'گزینه', value: 'tow' },
-              ].map((option: IOptionSelect) => (
+              ].map((option: OptionParams) => (
                 <OptionSelect key={option.id} option={option} />
               ))}
             </select>

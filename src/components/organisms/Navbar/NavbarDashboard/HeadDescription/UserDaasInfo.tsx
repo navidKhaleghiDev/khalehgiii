@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { useTranslation } from 'react-i18next';
 import useSWR, { useSWRConfig } from 'swr';
 import { BaseButton, Typography } from '@ui/atoms';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { Modal } from '@ui/molecules/Modal';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { API_USERS_LICENSE_UPDATE } from '@src/services/users';
@@ -24,7 +24,7 @@ export function UserDaasInfo() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const userPermissions = useUserPermission();
 
-  const { data: list, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data: list, isLoading } = useSWR<ResponsePagination<DaAsParams>>(
     `${E_USERS_DAAS}/?is_recording=True `,
     http.fetcherSWR
   );
@@ -67,7 +67,7 @@ export function UserDaasInfo() {
     onPageChange: handlePageChange,
   };
 
-  const handleOnClickActions: OnClickActionsType<IDaAs> | undefined = (
+  const handleOnClickActions: OnClickActionsType<DaAsParams> | undefined = (
     _,
     fileType
   ) => {

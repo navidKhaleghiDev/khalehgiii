@@ -1,12 +1,12 @@
-import { IUser } from '@src/services/users/types';
+import { UserParams } from '@src/services/users/types';
 import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
-export interface IUserContext {
-  user: IUser | null;
-  setUser: Dispatch<SetStateAction<IUser | null>>;
+export interface UserContextParams {
+  user: UserParams | null;
+  setUser: Dispatch<SetStateAction<UserParams | null>>;
 }
 
-export const UserContext = createContext<IUserContext>({
+export const UserContext = createContext<UserContextParams>({
   user: null,
   setUser: () => {},
 });

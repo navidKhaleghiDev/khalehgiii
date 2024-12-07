@@ -3,11 +3,11 @@ import { Typography } from '@ui/atoms';
 import { ProgressBar } from '@ui/molecules/ProgressBar';
 import { useTranslation } from 'react-i18next';
 
-type TDassProps = {
+type DassProps = {
   src: string;
 };
 
-export function Daas({ src }: TDassProps) {
+export function Daas({ src }: DassProps) {
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
 

@@ -1,23 +1,23 @@
 import { PermissionsCodeName } from '@src/types/permissions';
 
-export type TComponentType = 'actionAdd' | 'actionRefresh' | 'typography';
+export type ComponentType = 'actionAdd' | 'actionRefresh' | 'typography';
 
-export interface ITableSearchComponent {
-  type?: TComponentType;
+export interface TableSearchComponentProps {
+  type?: ComponentType;
   label?: string;
   onClick?: () => void;
   className?: string;
   permission?: PermissionsCodeName;
 }
 
-export type TSearchBar = {
+export type SearchBarParams = {
   name: string;
   value: string;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  componentProps?: ITableSearchComponent;
+  componentProps?: TableSearchComponentProps;
 };
 
-export type TComponent = {
+export type ComponentParams = {
   actionAdd: JSX.Element;
   actionRefresh: JSX.Element;
   typography: JSX.Element;

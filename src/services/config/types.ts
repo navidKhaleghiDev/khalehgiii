@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
-import { ETimeLimitDuration } from '../users/types';
+import { TimeLimitDuration } from '../users/types';
 
-export interface IAddConfig {
+export interface AddConfig {
   id?: number | null;
   keycloak_base_url: string;
   keycloak_port: string;
@@ -14,7 +14,7 @@ export interface IAddConfig {
   log_server_port: number;
 }
 
-export interface IDaasConfig {
+export interface DaasConfig {
   id?: string;
   can_upload_file: boolean;
   can_download_file: boolean;
@@ -26,7 +26,7 @@ export interface IDaasConfig {
   has_evidence_gathering?: boolean;
   has_clipboard_access?: boolean;
   has_clipboard_log?: boolean;
-  time_limit_duration: ETimeLimitDuration;
+  time_limit_duration: TimeLimitDuration;
   time_limit_value_in_hour: null | number;
   max_transmission_upload_size: number;
   max_transmission_download_size: number;
@@ -35,7 +35,7 @@ export interface IDaasConfig {
   has_clipboard_log_access?: boolean;
 }
 
-export interface IFileType {
+export interface FileType {
   id: number;
   file_type: string;
   allowed_for_upload: boolean;

@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import { USERS_GROUPS_GET } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import useSWR from 'swr';
-import { IResponseData } from '@src/types/services';
+import { ResponseData } from '@src/types/services';
 import { useParams } from 'react-router-dom';
-import { TGroup } from '../types';
+import { GroupParams } from '../types';
 import { GroupManagementEditRenderComponents } from './GroupManagementEditComponentRenderer';
 
 export function GroupManagementEdit() {
   const { id } = useParams();
 
-  const [updateGroup, setUpdateGroup] = useState<TGroup>({
+  const [updateGroup, setUpdateGroup] = useState<GroupParams>({
     id: '',
     users: [],
     admins: [],
@@ -21,7 +21,7 @@ export function GroupManagementEdit() {
     image: '',
     online_users: 0,
   });
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup>>(
+  const { data, isLoading, mutate } = useSWR<ResponseData<GroupParams>>(
     id ? USERS_GROUPS_GET(id) : null,
     http.fetcherSWR
   );

@@ -1,8 +1,8 @@
-import { EPermissionDaas } from '@src/types/permissions';
+import { PermissionDaas } from '@src/types/permissions';
 import { BaseTableSwitch } from '@ui/atoms/BaseTable/components/BaseTableSwitch';
-import { IHeaderTable } from '@ui/atoms/BaseTable/types';
+import { HeaderTableProps } from '@ui/atoms/BaseTable/types';
 
-export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
+export const licenseTrueStatusHeaderItem: HeaderTableProps[] = [
   {
     label: 'table.nameOfTheUser',
     id: 'email',
@@ -20,7 +20,7 @@ export const licenseTrueStatusHeaderItem: IHeaderTable[] = [
         onClick={props.onClick}
       />
     ),
-    permission: EPermissionDaas.CHANGE,
+    permission: PermissionDaas.CHANGE,
 
     class: 'px-3 w-6/12',
   },

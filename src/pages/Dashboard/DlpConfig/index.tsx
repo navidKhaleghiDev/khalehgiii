@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import useSWR from 'swr';
-import { IResponsePagination } from '@src/types/services';
-import { IFileType } from '@src/services/config/types';
+import { ResponsePagination } from '@src/types/services';
+import { FileType } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
 import { Modal } from '@ui/molecules/Modal';
@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { dlpConfigHeaderItem } from '@src/pages/Dashboard/DlpConfig/constants/dlpConfigHeaderItem';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { SearchBarParams } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 
@@ -25,7 +25,7 @@ const PAGE = 1;
 export function DlpConfigCp() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeFileType, setActiveFileType] = useState<Partial<IFileType>>();
+  const [activeFileType, setActiveFileType] = useState<Partial<FileType>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -39,7 +39,7 @@ export function DlpConfigCp() {
     filterQuery,
   });
   const { data, error, isLoading, mutate } = useSWR<
-    IResponsePagination<IFileType>
+    ResponsePagination<FileType>
   >(endpoint, http.fetcherSWR);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,11 +89,11 @@ export function DlpConfigCp() {
     setOpenUpdateModal(false);
   };
 
-  const handleOnClickActions: OnClickActionsType<IFileType> | undefined = (
+  const handleOnClickActions: OnClickActionsType<FileType> | undefined = (
     action,
     fileType
   ) => {
-    setActiveFileType(fileType as IFileType);
+    setActiveFileType(fileType as FileType);
     if (action === 'delete') {
       setDeleteModal(true);
       return;
@@ -114,7 +114,7 @@ export function DlpConfigCp() {
     onPageChange: handlePageChange,
   };
 
-  const searchBarProps: TSearchBar = {
+  const searchBarProps: SearchBarParams = {
     name: 'search-extension',
     value: filterQuery,
     handleSearchInput: handleFilterChange,

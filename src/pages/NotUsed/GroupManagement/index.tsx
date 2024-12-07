@@ -4,9 +4,9 @@ import { Modal } from '@ui/molecules/Modal';
 import useSWR from 'swr';
 import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
-import { TGroup } from '@src/services/users/types';
-import { IResponseData } from '@src/types/services';
-import { EPermissionGroupManagement } from '@src/types/permissions';
+import { GroupParams } from '@src/services/users/types';
+import { ResponseData } from '@src/types/services';
+import { PermissionGroupManagement } from '@src/types/permissions';
 import {
   checkPermission,
   useUserPermission,
@@ -18,17 +18,17 @@ import { GroupCardAdd } from './GroupCardAdd';
 
 export function GroupManagement() {
   const [openModal, setOpenModal] = useState(false);
-  const [groupSelected, setGroupSelected] = useState<TGroup | undefined>();
+  const [groupSelected, setGroupSelected] = useState<GroupParams | undefined>();
 
   const userPermissions = useUserPermission();
 
-  const { data, isLoading, mutate } = useSWR<IResponseData<TGroup[]>>(
+  const { data, isLoading, mutate } = useSWR<ResponseData<GroupParams[]>>(
     E_USERS_GROUPS,
     http.fetcherSWR
   );
   const GroupManagementAdd = checkPermission(
     userPermissions,
-    EPermissionGroupManagement.ADD
+    PermissionGroupManagement.ADD
   );
 
   const groupData = data?.data ?? [];
@@ -37,7 +37,7 @@ export function GroupManagement() {
     setOpenModal(true);
   };
 
-  const handleOnClickEditCard = (group: TGroup) => {
+  const handleOnClickEditCard = (group: GroupParams) => {
     setOpenModal(true);
     setGroupSelected(group);
   };

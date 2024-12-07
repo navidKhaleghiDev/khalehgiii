@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import { E_WHITE_LIST_FILES } from '@src/services/config/endpoint';
 import { API_DELETE_FILE_TYPE } from '@src/services/config';
@@ -44,7 +44,7 @@ export function DlpSetting() {
     filterQuery,
   });
   const { data, error, isLoading, mutate } = useSWR<
-    IResponsePagination<FileTypeProp>
+    ResponsePagination<FileTypeProp>
   >(endpoint, http.fetcherSWR);
 
   const handelSearchQuery = useCallback((searchValue: string) => {

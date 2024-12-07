@@ -13,7 +13,7 @@ import { DateObject } from 'react-multi-date-picker';
 import { baseSelectStyles } from './styles';
 import { BaseInputControllerProps } from './BaseInput/types';
 import { baseInputStyles } from './BaseInput/styles';
-import { IOptionSelect } from './BaseSelect/OptionSelect';
+import { OptionSelectProps } from './BaseSelect/OptionSelect';
 
 export interface BaseInputNumberProps<T extends FieldValues>
   extends VariantProps<typeof baseInputStyles> {
@@ -40,9 +40,9 @@ export interface BaseInputNumberProps<T extends FieldValues>
   max?: number;
 }
 
-export interface IBaseSelectProp<T extends FieldValues>
+export interface BaseSelectProps<T extends FieldValues>
   extends VariantProps<typeof baseSelectStyles> {
-  selectOptions: IOptionSelect[];
+  selectOptions: OptionSelectProps[];
   id: string;
   control?: Control<T>;
   name: FieldPath<T>;

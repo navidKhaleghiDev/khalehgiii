@@ -24,8 +24,8 @@ import {
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import {
-  EPermissionDaas,
-  EPermissionMalwareConfig,
+  PermissionDaas,
+  PermissionMalwareConfig,
 } from '@src/types/permissions';
 import { HeadOnlineAssistant } from '@ui/organisms/Navbar/NavbarDashboard/HeadOnlineAssistant';
 
@@ -46,12 +46,12 @@ export function NavbarDashboard() {
 
   const viewDaasPermission = checkPermission(
     userPermissions,
-    EPermissionDaas.VIEW
+    PermissionDaas.VIEW
   );
 
   const viewMalwareConfigPermission = checkPermission(
     userPermissions,
-    EPermissionMalwareConfig.VIEW
+    PermissionMalwareConfig.VIEW
   );
 
   // const { toggleTheme, theme } = useTheme();

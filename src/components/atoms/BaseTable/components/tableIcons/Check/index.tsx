@@ -2,9 +2,9 @@ import { Typography } from '@ui/atoms/Typography';
 import { BaseIcon } from '@ui/atoms/BaseIcon';
 import checkBoldIcon from '@iconify-icons/ph/check-bold';
 import xIcon from '@iconify-icons/ph/x';
-import { IComponentTable } from '../../../types';
+import { ComponentTableProps } from '../../../types';
 
-export function Check({ id, header }: IComponentTable) {
+export function Check({ id, header }: ComponentTableProps) {
   const sizeCondition = header?.variant || 'body3';
 
   return (

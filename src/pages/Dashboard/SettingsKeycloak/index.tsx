@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 import { regexPattern } from '@ui/atoms/Inputs';
-import { IAddConfig } from '@src/services/config/types';
+import { AddConfig } from '@src/services/config/types';
 import {
   API_ADD_CONFIG,
   API_ADD_UPDATE,
@@ -18,7 +18,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionKeycloak } from '@src/types/permissions';
+import { PermissionKeycloak } from '@src/types/permissions';
 
 function TitleSection({ label }: { label: string }) {
   return (
@@ -39,10 +39,10 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
     userPermissions,
-    EPermissionKeycloak.VIEW
+    PermissionKeycloak.VIEW
   );
   const { control, handleSubmit, reset, getValues, formState } =
-    useForm<IAddConfig>({
+    useForm<AddConfig>({
       mode: 'onChange',
       defaultValues: {
         id: null,
@@ -77,7 +77,7 @@ export function SettingsKeycloakCp({ userExist }: { userExist?: boolean }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleOnSubmit = async (data: IAddConfig) => {
+  const handleOnSubmit = async (data: AddConfig) => {
     setLoadingButton(true);
     if (data?.id) {
       // update

@@ -1,6 +1,6 @@
 import { Control } from 'react-hook-form';
 
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { PermissionsCodeName } from '@src/types/permissions';
 
 export interface ApplicationSettingProp {
@@ -28,7 +28,7 @@ export interface DaasSettingProp {
   has_evidence_gathering?: boolean;
   has_clipboard_access?: boolean;
   has_clipboard_log?: boolean;
-  time_limit_duration: ETimeLimitDuration;
+  time_limit_duration: TimeLimitDuration;
   time_limit_value_in_hour: null | number;
   max_transmission_upload_size: number;
   max_transmission_download_size: number;
@@ -42,7 +42,7 @@ export interface PropsType {
   userPermissions: PermissionsCodeName[];
   dir?: 'rtl' | 'ltr';
   isActive?: string;
-  timeOfUse?: ETimeLimitDuration;
+  timeOfUse?: TimeLimitDuration;
   usageInMinute?: number | string;
 }
 export interface FileTypeProp {

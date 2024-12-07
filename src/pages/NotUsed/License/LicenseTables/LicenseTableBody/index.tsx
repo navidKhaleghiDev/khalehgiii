@@ -11,7 +11,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionConfig } from '@src/types/permissions';
+import { PermissionConfig } from '@src/types/permissions';
 import { LicenseFileType } from '../../SettingMalwareCard/type';
 
 interface LicenseTableBodyProps {
@@ -37,7 +37,7 @@ export function LicenseTableBody({ item }: LicenseTableBodyProps) {
     return !!param1 === false || !!param2 === false ? 0 : `${param1}/${param2}`;
   }
 
-  const viewSandBox = checkPermission(userPermissions, EPermissionConfig.VIEW);
+  const viewSandBox = checkPermission(userPermissions, PermissionConfig.VIEW);
 
   function isValidName(name: string): boolean {
     return name === 'users' || name === 'sandbox';
