@@ -14,6 +14,7 @@
   "table": {
     "virusWarning": " ",
     "downloadRecord": "",
+    "VirusFileReport": "گزارش فایل آلوده",
     "admin": "ادمین",
     "user": "کاربر",
     "name": "نام",
@@ -493,7 +494,8 @@
     "memory": "حافظه (GB)",
     "saveFile": "ذخیره فایل",
     "ide": "IDE",
-    "remina": "Remote Access"
+    "remina": "Remote Access",
+    "zero": "لطفا مقداری بیشتر از صفر وارد کنید"
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",

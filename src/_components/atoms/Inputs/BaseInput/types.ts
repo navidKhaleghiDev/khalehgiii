@@ -48,6 +48,6 @@ export interface BaseInputControllerProps<T extends FieldValues>
   extends Omit<BaseInputProps, 'onChange' | 'value' | 'error'> {
   control: Control<T>;
   name: FieldPath<T>;
-  rules?: RegisterOptions<T>;
+  rules?: RegisterOptions<T> | any;
   setError?: UseFormSetError<T>;
 }

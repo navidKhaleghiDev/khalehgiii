@@ -58,6 +58,7 @@
     "resultScanerStatusYara": " Yara",
     "moreDetail": "More Details",
     "removeSelected": "Remove Selected",
+    "VirusFileReport": "Report Virus File",
     "daily": "Daily",
     "weekly": "Weekly",
     "monthly": "Monthly",
@@ -490,7 +491,8 @@
     "memory": "Memory(GB)",
     "saveFile": "Save File",
     "ide": "IDE",
-    "remina": "Remote Access"
+    "remina": "Remote Access",
+    "zero": "Please enter a value greater than zero."
   },
 
   "regexPattern": {

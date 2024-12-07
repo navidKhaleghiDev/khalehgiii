@@ -1,4 +1,4 @@
-import { Line } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   TimeScale,
@@ -24,36 +24,37 @@ ChartJS.register(
   Legend
 );
 
-interface TimeScaleChartProps {
+type ChartRendererProps = {
   datasets: {
     label: string;
     data: { x: string; y: number }[];
     borderColor: string;
     backgroundColor: string;
   }[];
-}
+  chartType: 'line' | 'bar';
+};
 
-export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
-  const data = {
-    datasets,
-  };
+const chartComponents = {
+  line: Line,
+  bar: Bar,
+};
 
+export function ChartRenderer(props: ChartRendererProps) {
+  const { datasets, chartType } = props;
   const { isDark } = useTheme();
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions<'line' | 'bar'> = {
     responsive: true,
     scales: {
       x: {
-        type: 'time',
-        time: {
-          unit: 'month',
-        },
+        type: 'category',
         title: {
           display: false,
-          text: 'Date',
+          text: 'Value',
         },
         ticks: {
           color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+          align: 'center',
         },
         grid: {
           color: isDark
@@ -69,6 +70,7 @@ export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
         },
         ticks: {
           color: isDark ? 'rgb(156, 163, 175)' : 'rgb(104, 104, 104)',
+          stepSize: 1,
         },
         grid: {
           color: isDark
@@ -76,6 +78,7 @@ export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
             : 'rgba(104, 104, 104, 0.5)',
           lineWidth: 1,
         },
+        beginAtZero: true,
       },
     },
     plugins: {
@@ -93,5 +96,7 @@ export function TimeScaleChart({ datasets }: TimeScaleChartProps) {
     },
   };
 
-  return <Line data={data} options={options} />;
+  const ChartComponent = chartComponents[chartType];
+
+  return <ChartComponent data={{ datasets }} options={options} />;
 }

@@ -1,4 +1,4 @@
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
 import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
@@ -57,6 +57,7 @@ export function Pagination(props: PaginationProps): JSX.Element | null {
 
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
+  const { t } = useTranslation();
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) {
