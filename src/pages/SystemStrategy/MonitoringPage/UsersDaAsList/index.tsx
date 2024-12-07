@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react';
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import useSWR from 'swr';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
 import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
-import { TSearchBar } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
+import { SearchBarParams } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
 
@@ -34,7 +34,7 @@ export function UsersDaAsList() {
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading } = useSWR<ResponsePagination<DaAsParams>>(
     endpoint,
     http.fetcherSWR
   );
@@ -66,7 +66,7 @@ export function UsersDaAsList() {
     onPageChange: handlePageChange,
   };
 
-  const searchBarProps: TSearchBar = {
+  const searchBarProps: SearchBarParams = {
     name: 'search-users-daas-list',
     value: filterQuery,
     handleSearchInput: handleFilterChange,

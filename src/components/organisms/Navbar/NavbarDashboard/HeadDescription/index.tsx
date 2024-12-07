@@ -3,8 +3,8 @@ import {
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import {
-  EPermissionDaas,
-  EPermissionMalwareConfig,
+  PermissionDaas,
+  PermissionMalwareConfig,
 } from '@src/types/permissions';
 import { dateAndNumber, dayLabel } from '@src/helper/utils/dateUtils';
 import { Typography } from '@ui/atoms';
@@ -17,12 +17,12 @@ export function HeadDescription() {
 
   const viewDaasPermission = checkPermission(
     userPermissions,
-    EPermissionDaas.VIEW
+    PermissionDaas.VIEW
   );
 
   const viewMalwarePermission = checkPermission(
     userPermissions,
-    EPermissionMalwareConfig.VIEW
+    PermissionMalwareConfig.VIEW
   );
 
   return (

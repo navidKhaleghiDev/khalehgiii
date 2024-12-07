@@ -1,15 +1,15 @@
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
-import { IScanStats } from '@src/services/analyze/types';
+import { ScanStats } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 import { Typography } from '@ui/atoms';
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 
 export function UserAnalyzeInfo() {
   const { t } = useTranslation();
 
-  const { data } = useSWR<ISwrResponse<IScanStats>>(
+  const { data } = useSWR<SwrResponse<ScanStats>>(
     E_ANALYZE_SCAN_STATS,
     HTTP_ANALYSES.fetcherSWR
   );

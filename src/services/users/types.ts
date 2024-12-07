@@ -1,9 +1,9 @@
-import { TNumberObjectArray } from '@src/types/global';
+import { NumberObjectArray } from '@src/types/global';
 import { UserPermissionsProps } from '@src/types/permissions';
 // eslint-disable-next-line import/no-cycle
-import { IDaasConfig } from '../config/types';
+import { DaasConfig } from '../config/types';
 
-export enum ETimeLimitDuration {
+export enum TimeLimitDuration {
   DAILY = 'DAILY',
   MONTHLY = 'MONTHLY',
   WEEKLY = 'WEEKLY',
@@ -11,15 +11,15 @@ export enum ETimeLimitDuration {
   TEMPORARY = 'TEMPORARY',
 }
 
-export enum EAccessMode {
+export enum AccessMode {
   HAS_ACCESS = 'HAS_ACCESS',
   NO_ACCESS = 'NO_ACCESS',
 }
 
-export interface IDaAs {
+export interface DaAsParams {
   id: string;
   is_lock: boolean;
-  daas_configs: IDaasConfig;
+  daas_configs: DaasConfig;
   allowed_files_type_for_download: Record<string, number>;
   allowed_files_type_for_upload: Record<string, number>;
   email: string;
@@ -36,24 +36,24 @@ export interface IDaAs {
   extra_allowed_upload_files: Record<string, number>;
   daas_version: string;
   chatroom_privileged: boolean;
-  member_of: TNumberObjectArray;
-  admin_group_of: TNumberObjectArray;
+  member_of: NumberObjectArray;
+  admin_group_of: NumberObjectArray;
   base_url: string;
   container_id: string;
   last_login_ip: string;
 }
 
-export interface IBodyUsersLogin {
+export interface BodyUsersLogin {
   email: string;
   password: string;
   totp?: string;
   // is_admin: boolean;
 }
-export interface IBodyUsersLogout {
+export interface BodyUsersLogout {
   refresh_token: string;
 }
 
-export interface IResponseLogin {
+export interface ResponseLogin {
   info?: string;
   http?: string;
   https?: string;
@@ -61,7 +61,7 @@ export interface IResponseLogin {
   refresh_token: string;
 }
 
-export interface IUser {
+export interface UserParams {
   id: number | string;
   user_permissions?: UserPermissionsProps[];
   password?: string;
@@ -80,7 +80,7 @@ export interface IUser {
   base_url?: string;
   http_port?: number;
   https_port?: number;
-  time_limit_duration?: ETimeLimitDuration;
+  time_limit_duration?: TimeLimitDuration;
   time_limit_value_in_hour?: number;
   last_uptime?: string;
   is_running?: boolean;
@@ -90,7 +90,7 @@ export interface IUser {
   totp_enable?: boolean;
   secret?: string | undefined;
   totp_secret?: string | null;
-  admin_group_of?: TNumberObjectArray;
+  admin_group_of?: NumberObjectArray;
   online_assistance: UserOnlineAssistance | null;
 }
 
@@ -101,17 +101,17 @@ export type UserOnlineAssistance = {
   user_http_address: string;
   user_https_address: string;
 };
-export type TGroupMembers = {
+export type GroupMembersParams = {
   id: string;
   email: string;
   is_running?: boolean;
   has_online_assistance?: boolean;
 };
 
-export type TGroup = {
+export type GroupParams = {
   id?: string;
-  users: TGroupMembers[];
-  admins: TGroupMembers[];
+  users: GroupMembersParams[];
+  admins: GroupMembersParams[];
   name: string;
   created_at?: string;
   updated_at?: string;
@@ -120,8 +120,8 @@ export type TGroup = {
 };
 
 export type UpdateGroupPayload = {
-  users: string[] | TGroup['users'];
-  admins: string[] | TGroup['admins'];
+  users: string[] | GroupParams['users'];
+  admins: string[] | GroupParams['admins'];
   name: string;
 };
 
@@ -139,10 +139,22 @@ export type OnlineAssistanceModel = {
   admin: KnowledgeManagementUserModel;
   user: KnowledgeManagementUserModel;
 };
-export interface IResponseAssistance {
+export interface ResponseAssistance {
   http: string;
   https: string;
 }
-export interface IBodyAssistance {
+export interface BodyAssistance {
   id: string;
 }
+
+export type KeysType = {
+  [key: string]: boolean;
+};
+
+export type UsersListParams = { id: string; email: string }[];
+
+export type GroupListUpdateParams = {
+  users: UsersListParams;
+  admins: UsersListParams;
+  name: string;
+};

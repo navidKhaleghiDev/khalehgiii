@@ -18,8 +18,8 @@ export type StringifyExcept<T, K extends keyof T> = {
 
 export type ExtendTwoType<T, U> = T & U;
 
-export type TNumberObject = {
+export type NumberObject = {
   [key: string]: number;
 };
 
-export type TNumberObjectArray = TNumberObject[];
+export type NumberObjectArray = NumberObject[];

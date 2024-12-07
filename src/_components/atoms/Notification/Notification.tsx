@@ -5,7 +5,7 @@ import { BaseIcon } from '../BaseIcon';
 import { Card } from '../Card';
 import { Typography } from '../Typography';
 import { notificationStyles } from './styles';
-import { INotification } from './types';
+import { NotificationProps } from './types';
 
 /**
  * Notification Component
@@ -24,11 +24,16 @@ import { INotification } from './types';
  * @returns {JSX.Element} Returns the rendered notification component.
  */
 
-export function Notification({ className, size, title, type }: INotification) {
+export function Notification({
+  className,
+  size,
+  title,
+  type,
+}: NotificationProps) {
   const SelectIconType = ({
     notificationType,
   }: {
-    notificationType: INotification['type'];
+    notificationType: NotificationProps['type'];
   }) => {
     if (notificationType === 'success') {
       return Check;

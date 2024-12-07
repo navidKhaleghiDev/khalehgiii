@@ -1,4 +1,4 @@
-import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
+import { TimeLimitDuration, DaAsParams } from '@src/services/users/types';
 
 // import {
 //   tomorrow,
@@ -18,15 +18,15 @@ type PropsType = {
   // timeLimitDuration: ETimeLimitDuration;
   // timeLimitValueInHour: number;
   // usageInMinute: number;
-  daas?: IDaAs;
+  daas?: DaAsParams;
 };
 
 export function AccessTimeModal({ daas }: PropsType) {
   // const localizationDate = lang === 'fa' ? 'fa-IR' : 'en-US';
 
   const { t } = useTranslation();
-  const timeLimitDuration: ETimeLimitDuration =
-    daas?.daas_configs?.time_limit_duration ?? ETimeLimitDuration.DAILY;
+  const timeLimitDuration: TimeLimitDuration =
+    daas?.daas_configs?.time_limit_duration ?? TimeLimitDuration.DAILY;
 
   const timeLimitValueInHour =
     daas?.daas_configs?.time_limit_value_in_hour ?? 0;
@@ -38,7 +38,7 @@ export function AccessTimeModal({ daas }: PropsType) {
 
   let timeLeft;
 
-  if (timeLimitDuration === ETimeLimitDuration.PERMANENTLY) {
+  if (timeLimitDuration === TimeLimitDuration.PERMANENTLY) {
     timeLeft = t('global.unlimited');
   } else if (remainingTime < 0) {
     timeLeft = t('global.hasBeenFinished');

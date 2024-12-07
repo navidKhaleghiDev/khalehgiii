@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 
 import { titleStyles } from './styles';
 
-export interface IAccordionButton {
+export interface AccordionButtonItem {
   id: string;
   title: string;
   content: ReactElement;
@@ -12,5 +12,5 @@ export interface IAccordionButton {
 export interface AccordionButtonProps extends VariantProps<typeof titleStyles> {
   open: string | null;
   setOpen: (open: string | null) => void;
-  item: IAccordionButton;
+  item: AccordionButtonItem;
 }

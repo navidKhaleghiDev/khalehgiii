@@ -3,13 +3,13 @@ import { Typography } from '@ui/atoms/Typography';
 import {
   getPasswordStrength,
   getLabelPasswordStrength,
-  EPasswordStrengthColor,
+  PasswordStrengthColorParams,
 } from '@src/helper/utils/getPasswordStrength';
 import { useEffect, useState } from 'react';
 
 export function PasswordStrength({ password }: { password?: string }) {
   const [colorStrength, setColorStrength] =
-    useState<EPasswordStrengthColor | null>(null);
+    useState<PasswordStrengthColorParams | null>(null);
 
   useEffect(() => {
     setColorStrength(getPasswordStrength(password));

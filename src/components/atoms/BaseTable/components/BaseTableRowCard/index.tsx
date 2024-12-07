@@ -4,9 +4,9 @@ import { BaseButton } from '@ui/atoms/BaseButton';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 
 import {
-  IComponentsHeader,
-  IRowTableProps,
-  IRowCellsComponent,
+  ComponentsHeader,
+  RowTableProps,
+  RowCellsComponent,
 } from '../../types';
 import { NoneCell } from '../CustomCell/NoneCell';
 import { ComponentCell } from '../CustomCell/ComponentCell';
@@ -16,10 +16,10 @@ import { UserCell } from '../CustomCell/UserCell';
 import { TooltipCell } from '../CustomCell/TooltipCell';
 import { baseTableRowCard } from '../../styles';
 
-function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
+function rowCellsComponent({ row, header, onClick }: RowCellsComponent) {
   const id = header?.id as string;
 
-  const components: IComponentsHeader = {
+  const components: ComponentsHeader = {
     none: <NoneCell row={row} header={header} id={id} />,
     component: (
       <ComponentCell row={row} header={header} id={id} onClick={onClick} />
@@ -50,7 +50,7 @@ function rowCellsComponent({ row, header, onClick }: IRowCellsComponent) {
   return components[header?.type ?? 'none'] || null;
 }
 
-export function RowTable({ row, headers, onClick }: IRowTableProps<any>) {
+export function RowTable({ row, headers, onClick }: RowTableProps<any>) {
   const [hasVerticalScroll, setHasVerticalScroll] = useState(false);
 
   const checkVerticalScroll = () => {

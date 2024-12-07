@@ -2,16 +2,16 @@ import { IconType, StringifyProperties } from '@src/types/global';
 import { PermissionsCodeName } from '@src/types/permissions';
 
 import { VariantProps } from 'class-variance-authority';
-import { IBaseIcon } from '../BaseIcon/types';
-import { IBaseButton, IIconButton } from '../BaseButton';
-import { TSearchBar } from './components/BaseTableSearchBar/types';
+import { BaseIconProps } from '../BaseIcon/types';
+import { BaseButtonProps, IconButtonProps } from '../BaseButton';
+import { SearchBarParams } from './components/BaseTableSearchBar/types';
 import { typographyStyles } from '../Typography/styles';
 
 export type RowType<T> = T & {
   id: string | number;
 };
 
-export type TIdItem = { id: string | number };
+export type IdItem = { id: string | number };
 
 export type TableType =
   | 'action'
@@ -33,82 +33,82 @@ export type ActionOnClickActionsType =
   | 'button'
   | 'editLock';
 
-export type TTableIcon = {
+export type TableIcon = {
   icon: IconType | IconType[];
-  color?: IBaseIcon['color'] | IBaseIcon['color'][];
+  color?: BaseIconProps['color'] | BaseIconProps['color'][];
 };
 
-export type TPagination = {
+export type PaginationParams = {
   currentPage: number;
   totalPages: number;
   countPage: number;
   onPageChange: (page: number) => void;
 };
 
-type TTableLabel = `table.${string}` | string;
-export interface IHeaderTable {
+type TableLabel = `table.${string}` | string;
+export interface HeaderTableProps {
   action?: any;
   component?: any;
   function?: any;
   id: string | string[];
-  label?: TTableLabel;
+  label?: TableLabel;
   class?: string;
   dir?: string;
   type: TableType;
   variant?: VariantProps<typeof typographyStyles>['variant'];
   fixed?: boolean;
   permission?: PermissionsCodeName | PermissionsCodeName[];
-  buttonProps?: IBaseButton;
+  buttonProps?: BaseButtonProps;
 }
 
-export interface IBaseTableProps<BodyType> {
-  headers: IHeaderTable[];
+export interface BaseTableProps<BodyType> {
+  headers: HeaderTableProps[];
   bodyList: BodyType[];
   loading: boolean;
   onClick?: OnClickActionsType<BodyType>;
-  pagination?: TPagination;
-  searchBar?: TSearchBar;
+  pagination?: PaginationParams;
+  searchBar?: SearchBarParams;
 }
 
 export type OnClickActionsType<DataType> = (
   action: ActionOnClickActionsType,
   typeFile?: StringifyProperties<DataType> | DataType,
-  id?: IHeaderTable['id']
+  id?: HeaderTableProps['id']
 ) => void;
 
-export interface IRowCellsComponent {
+export interface RowCellsComponent {
   row?: any;
-  header?: IHeaderTable;
+  header?: HeaderTableProps;
   onClick?: OnClickActionsType<any>;
 }
 
-export interface IComponentTable extends IRowCellsComponent {
+export interface ComponentTableProps extends RowCellsComponent {
   id: any;
-  action?: IActionItem[];
+  action?: ActionItemProps[];
 }
 
-export interface IActionItem {
+export interface ActionItemProps {
   action: ActionOnClickActionsType;
-  icon: IIconButton['icon'];
-  color: IIconButton['color'];
-  size: IIconButton['size'];
+  icon: IconButtonProps['icon'];
+  color: IconButtonProps['color'];
+  size: IconButtonProps['size'];
   tooltip: string;
   permission?: PermissionsCodeName;
 }
 
-export interface IRowTableProps<BodyType> {
+export interface RowTableProps<BodyType> {
   row: BodyType;
-  headers: IHeaderTable[];
+  headers: HeaderTableProps[];
   onClick?: OnClickActionsType<BodyType>;
 }
 
-export interface ITableCell<BodyType> {
+export interface TableCell<BodyType> {
   id?: string;
   row?: any;
-  head?: IHeaderTable[];
+  head?: HeaderTableProps[];
   onClick?: OnClickActionsType<BodyType>;
 }
 
-export type IComponentsHeader = {
+export type ComponentsHeader = {
   [key in TableType]: JSX.Element;
 };

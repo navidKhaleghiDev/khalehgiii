@@ -1,6 +1,6 @@
-import { ISvgProp } from './types';
+import { SvgProps } from './types';
 
-export function BlockSvg({ className }: ISvgProp) {
+export function BlockSvg({ className }: SvgProps) {
   return (
     <svg
       width="18"

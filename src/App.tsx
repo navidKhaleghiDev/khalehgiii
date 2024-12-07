@@ -8,7 +8,7 @@ import { useTheme } from '@context/settings/themeContext';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 import { http, STORAGE_KEY_TOKEN } from '@src/services/http';
 import cookie from 'js-cookie';
-import { IUser } from './services/users/types';
+import { UserParams } from './services/users/types';
 import { API_USERS_PROFILE } from './services/users';
 
 function generateRouter(user: any) {
@@ -16,7 +16,7 @@ function generateRouter(user: any) {
 }
 
 function App() {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<UserParams | null>(null);
   const [loading, setLoading] = useState(true);
   const { dir } = useLanguage();
   const { theme } = useTheme();

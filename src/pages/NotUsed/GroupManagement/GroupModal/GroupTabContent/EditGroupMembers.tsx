@@ -1,12 +1,12 @@
 import { BaseButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 
-import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { GroupParams, UpdateGroupPayload } from '@src/services/users/types';
 import { useFormContext } from 'react-hook-form';
 import { EditCardList } from '../components/EditCardList';
 
 type EditGroupMembersProps = {
-  group?: TGroup;
+  group?: GroupParams;
   isAdmins?: boolean;
   activeTab?: number;
   onUpdateGroup: (updatedGroup: UpdateGroupPayload) => void;

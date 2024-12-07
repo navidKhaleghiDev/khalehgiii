@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { HTTP_ANALYSES } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
-import { IScannedFile } from '@src/services/analyze/types';
+import { ResponsePagination } from '@src/types/services';
+import { ScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import {
@@ -28,7 +28,7 @@ type ScannedFileListProp = {
 };
 
 export function ScannedFileList({ userEmail }: ScannedFileListProp) {
-  const [activeScannedFile, setActiveScannedFile] = useState<IScannedFile>();
+  const [activeScannedFile, setActiveScannedFile] = useState<ScannedFile>();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [cleanStatusModal, setCleanStatusModal] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,7 +39,7 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
 
   // Daas users scan reports
   const { data, isLoading, mutate, error } = useSWR<
-    IResponsePagination<IScannedFile>
+    ResponsePagination<ScannedFile>
   >(
     userEmail
       ? E_ANALYZE_SCAN_PAGINATION(userEmail, {
@@ -92,14 +92,14 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
     }
   };
 
-  const handleOpenModal: OnClickActionsType<IScannedFile> = (action, item) => {
+  const handleOpenModal: OnClickActionsType<ScannedFile> = (action, item) => {
     if (action === 'download') {
       downloadFile(item);
     } else if (action === 'edit') {
-      setActiveScannedFile({ ...item, scan_result: 'CLEAN' } as IScannedFile);
+      setActiveScannedFile({ ...item, scan_result: 'CLEAN' } as ScannedFile);
       setCleanStatusModal(true);
     } else {
-      setActiveScannedFile(item as IScannedFile);
+      setActiveScannedFile(item as ScannedFile);
     }
   };
 

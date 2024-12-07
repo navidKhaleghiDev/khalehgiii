@@ -3,8 +3,8 @@ import {
   BaseTableComponentCellProps,
   HeaderTable,
 } from '@redesignUi/molecules/BaseTable/types';
-import { IMimeType } from '@src/services/analyze/types';
-import { EPermissionExtensions } from '@src/types/permissions';
+import { MimeType } from '@src/services/analyze/types';
+import { PermissionExtensions } from '@src/types/permissions';
 
 import { FileICon } from '../Components/FIleIcon';
 
@@ -13,7 +13,7 @@ export const extensionListHeaderItem: HeaderTable[] = [
     label: 'table.fileExtension',
     id: 'extension_list',
     type: 'component',
-    component: (props: BaseTableComponentCellProps<IMimeType>) => (
+    component: (props: BaseTableComponentCellProps<MimeType>) => (
       <FileICon fileType={props.row?.extension_list} />
     ),
     class: 'px-3 w-10/12 md:w-3/12 lg:w-2/12',
@@ -42,7 +42,7 @@ export const extensionListHeaderItem: HeaderTable[] = [
         color: 'redNoBg',
       },
     ],
-    permission: EPermissionExtensions.DELETE,
+    permission: PermissionExtensions.DELETE,
     class: 'px-10 w-1/12 mr-auto',
   },
 ];

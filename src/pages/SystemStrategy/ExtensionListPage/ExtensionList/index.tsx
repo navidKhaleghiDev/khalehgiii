@@ -7,7 +7,7 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
-import { IMimeType } from '@src/services/analyze/types';
+import { MimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
@@ -30,7 +30,7 @@ export function ExtensionList() {
   const [filterQuery, setFilterQuery] = useState<string>('');
   const [openModal, setOpenModal] = useState<ActionOnClickActionsType>();
   const [mimeType, setMimeType] = useState<
-    IMimeType | StringifyProperties<IMimeType>
+    MimeType | StringifyProperties<MimeType>
   >();
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
@@ -45,7 +45,7 @@ export function ExtensionList() {
     currentPage,
     filterQuery,
   });
-  const { count, resultData, isLoading, mutate } = useGetPagination<IMimeType>(
+  const { count, resultData, isLoading, mutate } = useGetPagination<MimeType>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
   );
@@ -83,7 +83,7 @@ export function ExtensionList() {
     setOpenModal('mutate');
   };
 
-  const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
+  const handleOnClickActions: OnClickActionsType<MimeType> | undefined = (
     action,
     fileType
   ) => {

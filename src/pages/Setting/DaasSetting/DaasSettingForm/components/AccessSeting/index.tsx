@@ -4,11 +4,11 @@ import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNum
 import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { PropsType } from '@src/pages/Setting/type';
-import { EPermissionDaas } from '@src/types/permissions';
+import { PermissionDaas } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 
@@ -21,7 +21,7 @@ export function AccessSeting({
   usageInMinute,
 }: PropsType) {
   const { dir } = useLanguage();
-  const maxTimeLimitValues: { [key in ETimeLimitDuration]?: number } = {
+  const maxTimeLimitValues: { [key in TimeLimitDuration]?: number } = {
     DAILY: 24,
     WEEKLY: 168,
     MONTHLY: 744,
@@ -32,11 +32,11 @@ export function AccessSeting({
       ? Math.ceil(usageInMinute / 60)
       : 0;
   const setMaxTimeLimitValue = () =>
-    maxTimeLimitValues[timeOfUse as ETimeLimitDuration] || 0;
+    maxTimeLimitValues[timeOfUse as TimeLimitDuration] || 0;
 
   const hasChangePermission = checkPermission(
     userPermissions,
-    EPermissionDaas.CHANGE
+    PermissionDaas.CHANGE
   );
 
   return (
