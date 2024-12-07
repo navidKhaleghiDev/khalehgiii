@@ -3,17 +3,17 @@ import { NoResult } from '@ui/molecules/NoResult';
 import { Pagination } from '@ui/molecules/Pagination';
 import { BaseTabelHeader } from './components/BaseTabelHeader';
 import { RowTable } from './components/BaseTableRowCard';
-import { IBaseTableProps, TIdItem, TPagination } from './types';
+import { BaseTableProps, IdItem, PaginationParams } from './types';
 import { BaseTableSearchBar } from './components/BaseTableSearchBar';
 
-export function BaseTable<T extends TIdItem>(props: IBaseTableProps<T>) {
+export function BaseTable<T extends IdItem>(props: BaseTableProps<T>) {
   const {
     headers,
     bodyList,
     loading,
     onClick,
     searchBar = null,
-    pagination = {} as TPagination,
+    pagination = {} as PaginationParams,
   } = props;
   const { countPage, currentPage, totalPages, onPageChange } = pagination;
 

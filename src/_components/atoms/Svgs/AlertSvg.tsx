@@ -1,6 +1,6 @@
-import { ISvgProp } from './types';
+import { SvgProps } from './types';
 
-export function AlertSvg({ className }: ISvgProp) {
+export function AlertSvg({ className }: SvgProps) {
   return (
     <svg
       width="22"

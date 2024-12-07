@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { baseButtonStyles, iconInButtonStyles } from './styles';
-import { IBaseButton } from './types';
+import { BaseButtonProps } from './types';
 import { BaseIcon } from '../BaseIcon';
 import { LoadingSvg } from '../Svgs/LoadingSvg';
 
@@ -16,7 +16,7 @@ export function BaseButton({
   size,
   type,
   loading,
-}: IBaseButton) {
+}: BaseButtonProps) {
   const { t } = useTranslation();
   return (
     <button

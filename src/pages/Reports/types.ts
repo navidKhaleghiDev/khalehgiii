@@ -1,4 +1,4 @@
-import { TOnClickDate } from '@ui/atoms/Inputs';
+import { OnClickDateParams } from '@ui/atoms/Inputs';
 import { DateObject } from 'react-multi-date-picker';
 
 export interface FormDate {
@@ -51,7 +51,7 @@ export type PropsChartType = {
 export type ReportFormType = {
   handleOnSubmit: any;
   state: ReducerStateType;
-  onChange?: TOnClickDate;
+  onChange?: OnClickDateParams;
 };
 
 export type ReducerStateType = {

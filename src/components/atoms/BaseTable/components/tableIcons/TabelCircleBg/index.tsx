@@ -1,6 +1,6 @@
 import { CircleBg } from '@ui/atoms/CircleBg';
 
-type TTableCircleBg = {
+type TableCircleBgProps = {
   defaultIconColor: string | [];
   color: string | [];
   condition: boolean;
@@ -10,7 +10,7 @@ export function TableCircleBg({
   defaultIconColor,
   color,
   condition,
-}: TTableCircleBg) {
+}: TableCircleBgProps) {
   const bgColor =
     (condition && color && color[0]) ||
     (condition && !color && defaultIconColor[0]) ||

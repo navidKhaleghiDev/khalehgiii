@@ -1,7 +1,7 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import {
-  EPermissionUsers,
-  EPermissionWhiteListFiles,
+  PermissionUsers,
+  PermissionWhiteListFiles,
 } from '@src/types/permissions';
 import {
   BaseTableComponentCellProps,
@@ -84,21 +84,21 @@ export const dlpConfigHeaderItem: HeaderTable[] = [
         action: 'edit',
         icon: NotePencil,
         color: 'neutralNoBg',
-        permission: EPermissionUsers.CHANGE,
+        permission: PermissionUsers.CHANGE,
         title: 'table.editFile',
       },
       {
         action: 'delete',
         icon: Trash,
         color: 'redNoBg',
-        permission: EPermissionUsers.DELETE,
+        permission: PermissionUsers.DELETE,
         title: 'table.deleteFile',
       },
     ],
 
     permission: [
-      EPermissionWhiteListFiles.CHANGE,
-      EPermissionWhiteListFiles.DELETE,
+      PermissionWhiteListFiles.CHANGE,
+      PermissionWhiteListFiles.DELETE,
     ],
 
     class: 'px-3 w-7/12',

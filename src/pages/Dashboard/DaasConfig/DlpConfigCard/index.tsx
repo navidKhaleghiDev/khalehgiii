@@ -1,9 +1,9 @@
 import { Card, Typography } from '@ui/atoms';
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { IconButton } from '@ui/atoms/BaseButton';
 import trashIcon from '@iconify-icons/ph/trash';
 import gearIcon from '@iconify-icons/ph/gear';
-import { IDaasConfig } from '@src/services/config/types';
+import { DaasConfig } from '@src/services/config/types';
 import { StringifyProperties } from '@src/types/global';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
 
@@ -11,7 +11,7 @@ import { OnClickActionsType } from './types';
 import { booleanIcon } from '../utils';
 
 type ProductCardProps = {
-  daasConfig: StringifyProperties<IDaasConfig> | IDaasConfig;
+  daasConfig: StringifyProperties<DaasConfig> | DaasConfig;
   isHeader?: boolean;
   onClickActions?: OnClickActionsType;
 };
@@ -98,7 +98,7 @@ export function DlpConfigCard({
         {!isHeader
           ? `${daasConfig.time_limit_value_in_hour ?? '-'} / ${
               TimeLimitDurationLabel[
-                daasConfig.time_limit_duration as ETimeLimitDuration
+                daasConfig.time_limit_duration as TimeLimitDuration
               ]
             }`
           : daasConfig.time_limit_duration}

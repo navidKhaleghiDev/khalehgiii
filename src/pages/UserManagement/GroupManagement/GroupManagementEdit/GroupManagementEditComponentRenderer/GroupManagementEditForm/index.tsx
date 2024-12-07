@@ -18,8 +18,8 @@ import {
 } from '../../constants/groupManagementHeaderItem';
 import {
   GroupManagementEditFormProps,
-  TGroup,
-  TGroupMembers,
+  GroupParams,
+  GroupMembersParams,
 } from '../../../types';
 
 /**
@@ -48,7 +48,7 @@ import {
  * @returns {JSX.Element} - The rendered Group Management Edit Form component.
  */
 
-export function GroupManagementEditForm<T extends TGroup>(
+export function GroupManagementEditForm<T extends GroupParams>(
   props: GroupManagementEditFormProps<T>
 ) {
   const {
@@ -72,9 +72,9 @@ export function GroupManagementEditForm<T extends TGroup>(
   const { t } = useTranslation();
 
   const paginatedData = useCallback(
-    (key: keyof TGroup) => {
+    (key: keyof GroupParams) => {
       const groupData = Array.isArray(updateGroup[key])
-        ? (updateGroup[key] as TGroupMembers[])
+        ? (updateGroup[key] as GroupMembersParams[])
         : [];
 
       const mappedData = groupData.map((member) => ({ ...member, value: key }));
@@ -162,17 +162,17 @@ export function GroupManagementEditForm<T extends TGroup>(
 
       <BaseTable
         header={groupManagementAdminHeaderItem}
-        body={paginatedData('admins') as TGroupMembers[]}
-        onClick={handleClickAction as OnClickActionsType<TGroupMembers>}
+        body={paginatedData('admins') as GroupMembersParams[]}
+        onClick={handleClickAction as OnClickActionsType<GroupMembersParams>}
         loading={isLoading}
         isMobile
       />
       <div className="border-t border-gray-200 my-5" />
       <BaseTable
         header={groupManagementUserHeaderItem}
-        body={paginatedData('users') as TGroupMembers[]}
+        body={paginatedData('users') as GroupMembersParams[]}
         loading={isLoading}
-        onClick={handleClickAction as OnClickActionsType<TGroupMembers>}
+        onClick={handleClickAction as OnClickActionsType<GroupMembersParams>}
         isMobile
       />
       <div className="flex w-full justify-end mb-5">

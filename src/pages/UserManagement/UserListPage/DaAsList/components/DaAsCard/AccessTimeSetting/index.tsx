@@ -2,49 +2,49 @@ import { useEffect } from 'react';
 
 import { FieldValues, useForm } from 'react-hook-form';
 
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
 import { Typography } from '@redesignUi/atoms';
 
-interface IUpdateDaasValues extends FieldValues {
-  time_limit_duration: ETimeLimitDuration;
+interface UpdateDaasValues extends FieldValues {
+  time_limit_duration: TimeLimitDuration;
   time_limit_value_in_hour?: number;
 }
 
 export const timeLimitDurationOptions = [
   {
-    id: ETimeLimitDuration.DAILY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.DAILY],
-    value: ETimeLimitDuration.DAILY,
+    id: TimeLimitDuration.DAILY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.DAILY],
+    value: TimeLimitDuration.DAILY,
   },
   {
-    id: ETimeLimitDuration.WEEKLY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.WEEKLY],
-    value: ETimeLimitDuration.WEEKLY,
+    id: TimeLimitDuration.WEEKLY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.WEEKLY],
+    value: TimeLimitDuration.WEEKLY,
   },
   {
-    id: ETimeLimitDuration.MONTHLY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.MONTHLY],
-    value: ETimeLimitDuration.MONTHLY,
+    id: TimeLimitDuration.MONTHLY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.MONTHLY],
+    value: TimeLimitDuration.MONTHLY,
   },
   {
-    id: ETimeLimitDuration.PERMANENTLY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.PERMANENTLY],
-    value: ETimeLimitDuration.PERMANENTLY,
+    id: TimeLimitDuration.PERMANENTLY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.PERMANENTLY],
+    value: TimeLimitDuration.PERMANENTLY,
   },
   {
-    id: ETimeLimitDuration.TEMPORARY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.TEMPORARY],
-    value: ETimeLimitDuration.TEMPORARY,
+    id: TimeLimitDuration.TEMPORARY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.TEMPORARY],
+    value: TimeLimitDuration.TEMPORARY,
   },
 ];
 
 type PropsType = {
-  timeLimitDuration: ETimeLimitDuration;
+  timeLimitDuration: TimeLimitDuration;
 };
 
 export function AccessTimeSetting({ timeLimitDuration }: PropsType) {
-  const { reset } = useForm<IUpdateDaasValues>({
+  const { reset } = useForm<UpdateDaasValues>({
     mode: 'onChange',
   });
 

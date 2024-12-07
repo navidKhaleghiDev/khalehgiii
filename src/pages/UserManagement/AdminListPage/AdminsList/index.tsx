@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useSWR from 'swr';
 
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { http } from '@src/services/http';
 import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
 import PhPencilSimple from '@iconify-icons/ph/pencil-simple';
 import { E_USERS } from '@src/services/users/endpoint';
-import { IUser } from '@src/services/users/types';
+import { UserParams } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -30,7 +30,7 @@ export function AdminsList() {
   const windowsDimensions = useWindowDimensions();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeAdmin, setActiveAdmin] = useState<Partial<IUser>>();
+  const [activeAdmin, setActiveAdmin] = useState<Partial<UserParams>>();
   const [deleteModal, setDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
@@ -43,7 +43,7 @@ export function AdminsList() {
     filterQuery,
   });
 
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IUser>>(
+  const { data, isLoading, mutate } = useSWR<ResponsePagination<UserParams>>(
     endpoint,
     http.fetcherSWR
   );
@@ -81,11 +81,11 @@ export function AdminsList() {
     setOpenUpdateModal(false);
   };
 
-  const handleOnClickActions: OnClickActionsType<IUser> | undefined = (
+  const handleOnClickActions: OnClickActionsType<UserParams> | undefined = (
     action,
     fileType
   ) => {
-    setActiveAdmin(fileType as IUser);
+    setActiveAdmin(fileType as UserParams);
 
     if (action === 'delete') {
       setDeleteModal(true);

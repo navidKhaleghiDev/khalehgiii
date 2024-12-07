@@ -1,8 +1,8 @@
 import { Typography } from '@redesignUi/atoms';
-import { IScannedFile } from '@src/services/analyze/types';
+import { ScannedFile } from '@src/services/analyze/types';
 
 type PropsType = {
-  scannedFile?: IScannedFile;
+  scannedFile?: ScannedFile;
 };
 export function DetailsContentModal({ scannedFile }: PropsType) {
   const fileScannerTypes = ['clamav', 'yara', 'antiviruses'];
@@ -10,7 +10,7 @@ export function DetailsContentModal({ scannedFile }: PropsType) {
     <div className="w-full flex flex-col p-4 gap-1 overflow-auto">
       {fileScannerTypes.map((item) => (
         <div key={item}>
-          {scannedFile?.[`${item}_scan_result` as keyof IScannedFile] ? (
+          {scannedFile?.[`${item}_scan_result` as keyof ScannedFile] ? (
             <>
               <Typography variant="body3B" className="text-start">
                 {item}
@@ -20,7 +20,7 @@ export function DetailsContentModal({ scannedFile }: PropsType) {
                 color="neutral"
                 className="text-start"
               >
-                {scannedFile?.[`${item}_scan_summary` as keyof IScannedFile]}
+                {scannedFile?.[`${item}_scan_summary` as keyof ScannedFile]}
               </Typography>
             </>
           ) : null}

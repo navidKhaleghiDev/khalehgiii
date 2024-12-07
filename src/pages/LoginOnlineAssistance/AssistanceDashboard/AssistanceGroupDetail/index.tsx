@@ -7,7 +7,7 @@ import {
   API_ONLINE_ASSISTANCE,
   API_USERS_GROUPS_GET,
 } from '@src/services/users';
-import { TGroup } from '@src/services/users/types';
+import { GroupParams } from '@src/services/users/types';
 import User from '@iconify-icons/ph/user';
 import Monitor from '@iconify-icons/ph/monitor';
 import { useUserContext } from '@context/user/userContext';
@@ -30,7 +30,7 @@ export function AssistanceGroupDetail({
   const { t } = useTranslation();
   const { lang } = useLanguage();
   const [loading, setLoading] = useState(false);
-  const [memberList, setMemberList] = useState<TGroup['users']>([]);
+  const [memberList, setMemberList] = useState<GroupParams['users']>([]);
   const { user, setUser } = useUserContext();
   const navigate = useNavigate();
 

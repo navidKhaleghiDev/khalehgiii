@@ -3,11 +3,15 @@ import { ResetAllAccessTime } from '@src/pages/UserManagement/UserListPage/DaAsL
 import { Typography } from '@ui/atoms/Typography';
 
 import { ButtonAdd } from './components/SearchBarButtons/ButtonAdd';
-import { ITableSearchComponent, TComponent, TSearchBar } from './types';
+import {
+  TableSearchComponentProps,
+  ComponentParams,
+  SearchBarParams,
+} from './types';
 
-function SearchComponent(componentProps: ITableSearchComponent) {
+function SearchComponent(componentProps: TableSearchComponentProps) {
   const { onClick, label = '', type, className } = componentProps || {};
-  const components: TComponent = {
+  const components: ComponentParams = {
     actionAdd: <ButtonAdd onClick={onClick} label={label} />,
     typography: (
       <Typography variant="h4" color="teal" className={className}>
@@ -19,7 +23,7 @@ function SearchComponent(componentProps: ITableSearchComponent) {
   return components[type ?? 'typography'] || null;
 }
 
-export function BaseTableSearchBar(props: TSearchBar) {
+export function BaseTableSearchBar(props: SearchBarParams) {
   const { name, value, handleSearchInput, componentProps } = props;
 
   return (

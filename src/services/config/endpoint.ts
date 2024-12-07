@@ -1,4 +1,4 @@
-import { IPagination } from '@src/types/services';
+import { Pagination } from '@src/types/services';
 
 export const E_CONFIG = '/config/';
 export const E_UPDATE_DELETE_CONFIG = (id: number) => `/config/${id}/`;
@@ -6,7 +6,7 @@ export const E_UPDATE_DELETE_CONFIG = (id: number) => `/config/${id}/`;
 export const E_DAAS_CONFIGS = '/config/daas_configs/';
 export const E_SESSION_RECORDING = 'users/record_list/';
 
-export const E_DAAS_CONFIG_LIST = ({ pageSize, page, filter }: IPagination) =>
+export const E_DAAS_CONFIG_LIST = ({ pageSize, page, filter }: Pagination) =>
   `${E_DAAS_CONFIGS}${
     filter ? `?${filter}&` : '?'
   }page_size=${pageSize}&page=${page}`;
@@ -17,13 +17,13 @@ export const E_DAAS_CONFIG_LIST_PAGINATION = ({
   pageSize,
   page,
   filter,
-}: IPagination) =>
+}: Pagination) =>
   `${E_WHITE_LIST_FILES}${
     filter ? `?${filter}&` : '?'
   }page_size=${pageSize}&page=${page}`;
 export const E_SESSION_RECORD_LIST_PAGINATION = (
   id: string,
-  { pageSize, page, filter }: IPagination
+  { pageSize, page, filter }: Pagination
 ) =>
   `${E_SESSION_RECORDING}?id=${id}&${
     filter ? `${filter}&` : ''

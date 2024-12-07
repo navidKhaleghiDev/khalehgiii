@@ -1,7 +1,7 @@
 import { Typography } from '@ui/atoms/Typography';
-import { IComponentTable } from '../../types';
+import { ComponentTableProps } from '../../types';
 
-export function NoneCell({ row, id, header }: IComponentTable) {
+export function NoneCell({ row, id, header }: ComponentTableProps) {
   return (
     <div role="button" tabIndex={0} className=" flex cursor-text">
       <Typography

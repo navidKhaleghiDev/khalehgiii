@@ -1,6 +1,6 @@
 import PhTrashSimple from '@iconify-icons/ph/trash-simple';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { EPermissionExtensions } from '@src/types/permissions';
+import { PermissionExtensions } from '@src/types/permissions';
 import { FileICon } from '../Components/FIleIcon';
 
 export const extensionListHeaderItem: HeaderTable[] = [
@@ -37,7 +37,7 @@ export const extensionListHeaderItem: HeaderTable[] = [
         color: 'redNoBg',
       },
     ],
-    permission: EPermissionExtensions.DELETE,
+    permission: PermissionExtensions.DELETE,
     class: 'px-10 w-1/12 mr-auto',
   },
 ];

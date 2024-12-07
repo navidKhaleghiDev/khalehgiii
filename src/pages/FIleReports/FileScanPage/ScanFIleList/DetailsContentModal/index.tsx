@@ -1,9 +1,9 @@
-import { IScannedFile } from '@src/services/analyze/types';
+import { ScannedFile } from '@src/services/analyze/types';
 import { Typography } from '@ui/atoms';
 import { CircleBg } from '@ui/atoms/CircleBg';
 
 type PropsType = {
-  scannedFile?: IScannedFile;
+  scannedFile?: ScannedFile;
 };
 
 export function DetailsContentModal({ scannedFile }: PropsType) {

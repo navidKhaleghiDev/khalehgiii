@@ -3,7 +3,7 @@ import { selectStyles } from './styles';
 
 export type OptionType = { id: string; label: string; value: string };
 
-export interface ICard extends VariantProps<typeof selectStyles> {
+export interface CardProps extends VariantProps<typeof selectStyles> {
   className?: string;
   label: string;
   options?: OptionType[];

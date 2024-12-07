@@ -4,20 +4,20 @@ import CircleFill from '@iconify-icons/ph/circle-fill';
 import {
   getPasswordStrength,
   getLabelPasswordStrength,
-  EPasswordStrengthColor,
+  PasswordStrengthColorParams,
 } from '@src/helper/utils/getPasswordStrength';
 import { useEffect, useState } from 'react';
 import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
 
 export function PasswordStrength({ password }: { password?: string }) {
   const [colorStrength, setColorStrength] =
-    useState<EPasswordStrengthColor | null>(null);
+    useState<PasswordStrengthColorParams | null>(null);
 
   useEffect(() => {
     setColorStrength(getPasswordStrength(password));
   }, [password]);
 
-  const getColorClass = (strength: EPasswordStrengthColor | null) => {
+  const getColorClass = (strength: PasswordStrengthColorParams | null) => {
     if (strength === null) return 'w-1/5 bg-red-400';
     if (strength === 'red') return 'w-1/3 bg-red-400';
     if (strength === 'yellow') return 'w-2/3 bg-yellow-200';

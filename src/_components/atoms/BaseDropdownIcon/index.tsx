@@ -2,14 +2,14 @@ import { useRef, useState } from 'react';
 
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
-import { DropdownProps, IOptionSelect, StateType } from './type';
+import { DropdownProps, OptionSelectParams, StateType } from './type';
 import { optionSelectStyles } from './styles';
 import { BaseButton, IconButton } from '../BaseButton';
 
 /**
  *
  * @param {DropdownProps} props  The properties passed to the component.
- * @param {IOptionSelect[]} props.options  Array of options to be displayed in the dropdown.
+ * @param {OptionSelectParams[]} props.options  Array of options to be displayed in the dropdown.
  * @param {boolean} [props.fullWidth]  Optional. If true, the dropdown will take full width.
  * @param {string} [props.size]  Optional. Defines the size of the dropdown and its options.
  * @param {string} [props.containerClassName]  Optional. Additional class names for the dropdown container.
@@ -42,7 +42,7 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
     value: state.openOptions,
   });
 
-  const handleOnChange = (option: IOptionSelect) => {
+  const handleOnChange = (option: OptionSelectParams) => {
     setState({ activeOption: option, openOptions: false });
   };
 
@@ -69,7 +69,7 @@ export function BaseDropdownIcon(props: DropdownProps): JSX.Element {
           size,
         })}
       >
-        {options.map((option: IOptionSelect) => (
+        {options.map((option: OptionSelectParams) => (
           <BaseButton
             type="neutral"
             label={option.label}

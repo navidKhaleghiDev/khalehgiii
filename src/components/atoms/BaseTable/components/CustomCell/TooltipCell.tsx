@@ -1,7 +1,7 @@
 import { Typography } from '@ui/atoms/Typography';
-import { IComponentTable } from '../../types';
+import { ComponentTableProps } from '../../types';
 
-export function TooltipCell({ row, id, header }: IComponentTable) {
+export function TooltipCell({ row, id, header }: ComponentTableProps) {
   const variant = header?.variant ? header?.variant : 'body4';
   variant as string;
   const title = row[id] ? row[id] : '--';

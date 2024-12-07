@@ -3,14 +3,14 @@ import { useRef, useState } from 'react';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import caretLeftFill from '@iconify-icons/ph/caret-left-fill';
 
-import { ICard, OptionType } from './types';
+import { CardProps, OptionType } from './types';
 import { BaseButton } from '../BaseButton';
 
 const optionMock = [
   { id: '1', label: 'select one', value: '1' },
   { id: '2', label: 'select tow', value: '2' },
 ];
-export function Select({ label, options = optionMock }: ICard) {
+export function Select({ label, options = optionMock }: CardProps) {
   const ref = useRef(null);
   const [open, setOpen] = useState<boolean>(false);
   useClickOutside({ ref, setValue: setOpen, value: open });

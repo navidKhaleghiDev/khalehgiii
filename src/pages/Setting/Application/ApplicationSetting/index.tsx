@@ -8,7 +8,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionKeycloak } from '@src/types/permissions';
+import { PermissionKeycloak } from '@src/types/permissions';
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
@@ -36,7 +36,7 @@ export function ApplicationSetting({ userExist }: { userExist?: boolean }) {
   const userPermissions = useUserPermission();
   const SettingsKeycloakP = checkPermission(
     userPermissions,
-    EPermissionKeycloak.VIEW
+    PermissionKeycloak.VIEW
   );
 
   const { control, handleSubmit, reset, formState } =

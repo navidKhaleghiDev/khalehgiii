@@ -5,16 +5,16 @@ import User from '@iconify-icons/ph/user';
 import Wifi from '@iconify-icons/ph/wifi-high-duotone';
 import { Typography } from '@redesignUi/atoms';
 import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
-import { IUser } from '@src/services/users/types';
+import { UserParams } from '@src/services/users/types';
 import { E_USERS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 
 import { AdminsList } from './AdminsList';
 
 export function DashboardAdminsListPage() {
   const { t } = useTranslation();
-  const { data: adminData } = useSWR<IResponsePagination<IUser>>(
+  const { data: adminData } = useSWR<ResponsePagination<UserParams>>(
     E_USERS,
     http.fetcherSWR
   );

@@ -1,8 +1,8 @@
 import { Typography } from '@redesignUi/atoms';
 
-type TUsedTimeProps = { time: number | string; isPermanent?: boolean };
+type UsedTimeProps = { time: number | string; isPermanent?: boolean };
 
-export function AccessTime({ time, isPermanent }: TUsedTimeProps) {
+export function AccessTime({ time, isPermanent }: UsedTimeProps) {
   const accessTime = time ? `${time}h` : '0h';
   const formattedTime = isPermanent ? '--' : accessTime;
 

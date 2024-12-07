@@ -7,7 +7,6 @@ import { LicenseCard } from '@redesignUi/molecules/Cards/LicenseCard';
 import { http } from '@src/services/http';
 import { E_USERS_LICENSES } from '@src/services/users/endpoint';
 import { LicenseCardProps } from '@redesignUi/molecules/Cards/LicenseCard/types';
-import { LicenseFileType } from '@src/pages/NotUsed/License/SettingMalwareCard/type';
 import { NoResult } from '@redesignUi/molecules/NoResult';
 
 type LicenseCardKeys =
@@ -19,6 +18,16 @@ type LicenseCardKeys =
   | 'online_assistance'
   | 'clipboard_log'
   | 'chatroom';
+
+type LicenseFileType = {
+  active: any;
+  created?: string | null;
+  expiry?: string;
+  license: boolean;
+  name: string;
+  number: number;
+  concurrent?: number;
+};
 
 const licenseCardsColor: Record<LicenseCardKeys, LicenseCardProps['color']> = {
   sandbox: 'blue',

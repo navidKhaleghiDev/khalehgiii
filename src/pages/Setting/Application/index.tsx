@@ -3,7 +3,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionConfig } from '@src/types/permissions';
+import { PermissionConfig } from '@src/types/permissions';
 import { ApplicationSetting } from './ApplicationSetting';
 
 export default function Application() {
@@ -13,7 +13,7 @@ export default function Application() {
   const userExist = user?.is_meta_admin || user?.is_superuser;
   const SettingsConfigP = checkPermission(
     userPermissions,
-    EPermissionConfig.VIEW
+    PermissionConfig.VIEW
   );
   return (
     <div>

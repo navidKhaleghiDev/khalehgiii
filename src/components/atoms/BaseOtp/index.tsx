@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { Typography } from '../Typography';
 import { baseOtpStyles } from './styles';
-import { TBaseInputProps, THandleChange, THandleKeyDown } from './types';
+import { BaseInputProps, HandleChange, HandleKeyDown } from './types';
 import { regexPattern } from '../Inputs';
 
 export function BaseOtp({
@@ -15,9 +15,9 @@ export function BaseOtp({
   size,
   fullWidth,
   pureError,
-}: TBaseInputProps<any>) {
+}: BaseInputProps<any>) {
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const handleChange: THandleChange = (e, index, field) => {
+  const handleChange: HandleChange = (e, index, field) => {
     const val = e.target.value;
     // if (/[^0-9]/.test(val)) return;
 
@@ -36,7 +36,7 @@ export function BaseOtp({
     }
   };
 
-  const handleKeyDown: THandleKeyDown = (e, index) => {
+  const handleKeyDown: HandleKeyDown = (e, index) => {
     if (e.key === 'Backspace' && !e.currentTarget.value && index > 0) {
       const previousElement = e.currentTarget
         .previousElementSibling as HTMLInputElement | null;

@@ -1,14 +1,14 @@
-import { TGroup } from '@src/services/users/types';
+import { GroupParams } from '@src/services/users/types';
 
-export type TGroupModal = {
+export type GroupModalParams = {
   open: boolean;
-  groupList?: TGroup;
+  groupList?: GroupParams;
 };
 
-export type TUserList = { id: string; email: string }[];
+export type UsersListParams = { id: string; email: string }[];
 
-export type TGroupListUpdate = {
-  users: TUserList;
-  admins: TUserList;
+export type GroupListUpdateParams = {
+  users: UsersListParams;
+  admins: UsersListParams;
   name: string;
 };

@@ -7,7 +7,7 @@ import { E_USERS_LICENSES } from '@src/services/users/endpoint';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { Typography } from '@redesignUi/atoms';
 
 import { LicenseFileType } from './type';
@@ -26,7 +26,7 @@ export function License() {
     currentPage,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<LicenseFileType>>(
+  const { data, isLoading } = useSWR<ResponsePagination<LicenseFileType>>(
     endpoint,
     http.fetcherSWR
   );

@@ -2,9 +2,9 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
@@ -39,12 +39,12 @@ export function UsersDaAsList() {
     filterQuery: searchQuery,
     currentPage,
   });
-  const { data, isLoading, error } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading, error } = useSWR<ResponsePagination<DaAsParams>>(
     endpoint,
     http.fetcherSWR
   );
 
-  const handelClickRow: OnClickActionsType<IDaAs> = (_, dass) => {
+  const handelClickRow: OnClickActionsType<DaAsParams> = (_, dass) => {
     if (dass?.email) {
       setModelId(dass?.email);
       setOpen(true);

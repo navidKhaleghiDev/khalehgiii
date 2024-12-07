@@ -6,17 +6,17 @@ import { BaseUploadInput } from '@ui/atoms/Inputs/BaseUploadInput';
 import { regexPattern } from '@ui/atoms/Inputs';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useRef, useState } from 'react';
-import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { GroupParams, UpdateGroupPayload } from '@src/services/users/types';
 import { GroupTabContent } from '../GroupTabContent';
-import { GroupTabsRefType, TGroupUpdate } from '../types';
+import { GroupTabsRefType, GroupUpdateNU } from '../types';
 
-type TGroupModalFormProps = {
-  group: TGroup | undefined;
+type GroupModalFormProps = {
+  group: GroupParams | undefined;
   permissions: boolean;
-  updatedData: TGroupUpdate | undefined;
-  setUpdatedData: (updatedData: TGroupUpdate | undefined) => void;
-  createGroup: (list: TGroup) => void;
-  buildFormData: (data: TGroupUpdate) => FormData;
+  updatedData: GroupUpdateNU | undefined;
+  setUpdatedData: (updatedData: GroupUpdateNU | undefined) => void;
+  createGroup: (list: GroupParams) => void;
+  buildFormData: (data: GroupUpdateNU) => FormData;
   loading: boolean;
   loadingGroup: boolean | undefined;
   setOpenModal: (open: boolean) => void;
@@ -29,11 +29,11 @@ type TGroupModalFormProps = {
  * an existing group, depending on the provided props.
  *
  * @component
- * @param {TGroupModalFormProps} props - The properties required by the component.
+ * @param {GroupModalFormProps} props - The properties required by the component.
  *
- * @param {TGroup | undefined} props.group - The existing group data, if editing.
+ * @param {GroupParams | undefined} props.group - The existing group data, if editing.
  * @param {boolean} props.permissions - User permissions for editing or creating a group.
- * @param {TGroupUpdate | undefined} props.updatedData - The updated group data state.
+ * @param {GroupUpdateNU | undefined} props.updatedData - The updated group data state.
  * @param {function} props.setUpdatedData - Function to set the updated group data.
  * @param {function} props.createGroup - Function to create a new group.
  * @param {function} props.buildFormData - Function to build form data for API submission.
@@ -68,12 +68,12 @@ export function GroupModalForm({
   loading,
   loadingGroup,
   setOpenModal,
-}: TGroupModalFormProps) {
+}: GroupModalFormProps) {
   const tabsRef = useRef<GroupTabsRefType>(null);
   const [isUpdatingGroupMember, setIsUpdatingGroupMember] = useState(false);
   const { t } = useTranslation();
 
-  const methods = useForm<TGroupUpdate>({
+  const methods = useForm<GroupUpdateNU>({
     mode: 'onChange',
     defaultValues: {
       image: group?.id ? group?.image : '',
@@ -93,9 +93,9 @@ export function GroupModalForm({
   /**
    * Handles form submission to create or update a group.
    *
-   * @param {TGroupUpdate} listData - The data to submit.
+   * @param {GroupUpdateNU} listData - The data to submit.
    */
-  const onSubmit: SubmitHandler<TGroupUpdate> = (listData) => {
+  const onSubmit: SubmitHandler<GroupUpdateNU> = (listData) => {
     createGroup(buildFormData(listData) as any);
   };
 
@@ -104,11 +104,11 @@ export function GroupModalForm({
    *
    * @template K
    * @param {K} key - The key of the property to update.
-   * @param {TGroupUpdate[K]} value - The new value for the property.
+   * @param {GroupUpdateNU[K]} value - The new value for the property.
    */
-  const updateGroupProperty = <K extends keyof TGroupUpdate>(
+  const updateGroupProperty = <K extends keyof GroupUpdateNU>(
     key: K,
-    value: TGroupUpdate[K]
+    value: GroupUpdateNU[K]
   ) => {
     if (updatedData) {
       setUpdatedData({
@@ -129,7 +129,7 @@ export function GroupModalForm({
    * @param {UpdateGroupPayload} updatedList - The updated list of group members.
    */
   const handleUpdateGroup = async (updatedList: UpdateGroupPayload) => {
-    setUpdatedData(updatedList as unknown as TGroupUpdate);
+    setUpdatedData(updatedList as unknown as GroupUpdateNU);
   };
 
   /**

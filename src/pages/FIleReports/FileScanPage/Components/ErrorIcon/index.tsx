@@ -5,11 +5,11 @@ import { Modal } from '@redesignUi/molecules/Modal';
 import PhWarning from '@iconify-icons/ph/warning';
 
 import { BaseTableComponentCellProps } from '@redesignUi/molecules/BaseTable/types';
-import { IScannedFile } from '@src/services/analyze/types';
+import { ScannedFile } from '@src/services/analyze/types';
 import { DetailsContentModal } from '../ErrorInofModal/idnex';
 
 type TagProps = {
-  data: BaseTableComponentCellProps<IScannedFile>;
+  data: BaseTableComponentCellProps<ScannedFile>;
 };
 export function ErrorIcon({ data }: TagProps) {
   const [openDetailsModal, setOpenDetailsModal] = useState(false);

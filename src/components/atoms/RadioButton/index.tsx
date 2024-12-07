@@ -1,13 +1,13 @@
 // CustomRadioButton.js
 
-export interface IRadioButton {
+export interface RadioButtonProps {
   value: any;
   label: string;
   checked: boolean;
   onChange: any;
 }
 
-function RadioButton({ value, label, checked, onChange }: IRadioButton) {
+function RadioButton({ value, label, checked, onChange }: RadioButtonProps) {
   return (
     // eslint-disable-next-line jsx-a11y/label-has-associated-control
     <label className=" flex gap-2">

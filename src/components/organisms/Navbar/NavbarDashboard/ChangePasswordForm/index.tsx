@@ -17,7 +17,7 @@ type ChangePasswordValues = {
   password_r: string;
 };
 
-export interface ILoginFieldValues extends FieldValues {
+export interface LoginFieldValues extends FieldValues {
   email: string;
   password: string;
   remember_me?: boolean;
@@ -42,7 +42,7 @@ export function ChangePasswordForm({ user }: any) {
   const [error, setError] = useState<string | null>(null);
   const [loadingButton, setLoadingButton] = useState(false);
 
-  const handelSubmitForm = async ({ email, password }: ILoginFieldValues) => {
+  const handelSubmitForm = async ({ email, password }: LoginFieldValues) => {
     if (!user) return true;
     setLoadingButton(true);
 

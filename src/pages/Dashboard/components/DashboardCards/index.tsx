@@ -6,15 +6,15 @@ import { ROUTES_PATH } from '@src/routes/routesConstants';
 import FolderSimple from '@iconify-icons/ph/folder-simple';
 import Scan from '@iconify-icons/ph/scan';
 import { DashboardCard } from '@redesignUi/molecules/Cards/DashboardCard';
-import { ISwrResponse } from '@src/types/services';
-import { IScanStats } from '@src/services/analyze/types';
+import { SwrResponse } from '@src/types/services';
+import { ScanStats } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
 import { HTTP_ANALYSES } from '@src/services/http';
 
 export function DashboardCards() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { data } = useSWR<ISwrResponse<IScanStats>>(
+  const { data } = useSWR<SwrResponse<ScanStats>>(
     E_ANALYZE_SCAN_STATS,
     HTTP_ANALYSES.fetcherSWR
   );
