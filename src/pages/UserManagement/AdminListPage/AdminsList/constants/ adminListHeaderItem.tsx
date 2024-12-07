@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import Trash from '@iconify-icons/ph/trash-simple';
 import NotePencil from '@iconify-icons/ph/pencil-simple';
-import { EPermissionUsers } from '@src/types/permissions';
+import { PermissionUsers } from '@src/types/permissions';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { Typography } from '@redesignUi/atoms';
 
@@ -75,18 +75,18 @@ export const adminListHeaderItem: HeaderTable[] = [
         action: 'edit',
         icon: NotePencil,
         color: 'neutralNoBg',
-        permission: EPermissionUsers.CHANGE,
+        permission: PermissionUsers.CHANGE,
         title: 'table.editAdminInfo',
       },
       {
         action: 'delete',
         icon: Trash,
         color: 'redNoBg',
-        permission: EPermissionUsers.DELETE,
+        permission: PermissionUsers.DELETE,
         title: 'table.deleteAdmin',
       },
     ],
-    permission: [EPermissionUsers.CHANGE, EPermissionUsers.DELETE],
+    permission: [PermissionUsers.CHANGE, PermissionUsers.DELETE],
     class: ' mr-auto w-2/12 lg:w-1/12',
   },
 ];

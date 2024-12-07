@@ -70,6 +70,7 @@ export function FileInput(props: FileInputProps): JSX.Element {
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
         onDragEnter={(e) => e.preventDefault()}
+        disabled={disabled}
       >
         <div className="bg-gray-100 dark:bg-gray-600 rounded-full p-1.5">
           <BaseIcon
@@ -110,6 +111,7 @@ export function FileInput(props: FileInputProps): JSX.Element {
               color="neutralNoBg"
               className="rounded-full p-1 box-content"
               onClick={handleClearFile}
+              disabled={disabled}
             />
           </div>
         </div>

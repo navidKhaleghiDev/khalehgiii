@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { Divider } from '@redesignUi/atoms/Divider';
 import { NoResult } from '@redesignUi/molecules/NoResult';
 
 import OnlineAssistanceDetail from './OnlineAssistanceDetail';
 
-type TOnlineAssistanceDetailModalProps = {
-  daas: IDaAs;
+type OnlineAssistanceDetailModalProps = {
+  daas: DaAsParams;
 };
 
 export function OnlineAssistanceDetailModal({
   daas,
-}: TOnlineAssistanceDetailModalProps) {
+}: OnlineAssistanceDetailModalProps) {
   const { t } = useTranslation();
 
   const { member_of: members, admin_group_of: admins } = daas;

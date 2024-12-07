@@ -15,50 +15,50 @@ import {
 } from '@src/services/users';
 import { toast } from 'react-toastify';
 import { regexPattern } from '@ui/atoms/Inputs';
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
 import ToolTip from '@ui/atoms/Tooltip';
 import { Modal } from '@ui/molecules/Modal';
 import { useTranslation } from 'react-i18next';
 import { OnClickActionsType } from '../types';
 
-interface IUpdateDaasValues extends FieldValues {
-  time_limit_duration: ETimeLimitDuration;
+interface UpdateDaasValuesParam extends FieldValues {
+  time_limit_duration: TimeLimitDuration;
   time_limit_value_in_hour?: number;
 }
 
 export const timeLimitDurationOptions = [
   {
-    id: ETimeLimitDuration.DAILY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.DAILY],
-    value: ETimeLimitDuration.DAILY,
+    id: TimeLimitDuration.DAILY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.DAILY],
+    value: TimeLimitDuration.DAILY,
   },
   {
-    id: ETimeLimitDuration.WEEKLY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.WEEKLY],
-    value: ETimeLimitDuration.WEEKLY,
+    id: TimeLimitDuration.WEEKLY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.WEEKLY],
+    value: TimeLimitDuration.WEEKLY,
   },
   {
-    id: ETimeLimitDuration.MONTHLY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.MONTHLY],
-    value: ETimeLimitDuration.MONTHLY,
+    id: TimeLimitDuration.MONTHLY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.MONTHLY],
+    value: TimeLimitDuration.MONTHLY,
   },
   {
-    id: ETimeLimitDuration.PERMANENTLY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.PERMANENTLY],
-    value: ETimeLimitDuration.PERMANENTLY,
+    id: TimeLimitDuration.PERMANENTLY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.PERMANENTLY],
+    value: TimeLimitDuration.PERMANENTLY,
   },
   {
-    id: ETimeLimitDuration.TEMPORARY,
-    label: TimeLimitDurationLabel[ETimeLimitDuration.TEMPORARY],
-    value: ETimeLimitDuration.TEMPORARY,
+    id: TimeLimitDuration.TEMPORARY,
+    label: TimeLimitDurationLabel[TimeLimitDuration.TEMPORARY],
+    value: TimeLimitDuration.TEMPORARY,
   },
 ];
 
 type PropsType = {
   id: string;
   onClickActions?: OnClickActionsType;
-  timeLimitDuration: ETimeLimitDuration;
+  timeLimitDuration: TimeLimitDuration;
   timeLimitValue: number;
 };
 
@@ -74,9 +74,10 @@ export function SetAccessTime({
   const [loadingResetButton, setLoadingResetButton] = useState(false);
 
   const [openModalDelete, setOpenModalDelete] = useState(false);
-  const { control, handleSubmit, reset, watch } = useForm<IUpdateDaasValues>({
-    mode: 'onChange',
-  });
+  const { control, handleSubmit, reset, watch } =
+    useForm<UpdateDaasValuesParam>({
+      mode: 'onChange',
+    });
 
   useEffect(() => {
     if (timeLimitDuration && timeLimitValue) {
@@ -93,7 +94,7 @@ export function SetAccessTime({
     setIsEditable(false);
   };
 
-  const handleOnSubmit = async (data: IUpdateDaasValues) => {
+  const handleOnSubmit = async (data: UpdateDaasValuesParam) => {
     setLoadingButton(true);
 
     await API_DAAS_UPDATE(id, {
@@ -132,7 +133,7 @@ export function SetAccessTime({
   };
 
   const isPermanently =
-    watch('time_limit_duration') === ETimeLimitDuration.PERMANENTLY;
+    watch('time_limit_duration') === TimeLimitDuration.PERMANENTLY;
 
   return (
     <div className="flex justify-center w-full">
@@ -147,7 +148,7 @@ export function SetAccessTime({
                 <Divider vr />
               </div>
               <Typography variant="body4" color="teal">
-                {timeLimitDuration !== ETimeLimitDuration.PERMANENTLY
+                {timeLimitDuration !== TimeLimitDuration.PERMANENTLY
                   ? `${timeLimitValue} ${t('global.hour')}`
                   : '---'}
               </Typography>

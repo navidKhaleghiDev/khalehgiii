@@ -2,9 +2,9 @@ import { BaseButton } from '@ui/atoms/BaseButton';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
-import { IDaasConfig } from '@src/services/config/types';
+import { DaasConfig } from '@src/services/config/types';
 import useSWR from 'swr';
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
@@ -18,14 +18,14 @@ export function DaasConfigCp() {
   const { t } = useTranslation();
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
-  const { data: daasConfig, isLoading } = useSWR<ISwrResponse<IDaasConfig>>(
+  const { data: daasConfig, isLoading } = useSWR<SwrResponse<DaasConfig>>(
     E_DAAS_CONFIGS,
     http.fetcherSWR
   );
   const userPermissions = useUserPermission();
 
   const { control, handleSubmit, getValues, reset, formState } =
-    useForm<IDaasConfig>({
+    useForm<DaasConfig>({
       mode: 'onChange',
       defaultValues: {
         id: daasConfig?.data?.id,

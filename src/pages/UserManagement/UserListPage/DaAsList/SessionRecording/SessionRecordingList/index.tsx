@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 import Play from '@iconify-icons/ph/play';
 import { http } from '@src/services/http';
-import { ISessionResponsePagination } from '@src/types/services';
+import { SessionResponsePagination } from '@src/types/services';
 import { E_SESSION_RECORD_LIST_PAGINATION } from '@src/services/config/endpoint';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_GET_RECORDED_VIDEO } from '@src/services/users';
@@ -15,7 +15,7 @@ import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
-import { ISessionRecordList, TRecordData } from '../types';
+import { SessionRecordListParams, RecordDataParams } from '../types';
 import { SessionRecordingHeaderItem } from './constants/SessionRecordingHeaderItem';
 
 const PAGE_SIZE = 5;
@@ -40,7 +40,7 @@ export function SessionRecordingList({
   const userPermissions = useUserPermission();
 
   const { data, isLoading } = useSWR<
-    ISessionResponsePagination<ISessionRecordList>
+    SessionResponsePagination<SessionRecordListParams>
   >(
     id
       ? E_SESSION_RECORD_LIST_PAGINATION(id, {
@@ -67,7 +67,7 @@ export function SessionRecordingList({
   });
   const dataTableToday = Object.entries(sessionListToday).flatMap(
     ([key, value]) =>
-      value.map((item: TRecordData) => ({ recrod_date: key, ...item }))
+      value.map((item: RecordDataParams) => ({ recrod_date: key, ...item }))
   );
 
   const getVideoUrl = async (video: string) => {
@@ -83,7 +83,10 @@ export function SessionRecordingList({
       });
   };
 
-  const handleOpenModal: OnClickActionsType<TRecordData> = (action, item) => {
+  const handleOpenModal: OnClickActionsType<RecordDataParams> = (
+    action,
+    item
+  ) => {
     if (action === 'more' && item) {
       getVideoUrl(item.record_name);
     }

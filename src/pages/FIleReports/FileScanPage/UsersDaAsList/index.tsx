@@ -1,10 +1,8 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import useSWR from 'swr';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { Modal } from '@redesignUi/molecules/Modal';
@@ -13,19 +11,20 @@ import PhFolder from '@iconify-icons/ph/folder';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { useGetPagination } from '@src/services/http/httpClient';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { monitoringHeaderItem } from '../constants/constants';
 import { ScannedFileList } from '../ScanFIleList';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 6;
 const PAGE = 1;
 
 export function UsersDaAsList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [modelId, setModelId] = useState('');
+  const [userEmail, setUserEmail] = useState<DaAsParams['email']>('');
   const [open, setOpen] = useState(false);
 
   const userPermissions = useUserPermission();
@@ -39,14 +38,14 @@ export function UsersDaAsList() {
     filterQuery: searchQuery,
     currentPage,
   });
-  const { data, isLoading, error } = useSWR<IResponsePagination<IDaAs>>(
+  const { isLoading, error, resultData, count } = useGetPagination<DaAsParams>(
     endpoint,
     http.fetcherSWR
   );
 
-  const handelClickRow: OnClickActionsType<IDaAs> = (_, dass) => {
-    if (dass?.email) {
-      setModelId(dass?.email);
+  const handelClickRow: OnClickActionsType<DaAsParams> = (action, daAs) => {
+    if (action === 'button' && daAs?.email) {
+      setUserEmail(daAs?.email);
       setOpen(true);
     }
   };
@@ -55,16 +54,14 @@ export function UsersDaAsList() {
     setSearchQuery(searchValue);
   }, []);
 
-  const listDaAs = data?.data.results ?? [];
-  const listDaAsCount = data?.data.count ?? 0;
   const paginationProps = {
-    countPage: listDaAsCount,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(listDaAsCount / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     onPageChange: (page: number) => setCurrentPage(page),
     paginationLabel: t('header.admin'),
-    allItems: listDaAsCount,
-    itemsPer: listDaAs.length,
+    allItems: count,
+    itemsPer: resultData.length,
   };
 
   return (
@@ -79,7 +76,7 @@ export function UsersDaAsList() {
         {!error ? (
           <BaseTable
             loading={isLoading}
-            body={listDaAs}
+            body={resultData}
             header={checkPermissionHeaderItem(
               userPermissions,
               monitoringHeaderItem
@@ -97,11 +94,11 @@ export function UsersDaAsList() {
         open={open}
         setOpen={setOpen}
         type="content"
-        classContainer="w-[20.875rem] sm:w-[39.68rem]"
-        title={t('fileScan.recordedActivities')}
-        descriptionInfo={t('fileScan.userRecordedActivities')}
         icon={PhFolder}
-        content={<ScannedFileList userEmail={modelId} />}
+        title={t('fileScan.recordedActivities')}
+        classContainer="w-[20.875rem] sm:w-[39.68rem]"
+        content={<ScannedFileList userEmail={userEmail} />}
+        descriptionInfo={t('fileScan.userRecordedActivities')}
       />
     </>
   );

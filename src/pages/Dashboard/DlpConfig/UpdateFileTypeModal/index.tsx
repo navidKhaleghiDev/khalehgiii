@@ -2,7 +2,7 @@ import { BaseButton } from '@ui/atoms/BaseButton';
 import { BaseInput, Typography } from '@ui/atoms';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { IFileType } from '@src/services/config/types';
+import { FileType } from '@src/services/config/types';
 import { BaseSwitch } from '@ui/atoms/Inputs/BaseSwitch';
 import { regexPattern } from '@ui/atoms/Inputs';
 import {
@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;
-  fileType?: Partial<IFileType>;
+  fileType?: Partial<FileType>;
 };
 
 export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
@@ -22,7 +22,7 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
-  const { control, handleSubmit } = useForm<IFileType>({
+  const { control, handleSubmit } = useForm<FileType>({
     mode: 'onChange',
     defaultValues: {
       id: fileType?.id,
@@ -33,11 +33,11 @@ export function UpdateFileTypeModal({ handleClose, fileType }: PropsType) {
     },
   });
 
-  const handleOnSubmit = async (data: IFileType) => {
+  const handleOnSubmit = async (data: FileType) => {
     setLoadingButtonModal(true);
 
     if (data.id) {
-      await API_UPDATE_FILE_TYPE(data as IFileType)
+      await API_UPDATE_FILE_TYPE(data as FileType)
         .then(() => {
           toast.success(t('global.sucessfulyUpdated'));
           handleClose(true);

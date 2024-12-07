@@ -4,12 +4,12 @@ import plusIcon from '@iconify-icons/ph/plus';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@context/settings/languageContext';
 
-interface IButtonAdd {
+interface ButtonAddProps {
   label: string;
   onClick?: () => void;
 }
 
-export function ButtonAdd({ label = '', onClick }: IButtonAdd) {
+export function ButtonAdd({ label = '', onClick }: ButtonAddProps) {
   const { lang } = useLanguage();
   const position = lang === 'fa' ? 'right' : 'left';
 

@@ -1,10 +1,10 @@
-export interface IOptionSelect {
+export interface OptionParams {
   id?: string;
   value?: string;
   label: string;
 }
 interface OptionSelectProps {
-  option: IOptionSelect;
+  option: OptionParams;
 }
 export function OptionSelect(props: OptionSelectProps) {
   const { option } = props;

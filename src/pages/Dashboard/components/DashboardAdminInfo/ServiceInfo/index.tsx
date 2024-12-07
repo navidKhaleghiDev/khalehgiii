@@ -4,9 +4,9 @@ import useSWR from 'swr';
 
 import { ServiceCard } from '@redesignUi/molecules/Cards/ServiceCard';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
-import { IScanStats } from '@src/services/analyze/types';
+import { ScanStats } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 import { useLanguage } from '@context/settings/languageContext';
 
 type ServiceInfoProps = {
@@ -14,7 +14,7 @@ type ServiceInfoProps = {
 };
 
 export function ServiceInfo({ className }: ServiceInfoProps) {
-  const { data } = useSWR<ISwrResponse<IScanStats>>(
+  const { data } = useSWR<SwrResponse<ScanStats>>(
     E_ANALYZE_SCAN_STATS,
     HTTP_ANALYSES.fetcherSWR
   );

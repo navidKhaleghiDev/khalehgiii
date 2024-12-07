@@ -1,4 +1,4 @@
-import { IDaasConfig } from '@src/services/config/types';
+import { DaasConfig } from '@src/services/config/types';
 import { StringifyProperties } from '@src/types/global';
 
 export type ActionOnClickActionsType =
@@ -9,5 +9,5 @@ export type ActionOnClickActionsType =
   | 'editLock';
 export type OnClickActionsType = (
   action: ActionOnClickActionsType,
-  daasConfig?: StringifyProperties<IDaasConfig> | IDaasConfig
+  daasConfig?: StringifyProperties<DaasConfig> | DaasConfig
 ) => void;

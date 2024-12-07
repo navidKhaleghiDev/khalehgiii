@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 import { http } from '@src/services/http';
 import useSWR from 'swr';
-import { IResponsePagination } from '@src/types/services';
-import { IDaAs } from '@src/services/users/types';
+import { ResponsePagination } from '@src/types/services';
+import { DaAsParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 
@@ -34,7 +34,7 @@ export function GroupManagementAddNewMember(
     filterQuery,
   });
 
-  const { data, isLoading } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading } = useSWR<ResponsePagination<DaAsParams>>(
     endpoint,
     http.fetcherSWR
   );

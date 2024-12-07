@@ -15,8 +15,8 @@ import { useTheme } from '@context/settings/themeContext';
 import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
-import './index.css';
 import { MultiDatePickerProps } from './types';
+import './index.css';
 
 /**
  *
@@ -75,9 +75,9 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
   const handleSubmit = () => {
     setTimeout(() => {
       if (datePickerRef.current) {
-        datePickerRef.current?.closeCalendar();
+        datePickerRef.current.closeCalendar();
       }
-    }, 1);
+    }, 0);
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 
-import { DropdownProps, IOptionSelect, StateType } from './type';
+import { DropdownProps, OptionSelect, StateType } from './type';
 import { optionSelectStyles } from './styles';
 import { IconButton, BaseButton } from '../BaseButton';
 
@@ -32,7 +32,7 @@ export function DropDownWithIcon({
     value: state.openOptions,
   });
 
-  const handleOnChange = (option: IOptionSelect) => {
+  const handleOnChange = (option: OptionSelect) => {
     setState({ activeOption: option, openOptions: false });
   };
 
@@ -55,7 +55,7 @@ export function DropDownWithIcon({
           size,
         })}
       >
-        {options.map((option: IOptionSelect) => (
+        {options.map((option: OptionSelect) => (
           <BaseButton
             type="tealLink"
             label={option.label}

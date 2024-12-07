@@ -1,4 +1,4 @@
-export enum EPasswordStrengthColor {
+export enum PasswordStrengthColorParams {
   TEAL = 'teal',
   RED = 'red',
   YELLOW = 'yellow',
@@ -11,8 +11,8 @@ export enum EPasswordStrengthColor {
 
 export function getPasswordStrength(
   password?: string
-): EPasswordStrengthColor | null {
-  let score: null | EPasswordStrengthColor = null;
+): PasswordStrengthColorParams | null {
+  let score: null | PasswordStrengthColorParams = null;
   if (password === '' || !password) {
     return score;
   }
@@ -30,15 +30,15 @@ export function getPasswordStrength(
     case /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$&_*\s]).{6,64}$/.test(
       password
     ):
-      score = EPasswordStrengthColor.TEAL;
+      score = PasswordStrengthColorParams.TEAL;
       break;
     case /^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[0-9])|(?=.*[a-z])(?=.*[!@#$&_*\s])(?=.*[A-Z])).{6,64}$/.test(
       password
     ):
-      score = EPasswordStrengthColor.YELLOW;
+      score = PasswordStrengthColorParams.YELLOW;
       break;
     case /^(?=.*[a-zA-Z0-9]).{6,64}$/.test(password):
-      score = EPasswordStrengthColor.RED;
+      score = PasswordStrengthColorParams.RED;
       break;
     default:
       score = null;
@@ -48,16 +48,16 @@ export function getPasswordStrength(
 }
 
 export function getLabelPasswordStrength(
-  passwordStrength: EPasswordStrengthColor
+  passwordStrength: PasswordStrengthColorParams
 ) {
   switch (passwordStrength) {
-    case EPasswordStrengthColor.RED:
+    case PasswordStrengthColorParams.RED:
       return 'ضعیف';
 
-    case EPasswordStrengthColor.YELLOW:
+    case PasswordStrengthColorParams.YELLOW:
       return 'متوسط';
 
-    case EPasswordStrengthColor.TEAL:
+    case PasswordStrengthColorParams.TEAL:
       return 'قوی';
 
     default:

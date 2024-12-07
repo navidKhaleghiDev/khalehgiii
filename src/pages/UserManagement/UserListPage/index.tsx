@@ -6,8 +6,8 @@ import Lock from '@iconify-icons/ph/lock-laminated';
 import Wifi from '@iconify-icons/ph/wifi-high-duotone';
 import Users from '@iconify-icons/ph/user';
 
-import { IResponsePagination } from '@src/types/services';
-import { IDaAs } from '@src/services/users/types';
+import { ResponsePagination } from '@src/types/services';
+import { DaAsParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import { Typography } from '@redesignUi/atoms';
@@ -20,7 +20,7 @@ export function DashboardDesktopListPage() {
   const [showOnlineUsers, setShowOnlineUsers] = useState<boolean>(false);
 
   const { t } = useTranslation();
-  const { data: userData } = useSWR<IResponsePagination<IDaAs>>(
+  const { data: userData } = useSWR<ResponsePagination<DaAsParams>>(
     E_USERS_DAAS,
     http.fetcherSWR
   );

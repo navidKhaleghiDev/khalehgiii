@@ -1,6 +1,6 @@
 import { Card, Typography } from '@ui/atoms';
 import { CircleBg } from '@ui/atoms/CircleBg';
-import { IScannedFile } from '@src/services/analyze/types';
+import { ScannedFile } from '@src/services/analyze/types';
 import { StringifyProperties } from '@src/types/global';
 
 import { IconButton } from '@ui/atoms/BaseButton';
@@ -8,7 +8,7 @@ import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 // import ToolTip from '@ui/atoms/Tooltip';
 
 type ProductCardProps = {
-  scannedFile: StringifyProperties<IScannedFile> | IScannedFile;
+  scannedFile: StringifyProperties<ScannedFile> | ScannedFile;
   isHeader?: boolean;
   onOpenDetailModal?: () => void;
 };
