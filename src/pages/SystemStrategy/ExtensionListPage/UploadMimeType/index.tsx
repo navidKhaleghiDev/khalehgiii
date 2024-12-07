@@ -12,7 +12,7 @@ type PropsType = {
   handleClose: () => void;
 };
 
-interface IFieldValues extends FieldValues {
+interface FieldValuesParams extends FieldValues {
   file: File[];
 }
 
@@ -22,11 +22,11 @@ export function UploadFileModal({ handleClose }: PropsType) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
-  const { control, handleSubmit } = useForm<IFieldValues>({
+  const { control, handleSubmit } = useForm<FieldValuesParams>({
     mode: 'onChange',
   });
 
-  const handleOnSubmit = async (data: IFieldValues) => {
+  const handleOnSubmit = async (data: FieldValuesParams) => {
     setLoadingButtonModal(true);
     const body = new FormData();
     if (data.file.length > 0) {

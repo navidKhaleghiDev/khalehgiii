@@ -4,15 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { IconButton } from '@ui/atoms/BaseButton';
 import { Typography } from '@ui/atoms';
 import { Modal } from '@ui/molecules/Modal';
-import { EPermissionGroupManagement } from '@src/types/permissions';
+import { PermissionGroupManagement } from '@src/types/permissions';
 import {
   API_USERS_GROUPS_CREATE,
   API_USERS_GROUPS_UPDATE,
 } from '@src/services/users';
-import { TGroup } from '@src/services/users/types';
+import { GroupParams } from '@src/services/users/types';
 import {
   GroupModalProps,
-  TGroupUpdate,
+  GroupUpdateNU,
 } from '@src/pages/NotUsed/GroupManagement/GroupModal/types';
 import {
   checkPermission,
@@ -52,22 +52,22 @@ export function GroupModal({
 
   const [loading, setLoading] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [updatedData, setUpdatedData] = useState<TGroupUpdate | undefined>(
+  const [updatedData, setUpdatedData] = useState<GroupUpdateNU | undefined>(
     undefined
   );
 
   const GroupManagementChange = checkPermission(
     userPermissions,
-    EPermissionGroupManagement.CHANGE
+    PermissionGroupManagement.CHANGE
   );
 
   /**
    * Builds the `FormData` object from the provided group data, including the name, image, users, and admins.
    *
-   * @param {TGroupUpdate} data - The data to be included in the form.
+   * @param {GroupUpdateNU} data - The data to be included in the form.
    * @returns {FormData} The constructed `FormData` object.
    */
-  const buildFormData = (data: TGroupUpdate) => {
+  const buildFormData = (data: GroupUpdateNU) => {
     const formData = new FormData();
     formData.append('name', data.name);
     if (data.image === '' || data.image instanceof Blob) {
@@ -81,9 +81,9 @@ export function GroupModal({
   /**
    * Creates a new group by calling the relevant API and then triggers a re-fetch of the group data.
    *
-   * @param {TGroup} list - The group data to be created.
+   * @param {GroupParams} list - The group data to be created.
    */
-  const createGroup = async (list: TGroup) => {
+  const createGroup = async (list: GroupParams) => {
     setLoading(true);
     await API_USERS_GROUPS_CREATE(list)
       .then(() => {

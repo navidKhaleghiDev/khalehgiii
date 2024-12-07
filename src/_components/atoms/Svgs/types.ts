@@ -1,3 +1,3 @@
-export interface ISvgProp {
+export interface SvgProps {
   className?: 'string';
 }

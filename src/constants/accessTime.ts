@@ -1,18 +1,18 @@
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { t } from 'i18next';
 
 export const TimeLimitDurationLabel = {
-  [ETimeLimitDuration.DAILY]: t('table.daily'),
-  [ETimeLimitDuration.WEEKLY]: t('table.weekly'),
-  [ETimeLimitDuration.MONTHLY]: t('table.monthly'),
-  [ETimeLimitDuration.PERMANENTLY]: t('table.permanently'),
-  [ETimeLimitDuration.TEMPORARY]: t('table.temporary'),
+  [TimeLimitDuration.DAILY]: t('table.daily'),
+  [TimeLimitDuration.WEEKLY]: t('table.weekly'),
+  [TimeLimitDuration.MONTHLY]: t('table.monthly'),
+  [TimeLimitDuration.PERMANENTLY]: t('table.permanently'),
+  [TimeLimitDuration.TEMPORARY]: t('table.temporary'),
 };
 
 export const TimeLimitDurationLabelDetails = {
-  [ETimeLimitDuration.DAILY]: t('table.today'),
-  [ETimeLimitDuration.WEEKLY]: t('table.thisWeek'),
-  [ETimeLimitDuration.MONTHLY]: t('table.thisMonth'),
-  [ETimeLimitDuration.PERMANENTLY]: t('table.permanently'),
-  [ETimeLimitDuration.TEMPORARY]: t('table.temporary'),
+  [TimeLimitDuration.DAILY]: t('table.today'),
+  [TimeLimitDuration.WEEKLY]: t('table.thisWeek'),
+  [TimeLimitDuration.MONTHLY]: t('table.thisMonth'),
+  [TimeLimitDuration.PERMANENTLY]: t('table.permanently'),
+  [TimeLimitDuration.TEMPORARY]: t('table.temporary'),
 };

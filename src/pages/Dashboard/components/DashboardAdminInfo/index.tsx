@@ -1,7 +1,7 @@
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import {
-  EPermissionMalwareConfig,
-  EPermissionUsers,
+  PermissionMalwareConfig,
+  PermissionUsers,
   PermissionsCodeName,
 } from '@src/types/permissions';
 
@@ -15,11 +15,11 @@ export function DashboardAdminInfo({
 }): JSX.Element {
   const viewMalwarePermission = checkPermission(
     permissions,
-    EPermissionMalwareConfig.VIEW
+    PermissionMalwareConfig.VIEW
   );
   const viewUsersPermission = checkPermission(
     permissions,
-    EPermissionUsers.VIEW
+    PermissionUsers.VIEW
   );
 
   if (viewMalwarePermission && viewUsersPermission) {

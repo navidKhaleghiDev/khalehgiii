@@ -1,4 +1,4 @@
-export interface IBaseSwitchWithState<T> {
+export interface BaseSwitchWithStateProps<T> {
   name: string;
   defaultValue?: string;
   defaultChecked?: boolean;

@@ -3,11 +3,11 @@ import PhCaretUp from '@iconify-icons/ph/caret-up';
 import PhCaretDown from '@iconify-icons/ph/caret-down';
 import { IconButton } from '../BaseButton';
 
-type TBaseCollapse = {
+type BaseCollapseProps = {
   content: ReactElement;
 };
 
-export function BaseCollapse({ content }: TBaseCollapse) {
+export function BaseCollapse({ content }: BaseCollapseProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCollapse = () => {

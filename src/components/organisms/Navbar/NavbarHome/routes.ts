@@ -1,11 +1,11 @@
-export interface IHomeRoutes {
+export interface HomeRouteItem {
   id: string;
   label: string;
   path: string;
-  children?: IHomeRoutes[];
+  children?: HomeRouteItem[];
 }
 
-export const homeRoutes: IHomeRoutes[] = [
+export const homeRoutes: HomeRouteItem[] = [
   {
     id: 'home',
     label: 'خانه',

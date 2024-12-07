@@ -1,14 +1,14 @@
 import { VariantProps } from 'class-variance-authority';
 import { baseDropDownStyles } from './styles';
 
-export interface IOptionSelect {
+export interface OptionSelect {
   id?: string;
   value?: string;
   label: string;
 }
 
 export interface DropdownProps extends VariantProps<typeof baseDropDownStyles> {
-  options: IOptionSelect[];
+  options: OptionSelect[];
   fullWidth?: boolean;
   containerClassName?: string;
   defaultValue?: any;
@@ -19,6 +19,6 @@ export interface DropdownProps extends VariantProps<typeof baseDropDownStyles> {
 }
 
 export type StateType = {
-  activeOption: IOptionSelect | null;
+  activeOption: OptionSelect | null;
   openOptions: boolean;
 };

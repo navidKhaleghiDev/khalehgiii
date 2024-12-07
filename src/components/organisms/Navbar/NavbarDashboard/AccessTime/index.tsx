@@ -3,7 +3,7 @@ import { Card } from '@ui/atoms';
 import { Modal } from '@ui/molecules/Modal';
 import { useState } from 'react';
 import { IconButton } from '@ui/atoms/BaseButton';
-import { ETimeLimitDuration, IDaAs } from '@src/services/users/types';
+import { TimeLimitDuration, DaAsParams } from '@src/services/users/types';
 import handTapIcon from '@iconify-icons/ph/hand-tap';
 
 import useSWR from 'swr';
@@ -14,7 +14,7 @@ import {
 import { http } from '@src/services/http';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 import { useTranslation } from 'react-i18next';
 import { AccessTimeModal } from './AccessTimeModal';
 
@@ -25,7 +25,7 @@ export function AccessTimeCO() {
     refreshInterval: 60000,
   });
 
-  const { data, mutate, isLoading } = useSWR<ISwrResponse<IDaAs>>(
+  const { data, mutate, isLoading } = useSWR<SwrResponse<DaAsParams>>(
     E_USERS_PROFILE,
     http.fetcherSWR,
     {
@@ -36,8 +36,8 @@ export function AccessTimeCO() {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  const timeLimitDuration: ETimeLimitDuration =
-    data?.data?.daas_configs?.time_limit_duration ?? ETimeLimitDuration.DAILY;
+  const timeLimitDuration: TimeLimitDuration =
+    data?.data?.daas_configs?.time_limit_duration ?? TimeLimitDuration.DAILY;
 
   const timeLimitValueInHour =
     data?.data?.daas_configs?.time_limit_value_in_hour ?? 0;

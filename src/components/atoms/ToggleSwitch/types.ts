@@ -5,7 +5,7 @@ import {
   RegisterOptions,
 } from 'react-hook-form';
 
-export interface IToggleSwitch<T extends FieldValues> {
+export interface ToggleSwitchProps<T extends FieldValues> {
   control: Control<T>;
   name: FieldPath<T>;
   rules?: RegisterOptions<T>;

@@ -1,6 +1,6 @@
-import { ISvgProp } from './types';
+import { SvgProps } from './types';
 
-export function PassSvg({ className }: ISvgProp) {
+export function PassSvg({ className }: SvgProps) {
   return (
     <svg
       width="20"

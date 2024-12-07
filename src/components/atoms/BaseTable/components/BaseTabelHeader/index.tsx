@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react';
 import { Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
-import { IHeaderTable } from '../../types';
+import { HeaderTableProps } from '../../types';
 import { baseTableHeader } from '../../styles';
 
 interface PropsType {
-  header: IHeaderTable[];
+  header: HeaderTableProps[];
 }
 
 export function BaseTabelHeader({ header }: PropsType) {
@@ -30,7 +30,7 @@ export function BaseTabelHeader({ header }: PropsType) {
 
   return (
     <thead className="flex items-center px-2 bg-teal-500 dark:bg-gray-600  rounded-md text-white h-10 w-full mb-1">
-      {header.map((head: IHeaderTable, index: number) => {
+      {header.map((head: HeaderTableProps, index: number) => {
         return (
           <tr
             key={index}

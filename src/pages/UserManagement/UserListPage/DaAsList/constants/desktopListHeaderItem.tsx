@@ -3,9 +3,9 @@ import Trash from '@iconify-icons/ph/trash-simple';
 import Play from '@iconify-icons/ph/queue';
 import UsersFour from '@iconify-icons/ph/users-four';
 import {
-  EPermissionDaas,
-  EPermissionDaasMetaConfig,
-  EPermissionSessionRecording,
+  PermissionDaas,
+  PermissionDaasMetaConfig,
+  PermissionSessionRecording,
 } from '@src/types/permissions';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { TextCheckHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TextCheckHelperCell';
@@ -71,7 +71,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
         onClick={props.onClick}
       />
     ),
-    permission: EPermissionDaas.CHANGE,
+    permission: PermissionDaas.CHANGE,
     class: 'w-3/12 lg:w-1/12',
     isMobileCollapsed: true,
   },
@@ -85,7 +85,7 @@ export const desktopListHeaderItem: HeaderTable[] = [
       />
     ),
     class: 'lg:w-1/12 w-3/12',
-    permission: EPermissionDaas.CHANGE,
+    permission: PermissionDaas.CHANGE,
     isMobileCollapsed: true,
   },
   {
@@ -150,14 +150,14 @@ export const desktopListHeaderItem: HeaderTable[] = [
         action: 'edit',
         icon: UserFocus,
         color: 'neutralNoBg',
-        permission: EPermissionDaasMetaConfig.CHANGE,
+        permission: PermissionDaasMetaConfig.CHANGE,
         title: 'table.accessSetting',
       },
       {
         action: 'more',
         icon: Play,
         color: 'neutralNoBg',
-        permission: EPermissionSessionRecording.VIEW,
+        permission: PermissionSessionRecording.VIEW,
         title: 'table.recordingActivity',
       },
       {
@@ -171,14 +171,14 @@ export const desktopListHeaderItem: HeaderTable[] = [
         action: 'delete',
         icon: Trash,
         color: 'redNoBg',
-        permission: EPermissionDaas.DELETE,
+        permission: PermissionDaas.DELETE,
         title: 'table.deleteUser',
       },
     ],
     permission: [
-      EPermissionDaasMetaConfig.CHANGE,
-      EPermissionDaas.DELETE,
-      EPermissionSessionRecording.VIEW,
+      PermissionDaasMetaConfig.CHANGE,
+      PermissionDaas.DELETE,
+      PermissionSessionRecording.VIEW,
     ],
     class: ' w-2/12 lg:w-1/12  mr-auto',
   },

@@ -19,7 +19,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionDaas } from '@src/types/permissions';
+import { PermissionDaas } from '@src/types/permissions';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 
 type PropsType = {
@@ -43,7 +43,7 @@ export function UpdateFileTypeModal({
   const inputStyle = 'col-span-6 lg:col-span-4 h-16';
   const hasChangePermission = checkPermission(
     userPermissions,
-    EPermissionDaas.CHANGE
+    PermissionDaas.CHANGE
   );
 
   const { control, handleSubmit, watch, formState } = useForm<FileTypeProp>({

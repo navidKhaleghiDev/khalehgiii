@@ -6,10 +6,10 @@ import { useTranslation } from 'react-i18next';
 
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
-import { IUser } from '@src/services/users/types';
+import { UserParams } from '@src/services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
 import { API_CREATE_USER, API_UPDATE_USER } from '@src/services/users';
-import { IResponseData } from '@src/types/services';
+import { ResponseData } from '@src/types/services';
 import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
 import { UserPermissionsProps } from '@src/types/permissions';
 import { http } from '@src/services/http';
@@ -35,7 +35,7 @@ export function UpdateAdminModal({
   const role = admin?.is_meta_admin ? 'true' : 'false';
   const direction = dir === 'rtl' ? 'rtl' : 'ltr';
   const { data: permissionData, isLoading } = useSWR<
-    IResponseData<UserPermissionsProps[]>
+    ResponseData<UserPermissionsProps[]>
   >(E_USERS_PERMISSION, http.fetcherSWR);
 
   const { control, handleSubmit, watch, formState } = useForm<UserProps>({
@@ -68,7 +68,7 @@ export function UpdateAdminModal({
     setLoadingButtonModal(true);
 
     if (data.id) {
-      await API_UPDATE_USER(updatedData as IUser, data?.id as number)
+      await API_UPDATE_USER(updatedData as UserParams, data?.id as number)
         .then(() => {
           toast.success(t('global.sucessfulyUpdated'));
           handleClose(true);
@@ -83,7 +83,7 @@ export function UpdateAdminModal({
       return;
     }
 
-    await API_CREATE_USER(updatedData as IUser)
+    await API_CREATE_USER(updatedData as UserParams)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         handleClose(true);

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@redesignUi/atoms';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 
 import { UserAccessModalCard } from '../DaAsCard/UserAccessModalCard';
 
@@ -29,7 +29,7 @@ export function TimeOfUseAccess(props: TimeOfUseAccessProps): JSX.Element {
           name="time_limit_duration"
           control={control}
           id="time_limit_duration_daily"
-          value={ETimeLimitDuration.DAILY}
+          value={TimeLimitDuration.DAILY}
           label={t('global.dailySelect')}
           className="shadow p-2.5 flex gap-2 rounded-xl dark:bg-gray-600 dark:shadow-none"
         />
@@ -37,7 +37,7 @@ export function TimeOfUseAccess(props: TimeOfUseAccessProps): JSX.Element {
           name="time_limit_duration"
           control={control}
           id="time_limit_duration_weekly"
-          value={ETimeLimitDuration.WEEKLY}
+          value={TimeLimitDuration.WEEKLY}
           label={t('global.weeklySelect')}
           className="shadow p-2.5 flex gap-2 rounded-xl dark:bg-gray-600 dark:shadow-none"
         />
@@ -45,7 +45,7 @@ export function TimeOfUseAccess(props: TimeOfUseAccessProps): JSX.Element {
           name="time_limit_duration"
           control={control}
           id="time_limit_duration_monthly"
-          value={ETimeLimitDuration.MONTHLY}
+          value={TimeLimitDuration.MONTHLY}
           label={t('global.monthlySelect')}
           className="shadow p-2.5 flex gap-2 rounded-xl dark:bg-gray-600 dark:shadow-none"
         />
@@ -53,7 +53,7 @@ export function TimeOfUseAccess(props: TimeOfUseAccessProps): JSX.Element {
           name="time_limit_duration"
           control={control}
           id="time_limit_duration_permanently"
-          value={ETimeLimitDuration.PERMANENTLY}
+          value={TimeLimitDuration.PERMANENTLY}
           label={t('table.permanent')}
           className="shadow p-2.5 flex gap-2 rounded-xl dark:bg-gray-600 dark:shadow-none"
         />

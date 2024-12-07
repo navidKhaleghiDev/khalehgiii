@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 
 import { avatarStyles, iconAvatarStyles } from './styles';
-import { IAvatar } from './types';
+import { AvatarProps } from './types';
 
 export function Avatar({
   className,
@@ -9,7 +9,7 @@ export function Avatar({
   intent,
   iconClassName,
   size,
-}: IAvatar) {
+}: AvatarProps) {
   return (
     <div className={avatarStyles({ intent, className, size })}>
       <Icon

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import {
-  EPermissionWhiteListFiles,
+  PermissionWhiteListFiles,
   PermissionsCodeName,
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
@@ -12,7 +12,7 @@ import { DlpList } from './DlpList';
 
 type PropsType = {
   handleSetDlpValues: (
-    name: keyof IDaAs,
+    name: keyof DaAsParams,
     values: { [key: string]: number }
   ) => void;
   dlpDownloadList: any;
@@ -29,7 +29,7 @@ export function DlpSettingsForm({
   const { t } = useTranslation();
   const hasViewPermission = checkPermission(
     userPermissions,
-    EPermissionWhiteListFiles.VIEW
+    PermissionWhiteListFiles.VIEW
   );
   return (
     hasViewPermission && (

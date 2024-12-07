@@ -6,7 +6,7 @@ import uploadSimple from '@iconify-icons/ph/upload-simple';
 import timer from '@iconify-icons/ph/timer';
 import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
 import { useLanguage } from '@context/settings/languageContext';
-import { ETimeLimitDuration } from '@src/services/users/types';
+import { TimeLimitDuration } from '@src/services/users/types';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 
 import { UserAccessModalCard } from '../DaAsCard/UserAccessModalCard';
@@ -18,12 +18,12 @@ export function MaxSizeAccess({
 }: {
   control: Control<any>;
   usageInMinute: number | string;
-  timeOfUse: ETimeLimitDuration;
+  timeOfUse: TimeLimitDuration;
 }) {
   const { t } = useTranslation();
   const { dir } = useLanguage();
 
-  const maxTimeLimitValues: { [key in ETimeLimitDuration]?: number } = {
+  const maxTimeLimitValues: { [key in TimeLimitDuration]?: number } = {
     DAILY: 24,
     MONTHLY: 744,
     WEEKLY: 168,

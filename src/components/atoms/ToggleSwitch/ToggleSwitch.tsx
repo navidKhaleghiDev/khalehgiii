@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import { IToggleSwitch } from './types';
+import { ToggleSwitchProps } from './types';
 import { BaseIcon } from '../BaseIcon';
 
 export function ToggleSwitch({
@@ -9,7 +9,7 @@ export function ToggleSwitch({
   control,
   rules,
   defaultValue,
-}: IToggleSwitch<any>) {
+}: ToggleSwitchProps<any>) {
   return (
     <Controller
       name={name}
