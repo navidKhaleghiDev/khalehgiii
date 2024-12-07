@@ -1,18 +1,19 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import PencilSimple from '@iconify-icons/ph/pencil-simple';
 import EnvelopeSimple from '@iconify-icons/ph/envelope-simple';
 import User from '@iconify-icons/ph/user';
+import { API_USERS_OTP } from '@src/services/users';
 import { regexPattern } from '@redesignUi/atoms/Inputs';
 import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
 import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
 import { Typography } from '@redesignUi/atoms';
+import { BaseSwitch } from '@redesignUi/atoms/BaseSwitch';
 import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
-// import { BaseDropdown } from '@redesignUi/atoms/BaseDropdown';
-import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
 import { BaseQrCode } from '@redesignUi/atoms/BaseQrCode';
 
-// import { domainsMock } from './dataMock';
 import { UserInfoTabProps } from './types';
 
 const radioClass =
@@ -25,10 +26,29 @@ export function UserInfoTab({
   isMetaAdmin,
   secret,
   setSecret,
+  setOtp,
+  otp,
 }: UserInfoTabProps) {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
   const iconName = !admin?.id ? User : PencilSimple;
   const iconEmail = !admin?.id ? EnvelopeSimple : PencilSimple;
+
+  const handleGenerateQRCode = async () => {
+    if (admin?.email) {
+      setLoading(true);
+      await API_USERS_OTP(admin.email)
+        .then(({ data }) => {
+          toast.success(t('global.sucessfulyUpdated'));
+          setSecret(data?.secret);
+          setOtp(!otp);
+        })
+        .catch((err) => {
+          toast.error(err);
+        })
+        .finally(() => setLoading(false));
+    }
+  };
 
   return (
     <div className="p-5 rtl:pr-0 ltr:pl-0 h-[30.37rem] overflow-y-scroll">
@@ -149,8 +169,15 @@ export function UserInfoTab({
                 >
                   {`${t('global.activateOtp')}`}
                 </Typography>
-                <BaseSwitchController
-                  control={control}
+                <BaseSwitch
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      handleGenerateQRCode();
+                    } else {
+                      setOtp(false);
+                    }
+                  }}
+                  checked={otp}
                   name="totp_enable"
                   id="totp_enable"
                   size="md"
@@ -164,11 +191,7 @@ export function UserInfoTab({
                 {t('adminList.systemAdminOtp')}
               </Typography>
               <div className="bg-gray-100 dark:bg-gray-600 w-[7.62rem] sm:w-full sm:mt-5 sm:py-1 p-5 rounded-lg flex justify-center">
-                <BaseQrCode
-                  email={admin?.email}
-                  setSecret={setSecret}
-                  secret={secret}
-                />
+                <BaseQrCode secret={secret} loading={loading} />
               </div>
             </div>
           ) : null}

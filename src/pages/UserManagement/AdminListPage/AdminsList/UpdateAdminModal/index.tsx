@@ -23,16 +23,17 @@ export function UpdateAdminModal({
   admin,
 }: UpdateAdminModalProps) {
   const { t } = useTranslation();
-  const { lang } = useLanguage();
+  const { dir } = useLanguage();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [selectedPermissions, setSelectedPermissions] = useState(
     admin?.user_permissions || []
   );
   const [secret, setSecret] = useState<undefined | string>(undefined);
+  const [otp, setOtp] = useState<boolean>(false);
 
   const role = admin?.is_meta_admin ? 'true' : 'false';
-  const dir = lang === 'fa' ? 'rtl' : 'ltr';
+  const direction = dir === 'rtl' ? 'rtl' : 'ltr';
   const { data: permissionData, isLoading } = useSWR<
     IResponseData<UserPermissionsProps[]>
   >(E_USERS_PERMISSION, http.fetcherSWR);
@@ -44,7 +45,6 @@ export function UpdateAdminModal({
       email: admin?.email,
       first_name: admin?.first_name ?? '',
       last_name: admin?.last_name ?? '',
-      totp_enable: admin?.totp_enable,
       is_meta_admin: admin?.id ? role : 'false',
     },
   });
@@ -60,6 +60,7 @@ export function UpdateAdminModal({
     const updatedData = {
       user_permissions_ids: getSelectedIds,
       totp_secret: secret,
+      totp_enable: otp,
       ...data,
     };
 
@@ -101,11 +102,13 @@ export function UpdateAdminModal({
         <BaseTab label={t('adminList.adminInfo')}>
           <UserInfoTab
             control={control}
-            dir={dir}
+            dir={direction}
             admin={admin}
             isMetaAdmin={isMetaAdmin}
             secret={secret}
             setSecret={setSecret}
+            setOtp={setOtp}
+            otp={otp}
           />
         </BaseTab>
         <BaseTab label={t('global.accessList')}>
