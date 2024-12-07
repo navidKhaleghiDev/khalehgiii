@@ -489,7 +489,8 @@
     "memory": "Memory(GB)",
     "saveFile": "Save File",
     "ide": "IDE",
-    "remina": "Remote Access"
+    "remina": "Remote Access",
+    "zero": "Please enter a value greater than zero."
   },
 
   "regexPattern": {
