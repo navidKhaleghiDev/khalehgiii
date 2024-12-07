@@ -15,7 +15,7 @@ export const regexPattern = {
   },
   DotSeparatedLetters: {
     value: /^\.[A-Za-z0-9]+(\.[A-Za-z0-9]+)*$/,
-    message: t('regexPattern.moreThanTwoEnglishLettersAndStartWithADot'),
+    message: 'regexPattern.moreThanTwoEnglishLettersAndStartWithADot',
   },
   lessThan50: {
     value: /^[0-9][0-9]?$|^50$/,
