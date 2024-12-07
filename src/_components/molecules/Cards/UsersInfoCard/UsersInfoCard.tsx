@@ -19,10 +19,10 @@ import { UsersInfoCardProps } from './types';
  *
  * @returns {JSX.Element} Returns the rendered UsersInfoCard component.
  */
+
 export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
-  const { icon, iconColor, title, count, className, isLoading, onClick } =
-    props;
-  return !isLoading ? (
+  const { icon, iconColor, title, count, className, onClick } = props;
+  return (
     <CardButton
       border
       borderColor="neutral"
@@ -55,14 +55,10 @@ export function UsersInfoCard(props: UsersInfoCardProps): JSX.Element {
           </Typography>
 
           <Typography className="text-gray-900 dark:text-white font-semibold leading-7 text-base sm:text-lg md:text-xl text-start">
-            {count ?? 0}
+            {count ?? '-'}
           </Typography>
         </div>
       </div>
     </CardButton>
-  ) : (
-    <div className="animate-pulse">
-      <div className="lg:h-20 h-[3.75rem] rounded-md w-[160px] sm:w-[250px] md:w-[350px] bg-gray-300" />
-    </div>
   );
 }

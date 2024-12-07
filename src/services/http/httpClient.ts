@@ -1,7 +1,10 @@
-import { FetcherResponse } from 'swr/_internal';
-import useSWR, { SWRConfiguration } from 'swr';
+import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
 import useSWRMutation, { SWRMutationConfiguration } from 'swr/mutation';
+import { FetcherResponse } from 'swr/_internal';
 import { AxiosResponse } from 'axios';
+
+import { ResponsePagination } from '@src/types/services';
+
 import { http, AxiosRequestConfig } from '.';
 
 export type MutationPostOptions<T> = SWRMutationConfiguration<
@@ -10,7 +13,17 @@ export type MutationPostOptions<T> = SWRMutationConfiguration<
   string
 >;
 
-const useGet = <ResponseData = unknown, Error = unknown>(
+type SwrResponseType<T> = {
+  data: ResponsePagination<T> | undefined;
+  error: string;
+  isLoading: boolean;
+  isValidating: boolean;
+  count: ResponsePagination<T>['data']['count'];
+  resultData: ResponsePagination<T>['data']['results'];
+  mutate: SWRResponse<ResponsePagination<T>, string>['mutate'];
+};
+
+export const useGet = <ResponseData = unknown, Error = unknown>(
   url: string | null,
   config?: SWRConfiguration
 ) => {
@@ -30,7 +43,7 @@ const useGet = <ResponseData = unknown, Error = unknown>(
   return { data, error, isLoading, isValidating, mutate };
 };
 
-function usePost<T = object, R = AxiosResponse<T>>(
+export function usePost<T = object, R = AxiosResponse<T>>(
   mutationURL: string,
   body: T,
   options?: any
@@ -47,4 +60,26 @@ function usePost<T = object, R = AxiosResponse<T>>(
   return { data: responseData, error, trigger, isMutating };
 }
 
-export { useGet, usePost };
+// Handel API request that has pagination
+export function useGetPagination<T>(
+  endPoint: string,
+  fetcher: (url: string) => Promise<ResponsePagination<T>>,
+  options?: SWRConfiguration
+): SwrResponseType<T> {
+  const { data, error, isValidating, mutate, isLoading } = useSWR<
+    ResponsePagination<T>
+  >(endPoint, fetcher, options);
+
+  const count = data?.data?.count ?? 0;
+  const resultData = data?.data?.results ?? [];
+
+  return {
+    data,
+    error,
+    count,
+    resultData,
+    isLoading,
+    isValidating,
+    mutate,
+  };
+}

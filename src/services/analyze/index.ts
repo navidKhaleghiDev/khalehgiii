@@ -1,5 +1,6 @@
 import { HTTP_ANALYSES } from '@src/services/http';
 import { AxiosResponseData } from '@src/types/services';
+import { StringifyProperties } from '@src/types/global';
 
 import {
   E_ANALYZE_DOWNLOAD_FILE,
@@ -9,11 +10,7 @@ import {
   E_ANALYZE_MIME_TYPE_DELETE,
   E_ANALYZE_SCAN_STATUS_UPDATE,
 } from './endpoint';
-import {
-  AddConfigAnalyze,
-  AddConfigAnalyzeDownload,
-  ScannedFile,
-} from './types';
+import { AddConfigAnalyze, ScannedFile } from './types';
 
 export const API_ANALYZE_MIME_TYPE_DELETE = (id: number) =>
   HTTP_ANALYSES.delete<AxiosResponseData<any>>(E_ANALYZE_MIME_TYPE_DELETE(id));
@@ -33,7 +30,9 @@ export const API_ANALYZE_LOG_UPDATE = (body: AddConfigAnalyze) =>
     E_ANALYZE_LOG_UPDATE(body.id as number),
     body
   );
-export const API_ANALYZE_DOWNLOAD_FILE = (body: AddConfigAnalyzeDownload) =>
+export const API_ANALYZE_DOWNLOAD_FILE = (
+  body: StringifyProperties<ScannedFile> | ScannedFile
+) =>
   HTTP_ANALYSES.get(E_ANALYZE_DOWNLOAD_FILE(body.username, body.file_hash), {
     headers: {
       'Content-Type': body.file_content_type,
