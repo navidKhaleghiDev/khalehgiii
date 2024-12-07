@@ -1,7 +1,7 @@
-import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
-import useSWRMutation, { SWRMutationConfiguration } from 'swr/mutation';
-import { FetcherResponse } from 'swr/_internal';
 import { AxiosResponse } from 'axios';
+import useSWR, { SWRConfiguration } from 'swr';
+import { FetcherResponse, SWRResponse } from 'swr/_internal';
+import useSWRMutation, { SWRMutationConfiguration } from 'swr/mutation';
 
 import { ResponsePagination } from '@src/types/services';
 
@@ -23,7 +23,7 @@ type SwrResponseType<T> = {
   mutate: SWRResponse<ResponsePagination<T>, string>['mutate'];
 };
 
-export const useGet = <ResponseData = unknown, Error = unknown>(
+const useGet = <ResponseData = unknown, Error = unknown>(
   url: string | null,
   config?: SWRConfiguration
 ) => {
@@ -43,7 +43,7 @@ export const useGet = <ResponseData = unknown, Error = unknown>(
   return { data, error, isLoading, isValidating, mutate };
 };
 
-export function usePost<T = object, R = AxiosResponse<T>>(
+function usePost<T = object, R = AxiosResponse<T>>(
   mutationURL: string,
   body: T,
   options?: any
@@ -61,7 +61,7 @@ export function usePost<T = object, R = AxiosResponse<T>>(
 }
 
 // Handel API request that has pagination
-export function useGetPagination<T>(
+function useGetPagination<T>(
   endPoint: string,
   fetcher: (url: string) => Promise<ResponsePagination<T>>,
   options?: SWRConfiguration
@@ -83,3 +83,5 @@ export function useGetPagination<T>(
     mutate,
   };
 }
+
+export { useGet, usePost, useGetPagination };
