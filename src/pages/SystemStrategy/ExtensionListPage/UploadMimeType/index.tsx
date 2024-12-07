@@ -54,7 +54,6 @@ export function UploadFileModal({ handleClose }: PropsType) {
     }
   };
 
-  console.log(watch('file'));
   return (
     <div className="pt-5 w-full">
       <form
