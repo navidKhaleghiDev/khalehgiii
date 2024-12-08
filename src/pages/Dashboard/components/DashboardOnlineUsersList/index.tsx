@@ -32,31 +32,33 @@ export function DashboardOnlineUsersList({
   }
 
   return checkPermission(permissions, PermissionDaas.VIEW) ? (
-    <Card
-      rounded="xxl"
-      shadow="base"
-      className=" w-full basis-full flex-grow p-5"
-    >
-      <div className="col-span-12 grid grid-cols-12 pb-5">
-        <div className="col-span-6">
-          <Typography color="black" variant="body4B">
-            {t('dashboard.onlineUsers')}
-          </Typography>
+    <div className="xl:col-span-4 flex order-5 max-h-[36.375rem]">
+      <Card
+        rounded="xxl"
+        shadow="base"
+        className=" w-full basis-full flex-grow p-5"
+      >
+        <div className="col-span-12 grid grid-cols-12 pb-5">
+          <div className="col-span-6">
+            <Typography color="black" variant="body4B">
+              {t('dashboard.onlineUsers')}
+            </Typography>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-5 col-span-12">
-        {listDaas.length > 0 && !error ? (
-          listDaas?.map((user) => (
-            <UserInfoAvatar
-              fullName={user?.email}
-              email={user?.email}
-              key={user.id}
-            />
-          ))
-        ) : (
-          <NoResultUsers />
-        )}
-      </div>
-    </Card>
+        <div className="flex flex-col gap-5 col-span-12">
+          {listDaas.length > 0 && !error ? (
+            listDaas?.map((user) => (
+              <UserInfoAvatar
+                fullName={user?.email}
+                email={user?.email}
+                key={user.id}
+              />
+            ))
+          ) : (
+            <NoResultUsers />
+          )}
+        </div>
+      </Card>
+    </div>
   ) : null;
 }

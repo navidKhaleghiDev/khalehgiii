@@ -21,21 +21,23 @@ export function DashboardCards() {
   const malwareFiles = data?.data?.info?.malware_files || 0;
   const todayScans = data?.data?.info?.today_scans || 0;
   return (
-    <div className="flex flex-col gap-5">
-      <DashboardCard
-        icon={FolderSimple}
-        title={`${t('dashboard.virusFiles')}`}
-        count={malwareFiles}
-        className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
-        disabled
-      />
-      <DashboardCard
-        icon={Scan}
-        title={`${t('dashboard.scans')}`}
-        count={todayScans}
-        className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
-        onClick={() => navigate(ROUTES_PATH.reportsScanFile)}
-      />
+    <div className="lg:col-span-4 md:col-span-3 col-span-6 md:order-3 order-2">
+      <div className="flex flex-col gap-5">
+        <DashboardCard
+          icon={FolderSimple}
+          title={`${t('dashboard.virusFiles')}`}
+          count={malwareFiles}
+          className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
+          disabled
+        />
+        <DashboardCard
+          icon={Scan}
+          title={`${t('dashboard.scans')}`}
+          count={todayScans}
+          className="max-w-full xl:!h-[8.125rem] xl:p-5 lg:py-[1.125rem] md:py-[1.0625rem] pt-0 pb-0 pr-2.5 md:box-content xl:box-border box-border"
+          onClick={() => navigate(ROUTES_PATH.reportsScanFile)}
+        />
+      </div>
     </div>
   );
 }

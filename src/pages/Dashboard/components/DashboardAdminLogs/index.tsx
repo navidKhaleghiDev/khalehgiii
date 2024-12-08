@@ -57,15 +57,17 @@ export function DashboardAdminLogs({
 
   return (
     checkPermission(permissions, PermissionUsers.VIEW) && (
-      <BaseMiniTable
-        header={header}
-        body={listWhiteList}
-        loading={isLoading}
-        date={['last_login', 'last_logout']}
-        pagination={paginationProps}
-        title={t('dashboard.adminLogin')}
-        className="w-full xl:[&>*:last-child>*:last-child>*]:max-h-10 md:[&>*:last-child>*:last-child>*]:max-h-6 [&>*:last-child>*:last-child>*]:max-h-10 xl:h-[17.5rem] md:h-[13.125rem]"
-      />
+      <div className="lg:col-span-5 md:col-span-6 col-span-12 md:order-2 order-3">
+        <BaseMiniTable
+          header={header}
+          body={listWhiteList}
+          loading={isLoading}
+          date={['last_login', 'last_logout']}
+          pagination={paginationProps}
+          title={t('dashboard.adminLogin')}
+          className="w-full xl:[&>*:last-child>*:last-child>*]:max-h-10 md:[&>*:last-child>*:last-child>*]:max-h-6 [&>*:last-child>*:last-child>*]:max-h-10 xl:h-[17.5rem] md:h-[13.125rem]"
+        />
+      </div>
     )
   );
 }
