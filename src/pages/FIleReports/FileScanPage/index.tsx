@@ -17,16 +17,37 @@ import { UsersDaAsList } from './UsersDaAsList';
 export function ReportFileScanPage() {
   const { t } = useTranslation();
 
-  const { data: analyzeScan, isLoading: isLoadingAnalyzeScan } = useSWR<
-    SwrResponse<ScanStats>
-  >(E_ANALYZE_SCAN_STATS, HTTP_ANALYSES.fetcherSWR, {
-    shouldRetryOnError: false,
-  });
-  const { data: usersDaas, isLoading: isLoadingDaAsList } = useSWR<
-    ResponsePagination<DaAsParams>
-  >(`${E_USERS_DAAS}/?is_recording=True `, http.fetcherSWR, {
-    shouldRetryOnError: false,
-  });
+  // TodayScan
+  const {
+    data: analyzeScan,
+    isLoading: isLoadingAnalyzeScan,
+    error: analyzeScanError,
+  } = useSWR<SwrResponse<ScanStats>>(
+    E_ANALYZE_SCAN_STATS,
+    HTTP_ANALYSES.fetcherSWR,
+    {
+      // shouldRetryOnError : Cancel the new Request after getting error(issue service call)
+      shouldRetryOnError: false,
+    }
+  );
+  const scanCount = !analyzeScanError
+    ? analyzeScan?.data?.info?.today_scans
+    : undefined;
+
+  // OnlineDaasUsers
+  const {
+    data: usersDaas,
+    isLoading: isLoadingDaAsList,
+    error: userDaasError,
+  } = useSWR<ResponsePagination<DaAsParams>>(
+    `${E_USERS_DAAS}`,
+    http.fetcherSWR,
+    {
+      // shouldRetryOnError : Cancel the new Request after getting error(issue service call)
+      shouldRetryOnError: false,
+    }
+  );
+  const daasCount = !userDaasError ? usersDaas?.data?.online_users : undefined;
 
   return (
     <>
@@ -39,13 +60,13 @@ export function ReportFileScanPage() {
           title={t('fileScan.todayScans')}
           iconColor="neutral"
           isLoading={isLoadingAnalyzeScan}
-          count={analyzeScan?.data?.info?.today_scans ?? 0}
+          count={scanCount}
         />
         <UsersInfoCard
           icon={WifiHighDuotone}
           title={t('fileScan.onlineUsers')}
-          count={usersDaas?.data?.online_users ?? 0}
           isLoading={isLoadingDaAsList}
+          count={daasCount}
         />
       </div>
       <UsersDaAsList />

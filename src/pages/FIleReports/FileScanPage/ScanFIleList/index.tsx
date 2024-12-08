@@ -1,72 +1,66 @@
 import { useState } from 'react';
-import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { HTTP_ANALYSES } from '@src/services/http';
-import { ResponsePagination } from '@src/types/services';
 import { ScannedFile } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_PAGINATION } from '@src/services/analyze/endpoint';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import {
-  API_ANALYZE_DOWNLOAD_FILE,
-  API_ANALYZE_SCAN_STATUS_UPDATE,
-} from '@src/services/analyze';
+import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
+import { API_ANALYZE_DOWNLOAD_FILE } from '@src/services/analyze';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { Modal } from '@redesignUi/molecules/Modal';
+import { LoadingSpinner } from '@redesignUi/molecules/Loading';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { ServerError } from '@redesignUi/molecules/ServerError';
+import { StringifyProperties } from '@src/types/global';
+import { useGetPagination } from '@src/services/http/httpClient';
 
-import { scannedFileHeaderItem } from './constants/scannedFileHeaderItem';
+import { getScanFileHeader } from './constants/scannedFileHeaderItem';
+import {
+  DateFormat,
+  ScanFileDatePicker,
+} from '../../ReportFileScanPage/ScanFilesDatePicker';
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 8;
 const PAGE = 1;
 
-type ScannedFileListProp = {
-  userEmail: string;
-};
-
-export function ScannedFileList({ userEmail }: ScannedFileListProp) {
-  const [activeScannedFile, setActiveScannedFile] = useState<ScannedFile>();
+export function ScannedFileList({ userEmail }: { userEmail: string }) {
+  const [isLoadingDownload, setIsLoadingDownload] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
-  const [cleanStatusModal, setCleanStatusModal] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [dateRange, setDateRange] = useState<DateFormat>();
 
   const userPermissions = useUserPermission();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const { t } = useTranslation();
 
-  // Daas users scan reports
-  const { data, isLoading, mutate, error } = useSWR<
-    ResponsePagination<ScannedFile>
-  >(
-    userEmail
-      ? E_ANALYZE_SCAN_PAGINATION(userEmail, {
-          page: currentPage,
-          pageSize: PAGE_SIZE,
-        })
-      : null,
+  // Daas user scan reports
+  const { isLoading, error, resultData, count } = useGetPagination<ScannedFile>(
+    E_ANALYZE_SCAN_PAGINATION(userEmail, {
+      page: currentPage,
+      pageSize: PAGE_SIZE,
+      dateRange,
+    }),
     HTTP_ANALYSES.fetcherSWR
   );
-  const listDaas = data?.data?.results ?? [];
-  const countPage = data?.data?.count ?? 0;
-  const evidencePermissions =
-    listDaas[listDaas.length - 1]?.evidence_permission;
 
-  const downloadFile = async (fileData: any) => {
+  // Daas user download file permission per user
+  const evidencePermissions =
+    resultData[resultData.length - 1]?.evidence_permission;
+
+  const downloadFile = async (
+    fileData: ScannedFile | StringifyProperties<ScannedFile>
+  ) => {
+    setIsLoadingDownload(true);
     await API_ANALYZE_DOWNLOAD_FILE(fileData)
       .then((res) => {
         const response = res.data;
         const url = window.URL.createObjectURL(response);
         const a = document.createElement('a');
-        a.style.display = 'none';
         a.href = url;
         a.download = fileData.file_name;
-
         document.body.appendChild(a);
         a.click();
-
         window.URL.revokeObjectURL(url);
       })
       .catch(() => {
@@ -75,89 +69,58 @@ export function ScannedFileList({ userEmail }: ScannedFileListProp) {
             ? t('global.dontHaveAccess')
             : t('global.somethingWentWrong')
         );
-      });
+      })
+      .finally(() => setIsLoadingDownload(false));
   };
 
-  const cleanStatus = async () => {
-    if (activeScannedFile) {
-      setLoading(true);
-      await API_ANALYZE_SCAN_STATUS_UPDATE(activeScannedFile)
-        .then(() => {
-          mutate();
-        })
-        .catch((err) => {
-          toast.error(err);
-        })
-        .finally(() => setLoading(false));
-    }
-  };
-
-  const handleOpenModal: OnClickActionsType<ScannedFile> = (action, item) => {
-    if (action === 'download') {
+  const handelClickRow: OnClickActionsType<ScannedFile> = (action, item) => {
+    if (action === 'download' && item) {
       downloadFile(item);
-    } else if (action === 'edit') {
-      setActiveScannedFile({ ...item, scan_result: 'CLEAN' } as ScannedFile);
-      setCleanStatusModal(true);
-    } else {
-      setActiveScannedFile(item as ScannedFile);
     }
   };
 
+  // Table data
   const paginationProps = {
-    countPage,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     onPageChange: (page: number) => setCurrentPage(page),
     paginationLabel: t('table.file'),
-    allItems: countPage,
-    itemsPer: listDaas.length,
+    allItems: count,
+    itemsPer: resultData.length,
   };
 
-  return (
+  return !error ? (
     <div className="w-full">
-      {/* This functionality is disabled cause we do not have service */}
-      {/* <div className="text-start my-5">
-        <MultiDatePicker
-          id="recordFilter"
-          name="recordFilter"
-          onChange={() => console.log('This functionality does not work know')}
-          disabled
-        />
-      </div> */}
-      <div className="[&_thead]:bg-gray-100">
-        {!error ? (
-          <BaseTable
-            body={listDaas.slice(0, listDaas.length - 1)}
-            header={checkPermissionHeaderItem(
-              userPermissions,
-              scannedFileHeaderItem
-            )}
-            loading={isLoading}
-            pagination={paginationProps}
-            onClick={handleOpenModal}
-            isMobile={width <= 760}
-          />
-        ) : (
-          // Remember to handel the error of the component
-          <p className="flex items-center justify-center">{error}</p>
-        )}
+      <div className="flex items-center justify-between">
+        <ScanFileDatePicker onChange={(value) => setDateRange(value)} />
+        {isLoadingDownload && <LoadingSpinner />}
       </div>
-      <Modal
-        open={cleanStatusModal}
-        setOpen={setCleanStatusModal}
-        type="error"
-        title={t('global.sureAboutThis')}
-        buttonOne={{
-          label: t('global.yes'),
-          onClick: () => cleanStatus(),
-          loading,
-        }}
-        buttonTow={{
-          label: t('global.no'),
-          onClick: () => setCleanStatusModal(false),
-          color: 'red',
-        }}
-      />
+      <div
+        className={`[&_thead]:bg-gray-100 ${
+          height <= 670
+            ? 'h-[11.25rem] overflow-auto pe-3'
+            : 'h-[25rem] sm:h-[34.375rem]'
+        }`}
+      >
+        <BaseTable
+          body={resultData.slice(0, resultData.length - 1)}
+          header={checkPermissionHeaderItem(
+            userPermissions,
+            getScanFileHeader(evidencePermissions)
+          )}
+          loading={isLoading}
+          pagination={paginationProps}
+          onClick={handelClickRow}
+          isMobile={width <= 760}
+        />
+      </div>
     </div>
+  ) : (
+    <ServerError
+      width={width <= 760 ? 150 : 250}
+      height={width <= 760 ? 150 : 250}
+      description={error}
+    />
   );
 }

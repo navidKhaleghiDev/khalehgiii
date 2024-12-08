@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Controller, FieldValues } from 'react-hook-form';
 
 import { BaseInputControllerProps } from '../types';
@@ -56,11 +57,24 @@ export function BaseInputController<T extends FieldValues>(
     hiddenError,
     onClickIcon,
   } = props;
+
+  const { t } = useTranslation();
+
   return (
     <Controller
       name={name}
       control={control}
-      rules={rules}
+      rules={{
+        ...rules,
+        pattern: {
+          value: rules?.pattern?.value,
+          message: t(rules?.pattern?.message),
+        },
+        required: {
+          value: rules?.required?.value,
+          message: t(rules?.required?.message),
+        },
+      }}
       render={({ field, fieldState: { error } }) => (
         <BaseInput
           id={id}

@@ -94,7 +94,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -111,7 +111,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -140,7 +140,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -157,7 +157,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -186,7 +186,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -203,7 +203,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
