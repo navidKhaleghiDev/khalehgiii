@@ -148,7 +148,7 @@ export function UpdateAdminModal({
               loading={loadingButtonModal}
               onClick={() => setShowConfirm(true)}
               disabled={
-                !formState.isDirty && hasPermissionsChanged && hasOtpChanged
+                !formState.isDirty && hasPermissionsChanged && !hasOtpChanged
               }
             />
             <BaseButton

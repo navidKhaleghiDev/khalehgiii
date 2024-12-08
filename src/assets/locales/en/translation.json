@@ -2,7 +2,7 @@
   "login": {
     "loginTitle": "Enter username and password to login",
     "login": "Login",
-    "otp": "Enter the code sent to your email",
+    "otp": "Enter the code sent to your Google Authenticator",
     "otpCode": "Enter code",
     "forget": "Forgot password?"
   },
