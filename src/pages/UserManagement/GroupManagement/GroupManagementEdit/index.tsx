@@ -4,6 +4,7 @@ import { USERS_GROUPS_GET } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import useSWR from 'swr';
 import { IResponseData } from '@src/types/services';
+import { BackButton } from '@redesignUi/atoms/BackButton/BackButton';
 import { useParams } from 'react-router-dom';
 import { TGroup } from '../types';
 import { GroupManagementEditRenderComponents } from './GroupManagementEditComponentRenderer';
@@ -43,6 +44,9 @@ export function GroupManagementEdit() {
 
   return (
     <div>
+      <div className="flex justify-end">
+        <BackButton />
+      </div>
       {!isLoading && group && editCondition && (
         <GroupManagementEditRenderComponents
           group={group}
