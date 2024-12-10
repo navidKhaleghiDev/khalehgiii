@@ -9,9 +9,9 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { IUser } from '@src/services/users/types';
+import { UserParams } from '@src/services/users/types';
 
-type IUserUpdate = Partial<IUser>;
+type IUserUpdate = Partial<UserParams>;
 
 export const useLogout = () => {
   const [loading, setLoading] = useState(false);
@@ -50,7 +50,7 @@ export const useLogout = () => {
       .finally(() => {
         setLoading(false);
         const updatedUser: IUserUpdate = { ...user, online_assistance: null };
-        setUser(updatedUser as IUser);
+        setUser(updatedUser as UserParams);
       });
   };
 

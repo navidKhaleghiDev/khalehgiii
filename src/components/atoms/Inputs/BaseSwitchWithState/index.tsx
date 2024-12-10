@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@ui/atoms/Typography';
-import { IBaseSwitchWithState } from './types';
+import { BaseSwitchWithStateProps } from './types';
 
 export function BaseSwitchWithState({
   name,
@@ -10,7 +10,7 @@ export function BaseSwitchWithState({
   defaultChecked,
   pureError,
   disabled = false,
-}: IBaseSwitchWithState<any>) {
+}: BaseSwitchWithStateProps<any>) {
   const [checked, setChecked] = useState(pureValue);
 
   useEffect(() => {

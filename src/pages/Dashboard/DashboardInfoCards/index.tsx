@@ -5,13 +5,13 @@ import moment from 'moment-jalaali';
 import { useUserContext } from '@context/user/userContext';
 import { Card, Typography } from '@redesignUi/atoms';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
-import { IScanStats } from '@src/services/analyze/types';
+import { ScanStats } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 import { ServiceCard } from '@redesignUi/molecules/Cards/ServiceCard';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import {
-  EPermissionMalwareConfig,
+  PermissionMalwareConfig,
   PermissionsCodeName,
 } from '@src/types/permissions';
 
@@ -20,7 +20,7 @@ export function DashboardInfoCards({
 }: {
   permissions: PermissionsCodeName[];
 }) {
-  const { data } = useSWR<ISwrResponse<IScanStats>>(
+  const { data } = useSWR<SwrResponse<ScanStats>>(
     E_ANALYZE_SCAN_STATS,
     HTTP_ANALYSES.fetcherSWR
   );
@@ -29,7 +29,7 @@ export function DashboardInfoCards({
   const { t } = useTranslation();
   const viewMalwarePermission = checkPermission(
     permissions,
-    EPermissionMalwareConfig.VIEW
+    PermissionMalwareConfig.VIEW
   );
   const remainingDays = data?.data?.info?.remaining_days || ' 0';
 

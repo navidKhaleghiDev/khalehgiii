@@ -3,10 +3,10 @@ import { BaseIcon } from '@redesignUi/atoms/BaseIcon';
 import { forwardRef } from 'react';
 import PhCaretDownBold from '@iconify-icons/ph/caret-down-bold';
 
-import { IBaseSelectProp } from '../types';
+import { BaseSelectProps } from '../types';
 import { baseSelectStyles } from '../styles';
 import { Typography } from '../../Typography';
-import { IOptionSelect, OptionSelect } from './OptionSelect';
+import { OptionSelectProps, OptionSelect } from './OptionSelect';
 
 /**
  * BaseSelect component that integrates with react-hook-form.
@@ -33,7 +33,7 @@ import { IOptionSelect, OptionSelect } from './OptionSelect';
  */
 
 // check error handling conditions in this component
-export const BaseSelect = forwardRef<HTMLSelectElement, IBaseSelectProp<any>>(
+export const BaseSelect = forwardRef<HTMLSelectElement, BaseSelectProps<any>>(
   function BaseSelectItem(props, ref): JSX.Element {
     const {
       control,
@@ -87,7 +87,7 @@ export const BaseSelect = forwardRef<HTMLSelectElement, IBaseSelectProp<any>>(
                 size,
               })}
             >
-              {selectOptions.map((option: IOptionSelect) => (
+              {selectOptions.map((option: OptionSelectProps) => (
                 <OptionSelect key={option.id} option={option} />
               ))}
             </select>
@@ -137,7 +137,7 @@ export const BaseSelect = forwardRef<HTMLSelectElement, IBaseSelectProp<any>>(
             size,
           })}
         >
-          {selectOptions.map((option: IOptionSelect) => (
+          {selectOptions.map((option: OptionSelectProps) => (
             <OptionSelect key={option.id} option={option} />
           ))}
         </select>

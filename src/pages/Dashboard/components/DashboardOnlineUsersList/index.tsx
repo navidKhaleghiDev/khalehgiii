@@ -2,13 +2,13 @@ import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
 import { Card, Typography } from '@redesignUi/atoms';
-import { IResponsePagination } from '@src/types/services';
-import { IDaAs } from '@src/services/users/types';
+import { ResponsePagination } from '@src/types/services';
+import { DaAsParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import { LoadingPage } from '@redesignUi/molecules/Loading';
 import { checkPermission } from '@src/helper/hooks/usePermission';
-import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { PermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { NoResultUsers } from '@redesignUi/molecules/NoResultUsers';
 
 import { UserInfoAvatar } from './UserInfoAvatar';
@@ -20,7 +20,7 @@ export function DashboardOnlineUsersList({
 }) {
   const { t } = useTranslation();
 
-  const { data, isLoading, error } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading, error } = useSWR<ResponsePagination<DaAsParams>>(
     E_USERS_DAAS,
     http.fetcherSWR
   );
@@ -31,32 +31,34 @@ export function DashboardOnlineUsersList({
     return <LoadingPage />;
   }
 
-  return checkPermission(permissions, EPermissionDaas.VIEW) ? (
-    <Card
-      rounded="xxl"
-      shadow="base"
-      className=" w-full basis-full flex-grow p-5"
-    >
-      <div className="col-span-12 grid grid-cols-12 pb-5">
-        <div className="col-span-6">
-          <Typography color="black" variant="body4B">
-            {t('dashboard.onlineUsers')}
-          </Typography>
+  return checkPermission(permissions, PermissionDaas.VIEW) ? (
+    <div className="xl:col-span-4 flex order-5 max-h-[36.375rem]">
+      <Card
+        rounded="xxl"
+        shadow="base"
+        className=" w-full basis-full flex-grow p-5"
+      >
+        <div className="col-span-12 grid grid-cols-12 pb-5">
+          <div className="col-span-6">
+            <Typography color="black" variant="body4B">
+              {t('dashboard.onlineUsers')}
+            </Typography>
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col gap-5 col-span-12">
-        {listDaas.length > 0 && !error ? (
-          listDaas?.map((user) => (
-            <UserInfoAvatar
-              fullName={user?.email}
-              email={user?.email}
-              key={user.id}
-            />
-          ))
-        ) : (
-          <NoResultUsers />
-        )}
-      </div>
-    </Card>
+        <div className="flex flex-col gap-5 col-span-12">
+          {listDaas.length > 0 && !error ? (
+            listDaas?.map((user) => (
+              <UserInfoAvatar
+                fullName={user?.email}
+                email={user?.email}
+                key={user.id}
+              />
+            ))
+          ) : (
+            <NoResultUsers />
+          )}
+        </div>
+      </Card>
+    </div>
   ) : null;
 }

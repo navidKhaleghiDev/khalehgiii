@@ -2,9 +2,13 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import lockKeyFillIcon from '@iconify-icons/ph/lock-key-fill';
 import lockKeyOpenFillIcon from '@iconify-icons/ph/lock-key-open-fill';
 import { useTranslation } from 'react-i18next';
-import { IComponentTable } from '../../types';
+import { ComponentTableProps } from '../../types';
 
-export function ActionButtonCell({ row, id: key, onClick }: IComponentTable) {
+export function ActionButtonCell({
+  row,
+  id: key,
+  onClick,
+}: ComponentTableProps) {
   const { t } = useTranslation();
   const updatedUnlock = {
     ...row,

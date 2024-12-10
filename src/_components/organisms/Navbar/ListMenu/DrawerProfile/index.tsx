@@ -49,7 +49,7 @@ export function DrawerProfile() {
     <div
       ref={dropdownRef}
       className={`fixed top-0 ${
-        dir ? 'right-0' : 'left-0'
+        dir === 'rtl' ? 'right-0' : 'left-0'
       } z-50 w-[17.12rem] lg:w-[19.18rem] h-full bg-white dark:bg-gray-600 shadow-md flex flex-col justify-between transition-transform duration-500`}
     >
       <div className="flex justify-between items-center w-full h-[3.75rem] p-5">

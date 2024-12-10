@@ -1,20 +1,20 @@
-import { IDaAs, TGroup } from '@src/services/users/types';
+import { DaAsParams, GroupParams } from '@src/services/users/types';
 import { Control } from 'react-hook-form';
 
-export type TUsersListProps = {
+export type UsersListNUProps = {
   users: any;
   control: Control<any>;
   isAddNew: boolean;
   setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
-  listDaas: IDaAs[];
+  listDaas: DaAsParams[];
   loading: boolean;
-  updateGroup: (updatedList: TGroup) => void;
+  updateGroup: (updatedList: GroupParams) => void;
 };
-export type GroupsType = IDaAs[] | TGroup;
+export type GroupsType = DaAsParams[] | GroupParams;
 
 export type GroupModalProps = {
   handleClose: (isUpdated?: boolean) => void;
-  group?: TGroup;
+  group?: GroupParams;
   mutate: any;
   loadingGroup?: boolean;
   setGroupSelected: any;
@@ -23,7 +23,7 @@ export type GroupTabsRefType = {
   changeTab: (index: number) => void;
   getActiveTab?: () => number;
 };
-export type TGroupUpdate = {
+export type GroupUpdateNU = {
   id?: string;
   users: {
     id: string;

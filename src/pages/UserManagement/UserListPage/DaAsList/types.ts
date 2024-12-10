@@ -1,8 +1,8 @@
-import { IDaasConfig } from '@src/services/config/types';
-import { IDaAs } from '@src/services/users/types';
+import { DaasConfig } from '@src/services/config/types';
+import { DaAsParams } from '@src/services/users/types';
 import { StringifyProperties } from '@src/types/global';
 
-export interface IHeaderDaasCard
-  extends Omit<StringifyProperties<IDaAs>, 'daas_configs'> {
-  daas_configs: StringifyProperties<IDaasConfig>;
+export interface HeaderDaasCard
+  extends Omit<StringifyProperties<DaAsParams>, 'daas_configs'> {
+  daas_configs: StringifyProperties<DaasConfig>;
 }

@@ -5,9 +5,9 @@ import { checkPermission } from '@src/helper/hooks/usePermission';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { http } from '@src/services/http';
 import { E_USERS } from '@src/services/users/endpoint';
-import { IUser } from '@src/services/users/types';
-import { EPermissionUsers, PermissionsCodeName } from '@src/types/permissions';
-import { IResponsePagination } from '@src/types/services';
+import { UserParams } from '@src/services/users/types';
+import { PermissionUsers, PermissionsCodeName } from '@src/types/permissions';
+import { ResponsePagination } from '@src/types/services';
 import { BaseMiniTable } from '@redesignUi/molecules/BaseMiniTable';
 import { t } from 'i18next';
 
@@ -32,7 +32,7 @@ export function DashboardAdminLogs({
     setCurrentPage(page);
   };
 
-  const { data, isLoading } = useSWR<IResponsePagination<IUser>>(
+  const { data, isLoading } = useSWR<ResponsePagination<UserParams>>(
     endpoint,
     http.fetcherSWR,
     {
@@ -56,16 +56,18 @@ export function DashboardAdminLogs({
   };
 
   return (
-    checkPermission(permissions, EPermissionUsers.VIEW) && (
-      <BaseMiniTable
-        header={header}
-        body={listWhiteList}
-        loading={isLoading}
-        date={['last_login', 'last_logout']}
-        pagination={paginationProps}
-        title={t('dashboard.adminLogin')}
-        className="w-full xl:[&>*:last-child>*:last-child>*]:max-h-10 md:[&>*:last-child>*:last-child>*]:max-h-6 [&>*:last-child>*:last-child>*]:max-h-10 xl:h-[17.5rem] md:h-[13.125rem]"
-      />
+    checkPermission(permissions, PermissionUsers.VIEW) && (
+      <div className="lg:col-span-5 md:col-span-6 col-span-12 md:order-2 order-3">
+        <BaseMiniTable
+          header={header}
+          body={listWhiteList}
+          loading={isLoading}
+          date={['last_login', 'last_logout']}
+          pagination={paginationProps}
+          title={t('dashboard.adminLogin')}
+          className="w-full xl:[&>*:last-child>*:last-child>*]:max-h-10 md:[&>*:last-child>*:last-child>*]:max-h-6 [&>*:last-child>*:last-child>*]:max-h-10 xl:h-[17.5rem] md:h-[13.125rem]"
+        />
+      </div>
     )
   );
 }

@@ -6,10 +6,10 @@ import { useTranslation } from 'react-i18next';
 
 import { BaseButton, Typography } from '@redesignUi/atoms';
 import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
-import { IUser } from '@src/services/users/types';
+import { UserParams } from '@src/services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
 import { API_CREATE_USER, API_UPDATE_USER } from '@src/services/users';
-import { IResponseData } from '@src/types/services';
+import { ResponseData } from '@src/types/services';
 import { E_USERS_PERMISSION } from '@src/services/users/endpoint';
 import { UserPermissionsProps } from '@src/types/permissions';
 import { http } from '@src/services/http';
@@ -23,18 +23,18 @@ export function UpdateAdminModal({
   admin,
 }: UpdateAdminModalProps) {
   const { t } = useTranslation();
-  const { lang } = useLanguage();
+  const { dir } = useLanguage();
   const [showConfirm, setShowConfirm] = useState(false);
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [selectedPermissions, setSelectedPermissions] = useState(
     admin?.user_permissions || []
   );
   const [secret, setSecret] = useState<undefined | string>(undefined);
+  const [otp, setOtp] = useState<boolean | undefined>(admin?.totp_enable);
 
   const role = admin?.is_meta_admin ? 'true' : 'false';
-  const dir = lang === 'fa' ? 'rtl' : 'ltr';
   const { data: permissionData, isLoading } = useSWR<
-    IResponseData<UserPermissionsProps[]>
+    ResponseData<UserPermissionsProps[]>
   >(E_USERS_PERMISSION, http.fetcherSWR);
 
   const { control, handleSubmit, watch, formState } = useForm<UserProps>({
@@ -44,7 +44,6 @@ export function UpdateAdminModal({
       email: admin?.email,
       first_name: admin?.first_name ?? '',
       last_name: admin?.last_name ?? '',
-      totp_enable: admin?.totp_enable,
       is_meta_admin: admin?.id ? role : 'false',
     },
   });
@@ -53,6 +52,7 @@ export function UpdateAdminModal({
 
   const hasPermissionsChanged =
     selectedPermissions.length === admin?.user_permissions?.length;
+  const hasOtpChanged = otp !== admin?.totp_enable;
 
   const permissions = permissionData?.data || [];
   const getSelectedIds = selectedPermissions.map((item) => item.id);
@@ -60,13 +60,14 @@ export function UpdateAdminModal({
     const updatedData = {
       user_permissions_ids: getSelectedIds,
       totp_secret: secret,
+      totp_enable: otp,
       ...data,
     };
 
     setLoadingButtonModal(true);
 
     if (data.id) {
-      await API_UPDATE_USER(updatedData as IUser, data?.id as number)
+      await API_UPDATE_USER(updatedData as UserParams, data?.id as number)
         .then(() => {
           toast.success(t('global.sucessfulyUpdated'));
           handleClose(true);
@@ -81,7 +82,7 @@ export function UpdateAdminModal({
       return;
     }
 
-    await API_CREATE_USER(updatedData as IUser)
+    await API_CREATE_USER(updatedData as UserParams)
       .then(() => {
         toast.success(t('global.successfullyAdded'));
         handleClose(true);
@@ -106,6 +107,8 @@ export function UpdateAdminModal({
             isMetaAdmin={isMetaAdmin}
             secret={secret}
             setSecret={setSecret}
+            setOtp={setOtp}
+            otp={otp}
           />
         </BaseTab>
         <BaseTab label={t('global.accessList')}>
@@ -144,7 +147,9 @@ export function UpdateAdminModal({
               className="sm:w-[11.87rem] w-[5.93rem] whitespace-nowrap p-2"
               loading={loadingButtonModal}
               onClick={() => setShowConfirm(true)}
-              disabled={!formState.isDirty && hasPermissionsChanged}
+              disabled={
+                !formState.isDirty && hasPermissionsChanged && !hasOtpChanged
+              }
             />
             <BaseButton
               label={t('global.cancel')}

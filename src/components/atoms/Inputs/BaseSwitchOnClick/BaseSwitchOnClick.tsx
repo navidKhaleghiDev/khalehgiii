@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Typography } from '@ui/atoms/Typography';
 
-import { IBaseSwitch } from './types';
+import { BaseSwitchProps } from './types';
 
 export function BaseSwitchOnClick({
   label,
@@ -12,7 +12,7 @@ export function BaseSwitchOnClick({
   defaultChecked,
   pureError,
   disabled = false,
-}: IBaseSwitch) {
+}: BaseSwitchProps) {
   return (
     <div dir="ltr">
       {label && (

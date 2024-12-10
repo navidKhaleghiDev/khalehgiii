@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { ITypographyIcon } from './types';
+import { TypographyIconProps } from './types';
 import { Typography } from './Typography';
 import { BaseIcon } from '../BaseIcon';
 
-export function TypographyIcon(props: ITypographyIcon) {
+export function TypographyIcon(props: TypographyIconProps) {
   const { startIcon, endIcon, text, iconColor, iconSize } = props;
   return (
     <div className="flex items-center justify-center">

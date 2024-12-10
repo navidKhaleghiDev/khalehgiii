@@ -1,6 +1,6 @@
 import Play from '@iconify-icons/ph/play';
 
-import { EPermissionSessionRecording } from '@src/types/permissions';
+import { PermissionSessionRecording } from '@src/types/permissions';
 import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
 import { ConvertedSecondsHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ConvertedSecondsHelperCell';
 
@@ -53,7 +53,7 @@ export const SessionRecordingHeaderItem: HeaderTable[] = [
         action: 'more',
         icon: Play,
         color: 'neutralNoBg',
-        permission: EPermissionSessionRecording.VIEW,
+        permission: PermissionSessionRecording.VIEW,
       },
     ],
     class: 'mr-auto w-1/12',

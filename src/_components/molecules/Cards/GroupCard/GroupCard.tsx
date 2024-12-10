@@ -10,7 +10,7 @@ import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
-import { EPermissionGroupManagement } from '@src/types/permissions';
+import { PermissionGroupManagement } from '@src/types/permissions';
 
 import { useLanguage } from '@context/settings/languageContext';
 import { TitleNumber } from './TitleNumber/TitleNumber';
@@ -30,7 +30,7 @@ export function GroupCard(props: GroupCardProps): JSX.Element {
   const { rtl } = useLanguage();
   const GroupManagementDelete = checkPermission(
     userPermissions,
-    EPermissionGroupManagement.DELETE
+    PermissionGroupManagement.DELETE
   );
 
   const [isRemoving, setIsRemoving] = useState(false);

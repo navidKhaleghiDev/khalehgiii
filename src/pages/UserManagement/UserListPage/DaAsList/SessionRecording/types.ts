@@ -1,9 +1,9 @@
-export interface ISessionRecordList {
-  today: [key: TRecordData] | object;
-  history: [key: TRecordData] | object;
+export interface SessionRecordListParams {
+  today: [key: RecordDataParams] | object;
+  history: [key: RecordDataParams] | object;
 }
 
-export type TRecordData = {
+export type RecordDataParams = {
   record_length: number;
   record_name: string;
 };

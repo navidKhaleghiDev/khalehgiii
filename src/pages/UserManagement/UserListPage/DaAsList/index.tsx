@@ -6,9 +6,9 @@ import useSWR from 'swr';
 import Play from '@iconify-icons/ph/play';
 import UsersThree from '@iconify-icons/ph/users-three';
 import { API_DAAS_DELETE, API_DAAS_UPDATE } from '@src/services/users';
-import { IDaAs } from '@src/services/users/types';
+import { DaAsParams } from '@src/services/users/types';
 import { http } from '@src/services/http';
-import { IResponsePagination } from '@src/types/services';
+import { ResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
@@ -59,7 +59,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeDaas, setActiveDaas] = useState<Partial<IDaAs>>();
+  const [activeDaas, setActiveDaas] = useState<Partial<DaAsParams>>();
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
   const [activeModal, setActiveModal] = useState<
     | 'deleteUser'
@@ -84,7 +84,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
     onlineFilter: showOnlineUsers,
   });
 
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IDaAs>>(
+  const { data, isLoading, mutate } = useSWR<ResponsePagination<DaAsParams>>(
     endpoint,
     http.fetcherSWR
   );
@@ -92,11 +92,11 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
   const listDaas = data?.data?.results ?? [];
   const countPage = data?.data?.count || 0;
 
-  const handleOnClickActions: OnClickActionsType<IDaAs> = (
+  const handleOnClickActions: OnClickActionsType<DaAsParams> = (
     action,
     userDaas
   ) => {
-    setActiveDaas(userDaas as IDaAs);
+    setActiveDaas(userDaas as DaAsParams);
     const id = userDaas?.id;
     switch (action) {
       case 'more':
@@ -125,7 +125,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
       // do nothing
     }
   };
-  const updateDaas = async (daas?: Partial<IDaAs>, isLdp?: boolean) => {
+  const updateDaas = async (daas?: Partial<DaAsParams>, isLdp?: boolean) => {
     if (!daas) return;
     let daasUpdated = daas;
 
@@ -334,7 +334,7 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         content={
           <SettingDaasModal
             handleOnChange={(daas) => updateDaas(daas, true)}
-            daas={activeDaas as IDaAs}
+            daas={activeDaas as DaAsParams}
             userPermissions={userPermissions}
             setOpenSettingModal={() => setActiveModal(null)}
           />
@@ -346,7 +346,9 @@ export function DaAsList({ showLockedUsers, showOnlineUsers }: DaAsListProps) {
         open={activeModal === 'onlineAssistance'}
         setOpen={() => setActiveModal(null)}
         type="content"
-        content={<OnlineAssistanceDetailModal daas={activeDaas as IDaAs} />}
+        content={
+          <OnlineAssistanceDetailModal daas={activeDaas as DaAsParams} />
+        }
         icon={UsersThree}
         title={t('userList.assistance')}
       />

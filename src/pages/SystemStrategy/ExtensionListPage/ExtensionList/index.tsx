@@ -1,20 +1,21 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import useSWR from 'swr';
 
-import { IResponsePagination } from '@src/types/services';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { Modal } from '@redesignUi/molecules/Modal';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
-import { IMimeType } from '@src/services/analyze/types';
+import { MimeType } from '@src/services/analyze/types';
 import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
 import { BaseTable } from '@redesignUi/molecules/BaseTable';
 import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { StringifyProperties } from '@src/types/global';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
+import { ActionOnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { useGetPagination } from '@src/services/http/httpClient';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
@@ -27,32 +28,24 @@ const PAGE = 1;
 export function ExtensionList() {
   const [currentPage, setCurrentPage] = useState<number>(PAGE);
   const [filterQuery, setFilterQuery] = useState<string>('');
-  const [activeAdmin, setActiveAdmin] = useState<Partial<IMimeType>>();
-  const [deleteModal, setDeleteModal] = useState(false);
-  const { width } = useWindowDimensions();
-  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [openModal, setOpenModal] = useState<ActionOnClickActionsType>();
+  const [mimeType, setMimeType] = useState<
+    MimeType | StringifyProperties<MimeType>
+  >();
   const [loadingButtonModal, setLoadingButtonModal] = useState(false);
 
-  const { t } = useTranslation();
+  const { width } = useWindowDimensions();
   const userPermissions = useUserPermission();
+  const { t } = useTranslation();
 
-  // check o tic about permissions
-  // const viewTablePermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionExtensions.VIEW
-  // );
-  // const addPermission = checkPermission(
-  //   userPermissions,
-  //   EPermissionExtensions.ADD
-  // );
-
+  // MimeType extension for the service
   const endpoint = createAPIEndpoint({
     endPoint: E_ANALYZE_MIME_TYPE,
     pageSize: PAGE_SIZE,
     currentPage,
     filterQuery,
   });
-  const { data, isLoading, mutate } = useSWR<IResponsePagination<IMimeType>>(
+  const { count, resultData, isLoading, mutate } = useGetPagination<MimeType>(
     endpoint,
     HTTP_ANALYSES.fetcherSWR
   );
@@ -64,15 +57,16 @@ export function ExtensionList() {
     setCurrentPage(PAGE);
     setFilterQuery(value);
   }, []);
+
   const handleOnDeleteFileType = async () => {
-    if (!activeAdmin) return;
+    if (!mimeType) return;
     setLoadingButtonModal(true);
 
-    await API_ANALYZE_MIME_TYPE_DELETE(activeAdmin?.id as number)
+    await API_ANALYZE_MIME_TYPE_DELETE(mimeType?.id as number)
       .then(() => {
         mutate();
         toast.success(t('global.successfullyRemoved'));
-        setDeleteModal(false);
+        setOpenModal('delete');
       })
       .catch((err) => {
         toast.error(err);
@@ -82,39 +76,29 @@ export function ExtensionList() {
       });
   };
 
-  const listWhiteList = data?.data?.results ?? [];
-  const countPage = data?.data?.count || 0;
-
   const handleCloseUpdateModal = (isMutate?: boolean) => {
     if (isMutate) {
       mutate();
     }
-    setOpenUpdateModal(false);
+    setOpenModal('mutate');
   };
 
-  const handleOnClickActions: OnClickActionsType<IMimeType> | undefined = (
+  const handleOnClickActions: OnClickActionsType<MimeType> | undefined = (
     action,
     fileType
   ) => {
-    setActiveAdmin(fileType as IMimeType);
-    if (action === 'delete') {
-      setDeleteModal(true);
-      return;
-    }
-
-    if (action === 'edit') {
-      setOpenUpdateModal(true);
-    }
+    setMimeType(fileType);
+    setOpenModal(action);
   };
 
   const paginationProps = {
-    countPage,
+    countPage: count,
     currentPage,
-    totalPages: Math.ceil(countPage / PAGE_SIZE),
+    totalPages: Math.ceil(count / PAGE_SIZE),
     onPageChange: handlePageChange,
     paginationLabel: t('global.format'),
-    allItems: countPage,
-    itemsPer: listWhiteList.length,
+    allItems: count,
+    itemsPer: resultData.length,
   };
 
   return (
@@ -125,11 +109,11 @@ export function ExtensionList() {
           searchPlaceholder={t('systemManagement.search')}
           searchQuery={filterQuery}
           buttonLabel={t('systemManagement.newFormat')}
-          onClickButton={() => setOpenUpdateModal(true)}
+          onClickButton={() => setOpenModal('edit')}
         />
       </div>
       <BaseTable
-        body={listWhiteList}
+        body={resultData}
         header={checkPermissionHeaderItem(
           userPermissions,
           extensionListHeaderItem
@@ -140,8 +124,8 @@ export function ExtensionList() {
         isMobile={width <= 765}
       />
       <Modal
-        open={deleteModal}
-        setOpen={setDeleteModal}
+        open={openModal === 'delete'}
+        setOpen={() => setOpenModal('mutate')}
         type="error"
         size="responsive"
         title={t('systemManagement.deleteFormat')}
@@ -154,13 +138,13 @@ export function ExtensionList() {
         }}
         buttonTow={{
           label: t('global.cancel'),
-          onClick: () => setDeleteModal(false),
+          onClick: () => setOpenModal('mutate'),
           color: 'tertiary',
         }}
       />
       <Modal
-        open={openUpdateModal}
-        setOpen={setOpenUpdateModal}
+        open={openModal === 'edit'}
+        setOpen={() => setOpenModal('mutate')}
         type="content"
         icon={PhUploadSimple}
         title={t('systemManagement.uploadFile')}

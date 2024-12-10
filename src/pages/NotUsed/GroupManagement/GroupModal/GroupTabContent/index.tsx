@@ -3,13 +3,13 @@ import { useCallback, useState } from 'react';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { debounce } from 'lodash';
 import { Control } from 'react-hook-form';
-import { TGroup, UpdateGroupPayload } from '@src/services/users/types';
+import { GroupParams, UpdateGroupPayload } from '@src/services/users/types';
 import { AddNewMember } from '@src/pages/NotUsed/GroupManagement/GroupModal/GroupTabContent/AddNewMember';
 import { EditGroupMembers } from '@src/pages/NotUsed/GroupManagement/GroupModal/GroupTabContent/EditGroupMembers';
 import { LoadingSpinner } from '@ui/molecules/Loading';
 
 export type GroupTabContentProps = {
-  group: TGroup | undefined;
+  group: GroupParams | undefined;
   isAdmins?: boolean;
   loading?: boolean;
   control: Control<any>;

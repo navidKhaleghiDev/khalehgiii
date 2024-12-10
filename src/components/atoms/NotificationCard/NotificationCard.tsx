@@ -5,7 +5,7 @@ import { BaseIcon } from '../BaseIcon';
 import { Card } from '../Card';
 import { Typography } from '../Typography';
 import { notificationStyles } from './styles';
-import { INotification } from './types';
+import { NotificationProps } from './types';
 
 export function NotificationCard({
   className,
@@ -13,7 +13,7 @@ export function NotificationCard({
   size,
   title,
   type,
-}: INotification) {
+}: NotificationProps) {
   return (
     <Card
       className={notificationStyles({ size, type, outline, className })}

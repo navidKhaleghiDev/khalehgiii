@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { ISwrResponse } from '@src/types/services';
+import { SwrResponse } from '@src/types/services';
 import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
@@ -18,7 +18,7 @@ import { DaasSettingProp } from '../type';
 export function DaasSetting() {
   const { t } = useTranslation();
   const [loadingButton, setLoadingButton] = useState(false);
-  const { data: daasConfig, isLoading } = useSWR<ISwrResponse<DaasSettingProp>>(
+  const { data: daasConfig, isLoading } = useSWR<SwrResponse<DaasSettingProp>>(
     E_DAAS_CONFIGS,
     http.fetcherSWR
   );

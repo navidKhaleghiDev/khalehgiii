@@ -1,7 +1,7 @@
 import { Typography } from '@ui/atoms/Typography';
-import { IComponentTable } from '../../types';
+import { ComponentTableProps } from '../../types';
 
-export function FunctionCell({ row, header, id }: IComponentTable) {
+export function FunctionCell({ row, header, id }: ComponentTableProps) {
   return (
     <Typography
       variant={header?.variant ? header?.variant : 'body4'}

@@ -7,7 +7,7 @@ import { ChromeSvg } from '@redesignUi/atoms/Svgs/ChromeSvg';
 import { FirefoxSvg } from '@redesignUi/atoms/Svgs/FirefoxSvg';
 import { TitleSection } from '@redesignUi/atoms/TitleSection';
 import { checkPermission } from '@src/helper/hooks/usePermission';
-import { EPermissionDaas } from '@src/types/permissions';
+import { PermissionDaas } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { VsSvg } from '@redesignUi/atoms/Svgs/VsSvg';
 import { RemminaSvg } from '@redesignUi/atoms/Svgs/RemminaSvg';
@@ -21,7 +21,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
 
   const hasChangePermission = checkPermission(
     userPermissions,
-    EPermissionDaas.CHANGE
+    PermissionDaas.CHANGE
   );
   return (
     <>
@@ -94,7 +94,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -111,7 +111,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -140,7 +140,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -157,7 +157,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -186,7 +186,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             label={t('setting.memory')}
             disabled={!hasChangePermission}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,
@@ -203,7 +203,7 @@ export function ResourceLimitation({ userPermissions, control }: PropsType) {
             disabled={!hasChangePermission}
             placeholder={t('setting.core')}
             icon={PhDownloadSimple}
-            dir={dir === 'rtl' ? 'rtl' : 'ltr'}
+            dir={dir}
             max={500}
             // rules={{
             //   required: regexPattern.required,

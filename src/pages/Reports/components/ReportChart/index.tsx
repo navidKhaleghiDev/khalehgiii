@@ -8,7 +8,6 @@ import {
   ReportChartType,
   Data,
   DataGeneratorReturn,
-  DataType,
   FormatData,
 } from '../../types';
 
@@ -36,7 +35,7 @@ export function ReportsChart({ props }: ReportChartType) {
     moment.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
   }
 
-  function dataGenerator(type: DataType, data: Data): DataGeneratorReturn {
+  function dataGenerator(type: string, data: Data): DataGeneratorReturn {
     const dataListDownload: number[] = [];
     const dataListUpload: number[] = [];
     const labelsSet = new Set<string>();
@@ -51,10 +50,15 @@ export function ReportsChart({ props }: ReportChartType) {
         if (type === 'monthly' || type === 'weekly') {
           if (!downloadAggregated[formattedDate]) {
             downloadAggregated[formattedDate] = 0;
+          }
+          if (!uploadAggregated[formattedDate]) {
             uploadAggregated[formattedDate] = 0;
           }
-          downloadAggregated[formattedDate] += values.download;
-          uploadAggregated[formattedDate] += values.upload;
+
+          downloadAggregated[formattedDate] +=
+            values.download_clean + values.download_malware;
+          uploadAggregated[formattedDate] +=
+            values.upload_clean + values.upload_malware;
 
           if (!labelsSet.has(formattedDate)) {
             labelsSet.add(formattedDate);
@@ -62,8 +66,10 @@ export function ReportsChart({ props }: ReportChartType) {
           }
         } else {
           labels.push(formattedDate);
-          dataListDownload.push(values.download);
-          dataListUpload.push(values.upload);
+          dataListDownload.push(
+            values.download_clean + values.download_malware
+          );
+          dataListUpload.push(values.upload_clean + values.upload_malware);
         }
       });
 
@@ -117,7 +123,12 @@ export function ReportsChart({ props }: ReportChartType) {
         },
       },
       legend: {
-        position: 'top' as const,
+        position: 'right' as const,
+        labels: {
+          usePointStyle: true,
+          pointStyle: 'circle',
+        },
+        display: false,
       },
       title: {
         display: false,

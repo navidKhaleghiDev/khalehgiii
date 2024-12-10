@@ -53,7 +53,7 @@ export interface BaseInputProps<T extends FieldValues>
   disabled?: boolean;
 }
 
-export type TOnClickDate = (
+export type OnClickDateParams = (
   date: DateObject | [DateObject, DateObject]
 ) => void;
 export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
@@ -69,12 +69,12 @@ export interface DatePickerProps extends BaseInputProps<any> {
   maxDate?: string | number | DateObject | Date;
   showTimePicker?: boolean;
   format?: string;
-  timeDuration?: TTimeDuration;
+  timeDuration?: TimeDurationParams;
   submitButton?: boolean;
-  onChange?: TOnClickDate;
+  onChange?: OnClickDateParams;
 }
 
-type TTimeDuration = {
+type TimeDurationParams = {
   weekly: boolean;
   montly: boolean;
 };

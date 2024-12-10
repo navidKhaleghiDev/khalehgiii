@@ -1,7 +1,7 @@
 import { Typography } from '@ui/atoms/Typography';
-import { IComponentTable } from '../../types';
+import { ComponentTableProps } from '../../types';
 
-export function UserCell({ row, id, header }: IComponentTable) {
+export function UserCell({ row, id, header }: ComponentTableProps) {
   const username = id.map((i: string) => `${row[i]} `);
 
   return (

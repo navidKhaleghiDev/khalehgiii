@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { IDaAs } from '@src/services/users/types';
-import { IDaasConfig } from '@src/services/config/types';
+import { DaAsParams } from '@src/services/users/types';
+import { DaasConfig } from '@src/services/config/types';
 import { ExtendTwoType } from '@src/types/global';
 import { BaseButton, Typography } from '@redesignUi/atoms';
-import { EPermissionDaas, PermissionsCodeName } from '@src/types/permissions';
+import { PermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 
 import { DaasModalContent } from '../DaasModalContent';
 
 type PropsType = {
-  handleOnChange: (daas: IDaAs) => void;
-  daas: IDaAs;
+  handleOnChange: (daas: DaAsParams) => void;
+  daas: DaAsParams;
   userPermissions: PermissionsCodeName[];
   setOpenSettingModal: (value: boolean) => void;
 };
@@ -28,7 +28,7 @@ export function SettingDaasModal({
   const { t } = useTranslation();
 
   const { control, handleSubmit, setValue, watch } = useForm<
-    ExtendTwoType<IDaAs, IDaasConfig>
+    ExtendTwoType<DaAsParams, DaasConfig>
   >({
     mode: 'onChange',
     defaultValues: {
@@ -87,7 +87,7 @@ export function SettingDaasModal({
     extra_allowed_download_files,
     extra_allowed_upload_files,
     ...data
-  }: ExtendTwoType<IDaAs, IDaasConfig>) => {
+  }: ExtendTwoType<DaAsParams, DaasConfig>) => {
     const updatedDaasData = {
       daas_configs: {
         can_upload_file,
@@ -121,7 +121,7 @@ export function SettingDaasModal({
   };
 
   const handleSetDlpValues = (
-    name: keyof IDaAs,
+    name: keyof DaAsParams,
     values: { [key: string]: number }
   ) => {
     setValue(name, values);
@@ -134,7 +134,7 @@ export function SettingDaasModal({
 
   const hasViewDaasPermission = checkPermission(
     userPermissions,
-    EPermissionDaas.VIEW
+    PermissionDaas.VIEW
   );
 
   return (

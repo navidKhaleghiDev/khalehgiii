@@ -2,9 +2,9 @@ import { IconButton } from '@ui/atoms/BaseButton';
 import { useTranslation } from 'react-i18next';
 import PhPlayCircleLight from '@iconify-icons/ph/play-circle-light';
 import PhRecordFill from '@iconify-icons/ph/record-fill';
-import { IRowCellsComponent } from '../../types';
+import { RowCellsComponent } from '../../types';
 
-export function Recording({ row, onClick }: IRowCellsComponent) {
+export function Recording({ row, onClick }: RowCellsComponent) {
   const { t } = useTranslation();
   const isRecording = row?.status === 'recording';
   const tooltipTitle = isRecording ? 'table.isRecording' : 'table.play';

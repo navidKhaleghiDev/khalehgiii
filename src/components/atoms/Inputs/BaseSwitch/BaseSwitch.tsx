@@ -2,7 +2,7 @@
 import { Controller } from 'react-hook-form';
 import { Typography } from '@ui/atoms/Typography';
 
-import { IBaseSwitch } from './types';
+import { BaseSwitchProps } from './types';
 
 export function BaseSwitch({
   label,
@@ -16,7 +16,7 @@ export function BaseSwitch({
   defaultChecked,
   pureError,
   disabled = false,
-}: IBaseSwitch<any>) {
+}: BaseSwitchProps<any>) {
   return control ? (
     <Controller
       name={name}

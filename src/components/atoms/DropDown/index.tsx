@@ -5,7 +5,7 @@ import caretCircleDownIcon from '@iconify-icons/ph/caret-circle-down';
 import caretCircleLeftIcon from '@iconify-icons/ph/caret-circle-left';
 
 import { useTranslation } from 'react-i18next';
-import { DropdownProps, IOptionSelect, StateType } from './type';
+import { DropdownProps, OptionSelect, StateType } from './type';
 import { optionSelectStyles, baseDropDownStyles } from './styles';
 import { BaseIcon } from '../BaseIcon';
 import { Typography } from '../Typography';
@@ -44,7 +44,7 @@ export function Dropdown<T extends FieldValues>({
     value: state.openOptions,
   });
 
-  const handleOnChange = (option: IOptionSelect) => {
+  const handleOnChange = (option: OptionSelect) => {
     setState({ activeOption: option, openOptions: false });
   };
 
@@ -105,7 +105,7 @@ export function Dropdown<T extends FieldValues>({
                 {t('table.removeSelected')}
               </button>
             )}
-            {options.map((option: IOptionSelect) => (
+            {options.map((option: OptionSelect) => (
               <button
                 type="button"
                 key={option.id}
