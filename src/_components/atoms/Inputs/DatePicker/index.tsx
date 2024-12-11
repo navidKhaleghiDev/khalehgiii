@@ -79,6 +79,7 @@ export function MultiDatePicker(props: MultiDatePickerProps): JSX.Element {
       }
     }, 0);
   };
+
   return (
     <div className={`${className ?? ''}`}>
       <DatePicker
