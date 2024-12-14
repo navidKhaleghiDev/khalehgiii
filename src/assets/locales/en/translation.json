@@ -488,11 +488,15 @@
     "fireFox": "Firefox",
     "cpu": "CPU (Core)",
     "core": "Core",
-    "memory": "Memory(GB)",
+    "memory": "Memory(MB)",
     "saveFile": "Save File",
     "ide": "IDE",
     "remina": "Remote Access",
-    "zero": "Please enter a value greater than zero."
+    "zero": "Please enter a value greater than zero.",
+    "minMemoreFirejail": "The minimum memory size is 512 MB.",
+    "maxMemoreFirejail": "The maximum memory size is 1,000,000 MB.",
+    "minCpuFirejail": "The minimum number of CPUs is 1 core.",
+    "maxCpuFirejail": "The maximum number of CPUs is 5 cores."
   },
 
   "regexPattern": {

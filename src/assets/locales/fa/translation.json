@@ -491,11 +491,15 @@
     "fireFox": "Firefox",
     "cpu": "CPU (Core)",
     "core": "Core",
-    "memory": "حافظه (GB)",
+    "memory": "حافظه (MB)",
     "saveFile": "ذخیره فایل",
     "ide": "IDE",
     "remina": "Remote Access",
-    "zero": "لطفا مقداری بیشتر از صفر وارد کنید"
+    "zero": "لطفا مقداری بیشتر از صفر وارد کنید",
+    "minMemoreFirejail": "حداقل حجم حافظه 512 مگابایت می باشد.",
+    "maxMemoreFirejail": "حداکثر حجم حافظه 1000000 مگابایت می باشد.",
+    "minCpuFirejail": "حداقل تعداد cpu 1 هسته می باشد.",
+    "maxCpuFirejail": "حداکثر تعداد cpu 5 هسته می باشد."
   },
   "regexPattern": {
     "value": "لطفا لینک معتبر وارد کنید",
