@@ -12,11 +12,11 @@ import { UserParams } from '@src/services/users/types';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { API_USERS_DELETE } from '@src/services/users';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { Modal } from '@redesignUi/molecules/Modal';
-import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { Modal } from '@ui/molecules/Modal';
+import { checkPermissionHeaderItem } from '@ui/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { OnClickActionsType } from '@ui/molecules/BaseTable/types';
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { UpdateAdminModal } from './UpdateAdminModal';

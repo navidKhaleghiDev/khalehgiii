@@ -2,12 +2,12 @@ import moment from 'moment-jalaali';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { Typography } from '@redesignUi/atoms';
-import { LicenseCard } from '@redesignUi/molecules/Cards/LicenseCard';
+import { Typography } from '@ui/atoms';
+import { LicenseCard } from '@ui/molecules/Cards/LicenseCard';
 import { http } from '@src/services/http';
 import { E_USERS_LICENSES } from '@src/services/users/endpoint';
-import { LicenseCardProps } from '@redesignUi/molecules/Cards/LicenseCard/types';
-import { NoResult } from '@redesignUi/molecules/NoResult';
+import { LicenseCardProps } from '@ui/molecules/Cards/LicenseCard/types';
+import { NoResult } from '@ui/molecules/NoResult';
 
 type LicenseCardKeys =
   | 'sandbox'

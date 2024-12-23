@@ -1,5 +1,3 @@
-import { t } from 'i18next';
-
 export const inputRegexPattern = {
   urlLink: {
     value:
@@ -123,7 +121,7 @@ export const inputRegexPattern = {
   },
   required: {
     value: true,
-    message: t('global.requiredField'),
+    message: 'درج این فیلد ضروریست.',
   },
   jsonValidate: {
     value: /[^\0-9]/,

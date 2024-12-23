@@ -4,7 +4,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 
 import { TimeLimitDuration } from '@src/services/users/types';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 
 interface UpdateDaasValues extends FieldValues {
   time_limit_duration: TimeLimitDuration;

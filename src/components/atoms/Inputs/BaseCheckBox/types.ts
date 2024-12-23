@@ -1,24 +1,31 @@
+import { ChangeEvent } from 'react';
 import { VariantProps } from 'class-variance-authority';
 import {
   Control,
   FieldPath,
   FieldValues,
   RegisterOptions,
-  UseFormSetError,
 } from 'react-hook-form';
-import { baseCheckBoxStyles } from '../styles';
 
-export interface BaseCheckBoxProps<T extends FieldValues>
-  extends VariantProps<typeof baseCheckBoxStyles> {
+import { baseCheckBoxStyles } from './styles';
+
+export interface BaseCheckBoxProps
+  extends Omit<VariantProps<typeof baseCheckBoxStyles>, 'error'> {
   id: string;
-  control?: Control<T>;
-  name: FieldPath<T>;
-  rules?: RegisterOptions<T>;
-  setError?: UseFormSetError<T>;
-  defaultValue?: string;
+  name: string;
+  checked: boolean;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
-  hiddenError?: boolean;
   className?: string;
+  error?: string;
+  value?: string | number | readonly string[];
+  showError?: boolean;
   disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface BaseCheckBoxControllerProps<T extends FieldValues>
+  extends Omit<BaseCheckBoxProps, 'onChange' | 'checked' | 'error' | 'value'> {
+  name: FieldPath<T>;
+  control: Control<T>;
+  rules?: RegisterOptions<T>;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { IconType } from '@src/types/global';
-import { BaseIcon } from '@redesignUi/atoms';
+import { BaseIcon } from '@ui/atoms';
 
 import { chipButtonUserAccessModalStyles } from './styles';
 

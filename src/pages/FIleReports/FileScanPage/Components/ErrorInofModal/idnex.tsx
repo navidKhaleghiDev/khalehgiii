@@ -1,4 +1,4 @@
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 import { ScannedFile } from '@src/services/analyze/types';
 
 type PropsType = {

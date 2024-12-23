@@ -1,9 +1,9 @@
-import { Card, Typography } from '@ui/atoms';
-import { IconButton } from '@ui/atoms/BaseButton';
 import trashIcon from '@iconify-icons/ph/trash';
 import { StringifyProperties } from '@src/types/global';
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
 import { MimeType } from '@src/services/analyze/types';
+import { Card, Typography } from '@ui/atoms';
+import { IconButton } from '@ui/atoms/BaseButton';
 
 import { OnClickActionsType } from './types';
 

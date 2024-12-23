@@ -9,9 +9,9 @@ import { API_USERS_PROFILE } from '@src/services/users';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useUserContext } from '@context/user/userContext';
 import { STORAGE_KEY_TOKEN, http } from '@src/services/http';
-import { NavbarDashboard } from '@redesignUi/organisms/Navbar/NavbarDashboard';
-import { SideBar } from '@redesignUi/organisms/Sidebar';
-import { NavbarUser } from '@redesignUi/organisms/Navbar/NavbarUser/NavbarUser';
+import { NavbarDashboard } from '@ui/organisms/Navbar/NavbarDashboard';
+import { SideBar } from '@ui/organisms/Sidebar';
+import { NavbarUser } from '@ui/organisms/Navbar/NavbarUser/NavbarUser';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 function LayoutCp() {

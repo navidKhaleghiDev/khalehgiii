@@ -12,10 +12,10 @@ import User from '@iconify-icons/ph/user';
 import Monitor from '@iconify-icons/ph/monitor';
 import { useUserContext } from '@context/user/userContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { ToolTip } from '@redesignUi/atoms/Tooltip';
-import { Avatar, Typography } from '@redesignUi/atoms';
-import { IconButton } from '@redesignUi/atoms/BaseButton';
-import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { ToolTip } from '@ui/atoms/Tooltip';
+import { Avatar, Typography } from '@ui/atoms';
+import { IconButton } from '@ui/atoms/BaseButton';
+import { LoadingSpinner } from '@ui/molecules/Loading';
 import { useLanguage } from '@context/settings/languageContext';
 
 type AssistanceGroupDetailProps = {

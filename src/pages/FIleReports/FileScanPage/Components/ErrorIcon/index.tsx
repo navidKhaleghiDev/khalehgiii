@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
-import { IconButton } from '@redesignUi/atoms/BaseButton';
-import { Modal } from '@redesignUi/molecules/Modal';
+import { IconButton } from '@ui/atoms/BaseButton';
+import { Modal } from '@ui/molecules/Modal';
 import PhWarning from '@iconify-icons/ph/warning';
 
-import { ToolTip } from '@redesignUi/atoms/Tooltip';
-import { BaseTableComponentCellProps } from '@redesignUi/molecules/BaseTable/types';
+import { ToolTip } from '@ui/atoms/Tooltip';
+import { BaseTableComponentCellProps } from '@ui/molecules/BaseTable/types';
 import { ScannedFile } from '@src/services/analyze/types';
 
 import { DetailsContentModal } from '../ErrorInofModal/idnex';

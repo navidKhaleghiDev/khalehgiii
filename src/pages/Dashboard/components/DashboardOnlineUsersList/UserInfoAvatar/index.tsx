@@ -1,4 +1,4 @@
-import { Avatar, Typography } from '@redesignUi/atoms';
+import { Avatar, Typography } from '@ui/atoms';
 import User from '@iconify-icons/ph/user';
 
 interface UserInfoProps {

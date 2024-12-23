@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Typography } from '@ui/atoms';
-import { ProgressBar } from '@ui/molecules/ProgressBar';
 import { useTranslation } from 'react-i18next';
+
+import { ProgressBar } from '@ui/molecules/ProgressBar';
+import { Typography } from '@ui/atoms';
 
 type DassProps = {
   src: string;

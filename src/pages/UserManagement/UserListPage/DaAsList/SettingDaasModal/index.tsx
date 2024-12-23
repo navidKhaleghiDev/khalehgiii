@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { DaAsParams } from '@src/services/users/types';
 import { DaasConfig } from '@src/services/config/types';
 import { ExtendTwoType } from '@src/types/global';
-import { BaseButton, Typography } from '@redesignUi/atoms';
+import { BaseButton, Typography } from '@ui/atoms';
 import { PermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 

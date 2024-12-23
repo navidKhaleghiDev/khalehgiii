@@ -1,16 +1,9 @@
 import { VariantProps } from 'class-variance-authority';
-import { ReactNode } from 'react';
-import { tooltipStyles } from './styles';
+import { containerTooltipStyles, tooltipStyles } from './styles';
 
-export enum TooltipPosition {
-  Left = 'left',
-  Top = 'top',
-  Right = 'right',
-  Bottom = 'bottom',
-}
-
-export interface ToolTipProps extends VariantProps<typeof tooltipStyles> {
-  children: ReactNode;
-  tooltip?: string;
-  skip?: boolean;
+export interface ToolTipProps
+  extends VariantProps<typeof tooltipStyles>,
+    VariantProps<typeof containerTooltipStyles> {
+  tooltip: string;
+  className?: string;
 }

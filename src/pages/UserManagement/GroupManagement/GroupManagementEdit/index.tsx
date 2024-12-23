@@ -5,7 +5,7 @@ import { http } from '@src/services/http';
 import useSWR from 'swr';
 import { ResponseData } from '@src/types/services';
 import { useParams } from 'react-router-dom';
-import { BackButton } from '@redesignUi/atoms/BackButton';
+import { BackButton } from '@ui/atoms/BackButton';
 import { GroupParams } from '../types';
 import { GroupManagementEditRenderComponents } from './GroupManagementEditComponentRenderer';
 

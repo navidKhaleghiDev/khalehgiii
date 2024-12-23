@@ -6,7 +6,7 @@ import {
   PermissionsCodeName,
 } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 
 import { DlpList } from './DlpList';
 

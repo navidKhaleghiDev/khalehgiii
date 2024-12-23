@@ -1,36 +1,25 @@
 import { cva } from 'class-variance-authority';
 
-export const headerStyles = cva(
-  'flex justify-between items-center pb-3 p-2 h-12',
-  {
-    variants: {
-      type: {
-        error: 'bg-red-600',
-        success: 'bg-teal-600 ',
-        none: '',
-      },
-    },
-  }
-);
-
-export const contentStyles = cva('modal-content text-center min-h-[12rem]', {
+export const headerStyles = cva('rounded-full p-2 dark:bg-gray-700', {
   variants: {
     type: {
-      error: '',
-      success: '',
-      none: '',
+      error: 'bg-red-100',
+      success: 'bg-teal-100',
+      info: 'bg-gray-100',
+      content: '',
+      noneIcon: '',
+      warning: 'bg-red-100',
     },
   },
 });
 
-export const containerStyles = cva(
-  'rounded-lg shadow-lg modal-container bg-white mx-auto z-50 overflow-y-auto',
-  {
-    variants: {
-      freeSize: {
-        true: '',
-        undefined: 'w-[36rem]',
-      },
+export const containerStyles = cva('', {
+  variants: {
+    size: {
+      sm: 'sm:w-[21.875rem] w-full',
+      md: 'sm:w-[27.813rem] w-full',
+      lg: 'w-[20.87rem] sm:w-[33.43rem] lg:w-[39.68rem]',
+      responsive: 'sm:w-[27.813rem] w-[21.875rem]',
     },
-  }
-);
+  },
+});

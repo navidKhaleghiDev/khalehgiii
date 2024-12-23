@@ -1,5 +1,5 @@
 import fileIcon from '@iconify-icons/ph/file';
-import { BaseIcon, Typography } from '@redesignUi/atoms';
+import { BaseIcon, Typography } from '@ui/atoms';
 
 export function FileICon({ fileType }: { fileType: string }) {
   return (

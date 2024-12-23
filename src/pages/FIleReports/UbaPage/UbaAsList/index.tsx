@@ -6,8 +6,8 @@ import { ResponsePagination } from '@src/types/services';
 import { E_UBA_LIST_PAGINATION } from '@src/services/analyze/endpoint';
 import { Uba } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 
 import { ubaHeaderItem } from './constants/ubaHeaderItem';

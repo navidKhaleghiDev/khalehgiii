@@ -1,6 +1,6 @@
-import { ScannedFile } from '@src/services/analyze/types';
 import { Typography } from '@ui/atoms';
 import { CircleBg } from '@ui/atoms/CircleBg';
+import { ScannedFile } from '@src/services/analyze/types';
 
 type PropsType = {
   scannedFile?: ScannedFile;

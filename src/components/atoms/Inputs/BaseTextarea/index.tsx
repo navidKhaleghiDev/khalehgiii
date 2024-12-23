@@ -1,62 +1,109 @@
-import { Controller } from 'react-hook-form';
+import { Typography } from '@ui/atoms/Typography';
 
-import { baseTextareaStyles } from '../styles';
-import { Typography } from '../../Typography';
+import { baseInputTextAreaStyles, baseTextareaStyles } from './styles';
 import { BaseTextareaProps } from './types';
+import { baseInputWarperStyles } from '../BaseInput/styles';
 
-export function BaseTextarea(props: BaseTextareaProps<any>) {
+/**
+ * BaseTextarea component that integrates with react-hook-form.
+ *
+ * @param {string} props.name - The name of the field in the form.
+ * @param {string} props.id - The id for the textarea element.
+ * @param {string} [props.placeholder] - The placeholder text for the textarea.
+ * @param {string} [props.className] - Additional class names for styling the textarea.
+ * @param {boolean} [props.fullWidth] - Whether the textarea should take the full width of its container.
+ * @param {'sm' | 'md' | 'lg'} [props.size] - The size of the textarea.
+ * @param {(event: React.ChangeEvent<HTMLTextAreaElement>) => void} [props.onChange]
+ * @param {string} [props.value] - The value assign for the component
+ * @param {string} [props.helpText]
+ * @param {string} [props.error]
+ * @param {rtl | ltr} [props.dir=rtl]
+ *
+ *
+ * @returns {JSX.Element} The rendered textarea component.
+ */
+
+export function BaseTextarea(props: BaseTextareaProps): JSX.Element {
   const {
-    control,
     name,
     id,
     placeholder,
-    rules,
     className,
     fullWidth,
-    defaultValue,
-    intent,
     size,
-    hiddenError,
+    onChange,
+    value,
+    error,
     label,
+    helpText,
+    disabled,
+    hiddenError,
+    dir = 'rtl',
   } = props;
+  const rtl = dir === 'rtl';
+
   return (
-    <Controller
-      name={name}
-      control={control}
-      rules={rules}
-      defaultValue={defaultValue}
-      render={({ field, fieldState: { error } }) => (
-        <div className={`${className} ${fullWidth && 'w-full'}`}>
-          {label && (
-            <label htmlFor={id} className="block mb-1">
-              <Typography color="teal" variant="h5">
-                {label}
-              </Typography>
-            </label>
-          )}
-          <textarea
-            id={id}
-            rows={5}
-            cols={50}
-            dir="auto"
-            name={field.name}
-            value={field.value ?? ''}
-            onChange={field.onChange}
-            className={baseTextareaStyles({
-              intent: error?.message ? 'error' : intent,
-              className: 'pl-8',
-              fullWidth,
-              size,
-            })}
-            placeholder={placeholder}
-          />
-          {!hiddenError && (
-            <Typography color="red" variant="caption" className="h-6">
-              {error?.message ?? ''}
-            </Typography>
-          )}
-        </div>
+    <div
+      className={baseInputWarperStyles({
+        size,
+        fullWidth,
+        className: 'flex flex-col',
+      })}
+    >
+      {label && (
+        <label
+          htmlFor={id}
+          className={`mb-[0.13rem] ${rtl ? 'text-right' : 'text-left'}`}
+        >
+          <Typography
+            variant="body6"
+            className={`${
+              error && !disabled
+                ? 'text-red-500 dark:text-red-500'
+                : 'text-gray-200'
+            }  ${
+              disabled
+                ? 'text-gray-300 dark:text-gray-500'
+                : 'text-gray-500 dark:text-white'
+            }`}
+          >
+            {label}
+          </Typography>
+        </label>
       )}
-    />
+      <textarea
+        id={id}
+        disabled={disabled}
+        dir="auto"
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={baseTextareaStyles({
+          error: !!error,
+          className,
+          fullWidth,
+          size,
+        })}
+        placeholder={placeholder}
+      />
+      <span
+        className={baseInputTextAreaStyles({
+          size,
+          fullWidth,
+          disabled,
+        })}
+      >
+        {helpText && <Typography variant="body6">{helpText}</Typography>}
+        {!disabled && !hiddenError && (
+          <Typography
+            color="red"
+            variant="body6"
+            className={`text-left ${rtl && 'text-right'} min-h-5`}
+          >
+            {error ?? ''}
+          </Typography>
+        )}
+      </span>
+    </div>
   );
 }

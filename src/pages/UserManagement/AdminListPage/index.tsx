@@ -3,8 +3,8 @@ import useSWR from 'swr';
 
 import User from '@iconify-icons/ph/user';
 import Wifi from '@iconify-icons/ph/wifi-high-duotone';
-import { Typography } from '@redesignUi/atoms';
-import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
+import { Typography } from '@ui/atoms';
+import { UsersInfoCard } from '@ui/molecules/Cards/UsersInfoCard';
 import { UserParams } from '@src/services/users/types';
 import { E_USERS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';

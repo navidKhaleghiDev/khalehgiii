@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Control, FieldValues } from 'react-hook-form';
 
-import { Typography } from '@redesignUi/atoms';
-import { BaseOtp } from '@redesignUi/atoms/Inputs/BaseOtp';
+import { Typography } from '@ui/atoms';
+import { BaseOtp } from '@ui/atoms/Inputs/BaseOtp';
 
 import { LoginFieldValues } from '../types';
 

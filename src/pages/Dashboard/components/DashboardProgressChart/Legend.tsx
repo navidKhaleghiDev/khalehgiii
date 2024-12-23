@@ -1,4 +1,4 @@
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 import { useTranslation } from 'react-i18next';
 
 export function Legend() {

@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import PhTranslate from '@iconify-icons/ph/translate';
-import { BaseButton } from '@redesignUi/atoms';
-import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
-import { BackButton } from '@redesignUi/atoms/BackButton';
+import { BaseButton } from '@ui/atoms';
+import { BaseDropdownIcon } from '@ui/atoms/BaseDropdownIcon';
+import { BackButton } from '@ui/atoms/BackButton';
 
 import {
   API_USERS_LOGIN,

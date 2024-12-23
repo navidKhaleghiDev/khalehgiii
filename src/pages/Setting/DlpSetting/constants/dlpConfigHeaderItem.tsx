@@ -6,10 +6,10 @@ import {
 import {
   BaseTableComponentCellProps,
   HeaderTable,
-} from '@redesignUi/molecules/BaseTable/types';
+} from '@ui/molecules/BaseTable/types';
 import { IconFile } from '@src/pages/Setting/DlpSetting/component/IconType';
 import { FileTypeProp } from '@src/pages/Setting/type';
-import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
+import { TagHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/TagHelperCell';
 import DownloadSimple from '@iconify-icons/ph/download-simple';
 import UploadSimple from '@iconify-icons/ph/upload-simple';
 import Trash from '@iconify-icons/ph/trash-simple';

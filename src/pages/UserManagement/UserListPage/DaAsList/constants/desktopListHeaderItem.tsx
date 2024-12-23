@@ -7,10 +7,10 @@ import {
   PermissionDaasMetaConfig,
   PermissionSessionRecording,
 } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { TextCheckHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TextCheckHelperCell';
-import { ActionLockHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ActionLockHelperCell';
-import { ProgressBarHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ProgressBarHelperCell';
+import { HeaderTable } from '@ui/molecules/BaseTable/types';
+import { TextCheckHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/TextCheckHelperCell';
+import { ActionLockHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/ActionLockHelperCell';
+import { ProgressBarHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/ProgressBarHelperCell';
 
 import { AccessTime } from '../AccessTime';
 import { AccessTimeSetting } from '../components/DaAsCard/AccessTimeSetting';

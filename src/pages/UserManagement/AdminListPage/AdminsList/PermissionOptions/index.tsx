@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
-import { BaseCollapse } from '@redesignUi/atoms/BaseCollapse';
-import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
-import { LoadingSpinner } from '@redesignUi/molecules/Loading';
-import { NoResult } from '@redesignUi/molecules/NoResult';
+import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
+import { BaseCollapse } from '@ui/atoms/BaseCollapse';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { NoResult } from '@ui/molecules/NoResult';
 import { UserPermissionsProps } from '@src/types/permissions';
 
 import { PermissionOptionsProps } from './types';

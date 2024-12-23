@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { Card } from '@redesignUi/atoms';
-import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
-import { ButtonOption } from '@redesignUi/atoms/ToggleButton/types';
+import { Card } from '@ui/atoms';
+import { ToggleButton } from '@ui/atoms/ToggleButton/ToggleButton';
+import { ButtonOption } from '@ui/atoms/ToggleButton/types';
 
 import { FormDateData, ReducerStateType } from '../../types';
 import { ReportForm } from '../ReportForm';

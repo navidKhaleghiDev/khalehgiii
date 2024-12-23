@@ -1,14 +1,15 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Controller, FieldValues } from 'react-hook-form';
+
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import caretCircleDownIcon from '@iconify-icons/ph/caret-circle-down';
 import caretCircleLeftIcon from '@iconify-icons/ph/caret-circle-left';
 
-import { useTranslation } from 'react-i18next';
 import { DropdownProps, OptionSelect, StateType } from './type';
 import { optionSelectStyles, baseDropDownStyles } from './styles';
-import { BaseIcon } from '../BaseIcon';
 import { Typography } from '../Typography';
+import { BaseIcon } from '../BaseIcon';
 
 const initState = {
   activeOption: null,
@@ -61,7 +62,7 @@ export function Dropdown<T extends FieldValues>({
         >
           {label && (
             <label htmlFor={name} className="block mb-1">
-              <Typography color="teal" variant="h5">
+              <Typography color="teal" variant="body1">
                 {label}
               </Typography>
             </label>
@@ -120,7 +121,7 @@ export function Dropdown<T extends FieldValues>({
             ))}
           </div>
           {!hiddenError && (
-            <Typography color="red" variant="caption" className="h-6">
+            <Typography color="red" variant="body6" className="h-6">
               {error?.message ?? ''}
             </Typography>
           )}

@@ -1,8 +1,8 @@
 import {
   BaseTableComponentCellProps,
   HeaderTable,
-} from '@redesignUi/molecules/BaseTable/types';
-import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
+} from '@ui/molecules/BaseTable/types';
+import { TagHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/TagHelperCell';
 import { LicenseFileType } from '../type';
 
 export const LisenceHeaderItem: HeaderTable[] = [

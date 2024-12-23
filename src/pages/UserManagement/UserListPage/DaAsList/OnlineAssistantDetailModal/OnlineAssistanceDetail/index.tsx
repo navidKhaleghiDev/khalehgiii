@@ -1,6 +1,6 @@
 import UsersThree from '@iconify-icons/ph/users-three';
 
-import { Avatar, Typography } from '@redesignUi/atoms';
+import { Avatar, Typography } from '@ui/atoms';
 import { NumberObjectArray } from '@src/types/global';
 
 type OnlineAssistanceDetailProps = {

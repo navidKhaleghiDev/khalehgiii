@@ -1,7 +1,4 @@
-import { Typography } from '@ui/atoms/Typography/Typography';
-import { BaseInput, Card } from '@ui/atoms';
 import { useEffect, useState } from 'react';
-import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
 import { Divider } from '@ui/atoms/Divider';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Dropdown } from '@ui/atoms/DropDown';
@@ -13,13 +10,17 @@ import {
   API_DAAS_RESET_USAGE_DAAS,
   API_DAAS_UPDATE,
 } from '@src/services/users';
+import { Card, Typography } from '@ui/atoms';
 import { toast } from 'react-toastify';
-import { regexPattern } from '@ui/atoms/Inputs';
 import { TimeLimitDuration } from '@src/services/users/types';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
-import ToolTip from '@ui/atoms/Tooltip';
-import { Modal } from '@ui/molecules/Modal';
 import { useTranslation } from 'react-i18next';
+import { ToolTip } from '@ui/atoms/Tooltip';
+import { Modal } from '@ui/molecules/Modal';
+import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
+import { regexPattern } from '@ui/atoms/Inputs';
+
 import { OnClickActionsType } from '../types';
 
 interface UpdateDaasValuesParam extends FieldValues {
@@ -155,7 +156,7 @@ export function SetAccessTime({
             </div>
             <IconButton
               icon={notePencilIcon}
-              color="tealNoBg"
+              color="neutralNoBg"
               onClick={() => setIsEditable(true)}
             />
             <ToolTip position="top" tooltip={t('global.restart')}>
@@ -204,9 +205,9 @@ export function SetAccessTime({
           />
           <div className="col-span-6 lg:col-span-4">
             {!isPermanently && (
-              <BaseInput
+              <BaseInputController
                 control={control}
-                size="xs"
+                size="sm"
                 id="time_limit_value_in_hour"
                 name="time_limit_value_in_hour"
                 placeholder={t('global.selectHour')}
@@ -228,7 +229,7 @@ export function SetAccessTime({
               loading={loadingButton}
               className="ml-2"
             />
-            <IconButton icon={xIcon} color="red" onClick={handleOnCancel} />
+            <IconButton icon={xIcon} color="redNoBg" onClick={handleOnCancel} />
           </div>
         </form>
       )}

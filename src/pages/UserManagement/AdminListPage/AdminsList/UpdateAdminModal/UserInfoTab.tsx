@@ -6,13 +6,13 @@ import PencilSimple from '@iconify-icons/ph/pencil-simple';
 import EnvelopeSimple from '@iconify-icons/ph/envelope-simple';
 import User from '@iconify-icons/ph/user';
 import { API_USERS_OTP } from '@src/services/users';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
-import { Typography } from '@redesignUi/atoms';
-import { BaseSwitch } from '@redesignUi/atoms/BaseSwitch';
-import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
-import { BaseQrCode } from '@redesignUi/atoms/BaseQrCode';
+import { regexPattern } from '@ui/atoms/Inputs';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
+import { PasswordInputController } from '@ui/atoms/Inputs/PasswordInput/Controller';
+import { Typography } from '@ui/atoms';
+import { BaseSwitch } from '@ui/atoms/BaseSwitch';
+import { BaseRadioButtonController } from '@ui/atoms/Inputs/BaseRadioButton/Controller';
+import { BaseQrCode } from '@ui/atoms/BaseQrCode';
 
 import { UserInfoTabProps } from './types';
 

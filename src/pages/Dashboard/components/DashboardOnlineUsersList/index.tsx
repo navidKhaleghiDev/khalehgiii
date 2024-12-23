@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { Card, Typography } from '@redesignUi/atoms';
+import { Card, Typography } from '@ui/atoms';
 import { ResponsePagination } from '@src/types/services';
 import { DaAsParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
-import { LoadingPage } from '@redesignUi/molecules/Loading';
+import { LoadingPage } from '@ui/molecules/Loading';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { PermissionDaas, PermissionsCodeName } from '@src/types/permissions';
-import { NoResultUsers } from '@redesignUi/molecules/NoResultUsers';
+import { NoResultUsers } from '@ui/molecules/NoResultUsers';
 
 import { UserInfoAvatar } from './UserInfoAvatar';
 

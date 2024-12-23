@@ -4,11 +4,11 @@ import useSWR from 'swr';
 
 import { http } from '@src/services/http';
 import { E_USERS_LICENSES } from '@src/services/users/endpoint';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
+import { BaseTable } from '@ui/molecules/BaseTable';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { ResponsePagination } from '@src/types/services';
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 
 import { LicenseFileType } from './type';
 import { LisenceHeaderItem } from './constant/LisenceHeaderItem';

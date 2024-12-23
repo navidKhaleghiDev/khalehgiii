@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@redesignUi/atoms';
-import { Modal } from '@redesignUi/molecules/Modal';
+import { Typography } from '@ui/atoms';
+import { Modal } from '@ui/molecules/Modal';
 import { API_USERS_GROUPS_UPDATE } from '@src/services/users';
 
 import {

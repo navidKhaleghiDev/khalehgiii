@@ -1,5 +1,5 @@
-import { Typography } from '@redesignUi/atoms';
-import { ToggleButton } from '@redesignUi/atoms/ToggleButton/ToggleButton';
+import { Typography } from '@ui/atoms';
+import { ToggleButton } from '@ui/atoms/ToggleButton/ToggleButton';
 import { useTranslation } from 'react-i18next';
 
 export function HeaderProgressChartSection({

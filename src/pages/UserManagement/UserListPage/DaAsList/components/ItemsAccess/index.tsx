@@ -1,8 +1,8 @@
 import { Control } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms';
-import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
+import { Typography } from '@ui/atoms';
+import { BaseSwitchController } from '@ui/atoms/BaseSwitch/Controller';
 
 type ItemsAccessProps = {
   isRecording?: boolean;

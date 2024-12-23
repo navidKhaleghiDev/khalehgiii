@@ -1,8 +1,8 @@
 import { Control } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms';
-import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
+import { Typography } from '@ui/atoms';
+import { BaseRadioButtonController } from '@ui/atoms/Inputs/BaseRadioButton/Controller';
 import { TimeLimitDuration } from '@src/services/users/types';
 
 import { UserAccessModalCard } from '../DaAsCard/UserAccessModalCard';

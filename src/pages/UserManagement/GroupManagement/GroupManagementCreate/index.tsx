@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { BaseButton, Card } from '@redesignUi/atoms';
-import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
+import { BaseButton, Card } from '@ui/atoms';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -12,11 +12,11 @@ import { DaAsParams, GroupParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useLanguage } from '@context/settings/languageContext';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { BaseInputUploadImageController } from '@redesignUi/atoms/BaseInputUploadImage/Controller';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
+import { BaseInputUploadImageController } from '@ui/atoms/BaseInputUploadImage/Controller';
 import { API_USERS_GROUPS_CREATE } from '@src/services/users';
 
-import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { regexPattern } from '@ui/atoms/Inputs';
 import { GroupManagementUsersList } from '../components/GroupManagementUsersList';
 import { GroupManagementCreateProps, GroupCreateParams } from '../types';
 

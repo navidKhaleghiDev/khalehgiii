@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
+import { MultiDatePickerController } from '@ui/atoms/Inputs/DatePicker/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 
 import { FormDate, ReportFormType } from '../../types';

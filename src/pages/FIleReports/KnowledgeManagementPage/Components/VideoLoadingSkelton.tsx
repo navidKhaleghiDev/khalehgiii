@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { BaseIcon } from '@redesignUi/atoms';
+import { BaseIcon } from '@ui/atoms';
 import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
 
 type VideoLoadingSkeltonProps = PropsWithChildren<{ isLoading?: boolean }>;

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { DaAsParams } from '@src/services/users/types';
-import { Divider } from '@redesignUi/atoms/Divider';
-import { NoResult } from '@redesignUi/molecules/NoResult';
+import { Divider } from '@ui/atoms/Divider';
+import { NoResult } from '@ui/molecules/NoResult';
 
 import OnlineAssistanceDetail from './OnlineAssistanceDetail';
 

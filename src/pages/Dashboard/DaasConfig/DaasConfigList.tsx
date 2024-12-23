@@ -4,14 +4,16 @@ import { ResponsePagination } from '@src/types/services';
 import { DaasConfig } from '@src/services/config/types';
 import { http } from '@src/services/http';
 import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
-import { LoadingSpinner } from '@ui/molecules/Loading';
 import { StringifyProperties } from '@src/types/global';
-import { NoResult } from '@ui/molecules/NoResult';
-import Pagination from '@ui/molecules/Pagination';
-import { Modal } from '@ui/molecules/Modal';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
+import { NoResult } from '@ui/molecules/NoResult';
 import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
+import { Pagination } from '@ui/molecules/Pagination';
+import { Modal } from '@ui/molecules/Modal';
+
 import { SettingDaasConfigModal } from './SettingDaasConfigModal';
 import { ActionOnClickActionsType } from './DlpConfigCard/types';
 import { DlpConfigCard } from './DlpConfigCard';
@@ -61,8 +63,8 @@ export function DaasConfigList() {
     []
   );
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
+  const handleFilterChange = (event: string) => {
+    debouncedSetFilterQuery(event);
   };
 
   const listDaasConfig = data?.data?.results ?? [];
@@ -98,6 +100,7 @@ export function DaasConfigList() {
     <div className="w-full p-4">
       <div className="flex items-center">
         <SearchInput
+          id="search-dass-config"
           name="search-dass-config"
           value={filterQuery}
           onChange={handleFilterChange}
@@ -116,7 +119,7 @@ export function DaasConfigList() {
       <Modal
         open={openSettingModal}
         setOpen={setOpenSettingModal}
-        type="success"
+        type="content"
         content={
           <SettingDaasConfigModal
             handleClose={handleCloseModal}

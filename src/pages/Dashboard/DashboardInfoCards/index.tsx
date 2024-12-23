@@ -3,12 +3,12 @@ import useSWR from 'swr';
 import moment from 'moment-jalaali';
 
 import { useUserContext } from '@context/user/userContext';
-import { Card, Typography } from '@redesignUi/atoms';
+import { Card, Typography } from '@ui/atoms';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
 import { ScanStats } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';
 import { SwrResponse } from '@src/types/services';
-import { ServiceCard } from '@redesignUi/molecules/Cards/ServiceCard';
+import { ServiceCard } from '@ui/molecules/Cards/ServiceCard';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import {
   PermissionMalwareConfig,

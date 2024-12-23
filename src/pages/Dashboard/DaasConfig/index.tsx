@@ -1,4 +1,3 @@
-import { BaseButton } from '@ui/atoms/BaseButton';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
@@ -8,11 +7,12 @@ import { SwrResponse } from '@src/types/services';
 import { E_DAAS_CONFIGS } from '@src/services/config/endpoint';
 import { http } from '@src/services/http';
 import { LoadingSpinner } from '@ui/molecules/Loading';
-import { Modal } from '@ui/molecules/Modal';
 import { API_UPDATE_DAAS_CONFIG } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { BaseButton } from '@ui/atoms';
+import { Modal } from '@ui/molecules/Modal';
 
 export function DaasConfigCp() {
   const { t } = useTranslation();
@@ -89,7 +89,7 @@ export function DaasConfigCp() {
         <BaseButton
           label={t('dashboard.update')}
           size="md"
-          type="default"
+          type="teal"
           disabled={!formState.isDirty}
           submit
         />

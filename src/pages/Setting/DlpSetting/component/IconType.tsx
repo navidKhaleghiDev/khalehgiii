@@ -1,4 +1,4 @@
-import { BaseIcon, Typography } from '@redesignUi/atoms';
+import { BaseIcon, Typography } from '@ui/atoms';
 import PhFile from '@iconify-icons/ph/file';
 import PhFileJpg from '@iconify-icons/ph/file-jpg';
 import PhFilePng from '@iconify-icons/ph/file-png';

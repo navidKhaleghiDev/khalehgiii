@@ -4,12 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import PhPlayDuotone from '@iconify-icons/ph/play-duotone';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
-import { Modal } from '@redesignUi/molecules/Modal';
-import { NoResult } from '@redesignUi/molecules/NoResult';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { checkPermissionHeaderItem } from '@ui/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
+import { Modal } from '@ui/molecules/Modal';
+import { NoResult } from '@ui/molecules/NoResult';
 import { http } from '@src/services/http';
 import { ResponsePagination } from '@src/types/services';
 import { E_USERS_ONLINE_ASSISTANCE } from '@src/services/users/endpoint';
@@ -18,6 +17,7 @@ import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_KNOWLEDGE_MANAGEMENT } from '@src/services/users';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
+import { OnClickActionsType } from '@ui/molecules/BaseTable/types';
 
 import { VideoLoadingSkelton } from '../Components/VideoLoadingSkelton';
 import { KnowledgeManagementHeaderItem } from '../constants';

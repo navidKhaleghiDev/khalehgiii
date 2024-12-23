@@ -9,14 +9,14 @@ import {
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { PermissionKeycloak } from '@src/types/permissions';
-import { BaseButton, Typography } from '@redesignUi/atoms';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
+import { BaseButton, Typography } from '@ui/atoms';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
+import { BaseSwitchController } from '@ui/atoms/BaseSwitch/Controller';
 import { useLanguage } from '@context/settings/languageContext';
-import { LoadingSpinner } from '@redesignUi/molecules/Loading';
-import { inputRegexPattern } from '@redesignUi/atoms/Inputs/Regex';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-import { TitleSection } from '@redesignUi/atoms/TitleSection';
+import { LoadingSpinner } from '@ui/molecules/Loading';
+import { inputRegexPattern } from '@ui/atoms/Inputs/Regex';
+import { regexPattern } from '@ui/atoms/Inputs';
+import { TitleSection } from '@ui/atoms/TitleSection';
 import {
   API_ADD_CONFIG,
   API_ADD_UPDATE,

@@ -8,7 +8,7 @@ import { E_USERS } from '@src/services/users/endpoint';
 import { UserParams } from '@src/services/users/types';
 import { PermissionUsers, PermissionsCodeName } from '@src/types/permissions';
 import { ResponsePagination } from '@src/types/services';
-import { BaseMiniTable } from '@redesignUi/molecules/BaseMiniTable';
+import { BaseMiniTable } from '@ui/molecules/BaseMiniTable';
 import { t } from 'i18next';
 
 const PAGE_SIZE = 4;

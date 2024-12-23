@@ -1,11 +1,10 @@
-import { Card, Typography } from '@ui/atoms';
-import { CircleBg } from '@ui/atoms/CircleBg';
 import { ScannedFile } from '@src/services/analyze/types';
 import { StringifyProperties } from '@src/types/global';
 
-import { IconButton } from '@ui/atoms/BaseButton';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
-// import ToolTip from '@ui/atoms/Tooltip';
+import { CircleBg } from '@ui/atoms/CircleBg';
+import { Card, Typography } from '@ui/atoms';
+import { IconButton } from '@ui/atoms/BaseButton';
 
 type ProductCardProps = {
   scannedFile: StringifyProperties<ScannedFile> | ScannedFile;

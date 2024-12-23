@@ -1,10 +1,10 @@
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms/Typography';
+import { Typography } from '@ui/atoms/Typography';
 import usersThreeIcon from '@iconify-icons/ph/users-three';
 import WifiHighDuotone from '@iconify-icons/ph/wifi-high-duotone';
-import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
+import { UsersInfoCard } from '@ui/molecules/Cards/UsersInfoCard';
 import { ResponsePagination, SwrResponse } from '@src/types/services';
 import { http, HTTP_ANALYSES } from '@src/services/http';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';

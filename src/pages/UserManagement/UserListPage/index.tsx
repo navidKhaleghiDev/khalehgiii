@@ -10,8 +10,8 @@ import { ResponsePagination } from '@src/types/services';
 import { DaAsParams } from '@src/services/users/types';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
-import { Typography } from '@redesignUi/atoms';
-import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
+import { Typography } from '@ui/atoms';
+import { UsersInfoCard } from '@ui/molecules/Cards/UsersInfoCard';
 
 import { DaAsList } from './DaAsList';
 

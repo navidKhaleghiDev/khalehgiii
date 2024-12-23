@@ -1,9 +1,9 @@
 import { dateAndNumber } from '@src/helper/utils/dateUtils';
-import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
 import moreIcon from '@iconify-icons/ph/dots-three-outline-fill';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
-import { HeaderTableProps } from '@ui/atoms/BaseTable/types';
-import { Circle } from '@ui/atoms/BaseTable/components/tableIcons/Circle';
+import { HeaderTableProps } from '@ui/atoms/OldBaseTable/types';
+import { UserScanCount } from '@ui/atoms/OldBaseTable/components/utils/UserScanCount';
+import { Circle } from '@ui/atoms/OldBaseTable/components/tableIcons/Circle';
 import { PermissionFileScan } from '@src/types/permissions';
 
 export const monitoringHeaderItem: HeaderTableProps[] = [

@@ -1,4 +1,4 @@
-import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
+import { TagHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/TagHelperCell';
 
 export function VirusTag({ virusResult }: { virusResult: boolean }) {
   return (

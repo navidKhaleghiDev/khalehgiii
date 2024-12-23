@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms';
-import { BackButton } from '@redesignUi/atoms/BackButton';
-import { BaseDropdownIcon } from '@redesignUi/atoms/BaseDropdownIcon';
+import { Typography } from '@ui/atoms';
+import { BackButton } from '@ui/atoms/BackButton';
+import { BaseDropdownIcon } from '@ui/atoms/BaseDropdownIcon';
 
 import languageIcon from '@iconify-icons/ph/globe-thin';
 import Monitor from '@iconify-icons/ph/monitor';
@@ -14,7 +14,7 @@ import { useUserContext } from '@context/user/userContext';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { languageOptions } from '@src/constants/optios';
 import { useLanguage } from '@context/settings/languageContext';
-import { LoginCard } from '@redesignUi/molecules/Cards/LoginCard';
+import { LoginCard } from '@ui/molecules/Cards/LoginCard';
 import { useLogout } from '@src/helper/hooks/useLogout';
 
 export function LoginOnlineAssistance() {

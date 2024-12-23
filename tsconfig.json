@@ -6,7 +6,6 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "@redesignUi/*": ["_components/*"],
       "@ui/*": ["components/*"],
       "@context/*": ["context/*"],
       "@src/*": ["*"]
@@ -28,6 +27,6 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["vite.config.ts", ".eslintrc.cjs", "src"],
-  "exclude": ["node_module", "dist"],
+  "exclude": ["node_module", "dist", "vite.config.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

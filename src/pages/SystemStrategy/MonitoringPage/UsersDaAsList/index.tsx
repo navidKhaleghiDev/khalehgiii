@@ -6,11 +6,11 @@ import { ResponsePagination } from '@src/types/services';
 import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { debounce } from 'lodash';
-import { BaseTable } from '@ui/atoms/BaseTable';
 import { useNavigate } from 'react-router-dom';
-import { SearchBarParams } from '@ui/atoms/BaseTable/components/BaseTableSearchBar/types';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@ui/atoms/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { SearchBarParams } from '@ui/atoms/OldBaseTable/components/BaseTableSearchBar/types';
+import { BaseTable } from '@ui/atoms/OldBaseTable';
+import { checkPermissionHeaderItem } from '@ui/atoms/OldBaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { monitoringHeaderItem } from './constants/monitoringHeaderItem';
 
@@ -48,8 +48,8 @@ export function UsersDaAsList() {
     []
   );
 
-  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSetFilterQuery(event.target.value);
+  const handleFilterChange = (event: string) => {
+    debouncedSetFilterQuery(event);
   };
 
   const listDaas = data?.data?.results ?? [];

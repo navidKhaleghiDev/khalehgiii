@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
 import { useUserContext } from '@context/user/userContext';
-import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs';
+import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs';
 
 import { AssistanceGroupDetail } from './AssistanceGroupDetail';
 

@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 
-import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
-import { TitleSection } from '@redesignUi/atoms/TitleSection';
+import { BaseInputNumberController } from '@ui/atoms/Inputs/BaseInputNumber/Controller';
+import { TitleSection } from '@ui/atoms/TitleSection';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { PropsType } from '@src/pages/Setting/type';
 import { PermissionDaas } from '@src/types/permissions';
@@ -10,7 +10,7 @@ import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import PhTimer from '@iconify-icons/ph/timer';
 import { TimeLimitDuration } from '@src/services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { regexPattern } from '@ui/atoms/Inputs';
 
 const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';
 

@@ -1,4 +1,4 @@
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
+import { HeaderTable } from '@ui/molecules/BaseTable/types';
 import PhUserMinusThin from '@iconify-icons/ph/user-minus-thin';
 import { t } from 'i18next';
 

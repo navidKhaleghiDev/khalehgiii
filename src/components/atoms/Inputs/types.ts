@@ -1,5 +1,5 @@
 import { VariantProps } from 'class-variance-authority';
-import { HTMLInputTypeAttribute } from 'react';
+import { HTMLInputTypeAttribute, MouseEventHandler } from 'react';
 import {
   Control,
   FieldPath,
@@ -7,12 +7,42 @@ import {
   RegisterOptions,
   UseFormSetError,
 } from 'react-hook-form';
+import { IconifyIcon } from '@iconify/react';
 import { DateObject } from 'react-multi-date-picker';
-import { IconType } from '@src/types/global';
-import { baseInputStyles } from './styles';
 
-export interface BaseInputProps<T extends FieldValues>
+import { baseSelectStyles } from './styles';
+import { BaseInputControllerProps } from './BaseInput/types';
+import { baseInputStyles } from './BaseInput/styles';
+import { OptionSelectProps } from './BaseSelect/OptionSelect';
+
+export interface BaseInputNumberProps<T extends FieldValues>
   extends VariantProps<typeof baseInputStyles> {
+  id: string;
+  control?: Control<T>;
+  name: FieldPath<T>;
+  rules?: RegisterOptions<T>;
+  setError?: UseFormSetError<T>;
+  defaultValue?: number;
+  label?: string;
+  placeholder?: string;
+  className?: string;
+  hiddenError?: boolean;
+  onClickIcon?: () => void;
+  iconButtonIcon?: string | IconifyIcon;
+  pureOnChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  pureValue?: string;
+  pureError?: string;
+  dir?: 'rtl' | 'ltr';
+
+  // inputProps?: InputHTMLAttributes<HTMLInputElement>;
+  min?: number;
+  max?: number;
+}
+
+export interface BaseSelectProps<T extends FieldValues>
+  extends VariantProps<typeof baseSelectStyles> {
+  selectOptions: OptionSelectProps[];
   id: string;
   control?: Control<T>;
   name: FieldPath<T>;
@@ -32,26 +62,33 @@ export interface BaseInputProps<T extends FieldValues>
     | 'datetime-local'
     | 'time';
   label?: string;
-  placeholder?: string | undefined;
+  placeholder?: string;
   className?: string;
-  classNameInput?: string;
-  maxLength?: number;
-  minLength?: number;
-  ref?: React.LegacyRef<HTMLInputElement>;
-  startIcon?: IconType;
-  endIcon?: IconType;
+  startIcon?: string;
+  endIcon?: string;
   hiddenError?: boolean;
   onClickIcon?: () => void;
-  iconButtonIcon?: IconType;
-  pureOnChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  iconButtonIcon?: string;
   pureValue?: string;
   pureError?: string;
   ltrLabel?: boolean;
-  autoComplete?: string;
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  ref: React.LegacyRef<HTMLSelectElement>;
   disabled?: boolean;
+  min?: string | number;
+  max?: string | number;
+  onClickSelect?: (event: MouseEventHandler<HTMLSelectElement>) => void;
+  pureOnChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
+
+export interface DatePickerProps extends BaseInputControllerProps<any> {
+  minDate?: string | number | DateObject | Date;
+  maxDate?: string | number | DateObject | Date;
+  showTimePicker?: boolean;
+  ltrPlaceHolder: boolean;
+  format?: string;
+}
+
+export type ColorIndent = 'default' | 'error' | undefined | null;
 
 export type OnClickDateParams = (
   date: DateObject | [DateObject, DateObject]
@@ -63,20 +100,3 @@ export interface SearchInputProps extends VariantProps<typeof baseInputStyles> {
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
 }
-
-export interface DatePickerProps extends BaseInputProps<any> {
-  minDate?: string | number | DateObject | Date;
-  maxDate?: string | number | DateObject | Date;
-  showTimePicker?: boolean;
-  format?: string;
-  timeDuration?: TimeDurationParams;
-  submitButton?: boolean;
-  onChange?: OnClickDateParams;
-}
-
-type TimeDurationParams = {
-  weekly: boolean;
-  montly: boolean;
-};
-
-export type ColorIndent = 'default' | 'error' | undefined | null;
