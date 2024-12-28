@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
+
 import { containerTooltipStyles, tooltipStyles } from './styles';
 import { ToolTipProps } from './types';
 
-function ToolTip({
-  children,
-  tooltip,
-  position,
-  skip,
-}: ToolTipProps): JSX.Element | React.ReactNode {
+/**
+ *
+ * This component provides a tooltip that appears when the user hovers over the element.
+ *
+ * @param {ToolTipProps} props The props for ToolTip component.
+ * @param {PropsWithChildren} props.children The child elements that trigger the tooltip on hover.
+ * @param {string} props.tooltip The content to be displayed inside the tooltip.
+ * @param {'top'|'right'|'bottom'|'left'|'topStart'|'topEnd'|'bottomStart'|'bottomEnd'} props.position The position of the tooltip relative to the child elements.
+ * @param {boolean} props.truncate If true, the tooltip text will be truncated with ellipsis if it exceeds the maximum width.
+ * @returns {JSX.Element} The rendered ToolTip component.
+ */
+
+export function ToolTip(props: PropsWithChildren<ToolTipProps>): JSX.Element {
+  const { children, tooltip, position, truncate } = props;
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -20,24 +29,24 @@ function ToolTip({
     };
   }, []);
 
-  if (skip) {
-    return children;
-  }
-
   return (
-    <div className="relative block">
-      <div className={containerTooltipStyles({ position, show })}>
+    <div className="relative inline-block group">
+      <div className={containerTooltipStyles({ position, show, truncate })}>
         <span className={tooltipStyles({ position })} />
-        {tooltip}
+        <div
+          className={`whitespace-nowrap ${
+            truncate ? 'overflow-hidden max-w-xs text-ellipsis' : ''
+          }`}
+        >
+          {tooltip}
+        </div>
       </div>
       <div
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
+        onPointerEnter={() => setShow(true)}
+        onPointerLeave={() => setShow(false)}
       >
         {children}
       </div>
     </div>
   );
 }
-
-export default ToolTip;

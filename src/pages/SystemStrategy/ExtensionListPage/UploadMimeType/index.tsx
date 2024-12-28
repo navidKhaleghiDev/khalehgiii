@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import { Typography, BaseButton } from '@redesignUi/atoms';
+import { Typography, BaseButton } from '@ui/atoms';
 import { API_ANALYZE_MIME_TYPE_CREATE } from '@src/services/analyze';
-import { FileInputController } from '@redesignUi/atoms/Inputs/FileInput/Controller';
+import { FileInputController } from '@ui/atoms/Inputs/FileInput/Controller';
 
 type PropsType = {
   handleClose: () => void;

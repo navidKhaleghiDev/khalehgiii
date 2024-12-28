@@ -1,17 +1,16 @@
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms';
-import { BaseButton, IconButton } from '@redesignUi/atoms/BaseButton';
-import { BaseInputUploadImageController } from '@redesignUi/atoms/BaseInputUploadImage/Controller';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { Pagination } from '@redesignUi/molecules/Pagination';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { Typography } from '@ui/atoms';
+import { BaseButton, IconButton } from '@ui/atoms/BaseButton';
+import { BaseInputUploadImageController } from '@ui/atoms/BaseInputUploadImage/Controller';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { Pagination } from '@ui/molecules/Pagination';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
 import pencilSimple from '@iconify-icons/ph/pencil-simple';
-
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { OnClickActionsType } from '@ui/molecules/BaseTable/types';
+import { regexPattern } from '@ui/atoms/Inputs';
 import {
   groupManagementAdminHeaderItem,
   groupManagementUserHeaderItem,

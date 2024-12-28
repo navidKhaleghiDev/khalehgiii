@@ -1,11 +1,11 @@
 import {
   BaseTableComponentCellProps,
   HeaderTable,
-} from '@redesignUi/molecules/BaseTable/types';
+} from '@ui/molecules/BaseTable/types';
 import DownloadSimple from '@iconify-icons/ph/download-simple';
 import UploadSimple from '@iconify-icons/ph/upload-simple';
 import { Uba } from '@src/services/analyze/types';
-import { TagHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/TagHelperCell';
+import { TagHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/TagHelperCell';
 
 export const ubaHeaderItem: HeaderTable[] = [
   {

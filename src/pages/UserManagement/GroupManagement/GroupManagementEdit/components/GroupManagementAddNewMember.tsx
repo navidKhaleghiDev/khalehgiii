@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
-import { BaseButton, Card } from '@redesignUi/atoms';
-import { SearchInput } from '@redesignUi/atoms/Inputs/SearchInput';
+import { BaseButton, Card } from '@ui/atoms';
+import { SearchInput } from '@ui/atoms/Inputs/SearchInput';
 import { useTranslation } from 'react-i18next';
 
 import { http } from '@src/services/http';

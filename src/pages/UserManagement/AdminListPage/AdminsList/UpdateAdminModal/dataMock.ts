@@ -1,4 +1,4 @@
-import { OptionSelect } from '@redesignUi/atoms/BaseDropdown/type';
+import { OptionSelect } from '@ui/atoms/BaseDropdown/type';
 
 export const domainsMock: OptionSelect[] = [
   { id: '1', label: 'sep.npd/co.com', value: 'sep.npd/co.com' },

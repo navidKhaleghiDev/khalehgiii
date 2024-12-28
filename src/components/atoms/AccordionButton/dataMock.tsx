@@ -1,7 +1,7 @@
 import { Typography } from '../Typography';
-import { AccordionButtonItem } from './types';
+import { AccordionButtonParams } from './types';
 
-export const accordionButtonData: AccordionButtonItem[] = [
+export const accordionButtonData: AccordionButtonParams[] = [
   {
     id: '1',
     title: 'خرید کالا چگونه انجام میشود؟',

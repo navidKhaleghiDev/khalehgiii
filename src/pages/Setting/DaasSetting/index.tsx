@@ -10,7 +10,7 @@ import { LoadingSpinner } from '@ui/molecules/Loading';
 import { API_UPDATE_DAAS_CONFIG } from '@src/services/config';
 import { toast } from 'react-toastify';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { BaseButton } from '@redesignUi/atoms';
+import { BaseButton } from '@ui/atoms';
 
 import { DaasSettingForm } from './DaasSettingForm';
 import { DaasSettingProp } from '../type';

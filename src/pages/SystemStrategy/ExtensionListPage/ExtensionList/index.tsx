@@ -3,21 +3,24 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { HTTP_ANALYSES } from '@src/services/http';
-import { Modal } from '@redesignUi/molecules/Modal';
+import { Modal } from '@ui/molecules/Modal';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { E_ANALYZE_MIME_TYPE } from '@src/services/analyze/endpoint';
 import { API_ANALYZE_MIME_TYPE_DELETE } from '@src/services/analyze';
 import { MimeType } from '@src/services/analyze/types';
-import { OnClickActionsType } from '@ui/atoms/BaseTable/types';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
 import { StringifyProperties } from '@src/types/global';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
-import { ActionOnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
+import {
+  ActionOnClickActionsType,
+  OnClickActionsType,
+} from '@ui/molecules/BaseTable/types';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { useGetPagination } from '@src/services/http/httpClient';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
-import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { checkPermissionHeaderItem } from '@ui/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { extensionListHeaderItem } from '../constants/extensionListHeaderItem';
 import { UploadFileModal } from '../UploadMimeType';

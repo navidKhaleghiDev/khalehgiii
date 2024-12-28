@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { BaseButton, Typography } from '@redesignUi/atoms';
-import { NotFoundSvg } from '@redesignUi/atoms/Svgs/NotFoundSvg';
+import { BaseButton, Typography } from '@ui/atoms';
+import { NotFoundSvg } from '@ui/atoms/Svgs/NotFoundSvg';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import { useTheme } from '@context/settings/themeContext';
 

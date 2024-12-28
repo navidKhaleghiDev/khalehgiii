@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import Trash from '@iconify-icons/ph/trash-simple';
 import NotePencil from '@iconify-icons/ph/pencil-simple';
 import { PermissionUsers } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { Typography } from '@redesignUi/atoms';
+import { HeaderTable } from '@ui/molecules/BaseTable/types';
+import { Typography } from '@ui/atoms';
 
 interface UserTypeComponentProps {
   row: {

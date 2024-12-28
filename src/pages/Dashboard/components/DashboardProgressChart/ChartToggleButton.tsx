@@ -1,4 +1,4 @@
-import { IconButton } from '@redesignUi/atoms/BaseButton';
+import { IconButton } from '@ui/atoms/BaseButton';
 import ChartBar from '@iconify-icons/ph/chart-bar-duotone';
 import ChartLine from '@iconify-icons/ph/chart-line';
 

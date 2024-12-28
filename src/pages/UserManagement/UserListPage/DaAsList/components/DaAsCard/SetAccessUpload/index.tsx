@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
 import { DaAsParams } from '@src/services/users/types';
-import ToolTip from '@ui/atoms/Tooltip';
 import gear from '@iconify-icons/ph/gear';
+import { ToolTip } from '@ui/atoms/Tooltip';
 import { IconButton } from '@ui/atoms/BaseButton';
 
 import { OnClickActionsType } from '../types';

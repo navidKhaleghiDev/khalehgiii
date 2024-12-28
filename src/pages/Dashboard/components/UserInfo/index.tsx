@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
 import { useUserContext } from '@context/user/userContext';
-import { Card, Typography } from '@redesignUi/atoms';
-import { CurveBottomSvg } from '@redesignUi/atoms/Svgs/CurveBottomSvg';
-import { CurveTopSvg } from '@redesignUi/atoms/Svgs/CurveTopSvg';
-import { UserInfoSvg } from '@redesignUi/atoms/Svgs/UserInfoSvg';
+import { Card, Typography } from '@ui/atoms';
+import { CurveBottomSvg } from '@ui/atoms/Svgs/CurveBottomSvg';
+import { CurveTopSvg } from '@ui/atoms/Svgs/CurveTopSvg';
+import { UserInfoSvg } from '@ui/atoms/Svgs/UserInfoSvg';
 
 type UserInfoProps = {
   userInfoClassName?: string;

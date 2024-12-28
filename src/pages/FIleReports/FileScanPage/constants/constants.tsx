@@ -1,10 +1,10 @@
 import PhQueue from '@iconify-icons/ph/queue';
-import { UserScanCount } from '@ui/atoms/BaseTable/components/utils/UserScanCount';
 import { PermissionFileScan } from '@src/types/permissions';
+import { UserScanCount } from '@ui/molecules/BaseTable/components/utils/UserScanCount';
 import {
   BaseTableComponentCellProps,
   HeaderTable,
-} from '@redesignUi/molecules/BaseTable/types';
+} from '@ui/molecules/BaseTable/types';
 import { DaAsParams } from '@src/services/users/types';
 
 export const monitoringHeaderItem: HeaderTable[] = [

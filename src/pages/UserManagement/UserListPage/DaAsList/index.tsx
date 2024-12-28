@@ -13,11 +13,11 @@ import { E_USERS_DAAS } from '@src/services/users/endpoint';
 import { createAPIEndpoint } from '@src/helper/utils';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
-import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
-import { Modal } from '@redesignUi/molecules/Modal';
-import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { OnClickActionsType } from '@ui/molecules/BaseTable/types';
+import { Modal } from '@ui/molecules/Modal';
+import { checkPermissionHeaderItem } from '@ui/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
 import userFocus from '@iconify-icons/ph/user-focus';
 
 import { SettingDaasModal } from './SettingDaasModal';

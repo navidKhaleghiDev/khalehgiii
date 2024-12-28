@@ -1,4 +1,3 @@
-import arrowLeftIcon from '@iconify-icons/ph/arrow-left';
 import { BaseIcon, Typography } from '@ui/atoms';
 import { AccordionButtonProps } from './types';
 import { titleStyles, contentStyles } from './styles';
@@ -14,7 +13,7 @@ export function AccordionButton({ open, setOpen, item }: AccordionButtonProps) {
         onClick={() => setOpen(open === item.id ? null : item.id)}
       >
         <BaseIcon
-          icon={arrowLeftIcon}
+          icon="iconamoon:arrow-left-2-light"
           className={open === item.id ? '-rotate-90' : ''}
         />
         <Typography className="mr-3" variant="body3">

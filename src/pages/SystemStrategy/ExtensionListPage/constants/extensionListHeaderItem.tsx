@@ -2,7 +2,7 @@ import PhTrashSimple from '@iconify-icons/ph/trash-simple';
 import {
   BaseTableComponentCellProps,
   HeaderTable,
-} from '@redesignUi/molecules/BaseTable/types';
+} from '@ui/molecules/BaseTable/types';
 import { MimeType } from '@src/services/analyze/types';
 import { PermissionExtensions } from '@src/types/permissions';
 

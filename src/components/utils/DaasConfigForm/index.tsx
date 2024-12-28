@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import { PermissionDaas, PermissionsCodeName } from '@src/types/permissions';
 import { checkPermission } from '@src/helper/hooks/usePermission';
-import { Typography } from '@redesignUi/atoms';
-import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
+import { Typography } from '@ui/atoms';
+import { BaseSwitchController } from '@ui/atoms/BaseSwitch/Controller';
 import { Dropdown } from '@ui/atoms/DropDown';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { regexPattern } from '@ui/atoms/Inputs';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
 import { timeLimitDurationOptions } from '@src/pages/UserManagement/UserListPage/DaAsList/components/DaAsCard/AccessTimeSetting';
 
 type PropsType = {

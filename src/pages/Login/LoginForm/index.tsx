@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next';
 import { Control, FieldValues } from 'react-hook-form';
 
 import userIcon from '@iconify-icons/ph/user';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
-import { Typography } from '@redesignUi/atoms/Typography';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
+import { regexPattern } from '@ui/atoms/Inputs';
+import { Typography } from '@ui/atoms/Typography';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
 import { useLanguage } from '@context/settings/languageContext';
-import { PasswordInputController } from '@redesignUi/atoms/Inputs/PasswordInput/Controller';
-import { Avatar } from '@redesignUi/atoms';
+import { PasswordInputController } from '@ui/atoms/Inputs/PasswordInput/Controller';
+import { Avatar } from '@ui/atoms';
 
 import { LoginFieldValues } from '../types';
 

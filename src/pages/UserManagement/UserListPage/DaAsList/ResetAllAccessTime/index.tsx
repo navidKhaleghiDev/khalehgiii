@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { IconButton } from '@ui/atoms/BaseButton';
 import clockCounterClockwiseIcon from '@iconify-icons/ph/clock-counter-clockwise';
 
 import { API_DAAS_RESET_ALL_USAGE_DAAS } from '@src/services/users';
 import { toast } from 'react-toastify';
 
-import ToolTip from '@ui/atoms/Tooltip';
-import { Modal } from '@ui/molecules/Modal';
 import { useTranslation } from 'react-i18next';
+import { ToolTip } from '@ui/atoms/Tooltip';
+import { Modal } from '@ui/molecules/Modal';
+import { IconButton } from '@ui/atoms/BaseButton';
 
 export function ResetAllAccessTime() {
   const { t } = useTranslation();
@@ -35,7 +35,7 @@ export function ResetAllAccessTime() {
         <IconButton
           icon={clockCounterClockwiseIcon}
           color="redNoBg"
-          size="xxl"
+          size="lg"
           onClick={() => setOpenModalDelete(true)}
         />
       </ToolTip>

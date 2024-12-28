@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
 import FolderSimple from '@iconify-icons/ph/folder-simple';
 import Scan from '@iconify-icons/ph/scan';
-import { DashboardCard } from '@redesignUi/molecules/Cards/DashboardCard';
+import { DashboardCard } from '@ui/molecules/Cards/DashboardCard';
 import { SwrResponse } from '@src/types/services';
 import { ScanStats } from '@src/services/analyze/types';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';

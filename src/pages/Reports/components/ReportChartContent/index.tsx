@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { LoadingWrapper } from '@redesignUi/molecules/Loading/LoadingWrapper';
-import { Card, Typography } from '@redesignUi/atoms';
-import { NoReportChart } from '@redesignUi/atoms/Svgs';
-import { LegendChart } from '@redesignUi/molecules/Charts/LegendChart';
+import { LoadingWrapper } from '@ui/molecules/Loading/LoadingWrapper';
+import { Card, Typography } from '@ui/atoms';
+import { NoReportChart } from '@ui/atoms/Svgs';
+import { LegendChart } from '@ui/molecules/Charts/LegendChart';
 
 import { ReportsChart } from '../ReportChart';
 import { PropsChartType } from '../../types';

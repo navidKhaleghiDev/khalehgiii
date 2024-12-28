@@ -1,26 +1,61 @@
-/* eslint-disable no-plusplus */
-interface PaginationProps {
+import { useTranslation } from 'react-i18next';
+
+import PhCaretDoubleLeft from '@iconify-icons/ph/caret-double-left';
+import PhCaretDoubleRight from '@iconify-icons/ph/caret-double-right';
+import PhCaretRight from '@iconify-icons/ph/caret-right';
+import PhCaretLeft from '@iconify-icons/ph/caret-left';
+import { IconButton } from '@ui/atoms/BaseButton';
+import { Typography } from '@ui/atoms';
+
+type PaginationProps = {
   currentPage: number;
+  allItems?: number;
+  itemsPer?: number;
   totalPages: number;
+  paginationLabel?: string;
   onPageChange: (page: number) => void;
-}
+  headerPagination?: boolean;
+};
+
 const mClass =
-  'flex w-8 h-8 mx-0.5 p-0 justify-center items-center rounded-md leading-tight text-xl border border-teal-500 dark:border-white';
+  'flex size-7 text-sm md:text-base text-gray-500 dark:text-gray-400 dark:bg-gray-600 justify-center rounded-lg items-center dark:hover:text-gray-300 dark:hover:bg-gray-700 hover:bg-gray-100';
 
 const disableClass =
-  'bg-gray-300 text-gray-500 cursor-not-allowed border-gray-400';
+  'opacity-50 cursor-not-allowed hover:bg-white hover:text-gray-500 dark:hover:bg-transparent dark:hover:text-gray-400';
 const activeClass =
-  'bg-teal-500 text-white cursor-not-allowed dark:bg-cyan-900';
+  'bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 cursor-not-allowed';
 const arrowButtonClass =
-  'bg-teal-500 text-white dark:text-white dark:bg-slate-800';
+  'bg-white border rounded border-gray-200 dark:border-gray-500 text-gray-500';
 
-export function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: PaginationProps) {
+/**
+ * Pagination component for navigating through pages.
+ *
+ * @component
+ *
+ * @param {number} props.currentPage - The current active page.
+ * @param {number} props.allItems - The total number of pages.
+ * @param {number} props.itemsPer - The total number of pages.
+ * @param {number} props.totalPages - The total number of pages.
+ * @param {string} props.paginationLabel - The total number of pages.
+ * @param {Function} props.onPageChange - Callback function called when the page changes.
+ *
+ * @returns {JSX.Element | null} The Pagination component.
+ */
+
+export function Pagination(props: PaginationProps): JSX.Element | null {
+  const {
+    currentPage,
+    allItems,
+    itemsPer,
+    totalPages,
+    paginationLabel,
+    headerPagination,
+    onPageChange,
+  } = props;
+
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
+  const { t } = useTranslation();
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) {
@@ -43,48 +78,49 @@ export function Pagination({
   };
 
   const renderPageNumbers = () => {
-    const pageNumbers = [];
+    const generatePageNumbers = (): (number | string)[] => {
+      if (totalPages <= 3) {
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
+      }
 
-    if (totalPages <= 5) {
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
+      if (currentPage <= 2) {
+        return [
+          ...Array.from({ length: 3 }, (_, i) => i + 1),
+          '...',
+          totalPages,
+        ];
       }
-    } else if (currentPage <= 3) {
-      for (let i = 1; i <= 5; i++) {
-        pageNumbers.push(i);
-      }
-      pageNumbers.push('...');
-      pageNumbers.push(totalPages);
-    } else if (currentPage >= totalPages - 2) {
-      pageNumbers.push(1);
-      pageNumbers.push('...');
-      for (let i = totalPages - 4; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
-    } else {
-      pageNumbers.push(1);
-      pageNumbers.push('...');
-      for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-        pageNumbers.push(i);
-      }
-      pageNumbers.push('...');
-      pageNumbers.push(totalPages);
-    }
 
-    return pageNumbers.map((number) => {
+      if (currentPage >= totalPages - 2) {
+        return [
+          1,
+          '...',
+          ...Array.from({ length: 3 }, (_, i) => totalPages - 2 + i),
+        ];
+      }
+
+      return [
+        1,
+        '...',
+        ...Array.from({ length: 3 }, (_, i) => currentPage - 1 + i),
+        '...',
+        totalPages,
+      ];
+    };
+
+    return generatePageNumbers().map((number, index) => {
       const isEllipsis = number === '...';
+      const keyIndex = `${number}${index}`;
 
       return (
         <button
           type="button"
           className={`${mClass} ${
-            currentPage === number
-              ? activeClass
-              : 'bg-white text-teal-500 dark:text-white dark:bg-slate-800 '
+            currentPage === number ? activeClass : 'bg-white text-gray-600'
           }`}
           disabled={isEllipsis}
-          key={number}
-          onClick={() => handlePageChange(number as number)}
+          key={keyIndex}
+          onClick={() => !isEllipsis && handlePageChange(number as number)}
         >
           {number}
         </button>
@@ -95,26 +131,63 @@ export function Pagination({
   if (totalPages < 2) {
     return null;
   }
-
-  return (
-    <div className="flex justify-center items-center mt-4">
-      <button
-        type="button"
+  return !headerPagination ? (
+    <div
+      dir="ltr"
+      className="bg-white dark:bg-gray-600 flex items-center justify-between rounded-lg p-1.5"
+    >
+      <div className="flex justify-center items-center gap-2">
+        <IconButton
+          size="sm"
+          color="neutralNoBg"
+          icon={PhCaretDoubleLeft}
+          className={`${mClass} ${
+            isFirstPage ? disableClass : arrowButtonClass
+          }`}
+          onClick={handlePreviousClick}
+        />
+        {renderPageNumbers()}
+        <IconButton
+          size="sm"
+          color="neutralNoBg"
+          icon={PhCaretDoubleRight}
+          className={`${mClass} ${
+            isLastPage ? disableClass : arrowButtonClass
+          }`}
+          onClick={handleNextClick}
+        />
+      </div>
+      <Typography
+        color="neutralMiddle"
+        className="hidden sm:block text-sm md:text-base"
+      >
+        {`${t('global.show')} ${itemsPer}  ${paginationLabel} ${t(
+          'global.of'
+        )} ${allItems}`}
+      </Typography>
+      <Typography
+        color="neutralMiddle"
+        className="block sm:hidden text-sm md:text-base"
+      >
+        {allItems} of {itemsPer}
+      </Typography>
+    </div>
+  ) : (
+    <div className="flex gap-2.5" dir="ltr">
+      <IconButton
+        size="sm"
+        color="neutral"
+        icon={PhCaretLeft}
         className={`${mClass} ${isFirstPage ? disableClass : arrowButtonClass}`}
         onClick={handlePreviousClick}
-      >
-        {`<<`}
-      </button>
-      {renderPageNumbers()}
-      <button
-        type="button"
+      />
+      <IconButton
+        size="sm"
+        color="neutral"
+        icon={PhCaretRight}
         className={`${mClass} ${isLastPage ? disableClass : arrowButtonClass}`}
         onClick={handleNextClick}
-      >
-        {`>>`}
-      </button>
+      />
     </div>
   );
 }
-
-export default Pagination;

@@ -1,8 +1,7 @@
-import { BaseButton } from '@ui/atoms/BaseButton';
 import { Link } from 'react-router-dom';
 import unauthorizedImage from '@src/assets/images/403.jpg';
-import { Typography } from '@ui/atoms';
 import { ROUTES_PATH } from '@src/routes/routesConstants';
+import { BaseButton, Typography } from '@ui/atoms';
 
 export function UnauthorizedComponent() {
   return (

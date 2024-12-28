@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import { ToastCustomContainer } from '@redesignUi/molecules/ToastCustomContainer';
+import { ToastCustomContainer } from '@ui/molecules/ToastCustomContainer';
 import routesConfig from '@src/routes/routesConfig';
 import { UserContext } from '@context/user/userContext';
 import { useLanguage } from '@context/settings/languageContext';

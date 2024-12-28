@@ -9,11 +9,11 @@ import { SessionResponsePagination } from '@src/types/services';
 import { E_SESSION_RECORD_LIST_PAGINATION } from '@src/services/config/endpoint';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
 import { API_GET_RECORDED_VIDEO } from '@src/services/users';
-import { BaseTable } from '@redesignUi/molecules/BaseTable';
-import { OnClickActionsType } from '@redesignUi/molecules/BaseTable/types';
-import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
-import { Modal } from '@redesignUi/molecules/Modal';
-import { checkPermissionHeaderItem } from '@redesignUi/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
+import { BaseTable } from '@ui/molecules/BaseTable';
+import { OnClickActionsType } from '@ui/molecules/BaseTable/types';
+import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs/BaseTabs';
+import { Modal } from '@ui/molecules/Modal';
+import { checkPermissionHeaderItem } from '@ui/molecules/BaseTable/components/utils/CheckPermissionHeaderItem';
 
 import { SessionRecordListParams, RecordDataParams } from '../types';
 import { SessionRecordingHeaderItem } from './constants/SessionRecordingHeaderItem';

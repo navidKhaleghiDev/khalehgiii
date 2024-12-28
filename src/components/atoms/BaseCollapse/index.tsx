@@ -1,33 +1,67 @@
-import { ReactElement, useState } from 'react';
-import PhCaretUp from '@iconify-icons/ph/caret-up';
+import { ReactElement } from 'react';
+
+import PhCaretLeft from '@iconify-icons/ph/caret-left';
+import PhCaretRight from '@iconify-icons/ph/caret-right';
 import PhCaretDown from '@iconify-icons/ph/caret-down';
-import { IconButton } from '../BaseButton';
+import { Typography } from '@ui/atoms';
+import { useLanguage } from '@context/settings/languageContext';
+import { IconButton } from '@ui/atoms/BaseButton';
 
 type BaseCollapseProps = {
   content: ReactElement;
+  title?: string;
+  description?: string;
+  className?: string;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
-export function BaseCollapse({ content }: BaseCollapseProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export function BaseCollapse({
+  content,
+  title,
+  className,
+  description,
+  isOpen,
+  onToggle,
+}: BaseCollapseProps) {
+  const { lang } = useLanguage();
 
-  const toggleCollapse = () => {
-    setIsOpen(!isOpen);
-  };
+  const dir = lang === 'fa' ? PhCaretLeft : PhCaretRight;
 
   return (
-    <div className=" border border-gray-300 rounded-md mb-4 col-span-6 ">
-      <IconButton
-        onClick={toggleCollapse}
-        className=" flex justify-between items-center p-4 text-left bg-white-100 hover:bg-gray-200 focus:outline-none w-full"
-        icon={!isOpen ? PhCaretDown : PhCaretUp}
-      />
-
+    <div className={className ?? ''}>
       <div
-        className={`transition-max-height duration-300 ease-in-out overflow-hidden ${
-          isOpen ? 'max-h-screen' : 'max-h-0'
+        className={`flex justify-between items-center border border-gray-100 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 dark:bg-gray-600 h-10 px-5 rounded-lg ${
+          isOpen && 'bg-gray-100 dark:bg-gray-800 dark:border-gray-800'
         }`}
       >
-        {content && <div className="overflow-y-auto max-h-30 ">{content}</div>}
+        <div>
+          {title ? (
+            <Typography variant="body6" color="neutralDark">
+              {title}
+            </Typography>
+          ) : null}
+          {description ? (
+            <Typography
+              className="text-[0.563rem] ltr:text-left rtl:text-right"
+              color="neutralMiddle"
+            >
+              {description}
+            </Typography>
+          ) : null}
+        </div>
+        <IconButton
+          color="neutralNoBg"
+          icon={!isOpen ? dir : PhCaretDown}
+          onClick={onToggle}
+        />
+      </div>
+      <div
+        className={`transition-max-height duration-75 ease-out overflow-hidden sm:px-5 px-2 rounded-lg border border-gray-100 bg-gray-100 dark:bg-gray-800 ${
+          isOpen ? 'mt-[0.12rem] dark:border-gray-800' : 'h-0 border-none'
+        }`}
+      >
+        {isOpen && content ? <div>{content}</div> : null}
       </div>
     </div>
   );

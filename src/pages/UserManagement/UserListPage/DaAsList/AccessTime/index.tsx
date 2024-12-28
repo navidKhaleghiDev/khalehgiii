@@ -1,4 +1,4 @@
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 
 type UsedTimeProps = { time: number | string; isPermanent?: boolean };
 

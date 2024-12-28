@@ -2,9 +2,9 @@ import { useCallback, useRef, useState, useEffect } from 'react';
 import userIcon from '@iconify-icons/ph/user';
 import { useTranslation } from 'react-i18next';
 
-import { Avatar, Typography } from '@redesignUi/atoms';
+import { Avatar, Typography } from '@ui/atoms';
 import { DaAsParams } from '@src/services/users/types';
-import { BaseCheckBox } from '@redesignUi/atoms/Inputs/BaseCheckBox';
+import { BaseCheckBox } from '@ui/atoms/Inputs/BaseCheckBox';
 import { GroupManagementDropDown } from './GroupManagementDropDown';
 import { dropdownOptions } from '../GroupManagementEdit/constants/groupManagementHeaderItem';
 import { GroupManagementUsersListProps } from '../types';

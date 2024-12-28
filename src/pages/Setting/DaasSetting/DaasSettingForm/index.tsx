@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms';
-import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
-import { Divider } from '@redesignUi/atoms/Divider';
+import { Typography } from '@ui/atoms';
+import { BaseCheckBoxController } from '@ui/atoms/Inputs/BaseCheckBox/Controller';
+import { Divider } from '@ui/atoms/Divider';
 
 import { AccessSeting } from './components/AccessSeting';
 import { ResourceLimitation } from './components/ResourceLimitation';

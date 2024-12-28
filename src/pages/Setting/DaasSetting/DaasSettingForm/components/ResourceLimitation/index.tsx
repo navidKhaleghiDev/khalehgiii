@@ -1,16 +1,16 @@
 import { t } from 'i18next';
 
 import { useLanguage } from '@context/settings/languageContext';
-import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
-import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
-import { ChromeSvg } from '@redesignUi/atoms/Svgs/ChromeSvg';
-import { FirefoxSvg } from '@redesignUi/atoms/Svgs/FirefoxSvg';
-import { TitleSection } from '@redesignUi/atoms/TitleSection';
+import { BaseCheckBoxController } from '@ui/atoms/Inputs/BaseCheckBox/Controller';
+import { BaseInputNumberController } from '@ui/atoms/Inputs/BaseInputNumber/Controller';
+import { ChromeSvg } from '@ui/atoms/Svgs/ChromeSvg';
+import { FirefoxSvg } from '@ui/atoms/Svgs/FirefoxSvg';
+import { TitleSection } from '@ui/atoms/TitleSection';
 import { checkPermission } from '@src/helper/hooks/usePermission';
 import { PermissionDaas } from '@src/types/permissions';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
-import { VsSvg } from '@redesignUi/atoms/Svgs/VsSvg';
-import { RemminaSvg } from '@redesignUi/atoms/Svgs/RemminaSvg';
+import { VsSvg } from '@ui/atoms/Svgs/VsSvg';
+import { RemminaSvg } from '@ui/atoms/Svgs/RemminaSvg';
 import { PropsType } from '@src/pages/Setting/type';
 
 const inputStyle = 'flex col-span-6 lg:col-span-4 h-16';

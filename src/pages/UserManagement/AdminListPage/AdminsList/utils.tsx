@@ -1,6 +1,6 @@
-import { BaseIcon } from '@ui/atoms';
 import checkBoldIcon from '@iconify-icons/ph/check-bold';
 import xIcon from '@iconify-icons/ph/x';
+import { BaseIcon } from '@ui/atoms';
 
 export function booleanIcon(value: string | boolean) {
   if (typeof value === 'string') return value;

@@ -7,20 +7,20 @@ import {
   API_CREATE_FILE_TYPE,
   API_UPDATE_FILE_TYPE,
 } from '@src/services/config';
-import { BaseInputController } from '@redesignUi/atoms/Inputs/BaseInput/Controller';
-import { BaseButton, Typography } from '@redesignUi/atoms';
+import { BaseInputController } from '@ui/atoms/Inputs/BaseInput/Controller';
+import { BaseButton, Typography } from '@ui/atoms';
 import PhFile from '@iconify-icons/ph/file';
 import { FileTypeProp } from '@src/pages/Setting/type';
-import { BaseSwitchController } from '@redesignUi/atoms/BaseSwitch/Controller';
-import { BaseCheckBoxController } from '@redesignUi/atoms/Inputs/BaseCheckBox/Controller';
-import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
+import { BaseSwitchController } from '@ui/atoms/BaseSwitch/Controller';
+import { BaseCheckBoxController } from '@ui/atoms/Inputs/BaseCheckBox/Controller';
+import { BaseInputNumberController } from '@ui/atoms/Inputs/BaseInputNumber/Controller';
 import PhUploadSimple from '@iconify-icons/ph/upload-simple';
 import {
   checkPermission,
   useUserPermission,
 } from '@src/helper/hooks/usePermission';
 import { PermissionDaas } from '@src/types/permissions';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { regexPattern } from '@ui/atoms/Inputs';
 import { useLanguage } from '@context/settings/languageContext';
 
 type PropsType = {

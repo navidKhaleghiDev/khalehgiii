@@ -1,4 +1,4 @@
-import { BaseButton } from '@redesignUi/atoms';
+import { BaseButton } from '@ui/atoms';
 import { useState, useRef } from 'react';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
 import PhCaretDown from '@iconify-icons/ph/caret-down';

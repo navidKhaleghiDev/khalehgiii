@@ -7,18 +7,18 @@ import { E_USERS_GROUPS } from '@src/services/users/endpoint';
 import { http } from '@src/services/http';
 import { GroupParams } from '@src/services/users/types';
 import { ResponseData } from '@src/types/services';
-import { GroupCard } from '@redesignUi/molecules/Cards/GroupCard';
-import { Pagination } from '@redesignUi/molecules/Pagination';
+import { GroupCard } from '@ui/molecules/Cards/GroupCard';
+import { Pagination } from '@ui/molecules/Pagination';
 import { createAPIEndpoint } from '@src/helper/utils';
-import { UsersInfoCard } from '@redesignUi/molecules/Cards/UsersInfoCard';
-import { LoadingSpinner } from '@redesignUi/molecules/Loading';
+import { UsersInfoCard } from '@ui/molecules/Cards/UsersInfoCard';
+import { LoadingSpinner } from '@ui/molecules/Loading';
 import UsersThree from '@iconify-icons/ph/users-three';
 import PhUserCirclePlus from '@iconify-icons/ph/user-circle-plus';
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 import { API_DELETE_GROUP } from '@src/services/users';
-import { FilterTableList } from '@redesignUi/Templates/FilterTableLIst';
+import { FilterTableList } from '@ui/Templates/FilterTableLIst';
 import { toast } from 'react-toastify';
-import { Modal } from '@redesignUi/molecules/Modal';
+import { Modal } from '@ui/molecules/Modal';
 
 import { GroupManagementCreate } from './GroupManagementCreate';
 

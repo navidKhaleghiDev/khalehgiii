@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
-import { MultiDatePickerController } from '@redesignUi/atoms/Inputs/DatePicker/Controller';
-import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
+import { MultiDatePickerController } from '@ui/atoms/Inputs/DatePicker/Controller';
+import { convertI2ToAD } from '@ui/atoms/Inputs/utils';
 import { useLanguage } from '@context/settings/languageContext';
 import { useWindowDimensions } from '@src/helper/hooks/useWindowDimensions';
 import { FormDateData } from '@src/pages/Reports/types';

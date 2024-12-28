@@ -9,14 +9,12 @@ export function Typography({
   children,
   className,
   type = 'p',
-  weight,
 }: TypographyProps) {
   return createElement(
     type,
     {
       className: typographyStyles({
         color,
-        weight,
         variant,
         className,
       }),

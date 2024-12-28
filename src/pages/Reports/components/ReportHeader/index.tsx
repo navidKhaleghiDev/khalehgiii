@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 
 export function ReportHeader() {
   const { t } = useTranslation();

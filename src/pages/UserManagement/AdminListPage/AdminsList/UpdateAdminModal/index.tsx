@@ -4,8 +4,8 @@ import useSWR from 'swr';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-import { BaseButton, Typography } from '@redesignUi/atoms';
-import { BaseTab, BaseTabs } from '@redesignUi/atoms/BaseTabs/BaseTabs';
+import { BaseButton, Typography } from '@ui/atoms';
+import { BaseTab, BaseTabs } from '@ui/atoms/BaseTabs/BaseTabs';
 import { UserParams } from '@src/services/users/types';
 import { useLanguage } from '@context/settings/languageContext';
 import { API_CREATE_USER, API_UPDATE_USER } from '@src/services/users';

@@ -1,7 +1,7 @@
 import {
   BaseTableComponentCellProps,
   HeaderTable,
-} from '@redesignUi/molecules/BaseTable/types';
+} from '@ui/molecules/BaseTable/types';
 import PhDownloadSimple from '@iconify-icons/ph/download-simple';
 import { VirusTag } from '@src/pages/FIleReports/ReportFileScanPage/ScanFIleList/VirusTag';
 import { ScannedFile } from '@src/services/analyze/types';

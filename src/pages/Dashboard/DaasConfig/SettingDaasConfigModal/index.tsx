@@ -1,5 +1,3 @@
-import { BaseButton } from '@ui/atoms/BaseButton';
-import { Typography } from '@ui/atoms';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
@@ -7,6 +5,7 @@ import { DaasConfigForm } from '@ui/utils/DaasConfigForm';
 import { DaasConfig } from '@src/services/config/types';
 import { useTranslation } from 'react-i18next';
 import { useUserPermission } from '@src/helper/hooks/usePermission';
+import { BaseButton, Typography } from '@ui/atoms';
 
 type PropsType = {
   handleClose: (isUpdated?: boolean) => void;

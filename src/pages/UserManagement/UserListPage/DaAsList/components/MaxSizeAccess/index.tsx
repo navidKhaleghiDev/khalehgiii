@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import downloadSimple from '@iconify-icons/ph/download-simple';
 import uploadSimple from '@iconify-icons/ph/upload-simple';
 import timer from '@iconify-icons/ph/timer';
-import { BaseInputNumberController } from '@redesignUi/atoms/Inputs/BaseInputNumber/Controller';
+import { BaseInputNumberController } from '@ui/atoms/Inputs/BaseInputNumber/Controller';
 import { useLanguage } from '@context/settings/languageContext';
 import { TimeLimitDuration } from '@src/services/users/types';
-import { regexPattern } from '@redesignUi/atoms/Inputs';
+import { regexPattern } from '@ui/atoms/Inputs';
 
 import { UserAccessModalCard } from '../DaAsCard/UserAccessModalCard';
 

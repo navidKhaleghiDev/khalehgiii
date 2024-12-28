@@ -1,5 +1,5 @@
-import { NoReportChart } from '@redesignUi/atoms/Svgs';
-import { ChartRenderer } from '@redesignUi/molecules/Charts/ChartRenderer';
+import { NoReportChart } from '@ui/atoms/Svgs';
+import { ChartRenderer } from '@ui/molecules/Charts/ChartRenderer';
 
 type Dataset = {
   label: string;

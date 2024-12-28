@@ -1,11 +1,11 @@
-import { Card, Typography } from '@ui/atoms';
 import { TimeLimitDuration } from '@src/services/users/types';
-import { IconButton } from '@ui/atoms/BaseButton';
 import trashIcon from '@iconify-icons/ph/trash';
 import gearIcon from '@iconify-icons/ph/gear';
 import { DaasConfig } from '@src/services/config/types';
 import { StringifyProperties } from '@src/types/global';
 import { TimeLimitDurationLabel } from '@src/constants/accessTime';
+import { Card, Typography } from '@ui/atoms';
+import { IconButton } from '@ui/atoms/BaseButton';
 
 import { OnClickActionsType } from './types';
 import { booleanIcon } from '../utils';

@@ -1,44 +1,31 @@
 import { cva } from 'class-variance-authority';
 
 export const avatarStyles = cva(
-  'relative flex justify-center items-center overflow-hidden rounded-full dark:bg-gray-600',
+  'relative flex justify-center items-center overflow-hidden rounded-full dark:bg-gray-500 bg-gray-100 border border-gray-300 dark:border-gray-400 ',
   {
     variants: {
-      intent: {
-        primary: 'bg-teal-600 border-none',
-        grey: 'bg-gray-100 border',
-        inactive: 'bg-gray-200 border-none',
-      },
       size: {
-        sm: 'w-8 h-8 border-1',
-        md: 'w-20 h-20 border-2',
-        lmd: 'w-40 h-40 border-2',
-        lg: 'w-48 h-48 border-4',
+        sm: 'size-7',
+        md: 'size-10',
+        lg: 'size-16',
+        responsive: 'size-7 md:size-10 lg:size-16',
+        table: 'size-7 md:size-10',
       },
     },
     defaultVariants: {
-      intent: 'primary',
       size: 'md',
     },
   }
 );
 
-export const iconAvatarStyles = cva('absolute dark:text-white ', {
+export const iconAvatarStyles = cva('absolute text-gray-400', {
   variants: {
-    intent: {
-      primary: 'text-white ',
-      grey: 'text-teal-600 ',
-      inactive: 'text-gray-400 ',
-    },
     size: {
-      sm: 'w-6 h-6 ',
-      md: 'w-16 h-16 ',
-      lmd: 'w-32 h-32',
-      lg: 'w-36 h-36',
+      sm: 'size-4',
+      md: 'size-6',
+      lg: 'size-[2.375rem]',
+      responsive: 'size-4 md:size-6 lg:size-[2.375rem]',
+      table: 'size-4 md:size-6',
     },
-  },
-  defaultVariants: {
-    intent: 'primary',
-    size: 'md',
   },
 });

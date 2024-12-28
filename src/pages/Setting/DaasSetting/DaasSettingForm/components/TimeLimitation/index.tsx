@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 
-import { Card } from '@redesignUi/atoms';
-import { BaseRadioButtonController } from '@redesignUi/atoms/Inputs/BaseRadioButton/Controller';
+import { Card } from '@ui/atoms';
+import { BaseRadioButtonController } from '@ui/atoms/Inputs/BaseRadioButton/Controller';
 import { PropsType } from '@src/pages/Setting/type';
 
 export function TimeLimitation({ isActive, control }: PropsType) {

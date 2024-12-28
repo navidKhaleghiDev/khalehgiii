@@ -3,7 +3,7 @@ import { ReactElement } from 'react';
 
 import { titleStyles } from './styles';
 
-export interface AccordionParam {
+export interface AccordionParams {
   id: string;
   title: ReactElement;
   content: ReactElement;

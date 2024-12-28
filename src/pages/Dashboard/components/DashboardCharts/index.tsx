@@ -1,4 +1,4 @@
-import { Card } from '@redesignUi/atoms';
+import { Card } from '@ui/atoms';
 import {
   PermissionFileScan,
   PermissionUba,

@@ -1,4 +1,4 @@
-import { Typography } from '@redesignUi/atoms';
+import { Typography } from '@ui/atoms';
 
 export function TitleSection({ label }: { label: string }) {
   return (

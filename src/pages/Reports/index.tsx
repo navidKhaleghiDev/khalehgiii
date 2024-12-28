@@ -2,7 +2,7 @@ import { useReducer, useState } from 'react';
 import 'chart.js/auto';
 import { useTranslation } from 'react-i18next';
 
-import { convertI2ToAD } from '@redesignUi/atoms/Inputs/utils';
+import { convertI2ToAD } from '@ui/atoms/Inputs/utils';
 import { API_GET_REPORTS } from '@src/services/config';
 
 import {

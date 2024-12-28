@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useRef, useState } from 'react';
 import { useClickOutside } from '@src/helper/hooks/useClickOutside';
-import caretLeftFill from '@iconify-icons/ph/caret-left-fill';
-
 import { CardProps, OptionType } from './types';
 import { BaseButton } from '../BaseButton';
 
@@ -23,8 +21,8 @@ export function Select({ label, options = optionMock }: CardProps) {
     <div className="relative" ref={ref}>
       <BaseButton
         label={label}
-        type={open ? 'default' : 'shadow'}
-        endIcon={caretLeftFill}
+        type={open ? 'teal' : 'neutral'}
+        endIcon="mingcute:left-fill"
         onClick={() => setOpen(!open)}
       />
 
@@ -35,7 +33,7 @@ export function Select({ label, options = optionMock }: CardProps) {
       >
         {options.map((option) => (
           <BaseButton
-            type="tealLink"
+            type="tertiary"
             label={option.label}
             key={option.id}
             onClick={() => handleClickSelected(option)}

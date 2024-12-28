@@ -2,7 +2,7 @@ import moment from 'moment-jalaali';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 
-import { ServiceCard } from '@redesignUi/molecules/Cards/ServiceCard';
+import { ServiceCard } from '@ui/molecules/Cards/ServiceCard';
 import { E_ANALYZE_SCAN_STATS } from '@src/services/analyze/endpoint';
 import { ScanStats } from '@src/services/analyze/types';
 import { HTTP_ANALYSES } from '@src/services/http';

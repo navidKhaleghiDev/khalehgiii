@@ -1,29 +1,27 @@
-import { PALLET } from '@src/constants/theme';
 import { cva } from 'class-variance-authority';
 
 export const baseIconStyles = cva('fill-current', {
   variants: {
     color: {
-      neutral: `${PALLET.TEXT_COLOR.NEUTRAL}`,
-      teal: `${PALLET.TEXT_COLOR.TEAL}`,
-      yellow: `${PALLET.TEXT_COLOR.YELLOW}`,
-      red: `${PALLET.TEXT_COLOR.RED}`,
-      tealLink: ``,
-      textLink: ``,
+      neutral: 'text-gray-800 dark:text-white dark:hover:text-white',
+      teal: 'text-teal-500 disabled:opacity-40 dark:text-teal-300 dark:hover:text-teal-300',
+      yellow:
+        'text-yellow-600 disabled:opacity-40 dark:text-yellow-500 dark:hover:text-yellow-500',
+      red: 'text-red-600 disabled:opacity-40 dark:text-red-400 dark:hover:text-red-400',
+      blue: 'text-blue-500 disabled:opacity-40 dark:text-blue-300 dark:hover:text-blue-300',
+      purple:
+        'text-purple-500 disabled:opacity-40 dark:text-purple-400 dark:hover:text-purple-400',
     },
     hoverColor: {
       primary: 'hover:text-teal-600',
-      default: '', // it should be empty
+      default: '',
     },
     size: {
-      xs: 'h-4 w-4',
-      sm: 'h-3 w-3',
-      md: 'h-6 w-6',
-      lg: 'h-8 w-8',
-      xl: 'h-12 w-12',
-      xxl: 'h-16 w-16',
-      xxxl: 'h-20 w-20',
-      default: '',
+      xs: 'size-3',
+      sm: 'size-4',
+      md: 'size-6',
+      lg: 'size-[2.375rem]',
+      responsive: 'size-4 sm:size-6 md:size-[2.375rem]',
     },
   },
 });

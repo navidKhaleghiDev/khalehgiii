@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
 import { DaAsParams } from '@src/services/users/types';
-import { ActionOnClickActionsType } from '@ui/atoms/BaseTable/types';
+import { ActionOnClickActionsType } from '@ui/molecules/BaseTable/types';
 
 export type OnClickActionsType = (
   action: ActionOnClickActionsType,

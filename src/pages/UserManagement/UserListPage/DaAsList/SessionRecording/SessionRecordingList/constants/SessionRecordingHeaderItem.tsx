@@ -1,8 +1,8 @@
 import Play from '@iconify-icons/ph/play';
 
 import { PermissionSessionRecording } from '@src/types/permissions';
-import { HeaderTable } from '@redesignUi/molecules/BaseTable/types';
-import { ConvertedSecondsHelperCell } from '@redesignUi/molecules/BaseTable/components/HelperCell/ConvertedSecondsHelperCell';
+import { HeaderTable } from '@ui/molecules/BaseTable/types';
+import { ConvertedSecondsHelperCell } from '@ui/molecules/BaseTable/components/HelperCell/ConvertedSecondsHelperCell';
 
 export const SessionRecordingHeaderItem: HeaderTable[] = [
   {
