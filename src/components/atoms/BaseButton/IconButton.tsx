@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useCallback } from 'react';
 import { iconButtonStyles } from './styles';
 import { IconButtonProps } from './types';

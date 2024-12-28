@@ -391,7 +391,8 @@
     "choseDomain": "انتخاب دامنه",
     "systemAdminOtp": "بعد از فعالسازی برای ورود به سامانه قسمت پایین را با تلفن همراه خود اسکن کنید.",
     "newAdmin": "ادمین جدید",
-    "adminSearch": "جستجو ادمین"
+    "adminSearch": "جستجو ادمین",
+    "enteredInformationDuplicate": "اطلاعات وارد شده تکراری است."
   },
   "userList": {
     "onlineUsers": "کاربران آنلاین",
