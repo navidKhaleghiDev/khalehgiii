@@ -88,7 +88,11 @@ export function UpdateAdminModal({
         handleClose(true);
       })
       .catch((err) => {
-        toast.error(err);
+        if (data?.email && updatedData.email?.includes(data.email)) {
+          toast.error(t('adminList.enteredInformationDuplicate'));
+        } else {
+          toast.error(err);
+        }
         setShowConfirm(false);
       })
       .finally(() => {

@@ -389,7 +389,8 @@
     "choseDomain": "Domain",
     "systemAdminOtp": "After activation, scan the section below with your mobile phone to log into the system.",
     "newAdmin": "New Admin",
-    "adminSearch": "Search Admin"
+    "adminSearch": "Search Admin",
+    "enteredInformationDuplicate": "Entered Information is Duplicate"
   },
   "userList": {
     "onlineUsers": "Online Users",
