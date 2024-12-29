@@ -1,5 +1,4 @@
-import { VariantProps } from 'class-variance-authority';
-import { toggleStyles } from './styles';
+import { CVA } from '../type';
 
 export interface ButtonOption {
   id: string | number;
@@ -8,10 +7,14 @@ export interface ButtonOption {
   active?: boolean;
 }
 
-export interface ToggleButtonProps extends VariantProps<typeof toggleStyles> {
+export type BaseToggleButtonProps<T extends Record<string, any>> = {
   buttonOptions: ButtonOption[];
   onChange: (selected: ButtonOption) => void;
   className?: string;
   classNameButton?: string;
   disabled?: boolean;
-}
+  style: CVA<T>;
+  buttonStyle: CVA<T>;
+} & {
+  [key in keyof T]: T[key];
+};

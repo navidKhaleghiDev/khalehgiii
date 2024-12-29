@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 
 import { ButtonOption, ToggleButtonProps } from './types';
-import { toggleStyles } from './styles';
+import { buttonStyle, toggleStyles } from './styles';
 
 /**
  * ToggleButton component renders a group of buttons that allow for single selection.
@@ -32,11 +32,11 @@ export function ToggleButton(props: ToggleButtonProps): JSX.Element {
   return (
     <div className="flex w-full justify-end">
       <div
-        className={`${toggleStyles({
+        className={toggleStyles({
           size,
-        })} bg-gray-100 dark:bg-gray-800 border ${
-          disabled ? 'opacity-50' : null
-        } border-gray-200 dark:border-gray-800 py-1 ${className ?? ''}`}
+          disabled,
+          className,
+        })}
       >
         {buttonOptions.map((item: ButtonOption) => (
           <button
@@ -45,12 +45,11 @@ export function ToggleButton(props: ToggleButtonProps): JSX.Element {
             key={item.id}
             disabled={disabled}
             onClick={() => onChange(item)}
-            className={`flex items-center justify-center ${
-              disabled ? 'cursor-auto' : null
-            } cursor-pointer rounded-[0.25rem] text-center w-16 mx-1 text-gray-400 ${
-              item.active &&
-              'text-gray-900  bg-white dark:text-white dark:bg-gray-600 outline-none'
-            } ${classNameButton}`}
+            className={buttonStyle({
+              disabled,
+              active: item.active,
+              className: classNameButton,
+            })}
           >
             {item.label}
           </button>
