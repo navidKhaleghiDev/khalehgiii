@@ -1,7 +1,13 @@
-import { createElement } from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import { VariantProps } from 'class-variance-authority';
+
+import { BaseTypography, BaseTypographyProps } from '@src/UI/atoms /Typography';
 
 import { typographyStyles } from './styles';
-import { TypographyProps } from './types';
+
+type TypographyProps = BaseTypographyProps<
+  VariantProps<typeof typographyStyles>
+>;
 
 export function Typography({
   color,
@@ -10,15 +16,15 @@ export function Typography({
   className,
   type = 'p',
 }: TypographyProps) {
-  return createElement(
-    type,
-    {
-      className: typographyStyles({
-        color,
-        variant,
-        className,
-      }),
-    },
-    children
+  const extended = { color, variant };
+  return (
+    <BaseTypography
+      style={typographyStyles}
+      className={className}
+      type={type}
+      {...extended}
+    >
+      {children}
+    </BaseTypography>
   );
 }
