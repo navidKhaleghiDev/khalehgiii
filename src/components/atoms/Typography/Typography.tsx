@@ -5,8 +5,9 @@ import { BaseTypography, BaseTypographyProps } from '@src/UI/atoms /Typography';
 
 import { typographyStyles } from './styles';
 
-type TypographyProps = BaseTypographyProps<
-  VariantProps<typeof typographyStyles>
+type TypographyProps = Omit<
+  BaseTypographyProps<VariantProps<typeof typographyStyles>>,
+  'style'
 >;
 
 export function Typography({
